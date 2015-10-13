@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source source="LOCAL" name="Rails poligon: development" uuid="4a2a6b76-3ac7-495f-828c-d42b1d91eb63">
+    <database-info product="" version="" jdbc-version="" driver-name="" driver-version=""/>
+  </data-source>
+  <data-source source="LOCAL" name="Rails poligon: test" uuid="743ccf3f-58ce-439c-b047-7bba3122ba3b">
+    <database-info product="" version="" jdbc-version="" driver-name="" driver-version=""/>
+  </data-source>
+  <data-source source="LOCAL" name="Rails poligon: production" uuid="ac093ecf-6e1f-47cb-9eee-9c110cf1b58a">
+    <database-info product="" version="" jdbc-version="" driver-name="" driver-version=""/>
+  </data-source>
+</component>

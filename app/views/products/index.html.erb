@@ -1,0 +1,30 @@
+<h1>Перечень товаров</h1>
+
+<table>
+<% @products.each do |product| %>
+  <tr class="<% cycle('list_line_odd', 'list_line_even') %>">
+    <td>
+      <%= image_tag(product.image_url, class: 'list_image') %>
+    </td>
+
+    <td class="list_description">
+      <dl>
+        <dt><%= product.title %></dt>
+        <dd><%= truncate(strip_tags(product.short_description), length: 80) %></dd>
+      </dl>
+    </td>
+
+    <td class="list_actions">
+      <%= link_to 'Показать', product %><br/>
+      <%= link_to 'Редактировать', edit_product_path(product) %><br/>
+      <%= link_to 'Удалить', product, confirm: 'Вы уверены?',
+                  method: :delete %>
+    </td>
+  </tr>
+
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'Новый товар', new_product_path %>
