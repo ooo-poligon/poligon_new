@@ -6,12 +6,32 @@ gem 'rails', '3.2.21'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'mysql2', '0.3.11'
-# gem 'activerecord-mysql2-adapter'
+
+gem 'bootstrap-sass', '~> 3.3.5'
+gem 'sass-rails', '>= 3.2'
+gem 'autoprefixer-rails'
+
+
+
+# сам фреймворк от твиттера
+# gem 'twitter-bootstrap-rails'
+
+# twitter bootstrap css & javascript toolkit
+# gem 'twitter-bootswatch-rails', '~> 3.2.0'
+
+# twitter bootstrap helpers gem, e.g., alerts etc...
+# gem 'twitter-bootswatch-rails-helpers'
+
+# gem 'therubyrhino'
+# gem 'therubyracer'
+# gem 'libv8'
+
+# gem 'sass-rails', '~> 5.0'
 
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  gem 'sass-rails',   '~> 3.2.3'
+  # gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
@@ -49,13 +69,3 @@ gem 'jquery-rails'
 
 # To use debugger
 # gem 'debugger'
-
-
-
-
-
-# group :assets do
-#   gem 'sass-rails',   '~> 3.1.4'
-#   gem 'coffee-rails', '~> 3.1.1'
-#   gem 'uglifier', '>= 1.0.3'
-# end

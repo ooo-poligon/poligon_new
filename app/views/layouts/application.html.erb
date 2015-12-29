@@ -1,14 +1,188 @@
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/html">
 <head>
-  <title>ПОЛИГОН</title>
+  <title>Компания "ПОЛИГОН"</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
+
+  <!--[if !IE 7]>
+  <style type="text/css">
+      #wrap {display:table;height:100%}
+  </style>
+  <![endif]-->
+
 </head>
+
 <body>
 
-<%= yield %>
+<div id="wrap">
 
+<div class="panelShadow">
+  <table class="upPanel">
+    <tr>
+      <td width="20%">
+        <div class="logo">
+          <%= link_to image_tag("logo.png", alt: 'Компания "ПОЛИГОН"'), :action => 'index', :controller => 'home' %>
+        </div>
+      </td>
+      <td>
+        <div class="upMenu">
+          <ul>
+            <li><span><%= link_to 'Главная', home_index_path %></span></li>
+            <li><span><%= link_to 'Новости', news_items_path %></span></li>
+            <li><span>Каталог</span></li>
+            <li><span><%= link_to 'Публикации', articles_path %></span></li>
+            <li><span><%= link_to 'Контакты', company_contacts_path %></span></li>
+          </ul>
+
+          <form class="form-search">
+            <div>
+              <input type="text" placeholder="Поиск по сайту...">
+            </div>
+          </form>
+        </div>
+      <td width="20%">
+        <div class="phone">
+          <p>
+            (812) 325-42-20<br/>
+          </p>
+          <span>Земля, Россия, Санкт-Петербург<br/>
+          ул. Льва Толстого, д.7, офис 501</span>
+        </div>
+      </td>
+    </tr>
+  </table>
+</div>
+
+<div class="panelPad"></div>
+
+<div id="main">
+
+<div id="main-container" class="container-fluid">
+
+    <div class="row">
+
+      <div class="col-xs-2">
+        <div class="partners">
+          <table>
+            <tr><td><%= link_to image_tag("logo/logo_200/tele.gif", alt: '"TELE"', title: "реле времени и контроля из Австрии"), :action => 'index', :controller => 'home' %></td></tr>
+            <tr><td><%= link_to image_tag("logo/logo_200/benedict.gif", alt: '"Benedict"', title: "Контакторы, пускатели, защита Benedict"), :action => 'index', :controller => 'home' %></td></tr>
+            <tr><td><%= link_to image_tag("logo/logo_200/citel.gif", alt: '"CITEL"', title: "CITEL - устройства молниезащиты"), :action => 'index', :controller => 'home' %></td></tr>
+            <tr><td><%= link_to image_tag("logo/logo_200/graesslin.gif", alt: '"Graesslin"', title: "Graesslin - таймеры и фотореле. Сделано в Германии."), :action => 'index', :controller => 'home' %></td></tr>
+            <tr><td><%= link_to image_tag("logo/logo_200/sonder.gif", alt: '"SONDER"', title: "SONDER - термостаты"), :action => 'index', :controller => 'home' %></td></tr>
+            <tr><td><%= link_to image_tag("logo/logo_200/relequick.gif", alt: '"RELEQUICK"', title: "RELEQUICK - интерфейсные реле"), :action => 'index', :controller => 'home' %></td></tr>
+            <tr><td><%= link_to image_tag("logo/logo_200/comat_releco.gif", alt: '"COMAT-RELECO"', title: "COMAT-RELECO - промышленные промежуточные реле"), :action => 'index', :controller => 'home' %></td></tr>
+            <tr><td><%= link_to image_tag("logo/logo_200/emko.gif", alt: '"EMKO"', title: "EMKO - температурные датчики и и контроллеры"), :action => 'index', :controller => 'home' %></td></tr>
+            <tr><td><%= link_to image_tag("logo/logo_200/cbi.gif", alt: '"CBI"', title: "Профессиональные автоматические выключатели"), :action => 'index', :controller => 'home' %></td></tr>
+            <tr><td><%= link_to image_tag("logo/logo_200/huber-suhner.gif", alt: '"HUBER+SUHNER"', title: "ВЧ-разъемы, оптические компоненты"), :action => 'index', :controller => 'home' %></td></tr>
+            <tr><td><%= link_to image_tag("logo/logo_200/farnell.gif", alt: '"FARNELL"', title: "мировой лидер в области поставок электронных компонентов"), :action => 'index', :controller => 'home' %></td></tr>
+            <tr><td><%= link_to image_tag("logo/logo_200/poligonspb.gif", alt: '"ПОЛИГОН"', title: "ПОЛИГОН - производитель модульных устройств автоматики и защиты из Санкт-Петербурга"), :action => 'index', :controller => 'home' %></td></tr>
+            <tr><td><%= link_to image_tag("logo/logo_200/vemer.gif", alt: '"VEMER"', title: "производитель промышленных решений для измерения и контроля основных электрических параметров"), :action => 'index', :controller => 'home' %></td></tr>
+          </table>
+        </div>
+      </div>
+      <div class="col-xs-8">
+
+        <div id="carousel-container" class="container-fluid">
+
+          <div id="myCarousel" class="carousel slide" data-ride="carousel">
+            <!-- Carousel indicators -->
+            <ol class="carousel-indicators">
+              <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+              <li data-target="#myCarousel" data-slide-to="1"></li>
+              <li data-target="#myCarousel" data-slide-to="2"></li>
+            </ol>
+            <!-- Wrapper for carousel items -->
+            <div class="carousel-inner">
+              <div class="item active">
+                <%= image_tag("spec/graesslin_banner.jpg", alt: '"GRAESSLIN"') %>
+              </div>
+              <div class="item">
+                <%= image_tag("spec/tele_banner.jpg", alt: '"TELE"') %>
+              </div>
+              <div class="item">
+                <%= image_tag("spec/benedict_banner.jpg", alt: '"BENEDICT"') %>
+              </div>
+              <div class="item">
+                <%= image_tag("spec/citel_banner.jpg", alt: '"TELE"') %>
+              </div>
+            </div>
+            <!-- Carousel controls -->
+            <a class="carousel-control left" href="#myCarousel" data-slide="prev">
+              <span class="glyphicon glyphicon-chevron-left"></span>
+            </a>
+            <a class="carousel-control right" href="#myCarousel" data-slide="next">
+              <span class="glyphicon glyphicon-chevron-right"></span>
+            </a>
+          </div>
+
+        </div>
+
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="hide_banners_link"><p><a href="#">Скрыть баннеры</a></p></div>
+          </div>
+        </div>
+
+        <br/>
+
+          <%= yield %>
+
+      </div>
+
+  <div class="col-xs-2">
+    <div class="leftPanel">
+      <ul class="nav nav-list">
+        <li><a href="#"><i class="glyphicon glyphicon-certificate"></i>  Сертификаты</a></li>
+        <li><a href="#"><i class="glyphicon glyphicon-saved"></i></i>  Быстрая заявка</a></li>
+        <li><a href="#"><i class="glyphicon glyphicon-record"></i>  Заказ каталогов и CD</a></li>
+        <li><a href="#"><i class="glyphicon glyphicon-book"></i>  Скачать каталоги PDF</a></li>
+        <li><a href="#"><i class="glyphicon glyphicon-envelope"></i>  Подписка на рассылку</a></li>
+      </ul>
+    </div>
+
+    <div class="left_news">
+      <h4>Новости</h4>
+
+      <table>
+        <% news_items = NewsItem.all %>
+        <% news_items.each do |news_item| %>
+            <tr>
+              <td><%= news_item.title %></td>
+            </tr>
+        <% end %>
+      </table>
+    </div>
+
+    <div class="iso9001">
+      <%= image_tag("ISO9001.gif", alt: 'Система менеджмента качества соответствует требованиям ISO9001:2008') %>
+    </div>
+
+  </div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div id="footer">
+
+<div id="main-container" class="container-fluid">
+  <div class="row">
+
+      <div class="low_panel">
+        <br/>
+        <ul>
+          <li class="active"><a href="#">О компании</a></li>
+          <li><a href="#">Вакансии</a></li>
+          <li>Обмен ссылками</li>
+          <li>Карта сайта</li>
+        </ul>
+      </div>
+
+  </div>
+</div>
+</div>
 </body>
 </html>
