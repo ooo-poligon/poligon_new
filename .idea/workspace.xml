@@ -2,265 +2,63 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b87db1b6-f8f1-4a71-a416-35c6772f7630" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/dummy_rails/app/assets/images/.keep" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/dummy_rails/log/.keep" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/images/spec/E1PF400VSY01_device.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/images/spec/E1YM400VS10.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/images/ISO9001.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/dummy_node_mincer/apple-touch-icon-144-precomposed.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/images/logo/logo_200/benedict.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/images/spec/benedict_banner.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/images/logo/logo_200/benedict_grey.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/images/bg_gradient.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/images/logo/logo_200/cbi.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/images/logo/logo_200/cbi_grey.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/images/logo/logo_200/citel.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/images/spec/citel_banner.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/images/logo/logo_200/citel_grey.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/images/logo/logo_200/comat_releco.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/images/logo/logo_200/comat_releco_grey.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/images/logo/logo_200/emko.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/images/logo/logo_200/emko_grey.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/images/logo/logo_200/empty.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/images/logo/logo_200/farnell.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/images/logo/logo_200/farnell_grey.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/images/footer_bg.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/bootstrap/glyphicons-halflings-regular.eot" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/bootstrap/glyphicons-halflings-regular.ttf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/bootstrap/glyphicons-halflings-regular.woff2" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/bootstrap/glyphicons-halflings-regular.woff" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/images/logo/logo_200/graesslin.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/images/spec/graesslin_banner.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/images/logo/logo_200/graesslin_grey.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/images/logo/logo_200/huber-suhner.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/images/logo/logo_200/huber-suhner_grey.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/images/logo.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/images/metal_back.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/images/panel_shadow.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/images/logo/logo_200/poligonspb.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/images/logo/logo_200/poligonspb_grey.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/images/logo/logo_200/relequick.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/images/logo/logo_200/relequick_grey.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/images/logo/logo_200/sonder.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/images/logo/logo_200/sonder_grey.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/images/logo/logo_200/tele.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/images/spec/tele_banner.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/images/logo/logo_200/tele_grey.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/images/logo/logo_200/vemer.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/images/logo/logo_200/vemer_grey.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/db/migrate/20151015135922_create_articles.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/db/migrate/20151015141429_create_news_items.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/dummy_sass_only/Gemfile" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/dummy_rails/README.rdoc" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/dummy_rails/Rakefile" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/stylesheets/bootstrap/_alerts.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/stylesheets/bootstrap/mixins/_alerts.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/stylesheets/bootstrap/mixins/_background-variant.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/stylesheets/bootstrap/_badges.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/stylesheets/_bootstrap-compass.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/stylesheets/_bootstrap-mincer.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/stylesheets/_bootstrap-sprockets.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/stylesheets/_bootstrap.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/stylesheets/bootstrap/mixins/_border-radius.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/stylesheets/bootstrap/_breadcrumbs.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/stylesheets/bootstrap/_button-groups.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/stylesheets/bootstrap/_buttons.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/stylesheets/bootstrap/mixins/_buttons.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/stylesheets/bootstrap/_carousel.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/stylesheets/bootstrap/mixins/_center-block.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/stylesheets/bootstrap/mixins/_clearfix.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/stylesheets/bootstrap/_close.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/stylesheets/bootstrap/_code.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/stylesheets/bootstrap/_component-animations.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/stylesheets/bootstrap/_dropdowns.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/articles/_form.html.erb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/news_items/_form.html.erb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/stylesheets/bootstrap/_forms.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/stylesheets/bootstrap/mixins/_forms.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/stylesheets/bootstrap/_glyphicons.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/stylesheets/bootstrap/mixins/_gradients.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/stylesheets/bootstrap/mixins/_grid-framework.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/stylesheets/bootstrap/_grid.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/stylesheets/bootstrap/mixins/_grid.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/stylesheets/bootstrap/mixins/_hide-text.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/stylesheets/bootstrap/mixins/_image.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/stylesheets/bootstrap/_input-groups.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/stylesheets/bootstrap/_jumbotron.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/stylesheets/bootstrap/_labels.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/stylesheets/bootstrap/mixins/_labels.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/stylesheets/bootstrap/_list-group.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/stylesheets/bootstrap/mixins/_list-group.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/stylesheets/bootstrap/_media.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/stylesheets/bootstrap/_mixins.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/stylesheets/bootstrap/_modals.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/stylesheets/bootstrap/mixins/_nav-divider.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/stylesheets/bootstrap/mixins/_nav-vertical-align.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/stylesheets/bootstrap/_navbar.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/stylesheets/bootstrap/_navs.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/stylesheets/bootstrap/_normalize.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/stylesheets/bootstrap/mixins/_opacity.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/stylesheets/bootstrap/_pager.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/stylesheets/bootstrap/_pagination.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/stylesheets/bootstrap/mixins/_pagination.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/stylesheets/bootstrap/_panels.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/stylesheets/bootstrap/mixins/_panels.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/stylesheets/bootstrap/_popovers.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/stylesheets/bootstrap/_print.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/stylesheets/bootstrap/mixins/_progress-bar.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/stylesheets/bootstrap/_progress-bars.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/stylesheets/bootstrap/mixins/_reset-filter.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/stylesheets/bootstrap/mixins/_reset-text.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/stylesheets/bootstrap/mixins/_resize.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/stylesheets/bootstrap/_responsive-embed.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/stylesheets/bootstrap/_responsive-utilities.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/stylesheets/bootstrap/mixins/_responsive-visibility.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/stylesheets/bootstrap/_scaffolding.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/stylesheets/bootstrap/mixins/_size.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/stylesheets/bootstrap/mixins/_tab-focus.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/stylesheets/bootstrap/mixins/_table-row.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/stylesheets/bootstrap/_tables.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/stylesheets/bootstrap/mixins/_text-emphasis.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/stylesheets/bootstrap/mixins/_text-overflow.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/stylesheets/bootstrap/_theme.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/stylesheets/bootstrap/_thumbnails.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/stylesheets/bootstrap/_tooltip.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/stylesheets/bootstrap/_type.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/stylesheets/bootstrap/_utilities.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/stylesheets/bootstrap/_variables.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/stylesheets/bootstrap/mixins/_vendor-prefixes.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/stylesheets/bootstrap/_wells.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/bootstrap/affix.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/bootstrap/alert.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/dummy_node_mincer/application.css.ejs.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/stylesheets/application.css.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/dummy_rails/app/views/layouts/application.html.erb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/dummy_rails/app/assets/javascripts/application.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/dummy_rails/config/application.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/dummy_rails/app/assets/stylesheets/application.sass" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/dummy_rails/app/controllers/application_controller.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/dummy_rails/app/helpers/application_helper.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/spec/views/news/article.html.erb_spec.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/models/article.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/spec/models/article_spec.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/stylesheets/articles.css.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/articles.js.coffee" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/controllers/articles_controller.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/spec/controllers/articles_controller_spec.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/helpers/articles_helper.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/spec/helpers/articles_helper_spec.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/spec/routing/articles_routing_spec.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/spec/requests/articles_spec.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/dummy_rails/config/initializers/backtrace_silencers.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/dummy_rails/config/boot.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/bootstrap-sass.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/bootstrap-sprockets.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/bootstrap.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/bootstrap.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/tasks/bower.rake" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/bootstrap/button.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/bootstrap/carousel.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/tasks/converter/char_string_scanner.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/bootstrap/collapse.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/compass_test.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/compilation_test.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/dummy_sass_only/compile.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/dummy_rails/config.ru" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/tasks/converter.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/dummy_rails/config/environments/development.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/bootstrap/dropdown.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/support/dummy_rails_integration.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/articles/edit.html.erb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/news_items/edit.html.erb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/spec/views/articles/edit.html.erb_spec.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/spec/views/news_items/edit.html.erb_spec.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/dummy_rails/config/locales/en.yml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/bootstrap-sass/engine.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/dummy_rails/config/environment.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/dummy_rails/config/locales/es.yml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/dummy_rails/config/initializers/filter_parameter_logging.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/tasks/converter/fonts_conversion.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/bootstrap/glyphicons-halflings-regular.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/stylesheets/home.css.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/home.js.coffee" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/controllers/home_controller.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/spec/controllers/home_controller_spec.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/helpers/home_helper.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/spec/helpers/home_helper_spec.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/dummy_sass_only/import_all.sass" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/articles/index.html.erb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/home/index.html.erb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/news_items/index.html.erb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/spec/views/articles/index.html.erb_spec.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/spec/views/home/index.html.erb_spec.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/spec/views/news_items/index.html.erb_spec.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/dummy_rails/config/initializers/inflections.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/tasks/converter/js_conversion.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/tasks/converter/less_conversion.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/spec/views/news/list.html.erb_spec.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/tasks/converter/logger.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/dummy_node_mincer/manifest.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/dummy_rails/config/initializers/mime_types.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/bootstrap/modal.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/tasks/converter/network.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/articles/new.html.erb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/news_items/new.html.erb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/spec/views/articles/new.html.erb_spec.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/spec/views/news_items/new.html.erb_spec.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/models/news_item.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/spec/models/news_item_spec.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/stylesheets/news_items.css.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/news_items.js.coffee" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/controllers/news_items_controller.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/spec/controllers/news_items_controller_spec.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/helpers/news_items_helper.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/spec/helpers/news_items_helper_spec.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/spec/routing/news_items_routing_spec.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/spec/models/news_items_spec.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/spec/requests/news_items_spec.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/node_mincer_test.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/node_sass_compile_test.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/dummy_rails/app/controllers/pages_controller.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/pages_test.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/bootstrap/popover.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/dummy_rails/config/environments/production.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/gemfiles/rails_head.gemfile" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/support/reporting.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/dummy_rails/app/views/pages/root.html.slim" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/dummy_rails/config/routes.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/gemfiles/sass_3_3.gemfile" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/gemfiles/sass_3_4.gemfile" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/gemfiles/sass_head.gemfile" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/sass_test.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/bootstrap/scrollspy.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/dummy_rails/config/initializers/secret_token.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/dummy_rails/config/initializers/session_store.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/articles/show.html.erb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/news_items/show.html.erb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/spec/views/articles/show.html.erb_spec.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/spec/views/news_items/show.html.erb_spec.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/sprockets_rails_test.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/spec/views/home/start.html.erb_spec.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/bootstrap/tab.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/dummy_rails/config/environments/test.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/test_helper_rails.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/bootstrap/tooltip.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/bootstrap/transition.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/bootstrap-sass/version.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/dummy_rails/config/initializers/wrap_parameters.rb" />
-      <change type="DELETED" beforePath="C:\Users\gnato\Desktop\Igor\progs\ruby_progs\ror\work\poligon\app\assets\images\rails.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\gnato\Desktop\Igor\progs\ruby_progs\ror\work\poligon\app\assets\stylesheets\application.css" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/.rakeTasks" afterPath="$PROJECT_DIR$/.idea/.rakeTasks" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gemfile.lock" afterPath="$PROJECT_DIR$/Gemfile.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gemfile" afterPath="$PROJECT_DIR$/Gemfile" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/layouts/application.html.erb" afterPath="$PROJECT_DIR$/app/views/layouts/application.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/application.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/application.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/stylesheets/company.css.scss" afterPath="$PROJECT_DIR$/app/assets/stylesheets/company.css.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/poligon.iml" afterPath="$PROJECT_DIR$/.idea/poligon.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/environments/production.rb" afterPath="$PROJECT_DIR$/config/environments/production.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/stylesheets/products.css.scss" afterPath="$PROJECT_DIR$/app/assets/stylesheets/products.css.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/routes.rb" afterPath="$PROJECT_DIR$/config/routes.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/schema.rb" afterPath="$PROJECT_DIR$/db/schema.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/test_helper.rb" afterPath="$PROJECT_DIR$/test/test_helper.rb" />
+      <change type="DELETED" beforePath="C:\Users\gnato\Desktop\Igor\progs\ruby_progs\ror\work\poligon\test\compass_test.rb" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\gnato\Desktop\Igor\progs\ruby_progs\ror\work\poligon\test\compilation_test.rb" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\gnato\Desktop\Igor\progs\ruby_progs\ror\work\poligon\test\dummy_node_mincer\apple-touch-icon-144-precomposed.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\gnato\Desktop\Igor\progs\ruby_progs\ror\work\poligon\test\dummy_node_mincer\application.css.ejs.scss" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\gnato\Desktop\Igor\progs\ruby_progs\ror\work\poligon\test\dummy_node_mincer\manifest.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\gnato\Desktop\Igor\progs\ruby_progs\ror\work\poligon\test\dummy_rails\README.rdoc" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\gnato\Desktop\Igor\progs\ruby_progs\ror\work\poligon\test\dummy_rails\Rakefile" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\gnato\Desktop\Igor\progs\ruby_progs\ror\work\poligon\test\dummy_rails\app\assets\images\.keep" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\gnato\Desktop\Igor\progs\ruby_progs\ror\work\poligon\test\dummy_rails\app\assets\javascripts\application.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\gnato\Desktop\Igor\progs\ruby_progs\ror\work\poligon\test\dummy_rails\app\assets\stylesheets\application.sass" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\gnato\Desktop\Igor\progs\ruby_progs\ror\work\poligon\test\dummy_rails\app\controllers\application_controller.rb" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\gnato\Desktop\Igor\progs\ruby_progs\ror\work\poligon\test\dummy_rails\app\controllers\pages_controller.rb" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\gnato\Desktop\Igor\progs\ruby_progs\ror\work\poligon\test\dummy_rails\app\helpers\application_helper.rb" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\gnato\Desktop\Igor\progs\ruby_progs\ror\work\poligon\test\dummy_rails\app\views\layouts\application.html.erb" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\gnato\Desktop\Igor\progs\ruby_progs\ror\work\poligon\test\dummy_rails\app\views\pages\root.html.slim" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\gnato\Desktop\Igor\progs\ruby_progs\ror\work\poligon\test\dummy_rails\config.ru" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\gnato\Desktop\Igor\progs\ruby_progs\ror\work\poligon\test\dummy_rails\config\application.rb" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\gnato\Desktop\Igor\progs\ruby_progs\ror\work\poligon\test\dummy_rails\config\boot.rb" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\gnato\Desktop\Igor\progs\ruby_progs\ror\work\poligon\test\dummy_rails\config\environment.rb" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\gnato\Desktop\Igor\progs\ruby_progs\ror\work\poligon\test\dummy_rails\config\environments\development.rb" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\gnato\Desktop\Igor\progs\ruby_progs\ror\work\poligon\test\dummy_rails\config\environments\production.rb" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\gnato\Desktop\Igor\progs\ruby_progs\ror\work\poligon\test\dummy_rails\config\environments\test.rb" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\gnato\Desktop\Igor\progs\ruby_progs\ror\work\poligon\test\dummy_rails\config\initializers\backtrace_silencers.rb" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\gnato\Desktop\Igor\progs\ruby_progs\ror\work\poligon\test\dummy_rails\config\initializers\filter_parameter_logging.rb" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\gnato\Desktop\Igor\progs\ruby_progs\ror\work\poligon\test\dummy_rails\config\initializers\inflections.rb" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\gnato\Desktop\Igor\progs\ruby_progs\ror\work\poligon\test\dummy_rails\config\initializers\mime_types.rb" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\gnato\Desktop\Igor\progs\ruby_progs\ror\work\poligon\test\dummy_rails\config\initializers\secret_token.rb" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\gnato\Desktop\Igor\progs\ruby_progs\ror\work\poligon\test\dummy_rails\config\initializers\session_store.rb" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\gnato\Desktop\Igor\progs\ruby_progs\ror\work\poligon\test\dummy_rails\config\initializers\wrap_parameters.rb" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\gnato\Desktop\Igor\progs\ruby_progs\ror\work\poligon\test\dummy_rails\config\locales\en.yml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\gnato\Desktop\Igor\progs\ruby_progs\ror\work\poligon\test\dummy_rails\config\locales\es.yml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\gnato\Desktop\Igor\progs\ruby_progs\ror\work\poligon\test\dummy_rails\config\routes.rb" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\gnato\Desktop\Igor\progs\ruby_progs\ror\work\poligon\test\dummy_rails\log\.keep" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\gnato\Desktop\Igor\progs\ruby_progs\ror\work\poligon\test\dummy_sass_only\Gemfile" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\gnato\Desktop\Igor\progs\ruby_progs\ror\work\poligon\test\dummy_sass_only\compile.rb" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\gnato\Desktop\Igor\progs\ruby_progs\ror\work\poligon\test\dummy_sass_only\import_all.sass" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\gnato\Desktop\Igor\progs\ruby_progs\ror\work\poligon\test\fixtures\.gitkeep" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\gnato\Desktop\Igor\progs\ruby_progs\ror\work\poligon\test\fixtures\products.yml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\gnato\Desktop\Igor\progs\ruby_progs\ror\work\poligon\test\functional\.gitkeep" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\gnato\Desktop\Igor\progs\ruby_progs\ror\work\poligon\test\functional\products_controller_test.rb" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\gnato\Desktop\Igor\progs\ruby_progs\ror\work\poligon\test\gemfiles\rails_head.gemfile" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\gnato\Desktop\Igor\progs\ruby_progs\ror\work\poligon\test\gemfiles\sass_3_3.gemfile" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\gnato\Desktop\Igor\progs\ruby_progs\ror\work\poligon\test\gemfiles\sass_3_4.gemfile" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\gnato\Desktop\Igor\progs\ruby_progs\ror\work\poligon\test\gemfiles\sass_head.gemfile" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\gnato\Desktop\Igor\progs\ruby_progs\ror\work\poligon\test\integration\.gitkeep" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\gnato\Desktop\Igor\progs\ruby_progs\ror\work\poligon\test\node_mincer_test.rb" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\gnato\Desktop\Igor\progs\ruby_progs\ror\work\poligon\test\node_sass_compile_test.sh" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\gnato\Desktop\Igor\progs\ruby_progs\ror\work\poligon\test\pages_test.rb" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\gnato\Desktop\Igor\progs\ruby_progs\ror\work\poligon\test\performance\browsing_test.rb" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\gnato\Desktop\Igor\progs\ruby_progs\ror\work\poligon\test\sass_test.rb" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\gnato\Desktop\Igor\progs\ruby_progs\ror\work\poligon\test\sprockets_rails_test.rb" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\gnato\Desktop\Igor\progs\ruby_progs\ror\work\poligon\test\support\dummy_rails_integration.rb" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\gnato\Desktop\Igor\progs\ruby_progs\ror\work\poligon\test\support\reporting.rb" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\gnato\Desktop\Igor\progs\ruby_progs\ror\work\poligon\test\test_helper.rb" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\gnato\Desktop\Igor\progs\ruby_progs\ror\work\poligon\test\test_helper_rails.rb" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\gnato\Desktop\Igor\progs\ruby_progs\ror\work\poligon\test\unit\.gitkeep" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\gnato\Desktop\Igor\progs\ruby_progs\ror\work\poligon\test\unit\product_test.rb" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="poligon.iws" />
@@ -273,7 +71,7 @@
   </component>
   <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/poligon@Development__poligon.coverage" NAME="Development: poligon Coverage Results" MODIFIED="1449057121910" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="poligon" />
+    <SUITE FILE_PATH="coverage/poligon@Development__poligon.coverage" NAME="Development: poligon Coverage Results" MODIFIED="1452690766979" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="poligon" />
   </component>
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
@@ -286,7 +84,17 @@
     <favorites_list name="poligon" />
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf>
+      <file leaf-file-name="Gemfile" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Gemfile">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="2" column="21" selection-start="67" selection-end="75" vertical-scroll-proportion="0.05362776" vertical-offset="0" max-vertical-offset="1292">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FindManager">
     <FindUsagesManager>
@@ -414,8 +222,8 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="RailsProjectView" />
       <pane id="Scope" />
+      <pane id="RailsProjectView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -570,7 +378,32 @@
       <created>1444379003666</created>
       <updated>1444379003666</updated>
     </task>
+    <task id="LOCAL-00001" summary="'Validation!'&#10;">
+      <created>1451372620866</created>
+      <updated>1451372620866</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="TodoView" selected-index="0">
+    <todo-panel id="selected-file">
+      <are-packages-shown value="false" />
+      <are-modules-shown value="false" />
+      <flatten-packages value="false" />
+      <is-autoscroll-to-source value="false" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="false" />
+      <are-modules-shown value="false" />
+      <flatten-packages value="false" />
+      <is-autoscroll-to-source value="false" />
+    </todo-panel>
+    <todo-panel id="default-changelist">
+      <are-packages-shown value="false" />
+      <are-modules-shown value="false" />
+      <flatten-packages value="false" />
+      <is-autoscroll-to-source value="false" />
+    </todo-panel>
   </component>
   <component name="ToolWindowManager">
     <frame x="54" y="-8" width="1874" height="1096" extended-state="6" />
@@ -578,23 +411,23 @@
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.6659939" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3027245" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32996973" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22742291" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22962555" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.49545914" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.1543895" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.33400604" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.49545914" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3481332" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3481332" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32887974" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -610,7 +443,8 @@
       <TodoPanelSettings />
     </option>
     <MESSAGE value="test products added" />
-    <option name="LAST_COMMIT_MESSAGE" value="test products added" />
+    <MESSAGE value="'Validation!'&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="'Validation!'&#10;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -669,21 +503,6 @@
     <entry file="file://$PROJECT_DIR$/app/models/product.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="6" column="15" selection-start="308" selection-end="308" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="272" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/functional/products_controller_test.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="33" selection-start="604" selection-end="604" vertical-scroll-proportion="0.0" vertical-offset="143" max-vertical-offset="748" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/unit/product_test.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="32" selection-start="535" selection-end="535" vertical-scroll-proportion="0.47611204" vertical-offset="0" max-vertical-offset="1343" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/fixtures/products.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="23" selection-start="263" selection-end="263" vertical-scroll-proportion="0.39209226" vertical-offset="0" max-vertical-offset="607" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/config/environments/test.rb">
@@ -781,16 +600,6 @@
         <state line="11" column="31" selection-start="380" selection-end="380" vertical-scroll-proportion="0.27023122" vertical-offset="0" max-vertical-offset="692" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/test_helper.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="93" selection-start="575" selection-end="575" vertical-scroll-proportion="0.3984375" vertical-offset="0" max-vertical-offset="935" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Gemfile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="26" selection-start="248" selection-end="248" vertical-scroll-proportion="0.0" vertical-offset="51" max-vertical-offset="1292" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/javascripts/application.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="14" column="31" selection-start="652" selection-end="652" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="374" />
@@ -869,6 +678,13 @@
     <entry file="file://$PROJECT_DIR$/config/routes.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="19" column="0" selection-start="255" selection-end="255" vertical-scroll-proportion="-0.12746114" vertical-offset="446" max-vertical-offset="1411" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Gemfile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="21" selection-start="67" selection-end="75" vertical-scroll-proportion="0.05362776" vertical-offset="0" max-vertical-offset="1292">
+          <folding />
+        </state>
       </provider>
     </entry>
   </component>
