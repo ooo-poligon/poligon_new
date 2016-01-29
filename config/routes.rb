@@ -3,14 +3,19 @@ Poligon::Application.routes.draw do
 
   resources :news_items
 
+  resources :categories
 
   resources :articles
+  
+  resources :products
 
   get "articles/index"
 
   get "home/index"
 
-  resources :products
+  get "categories/index"
+  
+  get "products/index"
 
   get "company/about"
 

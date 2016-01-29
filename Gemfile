@@ -1,17 +1,16 @@
 source 'http://rubygems.org' # was https in original
 
-gem 'rails', '3.2.21'
+gem 'rails', '4.2.5'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'mysql2', '0.3.11'
+gem 'mysql2'#, '0.3.11'
 
 gem 'bootstrap-sass', '~> 3.3.5'
 gem 'sass-rails', '>= 3.2'
 gem 'autoprefixer-rails'
-
-
+gem 'protected_attributes'
 
 # сам фреймворк от твиттера
 # gem 'twitter-bootstrap-rails'
@@ -23,7 +22,7 @@ gem 'autoprefixer-rails'
 # gem 'twitter-bootswatch-rails-helpers'
 
 # gem 'therubyrhino'
-# gem 'therubyracer'
+gem 'therubyracer'
 # gem 'libv8'
 
 # gem 'sass-rails', '~> 5.0'
@@ -32,7 +31,7 @@ gem 'autoprefixer-rails'
 # in production environments by default.
 group :assets do
   # gem 'sass-rails',   '~> 3.2.3'
-  gem 'coffee-rails', '~> 3.2.1'
+  gem 'coffee-rails'#, '~> 3.2.1'
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   # gem 'therubyracer', :platforms => :ruby
@@ -42,7 +41,7 @@ end
 
 # insert by me from internet -begin
 group :development do
-  gem 'rspec-rails', '3.3.3'
+  # gem 'rspec-rails', '3.3.3'
 end
 
 

@@ -12,7 +12,7 @@ development:
   adapter: mysql2
   encoding: utf8
   reconnect: false
-  database: poligon_development
+  database: poligon_commander
   pool: 5
   username: poligon
   password: poligon
