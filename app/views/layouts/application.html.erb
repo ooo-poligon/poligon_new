@@ -47,7 +47,7 @@
           <p>
             (812) 325-42-20<br/>
           </p>
-          <span>Земля, Россия, Санкт-Петербург<br/>
+          <span>Россия, Санкт-Петербург<br/>
           ул. Льва Толстого, д.7, офис 501</span>
         </div>
       </td>
@@ -57,9 +57,9 @@
 
 <div class="panelPad"></div>
 
-<div id="main">
+<div id="main" class="container">
 
-<div id="main-container" class="container-fluid">
+<div id="main-container">
 
     <div class="row">
 
@@ -131,8 +131,8 @@
       <div class="low_panel">
         <br/>
         <ul>
-          <li class="active"><a href="#">О компании</a></li>
-          <li><a href="#">Вакансии</a></li>
+          <li class="active"><%= link_to 'О компании', company_about_path %></li>
+          <li><%= link_to 'Вакансии', company_vacancies_path %></li>
           <li>Обмен ссылками</li>
           <li>Карта сайта</li>
         </ul>

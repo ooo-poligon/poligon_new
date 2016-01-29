@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160129080524) do
+ActiveRecord::Schema.define(version: 20160129123751) do
 
   create_table "analogs", force: :cascade do |t|
     t.text    "description",  limit: 4294967295
@@ -24,15 +24,19 @@ ActiveRecord::Schema.define(version: 20160129080524) do
   add_index "analogs", ["vendor"], name: "FK_bmks6804vphucofa9j6x5kmcx", using: :btree
 
   create_table "articles", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.string   "title",      limit: 255
+    t.text     "content",    limit: 65535
   end
 
   create_table "categories", force: :cascade do |t|
-    t.text    "description", limit: 4294967295
     t.integer "parent",      limit: 4
-    t.string  "title",       limit: 255,        null: false
+    t.string  "title",       limit: 255,   default: "", null: false
+    t.text    "description", limit: 65535
   end
+
+  add_index "categories", ["title"], name: "title", unique: true, using: :btree
 
   create_table "currencies", force: :cascade do |t|
     t.string "title", limit: 255, null: false
@@ -54,88 +58,118 @@ ActiveRecord::Schema.define(version: 20160129080524) do
   add_index "files", ["owner_id"], name: "FK_5ok1awgnfwcf01537ylbycyq1", using: :btree
 
   create_table "functions", force: :cascade do |t|
-    t.text    "description",     limit: 4294967295
-    t.string  "picture_name",    limit: 255
-    t.string  "picture_path",    limit: 255
-    t.string  "symbol",          limit: 255
-    t.string  "title",           limit: 255,        null: false
+    t.string  "title",           limit: 200,   null: false
+    t.string  "symbol",          limit: 10
+    t.text    "description",     limit: 65535
+    t.string  "picture_name",    limit: 50
+    t.string  "picture_path",    limit: 200
     t.integer "product_kind_id", limit: 4
   end
 
-  add_index "functions", ["product_kind_id"], name: "FK_ddj46cl3uvc0b1t7x355xsp2f", using: :btree
+  add_index "functions", ["product_kind_id"], name: "FK_functions_product_kinds", using: :btree
 
   create_table "import_fields", force: :cascade do |t|
+    t.string "title",     limit: 50,  null: false
     t.string "field",     limit: 255, null: false
     t.string "tableName", limit: 255, null: false
-    t.string "title",     limit: 255, null: false
   end
 
   create_table "kinds_types", force: :cascade do |t|
-    t.integer "product_kind_id",  limit: 4, null: false
-    t.integer "property_type_id", limit: 4, null: false
+    t.integer "product_kind_id",  limit: 4, default: 0, null: false
+    t.integer "property_type_id", limit: 4, default: 0, null: false
   end
 
-  add_index "kinds_types", ["product_kind_id"], name: "FK_ljqwt99hy4sw0iay2krdx0ju5", using: :btree
-  add_index "kinds_types", ["property_type_id"], name: "FK_kcnb5et5freqtj3a4s30ksdh3", using: :btree
+  add_index "kinds_types", ["product_kind_id"], name: "FK__product_kinds", using: :btree
+  add_index "kinds_types", ["property_type_id"], name: "FK__property_types", using: :btree
+
+  create_table "measures", force: :cascade do |t|
+    t.string "number_code",    limit: 3
+    t.string "title",          limit: 50,  null: false
+    t.string "symbol_ru",      limit: 50
+    t.string "symbol_en",      limit: 50
+    t.string "letter_code_ru", limit: 50
+    t.string "letter_code_en", limit: 50
+    t.string "description",    limit: 255
+  end
 
   create_table "news_items", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.string   "title",      limit: 255
+    t.text     "content",    limit: 65535
   end
 
   create_table "product_kinds", force: :cascade do |t|
-    t.string "title", limit: 255, null: false
+    t.string "title", limit: 255
   end
 
   create_table "products", force: :cascade do |t|
-    t.integer "accessory_owner_id", limit: 4,          null: false
+    t.integer "category_id",        limit: 4
+    t.string  "title",              limit: 255,        default: "",  null: false
+    t.text    "description",        limit: 4294967295
     t.text    "anons",              limit: 4294967295
     t.string  "article",            limit: 255
     t.integer "available",          limit: 4
     t.text    "delivery_time",      limit: 4294967295
-    t.text    "description",        limit: 4294967295
-    t.float   "discount1",          limit: 53
-    t.float   "discount2",          limit: 53
-    t.float   "discount3",          limit: 53
     t.string  "ean",                limit: 255
     t.integer "outdated",           limit: 4
-    t.integer "plugin_owner_id",    limit: 4,          null: false
-    t.float   "price",              limit: 53,         null: false
-    t.float   "rate",               limit: 53
-    t.string  "title",              limit: 255,        null: false
-    t.integer "category_id",        limit: 4
-    t.integer "product_kind_id",    limit: 4,          null: false
+    t.float   "price",              limit: 53,                       null: false
     t.string  "serie",              limit: 255
-    t.string  "vendor",             limit: 255
+    t.integer "product_kind_id",    limit: 4,          default: 1
+    t.string  "vendor",             limit: 255,                      null: false
+    t.integer "plugin_owner_id",    limit: 4,          default: 0,   null: false
+    t.integer "accessory_owner_id", limit: 4,          default: 0,   null: false
+    t.float   "rate",               limit: 53,         default: 1.0, null: false
+    t.float   "discount1",          limit: 53,         default: 1.0, null: false
+    t.float   "discount2",          limit: 53,         default: 1.0, null: false
+    t.float   "discount3",          limit: 53,         default: 1.0, null: false
   end
 
   add_index "products", ["category_id"], name: "FK_of5oeawsy50x878ic9tyapdnv", using: :btree
-  add_index "products", ["product_kind_id"], name: "FK_ga42cu8ch92tuig4t8oo06hn8", using: :btree
-  add_index "products", ["serie"], name: "FK_ni7gdwd360jaafq7b7m1gug4v", using: :btree
-  add_index "products", ["vendor"], name: "FK_h9ix3xgma67xlseqy1hap6rfa", using: :btree
+  add_index "products", ["product_kind_id"], name: "FK_products_product_kinds", using: :btree
+  add_index "products", ["serie"], name: "FK_products_series", using: :btree
+  add_index "products", ["vendor"], name: "FK_products_vendors", using: :btree
 
-  create_table "products_functions", force: :cascade do |t|
-    t.integer "function_id", limit: 4, null: false
-    t.integer "product_id",  limit: 4, null: false
+  create_table "products_accessories", force: :cascade do |t|
+    t.integer "product_id",   limit: 4, default: 0, null: false
+    t.integer "accessory_id", limit: 4, default: 0, null: false
   end
 
-  add_index "products_functions", ["function_id"], name: "FK_ji9wg7e6urg44oobunhssp4sg", using: :btree
-  add_index "products_functions", ["product_id"], name: "FK_9v5pxo1cd2nvrni8ihc3390x5", using: :btree
+  create_table "products_functions", force: :cascade do |t|
+    t.integer "product_id",  limit: 4, default: 0, null: false
+    t.integer "function_id", limit: 4, default: 0, null: false
+  end
+
+  add_index "products_functions", ["function_id"], name: "FK_products_functions_functions", using: :btree
+  add_index "products_functions", ["product_id"], name: "FK_products_functions_products", using: :btree
 
   create_table "properties", force: :cascade do |t|
     t.string  "title",            limit: 255
-    t.integer "product_id",       limit: 4
-    t.integer "property_type_id", limit: 4,   null: false
     t.integer "value_id",         limit: 4
+    t.integer "property_type_id", limit: 4,   null: false
+    t.integer "product_id",       limit: 4
   end
 
   add_index "properties", ["product_id"], name: "FK_9igpep0fc0ccn6ufp49qb0d3l", using: :btree
   add_index "properties", ["property_type_id"], name: "FK_96042v65bcon50fh4tjf3alxk", using: :btree
+  add_index "properties", ["value_id"], name: "FK_properties_property_values", using: :btree
 
   create_table "property_types", force: :cascade do |t|
     t.integer "parent", limit: 4
     t.string  "title",  limit: 255, null: false
   end
+
+  create_table "property_values", force: :cascade do |t|
+    t.string  "cond",        limit: 255
+    t.string  "value",       limit: 255
+    t.integer "measure_id",  limit: 4
+    t.integer "property_id", limit: 4,   null: false
+    t.integer "product_id",  limit: 4
+  end
+
+  add_index "property_values", ["measure_id"], name: "FK_property_values_measures", using: :btree
+  add_index "property_values", ["product_id"], name: "FK__products", using: :btree
+  add_index "property_values", ["property_id"], name: "FK_property_values_properties", using: :btree
 
   create_table "quantity", force: :cascade do |t|
     t.integer "minimum",         limit: 4, null: false
@@ -158,10 +192,19 @@ ActiveRecord::Schema.define(version: 20160129080524) do
   add_index "series", ["vendor_id"], name: "FK_ed8kdle1myybdci4nfqw6wftk", using: :btree
 
   create_table "settings", force: :cascade do |t|
-    t.integer "int_value",  limit: 4
-    t.string  "kind",       limit: 255, null: false
-    t.string  "text_value", limit: 255
-    t.string  "title",      limit: 255, null: false
+    t.string  "title",      limit: 50,             null: false
+    t.string  "kind",       limit: 50,             null: false
+    t.integer "int_value",  limit: 4,  default: 0
+    t.string  "text_value", limit: 50
+  end
+
+  create_table "static_contents", force: :cascade do |t|
+    t.string   "directory",  limit: 255
+    t.string   "page",       limit: 255
+    t.text     "content",    limit: 65535
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.string   "title",      limit: 255
   end
 
   create_table "vendors", force: :cascade do |t|
@@ -179,17 +222,21 @@ ActiveRecord::Schema.define(version: 20160129080524) do
   add_foreign_key "analogs", "vendors", column: "vendor", primary_key: "title", name: "FK_bmks6804vphucofa9j6x5kmcx"
   add_foreign_key "files", "file_types", name: "FK_63xcug2xhs8fhmde2qrls55rn"
   add_foreign_key "files", "products", column: "owner_id", name: "FK_5ok1awgnfwcf01537ylbycyq1"
-  add_foreign_key "functions", "product_kinds", name: "FK_ddj46cl3uvc0b1t7x355xsp2f"
-  add_foreign_key "kinds_types", "product_kinds", name: "FK_ljqwt99hy4sw0iay2krdx0ju5"
-  add_foreign_key "kinds_types", "property_types", name: "FK_kcnb5et5freqtj3a4s30ksdh3"
+  add_foreign_key "functions", "product_kinds", name: "FK_functions_product_kinds"
+  add_foreign_key "kinds_types", "product_kinds", name: "FK__product_kinds", on_update: :cascade, on_delete: :cascade
+  add_foreign_key "kinds_types", "property_types", name: "FK__property_types", on_update: :cascade, on_delete: :cascade
   add_foreign_key "products", "categories", name: "FK_of5oeawsy50x878ic9tyapdnv"
-  add_foreign_key "products", "product_kinds", name: "FK_ga42cu8ch92tuig4t8oo06hn8"
-  add_foreign_key "products", "series", column: "serie", primary_key: "title", name: "FK_ni7gdwd360jaafq7b7m1gug4v"
-  add_foreign_key "products", "vendors", column: "vendor", primary_key: "title", name: "FK_h9ix3xgma67xlseqy1hap6rfa"
-  add_foreign_key "products_functions", "functions", name: "FK_ji9wg7e6urg44oobunhssp4sg"
-  add_foreign_key "products_functions", "products", name: "FK_9v5pxo1cd2nvrni8ihc3390x5"
+  add_foreign_key "products", "product_kinds", name: "FK_products_product_kinds"
+  add_foreign_key "products", "series", column: "serie", primary_key: "title", name: "FK_products_series"
+  add_foreign_key "products", "vendors", column: "vendor", primary_key: "title", name: "FK_products_vendors", on_update: :cascade
+  add_foreign_key "products_functions", "functions", name: "FK_products_functions_functions", on_update: :cascade, on_delete: :cascade
+  add_foreign_key "products_functions", "products", name: "FK_products_functions_products", on_update: :cascade, on_delete: :cascade
   add_foreign_key "properties", "products", name: "FK_9igpep0fc0ccn6ufp49qb0d3l"
   add_foreign_key "properties", "property_types", name: "FK_96042v65bcon50fh4tjf3alxk"
+  add_foreign_key "properties", "property_values", column: "value_id", name: "FK_properties_property_values"
+  add_foreign_key "property_values", "measures", name: "FK_property_values_measures"
+  add_foreign_key "property_values", "products", name: "FK__products"
+  add_foreign_key "property_values", "properties", name: "FK_property_values_properties"
   add_foreign_key "quantity", "products", name: "FK_fmxkkqbgn373sbv3ghbdinqkx"
   add_foreign_key "series", "vendors", name: "FK_ed8kdle1myybdci4nfqw6wftk"
   add_foreign_key "vendors", "currencies", name: "FK_nsbv37hiaemev6th5cuqgs6aa"

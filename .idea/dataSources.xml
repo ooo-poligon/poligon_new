@@ -4,8 +4,8 @@
     <data-source source="LOCAL" name="Rails poligon: development" uuid="4a2a6b76-3ac7-495f-828c-d42b1d91eb63">
       <driver-ref>mysql</driver-ref>
       <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://127.0.0.1:3306/poligon_development</jdbc-url>
-      <user-name>poligon</user-name>
+      <jdbc-url>jdbc:mysql://127.0.0.1:3306/poligon_commander</jdbc-url>
+      <user-name>root</user-name>
       <user-password>dfdadfc5dfc6dfc3dfcddfc5dfc4</user-password>
       <libraries />
     </data-source>
@@ -13,7 +13,7 @@
       <driver-ref>mysql</driver-ref>
       <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://127.0.0.1:3306/poligon_test</jdbc-url>
-      <user-name>poligon</user-name>
+      <user-name>root</user-name>
       <user-password>dfdadfc5dfc6dfc3dfcddfc5dfc4</user-password>
       <libraries />
     </data-source>
@@ -21,7 +21,7 @@
       <driver-ref>mysql</driver-ref>
       <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://127.0.0.1:3306/poligon_production</jdbc-url>
-      <user-name>poligon</user-name>
+      <user-name>root</user-name>
       <user-password>dfdadfc5dfc6dfc3dfcddfc5dfc4</user-password>
       <libraries />
     </data-source>

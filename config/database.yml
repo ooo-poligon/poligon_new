@@ -14,7 +14,7 @@ development:
   reconnect: false
   database: poligon_commander
   pool: 5
-  username: poligon
+  username: root
   password: poligon
   host: 127.0.0.1
   port: 3306
@@ -28,7 +28,7 @@ test:
   reconnect: false
   database: poligon_test
   pool: 5
-  username: poligon
+  username: root
   password: poligon
   host: 127.0.0.1
   port: 3306
@@ -39,7 +39,7 @@ production:
   reconnect: false
   database: poligon_production
   pool: 5
-  username: poligon
+  username: root
   password: poligon
   host: 127.0.0.1
   port: 3306

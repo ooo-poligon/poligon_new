@@ -11,6 +11,7 @@ gem 'bootstrap-sass', '~> 3.3.5'
 gem 'sass-rails', '>= 3.2'
 gem 'autoprefixer-rails'
 gem 'protected_attributes'
+gem 'tzinfo-data'
 
 # сам фреймворк от твиттера
 # gem 'twitter-bootstrap-rails'
@@ -22,7 +23,7 @@ gem 'protected_attributes'
 # gem 'twitter-bootswatch-rails-helpers'
 
 # gem 'therubyrhino'
-gem 'therubyracer'
+gem 'therubyracer', :platform => :ruby
 # gem 'libv8'
 
 # gem 'sass-rails', '~> 5.0'

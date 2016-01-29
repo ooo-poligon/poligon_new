@@ -6,7 +6,7 @@ Poligon::Application.routes.draw do
   resources :categories
 
   resources :articles
-  
+
   resources :products
 
   get "articles/index"
@@ -14,7 +14,7 @@ Poligon::Application.routes.draw do
   get "home/index"
 
   get "categories/index"
-  
+
   get "products/index"
 
   get "company/about"
