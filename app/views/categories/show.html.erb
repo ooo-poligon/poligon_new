@@ -1,0 +1,9 @@
+<br>
+<h2><%= Category.find_by(id: params[:id]).title %></h2>
+<br>
+<%= link_to 'К списку категорий', categories_path %>
+<br>
+<div><%= Category.find_by(id: params[:id]).description.html_safe %></div>
+<br>
+<br>
+<%= link_to 'К списку категорий', categories_path %>

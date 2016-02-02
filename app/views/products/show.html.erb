@@ -7,19 +7,13 @@
 
 <p>
   <b>Short description:</b>
-  <%= @product.short_description %>
-</p>
-
-<p>
-  <b>Image url:</b>
-  <%= @product.image_url %>
+  <%= @product.description %>
 </p>
 
 <p>
   <b>Retail price:</b>
-  <%= @product.retail_price %>
+  <%= @product.price %>
 </p>
 
 
-<%= link_to 'Edit', edit_product_path(@product) %> |
 <%= link_to 'Back', products_path %>

@@ -9,6 +9,8 @@ Poligon::Application.routes.draw do
 
   resources :products
 
+  resources :content
+
   get "articles/index"
 
   get "home/index"
@@ -22,6 +24,10 @@ Poligon::Application.routes.draw do
   get "company/contacts"
 
   get "company/vacancies"
+
+  get "content/sertificates"
+
+  get "content/download_pdf"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

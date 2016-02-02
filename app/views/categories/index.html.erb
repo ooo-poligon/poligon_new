@@ -1,6 +1,6 @@
 <h1>Категории</h1>
-<% @categories.each do |category| %>
+<% @upLevelCategories.each do |category| %>
 
-<%= category.title %>
+<p><%= link_to category.title, category %></p>
 
 <% end %>

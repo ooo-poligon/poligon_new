@@ -7,17 +7,17 @@
 
 <p>
   <b>Content:</b>
-  <%= @article.content %>
+  <%= @article.content.html_safe %>
 </p>
 
 <p>
   <b>Date created:</b>
-  <%= @article.date_created %>
+  <%= @article.created_at %>
 </p>
 
 <p>
   <b>Date updated:</b>
-  <%= @article.date_updated %>
+  <%= @article.updated_at %>
 </p>
 
 

@@ -1,7 +1,10 @@
 class CategoriesController < ApplicationController
   
   def index
-    @categories = Category.all
+    @upLevelCategories = Category.where(parent: 1)
+  end
+
+  def show
   end
   
 end

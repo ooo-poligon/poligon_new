@@ -7,19 +7,18 @@
 
 <p>
   <b>Content:</b>
-  <%= @news_item.content %>
+  <%= @news_item.content.html_safe %>
 </p>
 
 <p>
   <b>Date created:</b>
-  <%= @news_item.date_created %>
+  <%= @news_item.created_at %>
 </p>
 
 <p>
   <b>Date updated:</b>
-  <%= @news_item.date_updated %>
+  <%= @news_item.updated_at %>
 </p>
 
 
-<%= link_to 'Edit', edit_news_item_path(@news_item) %> |
 <%= link_to 'Back', news_items_path %>
