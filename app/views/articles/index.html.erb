@@ -1,13 +1,10 @@
-<h1>Listing articles</h1>
+<h1>Список статей</h1>
 
 <table>
   <tr>
-    <th>Title</th>
-    <th>Content</th>
-    <th>Date created</th>
-    <th>Date updated</th>
-    <th></th>
-    <th></th>
+    <th>Название</th>
+    <th>Содержание</th>
+    <th>Дата создания</th>
     <th></th>
   </tr>
 
@@ -16,12 +13,7 @@
     <td><%= article.title %></td>
     <td><%= article.content.html_safe %></td>
     <td><%= article.created_at %></td>
-    <td><%= article.updated_at %></td>
-    <td><%= link_to 'Show', article %></td>
+    <td><%= link_to 'Читать', article %></td>
   </tr>
 <% end %>
 </table>
-
-<br />
-
-<%= link_to 'New Article', new_article_path %>

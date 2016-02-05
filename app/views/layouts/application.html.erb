@@ -1,146 +1,133 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/html">
+<html lang="ru">
 <head>
   <title>Компания "ПОЛИГОН"</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
+  <link href='https://fonts.googleapis.com/css?family=PT+Sans&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Marck+Script&subset=latin,cyrillic' rel='stylesheet' type='text/css'><%= stylesheet_link_tag    'application', :media => 'all' %>
+  <%#= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
-  <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="assets/stylesheets/bootstrap/bootstrap-responsive.css" rel="stylesheet">
 
-  <!--[if !IE 7]>
-  <style type="text/css">
-      #wrap {display:table;height:100%}
-  </style>
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <%= favicon_link_tag 'favicon.ico' %>
+
+  <!-- Bootstrap core CSS -->
+  <link href="http://bootstrap-3.ru/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="http://bootstrap-3.ru/examples/offcanvas/offcanvas.css" rel="stylesheet">
+
+  <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
   <![endif]-->
-
 </head>
 
 <body>
+<!-- Fixed navbar -->
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" style="margin-bottom: 5px; margin-top: -10px" href=<%= home_index_path %>><%= image_tag('logo185.png', alt: 'Компания "ПОЛИГОН"') %></a>
 
-<div id="wrap">
-
-<div class="panelShadow">
-  <table class="upPanel">
-    <tr>
-      <td width="20%">
-        <div class="logo">
-          <%= link_to image_tag("logo.png", alt: 'Компания "ПОЛИГОН"'), :action => 'index', :controller => 'home' %>
-        </div>
-      </td>
-      <td>
-        <div class="upMenu">
-          <ul>
-            <li><span><%= link_to 'Главная', home_index_path %></span></li>
-            <li><span><%= link_to 'Новости', news_items_path %></span></li>
-            <li><span><%= link_to 'Каталог', categories_path %></span></li>
-            <li><span><%= link_to 'Публикации', articles_path %></span></li>
-            <li><span><%= link_to 'Контакты', company_contacts_path %></span></li>
+    </div>
+    <div class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li><%= link_to 'Новости', news_items_path %></li>
+        <li><%= link_to 'Публикации', articles_path %></li>
+        <li><%= link_to 'Каталог', categories_path %></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Поиск по сайту <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li>
+              <form class="navbar-search pull-left">
+                <input type="text" class="search-query search_form" placeholder="">
+              </form>
+            </li>
           </ul>
-
-          <form class="form-search">
-            <div>
-              <input type="text" placeholder="Поиск по сайту...">
-            </div>
-          </form>
-        </div>
-      <td width="20%">
-        <div class="phone">
-          <p>
-            (812) 325-42-20<br/>
-          </p>
-          <span>Россия, Санкт-Петербург<br/>
-          ул. Льва Толстого, д.7, офис 501</span>
-        </div>
-      </td>
-    </tr>
-  </table>
-</div>
-
-<div class="panelPad"></div>
-
-<div id="main" class="container">
-
-<div id="main-container">
-
-    <div class="row">
-
-      <div class="col-xs-3">
-        <div class="partners">
-          <table>
-            <tr><td><%= link_to image_tag("logo/logo_200/tele.gif", alt: '"TELE"', title: "реле времени и контроля из Австрии"), :action => 'index', :controller => 'home' %></td></tr>
-            <tr><td><%= link_to image_tag("logo/logo_200/benedict.gif", alt: '"Benedict"', title: "Контакторы, пускатели, защита Benedict"), :action => 'index', :controller => 'home' %></td></tr>
-            <tr><td><%= link_to image_tag("logo/logo_200/citel.gif", alt: '"CITEL"', title: "CITEL - устройства молниезащиты"), :action => 'index', :controller => 'home' %></td></tr>
-            <tr><td><%= link_to image_tag("logo/logo_200/graesslin.gif", alt: '"Graesslin"', title: "Graesslin - таймеры и фотореле. Сделано в Германии."), :action => 'index', :controller => 'home' %></td></tr>
-            <tr><td><%= link_to image_tag("logo/logo_200/sonder.gif", alt: '"SONDER"', title: "SONDER - термостаты"), :action => 'index', :controller => 'home' %></td></tr>
-            <tr><td><%= link_to image_tag("logo/logo_200/relequick.gif", alt: '"RELEQUICK"', title: "RELEQUICK - интерфейсные реле"), :action => 'index', :controller => 'home' %></td></tr>
-            <tr><td><%= link_to image_tag("logo/logo_200/comat_releco.gif", alt: '"COMAT-RELECO"', title: "COMAT-RELECO - промышленные промежуточные реле"), :action => 'index', :controller => 'home' %></td></tr>
-            <tr><td><%= link_to image_tag("logo/logo_200/emko.gif", alt: '"EMKO"', title: "EMKO - температурные датчики и и контроллеры"), :action => 'index', :controller => 'home' %></td></tr>
-            <tr><td><%= link_to image_tag("logo/logo_200/cbi.gif", alt: '"CBI"', title: "Профессиональные автоматические выключатели"), :action => 'index', :controller => 'home' %></td></tr>
-            <tr><td><%= link_to image_tag("logo/logo_200/huber-suhner.gif", alt: '"HUBER+SUHNER"', title: "ВЧ-разъемы, оптические компоненты"), :action => 'index', :controller => 'home' %></td></tr>
-            <tr><td><%= link_to image_tag("logo/logo_200/farnell.gif", alt: '"FARNELL"', title: "мировой лидер в области поставок электронных компонентов"), :action => 'index', :controller => 'home' %></td></tr>
-            <tr><td><%= link_to image_tag("logo/logo_200/poligonspb.gif", alt: '"ПОЛИГОН"', title: "ПОЛИГОН - производитель модульных устройств автоматики и защиты из Санкт-Петербурга"), :action => 'index', :controller => 'home' %></td></tr>
-            <tr><td><%= link_to image_tag("logo/logo_200/vemer.gif", alt: '"VEMER"', title: "производитель промышленных решений для измерения и контроля основных электрических параметров"), :action => 'index', :controller => 'home' %></td></tr>
-          </table>
-        </div>
-      </div>
-      <div class="col-xs-6">
-
-          <%= yield %>
-
-      </div>
-
-  <div class="col-xs-3">
-    <div class="leftPanel">
-      <ul class="nav nav-list">
-        <li><a href=<%= content_sertificates_path %>><i class="glyphicon glyphicon-certificate"></i>  Сертификаты</a></li>
-        <li><a href="#"><i class="glyphicon glyphicon-saved"></i></i>  Быстрая заявка</a></li>
-        <li><a href="#"><i class="glyphicon glyphicon-record"></i>  Заказ каталогов и CD</a></li>
-        <li><a href=<%= content_download_pdf_path %>><i class="glyphicon glyphicon-book"></i>  Скачать каталоги PDF</a></li>
-        <li><a href="#"><i class="glyphicon glyphicon-envelope"></i>  Подписка на рассылку</a></li>
+        </li>
       </ul>
-    </div>
-
-    <div class="left_news">
-      <h4>Новости</h4>
-
-      <table>
-        <% news_items = NewsItem.all %>
-        <% news_items.each do |news_item| %>
-            <tr>
-              <td><%= news_item.title %></td>
-            </tr>
-        <% end %>
-      </table>
-    </div>
-
-    <div class="iso9001">
-      <%= image_tag("ISO9001.gif", alt: 'Система менеджмента качества соответствует требованиям ISO9001:2008') %>
-    </div>
-
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Информация <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a href=<%= content_sertificates_path %>> <i class="glyphicon glyphicon-certificate"></i>  Сертификаты</a></li>
+            <li><a href=<%= feedback_quick_order_path %>> <i class="glyphicon glyphicon-saved"></i>  Быстрая заявка</a></li>
+            <li><a href=<%= feedback_request_pdf_path %>> <i class="glyphicon glyphicon-record"></i>  Заказ каталогов и CD</a></li>
+            <li><a href=<%= content_download_pdf_path %>> <i class="glyphicon glyphicon-book"></i>  Скачать каталоги PDF</a></li>
+            <li><a href=<%= feedback_mailing_list_path %>><i class="glyphicon glyphicon-envelope"></i>  Подписка на рассылку</a></li>
+            <li class="divider"></li>
+            <li><%= link_to 'О компании', company_about_path %></li>
+            <li><%= link_to 'Вакансии', company_vacancies_path %></li>
+            <li><%= link_to 'Обмен ссылками', company_vacancies_path %></li>
+            <li><%= link_to 'Карта сайта', company_vacancies_path %></li>
+            <li><%= link_to 'Контакты', company_contacts_path %></li>
+          </ul>
+        </li>
+        <li><%= link_to '(812) 325-42-20', company_contacts_path, class: "phone" %></li>
+      </ul>
+    </div><!--/.nav-collapse -->
   </div>
 </div>
-</div>
 
-</div>
-</div>
+<div class="container">
 
-<div id="footer">
+  <div class="row row-offcanvas row-offcanvas-right">
 
-<div id="main-container" class="container-fluid">
-  <div class="row">
+    <div class="col-xs-12 col-sm-9">
+      <p class="pull-right visible-xs">
+        <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Боковое меню</button>
+      </p>
+      <%= yield %>
+    </div><!--/span-->
 
-      <div class="low_panel">
-        <br/>
-        <ul>
-          <li class="active"><%= link_to 'О компании', company_about_path %></li>
-          <li><%= link_to 'Вакансии', company_vacancies_path %></li>
-          <li>Обмен ссылками</li>
-          <li>Карта сайта</li>
-        </ul>
+    <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
+      <div class="list-group">
+        <%= link_to image_tag("logo/logo_200/tele.gif", alt: '"TELE"', title: "реле времени и контроля из Австрии", :class => "partners list-group-item"), :action => 'show', :controller => 'categories', :id => '142' %>
+        <%= link_to image_tag("logo/logo_200/benedict.gif", alt: '"Benedict"', title: "Контакторы, пускатели, защита Benedict", :class => "partners list-group-item"), :action => 'show', :controller => 'categories', :id => '5094' %>
+        <%= link_to image_tag("logo/logo_200/citel.gif", alt: '"CITEL"', title: "CITEL - устройства молниезащиты", :class => "partners list-group-item"), :action => 'show', :controller => 'categories', :id => '74' %>
+        <%= link_to image_tag("logo/logo_200/graesslin.gif", alt: '"Graesslin"', title: "Graesslin - таймеры и фотореле. Сделано в Германии.", :class => "partners list-group-item"), :action => 'show', :controller => 'categories', :id => '5414' %>
+        <%= link_to image_tag("logo/logo_200/sonder.gif", alt: '"SONDER"', title: "SONDER - термостаты", :class => "partners list-group-item"), :action => 'show', :controller => 'categories', :id => '5535' %>
+        <%= link_to image_tag("logo/logo_200/relequick.gif", alt: '"RELEQUICK"', title: "RELEQUICK - интерфейсные реле", :class => "partners list-group-item"), :action => 'show', :controller => 'categories', :id => '5818' %>
+        <%= link_to image_tag("logo/logo_200/comat_releco.gif", alt: '"COMAT-RELECO"', title: "COMAT-RELECO - промышленные промежуточные реле", :class => "partners list-group-item"), :action => 'show', :controller => 'categories', :id => '5933' %>
+        <%= link_to image_tag("logo/logo_200/emko.gif", alt: '"EMKO"', title: "EMKO - температурные датчики и и контроллеры", :class => "partners list-group-item"), :action => 'show', :controller => 'categories', :id => '5583' %>
+        <%= link_to image_tag("logo/logo_200/cbi.gif", alt: '"CBI"', title: "Профессиональные автоматические выключатели", :class => "partners list-group-item"), :action => 'show', :controller => 'categories', :id => '5512' %>
+        <%= link_to image_tag("logo/logo_200/tehnoplast.gif", alt: '"TEHNOPLAST"', title: "Электротехнические шкафы TEHNOPLAST", :class => "partners list-group-item"), :action => 'show', :controller => 'categories', :id => '6441' %>
+        <%= link_to image_tag("logo/logo_200/huber-suhner.gif", alt: '"HUBER+SUHNER"', title: "ВЧ-разъемы, оптические компоненты", :class => "partners list-group-item"), :action => 'show', :controller => 'categories', :id => '4847' %>
+        <%= link_to image_tag("logo/logo_200/farnell.gif", alt: '"FARNELL"', title: "мировой лидер в области поставок электронных компонентов", :class => "partners list-group-item"), content_farnell_path %>
+        <%= link_to image_tag("logo/logo_200/poligonspb.gif", alt: '"ПОЛИГОН"', title: "ПОЛИГОН - производитель модульных устройств автоматики и защиты из Санкт-Петербурга", :class => "partners list-group-item"), :action => 'show', :controller => 'categories', :id => '6321' %>
+        <%= link_to image_tag("logo/logo_200/vemer.gif", alt: '"VEMER"', title: "производитель промышленных решений для измерения и контроля основных электрических параметров", :class => "partners list-group-item"), :action => 'show', :controller => 'categories', :id => '5650' %>
       </div>
+    </div><!--/span-->
+  </div><!--/row-->
 
-  </div>
-</div>
-</div>
+  <hr>
+
+  <footer>
+    <p>&copy; ООО "ПОЛИГОН" 2016</p>
+  </footer>
+
+</div><!--/.container-->
+
+
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="http://bootstrap-3.ru/dist/js/bootstrap.min.js"></script>
+<script src="http://bootstrap-3.ru/examples/offcanvas/offcanvas.js"></script>
 </body>
 </html>

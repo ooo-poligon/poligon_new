@@ -1,9 +1,41 @@
+<style>
+    h2 {
+        font-family: 'Marck Script', cursive;
+        font-size: 30px;
+    }
+</style>
 <br>
-<h2><%= Category.find_by(id: params[:id]).title %></h2>
+<% subCategories = Category.where(parent: params[:id]) %>
+<h2><%= Category.find(params[:id]).title %></h2>
+<br>
+<br>
+<% subCategories.each do |sc| %>
+    <p><%= link_to sc.title, sc %></p>
+<% end %>
+<br>
+<br>
+<% if (!Category.find(params[:id]).description.nil?) %>
+    <div><%= Category.find(params[:id]).description.html_safe %></div>
+<% end %>
+<br>
 <br>
 <%= link_to 'К списку категорий', categories_path %>
 <br>
-<div><%= Category.find_by(id: params[:id]).description.html_safe %></div>
-<br>
-<br>
-<%= link_to 'К списку категорий', categories_path %>
+<table>
+  <thead>
+  <tr>
+    <th>Название</th>
+    <th>Краткое описание</th>
+    <th>Наличие</th>
+    <th>Стоимость</th>
+  </tr>
+  </thead>
+  <% Product.where(category_id: params[:id]).each do |product| %>
+      <tr>
+        <td><%= link_to product.title, product %></td>
+        <td><%= product.description %></td>
+        <td></td>
+        <td></td>
+      </tr>
+  <% end %>
+</table>

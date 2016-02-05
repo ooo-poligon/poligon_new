@@ -1,24 +1,18 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <b>Title:</b>
+  <b>Название:</b>
   <%= @article.title %>
 </p>
 
 <p>
-  <b>Content:</b>
+  <b>Содержание:</b>
   <%= @article.content.html_safe %>
 </p>
 
 <p>
-  <b>Date created:</b>
+  <b>Дата создания:</b>
   <%= @article.created_at %>
 </p>
 
-<p>
-  <b>Date updated:</b>
-  <%= @article.updated_at %>
-</p>
-
-
-<%= link_to 'Back', articles_path %>
+<%= link_to 'К списку статей', articles_path %>

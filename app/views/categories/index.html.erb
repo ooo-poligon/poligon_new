@@ -1,6 +1,235 @@
-<h1>Категории</h1>
-<% @upLevelCategories.each do |category| %>
+<style>
 
-<p><%= link_to category.title, category %></p>
+    /* Transitions */
+    .transition-050 {
+        -moz-transition: 0.50s;
+        -webkit-transition: 0.50s;
+        -ms-transition: 0.50s;
+        -o-transition: 0.50s;
+        transition: 0.50s;
+    }
+    .opacity85{
+        opacity: 0.85;
+        filter: alpha(opacity=85);
+    }
 
-<% end %>
+    .module {
+        max-width: 900px;
+        margin:auto;
+    }
+    .module h1 {
+        font-family: 'Marck Script', cursive;
+        font-size: 60px;
+    }
+    .module figure {
+        position: relative;
+        overflow: hidden;
+        border:1px solid #fff;
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+    .module .big {
+        float: left;
+        width: 100%;
+    }
+    .module .small {
+        float: left;
+        width: 50%;
+    }
+    .module .small1 {
+        float: left;
+        width: 33.3%;
+    }
+    .module .small2 {
+        float: left;
+        width: 25%;
+    }
+    .module figure img {
+        display: block;
+        max-width: 100%;
+    }
+    .module figcaption {
+        position: absolute;
+        bottom: 0px;
+        width: 100%;
+        max-height: 27px;
+    }
+    .module .text {
+        color: #7A8B8B;
+        background-color: #fff;
+        font-size:0.90em;
+    }
+    .module figure:hover figcaption { max-height: 100%;}
+    .module figure:hover figcaption .text {
+        background-color: #7A8B8B;
+        color:#fff;
+    }
+    .module figcaption a { display: block; text-decoration:none; }
+    .module .title {
+        display: inline-block;
+        padding: -10px;
+        text-transform:uppercase;
+        font-size: 22px;
+    }
+    .module .desc {
+        display: block;
+        padding: 15px;
+    }
+    .bgcolor {
+        background-color: #fff;
+    }
+</style>
+
+<section class="module">
+
+  <header>
+    <h1>Каталог устройств</h1>
+  </header>
+  <br>
+
+  <section class="wraper">
+
+
+    <%# @upLevelCategories.each do |category| %>
+
+    <%# end %>
+
+    <figure class='small1'>
+      <%= link_to (image_tag "design/tele_cat_device.png", alt: '"TELE"', title: "TELE"), Category.find(142) %>
+      <figcaption class="transition-050 opacity85">
+        <a href="categories/142">
+          <strong class="text transition-050 title">"TELE"</strong>
+          <span class="text transition-050 desc">"Реле времени и контроля из Австрии"</span>
+        </a>
+      </figcaption>
+    </figure>
+
+    <figure class='small1'>
+      <%= link_to (image_tag "design/comat-releco_cat_device.png", alt: '"COMAT-RELECO"', title: "COMAT-RELECO"), Category.find(5933) %>
+      <figcaption class="transition-050 opacity85">
+        <a href="categories/5933">
+          <strong class="text transition-050 title">"COMAT-RELECO"</strong>
+          <span class="text transition-050 desc">""Промышленные промежуточные реле</span>
+        </a>
+      </figcaption>
+    </figure>
+
+    <figure class='small1'>
+      <%= link_to (image_tag "design/emko_cat_device.png", alt: '"EMKO"', title: "EMKO"), Category.find(5583) %>
+      <figcaption class="transition-050 opacity85">
+        <a href="categories/5583">
+          <strong class="text transition-050 title">"EMKO"</strong>
+          <span class="text transition-050 desc">"Tемпературные датчики и и контроллеры"</span>
+        </a>
+      </figcaption>
+    </figure>
+
+    <figure class='small1'>
+      <%= link_to (image_tag "design/benedict_cat_device.png", alt: '"BENEDICT"', title: "BENEDICT"), Category.find(5094) %>
+      <figcaption class="transition-050 opacity85">
+        <a href="categories/5094">
+          <strong class="text transition-050 title">"BENEDICT"</strong>
+          <span class="text transition-050 desc">"Контакторы, пускатели, защита BENEDICT"</span>
+        </a>
+      </figcaption>
+    </figure>
+
+
+    <figure class='small1'>
+      <%= link_to (image_tag "design/citel_cat_device.png", alt: '"CITEL"', title: "CITEL"), Category.find(74) %>
+      <figcaption class="transition-050 opacity85">
+        <a href="categories/74">
+          <strong class="text transition-050 title">"CITEL"</strong>
+          <span class="text transition-050 desc">"устройства молниезащиты"</span>
+        </a>
+      </figcaption>
+    </figure>
+
+    <figure class='small1'>
+      <%= link_to (image_tag "design/graesslin_cat_device.png", alt: '"GRAESSLIN"', title: "GRAESSLIN"), Category.find(5414) %>
+      <figcaption class="transition-050 opacity85">
+        <a href="categories/5414">
+          <strong class="text transition-050 title">"GRAESSLIN"</strong>
+          <span class="text transition-050 desc">"Tаймеры и фотореле. Сделано в Германии."</span>
+        </a>
+      </figcaption>
+    </figure>
+
+    <figure class='small1'>
+      <%= link_to (image_tag "design/sonder_cat_device.png", alt: '"SONDER"', title: "SONDER"), Category.find(5535) %>
+      <figcaption class="transition-050 opacity85">
+        <a href="categories/5535">
+          <strong class="text transition-050 title">"SONDER"</strong>
+          <span class="text transition-050 desc">"SONDER - термостаты"</span>
+        </a>
+      </figcaption>
+    </figure>
+
+    <figure class='small1'>
+      <%= link_to (image_tag "design/relequick_cat_device.png", alt: '"RELEQUICK"', title: "RELEQUICK"), Category.find(5818) %>
+      <figcaption class="transition-050 opacity85">
+        <a href="categories/5818">
+          <strong class="text transition-050 title">"RELEQUICK"</strong>
+          <span class="text transition-050 desc">"RELEQUICK - интерфейсные реле"</span>
+        </a>
+      </figcaption>
+    </figure>
+
+    <figure class='small1'>
+      <%= link_to (image_tag "design/cbi_cat_device.png", alt: 'CBI Electric', title: 'CBI Electric'), Category.find(5512) %>
+      <figcaption class="transition-050 opacity85">
+        <a href="categories/5512">
+          <strong class="text transition-050 title">"CBI Electric"</strong>
+          <span class="text transition-050 desc">"Профессиональные автоматические выключатели"</span>
+        </a>
+      </figcaption>
+    </figure>
+
+    <figure class='small1'>
+      <%= link_to (image_tag "design/poligonspb_cat_device.png", alt: 'НПФ "ПОЛИГОН"', title: 'НПФ "ПОЛИГОН"'), Category.find(6321) %>
+      <figcaption class="transition-050 opacity85">
+        <a href="categories/6321">
+          <strong class="text transition-050 title">"НПФ "ПОЛИГОН""</strong>
+          <span class="text transition-050 desc">"производитель модульных устройств автоматики и защиты из Санкт-Петербурга"</span>
+        </a>
+      </figcaption>
+    </figure>
+
+    <figure class='small1'>
+      <%= link_to (image_tag "design/huber-suhner_cat_device.png", alt: 'HUBER+SUHNER', title: 'HUBER+SUHNER'), Category.find(4847) %>
+      <figcaption class="transition-050 opacity85">
+        <a href="categories/4847">
+          <strong class="text transition-050 title">"HUBER+SUHNER"</strong>
+          <span class="text transition-050 desc">"ВЧ-разъемы, оптические компоненты"</span>
+        </a>
+      </figcaption>
+    </figure>
+
+    <figure class='small1'>
+      <%= link_to (image_tag "design/tehnoplast_cat_device.png", alt: 'TEHNOPLAST', title: 'TEHNOPLAST'), Category.find(6441) %>
+      <figcaption class="transition-050 opacity85">
+        <a href="categories/6441">
+          <strong class="text transition-050 title">"TEHNOPLAST"</strong>
+          <span class="text transition-050 desc">"Электротехнические шкафы TEHNOPLAST"</span>
+        </a>
+      </figcaption>
+    </figure>
+
+
+
+    <!--
+    <figure>
+      <a href="">
+        <img src="http://fakeimg.pl/500x300/" alt="">
+      </a>
+      <figcaption class="transition-050 opacity85">
+        <a href="">
+          <strong class="text transition-050 title">title</strong>
+          <span class="text transition-050 desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde, nostrum, voluptate voluptatum fugit nulla inventore </span>
+        </a>
+      </figcaption>
+    </figure>
+    -->
+  </section>
+</section>

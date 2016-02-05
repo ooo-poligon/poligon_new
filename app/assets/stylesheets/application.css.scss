@@ -11,7 +11,10 @@
  */
 
 
-html, body {height: 100%;}
+html, body {
+  height: 100%;
+  font-family: 'Ubuntu Mono', ;
+}
 
 #wrap {min-height: 100%;}
 
@@ -61,6 +64,7 @@ body:before {
   }
   img {
     padding-left: 10pt;
+    padding-top: 12pt;
     border: 0px;
   }
 }
@@ -85,7 +89,7 @@ body:before {
   margin-bottom: 5pt;
   text-align: center;
   input {
-    width: 340pt;
+    // width: 340pt;
     margin-right: 7pt;
   }
   a:link {
@@ -175,22 +179,29 @@ body:before {
   }
 }
 .partners {
-  background-color: #ffffff;
-  padding-left: 10pt;
-  td {
-    padding: 3pt;
-    text-align: left;
-  }
-  img {
-    width: 160px;
-    padding-bottom: 20px;
-  }
+  width: 180px;
+  height: 60px;
+  padding-left: 20px;
+  padding-bottom: 5px;
 }
+
+.phone {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.search_form {
+  margin-top: 5px;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 5px;
+}
+
 .iso9001 {
   padding: 20pt;
   padding-top: 60pt;
   img {
-    width: 120px;
+    width: 160px;
   }
 
 }
