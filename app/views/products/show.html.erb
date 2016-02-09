@@ -1,19 +1,49 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Title:</b>
-  <%= @product.title %>
-</p>
+<div>
+  <div>
+    <p>
+        <h2><%= @products.title %></h2>
+    </p>
+  </div>
+</div>
+<div>
+  <p>
+    <b>Цена: <%= @retail_price %> рублей.</b>
+  </p>
+  <p>
+    <%= @products.delivery_time %>
+  </p>
+</div>
 
-<p>
-  <b>Short description:</b>
-  <%= @product.description %>
-</p>
 
-<p>
-  <b>Retail price:</b>
-  <%= @product.price %>
-</p>
+<ul class="nav nav-tabs">
+  <li class="active"><a href="#description_tab" data-toggle="tab">Описание</a></li>
+  <li><a href="#functions_tab" data-toggle="tab">Функции</a></li>
+  <li><a href="#properties_tab" data-toggle="tab">Технические характеристики</a></li>
+  <li><a href="#plugs_tab" data-toggle="tab">Схемы подключения</a></li>
+  <li><a href="#dimentions_tab" data-toggle="tab">Размеры</a></li>
+</ul>
+<div class="tab-content">
+  <div class="tab-pane fade in active" id="description_tab">
+    <p>
+      <b>Краткое описание:</b>
+      <br>
+      <%= @products.description %>
+      <%= image_tag(@productImage.path.gsub!("c:\\poligon_images", "http://www.poligon.info/images").gsub!("\\", "/")) %>
+    </p>
+  </div>
+  <div class="tab-pane fade" id="functions_tab">
+    <p>Привет, я 2-я секция.</p>
+  </div>
+  <div class="tab-pane fade" id="properties_tab">
+    <p>Привет, я 3-я секция.</p>
+  </div>
+  <div class="tab-pane fade" id="plugs_tab">
+    <p>Привет, я 4-я секция.</p>
+  </div>
+  <div class="tab-pane fade" id="dimentions_tab">
+    <p>Привет, я 5-я секция.</p>
+  </div>
+</div>
 
-
-<%= link_to 'Back', products_path %>

@@ -12,6 +12,10 @@ gem 'sass-rails', '>= 3.2'
 gem 'autoprefixer-rails'
 gem 'protected_attributes'
 gem 'tzinfo-data'
+gem 'sunspot_rails'
+gem 'sunspot_solr'
+gem 'will_paginate', '~> 3.0.5'
+gem 'progress_bar'
 
 # сам фреймворк от твиттера
 # gem 'twitter-bootstrap-rails'

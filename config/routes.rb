@@ -15,6 +15,8 @@ Poligon::Application.routes.draw do
 
   get "articles/index"
 
+  get "products/index"
+
   get "home/index"
 
   get "categories/index"
@@ -37,7 +39,9 @@ Poligon::Application.routes.draw do
 
   get "feedback/quick_order"
 
-  get "feedback/mailing_list"
+  get 'feedback/mailing_list'
+
+  get 'search', to: 'search#search'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
