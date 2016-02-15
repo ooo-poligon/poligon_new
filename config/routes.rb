@@ -17,8 +17,6 @@ Poligon::Application.routes.draw do
 
   get "products/index"
 
-  get "home/index"
-
   get "categories/index"
 
   get "categories/show"
@@ -28,6 +26,10 @@ Poligon::Application.routes.draw do
   get "company/contacts"
 
   get "company/vacancies"
+
+  get "company/sitemap"
+
+  get "company/links"
 
   get "content/sertificates"
 
@@ -92,7 +94,7 @@ Poligon::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => 'home#index'
+  root :to => "content#home"
 
   # See how all your routes lay out with "rake routes"
 

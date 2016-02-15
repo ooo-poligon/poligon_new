@@ -1,49 +1,150 @@
 <p id="notice"><%= notice %></p>
+<% array = [] %>
+<ol class="breadcrumb">
+  <% element = Category.find(@product.category_id) %>
+  <% while element.parent != 0 %>
+      <% array.push(element) %>
+      <% element = Category.find(element.parent) %>
+  <% end %>
 
-<div>
-  <div>
-    <p>
-        <h2><%= @products.title %></h2>
+  <li><%= link_to 'Каталог', categories_path %></li>
+  <% array.reverse_each do |item| %>
+      <li><%= link_to item.title, item %></li>
+  <% end %>
+</ol>
+<p>
+<h2><%= @product.title %></h2>
+</p>
+<p>
+<h4>Тип устройств: <%= @productKind.title %></h4>
+</p>
+<p>
+  <%= @product.description %>
+</p>
+<% if !@product.anons.nil? %>
+    <p style="color: red; font-weight: bolder;">
+      <%= @product.anons %>
     </p>
+<% end %>
+<hr>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-3">
+      <p>
+        <%= image_tag(
+                    @productImage.path.gsub!(
+                            "c:\\poligon_images", "http://www.poligon.info/images"
+                    ).gsub!("\\", "/"), class: "img-responsive center-block", :width => '200px') %>
+      </p>
+      <hr>
+      <% if (@retail_price%10 == 1)%>
+        <p>
+          <b style="font-size: 18px; color: blue; font-weight: bolder;">Цена: <%= @retail_price %> рубль.</b>
+        </p>
+      <% elsif (@retail_price%10 == 2) || (@retail_price%10 == 3) || (@retail_price%10 == 4)%>
+        <p>
+          <b style="font-size: 18px; color: blue; font-weight: bolder;">Цена: <%= @retail_price %> рубля.</b>
+        </p>
+      <% else %>
+        <p>
+          <b style="font-size: 18px; color: blue; font-weight: bolder;">Цена: <%= @retail_price %> рублей.</b>
+        </p>
+      <% end %>
+
+      <p style="color: green">
+        <i>Срок поставки: <%= @product.delivery_time %></i>
+      </p>
+
+    </div>
+    <div class="col-xs-7">
+      <ul class="nav nav-tabs">
+        <li class="active"><a href="#properties_tab" data-toggle="tab">Технические характеристики</a></li>
+        <li><a href="#functions_tab" data-toggle="tab">Функции</a></li>
+        <li><a href="#plugs_tab" data-toggle="tab">Схемы подключения</a></li>
+        <li><a href="#dimentions_tab" data-toggle="tab">Размеры</a></li>
+      </ul>
+      <div class="tab-content">
+        <div class="tab-pane fade in active" id="properties_tab">
+        <% @propertyTypesOfProduct.each do |property_type| %>
+          <% if !Property.where("property_type_id = ?", property_type.id).empty? %>
+          <div class="table-responsive">
+            <table class="table table-hover">
+              <tbody>
+                <% p_count = 0 %>
+                <% @properties.each do |p| %>
+                  <% if p[0] == property_type.id %>
+                    <% p[1].each do |prop| %>
+                        <% values = PropertyValue.where("property_id = ? and product_id = ?", prop.id, @product.id) %>
+                        <% value_count = 0 %>
+                        <% values.each do |value| %>
+                          <tr>
+                            <% if p_count < 1 %>
+                                <td style="width: 45%;">
+                                  <span style="color: darkgreen; font-weight: bold; font-size: 18px"><%= property_type.title %></span>
+                                </td>
+                            <% else %>
+                                <td style="width: 45%;"></td>
+                            <% end %>
+                            <% p_count += 1 %>
+                          <% if value_count < 1 %>
+                            <td style="width: 25%;"><b><%= prop.title %></b></td>
+                          <% else %>
+                            <td style="width: 25%;"></td>
+                          <% end %>
+                            <td style="width: 20%;"><%= value.cond %>:</td>
+                            <td style="width: 10%;"><%= value.value %> <i><%= Measure.find(value.measure_id).symbol_ru %></i></td>
+                          </tr>
+                          <% value_count += 1 %>
+                        <% end %>
+                    <% end %>
+                  <% end %>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+          <% end %>
+        <% end %>
+        </div>
+        <div class="tab-pane fade" id="functions_tab">
+          <ul>
+            <% @functions.each do |f| %>
+              <li>
+                <table class="table-responsive">
+                  <thead><h4 style="color: blueviolet"><%= f.title %> ( <b><%= f.symbol %></b> )</h4></thead>
+                  <tbody>
+                  <tr>
+                    <td><%= f.description %></td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <br>
+                      <p>
+                        <%= image_tag(
+                                    f.picture_path.gsub!("\\", "/").gsub!(
+                                            "C:/poligon_images/", "http://www.poligon.info/images/"
+                                    ), class: "img-responsive center-block", :width => '500px') %>
+                      </p>
+                    </td>
+                  </tr>
+                  </tbody>
+                </table>
+              </li>
+              <br>
+            <% end %>
+          </ul>
+        </div>
+        <div class="tab-pane fade" id="plugs_tab">
+          <p>Привет, я 4-я секция.</p>
+        </div>
+        <div class="tab-pane fade" id="dimentions_tab">
+          <p>Привет, я 5-я секция.</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-2 offset2"></div>
   </div>
-</div>
-<div>
-  <p>
-    <b>Цена: <%= @retail_price %> рублей.</b>
-  </p>
-  <p>
-    <%= @products.delivery_time %>
-  </p>
 </div>
 
 
-<ul class="nav nav-tabs">
-  <li class="active"><a href="#description_tab" data-toggle="tab">Описание</a></li>
-  <li><a href="#functions_tab" data-toggle="tab">Функции</a></li>
-  <li><a href="#properties_tab" data-toggle="tab">Технические характеристики</a></li>
-  <li><a href="#plugs_tab" data-toggle="tab">Схемы подключения</a></li>
-  <li><a href="#dimentions_tab" data-toggle="tab">Размеры</a></li>
-</ul>
-<div class="tab-content">
-  <div class="tab-pane fade in active" id="description_tab">
-    <p>
-      <b>Краткое описание:</b>
-      <br>
-      <%= @products.description %>
-      <%= image_tag(@productImage.path.gsub!("c:\\poligon_images", "http://www.poligon.info/images").gsub!("\\", "/")) %>
-    </p>
-  </div>
-  <div class="tab-pane fade" id="functions_tab">
-    <p>Привет, я 2-я секция.</p>
-  </div>
-  <div class="tab-pane fade" id="properties_tab">
-    <p>Привет, я 3-я секция.</p>
-  </div>
-  <div class="tab-pane fade" id="plugs_tab">
-    <p>Привет, я 4-я секция.</p>
-  </div>
-  <div class="tab-pane fade" id="dimentions_tab">
-    <p>Привет, я 5-я секция.</p>
-  </div>
-</div>
+
 

@@ -7,6 +7,17 @@ class CategoriesController < ApplicationController
   before_action :getCourse
 
   def show
+    @allUpLevelCategories = []
+    @allUpLevelCategoriesIds = []
+    Category.where(parent: 0).each do |c0|
+      @allUpLevelCategories.push(c0)
+    end
+    @allUpLevelCategories.each do |category|
+      @allUpLevelCategoriesIds.push(category.id)
+    end
+    @subCategories = Category.where(parent: params[:id])
+    @recentCategory = Category.find(params[:id])
+    @parentCategory = Category.find(@recentCategory.parent)
     @products = []
     addCBR = Setting.find_by title: 'AddCBR'
 
@@ -30,7 +41,6 @@ class CategoriesController < ApplicationController
       http.request(req)
     }
     @courseEuro = res.body.to_s.to_f
-
   end
   
 end

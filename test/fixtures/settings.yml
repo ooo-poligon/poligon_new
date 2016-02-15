@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  kind: MyString
+  int_value: 1
+  text_value: MyString
+
+two:
+  title: MyString
+  kind: MyString
+  int_value: 1
+  text_value: MyString

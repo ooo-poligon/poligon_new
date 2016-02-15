@@ -40,7 +40,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" style="margin-bottom: 5px; margin-top: -10px" href=<%= home_index_path %>><%= image_tag('logo185.png', alt: 'Компания "ПОЛИГОН"') %></a>
+      <a class="navbar-brand" style="margin-bottom: 5px; margin-top: -10px" href=<%= root_path %>><%= image_tag('logo185.png', alt: 'Компания "ПОЛИГОН"') %></a>
 
     </div>
     <div class="navbar-collapse collapse">
@@ -49,7 +49,7 @@
         <li><%= link_to 'Публикации', articles_path %></li>
         <li><%= link_to 'Каталог', categories_path %></li>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Поиск по сайту <b class="caret"></b></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span style="color: #105cb6; font-weight: bold;">Поиск <b class="caret"></b></span></a>
           <ul class="dropdown-menu">
             <li>
               <form class="navbar-search pull-left" method="get" action="/search">
@@ -71,8 +71,8 @@
             <li class="divider"></li>
             <li><%= link_to 'О компании', company_about_path %></li>
             <li><%= link_to 'Вакансии', company_vacancies_path %></li>
-            <li><%= link_to 'Обмен ссылками', company_vacancies_path %></li>
-            <li><%= link_to 'Карта сайта', company_vacancies_path %></li>
+            <li><%= link_to 'Обмен ссылками', company_links_path %></li>
+            <li><%= link_to 'Карта сайта', company_sitemap_path %></li>
             <li><%= link_to 'Контакты', company_contacts_path %></li>
           </ul>
         </li>
@@ -113,7 +113,7 @@
     </div><!--/span-->
   </div><!--/row-->
 
-  <hr>
+
 
   <footer>
     <p>&copy; ООО "ПОЛИГОН" 2016</p>

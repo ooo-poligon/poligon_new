@@ -1,0 +1,6 @@
+<br>
+<% @content.each do |c| %>
+    <h1><%= c.title %></h1>
+    <br>
+    <div><%= c.content.html_safe %></div>
+<% end %>

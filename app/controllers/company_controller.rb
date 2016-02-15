@@ -11,4 +11,10 @@ class CompanyController < ApplicationController
   def vacancies
     @staticContent = StaticContent.all
   end
+
+  def sitemap
+  end
+
+  def links
+  end
 end

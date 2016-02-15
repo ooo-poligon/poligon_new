@@ -1,29 +1,36 @@
 <br>
 <h2>Результат поиска по запросу <i><b>"<%= params[:q] %>"</b></i>:</h2>
 
+<% if !@products.results.empty? %>
 <h3>Поиск по устройствам:</h3>
 <% @products.results.each do |product| %>
     <h4><%= link_to product.title, product %></h4>
     <%= product.description %>
 <% end %>
+<% end %>
 
-
+<% if !@articles.results.empty? %>
 <h3>Поиск по статьям:</h3>
 <% @articles.results.each do |article| %>
     <h4><%= article.title %></h4>
 <% end %>
+<% end %>
 
-
+    <% if !@news_items.results.empty? %>
 <h3>Поиск по новостям:</h3>
 <% @news_items.results.each do |news_item| %>
     <h4><%= news_item.title %></h4>
 <% end %>
+<% end %>
 
-
+<% if !@static_contents.results.empty? %>
 <h3>Поиск по контенту:</h3>
 <% @static_contents.results.each do |static_content| %>
     <h4><%= static_content.title %></h4>
 <% end %>
+<% end %>
+<br>
+<hr>
 <br>
 
 <div class="apple_pagination">
