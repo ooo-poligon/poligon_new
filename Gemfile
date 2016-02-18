@@ -16,6 +16,7 @@ gem 'sunspot_rails'
 gem 'sunspot_solr'
 gem 'will_paginate', '~> 3.0.5'
 gem 'progress_bar'
+gem 'fancybox-rails'
 
 # сам фреймворк от твиттера
 # gem 'twitter-bootstrap-rails'

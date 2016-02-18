@@ -55,6 +55,8 @@ GEM
     diff-lcs (1.2.5)
     erubis (2.7.0)
     execjs (2.6.0)
+    fancybox-rails (0.3.1)
+      railties (>= 3.1.0)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
     highline (1.7.8)
@@ -177,6 +179,7 @@ DEPENDENCIES
   autoprefixer-rails
   bootstrap-sass (~> 3.3.5)
   coffee-rails
+  fancybox-rails
   jquery-rails
   mysql2
   progress_bar

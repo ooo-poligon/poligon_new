@@ -1,12 +1,15 @@
 <h1>Список новостей</h1>
 
 <table class="table table-striped">
+  <tr>
+    <th style="width: 80%;">Наименование</th>
+    <th style="width: 20%;">Дата публикации</th>
+  </tr>
 
 <% @news_items.each do |news_item| %>
   <tr>
-    <td><%= news_item.title %></td>
+    <td><%= link_to news_item.title, news_item %></td>
     <td><%= news_item.created_at.strftime("%d.%m.%Y") %></td>
-    <td><%= link_to 'Читать', news_item %></td>
   </tr>
 <% end %>
 </table>

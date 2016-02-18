@@ -2,18 +2,17 @@
 
 <table class="table table-striped">
   <tr>
-    <th>Название</th>
-    <th>Содержание</th>
-    <th>Дата создания</th>
+    <th style="width: 30%;">Название</th>
+    <th style="width: 50%;">Содержание</th>
+    <th style="width: 20%;">Дата публикации</th>
     <th></th>
   </tr>
 
 <% @articles.each do |article| %>
   <tr>
-    <td><%= article.title %></td>
+    <td><%= link_to article.title, article %></td>
     <td><%= article.content.html_safe %></td>
-    <td><%= article.created_at %></td>
-    <td><%= link_to 'Читать', article %></td>
+    <td><%= article.created_at.strftime("%d.%m.%Y") %></td>
   </tr>
 <% end %>
 </table>

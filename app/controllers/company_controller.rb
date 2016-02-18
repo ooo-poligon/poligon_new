@@ -16,5 +16,6 @@ class CompanyController < ApplicationController
   end
 
   def links
+    @staticContent = StaticContent.all
   end
 end

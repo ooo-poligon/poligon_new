@@ -43,17 +43,28 @@
     <table class="table table-striped">
       <thead>
       <tr>
+        <th>Изображение</th>
         <th>Название</th>
         <th>Краткое описание</th>
         <th>Наличие</th>
+        <th>Поставка</th>
         <th>Стоимость</th>
       </tr>
       </thead>
       <% @products.each do |product_array| %>
           <tr>
+            <% productImage = ImageFile.where("owner_id = ? and file_type_id = 1", product_array[0].id).first %>
+            <% imagePath = productImage.path.gsub!("c:\\poligon_images", "http://www.poligon.info/images").gsub!("\\", "/") %>
+            <td><%= link_to image_tag(imagePath, class: "img-responsive center-block", :width => '50px'), imagePath, class: "fancybox" %></td>
             <td><%= link_to product_array[0].title, product_array[0] %></td>
             <td><%= product_array[0].description %></td>
-            <td></td>
+                  <% if !Quantity.find_by(product_id: product_array[0].id).nil? && Quantity.find_by(product_id: product_array[0].id).stock > 0 %>
+                    <td style="text-align: center;"><%= image_tag("green.gif") %></td>
+                    <td>Есть на складе</td>
+                  <% else %>
+                      <td style="text-align: center;"><%= image_tag("grey.gif") %></td>
+                      <td><%= product_array[0].delivery_time %></td>
+                  <% end %>
             <td><%= product_array[1] %> руб.</td>
           </tr>
       <% end %>
