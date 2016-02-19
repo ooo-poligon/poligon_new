@@ -2,7 +2,7 @@ class SearchController < ApplicationController
   def search
     @products = Sunspot.search(Product) do
       #fulltext search
-      #fulltext params['q']
+      fulltext params['q']
 
       #scoping
       if params.has_key?(:title)
@@ -18,7 +18,7 @@ class SearchController < ApplicationController
 
     @articles = Sunspot.search(Article) do
       #fulltext search
-      #fulltext params['q']
+      fulltext params['q']
 
       #scoping
       if params.has_key?(:title)
@@ -34,7 +34,7 @@ class SearchController < ApplicationController
 
     @news_items = Sunspot.search(NewsItem) do
       #fulltext search
-      #fulltext params['q']
+      fulltext params['q']
 
       #scoping
       if params.has_key?(:title)
@@ -50,7 +50,7 @@ class SearchController < ApplicationController
 
     @static_contents = Sunspot.search(StaticContent) do
       #fulltext search
-      #fulltext params['q']
+      fulltext params['q']
 
       #scoping
       if params.has_key?(:title)

@@ -1,5 +1,6 @@
 <p id="notice"><%= notice %></p>
 <% array = [] %>
+<br>
 <ol class="breadcrumb">
   <% element = Category.find(@product.category_id) %>
   <% while element.parent != 0 %>
