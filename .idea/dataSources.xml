@@ -5,26 +5,16 @@
       <driver-ref>mysql</driver-ref>
       <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://127.0.0.1:3306/poligon_commander</jdbc-url>
-      <user-name>root</user-name>
-      <user-password>dfdadfc5dfc6dfc3dfcddfc5dfc4</user-password>
-      <libraries />
     </data-source>
     <data-source source="LOCAL" name="Rails poligon: test" uuid="743ccf3f-58ce-439c-b047-7bba3122ba3b">
       <driver-ref>mysql</driver-ref>
       <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://127.0.0.1:3306/poligon_test</jdbc-url>
-      <user-name>root</user-name>
-      <user-password>dfdadfc5dfc6dfc3dfcddfc5dfc4</user-password>
-      <libraries />
     </data-source>
     <data-source source="LOCAL" name="Rails poligon: production" uuid="ac093ecf-6e1f-47cb-9eee-9c110cf1b58a">
       <driver-ref>mysql</driver-ref>
       <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://127.0.0.1:3306/poligon_production</jdbc-url>
-      <user-name>root</user-name>
-      <user-password>dfdadfc5dfc6dfc3dfcddfc5dfc4</user-password>
-      <libraries />
     </data-source>
   </component>
 </project>
-

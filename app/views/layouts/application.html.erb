@@ -19,10 +19,10 @@
   <%= favicon_link_tag 'favicon.ico' %>
 
   <!-- Bootstrap core CSS -->
-  <link href="http://bootstrap-3.ru/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="http://bootstrap.ru/dist/css/bootstrap.min.css" rel="stylesheet">
 
   <!-- Custom styles for this template -->
-  <link href="http://bootstrap-3.ru/examples/offcanvas/offcanvas.css" rel="stylesheet">
+  <link href="http://bootstrap.ru/examples/offcanvas/offcanvas.css" rel="stylesheet">
 
   <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!--[if lt IE 9]>
@@ -59,7 +59,7 @@
         <li><%= link_to 'Публикации', articles_path %></li>
         <li><%= link_to 'Каталог', categories_path %></li>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span style="color: #105cb6; font-weight: bold;">Поиск <b class="caret"></b></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Поиск <b class="caret"></b></a>
           <ul class="dropdown-menu">
             <li>
               <form class="navbar-search pull-left" method="get" action="/search">
@@ -100,25 +100,26 @@
       <p class="pull-right visible-xs">
         <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Боковое меню</button>
       </p>
+      <br>
       <%= yield %>
     </div><!--/span-->
 
-    <div class="col-xs-6 col-sm-2 sidebar-offcanvas" id="sidebar" role="navigation">
+    <div class="col-xs-6 col-sm-2 sidebar-offcanvas" id="sidebar" role="navigation"><br><br><br>
       <div class="list-group">
-        <%= link_to image_tag("logo/logo_200/tele.gif", alt: '"TELE"', title: "реле времени и контроля из Австрии", :class => "partners list-group-item"), :action => 'show', :controller => 'categories', :id => '142' %>
-        <%= link_to image_tag("logo/logo_200/benedict.gif", alt: '"Benedict"', title: "Контакторы, пускатели, защита Benedict", :class => "partners list-group-item"), :action => 'show', :controller => 'categories', :id => '5094' %>
-        <%= link_to image_tag("logo/logo_200/citel.gif", alt: '"CITEL"', title: "CITEL - устройства молниезащиты", :class => "partners list-group-item"), :action => 'show', :controller => 'categories', :id => '74' %>
-        <%= link_to image_tag("logo/logo_200/graesslin.gif", alt: '"Graesslin"', title: "Graesslin - таймеры и фотореле. Сделано в Германии.", :class => "partners list-group-item"), :action => 'show', :controller => 'categories', :id => '5414' %>
-        <%= link_to image_tag("logo/logo_200/sonder.gif", alt: '"SONDER"', title: "SONDER - термостаты", :class => "partners list-group-item"), :action => 'show', :controller => 'categories', :id => '5535' %>
-        <%= link_to image_tag("logo/logo_200/relequick.gif", alt: '"RELEQUICK"', title: "RELEQUICK - интерфейсные реле", :class => "partners list-group-item"), :action => 'show', :controller => 'categories', :id => '5818' %>
-        <%= link_to image_tag("logo/logo_200/comat_releco.gif", alt: '"COMAT-RELECO"', title: "COMAT-RELECO - промышленные промежуточные реле", :class => "partners list-group-item"), :action => 'show', :controller => 'categories', :id => '5933' %>
-        <%= link_to image_tag("logo/logo_200/emko.gif", alt: '"EMKO"', title: "EMKO - температурные датчики и и контроллеры", :class => "partners list-group-item"), :action => 'show', :controller => 'categories', :id => '5583' %>
-        <%= link_to image_tag("logo/logo_200/cbi.gif", alt: '"CBI"', title: "Профессиональные автоматические выключатели", :class => "partners list-group-item"), :action => 'show', :controller => 'categories', :id => '5512' %>
-        <%= link_to image_tag("logo/logo_200/tehnoplast.gif", alt: '"TEHNOPLAST"', title: "Электротехнические шкафы TEHNOPLAST", :class => "partners list-group-item"), :action => 'show', :controller => 'categories', :id => '6441' %>
-        <%= link_to image_tag("logo/logo_200/huber-suhner.gif", alt: '"HUBER+SUHNER"', title: "ВЧ-разъемы, оптические компоненты", :class => "partners list-group-item"), :action => 'show', :controller => 'categories', :id => '4847' %>
-        <%= link_to image_tag("logo/logo_200/farnell.gif", alt: '"FARNELL"', title: "мировой лидер в области поставок электронных компонентов", :class => "partners list-group-item"), content_farnell_path %>
-        <%= link_to image_tag("logo/logo_200/poligonspb.gif", alt: '"ПОЛИГОН"', title: "ПОЛИГОН - производитель модульных устройств автоматики и защиты из Санкт-Петербурга", :class => "partners list-group-item"), :action => 'show', :controller => 'categories', :id => '6321' %>
-        <%= link_to image_tag("logo/logo_200/vemer.gif", alt: '"VEMER"', title: "производитель промышленных решений для измерения и контроля основных электрических параметров", :class => "partners list-group-item"), :action => 'show', :controller => 'categories', :id => '5650' %>
+        <%= link_to image_tag("logo/logo_200x60/tele.gif", alt: '"TELE"', title: "реле времени и контроля из Австрии", :class => 'partners list-group-item'), :action => 'show', :controller => 'categories', :id => '142' %>
+        <%= link_to image_tag("logo/logo_200x60/benedict.gif", alt: '"Benedict"', title: "Контакторы, пускатели, защита Benedict", :class => "partners list-group-item"), :action => 'show', :controller => 'categories', :id => '5094' %>
+        <%= link_to image_tag("logo/logo_200x60/citel.gif", alt: '"CITEL"', title: "CITEL - устройства молниезащиты", :class => "partners list-group-item"), :action => 'show', :controller => 'categories', :id => '74' %>
+        <%= link_to image_tag("logo/logo_200x60/graesslin.gif", alt: '"Graesslin"', title: "Graesslin - таймеры и фотореле. Сделано в Германии.", :class => "partners list-group-item"), :action => 'show', :controller => 'categories', :id => '5414' %>
+        <%= link_to image_tag("logo/logo_200x60/sonder.gif", alt: '"SONDER"', title: "SONDER - термостаты", :class => "partners list-group-item"), :action => 'show', :controller => 'categories', :id => '5535' %>
+        <%= link_to image_tag("logo/logo_200x60/relequick.gif", alt: '"RELEQUICK"', title: "RELEQUICK - интерфейсные реле", :class => "partners list-group-item"), :action => 'show', :controller => 'categories', :id => '5818' %>
+        <%= link_to image_tag("logo/logo_200x60/comat_releco.gif", alt: '"COMAT-RELECO"', title: "COMAT-RELECO - промышленные промежуточные реле", :class => "partners list-group-item"), :action => 'show', :controller => 'categories', :id => '5933' %>
+        <%= link_to image_tag("logo/logo_200x60/emko.gif", alt: '"EMKO"', title: "EMKO - температурные датчики и и контроллеры", :class => "partners list-group-item"), :action => 'show', :controller => 'categories', :id => '5583' %>
+        <%= link_to image_tag("logo/logo_200x60/cbi.gif", alt: '"CBI"', title: "Профессиональные автоматические выключатели", :class => "partners list-group-item"), :action => 'show', :controller => 'categories', :id => '5512' %>
+        <%= link_to image_tag("logo/logo_200x60/tehnoplast.gif", alt: '"TEHNOPLAST"', title: "Электротехнические шкафы TEHNOPLAST", :class => "partners list-group-item"), :action => 'show', :controller => 'categories', :id => '6441' %>
+        <%= link_to image_tag("logo/logo_200x60/huber-suhner.gif", alt: '"HUBER+SUHNER"', title: "ВЧ-разъемы, оптические компоненты", :class => "partners list-group-item"), :action => 'show', :controller => 'categories', :id => '4847' %>
+        <%= link_to image_tag("logo/logo_200x60/farnell.gif", alt: '"FARNELL"', title: "мировой лидер в области поставок электронных компонентов", :class => "partners list-group-item"), content_farnell_path %>
+        <%= link_to image_tag("logo/logo_200x60/poligonspb.gif", alt: '"ПОЛИГОН"', title: "ПОЛИГОН - производитель модульных устройств автоматики и защиты из Санкт-Петербурга", :class => "partners list-group-item"), :action => 'show', :controller => 'categories', :id => '6321' %>
+        <%= link_to image_tag("logo/logo_200x60/vemer.gif", alt: '"VEMER"', title: "производитель промышленных решений для измерения и контроля основных электрических параметров", :class => "partners list-group-item"), :action => 'show', :controller => 'categories', :id => '5650' %>
       </div>
     </div><!--/span-->
   </div><!--/row-->
@@ -137,7 +138,7 @@
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
 
-<script src="http://bootstrap-3.ru/dist/js/bootstrap.min.js"></script>
+<script src="http://bootstrap.ru/dist/js/bootstrap.min.js"></script>
 <script src="http://bootstrap-3.ru/examples/offcanvas/offcanvas.js"></script>
 </body>
 </html>

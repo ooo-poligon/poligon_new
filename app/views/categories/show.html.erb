@@ -53,9 +53,13 @@
       </thead>
       <% @products.each do |product_array| %>
           <tr>
-            <% productImage = ImageFile.where("owner_id = ? and file_type_id = 1", product_array[0].id).first %>
-            <% imagePath = productImage.path.gsub!("c:\\poligon_images", "http://www.poligon.info/images").gsub!("\\", "/") %>
-            <td><%= link_to image_tag(imagePath, class: "img-responsive center-block", :width => '50px'), imagePath, class: "fancybox" %></td>
+            <% productImage = ImageFile.where('owner_id = ? and file_type_id = 1', product_array[0].id).first %>
+            <% if productImage != nil %>
+              <% imagePath = productImage.path.gsub!("c:\\poligon_images", "http://www.poligon.info/images").gsub!("\\", "/") %>
+              <td><%= link_to image_tag(imagePath, class: "img-responsive center-block", :width => '50px'), imagePath, class: "fancybox" %></td>
+          <% else %>
+              <td></td>
+              <% end %>
             <td><%= link_to product_array[0].title, product_array[0] %></td>
             <td><%= product_array[0].description %></td>
                   <% if !Quantity.find_by(product_id: product_array[0].id).nil? && Quantity.find_by(product_id: product_array[0].id).stock > 0 %>
