@@ -16,3 +16,6 @@
 
 # Ignore solr directory.
 /solr
+
+# Ignore IDEA settings.
+/.idea
