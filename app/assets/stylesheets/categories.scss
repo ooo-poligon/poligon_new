@@ -1,3 +1,51 @@
 // Place all the styles related to the categories controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.load-monitor th {
+  font-size: 12px;
+}
+
+.load-monitor th, .load-monitor td {
+  border-bottom: 1px solid #ABE391;
+  border-collapse: separate;
+  border-spacing: 0px 0px;
+  padding: 0px;
+}
+
+.load-monitor tr {
+  border-collapse: collapse;
+  border: none;
+  padding: 0px;
+}
+
+.load-monitor thead tr th {
+  border-collapse: separate;
+}
+
+.load-monitor {
+  text-align: center;
+}
+
+.load-monitor tbody td {
+  font-size: 13px;
+  width: 25px;
+}
+
+.load-monitor tr td:nth-child(odd) {
+  background: #ABE391;
+}
+
+.load-monitor tr td:first-child, .load-monitor tbody tr th {
+  background: white;
+  text-align: right;
+  width: 240px;
+}
+
+tr.with-img td {
+  vertical-align: bottom;
+}
+
+tr.with-img th {
+  vertical-align: top;
+}
