@@ -37,7 +37,7 @@ end
 # Deploy with Capistrano
 group :development do
   gem 'capistrano'
-  gem 'rvm-capistrano' # нужен для корректной работы с rvm
+  gem 'rvm-capistrano', require: false # нужен для корректной работы с rvm
 end
 
 # To use debugger
