@@ -41,18 +41,24 @@
         <p style="font-weight: bold; color: red;">нет изображения</p>
       <% end %>
       <hr>
-      <% if (@retail_price%10 == 1)%>
-        <p>
-          <b style="font-size: 18px; color: blue; font-weight: bolder;">Цена: <%= @retail_price %> рубль.</b>
-        </p>
-      <% elsif (@retail_price%10 == 2) || (@retail_price%10 == 3) || (@retail_price%10 == 4)%>
-        <p>
-          <b style="font-size: 18px; color: blue; font-weight: bolder;">Цена: <%= @retail_price %> рубля.</b>
-        </p>
+      <% if (@retail_price != 0) %>
+          <% if (@retail_price%10 == 1) %>
+              <p>
+                <b style="font-size: 18px; color: blue; font-weight: bolder;">Цена: <%= @retail_price %> рубль.</b>
+              </p>
+          <% elsif (@retail_price%10 == 2) || (@retail_price%10 == 3) || (@retail_price%10 == 4) %>
+              <p>
+                <b style="font-size: 18px; color: blue; font-weight: bolder;">Цена: <%= @retail_price %> рубля.</b>
+              </p>
+          <% else %>
+              <p>
+                <b style="font-size: 18px; color: blue; font-weight: bolder;">Цена: <%= @retail_price %> рублей.</b>
+              </p>
+          <% end %>
       <% else %>
-        <p>
-          <b style="font-size: 18px; color: blue; font-weight: bolder;">Цена: <%= @retail_price %> рублей.</b>
-        </p>
+          <p>
+            <b style="font-size: 12px; color: red; font-weight: bolder;">Звоните: (812) 325-42-20</b>
+          </p>
       <% end %>
 
       <p style="color: green">
@@ -143,10 +149,10 @@
           </ul>
         </div>
         <div class="tab-pane fade" id="plugs_tab">
-          <p>Привет, я 4-я секция.</p>
+          <p></p>
         </div>
         <div class="tab-pane fade" id="dimentions_tab">
-          <p>Привет, я 5-я секция.</p>
+          <p></p>
         </div>
       </div>
     </div>

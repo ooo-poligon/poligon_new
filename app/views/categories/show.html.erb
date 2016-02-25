@@ -69,7 +69,11 @@
                       <td style="text-align: center;"><%= image_tag("grey.gif") %></td>
                       <td><%= product_array[0].delivery_time %></td>
                   <% end %>
-            <td><%= product_array[1] %> руб.</td>
+            <% unless product_array[1] == 0 %>
+                <td><%= product_array[1] %> руб.</td>
+            <% else %>
+                <td style="align-content: center;">Звоните:<br>(812)325-42-20</td>
+            <% end %>
           </tr>
       <% end %>
     </table>
