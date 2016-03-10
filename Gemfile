@@ -14,6 +14,7 @@ gem 'progress_bar'
 gem 'fancybox-rails'
 gem 'therubyracer', :platform => :ruby
 gem 'jquery-rails'
+gem 'nokogiri'
 
 group :assets do
   gem 'coffee-rails'

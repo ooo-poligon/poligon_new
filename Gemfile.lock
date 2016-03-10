@@ -198,6 +198,7 @@ DEPENDENCIES
   fancybox-rails
   jquery-rails
   mysql2
+  nokogiri
   progress_bar
   protected_attributes
   rails (= 4.2.5)
