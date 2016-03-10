@@ -1,4 +1,4 @@
-<h1>Список статей</h1>
+<h1>Список видео</h1>
 
 <table class="table table-striped">
   <tr>
@@ -8,11 +8,11 @@
     <th></th>
   </tr>
 
-  <% @articles.each do |article| %>
+  <% @videos.each do |video| %>
       <tr>
-        <td><%= link_to article.title, article %></td>
+        <td><%= link_to video.title, video %></td>
 
-        <td><%= article.created_at.strftime("%d.%m.%Y") %></td>
+        <td><%= video.created_at.strftime("%d.%m.%Y") %></td>
       </tr>
   <% end %>
 </table>

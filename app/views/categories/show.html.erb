@@ -31,7 +31,10 @@
         </td>
         <td style="width: 65%; vertical-align: top;">
           <% if (!@recentCategory.description.nil?) %>
-              <div><%= @recentCategory.description.html_safe %></div>
+              <div><%= @recentCategory.description
+                       .gsub('href="/PDF', 'href="http://www.poligon.info/PDF')
+                       .gsub('src="/images', 'src="http://www.poligon.info/images')
+                       .html_safe %></div>
           <% end %>
         </td>
       </tr>

@@ -13,5 +13,22 @@
       <user-name>root</user-name>
       <user-password>dfdadfc5dfc6dfc3dfcddfc5dfc4</user-password>
     </data-source>
+    <data-source name="Rails poligon_new: test" uuid="f5ffb150-00d3-477a-a2fb-383a40c83a57">
+      <user-name>root</user-name>
+      <user-password>dfdadfc5dfc6dfc3dfcddfc5dfc4</user-password>
+      <schema-pattern>poligon_test.*</schema-pattern>
+      <default-schemas>poligon_test.*</default-schemas>
+    </data-source>
+    <data-source name="Rails poligon_new: development" uuid="9f3799af-0bff-4c43-86bb-1ef65f5c9d9b">
+      <user-name>trade</user-name>
+      <user-password>dfeddfdfdfe5dfc0dfe8dfc5dfd9dfc6dfcfdfc4</user-password>
+      <schema-pattern>trade.*</schema-pattern>
+      <default-schemas>trade.*</default-schemas>
+    </data-source>
+    <data-source name="Rails poligon_new: production" uuid="9d94727c-9a0c-4af0-b739-0636ef298037">
+      <first-sync>true</first-sync>
+      <user-name>poligon_ror</user-name>
+      <user-password>dfc2dfdcdf9edfcbdfeddff0df9fdf9ddff3df98dfccdfd3dfefdfd2df9edfeb</user-password>
+    </data-source>
   </component>
 </project>

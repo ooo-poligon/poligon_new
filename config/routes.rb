@@ -7,13 +7,27 @@ Poligon::Application.routes.draw do
 
   resources :articles
 
+  resources :videos
+
+  resources :reviews
+
+  resources :additions
+
   resources :products
 
   resources :content
 
   resources :feedback
 
+  get "publications/index"
+
   get "articles/index"
+
+  get "videos/index"
+
+  get "reviews/index"
+
+  get "additions/index"
 
   get "products/index"
 

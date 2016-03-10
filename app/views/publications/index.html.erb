@@ -1,0 +1,51 @@
+<section class="module">
+
+  <header>
+    <h1>Публикации</h1>
+  </header>
+  <br>
+
+  <section class="wraper">
+    <figure class='small'>
+      <%= link_to (image_tag "design/articles.png", alt: 'Статьи', title: "Статьи"), articles_path %>
+      <figcaption class="transition-050 opacity85">
+        <a href="<%= articles_path %>">
+          <strong class="text transition-050 title">Статьи</strong>
+          <span class="text transition-050 desc">Список познавательных статей о продукции, предлагаемой нашей компанией.</span>
+        </a>
+      </figcaption>
+    </figure>
+
+    <figure class='small'>
+      <%= link_to (image_tag "design/video.png", alt: 'Видео', title: "Видео"), videos_path %>
+      <figcaption class="transition-050 opacity85">
+        <a href="<%= videos_path %>">
+          <strong class="text transition-050 title">Видео</strong>
+          <span class="text transition-050 desc">Сборник видео-обзоров, объясняющих назначение и принципы эксплуатации некоторых устройств.</span>
+        </a>
+      </figcaption>
+    </figure>
+
+    <figure class='small'>
+      <%= link_to (image_tag "design/reviews.png", alt: 'Обзоры', title: "Обзоры"), reviews_path %>
+      <figcaption class="transition-050 opacity85">
+        <a href="<%= reviews_path %>">
+          <strong class="text transition-050 title">Обзоры</strong>
+          <span class="text transition-050 desc">Сборник материалов, позволяющих получить более полное представление о разных группах предлагаемых нами устройств.</span>
+        </a>
+      </figcaption>
+    </figure>
+
+    <figure class='small'>
+      <%= link_to (image_tag "design/package.png", alt: 'Дополнения', title: "Дополнения"), additions_path %>
+      <figcaption class="transition-050 opacity85">
+        <a href="<%= additions_path %>">
+          <strong class="text transition-050 title">Дополнения</strong>
+          <span class="text transition-050 desc">Разнообразная дополнительная уточняющая информация по тем или иным видам устройств.</span>
+        </a>
+      </figcaption>
+    </figure>
+
+  </section>
+</section>
+

@@ -1,8 +1,8 @@
 <p id="notice"><%= notice %></p>
 <br>
-
+<h1><%= @review.title %></h1>
 <p>
-  <%= @article.content.html_safe
+  <%= @review.content.html_safe
       .gsub('href="/PDF', 'href="http://www.poligon.info/PDF')
       .gsub('src="/js', 'src="http://www.poligon.info/js')
       .gsub('src="/images', 'src="http://www.poligon.info/images')
@@ -11,11 +11,12 @@
 
 <p>
   <b>Дата создания:</b>
-  <%= @article.created_at %>
+  <%= @review.created_at %>
 </p>
 
-<%= link_to 'К списку статей', articles_path %>
+<%= link_to 'К списку статей', reviews_path %>
 <br>
 <br>
 <hr>
 <br>
+

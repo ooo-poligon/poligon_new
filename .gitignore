@@ -17,3 +17,9 @@
 # Ignore external source of images and pdf files
 /public/images
 /public/pdf
+
+# Ignore db settings
+/config/database.yml
+
+# Ignore secrets settings
+/config/secrets.yml

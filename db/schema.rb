@@ -11,7 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160129123751) do
+ActiveRecord::Schema.define(version: 20160310070515) do
+
+  create_table "additions", force: :cascade do |t|
+    t.string "title", limit: 255
+    t.text "content", limit: 65535
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "analogs", force: :cascade do |t|
     t.text    "description",  limit: 4294967295
@@ -64,8 +71,10 @@ ActiveRecord::Schema.define(version: 20160129123751) do
     t.string  "picture_name",    limit: 50
     t.string  "picture_path",    limit: 200
     t.integer "product_kind_id", limit: 4
+    t.integer "product_id", limit: 4
   end
 
+  add_index "functions", ["product_id"], name: "FK_paqylsqoi8kvkqxanutgqpg9a", using: :btree
   add_index "functions", ["product_kind_id"], name: "FK_functions_product_kinds", using: :btree
 
   create_table "import_fields", force: :cascade do |t|
@@ -116,7 +125,7 @@ ActiveRecord::Schema.define(version: 20160129123751) do
     t.float   "price",              limit: 53,                       null: false
     t.string  "serie",              limit: 255
     t.integer "product_kind_id",    limit: 4,          default: 1
-    t.string  "vendor",             limit: 255,                      null: false
+    t.string "vendor", limit: 255
     t.integer "plugin_owner_id",    limit: 4,          default: 0,   null: false
     t.integer "accessory_owner_id", limit: 4,          default: 0,   null: false
     t.float   "rate",               limit: 53,         default: 1.0, null: false
@@ -148,6 +157,7 @@ ActiveRecord::Schema.define(version: 20160129123751) do
     t.integer "value_id",         limit: 4
     t.integer "property_type_id", limit: 4,   null: false
     t.integer "product_id",       limit: 4
+    t.string "value", limit: 255
   end
 
   add_index "properties", ["product_id"], name: "FK_9igpep0fc0ccn6ufp49qb0d3l", using: :btree
@@ -181,6 +191,13 @@ ActiveRecord::Schema.define(version: 20160129123751) do
   end
 
   add_index "quantity", ["product_id"], name: "FK_fmxkkqbgn373sbv3ghbdinqkx", using: :btree
+
+  create_table "reviews", force: :cascade do |t|
+    t.string "title", limit: 255
+    t.text "content", limit: 65535
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "series", force: :cascade do |t|
     t.text    "description", limit: 4294967295
@@ -218,11 +235,19 @@ ActiveRecord::Schema.define(version: 20160129123751) do
   add_index "vendors", ["currency_id"], name: "FK_nsbv37hiaemev6th5cuqgs6aa", using: :btree
   add_index "vendors", ["title"], name: "UK_33oxww6kw5ov79h6q8pd0wm5b", unique: true, using: :btree
 
+  create_table "videos", force: :cascade do |t|
+    t.string "title", limit: 255
+    t.text "content", limit: 65535
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   add_foreign_key "analogs", "products", column: "prototype_id", name: "FK_4iehqvyabv3avly8x9yqeljno"
   add_foreign_key "analogs", "vendors", column: "vendor", primary_key: "title", name: "FK_bmks6804vphucofa9j6x5kmcx"
   add_foreign_key "files", "file_types", name: "FK_63xcug2xhs8fhmde2qrls55rn"
   add_foreign_key "files", "products", column: "owner_id", name: "FK_5ok1awgnfwcf01537ylbycyq1"
   add_foreign_key "functions", "product_kinds", name: "FK_functions_product_kinds"
+  add_foreign_key "functions", "products", name: "FK_paqylsqoi8kvkqxanutgqpg9a"
   add_foreign_key "kinds_types", "product_kinds", name: "FK__product_kinds", on_update: :cascade, on_delete: :cascade
   add_foreign_key "kinds_types", "property_types", name: "FK__property_types", on_update: :cascade, on_delete: :cascade
   add_foreign_key "products", "categories", name: "FK_of5oeawsy50x878ic9tyapdnv"

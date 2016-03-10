@@ -12,11 +12,11 @@ development:
   adapter: mysql2
   encoding: utf8
   reconnect: false
-  database: poligon_commander
+  database: trade
   pool: 5
-  username: root
-  password: poligon
-  host: 127.0.0.1
+  username: trade
+  password: GuOjBoslen
+  host: server03.poligon.corp
   port: 3306
 
 # Warning: The database defined as "test" will be erased and
@@ -37,9 +37,9 @@ production:
   adapter: mysql2
   encoding: utf8
   reconnect: false
-  database: poligon_production
+  database: poligon_commander
   pool: 5
-  username: root
-  password: poligon
+  username: poligon_ror
+  password: hv4aGZ57Y2fyEx4A
   host: 127.0.0.1
   port: 3306
