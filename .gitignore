@@ -12,7 +12,7 @@
 /solr
 
 # Ignore IDEA settings.
-/.idea
+/.idea/*
 
 # Ignore external source of images and pdf files
 /public/images
