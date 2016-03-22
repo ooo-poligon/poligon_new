@@ -13,6 +13,7 @@
 
 # Ignore IDEA settings.
 /**/.idea/workspace.xml
+.idea/workspace.xml
 /**/.idea
 /**/.idea/*.xml
 
