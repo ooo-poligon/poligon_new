@@ -2,6 +2,7 @@ require 'rvm/capistrano'
 require 'bundler/capistrano'
 
 ssh_options[:forward_agent] = true
+set :rvm_bin_path, "/usr/local/rvm/bin"
 set :rvm_ruby_string, '2.2.1@poligon_new'
 
 set :application, "Poligon New Site"
