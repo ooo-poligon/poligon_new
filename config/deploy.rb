@@ -1,13 +1,22 @@
-set :application, "set your application name here"
-set :repository, "set your repository location here"
+require 'rvm/capistrano'
+require 'bundler/capistrano'
 
-set :scm, :git # You can set :scm explicitly or Capistrano will make an intelligent guess based on known version control directory names
-# Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
+ssh_options[:forward_agent] = true
+set :rvm_ruby_string, '2.2.1@poligon_new'
 
-role :web, "your web-server here" # Your HTTP server, Apache/etc
-role :app, "your app-server here" # This may be the same as your `Web` server
-role :db, "your primary db-server here", :primary => true # This is where Rails migrations will run
-role :db, "your slave db-server here"
+set :application, "Poligon New Site"
+set :repository,  "git@github.com:poligon-info/poligon_new.git"
+set :default_stage, "production"
+# set :stages, %w(production)
+set :use_sudo, false
+set :user, 'ror' # нужно предварительно создать юзера на сервере, юзать root'a не стоит
+set :scm, :git
+set :normalize_asset_timestamps, false
+
+set :rails_env, 'production'
+set :branch, 'master'
+set :deploy_to, "/var/www/poligon_new"
+server '89.253.227.59', :web, :app, :db, :primary => true
 
 # if you want to clean up old releases on each deploy uncomment this:
 # after "deploy:restart", "deploy:cleanup"
