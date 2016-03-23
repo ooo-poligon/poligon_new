@@ -205,8 +205,8 @@ DEPENDENCIES
   rspec-rails (= 3.3.3)
   rvm-capistrano
   sass-rails (>= 3.2)
-  sunspot_rails
-  sunspot_solr
+  sunspot_rails (= 2.2.4)
+  sunspot_solr (= 2.2.4)
   therubyracer
   tzinfo-data
   uglifier (>= 1.0.3)
