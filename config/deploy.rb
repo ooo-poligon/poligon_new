@@ -43,16 +43,16 @@ namespace :deploy do
     run "#{ try_sudo } touch #{ File.join(current_path, 'tmp', 'restart.txt') }"
   end
 
-  desc "Cleanup unneeded files"
-  task :cleanup do
-    cap deploy:cleanup
-  end
+  #desc "Cleanup unneeded files"
+  #task :cleanup do
+  #  cap deploy:cleanup
+  #end
 
 end
 
 after "deploy", "deploy:symlink_config_files"
 after "deploy", "deploy:restart"
-after "deploy", "deploy:cleanup"
+#after "deploy", "deploy:cleanup"
 
 #after "deploy:update_code", :symlink_config_files
 
