@@ -28,10 +28,10 @@ namespace :deploy do
   #  cap deploy:update_code
   #end
 
-  desc "Precompile assets"
-  task :precompile_assets do
-    load 'deploy/assets'
-  end
+  #desc "Precompile assets"
+  #task :precompile_assets do
+  #  load 'deploy/assets'
+  #end
 
   desc "Symlink shared config files"
   task :symlink_config_files do
