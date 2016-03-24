@@ -23,10 +23,10 @@ server '89.253.227.59', :web, :app, :db, :primary => true
 
 namespace :deploy do
 
-  desc "Update application code"
-  task :update_code do
-    cap deploy:update_code
-  end
+  #desc "Update application code"
+  #task :update_code do
+  #  cap deploy:update_code
+  #end
 
   desc "Precompile assets"
   task :precompile_assets do
