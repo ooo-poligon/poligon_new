@@ -2,8 +2,9 @@ require 'rvm/capistrano'
 require 'bundler/capistrano'
 
 ssh_options[:forward_agent] = true
-set :rvm_bin_path, "/usr/local/rvm/bin"
-set :rvm_ruby_string, '2.2.1@poligon_new'
+set :rvm_path, "/usr/local/rvm"
+# set :rvm_bin_path, "/usr/local/rvm/bin"
+set :rvm_ruby_string, '2.2.1@default'
 
 set :application, "Poligon New Site"
 set :repository,  "git@github.com:poligon-info/poligon_new.git"
@@ -16,9 +17,21 @@ set :normalize_asset_timestamps, false
 
 set :rails_env, 'production'
 set :branch, 'master'
-set :deploy_to, "/var/www/poligon_new"
+set :deploy_to, "/var/www/poligon_ror"
+set :deploy_via, :copy
 server '89.253.227.59', :web, :app, :db, :primary => true
 
+
+
+after "deploy:update_code", :symlink_config_files
+
+task :symlink_config_files do
+  symlinks = {
+      "#{shared_path}/config/database.yml" => "#{release_path}/config/database.yml"
+  }
+  run symlinks.map { |from, to| "ln -nfs #{from} #{to}" }.join(" && ")
+  run "chmod -R g+rw #{release_path}/public"
+end
 # if you want to clean up old releases on each deploy uncomment this:
 # after "deploy:restart", "deploy:cleanup"
 
