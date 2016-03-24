@@ -16,6 +16,8 @@ gem 'therubyracer', :platform => :ruby
 gem 'jquery-rails'
 gem 'nokogiri'
 
+gem 'rack-mini-profiler', group: 'development', require: false
+
 group :assets do
   gem 'coffee-rails'
   gem 'uglifier', '>= 1.0.3'

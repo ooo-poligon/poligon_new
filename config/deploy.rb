@@ -21,17 +21,50 @@ set :deploy_to, "/var/www/poligon_ror"
 set :deploy_via, :copy
 server '89.253.227.59', :web, :app, :db, :primary => true
 
+namespace :deploy do
 
+  desc "Update application code"
+  task :update_code do
+    cap deploy:update_code
+  end
 
-after "deploy:update_code", :symlink_config_files
+  desc "Precompile assets"
+  task :precompile_assets do
+    load 'deploy/assets'
+  end
 
-task :symlink_config_files do
-  symlinks = {
-      "#{shared_path}/config/database.yml" => "#{release_path}/config/database.yml"
-  }
-  run symlinks.map { |from, to| "ln -nfs #{from} #{to}" }.join(" && ")
-  run "chmod -R g+rw #{release_path}/public"
+  desc "Symlink shared config files"
+  task :symlink_config_files do
+    run "#{ try_sudo } ln -s #{ deploy_to }/shared/config/database.yml #{ current_path }/config/database.yml"
+  end
+
+  desc "Restart Passenger app"
+  task :restart do
+    run "#{ try_sudo } touch #{ File.join(current_path, 'tmp', 'restart.txt') }"
+  end
+
+  desc "Cleanup unneeded files"
+  task :cleanup do
+    cap deploy:cleanup
+  end
+
 end
+
+after "deploy", "deploy:symlink_config_files"
+after "deploy", "deploy:restart"
+after "deploy", "deploy:cleanup"
+
+#after "deploy:update_code", :symlink_config_files
+
+#task :symlink_config_files do
+#  symlinks = {
+#      "#{shared_path}/config/database.yml" => "#{release_path}/config/database.yml"
+#  }
+#  run symlinks.map { |from, to| "ln -nfs #{from} #{to}" }.join(" && ")
+#  run "chmod -R g+rw #{release_path}/public"
+#end
+
+
 # if you want to clean up old releases on each deploy uncomment this:
 # after "deploy:restart", "deploy:cleanup"
 
