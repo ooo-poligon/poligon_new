@@ -12,9 +12,6 @@ class CompanyController < ApplicationController
     @staticContent = StaticContent.all
   end
 
-  def sitemap
-  end
-
   def links
     @staticContent = StaticContent.all
   end

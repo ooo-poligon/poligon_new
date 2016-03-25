@@ -41,8 +41,6 @@ Poligon::Application.routes.draw do
 
   get "company/vacancies"
 
-  get "company/sitemap"
-
   get "company/links"
 
   get "content/sertificates"
@@ -58,6 +56,8 @@ Poligon::Application.routes.draw do
   get 'feedback/mailing_list'
 
   get 'search', to: 'search#search'
+
+  get "sitemap" => "sitemap#show", format: :xml, as: :sitemap
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
