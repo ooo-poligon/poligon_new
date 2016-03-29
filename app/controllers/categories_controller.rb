@@ -1,5 +1,5 @@
 class CategoriesController < ApplicationController
-  
+
   def index
     @upLevelCategories = Category.where(parent: 1)
   end
@@ -21,7 +21,7 @@ class CategoriesController < ApplicationController
     @products = []
     addCBR = Setting.find_by title: 'AddCBR'
 
-    Product.where(category_id: params[:id]).each do |product|
+    Product.available.where(category_id: params[:id]).each do |product|
       minihash = []
       minihash.push(product, (product.price * (@courseEuro + (@courseEuro / 100) * addCBR.text_value.to_f) * product.rate).round)
       @products.push(minihash)
@@ -42,5 +42,5 @@ class CategoriesController < ApplicationController
     }
     @courseEuro = res.body.to_s.to_f
   end
-  
+
 end

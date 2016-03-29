@@ -11,13 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160310070515) do
+ActiveRecord::Schema.define(version: 20160328131324) do
 
   create_table "additions", force: :cascade do |t|
-    t.string "title", limit: 255
-    t.text "content", limit: 65535
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "title",      limit: 255
+    t.text     "content",    limit: 65535
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
   end
 
   create_table "analogs", force: :cascade do |t|
@@ -71,7 +71,7 @@ ActiveRecord::Schema.define(version: 20160310070515) do
     t.string  "picture_name",    limit: 50
     t.string  "picture_path",    limit: 200
     t.integer "product_kind_id", limit: 4
-    t.integer "product_id", limit: 4
+    t.integer "product_id",      limit: 4
   end
 
   add_index "functions", ["product_id"], name: "FK_paqylsqoi8kvkqxanutgqpg9a", using: :btree
@@ -125,7 +125,7 @@ ActiveRecord::Schema.define(version: 20160310070515) do
     t.float   "price",              limit: 53,                       null: false
     t.string  "serie",              limit: 255
     t.integer "product_kind_id",    limit: 4,          default: 1
-    t.string "vendor", limit: 255
+    t.string  "vendor",             limit: 255
     t.integer "plugin_owner_id",    limit: 4,          default: 0,   null: false
     t.integer "accessory_owner_id", limit: 4,          default: 0,   null: false
     t.float   "rate",               limit: 53,         default: 1.0, null: false
@@ -144,6 +144,11 @@ ActiveRecord::Schema.define(version: 20160310070515) do
     t.integer "accessory_id", limit: 4, default: 0, null: false
   end
 
+  create_table "products_analogs", force: :cascade do |t|
+    t.integer "product_id", limit: 4, default: 0, null: false
+    t.integer "analog_id",  limit: 4, default: 0, null: false
+  end
+
   create_table "products_functions", force: :cascade do |t|
     t.integer "product_id",  limit: 4, default: 0, null: false
     t.integer "function_id", limit: 4, default: 0, null: false
@@ -157,7 +162,7 @@ ActiveRecord::Schema.define(version: 20160310070515) do
     t.integer "value_id",         limit: 4
     t.integer "property_type_id", limit: 4,   null: false
     t.integer "product_id",       limit: 4
-    t.string "value", limit: 255
+    t.string  "value",            limit: 255
   end
 
   add_index "properties", ["product_id"], name: "FK_9igpep0fc0ccn6ufp49qb0d3l", using: :btree
@@ -193,10 +198,10 @@ ActiveRecord::Schema.define(version: 20160310070515) do
   add_index "quantity", ["product_id"], name: "FK_fmxkkqbgn373sbv3ghbdinqkx", using: :btree
 
   create_table "reviews", force: :cascade do |t|
-    t.string "title", limit: 255
-    t.text "content", limit: 65535
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "title",      limit: 255
+    t.text     "content",    limit: 65535
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
   end
 
   create_table "series", force: :cascade do |t|
@@ -224,6 +229,26 @@ ActiveRecord::Schema.define(version: 20160310070515) do
     t.string   "title",      limit: 255
   end
 
+  create_table "users", force: :cascade do |t|
+    t.string   "name",                limit: 255, default: ""
+    t.string   "address",             limit: 255, default: ""
+    t.string   "phone",               limit: 255, default: ""
+    t.string   "site",                limit: 255, default: ""
+    t.string   "role",                limit: 255, default: "subscriber", null: false
+    t.string   "email",               limit: 255, default: "",           null: false
+    t.string   "encrypted_password",  limit: 255, default: "",           null: false
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",       limit: 4,   default: 0,            null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip",  limit: 255
+    t.string   "last_sign_in_ip",     limit: 255
+    t.datetime "created_at",                                             null: false
+    t.datetime "updated_at",                                             null: false
+  end
+
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+
   create_table "vendors", force: :cascade do |t|
     t.text    "address",     limit: 4294967295
     t.text    "description", limit: 4294967295
@@ -236,10 +261,10 @@ ActiveRecord::Schema.define(version: 20160310070515) do
   add_index "vendors", ["title"], name: "UK_33oxww6kw5ov79h6q8pd0wm5b", unique: true, using: :btree
 
   create_table "videos", force: :cascade do |t|
-    t.string "title", limit: 255
-    t.text "content", limit: 65535
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "title",      limit: 255
+    t.text     "content",    limit: 65535
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
   end
 
   add_foreign_key "analogs", "products", column: "prototype_id", name: "FK_4iehqvyabv3avly8x9yqeljno"

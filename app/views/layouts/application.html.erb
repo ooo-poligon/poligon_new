@@ -84,6 +84,13 @@
             <li><%= link_to 'Обмен ссылками', company_links_path %></li>
             <li><%= link_to 'Карта сайта', sitemap_path %></li>
             <li><%= link_to 'Контакты', company_contacts_path %></li>
+            <li class="divider"></li>
+            <li>
+              <% unless user_signed_in? %>
+                <%= link_to 'Вход для партнёров', new_user_session_path %>
+                <%#= link_to 'Зарегистрироваться', new_user_registration_path %>
+                <% end %>
+            </li>
           </ul>
         </li>
         <li><%= link_to '(812) 325-42-20', company_contacts_path, class: "phone" %></li>
@@ -124,9 +131,16 @@
     </div><!--/span-->
   </div><!--/row-->
 
-
+  <p class="notice"><%= notice %></p>
+  <p class="alert"><%= alert %></p>
 
   <footer>
+    <% if user_signed_in? %>
+      <span>Здравствуйте, <%= current_user.email %></span>
+      <%= link_to 'Выйти', destroy_user_session_path, :method => :delete %>
+    <% end %>
+
+
     <p>&copy; ООО "ПОЛИГОН" 2016</p>
   </footer>
 
