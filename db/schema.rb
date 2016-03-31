@@ -14,10 +14,10 @@
 ActiveRecord::Schema.define(version: 20160328131324) do
 
   create_table "additions", force: :cascade do |t|
+    t.text     "content",    limit: 4294967295
+    t.datetime "created_at",                    null: false
     t.string   "title",      limit: 255
-    t.text     "content",    limit: 65535
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.datetime "updated_at",                    null: false
   end
 
   create_table "analogs", force: :cascade do |t|
@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 20160328131324) do
     t.integer "parent",      limit: 4
     t.string  "title",       limit: 255,   default: "", null: false
     t.text    "description", limit: 65535
+    t.integer "published",   limit: 4,     default: 1
   end
 
   add_index "categories", ["title"], name: "title", unique: true, using: :btree

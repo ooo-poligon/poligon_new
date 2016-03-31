@@ -1,5 +1,14 @@
 class FeedbackController < ApplicationController
-  def show
-    @content = StaticContent.where(:directory => 'feedback')
+
+  @users = User.all
+
+  def mailing_list
   end
+
+  def request_catalogs
+  end
+
+  def quick_order
+  end
+
 end
