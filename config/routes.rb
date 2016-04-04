@@ -65,6 +65,13 @@ Poligon::Application.routes.draw do
 
   get "sitemap/sitemap", format: :xml
 
+  get 'feeds', to: 'announce#index', format: 'rss'
+
+  post 'feedback/subscribe' => 'feedback#subscribe'
+
+  post 'feedback/unsubscribe' => 'feedback#unsubscribe'
+
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

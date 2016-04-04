@@ -12,12 +12,12 @@
   указанной в письме для завершения регистрации.
 <p>
 <br>
-<form>
-  <p>
-    <input type="text" size="60" method="POST" name="subscriber_mail">
-    <input type="submit" value="Подписаться" method="POST" name="submit_mailing">
-  </p>
-</form>
+
+<%= form_tag('/feedback/subscribe', method: "post", id: "subscribe", remote: "true") do -%>
+  <%= email_field(:email, :address, {id: "email", placeholder: "email address"}) %>
+  <%= submit_tag("Подписаться") %>
+<% end %>
+
 <br>
 <hr>
 <br>
@@ -28,11 +28,10 @@
   указанной в письме для завершения отмены подписки.
   </p>
   <br>
-<form>
-  <p>
-    <input type="text" size="60" method="POST" name="unsubscriber_mail">
-    <input type="submit" value="Отказаться" method="POST" name="discard_mailing">
-  </p>
-</form>
+
+<%= form_tag('/feedback/unsubscribe', method: "post", id: "unsubscribe", remote: "true") do -%>
+  <%= email_field(:email, :address, {id: "email", placeholder: "email address"}) %>
+  <%= submit_tag("Отказаться") %>
+<% end %>
 
 

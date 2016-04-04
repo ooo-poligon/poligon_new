@@ -27,3 +27,5 @@ module Poligon
     config.autoload_paths += %W(#{config.root}/lib)
   end
 end
+
+SuckerPunch.logger = Logger.new("#{Rails.root}/log/sucker_punch.log")
