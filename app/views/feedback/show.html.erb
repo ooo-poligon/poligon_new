@@ -1,8 +1,0 @@
-<br>
-<% @content.each do |c| %>
-    <% if c.page == params[:id] %>
-        <h1><%= c.title %></h1>
-        <br>
-        <div><%= c.content.html_safe %></div>
-    <% end %>
-<% end %>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+
+  <url>
+    <loc><%= root_url %></loc>
+    <changefreq>daily</changefreq>
+  </url>
+
+  <% @news_items.each do |news_item| %>
+    <url>
+      <loc><%= news_item.title %></loc>
+      <changefreq>daily</changefreq>
+    </url>
+  <% end %>
+
+  <% @articles.each do |article| %>
+    <url>
+      <loc><%= article_url(article) %></loc>
+      <changefreq>daily</changefreq>
+    </url>
+  <% end %>
+
+  <% @videos.each do |video| %>
+    <url>
+      <loc><%= video_url(video) %></loc>
+      <changefreq>daily</changefreq>
+    </url>
+  <% end %>
+
+  <% @reviews.each do |review| %>
+    <url>
+      <loc><%= review_url(review) %></loc>
+      <changefreq>daily</changefreq>
+    </url>
+  <% end %>
+
+  <% @additions.each do |addition| %>
+    <url>
+      <loc><%= addition_url(addition) %></loc>
+      <changefreq>daily</changefreq>
+    </url>
+  <% end %>
+
+  <% @categories.each do |category| %>
+    <url>
+      <loc><%= category_url(category) %></loc>
+      <changefreq>daily</changefreq>
+    </url>
+  <% end %>
+
+  <% @products.each do |product| %>
+    <url>
+      <loc><%= product_url(product) %></loc>
+      <changefreq>daily</changefreq>
+    </url>
+  <% end %>
+
+</urlset>

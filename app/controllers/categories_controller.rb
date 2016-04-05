@@ -1,7 +1,8 @@
 class CategoriesController < ApplicationController
 
   def index
-    @upLevelCategories = Category.where(parent: 1)
+    @upLevelCategories = Category.available.where(parent: 1)
+
   end
 
   before_action :getCourse
@@ -9,15 +10,15 @@ class CategoriesController < ApplicationController
   def show
     @allUpLevelCategories = []
     @allUpLevelCategoriesIds = []
-    Category.where(parent: 0).each do |c0|
+    Category.available.where(parent: 0).each do |c0|
       @allUpLevelCategories.push(c0)
     end
     @allUpLevelCategories.each do |category|
       @allUpLevelCategoriesIds.push(category.id)
     end
-    @subCategories = Category.where(parent: params[:id])
-    @recentCategory = Category.find(params[:id])
-    @parentCategory = Category.find(@recentCategory.parent)
+    @subCategories = Category.available.where(parent: params[:id])
+    @recentCategory = Category.available.find(params[:id])
+    @parentCategory = Category.available.find(@recentCategory.parent)
     @products = []
     addCBR = Setting.find_by title: 'AddCBR'
 

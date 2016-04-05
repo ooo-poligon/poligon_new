@@ -23,15 +23,32 @@ server '89.253.227.59', :web, :app, :db, :primary => true
 
 namespace :deploy do
 
-  #desc "Update application code"
-  #task :update_code do
-  #  cap deploy:update_code
-  #end
+  task :finalize_update, :except => {:no_release => true} do
+    run "chmod -R g+w #{latest_release}" if fetch(:group_writable, true)
 
-  #desc "Precompile assets"
-  #task :precompile_assets do
-  #  load 'deploy/assets'
-  #end
+    # mkdir -p is making sure that the directories are there for some SCM's that don't
+    # save empty folders
+    run <<-CMD
+      rm -rf #{latest_release}/log #{latest_release}/public/system #{latest_release}/tmp/pids &&
+      mkdir -p #{latest_release}/public &&
+      mkdir -p #{latest_release}/tmp &&
+      ln -s #{shared_path}/log #{latest_release}/log &&
+      ln -s #{shared_path}/system #{latest_release}/public/system &&
+      ln -s #{shared_path}/pids #{latest_release}/tmp/pids
+    CMD
+    run "#{ try_sudo } ln -sf #{ deploy_to }/shared/config/database.yml #{ current_path }/config/database.yml"
+
+    if fetch(:normalize_asset_timestamps, true)
+      stamp = Time.now.utc.strftime("%Y%m%d%H%M.%S")
+      asset_paths = fetch(:public_children, %w(images stylesheets javascripts)).map { |p| "#{latest_release}/public/#{p}" }.join(" ")
+      run "find #{asset_paths} -exec touch -t #{stamp} {} ';'; true", :env => {"TZ" => "UTC"}
+    end
+  end
+
+  desc "Precompile assets"
+  task :precompile_assets do
+    load 'deploy/assets'
+  end
 
   desc "Symlink shared config files"
   task :symlink_config_files do
@@ -50,7 +67,17 @@ namespace :deploy do
 
 end
 
-after "deploy", "deploy:symlink_config_files"
+before "deploy:assets:precompile" do
+  run ["ln -nfs #{shared_path}/config/settings.yml #{release_path}/config/settings.yml",
+       "ln -nfs #{shared_path}/config/initializers/devise.rb #{release_path}/config/initializers/devise.rb",
+       "ln -nfs #{shared_path}/config/secrets.yml #{release_path}/config/secrets.yml",
+       "ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml",
+       "ln -fs #{shared_path}/uploads #{release_path}/uploads"
+  ].join(" && ")
+end
+
+after "deploy", "deploy:finalize_update"
+after "deploy", "deploy:precompile_assets"
 after "deploy", "deploy:restart"
 #after "deploy", "deploy:cleanup"
 
@@ -59,7 +86,7 @@ after "deploy", "deploy:restart"
 #task :symlink_config_files do
 #  symlinks = {
 #      "#{shared_path}/config/database.yml" => "#{release_path}/config/database.yml"
-#  }
+# }
 #  run symlinks.map { |from, to| "ln -nfs #{from} #{to}" }.join(" && ")
 #  run "chmod -R g+rw #{release_path}/public"
 #end

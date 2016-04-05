@@ -23,8 +23,6 @@ Poligon::Application.routes.draw do
 
   resources :content
 
-  resources :feedback
-
   get "publications/index"
 
   get "articles/index"
@@ -55,7 +53,7 @@ Poligon::Application.routes.draw do
 
   get "content/farnell"
 
-  get "feedback/request_pdf"
+  get "feedback/request_catalogs"
 
   get "feedback/quick_order"
 
@@ -63,7 +61,16 @@ Poligon::Application.routes.draw do
 
   get 'search', to: 'search#search'
 
-  get "sitemap" => "sitemap#show", format: :xml, as: :sitemap
+  get "sitemap" => "sitemap#show", format: :html, as: :sitemap
+
+  get "sitemap/sitemap", format: :xml
+
+  get 'feeds', to: 'announce#index', format: 'rss'
+
+  post 'feedback/subscribe' => 'feedback#subscribe'
+
+  post 'feedback/unsubscribe' => 'feedback#unsubscribe'
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -31,6 +31,8 @@
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
   <![endif]-->
+
+  <link href="/feeds" rel="alternate" title="RSS feed" type="application/rss+xml">
 </head>
 
 <body>
@@ -80,9 +82,9 @@
           <ul class="dropdown-menu">
             <li><a href=<%= content_sertificates_path %>> <i class="glyphicon glyphicon-certificate"></i>  Сертификаты</a></li>
             <li><a href=<%= feedback_quick_order_path %>> <i class="glyphicon glyphicon-saved"></i>  Быстрая заявка</a></li>
-            <li><a href=<%= feedback_request_pdf_path %>> <i class="glyphicon glyphicon-record"></i>  Заказ каталогов и CD</a></li>
+            <li><a href=<%= feedback_request_catalogs_path %>> <i class="glyphicon glyphicon-record"></i>  Заказ каталогов и CD</a></li>
             <li><a href=<%= content_download_pdf_path %>> <i class="glyphicon glyphicon-book"></i>  Скачать каталоги PDF</a></li>
-            <li><a href=<%= feedback_mailing_list_path %>><i class="glyphicon glyphicon-envelope"></i>  Подписка на рассылку</a></li>
+            <li><a href=<%= feedback_mailing_list_path %>><i class="glyphicon glyphicon-envelope"></i>  Рассылка новостей</a></li>
             <li class="divider"></li>
             <li><%= link_to 'О компании', company_about_path %></li>
             <li><%= link_to 'Вакансии', company_vacancies_path %></li>
