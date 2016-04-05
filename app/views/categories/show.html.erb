@@ -47,8 +47,8 @@
       <thead>
       <tr>
         <th>Изображение</th>
-        <th>Название</th>
-        <th>Краткое описание</th>
+        <th>Продукт</th>
+
         <th>Наличие</th>
         <th>Поставка</th>
         <th>Стоимость</th>
@@ -63,15 +63,23 @@
           <% else %>
               <td></td>
               <% end %>
-            <td><%= link_to product_array[0].title, product_array[0] %></td>
-            <td><%= product_array[0].description %></td>
-                  <% if !Quantity.find_by(product_id: product_array[0].id).nil? && Quantity.find_by(product_id: product_array[0].id).stock > 0 %>
-                    <td style="text-align: center;"><%= image_tag("green.gif") %></td>
-                    <td>Есть на складе</td>
-                  <% else %>
-                      <td style="text-align: center;"><%= image_tag("grey.gif") %></td>
-                      <td><%= product_array[0].delivery_time %></td>
-                  <% end %>
+            <td>
+              <table>
+                <tr>
+                  <td><%= link_to product_array[0].title, product_array[0] %></td>
+                </tr>
+                <tr>
+                  <td><%= product_array[0].description %></td>
+                </tr>
+              </table>
+            </td>
+            <% if !Quantity.find_by(product_id: product_array[0].id).nil? && Quantity.find_by(product_id: product_array[0].id).stock > 0 %>
+              <td style="text-align: center;"><%= image_tag("green.gif") %></td>
+              <td>Есть на складе</td>
+            <% else %>
+                <td style="text-align: center;"><%= image_tag("grey.gif") %></td>
+                <td><%= product_array[0].delivery_time %></td>
+            <% end %>
             <% unless product_array[1] == 0 %>
                 <td><%= product_array[1] %> руб.</td>
             <% else %>
