@@ -1,0 +1,34 @@
+<br>
+<h1>Форма обратной связи</h1>
+<%= form_tag("/feedback/message", method: "get") do %>
+  <br>
+  <%= label_tag(:name, "Введите Ваше Имя:") %>
+  <%= text_field_tag(:name) %>
+  <br>
+  <br>
+  <%= label_tag(:email, "Введите Ваш e-mail:") %>
+  <%= email_field(:user, :address) %>
+  <%#= text_field_tag(:email) %>
+  <br>
+  <br>
+  <%= label_tag(:phone, "Введите Ваш телефон:") %>
+  <%= telephone_field(:user, :phone) %>
+  <br>
+  <br>
+  <%= label_tag(:company, "Введите Вашу компанию:") %>
+  <%= text_field_tag(:company) %>
+  <br>
+  <br>
+  <%= label_tag(:position, "Введите Ваш должность:") %>
+  <%= text_field_tag(:position) %>
+  <br>
+  <br>
+  <%= text_area_tag(:message, "Введите Ваше сообщение:", size: "100x10") %>
+  <br>
+  <br>
+  <%= check_box_tag(:subscribe) %>
+  <%= label_tag(:subscribe, "Подписаться на рассылку новостей.") %>
+  <br>
+  <br>
+  <%= submit_tag("Отправить") %>
+<% end %>

@@ -59,6 +59,10 @@ Poligon::Application.routes.draw do
 
   get 'feedback/mailing_list'
 
+  get 'feedback/message'
+
+  get 'feedback/confirm_subscription'
+
   get 'search', to: 'search#search'
 
   get "sitemap" => "sitemap#show", format: :html, as: :sitemap

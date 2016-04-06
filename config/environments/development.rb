@@ -13,10 +13,6 @@ Rails.application.configure do
   config.consider_all_requests_local       = true
   config.action_controller.perform_caching = false
 
-  # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = false
-  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
-
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
 
@@ -39,4 +35,30 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+
+  # Don't care if the mailer can't send.
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.delivery_method = :sendmail
+  # config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+
+  # Defaults to:
+  # config.action_mailer.sendmail_settings = {
+  #   location: '/usr/sbin/sendmail',
+  #   arguments: '-i -t'
+  # }
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.default_options = {from: 'no-reply@example.com'}
+
+
+  #config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    :tls => true,
+    address: 'smtp.yandex.ru',
+    port: 465,
+    domain: 'yandex.ru',
+    authentication: 'plain',
+    user_name: 'webmaster-poligon@yandex.ru',
+    password: 'p01i90N_16'
+  }
+
 end

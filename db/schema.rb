@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160328131324) do
+ActiveRecord::Schema.define(version: 20160404104008) do
 
   create_table "additions", force: :cascade do |t|
     t.text     "content",    limit: 4294967295
@@ -46,6 +46,18 @@ ActiveRecord::Schema.define(version: 20160328131324) do
 
   add_index "categories", ["title"], name: "title", unique: true, using: :btree
 
+  create_table "companies", force: :cascade do |t|
+    t.string   "title",      limit: 255
+    t.string   "address",    limit: 255
+    t.string   "phone",      limit: 255
+    t.string   "email",      limit: 255
+    t.string   "site",       limit: 255
+    t.boolean  "dealer"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.string   "fax",        limit: 255
+  end
+
   create_table "currencies", force: :cascade do |t|
     t.string "title", limit: 255, null: false
   end
@@ -78,6 +90,13 @@ ActiveRecord::Schema.define(version: 20160328131324) do
   add_index "functions", ["product_id"], name: "FK_paqylsqoi8kvkqxanutgqpg9a", using: :btree
   add_index "functions", ["product_kind_id"], name: "FK_functions_product_kinds", using: :btree
 
+  create_table "groups", force: :cascade do |t|
+    t.string   "title",       limit: 255
+    t.string   "description", limit: 255
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
+
   create_table "import_fields", force: :cascade do |t|
     t.string "title",     limit: 50,  null: false
     t.string "field",     limit: 255, null: false
@@ -108,6 +127,26 @@ ActiveRecord::Schema.define(version: 20160328131324) do
     t.string   "title",      limit: 255
     t.text     "content",    limit: 65535
   end
+
+  create_table "post_types", force: :cascade do |t|
+    t.string   "title",      limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  create_table "posts", force: :cascade do |t|
+    t.string   "title",        limit: 255
+    t.text     "content",      limit: 65535
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.integer  "post_type_id", limit: 4
+    t.integer  "user_id",      limit: 4
+    t.integer  "ticket_id",    limit: 4
+  end
+
+  add_index "posts", ["post_type_id"], name: "index_posts_on_post_type_id", using: :btree
+  add_index "posts", ["ticket_id"], name: "index_posts_on_ticket_id", using: :btree
+  add_index "posts", ["user_id"], name: "index_posts_on_user_id", using: :btree
 
   create_table "product_kinds", force: :cascade do |t|
     t.string "title", limit: 255
@@ -230,25 +269,38 @@ ActiveRecord::Schema.define(version: 20160328131324) do
     t.string   "title",      limit: 255
   end
 
+  create_table "tickets", force: :cascade do |t|
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.string   "title",      limit: 255
+    t.integer  "user_id",    limit: 4
+  end
+
+  add_index "tickets", ["user_id"], name: "index_tickets_on_user_id", using: :btree
+
   create_table "users", force: :cascade do |t|
     t.string   "name",                limit: 255, default: ""
-    t.string   "address",             limit: 255, default: ""
     t.string   "phone",               limit: 255, default: ""
-    t.string   "site",                limit: 255, default: ""
-    t.string   "role",                limit: 255, default: "subscriber", null: false
-    t.string   "email",               limit: 255, default: "",           null: false
-    t.string   "encrypted_password",  limit: 255, default: "",           null: false
+    t.string   "email",               limit: 255, default: "", null: false
+    t.string   "encrypted_password",  limit: 255, default: "", null: false
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",       limit: 4,   default: 0,            null: false
+    t.integer  "sign_in_count",       limit: 4,   default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip",  limit: 255
     t.string   "last_sign_in_ip",     limit: 255
-    t.datetime "created_at",                                             null: false
-    t.datetime "updated_at",                                             null: false
+    t.datetime "created_at",                                   null: false
+    t.datetime "updated_at",                                   null: false
+    t.string   "fax",                 limit: 255
+    t.string   "position",            limit: 255
+    t.integer  "company_id",          limit: 4
+    t.integer  "group_id",            limit: 4
+    t.boolean  "subscribe"
   end
 
+  add_index "users", ["company_id"], name: "index_users_on_company_id", using: :btree
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["group_id"], name: "index_users_on_group_id", using: :btree
 
   create_table "vendors", force: :cascade do |t|
     t.text    "address",     limit: 4294967295
@@ -276,6 +328,9 @@ ActiveRecord::Schema.define(version: 20160328131324) do
   add_foreign_key "functions", "products", name: "FK_paqylsqoi8kvkqxanutgqpg9a"
   add_foreign_key "kinds_types", "product_kinds", name: "FK__product_kinds", on_update: :cascade, on_delete: :cascade
   add_foreign_key "kinds_types", "property_types", name: "FK__property_types", on_update: :cascade, on_delete: :cascade
+  add_foreign_key "posts", "post_types"
+  add_foreign_key "posts", "tickets"
+  add_foreign_key "posts", "users"
   add_foreign_key "products", "categories", name: "FK_of5oeawsy50x878ic9tyapdnv"
   add_foreign_key "products", "product_kinds", name: "FK_products_product_kinds"
   add_foreign_key "products", "series", column: "serie", primary_key: "title", name: "FK_products_series"
@@ -290,5 +345,8 @@ ActiveRecord::Schema.define(version: 20160328131324) do
   add_foreign_key "property_values", "properties", name: "FK_property_values_properties"
   add_foreign_key "quantity", "products", name: "FK_fmxkkqbgn373sbv3ghbdinqkx"
   add_foreign_key "series", "vendors", name: "FK_ed8kdle1myybdci4nfqw6wftk"
+  add_foreign_key "tickets", "users"
+  add_foreign_key "users", "companies"
+  add_foreign_key "users", "groups"
   add_foreign_key "vendors", "currencies", name: "FK_nsbv37hiaemev6th5cuqgs6aa"
 end
