@@ -3,7 +3,7 @@ class UserMailer < ApplicationMailer
 
   def welcome_email(user)
     @user = user
-    @url  = 'http://example.com/login'
+    @url  = 'http://new.poligon.info'
     mail(to: @user.email, subject: 'Подписка на новости сайта new.poligon.info')
   end
 
