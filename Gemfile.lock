@@ -263,6 +263,7 @@ DEPENDENCIES
   gibbon!
   i18n
   jquery-rails
+  mail
   mysql2
   nokogiri
   progress_bar
