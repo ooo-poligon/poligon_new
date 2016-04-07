@@ -9,9 +9,35 @@ class FeedbackController < ApplicationController
     @list_id = ENV["MAILCHIMP_LIST"]
     @email = params[:email]
     #unless User.find_by(email: @email)
+    #UserMailer.welcome_email(@email)
+
+
+    mail = Mail.new do
+      from     'me@test.lindsaar.net'
+      to       'you@test.lindsaar.net'
+      subject  'Here is the image you wanted'
+      body     "File.read('body.txt')"
+    end
+
+    Mail.defaults do
+      delivery_method :smtp, address: "localhost", port: 1025
+    end
+
+    mail.deliver
+
+
+
+
+
+
+
+
+
+
+
     render "subscribe"
 
-    UserMailer.welcome_email(@email)
+
 
       #gb = Gibbon::Request.new
       #gb.lists(@list_id).members.create(
