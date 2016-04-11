@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Здравствуйте, <%= @email %></h1>
+    <p>
+      Вы решили отказаться от дальнейшего получения новостей от компании ООО "ПОЛИГОН".<br>
+    </p>
+    <p>
+      Для того, чтобы удалить Ваш адрес из списка получателей рассылки нажмите на кнопку:.
+      <form name="confirm_form" method="get" action="http://localhost:3000/feedback/confirm_unsubscription" target="_blank">
+        <input name="confirm_email" type="hidden" value=<%= @email %>>
+        <input name="submit" type="submit" value="Отказаться">
+      </form>
+    </p>
+    <p>Благодарим за внимание к нашей компании!</p>
+  </body>
+</html>

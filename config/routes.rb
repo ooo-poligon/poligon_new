@@ -1,80 +1,46 @@
 # -*- encoding : utf-8 -*-
 Poligon::Application.routes.draw do
-
   get 'users/sign_in'
-
-  devise_for :users
-
-  # devise_for :users, :path => '', :path_names => {:sign_in => "devise/new" }
-
+  post 'users/sign_in'
+  #devise_for :users
+  devise_for :users, :path => '', :path_names => {:sign_in => "devise/new" }
   resources :news_items
-
   resources :categories
-
   resources :articles
-
   resources :videos
-
   resources :reviews
-
   resources :additions
-
   resources :products
-
   resources :content
-
+  #resources :users
+  get "devise/new", to: "devise/sessions#new"
   get "publications/index"
-
   get "articles/index"
-
   get "videos/index"
-
   get "reviews/index"
-
   get "additions/index"
-
   get "products/index"
-
   get "categories/index"
-
   get "categories/show"
-
   get "company/about"
-
   get "company/contacts"
-
   get "company/vacancies"
-
   get "company/links"
-
   get "content/sertificates"
-
   get "content/download_pdf"
-
   get "content/farnell"
-
   get "feedback/request_catalogs"
-
   get "feedback/quick_order"
-
   get 'feedback/mailing_list'
-
   get 'feedback/message'
-
   get 'feedback/confirm_subscription'
-
+  get 'feedback/confirm_unsubscription'
   get 'search', to: 'search#search'
-
   get "sitemap" => "sitemap#show", format: :html, as: :sitemap
-
   get "sitemap/sitemap", format: :xml
-
   get 'feeds', to: 'announce#index', format: 'rss'
-
   post 'feedback/subscribe' => 'feedback#subscribe'
-
   post 'feedback/unsubscribe' => 'feedback#unsubscribe'
-
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

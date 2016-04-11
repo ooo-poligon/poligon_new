@@ -37,9 +37,9 @@ Rails.application.configure do
   # config.action_view.raise_on_missing_translations = true
 
   # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = true
-  config.action_mailer.delivery_method = :sendmail
-  #config.action_mailer.delivery_method = :smtp
+  config.action_mailer.raise_delivery_errors = false
+  #config.action_mailer.delivery_method = :sendmail
+  config.action_mailer.delivery_method = :smtp
 
   # in config/application.rb or in the appropriate env file in config/environments/, add:
   # config.action_mailer.smtp_settings = { enable_starttls_auto: false  }
@@ -49,25 +49,8 @@ Rails.application.configure do
   #   location: '/usr/sbin/sendmail',
   #   arguments: '-i -t'
   # }
+  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
   config.action_mailer.perform_deliveries = true
   config.action_mailer.default_options = {from: 'Компания "ПОЛИГОН" <no-reply@poligon.info>'}
-  # config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
-
-  #config.action_mailer.smtp_settings = {
-  #  :port      => 587,
-  #  :address   => "smtp.mandrillapp.com",
-  #  :user_name => ENV["MANDRILL_USERNAME"],
-  #  :password  => ENV["MANDRILL_PASSWORD"]
-  #}
-
-  #config.action_mailer.smtp_settings = {
-  #  address:              'smtp.gmail.com',
-  #  port:                 587,
-  #  domain:               'poligon.info',
-  #  user_name: ENV["GMAIL_USERNAME"],
-  #  password:  ENV["GMAIL_PASSWORD"],
-  #  authentication:       'plain',
-  #  enable_starttls_auto: true  }
-
   config.action_mailer.smtp_settings = { :address => "localhost", :port => 1025 }
 end

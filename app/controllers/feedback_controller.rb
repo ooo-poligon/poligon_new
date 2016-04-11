@@ -1,64 +1,39 @@
 class FeedbackController < ApplicationController
   require 'digest/md5'
-  require 'mail'
 
   def mailing_list
   end
 
   def subscribe
-    @list_id = ENV["MAILCHIMP_LIST"]
-    @email = params[:email]
-    #unless User.find_by(email: @email)
-    #UserMailer.welcome_email(@email)
-
-
-    mail = Mail.new do
-      from     'me@test.lindsaar.net'
-      to       'you@test.lindsaar.net'
-      subject  'Here is the image you wanted'
-      body     "File.read('body.txt')"
+    unless params[:email] == ''
+      @email = params[:email]
+      UserMailer.welcome_email(@email).deliver_now
+      render "subscribe"
+    else
+      flash[:error] = "Поле адрееса не заполнено!"
+      render "mailing_list"
     end
-
-    Mail.defaults do
-      delivery_method :smtp, address: "localhost", port: 1025
-    end
-
-    mail.deliver
-
-
-
-
-
-
-
-
-
-
-
-    render "subscribe"
-
-
-
-      #gb = Gibbon::Request.new
-      #gb.lists(@list_id).members.create(
-      #  body:
-      #  {
-      #    email_address: @email,
-      #    status: "subscribed"
-      #  })
-    #else
-    #  render "subscriber_exist"
-    #end
   end
 
   def unsubscribe
-    @list_id = ENV["MAILCHIMP_LIST"]
-    @email = params[:email][:address]
-    unless User.find_by(email: @email, subscribe: 1)
+    unless params[:email] == ''
+      @email = params[:email]
+      UserMailer.goodbye_email(@email).deliver_now
+      render "unsubscribe"
+    else
+      flash[:error] = "Поле адрееса не заполнено!"
+      render "mailing_list"
+    end
+  end
+
+  def confirm_unsubscription
+    @list_id = "4d4dac6fe6"
+    @email = params[:confirm_email]
+    if User.find_by(email: @email, subscribe: 1)
       user = User.find_by(email: @email, subscribe: 1)
       user.subscribe  = 0
       user.save
-      gb1 = Gibbon::Request.new
+      gb1 = Gibbon::Request.new(api_key: "82052d77f02ab151e93eb7916fbf0ee8-us13")
       md5_email = Digest::MD5.hexdigest(@email.downcase)
       gb1.lists(@list_id).members(md5_email).update(
         body:
@@ -67,11 +42,40 @@ class FeedbackController < ApplicationController
         })
     else
       render "subscriber_not_exist"
-      UserMailer.goodbye_email(@email)
     end
   end
 
-  def comfirm_subscription
+  def confirm_subscription
+    @email = params[:confirm_email]
+    @list_id = "4d4dac6fe6"
+    if User.find_by(email: @email, subscribe: 1)
+      render "subscriber_exist"
+    elsif User.find_by(email: @email, subscribe: 0)
+      user = User.find_by(email: @email, subscribe: 0)
+      user.subscribe  = 1
+      user.save
+      gb = Gibbon::Request.new(api_key: "82052d77f02ab151e93eb7916fbf0ee8-us13")
+      gb.lists(@list_id).members.create(
+        body:
+        {
+          email_address: @email,
+          status: "subscribed"
+        })
+    else
+      user = User.new
+      user.email = @email
+      user.group_id = 1
+      user.subscribe  = 1
+      user.password = "00000000"
+      user.save
+      gb = Gibbon::Request.new(api_key: "82052d77f02ab151e93eb7916fbf0ee8-us13")
+      gb.lists(@list_id).members.create(
+        body:
+        {
+          email_address: @email,
+          status: "subscribed"
+        })
+    end
   end
 
   def request_catalogs
