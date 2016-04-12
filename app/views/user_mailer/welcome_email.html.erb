@@ -4,14 +4,17 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h1>Welcome to example.com, <%= @user.name %></h1>
+    <h1>Здравствуйте, <%= @email %></h1>
     <p>
-      You have successfully signed up to example.com,
-      your username is: <%= @user.login %>.<br>
+      Вы оформили подписку на рассылку новостей от компании ООО "ПОЛИГОН".<br>
     </p>
     <p>
-      To login to the site, just follow this link: <%= @url %>.
+      Для завершения регистрации Вашего адреса нажмите на кнопку:.
+      <form name="confirm_form" method="get" action="http://localhost:3000/feedback/confirm_subscription" target="_blank">
+        <input name="confirm_email" type="hidden" value=<%= @email %>>
+        <input name="submit" type="submit" value="Подписаться">
+      </form>
     </p>
-    <p>Thanks for joining and have a great day!</p>
+    <p>Благодарим за внимание к нашей компании!</p>
   </body>
 </html>

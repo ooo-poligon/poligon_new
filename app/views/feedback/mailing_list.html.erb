@@ -13,10 +13,10 @@
 <p>
 <br>
 
-<%= form_tag('/feedback/subscribe', method: "post", id: "subscribe", remote: "true") do -%>
-  <%= email_field("user_email", :email, {placeholder: "email address"}) %>
-  <%= submit_tag("Подписаться") %>
-<% end %>
+<form name="email_form" method="post" action="/feedback/subscribe">
+  <input name="email" type="email" placeholder="email address">
+  <input name="submit" type="submit" value="Подписаться">
+</form>
 
 <br>
 <hr>
@@ -27,11 +27,8 @@
   Ваше намерение отказаться от новостной рассылки с нашего сайта, перейдите по ссылке,
   указанной в письме для завершения отмены подписки.
   </p>
-  <br>
-
-<%= form_tag('/feedback/unsubscribe', method: "post", id: "unsubscribe", remote: "true") do -%>
-  <%= email_field("user_email", :email, {placeholder: "email address"}) %>
-  <%= submit_tag("Отказаться") %>
-<% end %>
-
-
+<br>
+<form name="email_form1" method="post" action="/feedback/unsubscribe">
+  <input name="email" type="email" placeholder="email address">
+  <input name="submit" type="submit" value="Отказаться">
+</form>

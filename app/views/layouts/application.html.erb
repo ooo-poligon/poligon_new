@@ -28,7 +28,6 @@
   <!--[if lt IE 9]>
   <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
   <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
   <![endif]-->
 
@@ -95,9 +94,9 @@
             <li class="divider"></li>
             <li>
               <% if user_signed_in? %>
-                <%= link_to 'Выйти из партнёрского интерфейса', destroy_user_session_path, :method => :delete %>
+                <%= link_to 'Выйти из служебного интерфейса', destroy_user_session_path, :method => :delete %>
               <% else %>
-                <%= link_to 'Вход для партнёров', new_user_session_path %>
+                <%= link_to 'Служебный вход', new_user_session_path %>
                 <%#= link_to 'Зарегистрироваться', new_user_registration_path %>
               <% end %>
             </li>
@@ -120,6 +119,9 @@
         <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Боковое меню</button>
       </p>
       <br><br>
+      <% flash.each do |key, value| %>
+        <div class="alert alert-<%= key %>"><%= value %></div>
+      <% end %>
       <%= yield %>
     </div><!--/span-->
 

@@ -20,7 +20,7 @@ gem 'devise'
 gem 'devise-i18n'
 gem 'gibbon', git: 'git://github.com/amro/gibbon.git'
 gem 'sucker_punch', '~> 1.0'
-gem 'mail'
+gem 'mandrill-api'
 
 
 gem 'rack-mini-profiler', group: 'development', require: false
