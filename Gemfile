@@ -21,6 +21,7 @@ gem 'devise-i18n'
 gem 'gibbon', git: 'git://github.com/amro/gibbon.git'
 gem 'sucker_punch', '~> 1.0'
 gem 'mandrill-api'
+gem 'figaro'
 
 
 gem 'rack-mini-profiler', group: 'development', require: false
