@@ -1,9 +1,7 @@
 # -*- encoding : utf-8 -*-
 Poligon::Application.routes.draw do
   get 'users/sign_in'
-  post 'users/sign_in'
-  #devise_for :users
-  devise_for :users, :path => '', :path_names => {:sign_in => "devise/new" }
+  devise_for :users
   resources :news_items
   resources :categories
   resources :articles
