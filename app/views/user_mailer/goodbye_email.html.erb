@@ -9,11 +9,10 @@
       Вы решили отказаться от дальнейшего получения новостей от компании ООО "ПОЛИГОН".<br>
     </p>
     <p>
-      Для того, чтобы удалить Ваш адрес из списка получателей рассылки нажмите на кнопку:.
-      <form name="confirm_form" method="get" action="http://localhost:3000/feedback/confirm_unsubscription" target="_blank">
-        <input name="confirm_email" type="hidden" value=<%= @email %>>
-        <input name="submit" type="submit" value="Отказаться">
-      </form>
+      Для того, чтобы удалить Ваш адрес из списка получателей рассылки перейдите по следующей ссылке:<br>
+      <a href=<%= "http://localhost:3000/feedback/confirm_unsubscription?confirm_email=" + @email %>  target="_blank">
+        Откзаться от рассылки
+      </a>
     </p>
     <p>Благодарим за внимание к нашей компании!</p>
   </body>

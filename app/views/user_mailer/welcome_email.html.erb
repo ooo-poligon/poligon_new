@@ -9,11 +9,10 @@
       Вы оформили подписку на рассылку новостей от компании ООО "ПОЛИГОН".<br>
     </p>
     <p>
-      Для завершения регистрации Вашего адреса нажмите на кнопку:.
-      <form name="confirm_form" method="get" action="http://localhost:3000/feedback/confirm_subscription" target="_blank">
-        <input name="confirm_email" type="hidden" value=<%= @email %>>
-        <input name="submit" type="submit" value="Подписаться">
-      </form>
+      Для завершения регистрации Вашего адреса перейдите по следующей ссылке:
+      <a href=<%= "http://localhost:3000/feedback/confirm_subscription?confirm_email=" + @email %>  target="_blank"><br>
+        Оформить подписку
+      </a>
     </p>
     <p>Благодарим за внимание к нашей компании!</p>
   </body>

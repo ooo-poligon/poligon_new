@@ -79,15 +79,13 @@
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Информация <b class="caret"></b></a>
           <ul class="dropdown-menu">
+            <li><a href=<%= company_about_path %>> <i class="glyphicon glyphicon-saved"></i>  О компании</a></li>
             <li><a href=<%= content_sertificates_path %>> <i class="glyphicon glyphicon-certificate"></i>  Сертификаты</a></li>
-            <li><a href=<%= feedback_quick_order_path %>> <i class="glyphicon glyphicon-saved"></i>  Быстрая заявка</a></li>
             <li><a href=<%= feedback_request_catalogs_path %>> <i class="glyphicon glyphicon-record"></i>  Заказ каталогов и CD</a></li>
-            <li><a href=<%= feedback_message_path %>> <i class="glyphicon glyphicon-bullhorn"></i>  Форма обратной связи</a></li>
             <li><a href=<%= content_download_pdf_path %>> <i class="glyphicon glyphicon-book"></i>  Скачать каталоги PDF</a></li>
+            <li><a href=<%= company_vacancies_path %>> <i class="glyphicon glyphicon-bullhorn"></i>  Список вакансий</a></li>
             <li><a href=<%= feedback_mailing_list_path %>><i class="glyphicon glyphicon-envelope"></i>  Рассылка новостей</a></li>
             <li class="divider"></li>
-            <li><%= link_to 'О компании', company_about_path %></li>
-            <li><%= link_to 'Вакансии', company_vacancies_path %></li>
             <li><%= link_to 'Обмен ссылками', company_links_path %></li>
             <li><%= link_to 'Карта сайта', sitemap_path %></li>
             <li><%= link_to 'Контакты', company_contacts_path %></li>

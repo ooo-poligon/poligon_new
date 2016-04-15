@@ -28,9 +28,7 @@ Poligon::Application.routes.draw do
   get "content/download_pdf"
   get "content/farnell"
   get "feedback/request_catalogs"
-  get "feedback/quick_order"
   get 'feedback/mailing_list'
-  get 'feedback/message'
   get 'feedback/confirm_subscription'
   get 'feedback/confirm_unsubscription'
   get 'search', to: 'search#search'

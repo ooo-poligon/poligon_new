@@ -1,9 +1,10 @@
-Welcome to <%= @url %>, <%= @email %>
+Здравствуйте, <%= @email %>
 ===============================================
 
-You have successfully signed up to example.com,
-your username is: <%= @email %>.
+Вы оформили подписку на рассылку новостей от компании ООО "ПОЛИГОН".
 
-To login to the site, just follow this link: <%= @url %>.
+Для завершения регистрации Вашего адреса перейдите по следующей ссылке:
 
-Thanks for joining and have a great day!
+<%= "http://localhost:3000/feedback/confirm_subscription?confirm_email=" + @email %>
+
+Благодарим за внимание к нашей компании!
