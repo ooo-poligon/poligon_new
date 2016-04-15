@@ -65,7 +65,7 @@ Rails.application.configure do
   # config.action_mailer.raise_delivery_errors = false
   config.action_mailer.default_url_options = { host: 'http://new.poligon.info', port: 80 }
   # Don't care if the mailer can't send.
-  # config.action_mailer.delivery_method = :sendmail
+  config.action_mailer.delivery_method = :sendmail
 
   # Defaults to:
   # config.action_mailer.sendmail_settings = {
@@ -74,6 +74,7 @@ Rails.application.configure do
   # }
   config.action_mailer.perform_deliveries = true
   config.action_mailer.default_options = {from: 'Компания "ПОЛИГОН" <no-reply@poligon.info>'}
+<<<<<<< HEAD
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
     :port      => 25,
@@ -81,6 +82,15 @@ Rails.application.configure do
     :user_name => ENV["MANDRILL_USERNAME"],
     :password  => ENV["MANDRILL_PASSWORD"]
   }
+=======
+  # config.action_mailer.delivery_method = :smtp
+  # config.action_mailer.smtp_settings = {
+  #   :port      => 587,
+  #   :address   => "smtp.mandrillapp.com",
+  #   :user_name => ENV["MANDRILL_USERNAME"],
+  #   :password  => ENV["MANDRILL_PASSWORD"]
+  # }
+>>>>>>> feature
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).
