@@ -27,3 +27,4 @@
 
 # Ignore secrets settings
 /config/secrets.yml
+/config/application.yml
