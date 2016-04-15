@@ -27,8 +27,6 @@
 
 # Ignore secrets settings
 /config/secrets.yml
-<<<<<<< HEAD
+
 # Ignore application configuration
-=======
->>>>>>> feature
 /config/application.yml
