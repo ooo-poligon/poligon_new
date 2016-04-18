@@ -27,7 +27,7 @@ Poligon::Application.routes.draw do
   get "content/sertificates"
   get "content/download_pdf"
   get "content/farnell"
-  get "feedback/request_catalogs"
+  get "feedback/booklets"
   get 'feedback/mailing_list'
   get 'feedback/confirm_subscription'
   get 'feedback/confirm_unsubscription'
@@ -37,6 +37,7 @@ Poligon::Application.routes.draw do
   get 'feeds', to: 'announce#index', format: 'rss'
   post 'feedback/subscribe' => 'feedback#subscribe'
   post 'feedback/unsubscribe' => 'feedback#unsubscribe'
+  get 'feedback/catalogs_order' => 'feedback#catalogs_order'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

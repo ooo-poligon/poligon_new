@@ -12,4 +12,13 @@ class UserMailer < ActionMailer::Base
     mail(to: @email, subject: 'Goodbye!')
   end
 
+  def catalogs_order_email(name, email, company, address, catalogue)
+    @name      = name
+    @email     = email
+    @company   = company
+    @address   = address
+    @catalogue = catalogue
+    mail(to: 'webmaster@poligon.info', subject: 'Заказ каталогов с сайта new.poliogn.info')
+  end
+
 end

@@ -52,7 +52,28 @@ class FeedbackController < ApplicationController
         })
   end
 
-  def request_catalogs
+  def booklets
+  end
+
+  def catalogs_order
+    unless params[:name] == '' or
+           params[:email] == '' or
+           params[:company] == '' or
+           params[:address] == '' or
+           params[:catalogue].size == 0
+
+      @name      = params[:name]
+      @email     = params[:email]
+      @company   = params[:company]
+      @address   = params[:address]
+      @catalogue = params[:catalogue]
+
+      UserMailer.catalogs_order_email(@name, @email, @company, @address, @catalogue).deliver_now
+      render "catalogs_order"
+    else
+      flash[:error] = "Не заполнены все необходимые поля!"
+      render "booklets"
+    end
   end
 
 end

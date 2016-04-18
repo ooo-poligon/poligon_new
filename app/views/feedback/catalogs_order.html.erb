@@ -1,0 +1,8 @@
+Получен заказ на отправку каталогов по почте:
+<%= @name %><br>
+<%= @email %><br>
+<%= @company %><br>
+<%= @address %><br>
+<% @catalogue.each do |cat| %>
+  <p><%= cat %></p>
+<% end %>
