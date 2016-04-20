@@ -32,6 +32,7 @@ Poligon::Application.routes.draw do
   get 'feedback/confirm_subscription'
   get 'feedback/confirm_unsubscription'
   get 'search', to: 'search#search'
+  get 'advanced_search', to: 'search#advanced_search'
   get "sitemap" => "sitemap#show", format: :html, as: :sitemap
   get "sitemap/sitemap", format: :xml
   get 'feeds', to: 'announce#index', format: 'rss'

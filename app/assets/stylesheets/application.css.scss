@@ -10,9 +10,14 @@
  *
  *= require fancybox
  *= require feedback
+ *= require search
  *= require categories
+ *= require products
  */
 
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import "bootstrap/theme";
 
 html, body {
   height: 100%;
@@ -20,8 +25,16 @@ html, body {
 }
 
 h2 {
-  font-family: 'Marck Script', cursive;
+  #font-family: 'Marck Script', cursive;
   font-size: 30px;
+  font-weight: bold;
+  color: red;
+}
+
+h3 {
+  font-family: 'Marck Script', cursive;
+  font-size: 24px;
+  color: blue;
 }
 
 #wrap {min-height: 100%;}
@@ -47,9 +60,7 @@ body:before {
   padding-top: 20pt;
   }
 
-@import "bootstrap-sprockets";
-@import "bootstrap";
-@import "bootstrap/theme";
+
 
 .panelShadow {
   position: fixed;

@@ -1,2 +1,3 @@
 
 redirect /PDF/ http://poligon.info/PDF/
+redirect /images/ http://poligon.info/images/

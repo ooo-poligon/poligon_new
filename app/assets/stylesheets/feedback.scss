@@ -92,3 +92,17 @@ label[for=benedict]{
   padding: 1px;
   display: none;
 }
+
+.first-pdf {
+  font-weight: bold;
+  font-stretch: expanded;
+}
+.first-pdf .cover{
+  width: 180px;
+  border: 2px solid black;
+}
+
+.cover {
+  width: 60px;
+  border: 1px solid black;
+}

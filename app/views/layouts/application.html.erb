@@ -5,7 +5,6 @@
   <title>Компания "ПОЛИГОН"</title>
   <link href='https://fonts.googleapis.com/css?family=PT+Sans&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
   <link href='https://fonts.googleapis.com/css?family=Marck+Script&subset=latin,cyrillic' rel='stylesheet' type='text/css'><%= stylesheet_link_tag    'application', :media => 'all' %>
-  <%#= javascript_include_tag "application" %>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
@@ -18,12 +17,6 @@
   <meta name="author" content="">
   <%= favicon_link_tag 'favicon.ico' %>
 
-  <!-- Bootstrap core CSS -->
-  <link href="http://bootstrap.ru/dist/css/bootstrap.min.css" rel="stylesheet">
-
-  <!-- Custom styles for this template -->
-  <link href="http://bootstrap.ru/examples/offcanvas/offcanvas.css" rel="stylesheet">
-
   <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!--[if lt IE 9]>
   <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -35,6 +28,17 @@
 </head>
 
 <body>
+<% if user_signed_in? %>
+  <style type="text/css">
+    .navbar-default {
+      background-image: linear-gradient(to bottom, #c4e8ff 0%, #6fd3db 100%);
+    }
+    .navbar-default .navbar-nav > .open > a,
+    .navbar-default .navbar-nav > .active > a {
+      background-image: linear-gradient(to bottom, #c4e8f0 0%, #6fd3d0 100%);
+    }
+  </style>
+<% end %>
 
 <script>
     $(document).ready(function() {
@@ -59,16 +63,23 @@
         <li><%= link_to 'Новости', news_items_path %></li>
         <li><%= link_to 'Публикации', publications_index_path %></li>
         <li><%= link_to 'Каталог', categories_path %></li>
+
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Поиск <b class="caret"></b></a>
           <ul class="dropdown-menu">
             <li>
-              <form class="navbar-search pull-left" method="get" action="/search">
-              <input type="text" class="search-query search_form" name="q" placeholder="">
+              <% if user_signed_in? %>
+                <form class="navbar-search pull-left" method="get" action="/advanced_search">
+                <input type="text" class="search-query search_form" name="q" placeholder="расширенный поиск">
+              <% else %>
+                <form class="navbar-search pull-left" method="get" action="/search">
+                <input type="text" class="search-query search_form" name="q" placeholder="поиск">
+              <% end %>
             </form>
             </li>
           </ul>
         </li>
+
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>

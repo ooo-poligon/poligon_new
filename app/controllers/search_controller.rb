@@ -66,4 +66,29 @@ class SearchController < ApplicationController
 
     render action: "search"
   end
+
+  before_action :getCourse
+
+  def advanced_search
+    @products = Sunspot.search(Product) do
+      #fulltext search
+      fulltext params['q']
+
+      #scoping
+      if params.has_key?(:title)
+        with :title, params['q']
+      end
+      if params.has_key?(:description)
+        with :description, params['q']
+      end
+
+      paginate :page => params[:page], :per_page => 25
+    end
+    @products.execute!
+
+    @addCBR = Setting.find_by title: 'AddCBR'
+  end
+
+private
+
 end

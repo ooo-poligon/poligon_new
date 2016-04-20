@@ -1,0 +1,59 @@
+<br>
+<table width="100%" class="table-bordered table-condensed" >
+  <caption>Поиск по складу</caption>
+  <thead>
+    <tr>
+      <th width="5%" style="text-align:center">Изображение</th>
+      <th width="44%" style="text-align:center">Наименование</th>
+      <th width="19%" style="text-align:center">Склад</th>
+      <th width="32%" style="text-align:center">Цены</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @products.results.each do |product| %>
+      <tr>
+        <% productImage = ImageFile.where('owner_id = ? and file_type_id = 1', product.id).first %>
+        <% if productImage != nil %>
+          <% imagePath = productImage.path.gsub!("c:\\poligon_images", "http://www.poligon.info/images").gsub!("\\", "/") %>
+          <td><%= link_to image_tag(imagePath, class: "img-responsive center-block product-image-container"), imagePath, class: "fancybox" %></td>
+      <% else %>
+          <% end %>
+        <td style="vertical-align: top;">
+          <table class="table">
+            <tr>
+              <td>
+                <% array = [] %>
+                <ol class="breadcrumb" style="padding-left: 2px; margin-bottom: 0px; background-color: #ffffff;">
+                  <% element = Category.available.find(product.category_id) %>
+                  <% while element.parent != 0 %>
+                      <% array.push(element) %>
+                      <% element = Category.find(element.parent) %>
+                  <% end %>
+                  <% array.reverse_each do |item| %>
+                      <li><%= link_to item.title, item, style: "color: orange; background-color: #ffffff;" %></li>
+                  <% end %>
+                </ol>
+              </td>
+            </tr>
+            <tr>
+              <td><span class="product-title"><%= link_to product.title, product %></span></td>
+            </tr>
+            <tr>
+              <td><%= product.description %></td>
+            </tr>
+          </table>
+        </td>
+        <td style="vertical-align: top;">
+          <%= render partial: 'shared/product_quantities_table', locals: {product: product} %>
+        </td>
+        <% unless product.price == 0 %>
+        <td style="vertical-align: top;">
+          <%= render partial: 'shared/product_prices_table', locals: {product: product} %>
+        <% else %>
+          <td style="align-content: center;">Звоните:<br>(812)325-42-20
+        <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
