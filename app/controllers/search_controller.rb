@@ -100,6 +100,8 @@ class SearchController < ApplicationController
     @analogs.execute!
 
     @addCBR = Setting.find_by title: 'AddCBR'
+
+
   end
 
 private
