@@ -57,3 +57,45 @@
     <% end %>
   </tbody>
 </table>
+
+<% if @analogs.results.size > 0 %>
+  <br>
+  <table width="100%" class="table-bordered table-condensed analogs_table" >
+    <caption>Поиск по аналогам</caption>
+    <thead>
+      <tr>
+        <th width="10%" style="text-align:center">Поизводитель</th>
+        <th width="20%" style="text-align:center">Аналог</th>
+        <th width="20%" style="text-align:center">Вариант</th>
+        <th width="25%" style="text-align:center">Описание</th>
+        <th width="25%" style="text-align:center">Комментарий</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @analogs.results.each do |analog| %>
+        <tr>
+          <td style="vertical-align: top;">
+            <%= analog.vendor %>
+          </td>
+          <td style="vertical-align: top;">
+            <%= analog.title %>
+          </td>
+          <td style="vertical-align: top;">
+            <% unless AnalogsVariant.where(analog_id: analog.id).empty? %>
+              <% AnalogsVariant.where(analog_id: analog.id).each do |variant| %>
+                <div style="word-wrap:break-word;"><%= variant.title %></div>
+              <% end %>
+            <% end %>
+          </td>
+          <td style="vertical-align: top;">
+            <%= analog.description %>
+          </td>
+          <td style="vertical-align: top;">
+            <%= analog.addition %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <br>
+  <% end %>

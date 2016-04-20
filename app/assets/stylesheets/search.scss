@@ -9,6 +9,18 @@ table {
   }
 }
 
+.analogs_table {
+  border-collapse: collapse;
+  table-layout: fixed;
+  width:100%
+  td {
+    border: 1px solid black;
+    word-wrap:break-word;
+  }
+}
+
+
+
 .digg_pagination {
   background: white;
   cursor: default;

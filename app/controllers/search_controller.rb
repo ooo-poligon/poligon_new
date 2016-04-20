@@ -86,6 +86,19 @@ class SearchController < ApplicationController
     end
     @products.execute!
 
+    @analogs = Sunspot.search(Analog) do
+      #fulltext search
+      fulltext params['q']
+
+      #scoping
+      if params.has_key?(:title)
+        with :title, params['q']
+      end
+
+      paginate :page => params[:page], :per_page => 25
+    end
+    @analogs.execute!
+
     @addCBR = Setting.find_by title: 'AddCBR'
   end
 

@@ -23,12 +23,18 @@ ActiveRecord::Schema.define(version: 20160404104008) do
   create_table "analogs", force: :cascade do |t|
     t.text    "description",  limit: 4294967295
     t.string  "title",        limit: 255
+    t.string  "prototype",        limit: 255
     t.integer "prototype_id", limit: 4
     t.string  "vendor",       limit: 255
   end
 
-  add_index "analogs", ["prototype_id"], name: "FK_4iehqvyabv3avly8x9yqeljno", using: :btree
-  add_index "analogs", ["vendor"], name: "FK_bmks6804vphucofa9j6x5kmcx", using: :btree
+  #add_index "analogs", ["prototype_id"], name: "FK_4iehqvyabv3avly8x9yqeljno", using: :btree
+  #add_index "analogs", ["vendor"], name: "FK_bmks6804vphucofa9j6x5kmcx", using: :btree
+
+  create_table "analogs_variants" force: :cascade do |t|
+    t.string   "title",      limit: 255
+    t.integer  "analog_id"   limit: 4
+  end
 
   create_table "articles", force: :cascade do |t|
     t.datetime "created_at",               null: false
