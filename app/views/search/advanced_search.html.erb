@@ -1,64 +1,71 @@
 <br>
-<table width="100%" class="table-bordered table-condensed" >
-  <caption>Поиск по складу</caption>
-  <thead>
-    <tr>
-      <th width="5%" style="text-align:center">Изображение</th>
-      <th width="44%" style="text-align:center">Наименование</th>
-      <th width="19%" style="text-align:center">Склад</th>
-      <th width="32%" style="text-align:center">Цены</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @products.results.each do |product| %>
+<% if !@products.results.nil? and @products.results.size > 0 %>
+  <table width="100%" class="table-bordered table-condensed" >
+    <caption>Поиск по складу</caption>
+    <thead>
       <tr>
-        <% productImage = ImageFile.where('owner_id = ? and file_type_id = 1', product.id).first %>
-        <% if productImage != nil %>
-          <% imagePath = productImage.path.gsub!("c:\\poligon_images", "http://www.poligon.info/images").gsub!("\\", "/") %>
-          <td><%= link_to image_tag(imagePath, class: "img-responsive center-block product-image-container"), imagePath, class: "fancybox" %></td>
-      <% else %>
-          <% end %>
-        <td style="vertical-align: top;">
-          <table class="table">
-            <tr>
-              <td>
-                <% array = [] %>
-                <ol class="breadcrumb" style="padding-left: 2px; margin-bottom: 0px; background-color: #ffffff;">
-                  <% element = Category.available.find(product.category_id) %>
-                  <% while element.parent != 0 %>
-                      <% array.push(element) %>
-                      <% element = Category.find(element.parent) %>
-                  <% end %>
-                  <% array.reverse_each do |item| %>
-                      <li><%= link_to item.title, item, style: "color: orange; background-color: #ffffff;" %></li>
-                  <% end %>
-                </ol>
-              </td>
-            </tr>
-            <tr>
-              <td><span class="product-title"><%= link_to product.title, product %></span></td>
-            </tr>
-            <tr>
-              <td><%= product.description %></td>
-            </tr>
-          </table>
-        </td>
-        <td style="vertical-align: top;">
-          <%= render partial: 'shared/product_quantities_table', locals: {product: product} %>
-        </td>
-        <% unless product.price == 0 %>
-        <td style="vertical-align: top;">
-          <%= render partial: 'shared/product_prices_table', locals: {product: product} %>
-        <% else %>
-          <td style="align-content: center;">Звоните:<br>(812)325-42-20
-        <% end %>
-        </td>
+        <th width="5%" style="text-align:center">Изображение</th>
+        <th width="44%" style="text-align:center">Наименование</th>
+        <th width="19%" style="text-align:center">Склад</th>
+        <th width="32%" style="text-align:center">Цены</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      <% @products.results.each do |product| %>
+        <tr>
+          <% productImage = ImageFile.where('owner_id = ? and file_type_id = 1', product.id).first %>
+          <% if productImage != nil %>
+            <% imagePath = productImage.path.gsub!("c:\\poligon_images", "http://www.poligon.info/images").gsub!("\\", "/") %>
+            <td><%= link_to image_tag(imagePath, class: "img-responsive center-block product-image-container"), imagePath, class: "fancybox" %></td>
+          <% else %>
+          <% end %>
+          <td style="vertical-align: top;">
+            <table class="table">
+              <tr>
+                <td>
+                  <% array = [] %>
+                  <ol class="breadcrumb" style="padding-left: 2px; margin-bottom: 0px; background-color: #ffffff;">
+                    <% element = Category.available.find(product.category_id) %>
+                    <% while element.parent != 0 %>
+                        <% array.push(element) %>
+                        <% element = Category.find(element.parent) %>
+                    <% end %>
+                    <% array.reverse_each do |item| %>
+                        <li><%= link_to item.title, item, style: "color: orange; background-color: #ffffff;" %></li>
+                    <% end %>
+                  </ol>
+                </td>
+              </tr>
+              <tr>
+                <td><span class="product-title"><%= link_to product.title, product %></span></td>
+              </tr>
+              <tr>
+                <td><%= product.description %></td>
+              </tr>
+            </table>
+          </td>
+          <td style="vertical-align: top;">
+            <%= render partial: 'shared/product_quantities_table', locals: {product: product} %>
+          </td>
+          <% unless product.price == 0 %>
+          <td style="vertical-align: top;">
+            <%= render partial: 'shared/product_prices_table', locals: {product: product} %>
+          <% else %>
+            <td style="align-content: center;">Звоните:<br>(812)325-42-20
+          <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <br>
+  <div class="alert alert-danger" role="alert">
+    <strong>Поиск по складу не дал результатов.</strong> Попробуйте переформулировать запрос.
+  </div>
+<% end %>
 
-<% if @analogs.results.size > 0 %>
+<% if !@analogs.results.nil? and @analogs.results.size > 0 %>
   <br>
   <table width="100%" class="table-bordered table-condensed analogs_table" >
     <caption>Поиск по аналогам</caption>
@@ -97,5 +104,277 @@
       <% end %>
     </tbody>
   </table>
+<% else %>
   <br>
-  <% end %>
+  <div class="alert alert-info" role="alert">
+    <strong>Поиск по аналогам не дал результатов.</strong> Попробуйте переформулировать запрос.
+  </div>
+<% end %>
+<% if !@farnell_products.nil? and @farnell_products.size > 0 %>
+  <% if @farnell_products.is_a? Array %>
+    <br>
+    <table width="100%" class="table-bordered table-condensed analogs_table" >
+      <caption>Поиск по складу FARNELL</caption>
+      <thead>
+        <tr>
+        <th width="10%" style="text-align:center">Изображение</th>
+        <th width="41%" style="text-align:center">Наименование</th>
+        <th width="19%" style="text-align:center">Склад</th>
+        <th width="30%" style="text-align:center">Цены</th>
+      </tr>
+      </thead>
+      <tbody>
+        <% count = 0 %>
+
+        <% @farnell_products.each do |product| %>
+          <tr>
+            <td style="vertical-align: top;">
+              <% imagePath = "http://ru.farnell.com/productimages/farnell//standard/" + product["image"]["baseName"] %>
+              <%= link_to image_tag(imagePath, class: "img-responsive center-block product-image-container"), imagePath, class: "fancybox" %>
+            </td>
+            <td style="vertical-align: top;">
+              <table class="table">
+                <tr>
+                  <td>
+                    <%= product["vendorName"] %> / <%= product["brandName"] %>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <span class="product-title">
+                      [<%= product["sku"] %>] <%= product["displayName"] %>
+                    </span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <button type="button" class="btn btn-info"
+                      data-toggle="collapse" data-target=<%= "#" + count.to_s %>>
+                      Отображение характеристик
+                    </button>
+                    <% unless product["datasheets"].is_a? Array %>
+                      <button type="button" class="btn btn-danger" target="_blank" onclick="window.open(&quot;<%= product["datasheets"]["url"] %>&quot;)" >
+                        Даташит в виде PDF
+                      </button>
+                    <% else %>
+                      <button type="button" class="btn btn-danger" target="_blank" onclick="window.open(&quot;<%= product["datasheets"][0]["url"] %>&quot;)" >
+                        Даташит в виде PDF
+                      </button>
+                    <% end %>
+                    <div id=<%= count.to_s %> class="collapse">
+                      <% unless product["attributes"].nil? %>
+                        <ul>
+                          <% product["attributes"].each do |attribute| %>
+                            <li><%= attribute["attributeLabel"] %>:
+                            <%= attribute["attributeValue"].html_safe if !attribute["attributeValue"].nil? %>
+                            <%= attribute["attributeUnit"].html_safe if !attribute["attributeUnit"].nil?  %></li>
+                          <% end %>
+                        </ul>
+                      <% else %>
+                        <p>характеристики не указаны</p>
+                      <% end %>
+                    </div>
+                  </td>
+                </tr>
+              </table>
+            </td>
+            <td style="vertical-align: top;">
+              <table class="table">
+                <% unless product["stock"].nil? %>
+                  <tr>
+                    <td>
+                      Количество:
+                    </td>
+                    <td>
+                      <%= product["stock"]["level"] %>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Склад <%= product["stock"]["breakdown"]["region"] %>/<%= product["stock"]["breakdown"]["warehouse"] %>: </td>
+                    <td><%= product["stock"]["breakdown"]["inv"] %></td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Цикл производства:
+                    </td>
+                    <td>
+                      <%= product["stock"]["leastLeadTime"] %>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Мин. заказ:
+                    </td>
+                    <td>
+                      <%= product["translatedMinimumOrderQuality"] %>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Нормоупоковка:
+                    </td>
+                    <td>
+                      <%= product["stock"]["status"] %>
+                    </td>
+                  </tr>
+                <% end %>
+              </table>
+            </td>
+            <td style="vertical-align: top;">
+              <table class="table">
+                <% unless product["prices"].nil? %>
+                  <% product["prices"].each do |price| %>
+                    <tr>
+                      <td>
+                        От <%= price["from"] %> до <%= price["to"] %> шт. :
+                      </td>
+                      <td style="color: blue; text-align:right; ">
+                        &euro;<%= price["cost"] %>
+                      </td>
+                    </tr>
+                  <% end %>
+                <% end %>
+              </table>
+            </td>
+          </tr>
+          <% count += 1 %>
+        <% end %>
+      </tbody>
+    </table>
+    <% else %>
+      <br>
+      <table width="100%" class="table-bordered table-condensed analogs_table" >
+        <caption>Поиск по складу FARNELL</caption>
+        <thead>
+          <tr>
+          <th width="10%" style="text-align:center">Изображение</th>
+          <th width="41%" style="text-align:center">Наименование</th>
+          <th width="19%" style="text-align:center">Склад</th>
+          <th width="30%" style="text-align:center">Цены</th>
+        </tr>
+        </thead>
+        <tbody>
+
+            <tr>
+              <td style="vertical-align: top;">
+                <% imagePath = "http://ru.farnell.com/productimages/farnell//standard/" + @farnell_products["image"]["baseName"] %>
+                <%= link_to image_tag(imagePath, class: "img-responsive center-block product-image-container"), imagePath, class: "fancybox" %>
+              </td>
+              <td style="vertical-align: top;">
+                <table class="table">
+                  <tr>
+                    <td>
+                      <%= @farnell_products["vendorName"] %> / <%= @farnell_products["brandName"] %>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <span class="product-title">
+                        [<%= @farnell_products["sku"] %>] <%= @farnell_products["displayName"] %>
+                      </span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <button type="button" class="btn btn-info"
+                        data-toggle="collapse" data-target="#prod">
+                        Отображение характеристик
+                      </button>
+                      <% unless @farnell_products["datasheets"].is_a? Array %>
+                        <button type="button" class="btn btn-danger" target="_blank" onclick="window.open(&quot;<%= @farnell_products["datasheets"]["url"] %>&quot;)" >
+                          Даташит в виде PDF
+                        </button>
+                      <% else %>
+                        <button type="button" class="btn btn-danger" target="_blank" onclick="window.open(&quot;<%= @farnell_products["datasheets"][0]["url"] %>&quot;)" >
+                          Даташит в виде PDF
+                        </button>
+                      <% end %>
+                      <div id="prod" class="collapse">
+                        <% unless @farnell_products["attributes"].nil? %>
+                          <ul>
+                            <% @farnell_products["attributes"].each do |attribute| %>
+                              <li><%= attribute["attributeLabel"] %>:
+                              <%= attribute["attributeValue"].html_safe if !attribute["attributeValue"].nil? %>
+                              <%= attribute["attributeUnit"].html_safe if !attribute["attributeUnit"].nil?  %></li>
+                            <% end %>
+                          </ul>
+                        <% else %>
+                          <p>характеристики не указаны</p>
+                        <% end %>
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+              <td style="vertical-align: top;">
+                <table class="table">
+                  <% unless @farnell_products["stock"].nil? %>
+                    <tr>
+                      <td>
+                        Количество:
+                      </td>
+                      <td>
+                        <%= @farnell_products["stock"]["level"] %>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Склад <%= @farnell_products["stock"]["breakdown"]["region"] %>/<%= @farnell_products["stock"]["breakdown"]["warehouse"] %>: </td>
+                      <td><%= @farnell_products["stock"]["breakdown"]["inv"] %></td>
+                    </tr>
+                    <tr>
+                      <td>
+                        Цикл производства:
+                      </td>
+                      <td>
+                        <%= @farnell_products["stock"]["leastLeadTime"] %>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        Мин. заказ:
+                      </td>
+                      <td>
+                        <%= @farnell_products["translatedMinimumOrderQuality"] %>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        Нормоупоковка:
+                      </td>
+                      <td>
+                        <%= @farnell_products["stock"]["status"] %>
+                      </td>
+                    </tr>
+                  <% end %>
+                </table>
+              </td>
+              <td style="vertical-align: top;">
+                <table class="table">
+                  <% unless @farnell_products["prices"].nil? %>
+                    <% @farnell_products["prices"].each do |price| %>
+                      <tr>
+                        <td>
+                          От <%= price["from"] %> до <%= price["to"] %> шт. :
+                        </td>
+                        <td style="color: blue; text-align:right; ">
+                          &euro;<%= price["cost"] %>
+                        </td>
+                      </tr>
+                    <% end %>
+                  <% end %>
+                </table>
+              </td>
+            </tr>
+
+        </tbody>
+      </table>
+    <% end %>
+<% else %>
+  <br>
+  <div class="alert alert-warning" role="alert">
+    <strong>Поиск по складам FARNELL не дал результатов.</strong> Попробуйте переформулировать запрос.
+  </div>
+<% end %>
+
+<%#= @farnell_products %>
+

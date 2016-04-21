@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160404104008) do
+ActiveRecord::Schema.define(version: 20160420121822) do
 
   create_table "additions", force: :cascade do |t|
     t.text     "content",    limit: 4294967295
@@ -21,19 +21,20 @@ ActiveRecord::Schema.define(version: 20160404104008) do
   end
 
   create_table "analogs", force: :cascade do |t|
-    t.text    "description",  limit: 4294967295
-    t.string  "title",        limit: 255
-    t.string  "prototype",        limit: 255
-    t.integer "prototype_id", limit: 4
+    t.text    "title",        limit: 16777215
     t.string  "vendor",       limit: 255
+    t.text    "description",  limit: 16777215
+    t.text    "addition",     limit: 16777215
+    t.integer "prototype_id", limit: 4
+    t.string  "prototype",    limit: 50
   end
 
-  #add_index "analogs", ["prototype_id"], name: "FK_4iehqvyabv3avly8x9yqeljno", using: :btree
-  #add_index "analogs", ["vendor"], name: "FK_bmks6804vphucofa9j6x5kmcx", using: :btree
+  add_index "analogs", ["prototype_id"], name: "FK_4iehqvyabv3avly8x9yqeljno", using: :btree
+  add_index "analogs", ["vendor"], name: "FK_bmks6804vphucofa9j6x5kmcx", using: :btree
 
-  create_table "analogs_variants" force: :cascade do |t|
-    t.string   "title",      limit: 255
-    t.integer  "analog_id"   limit: 4
+  create_table "analogs_variants", force: :cascade do |t|
+    t.text    "title",     limit: 65535, null: false
+    t.integer "analog_id", limit: 4,     null: false
   end
 
   create_table "articles", force: :cascade do |t|
@@ -66,6 +67,12 @@ ActiveRecord::Schema.define(version: 20160404104008) do
 
   create_table "currencies", force: :cascade do |t|
     t.string "title", limit: 255, null: false
+  end
+
+  create_table "farnell_keys", force: :cascade do |t|
+    t.string   "api_key",    limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   create_table "file_types", force: :cascade do |t|
@@ -173,11 +180,12 @@ ActiveRecord::Schema.define(version: 20160404104008) do
     t.integer "product_kind_id",    limit: 4,          default: 1
     t.string  "vendor",             limit: 255
     t.integer "plugin_owner_id",    limit: 4,          default: 0,   null: false
-    t.integer "accessory_owner_id", limit: 4,          default: 0,   null: false
+    t.float   "special",            limit: 53,         default: 1.0, null: false
     t.float   "rate",               limit: 53,         default: 1.0, null: false
     t.float   "discount1",          limit: 53,         default: 1.0, null: false
     t.float   "discount2",          limit: 53,         default: 1.0, null: false
     t.float   "discount3",          limit: 53,         default: 1.0, null: false
+    t.integer "accessory_owner_id", limit: 4,          default: 0,   null: false
   end
 
   add_index "products", ["category_id"], name: "FK_of5oeawsy50x878ic9tyapdnv", using: :btree
@@ -301,7 +309,6 @@ ActiveRecord::Schema.define(version: 20160404104008) do
     t.string   "position",            limit: 255
     t.integer  "company_id",          limit: 4
     t.integer  "group_id",            limit: 4
-    t.boolean  "subscribe"
   end
 
   add_index "users", ["company_id"], name: "index_users_on_company_id", using: :btree
@@ -326,8 +333,6 @@ ActiveRecord::Schema.define(version: 20160404104008) do
     t.datetime "updated_at",               null: false
   end
 
-  add_foreign_key "analogs", "products", column: "prototype_id", name: "FK_4iehqvyabv3avly8x9yqeljno"
-  add_foreign_key "analogs", "vendors", column: "vendor", primary_key: "title", name: "FK_bmks6804vphucofa9j6x5kmcx"
   add_foreign_key "files", "file_types", name: "FK_63xcug2xhs8fhmde2qrls55rn"
   add_foreign_key "files", "products", column: "owner_id", name: "FK_5ok1awgnfwcf01537ylbycyq1"
   add_foreign_key "functions", "product_kinds", name: "FK_functions_product_kinds"
@@ -337,10 +342,10 @@ ActiveRecord::Schema.define(version: 20160404104008) do
   add_foreign_key "posts", "post_types"
   add_foreign_key "posts", "tickets"
   add_foreign_key "posts", "users"
-  add_foreign_key "products", "categories", name: "FK_of5oeawsy50x878ic9tyapdnv"
-  add_foreign_key "products", "product_kinds", name: "FK_products_product_kinds"
-  add_foreign_key "products", "series", column: "serie", primary_key: "title", name: "FK_products_series"
-  add_foreign_key "products", "vendors", column: "vendor", primary_key: "title", name: "FK_products_vendors", on_update: :cascade
+  add_foreign_key "products", "categories", name: "FK_products_categories"
+  add_foreign_key "products", "product_kinds", name: "FK_ga42cu8ch92tuig4t8oo06hn8"
+  add_foreign_key "products", "series", column: "serie", primary_key: "title", name: "FK_ni7gdwd360jaafq7b7m1gug4v"
+  add_foreign_key "products", "vendors", column: "vendor", primary_key: "title", name: "FK_h9ix3xgma67xlseqy1hap6rfa"
   add_foreign_key "products_functions", "functions", name: "FK_products_functions_functions", on_update: :cascade, on_delete: :cascade
   add_foreign_key "products_functions", "products", name: "FK_products_functions_products", on_update: :cascade, on_delete: :cascade
   add_foreign_key "properties", "products", name: "FK_9igpep0fc0ccn6ufp49qb0d3l"

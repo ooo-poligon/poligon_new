@@ -1,4 +1,12 @@
 class SearchController < ApplicationController
+  # для получения контента через http
+  require 'open-uri'
+
+  # подключаем Nokogiri
+  require 'nokogiri'
+
+  require 'active_support/core_ext/hash/conversions'
+
   def search
     @products = Sunspot.search(Product) do
       #fulltext search
@@ -72,7 +80,11 @@ class SearchController < ApplicationController
   def advanced_search
     @products = Sunspot.search(Product) do
       #fulltext search
-      fulltext params['q']
+      fulltext params['q'] do
+        phrase_fields :title => 2.0
+        phrase_slop   1
+      end
+
 
       #scoping
       if params.has_key?(:title)
@@ -88,7 +100,12 @@ class SearchController < ApplicationController
 
     @analogs = Sunspot.search(Analog) do
       #fulltext search
-      fulltext params['q']
+      fulltext params['q'] do
+        phrase_fields :title => 2.0
+        phrase_fields :prototype => 2.0
+        phrase_slop   1
+      end
+
 
       #scoping
       if params.has_key?(:title)
@@ -101,7 +118,25 @@ class SearchController < ApplicationController
 
     @addCBR = Setting.find_by title: 'AddCBR'
 
+    query = params['q']
+    farnell_api_key = FarnellKey.find(rand(1..2)).api_key
 
+    farnell_request_uri =  "https://api.element14.com/catalog/products" +
+                            "?callInfo.responseDataFormat=xml" +
+                            "&callInfo.omitXmlSchema=false" +
+                            "&term=any%3A" + query  +
+                            "&storeInfo.id=ru.farnell.com" +
+                            "&callInfo.apiKey=" + farnell_api_key +
+                            "&resultsSettings.offset=0" +
+                            "&resultsSettings.numberOfResults=10" +
+                            "&resultsSettings.refinements.filters=rohsCompliant%2CinStock" +
+                            "&resultsSettings.responseGroup=large"
+    if farnell_request_uri.ascii_only?
+      result = Nokogiri::XML(open(farnell_request_uri)) if farnell_request_uri.ascii_only?
+      @farnell_products = Hash.from_xml(result.to_s)["keywordSearchReturn"]["products"]
+    else
+      render "advanced_search"
+    end
   end
 
 private
