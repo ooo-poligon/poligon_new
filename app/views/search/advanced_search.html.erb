@@ -37,7 +37,11 @@
                 </td>
               </tr>
               <tr>
-                <td><span class="product-title"><%= link_to product.title, product %></span></td>
+              <% unless product.article.nil? %>
+                <td><span class="product-title"><%= link_to "(" + product.article + ") " + product.title, product %></span></td>
+                <% else %>
+                  <td><span class="product-title"><%= link_to product.title, product %></span></td>
+                <% end %>
               </tr>
               <tr>
                 <td><%= product.description %></td>
@@ -58,6 +62,14 @@
       <% end %>
     </tbody>
   </table>
+  <br>
+  <div class="flickr_pagination">
+    <div class="page_info">
+      <%= page_entries_info @products.results %>
+    </div>
+    <%= will_paginate @products.results, :param_name => 'products_page', :container => false %>
+  </div>
+
 <% else %>
   <br>
   <div class="alert alert-danger" role="alert">
@@ -104,13 +116,20 @@
       <% end %>
     </tbody>
   </table>
+  <br>
+  <div class="flickr_pagination">
+    <div class="page_info">
+      <%= page_entries_info @analogs.results %>
+    </div>
+    <%= will_paginate @analogs.results, :param_name => 'analogs_page', :container => false %>
+  </div>
 <% else %>
   <br>
   <div class="alert alert-info" role="alert">
     <strong>Поиск по аналогам не дал результатов.</strong> Попробуйте переформулировать запрос.
   </div>
 <% end %>
-<% if !@farnell_products.nil? and @farnell_products.size > 0 %>
+<% if !@farnell_products.nil? and @farnell_products.size > 0 and !@farnell_products[0].nil? %>
   <% if @farnell_products.is_a? Array %>
     <br>
     <table width="100%" class="table-bordered table-condensed analogs_table" >
@@ -125,11 +144,10 @@
       </thead>
       <tbody>
         <% count = 0 %>
-
         <% @farnell_products.each do |product| %>
           <tr>
             <td style="vertical-align: top;">
-              <% imagePath = "http://ru.farnell.com/productimages/farnell//standard/" + product["image"]["baseName"] %>
+              <% imagePath = "http://ru.farnell.com/productimages//" + product["image"]["vrntPath"] + "/standard/" + product["image"]["baseName"] %>
               <%= link_to image_tag(imagePath, class: "img-responsive center-block product-image-container"), imagePath, class: "fancybox" %>
             </td>
             <td style="vertical-align: top;">
@@ -190,8 +208,19 @@
                     </td>
                   </tr>
                   <tr>
-                    <td>Склад <%= product["stock"]["breakdown"]["region"] %>/<%= product["stock"]["breakdown"]["warehouse"] %>: </td>
-                    <td><%= product["stock"]["breakdown"]["inv"] %></td>
+                    <% if product["stock"]["breakdown"].is_a? Array %>
+                      <% count = 1 %>
+                      <% product["stock"]["breakdown"].each do |br| %>
+                      <tr>
+                        <td>Склад №<%= count.to_s %> <%= br["region"] %>/<%= br["warehouse"] %>: </td>
+                        <td><%= br["inv"] %></td>
+                        <% count += 1 %>
+                      </tr>
+                      <% end %>
+                    <% else %>
+                      <td>Склад <%= product["stock"]["breakdown"]["region"] %>/<%= product["stock"]["breakdown"]["warehouse"] %>: </td>
+                      <td><%= product["stock"]["breakdown"]["inv"] %></td>
+                    <% end %>
                   </tr>
                   <tr>
                     <td>
@@ -223,13 +252,24 @@
             <td style="vertical-align: top;">
               <table class="table">
                 <% unless product["prices"].nil? %>
-                  <% product["prices"].each do |price| %>
+                  <% if product["prices"].is_a? Array %>
+                    <% product["prices"].each do |price| %>
+                      <tr>
+                        <td>
+                          От <%= price["from"] %> до <%= price["to"] %> шт. :
+                        </td>
+                        <td style="color: blue; text-align:right; ">
+                          &euro;<%= price["cost"] %>
+                        </td>
+                      </tr>
+                    <% end %>
+                  <% else %>
                     <tr>
                       <td>
-                        От <%= price["from"] %> до <%= price["to"] %> шт. :
+                        От <%= product["prices"]["from"] %> до <%= product["prices"]["to"] %> шт. :
                       </td>
                       <td style="color: blue; text-align:right; ">
-                        &euro;<%= price["cost"] %>
+                        &euro;<%= product["prices"]["cost"] %>
                       </td>
                     </tr>
                   <% end %>
@@ -241,6 +281,13 @@
         <% end %>
       </tbody>
     </table>
+    <br>
+    <div class="flickr_pagination">
+      <div class="page_info">
+        <%= page_entries_info @farnell_products %>
+      </div>
+      <%= will_paginate @farnell_products, :param_name => 'farnell_page', :container => false %>
+    </div>
     <% else %>
       <br>
       <table width="100%" class="table-bordered table-condensed analogs_table" >
@@ -257,7 +304,7 @@
 
             <tr>
               <td style="vertical-align: top;">
-                <% imagePath = "http://ru.farnell.com/productimages/farnell//standard/" + @farnell_products["image"]["baseName"] %>
+                <% imagePath = "http://ru.farnell.com/productimages//" + @farnell_products["image"]["vrntPath"] + "/standard/" + @farnell_products["image"]["baseName"] %>
                 <%= link_to image_tag(imagePath, class: "img-responsive center-block product-image-container"), imagePath, class: "fancybox" %>
               </td>
               <td style="vertical-align: top;">
@@ -318,8 +365,19 @@
                       </td>
                     </tr>
                     <tr>
+                      <% if @farnell_products["stock"]["breakdown"].is_a? Array %>
+                      <% count = 1 %>
+                      <% @farnell_products["stock"]["breakdown"].each do |br| %>
+                      <tr>
+                        <td>Склад №<%= count.to_s %> <%= br["region"] %>/<%= br["warehouse"] %>: </td>
+                        <td><%= br["inv"] %></td>
+                        <% count += 1 %>
+                      </tr>
+                      <% end %>
+                    <% else %>
                       <td>Склад <%= @farnell_products["stock"]["breakdown"]["region"] %>/<%= @farnell_products["stock"]["breakdown"]["warehouse"] %>: </td>
                       <td><%= @farnell_products["stock"]["breakdown"]["inv"] %></td>
+                    <% end %>
                     </tr>
                     <tr>
                       <td>
@@ -351,13 +409,24 @@
               <td style="vertical-align: top;">
                 <table class="table">
                   <% unless @farnell_products["prices"].nil? %>
-                    <% @farnell_products["prices"].each do |price| %>
+                    <% if @farnell_products["prices"].is_a? Array %>
+                      <% @farnell_products["prices"].each do |price| %>
+                        <tr>
+                          <td>
+                            От <%= price["from"] %> до <%= price["to"] %> шт. :
+                          </td>
+                          <td style="color: blue; text-align:right; ">
+                            &euro;<%= price["cost"] %>
+                          </td>
+                        </tr>
+                      <% end %>
+                    <% else %>
                       <tr>
                         <td>
-                          От <%= price["from"] %> до <%= price["to"] %> шт. :
+                          От <%= @farnell_products["prices"]["from"] %> до <%= @farnell_products["prices"]["to"] %> шт. :
                         </td>
                         <td style="color: blue; text-align:right; ">
-                          &euro;<%= price["cost"] %>
+                          &euro;<%= @farnell_products["prices"]["cost"] %>
                         </td>
                       </tr>
                     <% end %>
@@ -375,6 +444,45 @@
     <strong>Поиск по складам FARNELL не дал результатов.</strong> Попробуйте переформулировать запрос.
   </div>
 <% end %>
+<br>
+<hr>
 
-<%#= @farnell_products %>
+<% if !@articles.results.empty? %>
+<h2>Поиск по публикациям</h2>
+<% @articles.results.each do |article| %>
+    <h4><%= link_to article.title, article %></h4>
+<% end %>
+<div class="flickr_pagination">
+  <div class="page_info">
+    <%= page_entries_info @articles.results %>
+  </div>
+  <%= will_paginate @articles.results, :param_name => 'articles_page', :container => false %>
+</div>
+<% end %>
 
+<% if !@news_items.results.empty? %>
+<h2>Поиск по новостям</h2>
+<% @news_items.results.each do |news_item| %>
+    <h4><%= link_to news_item.title, news_item %></h4>
+<% end %>
+<div class="flickr_pagination">
+  <div class="page_info">
+    <%= page_entries_info @news_items.results %>
+  </div>
+  <%= will_paginate @news_items.results, :param_name => 'news_items_page', :container => false %>
+</div>
+<% end %>
+
+<% if !@static_contents.results.empty? %>
+<h2>Поиск по контенту</h2>
+<% @static_contents.results.each do |static_content| %>
+    <h4><%= static_content.title %></h4>
+<% end %>
+<div class="flickr_pagination">
+  <div class="page_info">
+    <%= page_entries_info @static_contents.results %>
+  </div>
+  <%= will_paginate @static_contents.results, :param_name => 'static_contents_page', :container => false %>
+</div>
+<% end %>
+<br>

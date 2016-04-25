@@ -15,10 +15,10 @@
  See the License for the specific language governing permissions and
  limitations under the License.
 -->
-<!--  
+<!--
  This is the Solr schema file. This file should be named "schema.xml" and
  should be in the conf directory under the solr home
- (i.e. ./solr/conf/schema.xml by default) 
+ (i.e. ./solr/conf/schema.xml by default)
  or located where the classloader for the Solr webapp can find it.
 
  This example schema is the recommended starting point for users.
@@ -96,6 +96,25 @@
     </fieldType>
     <!-- A specialized field for geospatial search. If indexed, this fieldType must not be multivalued. -->
     <fieldType name="location" class="solr.LatLonType" subFieldSuffix="_coordinate"/>
+    <!-- Make search available by substring, ising instruction at the site: https://github.com/sunspot/sunspot/wiki/Matching-substrings-in-fulltext-search -->
+    <fieldType class="solr.TextField" name="text_pre" positionIncrementGap="100">
+      <analyzer type="index">
+        <tokenizer class="solr.WhitespaceTokenizerFactory"/>
+        <filter class="solr.LowerCaseFilterFactory"/>
+        <!-- this line for search by any part of string -->
+        <filter class="solr.NGramFilterFactory" minGramSize="2" maxGramSize="15"/>
+        <!-- if you need organize search by prefix instead of search by any part of string,
+        change the filter above to commented one below -->
+        <!-- <filter class="solr.EdgeNGramFilterFactory"/> -->
+        <!-- end of addition -->
+      </analyzer>
+      <analyzer type="query">
+        <tokenizer class="solr.StandardTokenizerFactory"/>
+        <filter class="solr.StandardFilterFactory"/>
+        <filter class="solr.LowerCaseFilterFactory"/>
+      </analyzer>
+    </fieldType>
+    <!-- end of addition -->
   </types>
   <fields>
     <!-- Valid attributes for fields:
@@ -252,12 +271,15 @@
     <dynamicField name="*_llm" stored="false" type="location" multiValued="true" indexed="true"/>
     <dynamicField name="*_lls" stored="true" type="location" multiValued="false" indexed="true"/>
     <dynamicField name="*_llms" stored="true" type="location" multiValued="true" indexed="true"/>
+    <!-- Make search available by substring, ising instruction at the site: https://github.com/sunspot/sunspot/wiki/Matching-substrings-in-fulltext-search -->
+    <dynamicField name="*_textp" stored="false" type="text_pre" multiValued="true" indexed="true"/>
+    <!-- end of addition -->
     <field name="textSpell" stored="false" type="textSpell" multiValued="true" indexed="true"/>
-    
+
     <!-- required by Solr 5 -->
     <field name="_version_" type="tlong" indexed="true" stored="true" multiValued="false" />
   </fields>
-  
+
   <!-- Field to use to determine and enforce document uniqueness.
       Unless this field is marked with required="false", it will be a required field
    -->

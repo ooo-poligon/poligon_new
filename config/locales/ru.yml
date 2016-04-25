@@ -255,3 +255,30 @@ ru:
       long: "%d %B %Y, %H:%M"
       short: "%d %b, %H:%M"
     pm: вечера
+  will_paginate:
+    next_label: "Следующая →"
+    page_entries_info:
+      multi_page:
+        few: "Отображено %{from} - %{to} из %{count} результатов"
+        many: "Отображено %{from} - %{to} из %{count} результатов"
+        one: "Отображен %{from} - %{to} из %{count} результат"
+        other: "Отображено %{from} - %{to} из %{count} результатов"
+      multi_page_html:
+        few: "Отображено <b>%{from}&nbsp;-&nbsp;%{to}</b> из <b>%{count}</b> результатов"
+        many: "Отображено <b>%{from}&nbsp;-&nbsp;%{to}</b> из <b>%{count}</b> результатов"
+        one: "Отображен <b>%{from}&nbsp;-&nbsp;%{to}</b> из <b>%{count}</b> результат"
+        other: "Отображено <b>%{from}&nbsp;-&nbsp;%{to}</b> из <b>%{count}</b> результатов"
+      single_page:
+        few: "Отображено %{count} результатов"
+        many: "Отображено %{count} результатов"
+        one: "Отображен %{count} результат"
+        other: "Отображено %{count} результатов"
+        zero: "Результаты не найдены"
+      single_page_html:
+        few: "Отображено <b>%{count}</b> результатов"
+        many: "Отображено <b>%{count}</b> результатов"
+        one: "Отображен <b>%{count}</b> результат"
+        other: "Отображено <b>%{count}</b> результатов"
+        zero: "Результаты не найдены"
+    page_gap: "&hellip;"
+    previous_label: "← Предыдущая"

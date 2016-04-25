@@ -8,6 +8,12 @@
     <%= product.description %>
 <% end %>
 <% end %>
+<div class="flickr_pagination">
+  <div class="page_info">
+    <%= page_entries_info @products.results %>
+  </div>
+  <%= will_paginate @products.results, :container => false %>
+</div>
 
 <% if !@articles.results.empty? %>
 <h3>Поиск по статьям:</h3>
@@ -15,6 +21,12 @@
     <h4><%= article.title %></h4>
 <% end %>
 <% end %>
+<div class="flickr_pagination">
+  <div class="page_info">
+    <%= page_entries_info @articles.results %>
+  </div>
+  <%= will_paginate @articles.results, :container => false %>
+</div>
 
     <% if !@news_items.results.empty? %>
 <h3>Поиск по новостям:</h3>
@@ -22,6 +34,12 @@
     <h4><%= news_item.title %></h4>
 <% end %>
 <% end %>
+<div class="flickr_pagination">
+  <div class="page_info">
+    <%= page_entries_info @news_items.results %>
+  </div>
+  <%= will_paginate @news_items.results, :container => false %>
+</div>
 
 <% if !@static_contents.results.empty? %>
 <h3>Поиск по контенту:</h3>
@@ -29,15 +47,10 @@
     <h4><%= static_content.title %></h4>
 <% end %>
 <% end %>
-<br>
-<hr>
-<br>
-
-<div class="apple_pagination">
+<div class="flickr_pagination">
   <div class="page_info">
-    <%= page_entries_info @products.results %>
+    <%= page_entries_info @static_contents.results %>
   </div>
-  <%= will_paginate @products.results, :container => false %>
+  <%= will_paginate @static_contents.results, :container => false %>
 </div>
-
-
+<br>
