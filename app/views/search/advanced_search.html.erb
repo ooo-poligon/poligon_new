@@ -473,6 +473,19 @@
 </div>
 <% end %>
 
+<% if !@categories.results.empty? %>
+  <h2>Поиск по категориям товаров:</h2>
+  <% @categories.results.each do |category| %>
+      <h4><%= link_to category.title, category %></h4>
+  <% end %>
+  <div class="flickr_pagination">
+    <div class="page_info">
+      <%= page_entries_info @categories.results %>
+    </div>
+    <%= will_paginate @categories.results, :container => false %>
+  </div>
+<% end %>
+
 <% if !@static_contents.results.empty? %>
 <h2>Поиск по контенту</h2>
 <% @static_contents.results.each do |static_content| %>

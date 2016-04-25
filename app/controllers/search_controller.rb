@@ -10,7 +10,11 @@ class SearchController < ApplicationController
   def search
     @products = Sunspot.search(Product) do
       #fulltext search
-      fulltext params['q']
+      fulltext params['q'] do
+        phrase_fields :title => 2.0
+        phrase_slop   1
+      end
+
 
       #scoping
       if params.has_key?(:title)
@@ -19,8 +23,7 @@ class SearchController < ApplicationController
       if params.has_key?(:description)
         with :description, params['q']
       end
-
-      paginate :page => params[:page], :per_page => 25
+      paginate :page => params[:products_page], :per_page => 10
     end
     @products.execute!
 
@@ -36,7 +39,7 @@ class SearchController < ApplicationController
         with :content, params['q']
       end
 
-      paginate :page => params[:page], :per_page => 25
+      paginate :page => params[:articles_page], :per_page => 25
     end
     @articles.execute!
 
@@ -52,9 +55,25 @@ class SearchController < ApplicationController
         with :content, params['q']
       end
 
-      paginate :page => params[:page], :per_page => 25
+      paginate :page => params[:news_items_page], :per_page => 25
     end
     @news_items.execute!
+
+    @categories = Sunspot.search(Category) do
+      #fulltext search
+      fulltext params['q']
+
+      #scoping
+      if params.has_key?(:title)
+        with :title, params['q']
+      end
+      if params.has_key?(:description)
+        with :description, params['q']
+      end
+
+      paginate :page => params[:categories_page], :per_page => 25
+    end
+    @categories.execute!
 
     @static_contents = Sunspot.search(StaticContent) do
       #fulltext search
@@ -68,7 +87,7 @@ class SearchController < ApplicationController
         with :content, params['q']
       end
 
-      paginate :page => params[:page], :per_page => 25
+      paginate :page => params[:static_contents_page], :per_page => 25
     end
     @static_contents.execute!
 
@@ -147,6 +166,22 @@ class SearchController < ApplicationController
       paginate :page => params[:news_items_page], :per_page => 25
     end
     @news_items.execute!
+
+    @categories = Sunspot.search(Category) do
+      #fulltext search
+      fulltext params['q']
+
+      #scoping
+      if params.has_key?(:title)
+        with :title, params['q']
+      end
+      if params.has_key?(:description)
+        with :description, params['q']
+      end
+
+      paginate :page => params[:categories_page], :per_page => 25
+    end
+    @categories.execute!
 
     @static_contents = Sunspot.search(StaticContent) do
       #fulltext search

@@ -2,55 +2,68 @@
 <h2>Результат поиска по запросу <i><b>"<%= params[:q] %>"</b></i>:</h2>
 
 <% if !@products.results.empty? %>
-<h3>Поиск по устройствам:</h3>
-<% @products.results.each do |product| %>
-    <h4><%= link_to product.title, product %></h4>
-    <%= product.description %>
-<% end %>
-<% end %>
-<div class="flickr_pagination">
-  <div class="page_info">
-    <%= page_entries_info @products.results %>
+  <h3>Поиск по устройствам:</h3>
+    <% @products.results.each do |product| %>
+        <h4><%= link_to product.title, product %></h4>
+        <%= product.description %>
+    <% end %>
+  <div class="flickr_pagination">
+    <div class="page_info">
+      <%= page_entries_info @products.results %>
+    </div>
+    <%= will_paginate @products.results, :container => false %>
   </div>
-  <%= will_paginate @products.results, :container => false %>
-</div>
+<% end %>
 
 <% if !@articles.results.empty? %>
 <h3>Поиск по статьям:</h3>
-<% @articles.results.each do |article| %>
-    <h4><%= article.title %></h4>
-<% end %>
-<% end %>
-<div class="flickr_pagination">
-  <div class="page_info">
-    <%= page_entries_info @articles.results %>
+  <% @articles.results.each do |article| %>
+      <h4><%= link_to article.title, article %></h4>
+  <% end %>
+  <div class="flickr_pagination">
+    <div class="page_info">
+      <%= page_entries_info @articles.results %>
+    </div>
+    <%= will_paginate @articles.results, :container => false %>
   </div>
-  <%= will_paginate @articles.results, :container => false %>
-</div>
+<% end %>
 
-    <% if !@news_items.results.empty? %>
-<h3>Поиск по новостям:</h3>
-<% @news_items.results.each do |news_item| %>
-    <h4><%= news_item.title %></h4>
-<% end %>
-<% end %>
-<div class="flickr_pagination">
-  <div class="page_info">
-    <%= page_entries_info @news_items.results %>
+<% if !@news_items.results.empty? %>
+  <h3>Поиск по новостям:</h3>
+  <% @news_items.results.each do |news_item| %>
+      <h4><%= link_to news_item.title, news_item %></h4>
+  <% end %>
+  <div class="flickr_pagination">
+    <div class="page_info">
+      <%= page_entries_info @news_items.results %>
+    </div>
+    <%= will_paginate @news_items.results, :container => false %>
   </div>
-  <%= will_paginate @news_items.results, :container => false %>
-</div>
+<% end %>
+
+<% if !@categories.results.empty? %>
+  <h3>Поиск по категориям товаров:</h3>
+  <% @categories.results.each do |category| %>
+      <h4><%= link_to category.title, category %></h4>
+  <% end %>
+  <div class="flickr_pagination">
+    <div class="page_info">
+      <%= page_entries_info @categories.results %>
+    </div>
+    <%= will_paginate @categories.results, :container => false %>
+  </div>
+<% end %>
 
 <% if !@static_contents.results.empty? %>
-<h3>Поиск по контенту:</h3>
-<% @static_contents.results.each do |static_content| %>
-    <h4><%= static_content.title %></h4>
-<% end %>
-<% end %>
-<div class="flickr_pagination">
-  <div class="page_info">
-    <%= page_entries_info @static_contents.results %>
+  <h3>Поиск по контенту:</h3>
+  <% @static_contents.results.each do |static_content| %>
+      <h4><%= static_content.title %></h4>
+  <% end %>
+  <div class="flickr_pagination">
+    <div class="page_info">
+      <%= page_entries_info @static_contents.results %>
+    </div>
+    <%= will_paginate @static_contents.results, :container => false %>
   </div>
-  <%= will_paginate @static_contents.results, :container => false %>
-</div>
+<% end %>
 <br>
