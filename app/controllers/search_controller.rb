@@ -201,7 +201,7 @@ class SearchController < ApplicationController
 
     @addCBR = Setting.find_by title: 'AddCBR'
     @farnell_products = farnell_search params['q']
-    @farnell_products = @farnell_products.paginate(:page => params[:farnell_page], :per_page => 10) if @farnell_products.is_a? Array
+    #@farnell_products = @farnell_products.paginate(:page => params[:farnell_page], :per_page => 10) if @farnell_products.is_a? Array
   end
 
 private
@@ -215,23 +215,25 @@ private
   def farnell_search query
     farnell_products = []
     @query = query
-    results_number = 500
+    @results_number =  10
+    farnell_params = 1
+    farnell_params = (params['farnell_page'].to_i - 1) if params['farnell_page'] and params['farnell_page'].to_i > 0
+    @results_offset = (farnell_params * @results_number) || 0
     farnell_api_key = FarnellKey.find(rand(1..2)).api_key
-    results_offset = 0
-    farnell_request_uri =  "https://api.element14.com/catalog/products" +
-                            "?callInfo.responseDataFormat=xml" +
-                            "&callInfo.omitXmlSchema=false" +
-                            "&term=any%3A" + @query  +
-                            "&storeInfo.id=ru.farnell.com" +
-                            "&callInfo.apiKey=" + farnell_api_key +
-                            "&resultsSettings.offset=" + results_offset.to_s +
-                            "&resultsSettings.numberOfResults=" + results_number.to_s +
-                            "&resultsSettings.refinements.filters=rohsCompliant" +
-                            "&resultsSettings.responseGroup=large"
+    farnell_request_uri = "https://api.element14.com/catalog/products" +
+                          "?callInfo.responseDataFormat=xml" +
+                          "&callInfo.omitXmlSchema=false" +
+                          "&term=any%3A" + @query  +
+                          "&storeInfo.id=ru.farnell.com" +
+                          "&callInfo.apiKey=" + farnell_api_key +
+                          "&resultsSettings.offset=" + @results_offset.to_s +
+                          "&resultsSettings.numberOfResults=" + @results_number.to_s +
+                          "&resultsSettings.refinements.filters=rohsCompliant" +
+                          "&resultsSettings.responseGroup=large"
     if farnell_request_uri.ascii_only?
-      #summary = number_or_nil Nokogiri::XML(
-      #           open(farnell_request_uri)).xpath("//ns1:keywordSearchReturn//ns1:numberOfResults").text
-      results_offset += results_number
+      @summary = number_or_nil Nokogiri::XML(
+                 open(farnell_request_uri)).xpath("//ns1:keywordSearchReturn//ns1:numberOfResults").text
+      #@results_offset += @results_number
       result = Nokogiri::XML(open(farnell_request_uri))
       result_products = Hash.from_xml(result.to_s)["keywordSearchReturn"]["products"]
       if result_products.is_a? Array

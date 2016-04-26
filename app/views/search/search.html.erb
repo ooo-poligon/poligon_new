@@ -11,7 +11,7 @@
     <div class="page_info">
       <%= page_entries_info @products.results %>
     </div>
-    <%= will_paginate @products.results, :container => false %>
+    <%= will_paginate @products.results, :param_name => 'products_page', :container => false %>
   </div>
 <% end %>
 
@@ -24,7 +24,7 @@
     <div class="page_info">
       <%= page_entries_info @articles.results %>
     </div>
-    <%= will_paginate @articles.results, :container => false %>
+    <%= will_paginate @articles.results, :param_name => 'articles_page', :container => false %>
   </div>
 <% end %>
 
@@ -37,7 +37,7 @@
     <div class="page_info">
       <%= page_entries_info @news_items.results %>
     </div>
-    <%= will_paginate @news_items.results, :container => false %>
+    <%= will_paginate @news_items.results, :param_name => 'news_items_page', :container => false %>
   </div>
 <% end %>
 
@@ -50,20 +50,20 @@
     <div class="page_info">
       <%= page_entries_info @categories.results %>
     </div>
-    <%= will_paginate @categories.results, :container => false %>
+    <%= will_paginate @categories.results, :param_name => 'categories_page', :container => false %>
   </div>
 <% end %>
 
 <% if !@static_contents.results.empty? %>
   <h3>Поиск по контенту:</h3>
   <% @static_contents.results.each do |static_content| %>
-      <h4><%= static_content.title %></h4>
+      <h4><%= link_to static_content.title, "/#{static_content.directory}/#{static_content.page}" %></h4>
   <% end %>
   <div class="flickr_pagination">
     <div class="page_info">
       <%= page_entries_info @static_contents.results %>
     </div>
-    <%= will_paginate @static_contents.results, :container => false %>
+    <%= will_paginate @static_contents.results, :param_name => 'static_contents_page', :container => false %>
   </div>
 <% end %>
 <br>

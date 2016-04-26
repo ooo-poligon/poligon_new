@@ -282,11 +282,30 @@
       </tbody>
     </table>
     <br>
+    <% pages_number = @summary / @results_number %>
+    <% pages_modulo = @summary % @results_number %>
+    <% farnell_pages = Array.new(0); count = 0 %>
+    <% farnell_pages = Array.new(1) if pages_modulo != 0 %>
+    <% pages_number.times do %>
+      <% farnell_pages.push (count + 1).to_s; count += 1 %>
+    <% end %>
+    <% farnell_page = farnell_pages.paginate(:page => params['farnell_page'], :per_page => 1) %>
     <div class="flickr_pagination">
       <div class="page_info">
-        <%= page_entries_info @farnell_products %>
+        <div class="page_info">
+        <% x = params['farnell_page'].to_i; y = @results_number %>
+        <% if params['farnell_page'] and pages_modulo == 0 %>
+          Отображено <b><%= (x*y - y + 1).to_s + " " %>-<%= " " + (x*y).to_s %></b> из <b><%= @summary %></b> результатов
+        <% elsif params['farnell_page'] and pages_modulo != 0 and (x * @results_number) > @summary %>
+          Отображено <b><%= (x*y - y + 1).to_s + " " %>-<%= " " + (x*y - y + pages_modulo).to_s %></b> из <b><%= @summary %></b> результатов
+        <% elsif params['farnell_page'] and pages_modulo != 0 %>
+          Отображено <b><%= (x*y - y + 1).to_s + " " %>-<%= " " + (x*y).to_s %></b> из <b><%= @summary %></b> результатов
+        <% else %>
+          Отображено <b><%= '1' + " " %>-<%= " " + (@results_number).to_s %></b> из <b><%= @summary %></b> результатов
+        <% end %>
+        </div>
       </div>
-      <%= will_paginate @farnell_products, :param_name => 'farnell_page', :container => false %>
+      <%= will_paginate farnell_page, :param_name => 'farnell_page', :container => false %>
     </div>
     <% else %>
       <br>
@@ -489,7 +508,7 @@
 <% if !@static_contents.results.empty? %>
 <h2>Поиск по контенту</h2>
 <% @static_contents.results.each do |static_content| %>
-    <h4><%= static_content.title %></h4>
+    <h4><%= link_to static_content.title, "/#{static_content.directory}/#{static_content.page}" %></h4>
 <% end %>
 <div class="flickr_pagination">
   <div class="page_info">
