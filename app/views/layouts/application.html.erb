@@ -70,6 +70,7 @@
             <li>
               <% if user_signed_in? %>
                 <form class="navbar-search pull-left" method="get" action="/advanced_search">
+                <input type="hidden" name="farnell_page" value="1">
                 <input type="text" class="search-query search_form" name="q" placeholder="расширенный поиск">
               <% else %>
                 <form class="navbar-search pull-left" method="get" action="/search">

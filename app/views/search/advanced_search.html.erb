@@ -129,7 +129,8 @@
     <strong>Поиск по аналогам не дал результатов.</strong> Попробуйте переформулировать запрос.
   </div>
 <% end %>
-<% if !@farnell_products.nil? and @farnell_products.size > 0 and !@farnell_products[0].nil? %>
+<%#= @farnell_products.nil?.to_s + " " + @farnell_products.size.to_s + " " + (@farnell_products.is_a? Array).to_s %>
+<% if !@farnell_products.nil? and @farnell_products.size > 0 %>
   <% if @farnell_products.is_a? Array %>
     <br>
     <table width="100%" class="table-bordered table-condensed analogs_table" >
@@ -146,136 +147,143 @@
         <% count = 0 %>
         <% @farnell_products.each do |product| %>
           <tr>
-            <td style="vertical-align: top;">
-              <% imagePath = "http://ru.farnell.com/productimages//" + product["image"]["vrntPath"] + "/standard/" + product["image"]["baseName"] %>
-              <%= link_to image_tag(imagePath, class: "img-responsive center-block product-image-container"), imagePath, class: "fancybox" %>
-            </td>
-            <td style="vertical-align: top;">
-              <table class="table">
-                <tr>
-                  <td>
-                    <%= product["vendorName"] %> / <%= product["brandName"] %>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <span class="product-title">
-                      [<%= product["sku"] %>] <%= product["displayName"] %>
-                    </span>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <button type="button" class="btn btn-info"
-                      data-toggle="collapse" data-target=<%= "#" + count.to_s %>>
-                      Отображение характеристик
-                    </button>
-                    <% unless product["datasheets"].is_a? Array %>
-                      <button type="button" class="btn btn-danger" target="_blank" onclick="window.open(&quot;<%= product["datasheets"]["url"] %>&quot;)" >
-                        Даташит в виде PDF
+            <% unless product.nil? %>
+              <% unless product["image"].nil? %>
+                <td style="vertical-align: top;">
+                  <% imagePath = "http://ru.farnell.com/productimages//" + product["image"]["vrntPath"] + "/standard/" + product["image"]["baseName"] %>
+                  <%= link_to image_tag(imagePath, class: "img-responsive center-block product-image-container"), imagePath, class: "fancybox" %>
+                </td>
+              <% else %>
+                <td></td>
+              <% end %>
+              <td style="vertical-align: top;">
+                <table class="table">
+                  <tr>
+                    <td>
+                      <%= product["vendorName"] %> / <%= product["brandName"] %>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <span class="product-title">
+                        [<%= product["sku"] %>] <%= product["displayName"] %>
+                      </span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <button type="button" class="btn btn-info"
+                        data-toggle="collapse" data-target=<%= "#" + count.to_s %>>
+                        Отображение характеристик
                       </button>
-                    <% else %>
-                      <button type="button" class="btn btn-danger" target="_blank" onclick="window.open(&quot;<%= product["datasheets"][0]["url"] %>&quot;)" >
-                        Даташит в виде PDF
-                      </button>
-                    <% end %>
-                    <div id=<%= count.to_s %> class="collapse">
-                      <% unless product["attributes"].nil? %>
-                        <ul>
-                          <% product["attributes"].each do |attribute| %>
-                            <li><%= attribute["attributeLabel"] %>:
-                            <%= attribute["attributeValue"].html_safe if !attribute["attributeValue"].nil? %>
-                            <%= attribute["attributeUnit"].html_safe if !attribute["attributeUnit"].nil?  %></li>
-                          <% end %>
-                        </ul>
+                      <% unless product["datasheets"].is_a? Array %>
+                        <button type="button" class="btn btn-danger" target="_blank" onclick="window.open(&quot;<%= product["datasheets"]["url"] %>&quot;)" >
+                          Даташит в виде PDF
+                        </button>
                       <% else %>
-                        <p>характеристики не указаны</p>
+                        <button type="button" class="btn btn-danger" target="_blank" onclick="window.open(&quot;<%= product["datasheets"][0]["url"] %>&quot;)" >
+                          Даташит в виде PDF
+                        </button>
                       <% end %>
-                    </div>
-                  </td>
-                </tr>
-              </table>
-            </td>
-            <td style="vertical-align: top;">
-              <table class="table">
-                <% unless product["stock"].nil? %>
-                  <tr>
-                    <td>
-                      Количество:
-                    </td>
-                    <td>
-                      <%= product["stock"]["level"] %>
-                    </td>
-                  </tr>
-                  <tr>
-                    <% if product["stock"]["breakdown"].is_a? Array %>
-                      <% count = 1 %>
-                      <% product["stock"]["breakdown"].each do |br| %>
-                      <tr>
-                        <td>Склад №<%= count.to_s %> <%= br["region"] %>/<%= br["warehouse"] %>: </td>
-                        <td><%= br["inv"] %></td>
-                        <% count += 1 %>
-                      </tr>
-                      <% end %>
-                    <% else %>
-                      <td>Склад <%= product["stock"]["breakdown"]["region"] %>/<%= product["stock"]["breakdown"]["warehouse"] %>: </td>
-                      <td><%= product["stock"]["breakdown"]["inv"] %></td>
-                    <% end %>
-                  </tr>
-                  <tr>
-                    <td>
-                      Цикл производства:
-                    </td>
-                    <td>
-                      <%= product["stock"]["leastLeadTime"] %>
+                      <div id=<%= count.to_s %> class="collapse">
+                        <% unless product["attributes"].nil? %>
+                          <ul>
+                            <% product["attributes"].each do |attribute| %>
+                              <li><%= attribute["attributeLabel"] %>:
+                              <%= attribute["attributeValue"].html_safe if !attribute["attributeValue"].nil? %>
+                              <%= attribute["attributeUnit"].html_safe if !attribute["attributeUnit"].nil?  %></li>
+                            <% end %>
+                          </ul>
+                        <% else %>
+                          <p>характеристики не указаны</p>
+                        <% end %>
+                      </div>
                     </td>
                   </tr>
-                  <tr>
-                    <td>
-                      Мин. заказ:
-                    </td>
-                    <td>
-                      <%= product["translatedMinimumOrderQuality"] %>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      Нормоупоковка:
-                    </td>
-                    <td>
-                      <%= product["stock"]["status"] %>
-                    </td>
-                  </tr>
-                <% end %>
-              </table>
-            </td>
-            <td style="vertical-align: top;">
-              <table class="table">
-                <% unless product["prices"].nil? %>
-                  <% if product["prices"].is_a? Array %>
-                    <% product["prices"].each do |price| %>
-                      <tr>
-                        <td>
-                          От <%= price["from"] %> до <%= price["to"] %> шт. :
-                        </td>
-                        <td style="color: blue; text-align:right; ">
-                          &euro;<%= price["cost"] %>
-                        </td>
-                      </tr>
-                    <% end %>
-                  <% else %>
+                </table>
+              </td>
+              <td style="vertical-align: top;">
+                <table class="table">
+                  <% unless product["stock"].nil? %>
                     <tr>
                       <td>
-                        От <%= product["prices"]["from"] %> до <%= product["prices"]["to"] %> шт. :
+                        Количество:
                       </td>
-                      <td style="color: blue; text-align:right; ">
-                        &euro;<%= product["prices"]["cost"] %>
+                      <td>
+                        <%= product["stock"]["level"] %>
+                      </td>
+                    </tr>
+                    <tr>
+                      <% if product["stock"]["breakdown"].is_a? Array %>
+                        <% count = 1 %>
+                        <% product["stock"]["breakdown"].each do |br| %>
+                        <tr>
+                          <td>Склад №<%= count.to_s %> <%= br["region"] %>/<%= br["warehouse"] %>: </td>
+                          <td><%= br["inv"] %></td>
+                          <% count += 1 %>
+                        </tr>
+                        <% end %>
+                      <% else %>
+                        <td>Склад <%= product["stock"]["breakdown"]["region"] %>/<%= product["stock"]["breakdown"]["warehouse"] %>: </td>
+                        <td><%= product["stock"]["breakdown"]["inv"] %></td>
+                      <% end %>
+                    </tr>
+                    <tr>
+                      <td>
+                        Цикл производства:
+                      </td>
+                      <td>
+                        <%= product["stock"]["leastLeadTime"] %>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        Мин. заказ:
+                      </td>
+                      <td>
+                        <%= product["translatedMinimumOrderQuality"] %>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        Нормоупоковка:
+                      </td>
+                      <td>
+                        <%= product["stock"]["status"] %>
                       </td>
                     </tr>
                   <% end %>
-                <% end %>
-              </table>
-            </td>
+                </table>
+              </td>
+              <td style="vertical-align: top;">
+                <table class="table">
+                  <% unless product["prices"].nil? %>
+                    <% if product["prices"].is_a? Array %>
+                      <% product["prices"].each do |price| %>
+                        <tr>
+                          <td>
+                            От <%= price["from"] %> до <%= price["to"] %> шт. :
+                          </td>
+                          <td style="color: blue; text-align:right; ">
+                            &euro;<%= price["cost"] %>
+                          </td>
+                        </tr>
+                      <% end %>
+                    <% else %>
+                      <tr>
+                        <td>
+                          От <%= product["prices"]["from"] %> до <%= product["prices"]["to"] %> шт. :
+                        </td>
+                        <td style="color: blue; text-align:right; ">
+                          &euro;<%= product["prices"]["cost"] %>
+                        </td>
+                      </tr>
+                    <% end %>
+                  <% end %>
+                </table>
+              </td>
+            <% else %>
+            <% end %>
           </tr>
           <% count += 1 %>
         <% end %>
@@ -294,11 +302,13 @@
       <div class="page_info">
         <div class="page_info">
         <% x = params['farnell_page'].to_i; y = @results_number %>
-        <% if params['farnell_page'] and pages_modulo == 0 %>
+        <% if pages_modulo == 0 %>
           Отображено <b><%= (x*y - y + 1).to_s + " " %>-<%= " " + (x*y).to_s %></b> из <b><%= @summary %></b> результатов
-        <% elsif params['farnell_page'] and pages_modulo != 0 and (x * @results_number) > @summary %>
+        <% elsif pages_modulo != 0 and (x*y) > @summary %>
+          Отображено <b><%= (x*y - y + 1).to_s + " " %>-<%= " " + @summary.to_s %></b> из <b><%= @summary %></b> результатов
+        <% elsif pages_modulo != 0 and (x * @results_number) > @summary %>
           Отображено <b><%= (x*y - y + 1).to_s + " " %>-<%= " " + (x*y - y + pages_modulo).to_s %></b> из <b><%= @summary %></b> результатов
-        <% elsif params['farnell_page'] and pages_modulo != 0 %>
+        <% elsif pages_modulo != 0 %>
           Отображено <b><%= (x*y - y + 1).to_s + " " %>-<%= " " + (x*y).to_s %></b> из <b><%= @summary %></b> результатов
         <% else %>
           Отображено <b><%= '1' + " " %>-<%= " " + (@results_number).to_s %></b> из <b><%= @summary %></b> результатов

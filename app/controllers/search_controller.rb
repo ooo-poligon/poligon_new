@@ -228,14 +228,13 @@ private
                           "&callInfo.apiKey=" + farnell_api_key +
                           "&resultsSettings.offset=" + @results_offset.to_s +
                           "&resultsSettings.numberOfResults=" + @results_number.to_s +
-                          "&resultsSettings.refinements.filters=rohsCompliant" +
                           "&resultsSettings.responseGroup=large"
     if farnell_request_uri.ascii_only?
       @summary = number_or_nil Nokogiri::XML(
                  open(farnell_request_uri)).xpath("//ns1:keywordSearchReturn//ns1:numberOfResults").text
-      #@results_offset += @results_number
       result = Nokogiri::XML(open(farnell_request_uri))
       result_products = Hash.from_xml(result.to_s)["keywordSearchReturn"]["products"]
+      @rp = open(farnell_request_uri).read
       if result_products.is_a? Array
         result_products.each do |prod|
           farnell_products.push prod
