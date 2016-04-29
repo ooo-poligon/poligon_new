@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160420121822) do
+ActiveRecord::Schema.define(version: 20160429090428) do
 
   create_table "additions", force: :cascade do |t|
     t.text     "content",    limit: 4294967295
@@ -43,6 +43,16 @@ ActiveRecord::Schema.define(version: 20160420121822) do
     t.string   "title",      limit: 255
     t.text     "content",    limit: 65535
   end
+
+  create_table "b_iblock_element", primary_key: "ID", force: :cascade do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "title",      limit: 255,   default: "", null: false
+    t.text     "preview",    limit: 65535
+    t.text     "content",    limit: 65535
+  end
+
+  add_index "b_iblock_element", ["title"], name: "NAME", using: :btree
 
   create_table "categories", force: :cascade do |t|
     t.integer "parent",      limit: 4
@@ -139,6 +149,7 @@ ActiveRecord::Schema.define(version: 20160420121822) do
     t.datetime "updated_at",               null: false
     t.string   "title",      limit: 255
     t.text     "content",    limit: 65535
+    t.text     "preview",    limit: 65535
   end
 
   create_table "post_types", force: :cascade do |t|
