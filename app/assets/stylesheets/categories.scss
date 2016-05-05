@@ -58,3 +58,44 @@ tr.with-img th {
   font-weight: bold;
   font-size: 14px;
 }
+
+/* для релеко, обновлённых страниц */
+.relecoLogos{float: right;}
+.relecoLogos img{
+  height: 48px;
+  width: auto;
+}
+.benefitLogos img{
+  height: 55px;
+  width: 55px;
+}
+
+table.releco{ #width: 700px;}
+table.releco caption{
+  text-align: left;
+  font-size: 18px;
+}
+
+table.releco thead{ border-bottom: 1px blue solid}
+table.releco th{
+  text-align: left;
+  border-top: 1px blue solid
+}
+
+table.releco img{height: 28px; width: auto;}
+
+table.releco td:nth-child(1) img{
+  width: 75px;
+  height: auto;
+}
+table.releco th:nth-child(1){width: 75px;}
+table.releco th:nth-child(2){width: 255px;}
+table.releco th:nth-child(3){width: 75px;}
+table.releco th:nth-child(4){width: 30px;}
+table.releco th:nth-child(5){width: 150px;}
+table.releco th:nth-child(6){width: 150px;}
+table.releco th:nth-child(7){width: 150px;}
+table.releco th:nth-child(8){
+  width: 40px;
+  text-align: center;
+}

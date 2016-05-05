@@ -1,0 +1,6 @@
+<h4>Другое видео по теме:</h4>
+<ul class="mark">
+<% videos.each do |video| %>
+  <li><%= link_to video.title, video %></li>
+<% end %>
+</ul>

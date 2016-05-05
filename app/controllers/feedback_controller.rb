@@ -76,4 +76,28 @@ class FeedbackController < ApplicationController
     end
   end
 
+  def farnell
+  end
+
+  def farnell_order
+    unless params[:name] == '' or
+           params[:email] == '' or
+           params[:company] == '' or
+           params[:phone] == '' or
+           params[:order] == ''
+
+      @name    = params[:name]
+      @email   = params[:email]
+      @company = params[:company]
+      @phone   = params[:phone]
+      @order   = params[:order]
+
+      UserMailer.farnell_order_email(@name, @email, @company, @phone, @order).deliver_now
+      render "farnell_order"
+    else
+      flash[:error] = "Не заполнены все необходимые поля!"
+      render "farnell"
+    end
+  end
+
 end

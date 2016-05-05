@@ -8,7 +8,7 @@
       .gsub('src="/images', 'src="http://www.poligon.info/images')
       .html_safe %>
 </p>
-
+<%= render partial: 'shared/videos_list', locals: { videos: @videos } %>
 <p>
   <b>Дата создания:</b>
   <%= @video.created_at %>

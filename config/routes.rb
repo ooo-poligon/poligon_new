@@ -31,6 +31,7 @@ Poligon::Application.routes.draw do
   get 'feedback/mailing_list'
   get 'feedback/confirm_subscription'
   get 'feedback/confirm_unsubscription'
+  get 'feedback/farnell'
   get 'search', to: 'search#search'
   get 'advanced_search', to: 'search#advanced_search'
   get "sitemap" => "sitemap#show", format: :html, as: :sitemap
@@ -38,7 +39,8 @@ Poligon::Application.routes.draw do
   get 'feeds', to: 'announce#index', format: 'rss'
   post 'feedback/subscribe' => 'feedback#subscribe'
   post 'feedback/unsubscribe' => 'feedback#unsubscribe'
-  get 'feedback/catalogs_order' => 'feedback#catalogs_order'
+  post 'feedback/catalogs_order' => 'feedback#catalogs_order'
+  post 'feedback/farnell_order' => 'feedback#farnell_order'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

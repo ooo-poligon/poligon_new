@@ -43,6 +43,54 @@ class SearchController < ApplicationController
     end
     @articles.execute!
 
+    @additions = Sunspot.search(Addition) do
+      #fulltext search
+      fulltext params['q']
+
+      #scoping
+      if params.has_key?(:title)
+        with :title, params['q']
+      end
+      if params.has_key?(:content)
+        with :content, params['q']
+      end
+
+      paginate :page => params[:additions_page], :per_page => 25
+    end
+    @additions.execute!
+
+    @reviews = Sunspot.search(Review) do
+      #fulltext search
+      fulltext params['q']
+
+      #scoping
+      if params.has_key?(:title)
+        with :title, params['q']
+      end
+      if params.has_key?(:content)
+        with :content, params['q']
+      end
+
+      paginate :page => params[:reviews_page], :per_page => 25
+    end
+    @reviews.execute!
+
+    @videos = Sunspot.search(Video) do
+      #fulltext search
+      fulltext params['q']
+
+      #scoping
+      if params.has_key?(:title)
+        with :title, params['q']
+      end
+      if params.has_key?(:content)
+        with :content, params['q']
+      end
+
+      paginate :page => params[:videos_page], :per_page => 25
+    end
+    @videos.execute!
+
     @news_items = Sunspot.search(NewsItem) do
       #fulltext search
       fulltext params['q']
@@ -150,6 +198,54 @@ class SearchController < ApplicationController
       paginate :page => params[:articles_page], :per_page => 25
     end
     @articles.execute!
+
+    @additions = Sunspot.search(Addition) do
+      #fulltext search
+      fulltext params['q']
+
+      #scoping
+      if params.has_key?(:title)
+        with :title, params['q']
+      end
+      if params.has_key?(:content)
+        with :content, params['q']
+      end
+
+      paginate :page => params[:additions_page], :per_page => 25
+    end
+    @additions.execute!
+
+    @reviews = Sunspot.search(Review) do
+      #fulltext search
+      fulltext params['q']
+
+      #scoping
+      if params.has_key?(:title)
+        with :title, params['q']
+      end
+      if params.has_key?(:content)
+        with :content, params['q']
+      end
+
+      paginate :page => params[:reviews_page], :per_page => 25
+    end
+    @reviews.execute!
+
+    @videos = Sunspot.search(Video) do
+      #fulltext search
+      fulltext params['q']
+
+      #scoping
+      if params.has_key?(:title)
+        with :title, params['q']
+      end
+      if params.has_key?(:content)
+        with :content, params['q']
+      end
+
+      paginate :page => params[:videos_page], :per_page => 25
+    end
+    @videos.execute!
 
     @news_items = Sunspot.search(NewsItem) do
       #fulltext search

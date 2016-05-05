@@ -11,6 +11,7 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require jquery
+//= require additions
 //= require fancybox
 // require jquery_ujs
 //= require bootstrap-sprockets

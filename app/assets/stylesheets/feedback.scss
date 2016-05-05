@@ -106,3 +106,56 @@ label[for=benedict]{
   width: 60px;
   border: 1px solid black;
 }
+
+.style12 {font-size: 14px; font-weight: bold; color: #FFFFFF; }
+
+#farnell h3{
+  margin: 6px 0px 0px 8px;
+  font-size: 15px;
+}
+#farnell{
+  background-color: silver;
+  border: 1px black solid;
+  #border-radius: 8px;
+  width: 500px;
+  height: 210px;
+}
+#farnell form textarea {
+  width: 274px;
+  height: 150px;
+}
+label {
+  display: inline-block;
+  width: 32px;
+}
+label[for=order]{
+  float: left;
+  display: block;
+  width: 10em;
+}
+label[for=company] {
+  background: url("http://www.poligon.info/images/icons/application_home.png") center no-repeat;
+}
+
+label[for=name] {
+  background: url('/images/icons/user_suit.png') center no-repeat;
+}
+label[for=email] {
+  background: url('/images/icons/email.png') center no-repeat;
+  border: 1px dotted black;
+  margin: -1px;
+}
+label[for=telephone] {
+  background: url('/images/icons/phone.png') center no-repeat;
+}
+
+#farnell p {
+  margin: 0px;
+}
+#farnell input {
+  margin: 6px;
+  width: 142px;
+}
+#farnell input[type=image]{
+  width: 150px;
+}

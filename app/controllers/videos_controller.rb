@@ -9,6 +9,7 @@ class VideosController < ApplicationController
   end
 
   def show
+    @videos = Video.all
     @video = Video.find(params[:id])
 
     respond_to do |format|

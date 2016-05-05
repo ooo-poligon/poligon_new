@@ -21,4 +21,13 @@ class UserMailer < ActionMailer::Base
     mail(to: 'webmaster@poligon.info', subject: 'Заказ каталогов с сайта new.poliogn.info')
   end
 
+  def farnell_order_email(name, email, company, phone, order)
+    @name    = name
+    @email   = email
+    @company = company
+    @phone   = phone
+    @order   = order
+    mail(to: 'webmaster@poligon.info', subject: 'Заказ FARNELL с сайта new.poliogn.info')
+  end
+
 end

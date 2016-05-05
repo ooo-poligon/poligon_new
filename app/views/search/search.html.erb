@@ -28,6 +28,45 @@
   </div>
 <% end %>
 
+<% if !@additions.results.empty? %>
+<h3>Поиск по дополнительным материалам:</h3>
+  <% @additions.results.each do |addition| %>
+      <h4><%= link_to addition.title, addition %></h4>
+  <% end %>
+  <div class="flickr_pagination">
+    <div class="page_info">
+      <%= page_entries_info @additions.results %>
+    </div>
+    <%= will_paginate @additions.results, :param_name => 'additions_page', :container => false %>
+  </div>
+<% end %>
+
+<% if !@reviews.results.empty? %>
+<h3>Поиск по обзорам:</h3>
+  <% @reviews.results.each do |review| %>
+      <h4><%= link_to review.title, review %></h4>
+  <% end %>
+  <div class="flickr_pagination">
+    <div class="page_info">
+      <%= page_entries_info @reviews.results %>
+    </div>
+    <%= will_paginate @reviews.results, :param_name => 'reviews_page', :container => false %>
+  </div>
+<% end %>
+
+<% if !@videos.results.empty? %>
+<h3>Поиск по видеоматериалам:</h3>
+  <% @videos.results.each do |video| %>
+      <h4><%= link_to video.title, video %></h4>
+  <% end %>
+  <div class="flickr_pagination">
+    <div class="page_info">
+      <%= page_entries_info @videos.results %>
+    </div>
+    <%= will_paginate @videos.results, :param_name => 'videos_page', :container => false %>
+  </div>
+<% end %>
+
 <% if !@news_items.results.empty? %>
   <h3>Поиск по новостям:</h3>
   <% @news_items.results.each do |news_item| %>

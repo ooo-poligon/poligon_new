@@ -133,7 +133,6 @@
       <% end %>
       <%= yield %>
     </div><!--/span-->
-
     <div class="col-xs-6 col-sm-2 sidebar-offcanvas" id="sidebar" role="navigation"><br><br><br>
       <div class="list-group">
         <%= link_to image_tag("logo/logo_200x60/tele.gif", alt: '"TELE"', title: "реле времени и контроля из Австрии", :class => 'partners list-group-item'), :action => 'show', :controller => 'categories', :id => '142' %>
@@ -147,7 +146,7 @@
         <%= link_to image_tag("logo/logo_200x60/cbi.gif", alt: '"CBI"', title: "Профессиональные автоматические выключатели", :class => "partners list-group-item"), :action => 'show', :controller => 'categories', :id => '5512' %>
         <%= link_to image_tag("logo/logo_200x60/tehnoplast.gif", alt: '"TEHNOPLAST"', title: "Электротехнические шкафы TEHNOPLAST", :class => "partners list-group-item"), :action => 'show', :controller => 'categories', :id => '6441' %>
         <%= link_to image_tag("logo/logo_200x60/huber-suhner.gif", alt: '"HUBER+SUHNER"', title: "ВЧ-разъемы, оптические компоненты", :class => "partners list-group-item"), :action => 'show', :controller => 'categories', :id => '4847' %>
-        <%= link_to image_tag("logo/logo_200x60/farnell.gif", alt: '"FARNELL"', title: "мировой лидер в области поставок электронных компонентов", :class => "partners list-group-item"), content_farnell_path %>
+        <%= link_to image_tag("logo/logo_200x60/farnell.gif", alt: '"FARNELL"', title: "мировой лидер в области поставок электронных компонентов", :class => "partners list-group-item"), feedback_farnell_path %>
         <%= link_to image_tag("logo/logo_200x60/poligonspb.gif", alt: '"ПОЛИГОН"', title: "ПОЛИГОН - производитель модульных устройств автоматики и защиты из Санкт-Петербурга", :class => "partners list-group-item"), :action => 'show', :controller => 'categories', :id => '6321' %>
         <%= link_to image_tag("logo/logo_200x60/vemer.gif", alt: '"VEMER"', title: "производитель промышленных решений для измерения и контроля основных электрических параметров", :class => "partners list-group-item"), :action => 'show', :controller => 'categories', :id => '5650' %>
       </div>
