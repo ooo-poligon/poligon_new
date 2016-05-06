@@ -196,13 +196,16 @@ ActiveRecord::Schema.define(version: 20160429090428) do
     t.float   "discount1",          limit: 53,         default: 1.0, null: false
     t.float   "discount2",          limit: 53,         default: 1.0, null: false
     t.float   "discount3",          limit: 53,         default: 1.0, null: false
-    t.integer "accessory_owner_id", limit: 4,          default: 0,   null: false
+    t.float   "rub_retail",         limit: 53,         default: 1.0, null: false
+    t.integer "accessory_owner_id", limit: 4,          default: 0.0, null: false
+    t.integer "currency_id",        limit: 4,          default: 1,   null: false
   end
 
   add_index "products", ["category_id"], name: "FK_of5oeawsy50x878ic9tyapdnv", using: :btree
   add_index "products", ["product_kind_id"], name: "FK_products_product_kinds", using: :btree
   add_index "products", ["serie"], name: "FK_products_series", using: :btree
   add_index "products", ["vendor"], name: "FK_products_vendors", using: :btree
+  add_index "products", ["currency_id"], name: "FK_products_currencies", using: :btree
 
   create_table "products_accessories", force: :cascade do |t|
     t.integer "product_id",   limit: 4, default: 0, null: false

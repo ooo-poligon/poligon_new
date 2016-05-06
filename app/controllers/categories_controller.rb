@@ -24,13 +24,14 @@ class CategoriesController < ApplicationController
 
     Product.available.where(category_id: params[:id]).each do |product|
       minihash = []
-      minihash.push(product, (product.price * (@courseEuro + (@courseEuro / 100) * addCBR.text_value.to_f) * product.rate).round)
+      if product.currency_id == 1
+        minihash.push(product, (product.price * (@courseEuro + (@courseEuro / 100) * addCBR.text_value.to_f) * product.rate).round)
+      elsif product.currency_id == 2
+        minihash.push(product, product.rub_retail.round)
+      end
       @products.push(minihash)
     end
   end
-
-
-
 
   protected
 

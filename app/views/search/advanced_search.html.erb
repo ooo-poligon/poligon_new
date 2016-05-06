@@ -37,7 +37,7 @@
                 </td>
               </tr>
               <tr>
-              <% unless product.article.nil? %>
+              <% unless product.article.nil? or product.article == '' %>
                 <td><span class="product-title"><%= link_to "(" + product.article + ") " + product.title, product %></span></td>
                 <% else %>
                   <td><span class="product-title"><%= link_to product.title, product %></span></td>

@@ -6,7 +6,11 @@ class ProductsController < ApplicationController
   def show
     @product = Product.find(params[:id])
     @addCBR = Setting.find_by title: 'AddCBR'
-    @retail_price = (@product.price * (@courseEuro + (@courseEuro / 100) * @addCBR.text_value.to_f) * @product.rate).round
+    if @product.currency_id == 1
+      @retail_price = (@product.price * (@courseEuro + (@courseEuro / 100) * @addCBR.text_value.to_f) * @product.rate).round
+    elsif @product.currency_id == 2
+      @retail_price = @product.rub_retail.round
+    end
     @productImage = ImageFile.where("owner_id = ? and file_type_id = 1", @product.id).first
     productFunctions = ProductFunction.where("product_id = ?", @product.id)
     function_ids = []
