@@ -58,7 +58,12 @@
           <tr>
             <% productImage = ImageFile.where('owner_id = ? and file_type_id = 1', product_array[0].id).first %>
             <% unless productImage.nil? %>
-              <% imagePath = productImage.path.gsub!("c:\\poligon_images", "http://www.poligon.info/images").gsub!("\\", "/") %>
+              <% if productImage.path[0] != 'c' %>
+                <% productImage.path.gsub!(productImage.path[0], 'c') %>
+                <% imagePath = productImage.path.gsub!("c:\\poligon_images", "http://www.poligon.info/images").gsub!("\\", "/") %>
+              <% else %>
+                <% imagePath = productImage.path.gsub!("c:\\poligon_images", "http://www.poligon.info/images").gsub!("\\", "/") %>
+              <% end %>
               <td><%= link_to image_tag(imagePath, class: "img-responsive center-block product-image-container"), imagePath, class: "fancybox" %></td>
           <% else %>
               <td></td>

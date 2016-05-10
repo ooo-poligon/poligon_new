@@ -41,6 +41,15 @@
         <p style="font-weight: bold; color: red;">нет изображения</p>
       <% end %>
       <hr>
+      <% if @productPdf != nil %>
+        <p>
+          <% pdfPath = @productPdf.path.gsub!("c:\\poligon_datasheets\\datasheets", "http://www.poligon.info/PDF").gsub!("\\", "/") %>
+          <%= link_to( "Описание в формате PDF", pdfPath) %>
+        </p>
+      <% else %>
+        <p style="font-weight: bold; color: red;">Описание в формате PDF отсутствует</p>
+      <% end %>
+      <hr>
       <% if user_signed_in? %>
         <% unless @product.price == 0 %>
           <h3>Цены:</h3>
