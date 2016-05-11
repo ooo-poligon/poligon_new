@@ -7,6 +7,8 @@ class SearchController < ApplicationController
 
   require 'active_support/core_ext/hash/conversions'
 
+  before_action :authenticate_user!
+
   def search
     @products = Sunspot.search(Product) do
       #fulltext search

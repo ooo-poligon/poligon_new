@@ -1,7 +1,7 @@
 <h1>Служебный вход ООО "ПОЛИГОН"</h1>
 
 <% if user_signed_in? %>
-    Добро пожаловать <b><%= current_user.username %></b>
+    <b><%= hello_user %></b>
     <p>Вы уже получили доступ к служебному интерфейсу.</p>
     <%= link_to "Выйти", destroy_user_session_path, :method => 'delete' %>
 <% else %>

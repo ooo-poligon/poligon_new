@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
 
   before_filter :configure_permitted_parameters, if: :devise_controller?
 
-  helper_method :get_prices_eur, :get_prices_rub
+  helper_method :get_prices_eur, :get_prices_rub, :hello_user
 
   def get_prices_eur(product)
     prices_array = []
@@ -29,6 +29,14 @@ class ApplicationController < ActionController::Base
     prices_array << retail_ru - (retail_ru/100 * product.discount3)
     prices_array << product.price * course_multiplier
     prices_array
+  end
+
+  def hello_user
+    io_only = []
+    current_user.name.split(" ").each_with_index do |word, idx|
+      io_only.push word if idx != 0
+    end
+    "Здравствуйте, #{ io_only.join(" ") }!"
   end
 
   protected

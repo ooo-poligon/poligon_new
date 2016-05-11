@@ -23,21 +23,36 @@
 <% else %>
   <% minimum = 0 %>
 <% end %>
-
-<table class="table table-condensed">
-  <tr>
-    <td>&nbspДоступно:</td><td style="font-weight: bolder; align-content: right;">&nbsp<%= stock - reserved %>&nbsp</td><td style="align-content: right;">шт.</td>
-  </tr>
-  <tr>
-    <td>&nbspВ резерве:</td><td style="font-weight: bolder; align-content: right;">&nbsp<%= reserved %>&nbsp</td><td style="align-content: right;">шт.</td>
-  </tr>
-  <tr>
-    <td>&nbspЗаказано:</td><td style="font-weight: bolder; align-content: right;">&nbsp<%= ordered %>&nbsp</td><td style="align-content: right;">шт.</td>
-  </tr>
-  <tr>
-    <td>&nbspВ упаковке:</td><td style="font-weight: bolder; align-content: right;">&nbsp<%= pieces_per_pack %>&nbsp</td><td style="align-content: right;">шт.</td>
-  </tr>
-  <tr>
-    <td>&nbspМинимум:</td><td style="font-weight: bolder; align-content: right;">&nbsp<%= minimum %>&nbsp</td><td style="align-content: right;">шт.</td>
-  </tr>
-</table>
+<% if user_signed_in? %>
+  <% if current_user.group_id == 2 or current_user.group_id == 3 %>
+    <table class="table table-condensed">
+      <tr>
+        <td>&nbspДоступно:</td><td style="font-weight: bolder; align-content: right;">&nbsp<%= stock - reserved %>&nbsp</td><td style="align-content: right;">шт.</td>
+      </tr>
+      <tr>
+        <td>&nbspВ резерве:</td><td style="font-weight: bolder; align-content: right;">&nbsp<%= reserved %>&nbsp</td><td style="align-content: right;">шт.</td>
+      </tr>
+      <tr>
+        <td>&nbspЗаказано:</td><td style="font-weight: bolder; align-content: right;">&nbsp<%= ordered %>&nbsp</td><td style="align-content: right;">шт.</td>
+      </tr>
+      <tr>
+        <td>&nbspВ упаковке:</td><td style="font-weight: bolder; align-content: right;">&nbsp<%= pieces_per_pack %>&nbsp</td><td style="align-content: right;">шт.</td>
+      </tr>
+      <tr>
+        <td>&nbspМинимум:</td><td style="font-weight: bolder; align-content: right;">&nbsp<%= minimum %>&nbsp</td><td style="align-content: right;">шт.</td>
+      </tr>
+    </table>
+  <% elsif current_user.group_id == 1 %>
+    <table class="table table-condensed">
+      <tr>
+        <td>&nbspДоступно:</td><td style="font-weight: bolder; align-content: right;">&nbsp<%= stock - reserved %>&nbsp</td><td style="align-content: right;">шт.</td>
+      </tr>
+      <tr>
+        <td>&nbspВ резерве:</td><td style="font-weight: bolder; align-content: right;">&nbsp<%= reserved %>&nbsp</td><td style="align-content: right;">шт.</td>
+      </tr>
+      <tr>
+        <td>&nbspЗаказано:</td><td style="font-weight: bolder; align-content: right;">&nbsp<%= ordered %>&nbsp</td><td style="align-content: right;">шт.</td>
+      </tr>
+    </table>
+  <% end %>
+<% end %>

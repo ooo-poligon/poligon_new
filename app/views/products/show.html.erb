@@ -41,7 +41,7 @@
         <p style="font-weight: bold; color: red;">нет изображения</p>
       <% end %>
       <hr>
-      <% if @productPdf != nil %>
+      <% if @productPdf != nil and @productPdf.path != "c:\\poligon_datasheets\\" %>
         <p>
           <% pdfPath = @productPdf.path.gsub!("c:\\poligon_datasheets\\datasheets", "http://www.poligon.info/PDF").gsub!("\\", "/") %>
           <%= link_to( "Описание в формате PDF", pdfPath) %>
@@ -60,7 +60,7 @@
           </p>
         <% end %>
         <h3>Количество:</h3>
-        <%= render partial: 'shared/product_quantities_table', locals: {product: @product} %>
+        <%= render partial: 'shared/product_quantities_table', locals: {product: @product } %>
         <h3 style="display: inline;">Срок поставки:</h3>
           <span style="font-size: 14px; color: green; float: right; padding-top: 4px; padding-right: 10px;"><%= @product.delivery_time %>.</span>
         <br><br>

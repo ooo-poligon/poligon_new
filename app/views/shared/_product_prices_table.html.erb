@@ -1,178 +1,443 @@
-<% if product.currency_id == 1 %>
-  <table class="table table-condensed">
-    <tr class="error">
-      <% unless get_prices_eur(product)[1].round == get_prices_eur(product)[0].round %>
-        <td width="18%" style="text-align:left">
-          Специальная:
-        </td>
-        <td width="5%" style="text-align:left">
-          -<%= product.special %>%
-        </td>
-        <td width="27%" style="color: blue; text-align:right; ">
-          &euro;<%= get_prices_eur(product)[1].round %>
-        </td>
-        <td width="50%" style="color: green; text-align:right; ">
-          <%= get_prices_rub(product)[1].round %>р.
-        </td>
-      <% else %>
-        <td width="18%" style="text-align:left">
-          Специальная:
-        </td>
-        <td width="5%" style="text-align:left">
-        </td>
-        <td width="27%" style="color: brown; text-align:right;">
-          нет
-        </td>
-        <td width="50%" style="color: green; text-align:right;">
-        </td>
-      <% end %>
-    </tr>
-    <tr class="info">
-      <% unless get_prices_eur(product)[1].round < get_prices_eur(product)[0].round %>
+<% if user_signed_in? %>
+  <!-- 1 means dealer group -->
+  <% if current_user.group_id == 1 %>
+  <% if product.currency_id == 1 %>
+    <table class="table table-condensed">
+      <tr class="error">
+        <% unless get_prices_eur(product)[1].round == get_prices_eur(product)[0].round %>
+          <td width="18%" style="text-align:left">
+            Специальная:
+          </td>
+          <td width="5%" style="text-align:left">
+            -<%= product.special %>%
+          </td>
+          <td width="27%" style="color: blue; text-align:right; ">
+            &euro;<%= get_prices_eur(product)[1].round %>
+          </td>
+          <td width="50%" style="color: green; text-align:right; ">
+            <%= get_prices_rub(product)[1].round %>р.
+          </td>
+        <% else %>
+          <td width="18%" style="text-align:left">
+            Специальная:
+          </td>
+          <td width="5%" style="text-align:left">
+          </td>
+          <td width="27%" style="color: brown; text-align:right;">
+            нет
+          </td>
+          <td width="50%" style="color: green; text-align:right;">
+          </td>
+        <% end %>
+      </tr>
+      <tr class="info">
+        <% unless get_prices_eur(product)[1].round < get_prices_eur(product)[0].round %>
+          <td style="text-align:left">
+            Розница:
+          </td>
+          <td style="text-align:left">
+          </td>
+          <td style="color: blue; text-align:right;">
+            &euro;<%= get_prices_eur(product)[0].round %>
+          </td>
+          <td style="color: green; text-align:right;">
+            <%= get_prices_rub(product)[0].round %>р.
+          </td>
+        <% else %>
+          <td style="text-align:left">
+            Розница <sup style="color: red; font-size: 7pt"><%= product.rate %></sup>:
+          </td>
+          <td style="text-align:left">
+            -<%= product.special %>%
+          </td>
+          <td style="color: blue; text-align:right;">
+            &euro;<%= get_prices_eur(product)[1].round %>
+          </td>
+          <td style="color: green; text-align:right;">
+            <%= get_prices_rub(product)[1].round %>р.
+          </td>
+        <% end %>
+      </tr>
+      <tr class="success">
+        <% unless get_prices_eur(product)[1].round < get_prices_eur(product)[4].round %>
+          <td style="text-align:left">
+            Дилерская:
+          </td style="text-align:left">
+          <td>
+            -<%= product.discount3 %>%
+          </td>
+          <td style="color: blue; text-align:right;">
+            &euro;<%= get_prices_eur(product)[4].round %>
+          </td>
+          <td style="color: green; text-align:right;">
+            <%= get_prices_rub(product)[4].round %>р.
+          </td>
+        <% else %>
+          <td style="text-align:left">
+            Дилерская:
+          </td>
+          <td style="text-align:left">
+            -<%= product.special %>%
+          </td>
+          <td style="text-align:right; color: blue;">
+            &euro;<%= get_prices_eur(product)[1].round %>
+          </td>
+          <td style="text-align:right; color: green;">
+            <%= get_prices_rub(product)[1].round %>р.
+          </td>
+        <% end %>
+      </tr>
+    </table>
+  <% elsif product.currency_id == 2 %>
+    <table class="table table-condensed">
+      <tr class="warning">
         <td style="text-align:left">
-          Розница <sup style="color: red; font-size: 7pt"><%= product.rate %></sup>:
-        </td>
-        <td style="text-align:left">
-        </td>
-        <td style="color: blue; text-align:right;">
-          &euro;<%= get_prices_eur(product)[0].round %>
-        </td>
-        <td style="color: green; text-align:right;">
-          <%= get_prices_rub(product)[0].round %>р.
-        </td>
-      <% else %>
-        <td style="text-align:left">
-          Розница <sup style="color: red; font-size: 7pt"><%= product.rate %></sup>:
-        </td>
-        <td style="text-align:left">
-          -<%= product.special %>%
-        </td>
-        <td style="color: blue; text-align:right;">
-          &euro;<%= get_prices_eur(product)[1].round %>
-        </td>
-        <td style="color: green; text-align:right;">
-          <%= get_prices_rub(product)[1].round %>р.
-        </td>
-      <% end %>
-    </tr>
-    <tr class="success">
-      <% unless get_prices_eur(product)[1].round < get_prices_eur(product)[2].round %>
-        <td style="text-align:left">
-          Мелкий опт:
-        </td>
-        <td style="text-align:left">
-          -<%= product.discount1 %>%
-        </td>
-        <td style="color: blue; text-align:right;">
-          &euro;<%= get_prices_eur(product)[2].round %>
-        </td>
-        <td style="color: green; text-align:right;">
-          <%= get_prices_rub(product)[2].round %>р.
-        </td>
-      <% else %>
-        <td style="text-align:left">
-          Мелкий опт:
-        </td>
-        <td style="text-align:left">
-          -<%= product.special %>%
-        </td>
-        <td style="color: blue; text-align:right;">
-          &euro;<%= get_prices_eur(product)[1].round %>
-        </td>
-        <td style="color: green; text-align:right;">
-          <%= get_prices_rub(product)[1].round %>р.
-        </td>
-      <% end %>
-    </tr>
-    <tr class="warning">
-      <% unless get_prices_eur(product)[1].round < get_prices_eur(product)[3].round %>
-        <td style="text-align:left">
-          Оптовая:
-        </td>
-        <td style="text-align:left">
-          -<%= product.discount2 %>%
-        </td>
-        <td style="color: blue; text-align:right;">
-          &euro;<%= get_prices_eur(product)[3].round %>
-        </td>
-        <td style="color: green; text-align:right;">
-          <%= get_prices_rub(product)[3].round %>р.
-        </td>
-      <% else %>
-        <td style="text-align:left">
-          Оптовая:
-        </td>
-        <td style="text-align:left">
-          -<%= product.special %>%
-        </td>
-        <td style="color: blue; text-align:right;">
-          &euro;<%= get_prices_eur(product)[1].round %>
-        </td>
-        <td style="color: green; text-align:right;">
-          <%= get_prices_rub(product)[1].round %>р.
-        </td>
-      <% end %>
-    </tr>
-    <tr class="success">
-      <% unless get_prices_eur(product)[1].round < get_prices_eur(product)[4].round %>
-        <td style="text-align:left">
-          Диллерская:
-        </td style="text-align:left">
-        <td>
-          -<%= product.discount3 %>%
-        </td>
-        <td style="color: blue; text-align:right;">
-          &euro;<%= get_prices_eur(product)[4].round %>
-        </td>
-        <td style="color: green; text-align:right;">
-          <%= get_prices_rub(product)[4].round %>р.
-        </td>
-      <% else %>
-        <td style="text-align:left">
-          Диллерская:
-        </td>
-        <td style="text-align:left">
-          -<%= product.special %>%
-        </td>
-        <td style="text-align:right; color: blue;">
-          &euro;<%= get_prices_eur(product)[1].round %>
+          Розница:
         </td>
         <td style="text-align:right; color: green;">
-          <%= get_prices_rub(product)[1].round %>р.
+          <%= product.rub_retail.round %>р.
         </td>
-      <% end %>
-    </tr>
-    <tr class="info">
-      <td style="text-align:left">
-        Закупочная:
-      </td>
-      <td style="text-align:left">
-      </td>
-      <td style="text-align:right; color: blue;">
-        &euro;<%= get_prices_eur(product)[5].round %>
-      </td>
-      <td style="text-align:right; color: green;">
-        <%= get_prices_rub(product)[5].round %>р.
-      </td>
-    </tr>
-  </table>
-<% elsif product.currency_id == 2 %>
-  <table class="table table-condensed">
-    <tr class="warning">
-      <td style="text-align:left">
-        Розница:
-      </td>
-      <td style="text-align:right; color: green;">
-        <%= product.rub_retail.round %>р.
-      </td>
-    </tr>
-    <tr class="info">
-      <td style="text-align:left">
-        Закупочная:
-      </td>
-      <td style="text-align:right; color: green;">
-        <%= product.price.round %>р.
-      </td>
-    </tr>
-  </table>
+      </tr>
+    </table>
+  <% end %>
+  <!-- 2 means marketing group -->
+  <% elsif current_user.group_id == 2 %>
+  <% if product.currency_id == 1 %>
+    <table class="table table-condensed">
+      <tr class="error">
+        <% unless get_prices_eur(product)[1].round == get_prices_eur(product)[0].round %>
+          <td width="18%" style="text-align:left">
+            Специальная:
+          </td>
+          <td width="5%" style="text-align:left">
+            -<%= product.special %>%
+          </td>
+          <td width="27%" style="color: blue; text-align:right; ">
+            &euro;<%= get_prices_eur(product)[1].round %>
+          </td>
+          <td width="50%" style="color: green; text-align:right; ">
+            <%= get_prices_rub(product)[1].round %>р.
+          </td>
+        <% else %>
+          <td width="18%" style="text-align:left">
+            Специальная:
+          </td>
+          <td width="5%" style="text-align:left">
+          </td>
+          <td width="27%" style="color: brown; text-align:right;">
+            нет
+          </td>
+          <td width="50%" style="color: green; text-align:right;">
+          </td>
+        <% end %>
+      </tr>
+      <tr class="info">
+        <% unless get_prices_eur(product)[1].round < get_prices_eur(product)[0].round %>
+          <td style="text-align:left">
+            Розница <sup style="color: red; font-size: 7pt"><%= product.rate %></sup>:
+          </td>
+          <td style="text-align:left">
+          </td>
+          <td style="color: blue; text-align:right;">
+            &euro;<%= get_prices_eur(product)[0].round %>
+          </td>
+          <td style="color: green; text-align:right;">
+            <%= get_prices_rub(product)[0].round %>р.
+          </td>
+        <% else %>
+          <td style="text-align:left">
+            Розница <sup style="color: red; font-size: 7pt"><%= product.rate %></sup>:
+          </td>
+          <td style="text-align:left">
+            -<%= product.special %>%
+          </td>
+          <td style="color: blue; text-align:right;">
+            &euro;<%= get_prices_eur(product)[1].round %>
+          </td>
+          <td style="color: green; text-align:right;">
+            <%= get_prices_rub(product)[1].round %>р.
+          </td>
+        <% end %>
+      </tr>
+      <tr class="success">
+        <% unless get_prices_eur(product)[1].round < get_prices_eur(product)[2].round %>
+          <td style="text-align:left">
+            Мелкий опт:
+          </td>
+          <td style="text-align:left">
+            -<%= product.discount1 %>%
+          </td>
+          <td style="color: blue; text-align:right;">
+            &euro;<%= get_prices_eur(product)[2].round %>
+          </td>
+          <td style="color: green; text-align:right;">
+            <%= get_prices_rub(product)[2].round %>р.
+          </td>
+        <% else %>
+          <td style="text-align:left">
+            Мелкий опт:
+          </td>
+          <td style="text-align:left">
+            -<%= product.special %>%
+          </td>
+          <td style="color: blue; text-align:right;">
+            &euro;<%= get_prices_eur(product)[1].round %>
+          </td>
+          <td style="color: green; text-align:right;">
+            <%= get_prices_rub(product)[1].round %>р.
+          </td>
+        <% end %>
+      </tr>
+      <tr class="warning">
+        <% unless get_prices_eur(product)[1].round < get_prices_eur(product)[3].round %>
+          <td style="text-align:left">
+            Оптовая:
+          </td>
+          <td style="text-align:left">
+            -<%= product.discount2 %>%
+          </td>
+          <td style="color: blue; text-align:right;">
+            &euro;<%= get_prices_eur(product)[3].round %>
+          </td>
+          <td style="color: green; text-align:right;">
+            <%= get_prices_rub(product)[3].round %>р.
+          </td>
+        <% else %>
+          <td style="text-align:left">
+            Оптовая:
+          </td>
+          <td style="text-align:left">
+            -<%= product.special %>%
+          </td>
+          <td style="color: blue; text-align:right;">
+            &euro;<%= get_prices_eur(product)[1].round %>
+          </td>
+          <td style="color: green; text-align:right;">
+            <%= get_prices_rub(product)[1].round %>р.
+          </td>
+        <% end %>
+      </tr>
+      <tr class="success">
+        <% unless get_prices_eur(product)[1].round < get_prices_eur(product)[4].round %>
+          <td style="text-align:left">
+            Дилерская:
+          </td style="text-align:left">
+          <td>
+            -<%= product.discount3 %>%
+          </td>
+          <td style="color: blue; text-align:right;">
+            &euro;<%= get_prices_eur(product)[4].round %>
+          </td>
+          <td style="color: green; text-align:right;">
+            <%= get_prices_rub(product)[4].round %>р.
+          </td>
+        <% else %>
+          <td style="text-align:left">
+            Дилерская:
+          </td>
+          <td style="text-align:left">
+            -<%= product.special %>%
+          </td>
+          <td style="text-align:right; color: blue;">
+            &euro;<%= get_prices_eur(product)[1].round %>
+          </td>
+          <td style="text-align:right; color: green;">
+            <%= get_prices_rub(product)[1].round %>р.
+          </td>
+        <% end %>
+      </tr>
+      <tr class="info">
+        <td style="text-align:left">
+          Закупочная:
+        </td>
+        <td style="text-align:left">
+        </td>
+        <td style="text-align:right; color: blue;">
+          &euro;<%= get_prices_eur(product)[5].round %>
+        </td>
+        <td style="text-align:right; color: green;">
+          <%= get_prices_rub(product)[5].round %>р.
+        </td>
+      </tr>
+    </table>
+  <% elsif product.currency_id == 2 %>
+    <table class="table table-condensed">
+      <tr class="warning">
+        <td style="text-align:left">
+          Розница:
+        </td>
+        <td style="text-align:right; color: green;">
+          <%= product.rub_retail.round %>р.
+        </td>
+      </tr>
+      <tr class="info">
+        <td style="text-align:left">
+          Закупочная:
+        </td>
+        <td style="text-align:right; color: green;">
+          <%= product.price.round %>р.
+        </td>
+      </tr>
+    </table>
+  <% end %>
+  <!-- 3 means sales group -->
+  <% elsif current_user.group_id == 3 %>
+  <% if product.currency_id == 1 %>
+    <table class="table table-condensed">
+      <tr class="error">
+        <% unless get_prices_eur(product)[1].round == get_prices_eur(product)[0].round %>
+          <td width="18%" style="text-align:left">
+            Специальная:
+          </td>
+          <td width="5%" style="text-align:left">
+            -<%= product.special %>%
+          </td>
+          <td width="27%" style="color: blue; text-align:right; ">
+            &euro;<%= get_prices_eur(product)[1].round %>
+          </td>
+          <td width="50%" style="color: green; text-align:right; ">
+            <%= get_prices_rub(product)[1].round %>р.
+          </td>
+        <% else %>
+          <td width="18%" style="text-align:left">
+            Специальная:
+          </td>
+          <td width="5%" style="text-align:left">
+          </td>
+          <td width="27%" style="color: brown; text-align:right;">
+            нет
+          </td>
+          <td width="50%" style="color: green; text-align:right;">
+          </td>
+        <% end %>
+      </tr>
+      <tr class="info">
+        <% unless get_prices_eur(product)[1].round < get_prices_eur(product)[0].round %>
+          <td style="text-align:left">
+            Розница:
+          </td>
+          <td style="text-align:left">
+          </td>
+          <td style="color: blue; text-align:right;">
+            &euro;<%= get_prices_eur(product)[0].round %>
+          </td>
+          <td style="color: green; text-align:right;">
+            <%= get_prices_rub(product)[0].round %>р.
+          </td>
+        <% else %>
+          <td style="text-align:left">
+            Розница <sup style="color: red; font-size: 7pt"><%= product.rate %></sup>:
+          </td>
+          <td style="text-align:left">
+            -<%= product.special %>%
+          </td>
+          <td style="color: blue; text-align:right;">
+            &euro;<%= get_prices_eur(product)[1].round %>
+          </td>
+          <td style="color: green; text-align:right;">
+            <%= get_prices_rub(product)[1].round %>р.
+          </td>
+        <% end %>
+      </tr>
+      <tr class="success">
+        <% unless get_prices_eur(product)[1].round < get_prices_eur(product)[2].round %>
+          <td style="text-align:left">
+            Мелкий опт:
+          </td>
+          <td style="text-align:left">
+            -<%= product.discount1 %>%
+          </td>
+          <td style="color: blue; text-align:right;">
+            &euro;<%= get_prices_eur(product)[2].round %>
+          </td>
+          <td style="color: green; text-align:right;">
+            <%= get_prices_rub(product)[2].round %>р.
+          </td>
+        <% else %>
+          <td style="text-align:left">
+            Мелкий опт:
+          </td>
+          <td style="text-align:left">
+            -<%= product.special %>%
+          </td>
+          <td style="color: blue; text-align:right;">
+            &euro;<%= get_prices_eur(product)[1].round %>
+          </td>
+          <td style="color: green; text-align:right;">
+            <%= get_prices_rub(product)[1].round %>р.
+          </td>
+        <% end %>
+      </tr>
+      <tr class="warning">
+        <% unless get_prices_eur(product)[1].round < get_prices_eur(product)[3].round %>
+          <td style="text-align:left">
+            Оптовая:
+          </td>
+          <td style="text-align:left">
+            -<%= product.discount2 %>%
+          </td>
+          <td style="color: blue; text-align:right;">
+            &euro;<%= get_prices_eur(product)[3].round %>
+          </td>
+          <td style="color: green; text-align:right;">
+            <%= get_prices_rub(product)[3].round %>р.
+          </td>
+        <% else %>
+          <td style="text-align:left">
+            Оптовая:
+          </td>
+          <td style="text-align:left">
+            -<%= product.special %>%
+          </td>
+          <td style="color: blue; text-align:right;">
+            &euro;<%= get_prices_eur(product)[1].round %>
+          </td>
+          <td style="color: green; text-align:right;">
+            <%= get_prices_rub(product)[1].round %>р.
+          </td>
+        <% end %>
+      </tr>
+      <tr class="success">
+        <% unless get_prices_eur(product)[1].round < get_prices_eur(product)[4].round %>
+          <td style="text-align:left">
+            Дилерская:
+          </td style="text-align:left">
+          <td>
+            -<%= product.discount3 %>%
+          </td>
+          <td style="color: blue; text-align:right;">
+            &euro;<%= get_prices_eur(product)[4].round %>
+          </td>
+          <td style="color: green; text-align:right;">
+            <%= get_prices_rub(product)[4].round %>р.
+          </td>
+        <% else %>
+          <td style="text-align:left">
+            Дилерская:
+          </td>
+          <td style="text-align:left">
+            -<%= product.special %>%
+          </td>
+          <td style="text-align:right; color: blue;">
+            &euro;<%= get_prices_eur(product)[1].round %>
+          </td>
+          <td style="text-align:right; color: green;">
+            <%= get_prices_rub(product)[1].round %>р.
+          </td>
+        <% end %>
+      </tr>
+    </table>
+  <% elsif product.currency_id == 2 %>
+    <table class="table table-condensed">
+      <tr class="warning">
+        <td style="text-align:left">
+          Розница:
+        </td>
+        <td style="text-align:right; color: green;">
+          <%= product.rub_retail.round %>р.
+        </td>
+      </tr>
+    </table>
+  <% end %>
+  <% end %>
 <% end %>
