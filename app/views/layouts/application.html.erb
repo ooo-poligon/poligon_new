@@ -58,14 +58,14 @@
   <% elsif current_user.group_id == 3 %>
     <style type="text/css">
       .navbar-default {
-        background-image: linear-gradient(to bottom, #ffb3b3 0%, #ffe6e6 100%);
+        background-image: linear-gradient(to bottom, #ffd9b3 0%, #ffe6cc 100%);
       }
       .navbar-default .navbar-nav > .open > a,
       .navbar-default .navbar-nav > .active > a {
-        background-image: linear-gradient(to bottom, #ffb3b3 0%, #ffe6e6 100%);
+        background-image: linear-gradient(to bottom, #ffd9b3 0%, #ffe6cc 100%);
       }
       .dropdown-menu {
-        background-color: #ffe6e6;
+        background-color: #ffe6cc;
       }
     </style>
   <% end %>
@@ -94,18 +94,21 @@
         <li><%= link_to 'Новости', news_items_path %></li>
         <li><%= link_to 'Публикации', publications_index_path %></li>
         <li><%= link_to 'Каталог', categories_path %></li>
-        <li>
-          <p style="margin-top: -5px;">
-          <% if user_signed_in? %>
-            <form class="navbar-search pull-left" method="get" action="/advanced_search">
-            <input type="hidden" name="farnell_page" value="1">
-            <input type="text" class="search-query search_form" name="q" placeholder="Расширенный поиск">
-          <% else %>
-            <form class="navbar-search pull-left" method="get" action="/search">
-            <input type="text" class="search-query search_form" name="q" placeholder="Поиск">
-          <% end %>
-          </form>
-          </p>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Поиск <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li>
+              <% if user_signed_in? %>
+                <form class="navbar-search pull-left" method="get" action="/advanced_search">
+                <input type="hidden" name="farnell_page" value="1">
+                <input type="text" class="search-query search_form" name="q" placeholder="расширенный поиск">
+              <% else %>
+                <form class="navbar-search pull-left" method="get" action="/search">
+                <input type="text" class="search-query search_form" name="q" placeholder="поиск">
+              <% end %>
+            </form>
+            </li>
+          </ul>
         </li>
 
       </ul>
