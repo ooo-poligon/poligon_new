@@ -8,6 +8,7 @@ class CategoriesController < ApplicationController
   before_action :getCourse
 
   def show
+    @addCBR = Setting.find_by title: 'AddCBR'
     @allUpLevelCategories = []
     @allUpLevelCategoriesIds = []
     Category.available.where(parent: 0).each do |c0|

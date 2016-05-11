@@ -113,11 +113,48 @@
 
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li>
-          <% if user_signed_in? %>
-            <div style="margin-bottom: 0px; margin-top: 15px; margin-right: 15px;"><b><%= hello_user %></b></div>
-          <% end %>
-        </li>
+        <% if user_signed_in? %>
+          <li>
+            <div style="margin-bottom: 0px; margin-top: 5px; margin-right: 15px;">
+              <b><%= hello_user %></b><br>
+              Текущая дата:<b><%= Time.now.strftime(" %d.%m.%Y") %></b>
+            </div>
+          </li>
+          <li>
+            <% unless current_user.group_id == 1 %>
+              <div style="margin-bottom: 0px; margin-top: 5px; margin-right: 15px;">
+                <table>
+                  <tr>
+                    <td>Курс &euro; ЦБ РФ:</td>
+                    <td>&nbsp</td>
+                    <td style="font-weight: bold; color: red;">
+                      <%= @courseEuro %>р.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Курс &euro; ПОЛИГОН:</td>
+                    <td>&nbsp</td>
+                    <td style="font-weight: bold; color: red;">
+                      <%= (@courseEuro + (@courseEuro / 100) * @addCBR.text_value.to_f) %>р.
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            <% else %>
+              <div style="margin-bottom: 0px; margin-top: 15px; margin-right: 15px;">
+                <table>
+                  <tr>
+                    <td>Курс &euro; ЦБ РФ:</td>
+                    <td>&nbsp</td>
+                    <td style="font-weight: bold; color: red;">
+                      <%= @courseEuro %>р.
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            <% end %>
+          </li>
+        <% end %>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Информация <b class="caret"></b></a>
           <ul class="dropdown-menu">

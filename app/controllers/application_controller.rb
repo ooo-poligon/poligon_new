@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
 
   before_filter :configure_permitted_parameters, if: :devise_controller?
+  before_filter :getCourse
 
   helper_method :get_prices_eur, :get_prices_rub, :hello_user
 
@@ -48,6 +49,7 @@ class ApplicationController < ActionController::Base
   end
 
   def getCourse
+    @addCBR = Setting.find_by title: 'AddCBR'
     require 'net/http'
     url = URI.parse('http://www.poligon.info/upload/course.euro')
     req = Net::HTTP::Get.new(url.to_s)
