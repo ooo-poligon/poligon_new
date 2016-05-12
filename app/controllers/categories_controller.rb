@@ -8,7 +8,7 @@ class CategoriesController < ApplicationController
   before_action :getCourse
 
   def show
-    @addCBR = Setting.find_by title: 'AddCBR'
+    @addCBR = Setting.find_by title: 'addCBR'
     @allUpLevelCategories = []
     @allUpLevelCategoriesIds = []
     Category.available.where(parent: 0).each do |c0|
@@ -21,7 +21,7 @@ class CategoriesController < ApplicationController
     @recentCategory = Category.available.find(params[:id])
     @parentCategory = Category.available.find(@recentCategory.parent)
     @products = []
-    addCBR = Setting.find_by title: 'AddCBR'
+    addCBR = Setting.find_by title: 'addCBR'
 
     Product.available.where(category_id: params[:id]).each do |product|
       minihash = []

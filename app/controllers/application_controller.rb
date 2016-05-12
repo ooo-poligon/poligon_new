@@ -49,7 +49,7 @@ class ApplicationController < ActionController::Base
   end
 
   def getCourse
-    @addCBR = Setting.find_by title: 'AddCBR'
+    @addCBR = Setting.find_by title: 'addCBR'
     require 'net/http'
     url = URI.parse('http://www.poligon.info/upload/course.euro')
     req = Net::HTTP::Get.new(url.to_s)

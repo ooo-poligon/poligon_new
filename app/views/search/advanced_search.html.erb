@@ -12,6 +12,14 @@
     </thead>
     <tbody>
       <% @products.results.each do |product| %>
+        <script type="text/javascript">
+          var client = new ZeroClipboard( $("button#my-button") );
+          function f1() {
+
+            alert(document.getElementById('copy_content').innerHTML);
+
+          }
+        </script>
         <tr>
           <% productImage = ImageFile.where('owner_id = ? and file_type_id = 1', product.id).first %>
           <% if productImage != nil %>
@@ -52,12 +60,39 @@
             <td style="vertical-align: top;">
               <%= render partial: 'shared/product_quantities_table', locals: {product: product} %>
             </td>
-            <% unless product.price == 0 %>
-              <td style="vertical-align: top;">
-              <%= render partial: 'shared/product_prices_table', locals: {product: product} %>
-            <% else %>
-              <td style="align-content: center;">Звоните:<br>(812)325-42-20
-            <% end %>
+            <td style="vertical-align: top;">
+              <table style="width: 100%">
+                <tr>
+                  <% unless product.price == 0 %>
+                    <td style="vertical-align: top;">
+                      <%= render partial: 'shared/product_prices_table', locals: {product: product} %>
+                    </td>
+                  <% else %>
+                    <td style="align-content: center;">
+                      Звоните:<br>(812)325-42-20
+                    </td>
+                  <% end %>
+                </tr>
+                <tr>
+                  <td>
+                    <div style="float: left;">
+                      <% price = get_prices_eur(product)[0].round(2) %>
+                      <% quantity = Quantity.find_by( product_id: product.id ) %>
+                      <% result_quantity = 0 %>
+                      <% result_quantity = quantity.stock - quantity.reserved  if !quantity.nil? %>
+                      <button class="btn btn-info" id="my-button" data-clipboard-text="<%= product.title %> — Цена: <%= price %> евро c НДС. Количество: <%= result_quantity %> шт.">
+                        Copy EUR
+                      </button>
+                    </div>
+                    <div style="float: right;">
+                    <% price_rub = get_prices_rub(product)[0].round(2) %>
+                      <button class="btn btn-info" id="my-button" data-clipboard-text="<%= product.title %> — Цена: <%= price_rub %> рублей c НДС. Количество: <%= result_quantity %> шт.">
+                        Copy RUB
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              </table>
             </td>
           <% end %>
         </tr>

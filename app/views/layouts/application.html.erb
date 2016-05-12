@@ -234,5 +234,15 @@
 
 <script src="http://bootstrap.ru/dist/js/bootstrap.min.js"></script>
 <script src="http://bootstrap-3.ru/examples/offcanvas/offcanvas.js"></script>
+<script>
+  $(document).ready(function() {
+    var clip = new ZeroClipboard($("#d_clip_button"))
+  });
+
+  $("#clear-test").on("click", function(){
+    $("#fe_text").val("Copy me!");
+    $("#testarea").val("");
+  });
+</script>
 </body>
 </html>
