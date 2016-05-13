@@ -2,7 +2,7 @@ class CategoriesController < ApplicationController
 
   def index
     @upLevelCategories = Category.available.where(parent: 1)
-
+    @addCBR = Setting.find_by title: 'addCBR'
   end
 
   before_action :getCourse

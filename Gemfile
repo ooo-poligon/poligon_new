@@ -23,8 +23,6 @@ gem 'sucker_punch', '~> 1.0'
 gem 'mandrill-api'
 gem 'figaro'
 gem 'rack-mini-profiler', require: false
-gem 'clipboard'
-gem 'ffi', :platforms => [:mswin, :mingw]
 gem 'zeroclipboard-rails'
 
 group :assets do

@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
   def get_prices_eur(product)
     prices_array = []
     retail = product.price * product.rate
-    prices_array << retail.round
+    prices_array << retail
     prices_array << retail - (retail/100 * product.special)
     prices_array << retail - (retail/100 * product.discount1)
     prices_array << retail - (retail/100 * product.discount2)
@@ -23,6 +23,7 @@ class ApplicationController < ActionController::Base
     prices_array = []
     course_multiplier = (@courseEuro + (@courseEuro / 100) * @addCBR.text_value.to_f)
     retail_ru = product.price * product.rate * course_multiplier
+    retail_ru = product.rub_retail if product.currency_id == 2
     prices_array << retail_ru
     prices_array << retail_ru - (retail_ru/100 * product.special)
     prices_array << retail_ru - (retail_ru/100 * product.discount1)

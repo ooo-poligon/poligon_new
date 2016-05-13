@@ -7,35 +7,6 @@ class SearchController < ApplicationController
 
   require 'active_support/core_ext/hash/conversions'
 
-  helper_method :copy_to_clipboard
-
-  def copy_to_clipboard product_id, currency
-    product = Product.find(product_id)
-    quantity = Quantity.find_by( product_id: product_id )
-    result_quantity = 0
-    result_quantity = quantity.stock - quantity.reserved  if !quantity.nil?
-    if currency == 'eur'
-      price = get_prices_eur(product)[0].round(2)
-      if result_quantity > 0
-        clipboard_value =
-          "#{ product.title } — Цена: #{ price } евро c НДС. Количество: #{ result_quantity } шт."
-      else
-        clipboard_value =
-          "#{ product.title } — Цена: #{ price } евро c НДС. Срок поставки: 3-4 недели"
-      end
-    elsif currency == 'rub'
-      price = get_prices_rub(product)[0].round(2)
-      if result_quantity > 0
-        clipboard_value =
-          "#{ product.title } — Цена: #{ price } рублей c НДС. Количество: #{ result_quantity } шт."
-      else
-        clipboard_value =
-          "#{ product.title } — Цена: #{ price } рублей c НДС. Срок поставки: 3-4 недели"
-      end
-    end
-    Clipboard.copy clipboard_value
-  end
-
   def search
     @products = Sunspot.search(Product) do
       #fulltext search
@@ -43,8 +14,6 @@ class SearchController < ApplicationController
         phrase_fields :title => 2.0
         phrase_slop   1
       end
-
-
       #scoping
       if params.has_key?(:title)
         with :title, params['q']
@@ -174,13 +143,14 @@ class SearchController < ApplicationController
   before_action :getCourse
 
   def advanced_search
+    @products_pdfs = ImageFile.where(file_type_id: 2)
+    @exist_only = params['exist_only']
     @products = Sunspot.search(Product) do
       #fulltext search
       fulltext params['q'] do
         phrase_fields :title => 2.0
         phrase_slop   1
       end
-
 
       #scoping
       if params.has_key?(:title)
@@ -201,7 +171,6 @@ class SearchController < ApplicationController
         phrase_fields :prototype => 2.0
         phrase_slop   1
       end
-
 
       #scoping
       if params.has_key?(:title)
