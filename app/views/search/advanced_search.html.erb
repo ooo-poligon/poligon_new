@@ -22,6 +22,7 @@
                 <% imagePath = productImage.path.gsub!("c:\\poligon_images", "http://www.poligon.info/images").gsub!("\\", "/") %>
                 <td><%= link_to image_tag(imagePath, class: "img-responsive center-block product-image-container"), imagePath, class: "fancybox" %></td>
               <% else %>
+                <td></td>
               <% end %>
               <td style="vertical-align: top;">
                 <table class="table">
@@ -76,11 +77,11 @@
                           <% if product_pdf != nil and product_pdf.path != "c:\\poligon_datasheets\\" %>
                             <% pdf_path = product_pdf.path.gsub!("c:\\poligon_datasheets\\datasheets", "http://www.poligon.info/PDF").gsub!("\\", "/") %>
                             <button type="button" class="btn btn-danger" target="_blank" onclick="window.open(&quot;<%= pdf_path %>&quot;)" >
-                              Даташит PDF
+                              PDF
                             </button>
                           <% else %>
                             <button type="button" class="btn btn-danger" target="_blank" onclick="no_pdf()" >
-                              Даташит PDF
+                              PDF
                             </button>
                           <% end %>
                         </div>
@@ -91,18 +92,25 @@
                           <% if get_prices_eur(product)[1].round(2) == get_prices_eur(product)[0].round(2) %>
                             <% price = get_prices_eur(product)[0].round(2) %>
                             <% price_rub = get_prices_rub(product)[0].round(2) %>
+                            <% price_rub_nonds = price_rub / 1.18 %>
                           <% else %>
                             <% price = get_prices_eur(product)[1].round(2) %>
                             <% price_rub = get_prices_rub(product)[1].round(2) %>
+                            <% price_rub_nonds = price_rub / 1.18 %>
                           <% end %>
-                          <% if product.currency_id == 1 %>
-                            <button class="btn btn-info" id="my-button" data-clipboard-text="<%= product.title %> — Цена: <%= price %> евро c НДС. Количество: <%= result_quantity %> шт.">
-                              Copy EUR
+                          <% unless price == 0 %>
+                            <% if product.currency_id == 1 %>
+                              <button class="btn btn-info" id="my-button" data-clipboard-text="<%= product.title %> — Цена: <%= price %> евро c НДС. Количество: <%= result_quantity %> шт.">
+                                EUR
+                              </button>
+                            <% end %>
+                            <button class="btn btn-success" id="my-button" data-clipboard-text="<%= product.title %> — Цена: <%= price_rub %> рублей c НДС. Количество: <%= result_quantity %> шт.">
+                              RUB
+                            </button>
+                            <button class="btn btn-warning" id="my-button" data-clipboard-text="<%= product.title %> — Цена: <%= price_rub_nonds %> рублей без НДС. Количество: <%= result_quantity %> шт.">
+                              Без НДС
                             </button>
                           <% end %>
-                          <button class="btn btn-success" id="my-button" data-clipboard-text="<%= product.title %> — Цена: <%= price_rub %> рублей c НДС. Количество: <%= result_quantity %> шт.">
-                            Copy RUB
-                          </button>
                         </div>
                       </td>
                     </tr>
@@ -120,6 +128,7 @@
               <% imagePath = productImage.path.gsub!("c:\\poligon_images", "http://www.poligon.info/images").gsub!("\\", "/") %>
               <td><%= link_to image_tag(imagePath, class: "img-responsive center-block product-image-container"), imagePath, class: "fancybox" %></td>
             <% else %>
+              <td></td>
             <% end %>
             <td style="vertical-align: top;">
               <table class="table">
@@ -174,11 +183,11 @@
                         <% if product_pdf != nil and product_pdf.path != "c:\\poligon_datasheets\\" %>
                           <% pdf_path = product_pdf.path.gsub!("c:\\poligon_datasheets\\datasheets", "http://www.poligon.info/PDF").gsub!("\\", "/") %>
                           <button type="button" class="btn btn-danger" target="_blank" onclick="window.open(&quot;<%= pdf_path %>&quot;)" >
-                            Даташит PDF
+                            PDF
                           </button>
                         <% else %>
                           <button type="button" class="btn btn-danger" target="_blank" onclick="no_pdf()" >
-                            Даташит PDF
+                            PDF
                           </button>
                         <% end %>
                       </div>
@@ -189,18 +198,25 @@
                         <% if get_prices_eur(product)[1].round(2) == get_prices_eur(product)[0].round(2) %>
                           <% price = get_prices_eur(product)[0].round(2) %>
                           <% price_rub = get_prices_rub(product)[0].round(2) %>
+                          <% price_rub_nonds = price_rub / 1.18 %>
                         <% else %>
                           <% price = get_prices_eur(product)[1].round(2) %>
                           <% price_rub = get_prices_rub(product)[1].round(2) %>
+                          <% price_rub_nonds = price_rub / 1.18 %>
                         <% end %>
-                        <% if product.currency_id == 1 %>
-                          <button class="btn btn-info" id="my-button" data-clipboard-text="<%= product.title %> — Цена: <%= price %> евро c НДС. Количество: <%= result_quantity %> шт.">
-                            Copy EUR
+                        <% unless price == 0 %>
+                          <% if product.currency_id == 1 %>
+                            <button class="btn btn-info" id="my-button" data-clipboard-text="<%= product.title %> — Цена: <%= price %> евро c НДС. Количество: <%= result_quantity %> шт.">
+                              EUR
+                            </button>
+                          <% end %>
+                          <button class="btn btn-success" id="my-button" data-clipboard-text="<%= product.title %> — Цена: <%= price_rub %> рублей c НДС. Количество: <%= result_quantity %> шт.">
+                            RUB
+                          </button>
+                          <button class="btn btn-warning" id="my-button" data-clipboard-text="<%= product.title %> — Цена: <%= price_rub_nonds %> рублей без НДС. Количество: <%= result_quantity %> шт.">
+                            Без НДС
                           </button>
                         <% end %>
-                        <button class="btn btn-success" id="my-button" data-clipboard-text="<%= product.title %> — Цена: <%= price_rub %> рублей c НДС. Количество: <%= result_quantity %> шт.">
-                          Copy RUB
-                        </button>
                       </div>
                     </td>
                   </tr>
@@ -336,11 +352,11 @@
                         </button>
                         <% unless product["datasheets"].is_a? Array %>
                           <button type="button" class="btn btn-danger" target="_blank" onclick="window.open(&quot;<%= product["datasheets"]["url"] %>&quot;)" >
-                            Даташит в виде PDF
+                            PDF
                           </button>
                         <% else %>
                           <button type="button" class="btn btn-danger" target="_blank" onclick="window.open(&quot;<%= product["datasheets"][0]["url"] %>&quot;)" >
-                            Даташит в виде PDF
+                            PDF
                           </button>
                         <% end %>
                         <div id=<%= count.to_s %> class="collapse">
@@ -516,11 +532,11 @@
                         </button>
                         <% unless @farnell_products["datasheets"].is_a? Array %>
                           <button type="button" class="btn btn-danger" target="_blank" onclick="window.open(&quot;<%= @farnell_products["datasheets"]["url"] %>&quot;)" >
-                            Даташит в виде PDF
+                            PDF
                           </button>
                         <% else %>
                           <button type="button" class="btn btn-danger" target="_blank" onclick="window.open(&quot;<%= @farnell_products["datasheets"][0]["url"] %>&quot;)" >
-                            Даташит в виде PDF
+                            PDF
                           </button>
                         <% end %>
                         <div id="prod" class="collapse">

@@ -14,8 +14,11 @@
           <td width="27%" style="color: blue; text-align:right; ">
             &euro;<%= get_prices_eur(product)[1].round(2) %>
           </td>
-          <td width="50%" style="color: green; text-align:right; ">
+          <td width="25%" style="color: green; text-align:right; ">
             <%= get_prices_rub(product)[1].round(2) %>р.
+          </td>
+          <td width="25%" style="color: orange; text-align:right; ">
+            <%= (get_prices_rub(product)[1] / 1.18).round(2) %>р.
           </td>
         <% else %>
           <td width="18%" style="text-align:left">
@@ -25,8 +28,9 @@
           </td>
           <td width="27%" style="color: brown; text-align:right;">
             нет
+          <td width="25%" style="color: green; text-align:right;">
           </td>
-          <td width="50%" style="color: green; text-align:right;">
+          <td width="25%" style="color: green; text-align:right;">
           </td>
         <% end %>
       </tr>
@@ -40,8 +44,11 @@
           <td style="color: blue; text-align:right;">
             &euro;<%= get_prices_eur(product)[0].round(2) %>
           </td>
-          <td style="color: green; text-align:right;">
+          <td style="color: green; text-align:right; ">
             <%= get_prices_rub(product)[0].round(2) %>р.
+          </td>
+          <td style="color: orange; text-align:right; ">
+            <%= (get_prices_rub(product)[0] / 1.18).round(2) %>р.
           </td>
         <% else %>
           <td style="text-align:left">
@@ -53,8 +60,11 @@
           <td style="color: blue; text-align:right;">
             &euro;<%= get_prices_eur(product)[1].round(2) %>
           </td>
-          <td style="color: green; text-align:right;">
+          <td style="color: green; text-align:right; ">
             <%= get_prices_rub(product)[1].round(2) %>р.
+          </td>
+          <td style="color: orange; text-align:right; ">
+            <%= (get_prices_rub(product)[1] / 1.18).round(2) %>р.
           </td>
         <% end %>
       </tr>
@@ -69,8 +79,11 @@
           <td style="color: blue; text-align:right;">
             &euro;<%= get_prices_eur(product)[4].round(2) %>
           </td>
-          <td style="color: green; text-align:right;">
+          <td style="color: green; text-align:right; ">
             <%= get_prices_rub(product)[4].round(2) %>р.
+          </td>
+          <td style="color: orange; text-align:right; ">
+            <%= (get_prices_rub(product)[4] / 1.18).round(2) %>р.
           </td>
         <% else %>
           <td style="text-align:left">
@@ -94,8 +107,11 @@
         <td style="text-align:left">
           Розница:
         </td>
-        <td style="text-align:right; color: green;">
+        <td style="color: green; text-align:right; ">
           <%= product.rub_retail.round(2) %>р.
+        </td>
+        <td style="color: orange; text-align:right; ">
+          <%= (product.rub_retail / 1.18).round(2) %>р.
         </td>
       </tr>
     </table>
@@ -115,8 +131,11 @@
           <td width="27%" style="color: blue; text-align:right; ">
             &euro;<%= get_prices_eur(product)[1].round(2) %>
           </td>
-          <td width="50%" style="color: green; text-align:right; ">
+          <td width="25%" style="color: green; text-align:right; ">
             <%= get_prices_rub(product)[1].round(2) %>р.
+          </td>
+          <td width="25%" style="color: orange; text-align:right; ">
+            <%= (get_prices_rub(product)[1] / 1.18).round(2) %>р.
           </td>
         <% else %>
           <td width="18%" style="text-align:left">
@@ -141,9 +160,12 @@
           <td style="color: blue; text-align:right;">
             &euro;<%= get_prices_eur(product)[0].round(2) %>
           </td>
-          <td style="color: green; text-align:right;">
+          <td style="color: green; text-align:right; ">
             <%= get_prices_rub(product)[0].round(2) %>р.
           </td>
+          <td style="color: orange; text-align:right; ">
+            <%= (get_prices_rub(product)[0] / 1.18).round(2) %>р.
+          </td>0
         <% else %>
           <td style="text-align:left">
             Розница <sup style="color: red; font-size: 7pt"><%= product.rate %></sup>:
@@ -154,8 +176,11 @@
           <td style="color: blue; text-align:right;">
             &euro;<%= get_prices_eur(product)[1].round(2) %>
           </td>
-          <td style="color: green; text-align:right;">
+          <td style="color: green; text-align:right; ">
             <%= get_prices_rub(product)[1].round(2) %>р.
+          </td>
+          <td style="color: orange; text-align:right; ">
+            <%= (get_prices_rub(product)[1] / 1.18).round(2) %>р.
           </td>
         <% end %>
       </tr>
@@ -170,8 +195,11 @@
           <td style="color: blue; text-align:right;">
             &euro;<%= get_prices_eur(product)[2].round(2) %>
           </td>
-          <td style="color: green; text-align:right;">
+          <td style="color: green; text-align:right; ">
             <%= get_prices_rub(product)[2].round(2) %>р.
+          </td>
+          <td style="color: orange; text-align:right; ">
+            <%= (get_prices_rub(product)[2] / 1.18).round(2) %>р.
           </td>
         <% else %>
           <td style="text-align:left">
@@ -183,8 +211,11 @@
           <td style="color: blue; text-align:right;">
             &euro;<%= get_prices_eur(product)[1].round(2) %>
           </td>
-          <td style="color: green; text-align:right;">
+          <td style="color: green; text-align:right; ">
             <%= get_prices_rub(product)[1].round(2) %>р.
+          </td>
+          <td style="color: orange; text-align:right; ">
+            <%= (get_prices_rub(product)[1] / 1.18).round(2) %>р.
           </td>
         <% end %>
       </tr>
@@ -199,8 +230,11 @@
           <td style="color: blue; text-align:right;">
             &euro;<%= get_prices_eur(product)[3].round(2) %>
           </td>
-          <td style="color: green; text-align:right;">
+          <td style="color: green; text-align:right; ">
             <%= get_prices_rub(product)[3].round(2) %>р.
+          </td>
+          <td style="color: orange; text-align:right; ">
+            <%= (get_prices_rub(product)[3] / 1.18).round(2) %>р.
           </td>
         <% else %>
           <td style="text-align:left">
@@ -212,8 +246,11 @@
           <td style="color: blue; text-align:right;">
             &euro;<%= get_prices_eur(product)[1].round(2) %>
           </td>
-          <td style="color: green; text-align:right;">
+          <td style="color: green; text-align:right; ">
             <%= get_prices_rub(product)[1].round(2) %>р.
+          </td>
+          <td style="color: orange; text-align:right; ">
+            <%= (get_prices_rub(product)[1] / 1.18).round(2) %>р.
           </td>
         <% end %>
       </tr>
@@ -228,8 +265,11 @@
           <td style="color: blue; text-align:right;">
             &euro;<%= get_prices_eur(product)[4].round(2) %>
           </td>
-          <td style="color: green; text-align:right;">
+          <td style="color: green; text-align:right; ">
             <%= get_prices_rub(product)[4].round(2) %>р.
+          </td>
+          <td style="color: orange; text-align:right; ">
+            <%= (get_prices_rub(product)[4] / 1.18).round(2) %>р.
           </td>
         <% else %>
           <td style="text-align:left">
@@ -241,8 +281,11 @@
           <td style="text-align:right; color: blue;">
             &euro;<%= get_prices_eur(product)[1].round(2) %>
           </td>
-          <td style="text-align:right; color: green;">
+          <td style="color: green; text-align:right; ">
             <%= get_prices_rub(product)[1].round(2) %>р.
+          </td>
+          <td style="color: orange; text-align:right; ">
+            <%= (get_prices_rub(product)[1] / 1.18).round(2) %>р.
           </td>
         <% end %>
       </tr>
@@ -255,8 +298,11 @@
         <td style="text-align:right; color: blue;">
           &euro;<%= get_prices_eur(product)[5].round(2) %>
         </td>
-        <td style="text-align:right; color: green;">
+        <td style="color: green; text-align:right; ">
           <%= get_prices_rub(product)[5].round(2) %>р.
+        </td>
+        <td style="color: orange; text-align:right; ">
+          <%= (get_prices_rub(product)[5] / 1.18).round(2) %>р.
         </td>
       </tr>
     </table>
@@ -295,8 +341,11 @@
           <td width="27%" style="color: blue; text-align:right; ">
             &euro;<%= get_prices_eur(product)[1].round(2) %>
           </td>
-          <td width="50%" style="color: green; text-align:right; ">
+          <td width="25%" style="color: green; text-align:right; ">
             <%= get_prices_rub(product)[1].round(2) %>р.
+          </td>
+          <td width="25%" style="color: orange; text-align:right; ">
+            <%= (get_prices_rub(product)[1] / 1.18).round(2) %>р.
           </td>
         <% else %>
           <td width="18%" style="text-align:left">
@@ -309,6 +358,7 @@
           </td>
           <td width="50%" style="color: green; text-align:right;">
           </td>
+          <td></td>
         <% end %>
       </tr>
       <tr class="info">
@@ -321,8 +371,11 @@
           <td style="color: blue; text-align:right;">
             &euro;<%= get_prices_eur(product)[0].round(2) %>
           </td>
-          <td style="color: green; text-align:right;">
+          <td style="color: green; text-align:right; ">
             <%= get_prices_rub(product)[0].round(2) %>р.
+          </td>
+          <td style="color: orange; text-align:right; ">
+            <%= (get_prices_rub(product)[0] / 1.18).round(2) %>р.
           </td>
         <% else %>
           <td style="text-align:left">
@@ -334,8 +387,11 @@
           <td style="color: blue; text-align:right;">
             &euro;<%= get_prices_eur(product)[1].round(2) %>
           </td>
-          <td style="color: green; text-align:right;">
+          <td style="color: green; text-align:right; ">
             <%= get_prices_rub(product)[1].round(2) %>р.
+          </td>
+          <td style="color: orange; text-align:right; ">
+            <%= (get_prices_rub(product)[1] / 1.18).round(2) %>р.
           </td>
         <% end %>
       </tr>
@@ -350,8 +406,11 @@
           <td style="color: blue; text-align:right;">
             &euro;<%= get_prices_eur(product)[2].round(2) %>
           </td>
-          <td style="color: green; text-align:right;">
+          <td style="color: green; text-align:right; ">
             <%= get_prices_rub(product)[2].round(2) %>р.
+          </td>
+          <td style="color: orange; text-align:right; ">
+            <%= (get_prices_rub(product)[2] / 1.18).round(2) %>р.
           </td>
         <% else %>
           <td style="text-align:left">
@@ -360,11 +419,11 @@
           <td style="text-align:left">
             -<%= product.special %>%
           </td>
-          <td style="color: blue; text-align:right;">
-            &euro;<%= get_prices_eur(product)[1].round(2) %>
-          </td>
-          <td style="color: green; text-align:right;">
+          <td style="color: green; text-align:right; ">
             <%= get_prices_rub(product)[1].round(2) %>р.
+          </td>
+          <td style="color: orange; text-align:right; ">
+            <%= (get_prices_rub(product)[1] / 1.18).round(2) %>р.
           </td>
         <% end %>
       </tr>
@@ -379,8 +438,11 @@
           <td style="color: blue; text-align:right;">
             &euro;<%= get_prices_eur(product)[3].round(2) %>
           </td>
-          <td style="color: green; text-align:right;">
+          <td style="color: green; text-align:right; ">
             <%= get_prices_rub(product)[3].round(2) %>р.
+          </td>
+          <td style="color: orange; text-align:right; ">
+            <%= (get_prices_rub(product)[3] / 1.18).round(2) %>р.
           </td>
         <% else %>
           <td style="text-align:left">
@@ -392,8 +454,11 @@
           <td style="color: blue; text-align:right;">
             &euro;<%= get_prices_eur(product)[1].round(2) %>
           </td>
-          <td style="color: green; text-align:right;">
+          <td style="color: green; text-align:right; ">
             <%= get_prices_rub(product)[1].round(2) %>р.
+          </td>
+          <td style="color: orange; text-align:right; ">
+            <%= (get_prices_rub(product)[1] / 1.18).round(2) %>р.
           </td>
         <% end %>
       </tr>
@@ -408,8 +473,11 @@
           <td style="color: blue; text-align:right;">
             &euro;<%= get_prices_eur(product)[4].round(2) %>
           </td>
-          <td style="color: green; text-align:right;">
+          <td style="color: green; text-align:right; ">
             <%= get_prices_rub(product)[4].round(2) %>р.
+          </td>
+          <td style="color: orange; text-align:right; ">
+            <%= (get_prices_rub(product)[4] / 1.18).round(2) %>р.
           </td>
         <% else %>
           <td style="text-align:left">
@@ -421,8 +489,11 @@
           <td style="text-align:right; color: blue;">
             &euro;<%= get_prices_eur(product)[1].round(2) %>
           </td>
-          <td style="text-align:right; color: green;">
+          <td style="color: green; text-align:right; ">
             <%= get_prices_rub(product)[1].round(2) %>р.
+          </td>
+          <td style="color: orange; text-align:right; ">
+            <%= (get_prices_rub(product)[1] / 1.18).round(2) %>р.
           </td>
         <% end %>
       </tr>
@@ -435,6 +506,9 @@
         </td>
         <td style="text-align:right; color: green;">
           <%= product.rub_retail.round(2) %>р.
+        </td>
+        <td style="text-align:right; color: green;">
+          <%= (product.rub_retail / 1.18).round(2) %>р.
         </td>
       </tr>
     </table>

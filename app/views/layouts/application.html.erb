@@ -106,9 +106,10 @@
     <div class="container-fluid">
       <div class="navbar-collapse collapse">
         <ul class="nav navbar-nav navbar-right">
-          <li>
+          <li style="margin-right: 15px;">
             <form class="navbar-search pull-right" method="get" action="/advanced_search">
               <input type="hidden" name="farnell_page" value="1">
+              <input type="hidden" name="search_query" value="1">
               <table>
                 <tr>
                   <!--<td class="exist-label">
@@ -116,7 +117,8 @@
                     <input type="checkbox" name="exist_only" id="exist-sheckbox" />
                   </td>
                   <td>-->
-                  <input type="text" class="search-query search_form" name="q" placeholder="расширенный поиск">
+                  <input type="text" class="search-query search_form" name="q" placeholder="Расширенный поиск" value="<%= @search_query %>">
+                  <input style="margin-bottom: 5px;" type="submit" class="btn btn-info" value="Найти">
                   </td>
                 </tr>
               </table>
@@ -138,14 +140,14 @@
                     <td>Курс &euro; ЦБ РФ:</td>
                     <td>&nbsp</td>
                     <td style="font-weight: bold; color: red;">
-                      <%= @courseEuro %>р.
+                      <%= @courseEuro.round(2) %>р.
                     </td>
                   </tr>
                   <tr>
                     <td>Курс &euro; ПОЛИГОН:</td>
                     <td>&nbsp</td>
                     <td style="font-weight: bold; color: red;">
-                      <%= (@courseEuro + (@courseEuro / 100) * @addCBR.text_value.to_f) %>р.
+                      <%= (@courseEuro + (@courseEuro / 100) * @addCBR.text_value.to_f).round(2) %>р.
                     </td>
                   </tr>
                 </table>
