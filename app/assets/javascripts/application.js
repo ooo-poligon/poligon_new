@@ -13,7 +13,7 @@
 //= require jquery
 //= require additions
 //= require fancybox
+//= require zeroclipboard
 // require jquery_ujs
 //= require bootstrap-sprockets
-//= require zeroclipboard
 //= require_tree .
