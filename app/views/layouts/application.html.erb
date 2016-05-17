@@ -71,12 +71,6 @@
   <% end %>
 <% end %>
 
-<script>
-    $(document).ready(function() {
-        $("a.fancybox").fancybox();
-    });
-</script>
-
 <% if user_signed_in? %>
   <style>
     body {
@@ -275,17 +269,23 @@
 
 
 <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+
+<script>
+  var client = new ZeroClipboard( $("button") );
+
+  $(document).ready(function() {
+      $("a.fancybox").fancybox();
+  });
+
+  function no_pdf() {
+    alert("Для этого устройства даташит не обнаружен.");
+  }
+</script>
 <!-- Bootstrap core JavaScript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
 
 <script src="http://bootstrap.ru/dist/js/bootstrap.min.js"></script>
 <script src="http://bootstrap-3.ru/examples/offcanvas/offcanvas.js"></script>
-<script type="text/javascript">
-  var client = new ZeroClipboard( $("button") );
-  function no_pdf() {
-    alert("Для этого устройства даташит не обнаружен.");
-  }
-</script>
 </body>
 </html>
