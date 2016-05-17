@@ -11,7 +11,7 @@ require 'mina/rvm'    # for rvm support. (http://rvm.io)
 #   branch       - Branch name to deploy. (needed by mina/git)
 
 set :domain, '89.253.227.59'
-set :deploy_to, '/var/www/poligon_new'
+set :deploy_to, '/var/www/poligon_ror'
 set :repository, "git@github.com:poligon-info/poligon_new.git"
 set :branch, 'master'
 
@@ -50,7 +50,8 @@ task :setup => :environment do
 
   queue! %[touch "#{deploy_to}/#{shared_path}/config/database.yml"]
   queue! %[touch "#{deploy_to}/#{shared_path}/config/secrets.yml"]
-  queue  %[echo "-----> Be sure to edit '#{deploy_to}/#{shared_path}/config/database.yml' and 'secrets.yml'."]
+  queue! %[touch "#{deploy_to}/#{shared_path}/config/application.yml"]
+  queue  %[echo "-----> Be sure to edit '#{deploy_to}/#{shared_path}/config/database.yml' and 'secrets.yml' and 'application.yml'."]
 
   if repository
     repo_host = repository.split(%r{@|://}).last.split(%r{:|\/}).first
