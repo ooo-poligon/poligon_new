@@ -15,6 +15,7 @@ gem 'progress_bar'
 gem 'fancybox-rails'
 gem 'therubyracer', :platform => :ruby
 gem 'jquery-rails'
+gem 'jquery-turbolinks'
 gem 'nokogiri'
 gem 'devise'
 gem 'devise-i18n'
