@@ -6,7 +6,7 @@
   <link href='https://fonts.googleapis.com/css?family=PT+Sans&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
   <link href='https://fonts.googleapis.com/css?family=Marck+Script&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+
   <%= csrf_meta_tags %>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -275,7 +275,7 @@
 
 <!-- <script src="http://bootstrap.ru/dist/js/bootstrap.min.js"></script> -->
 <!-- <script src="http://bootstrap-3.ru/examples/offcanvas/offcanvas.js"></script> -->
-
+<%= javascript_include_tag "application", "data-turbolinks-track" => true %>
 <script type="text/javascript">
   var client = new ZeroClipboard( $("button") );
 
