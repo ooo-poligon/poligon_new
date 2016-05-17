@@ -280,6 +280,7 @@ DEPENDENCIES
   sunspot_rails (= 2.2.4)
   sunspot_solr (= 2.2.4)
   therubyracer
+  turbolinks
   tzinfo-data
   uglifier (>= 1.0.3)
   webrat (= 0.7.3)

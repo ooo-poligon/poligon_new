@@ -11,9 +11,11 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require jquery
+//= require jquery.turbolinks
 //= require jquery_ujs
 //= require additions
 //= require fancybox
 //= require zeroclipboard
 //= require bootstrap-sprockets
+//= require turbolinks
 //= require_tree .

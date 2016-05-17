@@ -25,6 +25,7 @@ gem 'mandrill-api'
 gem 'figaro'
 gem 'rack-mini-profiler', require: false
 gem 'zeroclipboard-rails'
+gem 'turbolinks'
 
 group :assets do
   gem 'coffee-rails'
