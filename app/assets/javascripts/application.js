@@ -13,8 +13,8 @@
 //= require jquery
 //= require jquery.turbolinks
 //= require jquery_ujs
+//= require fancybox
 //= require bootstrap-sprockets
 //= require additions
 //= require zeroclipboard
-//= require fancybox
 //= require turbolinks
