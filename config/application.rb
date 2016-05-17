@@ -27,6 +27,7 @@ module Poligon
     config.autoload_paths += %W(#{config.root}/lib)
     config.encoding = "utf-8"
 
+    config.assets.enabled = true
     config.assets.precompile += %w(*.js)
   end
 end
