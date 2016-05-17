@@ -1,74 +1,94 @@
-require 'rvm/capistrano'
-require 'bundler/capistrano'
+require 'mina/bundler'
+require 'mina/rails'
+require 'mina/git'
+# require 'mina/rbenv'  # for rbenv support. (http://rbenv.org)
+require 'mina/rvm'    # for rvm support. (http://rvm.io)
 
-ssh_options[:forward_agent] = true
-set :rvm_path, "/usr/local/rvm"
-set :rvm_ruby_string, '2.2.1@default'
-set :application, "Poligon New Site"
-set :repository,  "git@github.com:poligon-info/poligon_new.git"
-set :default_stage, "production"
-set :use_sudo, false
-set :user, 'ror'
-set :scm, :git
-set :normalize_asset_timestamps, false
-set :rails_env, 'production'
+# Basic settings:
+#   domain       - The hostname to SSH to.
+#   deploy_to    - Path to deploy into.
+#   repository   - Git repo to clone from. (needed by mina/git)
+#   branch       - Branch name to deploy. (needed by mina/git)
+
+set :domain, '89.253.227.59'
+set :deploy_to, '/var/www/poligon_new'
+set :repository, "git@github.com:poligon-info/poligon_new.git"
 set :branch, 'master'
-set :deploy_to, "/var/www/poligon_ror"
-set :deploy_via, :copy
-server '89.253.227.59', :web, :app, :db, :primary => true
 
-namespace :deploy do
+# For system-wide RVM install.
+  set :rvm_path, '/usr/local/rvm/bin/rvm'
 
-  task :finalize_update, :except => {:no_release => true} do
-    run "chmod -R g+w #{latest_release}" if fetch(:group_writable, true)
-    run <<-CMD
-      rm -rf #{latest_release}/log #{latest_release}/public/system #{latest_release}/tmp/pids &&
-      mkdir -p #{latest_release}/public &&
-      mkdir -p #{latest_release}/tmp &&
-      ln -s #{shared_path}/log #{latest_release}/log &&
-      ln -s #{shared_path}/system #{latest_release}/public/system &&
-      ln -s #{shared_path}/pids #{latest_release}/tmp/pids
-    CMD
-    run "#{ try_sudo } ln -sf #{ deploy_to }/shared/config/database.yml #{ current_path }/config/database.yml"
+# Manually create these paths in shared/ (eg: shared/config/database.yml) in your server.
+# They will be linked in the 'deploy:link_shared_paths' step.
+set :shared_paths, ['config/database.yml', 'config/secrets.yml', 'config/application.yml', 'log']
 
-    if fetch(:normalize_asset_timestamps, true)
-      stamp = Time.now.utc.strftime("%Y%m%d%H%M.%S")
-      asset_paths = fetch(:public_children, %w(images stylesheets javascripts)).map { |p| "#{latest_release}/public/#{p}" }.join(" ")
-      run "find #{asset_paths} -exec touch -t #{stamp} {} ';'; true", :env => {"TZ" => "UTC"}
+# Optional settings:
+  set :user, 'ror'    # Username in the server to SSH to.
+#  set :port, '30000'     # SSH port number.
+  set :forward_agent, true     # SSH forward_agent.
+
+# This task is the environment that is loaded for most commands, such as
+# `mina deploy` or `mina rake`.
+task :environment do
+  # If you're using rbenv, use this to load the rbenv environment.
+  # Be sure to commit your .ruby-version or .rbenv-version to your repository.
+  # invoke :'rbenv:load'
+
+  # For those using RVM, use this to load an RVM version@gemset.
+  invoke :'rvm:use[ruby-2.2.1@default]'
+end
+
+# Put any custom mkdir's in here for when `mina setup` is ran.
+# For Rails apps, we'll make some of the shared paths that are shared between
+# all releases.
+task :setup => :environment do
+  queue! %[mkdir -p "#{deploy_to}/#{shared_path}/log"]
+  queue! %[chmod g+rx,u+rwx "#{deploy_to}/#{shared_path}/log"]
+
+  queue! %[mkdir -p "#{deploy_to}/#{shared_path}/config"]
+  queue! %[chmod g+rx,u+rwx "#{deploy_to}/#{shared_path}/config"]
+
+  queue! %[touch "#{deploy_to}/#{shared_path}/config/database.yml"]
+  queue! %[touch "#{deploy_to}/#{shared_path}/config/secrets.yml"]
+  queue  %[echo "-----> Be sure to edit '#{deploy_to}/#{shared_path}/config/database.yml' and 'secrets.yml'."]
+
+  if repository
+    repo_host = repository.split(%r{@|://}).last.split(%r{:|\/}).first
+    repo_port = /:([0-9]+)/.match(repository) && /:([0-9]+)/.match(repository)[1] || '22'
+
+    queue %[
+      if ! ssh-keygen -H  -F #{repo_host} &>/dev/null; then
+        ssh-keyscan -t rsa -p #{repo_port} -H #{repo_host} >> ~/.ssh/known_hosts
+      fi
+    ]
+  end
+end
+
+desc "Deploys the current version to the server."
+task :deploy => :environment do
+  to :before_hook do
+    # Put things to run locally before ssh
+  end
+  deploy do
+    # Put things that will set up an empty directory into a fully set-up
+    # instance of your project.
+    invoke :'git:clone'
+    invoke :'deploy:link_shared_paths'
+    invoke :'bundle:install'
+    #invoke :'rails:db_migrate'
+    invoke :'rails:assets_precompile'
+    invoke :'deploy:cleanup'
+
+    to :launch do
+      queue "mkdir -p #{deploy_to}/#{current_path}/tmp/"
+      queue "touch #{deploy_to}/#{current_path}/tmp/restart.txt"
     end
   end
-
-  desc "Precompile assets"
-  task :precompile_assets do
-    load 'deploy/assets'
-  end
-
-  desc "Symlink shared config files"
-  task :symlink_config_files do
-    run "#{ try_sudo } ln -s #{ deploy_to }/shared/config/database.yml #{ current_path }/config/database.yml"
-  end
-
-  desc "Restart Passenger app"
-  task :restart do
-    run "#{ try_sudo } touch #{ File.join(current_path, 'tmp', 'restart.txt') }"
-  end
-
-  #desc "Cleanup unneeded files"
-  #task :cleanup do
-  #  cap deploy:cleanup
-  #end
-
 end
 
-before "deploy:assets:precompile" do
-  run ["ln -nfs #{shared_path}/config/settings.yml #{release_path}/config/settings.yml",
-       "ln -nfs #{shared_path}/config/initializers/devise.rb #{release_path}/config/initializers/devise.rb",
-       "ln -nfs #{shared_path}/config/secrets.yml #{release_path}/config/secrets.yml",
-       "ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml",
-       "ln -nfs #{shared_path}/config/application.yml #{release_path}/config/application.yml",
-       "ln -fs #{shared_path}/uploads #{release_path}/uploads"
-  ].join(" && ")
-end
-
-after "deploy", "deploy:finalize_update"
-after "deploy", "deploy:restart"
+# For help in making your deploy script, see the Mina documentation:
+#
+#  - http://nadarei.co/mina
+#  - http://nadarei.co/mina/tasks
+#  - http://nadarei.co/mina/settings
+#  - http://nadarei.co/mina/helpers
