@@ -26,6 +26,8 @@ module Poligon
     config.active_record.raise_in_transactional_callbacks = true
     config.autoload_paths += %W(#{config.root}/lib)
     config.encoding = "utf-8"
+
+    config.assets.precompile += %w(*.js)
   end
 end
 
