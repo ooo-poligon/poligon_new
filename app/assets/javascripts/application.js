@@ -18,4 +18,3 @@
 //= require zeroclipboard
 //= require bootstrap-sprockets
 //= require turbolinks
-//= require_tree .
