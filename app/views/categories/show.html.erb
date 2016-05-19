@@ -9,13 +9,15 @@
 
   <li><%= link_to 'Каталог', categories_path %></li>
   <% array.reverse_each do |item| %>
-      <li><%= link_to item.title, item %></li>
+    <li><%= link_to item.title, item %></li>
   <% end %>
 </ol>
 <% if @subCategories.empty? %>
-    <% if (!@recentCategory.description.nil?) %>
-        <div><%= @recentCategory.description.html_safe %></div>
-    <% end %>
+  <% if (!@recentCategory.description.nil?) %>
+    <div>
+      <%= @recentCategory.description.html_safe %>
+    </div>
+  <% end %>
 <% else %>
     <table>
       <tr>

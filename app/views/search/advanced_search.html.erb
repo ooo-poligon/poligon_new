@@ -26,13 +26,29 @@
                 <td>
                   <% array = [] %>
                   <ol class="breadcrumb" style="padding-left: 2px; margin-bottom: 0px; background-color: #ffffff; font-size: 12px;">
-                    <% element = Category.available.find(product.category_id) %>
-                    <% while element.parent != 0 %>
+                    <% if Category.find(product.category_id).published == 1 %>
+                      <% element = Category.available.find(product.category_id) %>
+                      <% while element.parent != 0 %>
                         <% array.push(element) %>
                         <% element = Category.find(element.parent) %>
-                    <% end %>
-                    <% array.reverse_each do |item| %>
+                      <% end %>
+                      <% array.reverse_each do |item| %>
                         <li><%= link_to item.title, item, style: "color: orange; background-color: #ffffff;" %></li>
+                      <% end %>
+                    <% else %>
+                      <% element = Category.find(product.category_id) %>
+                      <% untouchable = element.title %>
+                      <% while element.parent != 0 %>
+                        <% array.push(element) %>
+                        <% element = Category.find(element.parent) %>
+                      <% end %>
+                      <% array.reverse_each do |item| %>
+                        <% if item.title == untouchable %>
+                          <li style="color: grey; background-color: #ffffff;" ><%= item.title %></li>
+                        <% else %>
+                          <li><%= link_to item.title, item, style: "color: orange; background-color: #ffffff;" %></li>
+                        <% end %>
+                      <% end %>
                     <% end %>
                   </ol>
                 </td>
