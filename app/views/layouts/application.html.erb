@@ -116,7 +116,7 @@
                     <input type="checkbox" name="exist_only" id="exist-checkbox" <%= checked %> />
                   </td>
                   <td>
-                  <input type="text" class="search-query search_form" name="q" placeholder="Расширенный поиск" value="<%= @search_query %>">
+                  <input type="text" class="search-query search_form" name="q" placeholder="Расширенный поиск" value="<%= params['q'] %>">
                   <input style="margin-bottom: 5px;" type="submit" class="btn btn-info" value="Найти">
                   </td>
                 </tr>

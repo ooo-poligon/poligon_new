@@ -143,7 +143,6 @@ class SearchController < ApplicationController
   before_action :getCourse
 
   def advanced_search
-    @search_query = params['q']
     @products_pdfs = ImageFile.where(file_type_id: 2)
 
     @products = Sunspot.search(Product) do
