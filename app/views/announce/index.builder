@@ -17,7 +17,6 @@ xml.rss version: '2.0', 'xmlns:atom' => 'http://www.w3.org/2005/Atom' do
         xml.description(h(news_item.content))
       end
     end
-
   end
 
 end

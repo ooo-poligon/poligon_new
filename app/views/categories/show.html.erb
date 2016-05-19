@@ -1,5 +1,7 @@
 <h2><%= @recentCategory.title %></h2>
+
 <% array = [] %>
+
 <ol class="breadcrumb">
   <% element = @recentCategory %>
   <% while element.parent != 0 %>
@@ -12,6 +14,7 @@
     <li><%= link_to item.title, item %></li>
   <% end %>
 </ol>
+
 <% if @subCategories.empty? %>
   <% if (!@recentCategory.description.nil?) %>
     <div>
@@ -19,28 +22,28 @@
     </div>
   <% end %>
 <% else %>
-    <table>
-      <tr>
-        <td style="width: 35%; vertical-align: top;">
-          <ul class="nav nav-pills nav-stacked" style="background-color: rgb(245, 245, 245);
-                  margin-right: 20px; padding-top: 10px; padding-bottom: 10px;
-                  border-bottom-left-radius: 4px; border-bottom-right-radius: 4px;
-                  border-top-left-radius: 4px; border-top-right-radius: 4px;">
-            <% @subCategories.each do |sc| %>
-                <li><%= link_to sc.title, sc %></li>
-            <% end %>
-          </ul>
-        </td>
-        <td style="width: 65%; vertical-align: top;">
-          <% if (!@recentCategory.description.nil?) %>
-              <div><%= @recentCategory.description
-                       .gsub('href="/PDF', 'href="http://www.poligon.info/PDF')
-                       .gsub('src="/images', 'src="http://www.poligon.info/images')
-                       .html_safe %></div>
-          <% end %>
-        </td>
-      </tr>
-    </table>
+  <div class="row">
+
+    <div class="col-md-3 categories-left"  >
+      <ul class="nav nav-pills nav-stacked categories-navigation">
+        <% @subCategories.each do |sc| %>
+            <li><%= link_to sc.title, sc %></li>
+        <% end %>
+      </ul>
+    </div>
+
+    <div class="col-md-9 categories-right" >
+      <% if !@recentCategory.description.nil? %>
+        <div>
+          <%= @recentCategory.description
+                             .gsub('href="/PDF', 'href="http://www.poligon.info/PDF')
+                             .gsub('src="/images', 'src="http://www.poligon.info/images')
+                             .html_safe %>
+        </div>
+      <% end %>
+    </div>
+
+  </div>
 <% end %>
 
 <% if !@products.empty? %>

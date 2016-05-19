@@ -39,6 +39,12 @@ h3 {
   color: blue;
 }
 
+.list-group {
+  box-shadow: 0 0px 0px rgba(0, 0, 0, 0);
+  max-width: 200px;
+  float: right;
+}
+
 #wrap {min-height: 100%;}
 
 #main {overflow:auto;
@@ -61,8 +67,6 @@ body:before {
 #carousel-container {
   padding-top: 20pt;
   }
-
-
 
 .panelShadow {
   position: fixed;

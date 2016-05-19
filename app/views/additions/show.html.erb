@@ -1,6 +1,7 @@
 <p id="notice"><%= notice %></p>
 <br>
 <h1><%= @addition.title %></h1>
+
 <p>
   <%= @addition.content.html_safe
       .gsub('href="/PDF', 'href="http://www.poligon.info/PDF')
@@ -19,4 +20,3 @@
 <br>
 <hr>
 <br>
-

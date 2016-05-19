@@ -1,18 +1,18 @@
 <h1>Список дополнений</h1>
 
 <table class="table table-striped">
+
   <tr>
     <th style="width: 80%;">Название</th>
-
     <th style="width: 20%;">Дата публикации</th>
     <th></th>
   </tr>
 
   <% @additions.each do |addition| %>
-      <tr>
-        <td><%= link_to addition.title, addition %></td>
-
-        <td><%= addition.created_at.strftime("%d.%m.%Y") %></td>
-      </tr>
+    <tr>
+      <td><%= link_to addition.title, addition %></td>
+      <td><%= addition.created_at.strftime("%d.%m.%Y") %></td>
+    </tr>
   <% end %>
+
 </table>

@@ -11,7 +11,6 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="assets/stylesheets/bootstrap/bootstrap-responsive.css" rel="stylesheet">
 
   <meta name="description" content="">
   <meta name="author" content="">
@@ -232,11 +231,14 @@
   </div>
 </div>
 
-<div class="container">
+<div class="container-fluid">
 
   <div class="row row-offcanvas row-offcanvas-right">
 
-    <div class="col-xs-12 col-sm-10">
+    <div class="col-md-2" >
+    </div>
+
+    <div class="col-xs-12 col-md-8">
       <p class="pull-right visible-xs">
         <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Боковое меню</button>
       </p>
@@ -246,7 +248,8 @@
       <% end %>
       <%= yield %>
     </div><!--/span-->
-    <div class="col-xs-6 col-sm-2 sidebar-offcanvas" id="sidebar" role="navigation"><br><br><br>
+
+    <div class="col-xs-6 col-md-2 sidebar-offcanvas" id="sidebar" role="navigation"><br><br><br>
       <div class="list-group">
         <%= link_to image_tag("logo/logo_200x60/tele.gif", alt: '"TELE"', title: "реле времени и контроля из Австрии", :class => 'partners list-group-item'), :action => 'show', :controller => 'categories', :id => '142' %>
         <%= link_to image_tag("logo/logo_200x60/benedict.gif", alt: '"Benedict"', title: "Контакторы, пускатели, защита Benedict", :class => "partners list-group-item"), :action => 'show', :controller => 'categories', :id => '5094' %>
@@ -264,6 +267,7 @@
         <%= link_to image_tag("logo/logo_200x60/vemer.gif", alt: '"VEMER"', title: "производитель промышленных решений для измерения и контроля основных электрических параметров", :class => "partners list-group-item"), :action => 'show', :controller => 'categories', :id => '5650' %>
       </div>
     </div><!--/span-->
+
   </div><!--/row-->
 
   <footer>
