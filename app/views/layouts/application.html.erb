@@ -216,7 +216,7 @@
             <li class="divider"></li>
             <li>
               <% if user_signed_in? %>
-                <%= link_to 'Выйти из служебного интерфейса', destroy_user_session_path, :method => :delete %>
+                <%= link_to 'Выйти из служебного интерфейса', destroy_user_session_path, :method => :get %>
               <% else %>
                 <%= link_to 'Служебный вход', new_user_session_path %>
                 <%#= link_to 'Зарегистрироваться', new_user_registration_path %>
