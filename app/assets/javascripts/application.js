@@ -15,6 +15,6 @@
 //= require jquery_ujs
 //= require fancybox
 //= require bootstrap-sprockets
-//= require additions
+//= require search
 //= require zeroclipboard
 //= require turbolinks

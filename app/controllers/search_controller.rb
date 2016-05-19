@@ -143,10 +143,18 @@ class SearchController < ApplicationController
   before_action :getCourse
 
   def advanced_search
-    @search_query = params[:q]
+    @search_query = params['q']
     @products_pdfs = ImageFile.where(file_type_id: 2)
-    @exist_only = params['exist_only']
+
     @products = Sunspot.search(Product) do
+      if params['exist_only']
+        instock_products_ids = []
+        Quantity.where("stock > 0").each do |q|
+          instock_products_ids.push q.product_id
+        end
+        with(:id).any_of(instock_products_ids)
+      end
+
       #fulltext search
       fulltext params['q'] do
         phrase_fields :title => 2.0

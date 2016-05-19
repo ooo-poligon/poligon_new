@@ -11,237 +11,118 @@
       </tr>
     </thead>
     <tbody>
-      <% products_exists = [] %>
       <% @products.results.each do |product| %>
-        <% if @exist_only == 'on' %>
-          <% if !Quantity.find_by(product_id: product).nil? and Quantity.find_by(product_id: product.id).stock > 0 %>
-            <% products_exists.push product %>
-            <tr>
-              <% productImage = ImageFile.where('owner_id = ? and file_type_id = 1', product.id).first %>
-              <% if productImage != nil %>
-                <% imagePath = productImage.path.gsub!("c:\\poligon_images", "http://www.poligon.info/images").gsub!("\\", "/") %>
-                <td><%= link_to image_tag(imagePath, class: "img-responsive center-block product-image-container"), imagePath, class: "fancybox" %></td>
-              <% else %>
-                <td></td>
-              <% end %>
-              <td style="vertical-align: top;">
-                <table class="table">
-                  <tr>
-                    <td>
-                      <% array = [] %>
-                      <ol class="breadcrumb" style="padding-left: 2px; margin-bottom: 0px; background-color: #ffffff; font-size: 12px;">
-                        <% element = Category.available.find(product.category_id) %>
-                        <% while element.parent != 0 %>
-                            <% array.push(element) %>
-                            <% element = Category.find(element.parent) %>
-                        <% end %>
-                        <% array.reverse_each do |item| %>
-                            <li><%= link_to item.title, item, style: "color: orange; background-color: #ffffff;" %></li>
-                        <% end %>
-                      </ol>
-                    </td>
-                  </tr>
-                  <tr>
-                  <% unless product.article.nil? or product.article == '' %>
-                    <td><span class="product-title"><%= link_to "(" + product.article + ") " + product.title, product %></span></td>
-                    <% else %>
-                      <td><span class="product-title"><%= link_to product.title, product %></span></td>
-                    <% end %>
-                  </tr>
-                  <tr>
-                    <td><%= product.description %></td>
-                  </tr>
-                </table>
-              </td>
-              <% if user_signed_in? %>
-                <td style="vertical-align: top;">
-                  <%= render partial: 'shared/product_quantities_table', locals: {product: product} %>
-                </td>
-                <td style="vertical-align: top;">
-                  <table style="width: 100%">
-                    <tr>
-                      <% unless product.price == 0 %>
-                        <td style="vertical-align: top;">
-                          <%= render partial: 'shared/product_prices_table', locals: {product: product} %>
-                        </td>
-                      <% else %>
-                        <td style="align-content: center;">
-                          Звоните:<br>(812)325-42-20
-                        </td>
-                      <% end %>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div style="float: left;">
-                          <% product_pdf = @products_pdfs.find_by(owner_id: product.id) %>
-                          <% if product_pdf != nil and product_pdf.path != "c:\\poligon_datasheets\\" %>
-                            <% pdf_path = product_pdf.path.gsub!("c:\\poligon_datasheets\\datasheets", "http://www.poligon.info/PDF").gsub!("\\", "/") %>
-                            <button type="button" class="btn btn-danger" target="_blank" onclick="window.open(&quot;<%= pdf_path %>&quot;)" >
-                              PDF
-                            </button>
-                          <% else %>
-                            <button type="button" class="btn btn-danger" target="_blank" onclick="no_pdf()" >
-                              PDF
-                            </button>
-                          <% end %>
-                        </div>
-                        <div style="float: right;">
-                          <% quantity = Quantity.find_by( product_id: product.id ) %>
-                          <% result_quantity = 0 %>
-                          <% result_quantity = quantity.stock - quantity.reserved  if !quantity.nil? %>
-                          <% if get_prices_eur(product)[1].round(2) == get_prices_eur(product)[0].round(2) %>
-                            <% price = get_prices_eur(product)[0].round(2) %>
-                            <% price_rub = get_prices_rub(product)[0].round(2) %>
-                            <% price_rub_nonds = price_rub / 1.18 %>
-                          <% else %>
-                            <% price = get_prices_eur(product)[1].round(2) %>
-                            <% price_rub = get_prices_rub(product)[1].round(2) %>
-                            <% price_rub_nonds = price_rub / 1.18 %>
-                          <% end %>
-                          <% unless price == 0 %>
-                            <% if product.currency_id == 1 %>
-                              <button class="btn btn-info" id="my-button" data-clipboard-text="<%= product.title %> — Цена: <%= price %> евро c НДС. Количество: <%= result_quantity %> шт.">
-                                EUR
-                              </button>
-                            <% end %>
-                            <button class="btn btn-success" id="my-button" data-clipboard-text="<%= product.title %> — Цена: <%= price_rub %> рублей c НДС. Количество: <%= result_quantity %> шт.">
-                              RUB
-                            </button>
-                            <button class="btn btn-warning" id="my-button" data-clipboard-text="<%= product.title %> — Цена: <%= price_rub_nonds %> рублей без НДС. Количество: <%= result_quantity %> шт.">
-                              Без НДС
-                            </button>
-                          <% end %>
-                        </div>
-                      </td>
-                    </tr>
-                  </table>
-                </td>
-              <% end %>
-            </tr>
+        <tr>
+          <% productImage = ImageFile.where('owner_id = ? and file_type_id = 1', product.id).first %>
+          <% if productImage != nil %>
+            <% imagePath = productImage.path.gsub!("c:\\poligon_images", "http://www.poligon.info/images").gsub!("\\", "/") %>
+            <td><%= link_to image_tag(imagePath, class: "img-responsive center-block product-image-container"), imagePath, class: "fancybox" %></td>
           <% else %>
-            <% next %>
+            <td></td>
           <% end %>
-        <% else %>
-          <tr>
-            <% productImage = ImageFile.where('owner_id = ? and file_type_id = 1', product.id).first %>
-            <% if productImage != nil %>
-              <% imagePath = productImage.path.gsub!("c:\\poligon_images", "http://www.poligon.info/images").gsub!("\\", "/") %>
-              <td><%= link_to image_tag(imagePath, class: "img-responsive center-block product-image-container"), imagePath, class: "fancybox" %></td>
-            <% else %>
-              <td></td>
-            <% end %>
+          <td style="vertical-align: top;">
+            <table class="table">
+              <tr>
+                <td>
+                  <% array = [] %>
+                  <ol class="breadcrumb" style="padding-left: 2px; margin-bottom: 0px; background-color: #ffffff; font-size: 12px;">
+                    <% element = Category.available.find(product.category_id) %>
+                    <% while element.parent != 0 %>
+                        <% array.push(element) %>
+                        <% element = Category.find(element.parent) %>
+                    <% end %>
+                    <% array.reverse_each do |item| %>
+                        <li><%= link_to item.title, item, style: "color: orange; background-color: #ffffff;" %></li>
+                    <% end %>
+                  </ol>
+                </td>
+              </tr>
+              <tr>
+              <% unless product.article.nil? or product.article == '' %>
+                <td><span class="product-title"><%= link_to "(" + product.article + ") " + product.title, product %></span></td>
+                <% else %>
+                  <td><span class="product-title"><%= link_to product.title, product %></span></td>
+                <% end %>
+              </tr>
+              <tr>
+                <td><%= product.description %></td>
+              </tr>
+            </table>
+          </td>
+          <% if user_signed_in? %>
             <td style="vertical-align: top;">
-              <table class="table">
+              <%= render partial: 'shared/product_quantities_table', locals: {product: product} %>
+            </td>
+            <td style="vertical-align: top;">
+              <table style="width: 100%">
                 <tr>
-                  <td>
-                    <% array = [] %>
-                    <ol class="breadcrumb" style="padding-left: 2px; margin-bottom: 0px; background-color: #ffffff; font-size: 12px;">
-                      <% element = Category.available.find(product.category_id) %>
-                      <% while element.parent != 0 %>
-                          <% array.push(element) %>
-                          <% element = Category.find(element.parent) %>
-                      <% end %>
-                      <% array.reverse_each do |item| %>
-                          <li><%= link_to item.title, item, style: "color: orange; background-color: #ffffff;" %></li>
-                      <% end %>
-                    </ol>
-                  </td>
-                </tr>
-                <tr>
-                <% unless product.article.nil? or product.article == '' %>
-                  <td><span class="product-title"><%= link_to "(" + product.article + ") " + product.title, product %></span></td>
+                  <% unless product.price == 0 %>
+                    <td style="vertical-align: top;">
+                      <%= render partial: 'shared/product_prices_table', locals: {product: product} %>
+                    </td>
                   <% else %>
-                    <td><span class="product-title"><%= link_to product.title, product %></span></td>
+                    <td style="align-content: center;">
+                      Звоните:<br>(812)325-42-20
+                    </td>
                   <% end %>
                 </tr>
                 <tr>
-                  <td><%= product.description %></td>
+                  <td>
+                    <div style="float: left;">
+                      <% product_pdf = @products_pdfs.find_by(owner_id: product.id) %>
+                      <% if product_pdf != nil and product_pdf.path != "c:\\poligon_datasheets\\" %>
+                        <% pdf_path = product_pdf.path.gsub!("c:\\poligon_datasheets\\datasheets", "http://www.poligon.info/PDF").gsub!("\\", "/") %>
+                        <button type="button" class="btn btn-danger" target="_blank" onclick="window.open(&quot;<%= pdf_path %>&quot;)" >
+                          PDF
+                        </button>
+                      <% else %>
+                        <button type="button" class="btn btn-danger" target="_blank" onclick="no_pdf()" >
+                          PDF
+                        </button>
+                      <% end %>
+                    </div>
+                    <div style="float: right;">
+                      <% quantity = Quantity.find_by( product_id: product.id ) %>
+                      <% result_quantity = 0 %>
+                      <% result_quantity = quantity.stock - quantity.reserved  if !quantity.nil? %>
+                      <% if get_prices_eur(product)[1].round(2) == get_prices_eur(product)[0].round(2) %>
+                        <% price = get_prices_eur(product)[0].round(2) %>
+                        <% price_rub = get_prices_rub(product)[0].round(2) %>
+                        <% price_rub_nonds = price_rub / 1.18 %>
+                      <% else %>
+                        <% price = get_prices_eur(product)[1].round(2) %>
+                        <% price_rub = get_prices_rub(product)[1].round(2) %>
+                        <% price_rub_nonds = price_rub / 1.18 %>
+                      <% end %>
+                      <% unless price == 0 %>
+                        <% if product.currency_id == 1 %>
+                          <button class="btn btn-info copy-btn" id="my-button" data-clipboard-text="<%= product.title %> — Цена: <%= price %> евро c НДС. Количество: <%= result_quantity %> шт.">
+                            EUR
+                          </button>
+                        <% end %>
+                        <button class="btn btn-success copy-btn" id="my-button" data-clipboard-text="<%= product.title %> — Цена: <%= price_rub %> рублей c НДС. Количество: <%= result_quantity %> шт.">
+                          RUB
+                        </button>
+                        <button class="btn btn-warning copy-btn" id="my-button" data-clipboard-text="<%= product.title %> — Цена: <%= price_rub_nonds %> рублей без НДС. Количество: <%= result_quantity %> шт.">
+                          Без НДС
+                        </button>
+                      <% end %>
+                    </div>
+                  </td>
                 </tr>
               </table>
             </td>
-            <% if user_signed_in? %>
-              <td style="vertical-align: top;">
-                <%= render partial: 'shared/product_quantities_table', locals: {product: product} %>
-              </td>
-              <td style="vertical-align: top;">
-                <table style="width: 100%">
-                  <tr>
-                    <% unless product.price == 0 %>
-                      <td style="vertical-align: top;">
-                        <%= render partial: 'shared/product_prices_table', locals: {product: product} %>
-                      </td>
-                    <% else %>
-                      <td style="align-content: center;">
-                        Звоните:<br>(812)325-42-20
-                      </td>
-                    <% end %>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div style="float: left;">
-                        <% product_pdf = @products_pdfs.find_by(owner_id: product.id) %>
-                        <% if product_pdf != nil and product_pdf.path != "c:\\poligon_datasheets\\" %>
-                          <% pdf_path = product_pdf.path.gsub!("c:\\poligon_datasheets\\datasheets", "http://www.poligon.info/PDF").gsub!("\\", "/") %>
-                          <button type="button" class="btn btn-danger" target="_blank" onclick="window.open(&quot;<%= pdf_path %>&quot;)" >
-                            PDF
-                          </button>
-                        <% else %>
-                          <button type="button" class="btn btn-danger" target="_blank" onclick="no_pdf()" >
-                            PDF
-                          </button>
-                        <% end %>
-                      </div>
-                      <div style="float: right;">
-                        <% quantity = Quantity.find_by( product_id: product.id ) %>
-                        <% result_quantity = 0 %>
-                        <% result_quantity = quantity.stock - quantity.reserved  if !quantity.nil? %>
-                        <% if get_prices_eur(product)[1].round(2) == get_prices_eur(product)[0].round(2) %>
-                          <% price = get_prices_eur(product)[0].round(2) %>
-                          <% price_rub = get_prices_rub(product)[0].round(2) %>
-                          <% price_rub_nonds = price_rub / 1.18 %>
-                        <% else %>
-                          <% price = get_prices_eur(product)[1].round(2) %>
-                          <% price_rub = get_prices_rub(product)[1].round(2) %>
-                          <% price_rub_nonds = price_rub / 1.18 %>
-                        <% end %>
-                        <% unless price == 0 %>
-                          <% if product.currency_id == 1 %>
-                            <button class="btn btn-info" id="my-button" data-clipboard-text="<%= product.title %> — Цена: <%= price %> евро c НДС. Количество: <%= result_quantity %> шт.">
-                              EUR
-                            </button>
-                          <% end %>
-                          <button class="btn btn-success" id="my-button" data-clipboard-text="<%= product.title %> — Цена: <%= price_rub %> рублей c НДС. Количество: <%= result_quantity %> шт.">
-                            RUB
-                          </button>
-                          <button class="btn btn-warning" id="my-button" data-clipboard-text="<%= product.title %> — Цена: <%= price_rub_nonds %> рублей без НДС. Количество: <%= result_quantity %> шт.">
-                            Без НДС
-                          </button>
-                        <% end %>
-                      </div>
-                    </td>
-                  </tr>
-                </table>
-              </td>
-            <% end %>
-          </tr>
-        <% end %>
+          <% end %>
+        </tr>
       <% end %>
     </tbody>
   </table>
   <br>
-  <div class="flickr_pagination">
-    <% if @exist_only == 'on' %>
-      <div class="page_info">
-        <%#= products_exists.size %>
-        <%= page_entries_info products_exists.paginate(:page => 2, :per_page => 10) %>
-      </div>
-      <%= will_paginate products_exists.paginate(:page => 1, :per_page => 10), :param_name => 'products_page', :container => false %>
-    <% else %>
-      <div class="page_info">
-        <%= page_entries_info @products.results %>
-      </div>
-      <%= will_paginate @products.results, :param_name => 'products_page', :container => false %>
-    <% end %>
+  <div class="flickr_pagination" id="products_pgn">
+    <div class="page_info">
+      <%= page_entries_info @products.results %>
+    </div>
+    <%= will_paginate @products.results, :param_name => 'products_page', :container => false %>
   </div>
 <% else %>
   <br>
