@@ -45,15 +45,27 @@ h3 {
   float: right;
 }
 
-#wrap {min-height: 100%;}
+#wrap {
+  min-height: 100%;
+}
 
-#main {overflow:auto;
-  padding-bottom: 50px;}  /* must be same height as the footer */
+#main {
+  overflow:auto;
+  padding-bottom: 50px; /* must be same height as the footer */
+}
 
-#footer {position: relative;
+footer  {
+    p {
+    text-align: center;
+  }
+}
+
+#footer {
+  position: relative;
   margin-top: -50px; /* negative value of footer height */
   height: 50px;
-  clear:both;}
+  clear:both;
+}
 
 /*Opera Fix*/
 body:before {
