@@ -1,0 +1,27 @@
+<div style="float: right;">
+  <% quantity = Quantity.find_by( product_id: locals[:product].id ) %>
+  <% result_quantity = 0 %>
+  <% result_quantity = quantity.stock - quantity.reserved  if !quantity.nil? %>
+  <% if get_prices_eur(locals[:product])[1].round(2) == get_prices_eur(locals[:product])[0].round(2) %>
+    <% price = get_prices_eur(locals[:product])[0].round(2) %>
+    <% price_rub = get_prices_rub(locals[:product])[0].round(2) %>
+    <% price_rub_nonds = price_rub / 1.18 %>
+  <% else %>
+    <% price = get_prices_eur(locals[:product])[1].round(2) %>
+    <% price_rub = get_prices_rub(locals[:product])[1].round(2) %>
+    <% price_rub_nonds = price_rub / 1.18 %>
+  <% end %>
+  <% unless price == 0 %>
+    <% if locals[:product].currency_id == 1 %>
+      <button class="btn btn-info copy-btn" id="my-button" data-clipboard-text="<%= locals[:product].title %> — Цена: <%= price %> евро c НДС. Количество: <%= result_quantity %> шт.">
+        EUR
+      </button>
+    <% end %>
+    <button class="btn btn-success copy-btn" id="my-button" data-clipboard-text="<%= locals[:product].title %> — Цена: <%= price_rub %> рублей c НДС. Количество: <%= result_quantity %> шт.">
+      RUB
+    </button>
+    <button class="btn btn-warning copy-btn" id="my-button" data-clipboard-text="<%= locals[:product].title %> — Цена: <%= price_rub_nonds %> рублей без НДС. Количество: <%= result_quantity %> шт.">
+      Без НДС
+    </button>
+  <% end %>
+</div>

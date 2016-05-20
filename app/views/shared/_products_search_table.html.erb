@@ -60,46 +60,8 @@
               </tr>
               <tr>
                 <td>
-                  <div style="float: left;">
-                    <% product_pdf = @products_pdfs.find_by(owner_id: product.id) %>
-                    <% if product_pdf != nil and product_pdf.path != "c:\\poligon_datasheets\\" %>
-                      <% pdf_path = product_pdf.path.gsub!("c:\\poligon_datasheets\\datasheets", "http://www.poligon.info/PDF").gsub!("\\", "/") %>
-                      <button type="button" class="btn btn-danger" target="_blank" onclick="window.open(&quot;<%= pdf_path %>&quot;)" >
-                        PDF
-                      </button>
-                    <% else %>
-                      <button type="button" class="btn btn-danger" target="_blank" onclick="no_pdf()" >
-                        PDF
-                      </button>
-                    <% end %>
-                  </div>
-                  <div style="float: right;">
-                    <% quantity = Quantity.find_by( product_id: product.id ) %>
-                    <% result_quantity = 0 %>
-                    <% result_quantity = quantity.stock - quantity.reserved  if !quantity.nil? %>
-                    <% if get_prices_eur(product)[1].round(2) == get_prices_eur(product)[0].round(2) %>
-                      <% price = get_prices_eur(product)[0].round(2) %>
-                      <% price_rub = get_prices_rub(product)[0].round(2) %>
-                      <% price_rub_nonds = price_rub / 1.18 %>
-                    <% else %>
-                      <% price = get_prices_eur(product)[1].round(2) %>
-                      <% price_rub = get_prices_rub(product)[1].round(2) %>
-                      <% price_rub_nonds = price_rub / 1.18 %>
-                    <% end %>
-                    <% unless price == 0 %>
-                      <% if product.currency_id == 1 %>
-                        <button class="btn btn-info copy-btn" id="my-button" data-clipboard-text="<%= product.title %> — Цена: <%= price %> евро c НДС. Количество: <%= result_quantity %> шт.">
-                          EUR
-                        </button>
-                      <% end %>
-                      <button class="btn btn-success copy-btn" id="my-button" data-clipboard-text="<%= product.title %> — Цена: <%= price_rub %> рублей c НДС. Количество: <%= result_quantity %> шт.">
-                        RUB
-                      </button>
-                      <button class="btn btn-warning copy-btn" id="my-button" data-clipboard-text="<%= product.title %> — Цена: <%= price_rub_nonds %> рублей без НДС. Количество: <%= result_quantity %> шт.">
-                        Без НДС
-                      </button>
-                    <% end %>
-                  </div>
+                  <%= render "shared/open_pdf_button", locals: { product: product, products_pdfs: @products_pdfs } %>
+                  <%= render "shared/copy_buttons", locals: { product: product } if current_user.group_id != 1 %>
                 </td>
               </tr>
             </table>

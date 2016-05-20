@@ -38,6 +38,7 @@
         <% unless @product.price == 0 %>
           <h3>Цены:</h3>
           <%= render partial: 'shared/product_prices_table', locals: {product: @product} %>
+          <%= render "shared/copy_buttons", locals: { product: @product } if current_user.group_id != 1 %>
         <% else %>
           <p>
             <b style="font-size: 12px; color: red; font-weight: bolder;">Цена не установлена.</b>
