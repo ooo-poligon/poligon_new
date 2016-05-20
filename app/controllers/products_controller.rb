@@ -5,6 +5,7 @@ class ProductsController < ApplicationController
 
   def show
     @product = Product.find(params[:id])
+    @parents_array = parents_of(@product.category_id)
     @addCBR = Setting.find_by title: 'addCBR'
     if @product.currency_id == 1
       @retail_price = (@product.price * (@courseEuro + (@courseEuro / 100) * @addCBR.text_value.to_f) * @product.rate).round

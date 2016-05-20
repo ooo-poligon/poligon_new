@@ -1,7 +1,3 @@
-
-<% @staticContent.each do |static_content| %>
-    <% if static_content.directory == "company" and static_content.page == "links" %>
-        <h1><%= static_content.title %></h1>
-        <p><%= static_content.content.html_safe %></p>
-    <% end %>
-<% end %>
+<%= render "shared/static_page", :locals => { content: @staticContent,
+                                              directory: 'company',
+                                              page: 'links' } %>

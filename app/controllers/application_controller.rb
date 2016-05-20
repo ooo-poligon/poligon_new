@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   before_filter :configure_permitted_parameters, if: :devise_controller?
   before_filter :getCourse
 
-  helper_method :get_prices_eur, :get_prices_rub, :hello_user
+  helper_method :get_prices_eur, :get_prices_rub, :hello_user, :parents_of
 
   def get_prices_eur(product)
     prices_array = []
@@ -39,6 +39,16 @@ class ApplicationController < ActionController::Base
       io_only.push word if idx != 0
     end
     "Здравствуйте, #{ io_only.join(" ") }!"
+  end
+
+  def parents_of(category_id)
+    parents_array = []
+    element = Category.find(category_id)
+    while element.parent != 0
+        parents_array.push(element)
+        element = Category.find(element.parent)
+    end
+    parents_array
   end
 
   protected

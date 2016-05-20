@@ -16,3 +16,12 @@
 //= require bootstrap-sprockets
 //= require search
 //= require zeroclipboard
+
+$(document).ready(function() {
+  var clip = new ZeroClipboard($(".copy-btn"));
+  $("a.fancybox").fancybox();
+});
+
+function no_pdf() {
+  alert("Для этого устройства даташит не обнаружен.");
+}

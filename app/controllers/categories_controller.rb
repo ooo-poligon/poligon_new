@@ -17,9 +17,10 @@ class CategoriesController < ApplicationController
     @allUpLevelCategories.each do |category|
       @allUpLevelCategoriesIds.push(category.id)
     end
-    @subCategories = Category.available.where(parent: params[:id])
+    @subCategories  = Category.available.where(parent: params[:id])
     @recentCategory = Category.available.find(params[:id])
     @parentCategory = Category.available.find(@recentCategory.parent)
+    @parents_array  = parents_of @recentCategory
     @products = []
     addCBR = Setting.find_by title: 'addCBR'
 
@@ -32,6 +33,7 @@ class CategoriesController < ApplicationController
       end
       @products.push(minihash)
     end
+
   end
 
   protected

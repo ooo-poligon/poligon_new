@@ -1,18 +1,23 @@
 # -*- encoding : utf-8 -*-
 class CompanyController < ApplicationController
+
+  before_filter :set_content
+
   def about
-    @staticContent = StaticContent.all
   end
 
   def contacts
-    @staticContent = StaticContent.all
   end
 
   def vacancies
-    @staticContent = StaticContent.all
   end
 
   def links
+  end
+
+  private
+
+  def set_content
     @staticContent = StaticContent.all
   end
 end

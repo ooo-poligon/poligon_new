@@ -1,0 +1,8 @@
+<div class="static-content">
+  <% locals[:content].each do |static_content| %>
+    <% if static_content.directory == locals[:directory] and static_content.page == locals[:page] %>
+      <h1><%= static_content.title %></h1>
+      <p><%= static_content.content.html_safe %></p>
+    <% end %>
+  <% end %>
+</div>

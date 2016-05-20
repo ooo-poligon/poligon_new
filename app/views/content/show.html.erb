@@ -1,11 +1,10 @@
-<br>
 <% @content.each do |c| %>
-    <% if c.page == params[:id] %>
-        <h1><%= c.title %></h1>
-        <br>
-        <div><%= c.content
-                 .gsub('href="/PDF', 'href="http://www.poligon.info/PDF')
-                 .gsub('src="/images', 'src="http://www.poligon.info/images')
-                 .html_safe %></div>
-    <% end %>
+  <% if c.page == params[:id] %>
+    <h1><%= c.title %></h1>
+    <div>
+      <%= c.content.gsub('href="/PDF', 'href="http://www.poligon.info/PDF')
+                   .gsub('src="/images', 'src="http://www.poligon.info/images')
+                   .html_safe %>
+    </div>
+  <% end %>
 <% end %>

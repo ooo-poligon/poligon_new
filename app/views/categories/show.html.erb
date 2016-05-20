@@ -1,26 +1,14 @@
 <h2><%= @recentCategory.title %></h2>
 
-<% array = [] %>
-
 <ol class="breadcrumb">
-  <% element = @recentCategory %>
-  <% while element.parent != 0 %>
-      <% array.push(element) %>
-      <% element = Category.find(element.parent) %>
-  <% end %>
-
   <li><%= link_to 'Каталог', categories_path %></li>
-  <% array.reverse_each do |item| %>
+  <% @parents_array.reverse_each do |item| %>
     <li><%= link_to item.title, item %></li>
   <% end %>
 </ol>
 
 <% if @subCategories.empty? %>
-  <% if (!@recentCategory.description.nil?) %>
-    <div>
-      <%= @recentCategory.description.html_safe %>
-    </div>
-  <% end %>
+  <%= @recentCategory.description.html_safe if (!@recentCategory.description.nil?) %>
 <% else %>
   <div class="row">
 
@@ -33,70 +21,13 @@
     </div>
 
     <div class="col-md-9 categories-right" >
-      <% if !@recentCategory.description.nil? %>
-        <div>
-          <%= @recentCategory.description
-                             .gsub('href="/PDF', 'href="http://www.poligon.info/PDF')
-                             .gsub('src="/images', 'src="http://www.poligon.info/images')
-                             .html_safe %>
-        </div>
-      <% end %>
+      <%= @recentCategory.description
+                         .gsub('href="/PDF', 'href="http://www.poligon.info/PDF')
+                         .gsub('src="/images', 'src="http://www.poligon.info/images')
+                         .html_safe if !@recentCategory.description.nil? %>
     </div>
 
   </div>
 <% end %>
 
-<% if !@products.empty? %>
-    <br>
-    <table class="table table-striped">
-      <thead>
-      <tr>
-        <th style="width: 10%;">Изображение</th>
-        <th style="width: 60%;">Продукт</th>
-
-        <th style="width: 5%;">Наличие</th>
-        <th style="width: 15%;">Поставка</th>
-        <th style="width: 10%;">Стоимость</th>
-      </tr>
-      </thead>
-      <% @products.each do |product_array| %>
-          <tr>
-            <% productImage = ImageFile.where('owner_id = ? and file_type_id = 1', product_array[0].id).first %>
-            <% unless productImage.nil? %>
-              <% if productImage.path[0] != 'c' %>
-                <% productImage.path.gsub!(productImage.path[0], 'c') %>
-                <% imagePath = productImage.path.gsub!("c:\\poligon_images", "http://www.poligon.info/images").gsub!("\\", "/") %>
-              <% else %>
-                <% imagePath = productImage.path.gsub!("c:\\poligon_images", "http://www.poligon.info/images").gsub!("\\", "/") %>
-              <% end %>
-              <td><%= link_to image_tag(imagePath, class: "img-responsive center-block product-image-container"), imagePath, class: "fancybox" %></td>
-          <% else %>
-              <td></td>
-              <% end %>
-            <td>
-              <table>
-                <tr>
-                  <td><span class="product-title"><%= link_to product_array[0].title, product_array[0] %></span></td>
-                </tr>
-                <tr>
-                  <td><%= product_array[0].description %></td>
-                </tr>
-              </table>
-            </td>
-            <% if !Quantity.find_by(product_id: product_array[0].id).nil? && Quantity.find_by(product_id: product_array[0].id).stock > 0 %>
-              <td style="text-align: center;"><%= image_tag("green.gif") %></td>
-              <td>Есть на складе</td>
-            <% else %>
-                <td style="text-align: center;"><%= image_tag("grey.gif") %></td>
-                <td><%= product_array[0].delivery_time %></td>
-            <% end %>
-            <% unless product_array[1] == 0 %>
-                <td><%= product_array[1] %> руб.</td>
-            <% else %>
-                <td style="align-content: center;">Звоните:<br>(812)325-42-20</td>
-            <% end %>
-          </tr>
-      <% end %>
-    </table>
-<% end %>
-
+<%= render "shared/products_table" %>

@@ -1,0 +1,140 @@
+<% if user_signed_in? %>
+  <style>
+    body {
+      padding-top: 50px;
+    }
+    .main-bar {
+      margin-top: 50px;
+    }
+    .user-bar {
+      background-image: linear-gradient(to bottom, #d3d6d2 0%, #cccfff 100%);
+    }
+    .search_form {
+      width: 370px;
+      height: 40px;
+    }
+    .exist-label{
+      width: 70px;
+      display:block;
+      text-align: center;
+      font-weight: normal;
+      font-size: 11px;
+      padding-top: 7px;
+      text-align: right;
+    }
+  </style>
+  <% if current_user.group_id == 1 %>
+    <style type="text/css">
+      .navbar-default {
+        background-image: linear-gradient(to bottom, #66ff33 0%, #8cff66 100%);
+      }
+      .navbar-default .navbar-nav > .open > a,
+      .navbar-default .navbar-nav > .active > a {
+        background-image: linear-gradient(to bottom, #66ff2c 0%, #8cff60 100%);
+      }
+      .dropdown-menu {
+        background-color: #8cff60;
+      }
+    </style>
+  <% elsif current_user.group_id == 2 %>
+    <style type="text/css">
+      .navbar-default {
+        background-image: linear-gradient(to bottom, #c4e8ff 0%, #cce6ff 100%);
+      }
+      .navbar-default .navbar-nav > .open > a,
+      .navbar-default .navbar-nav > .active > a {
+        background-image: linear-gradient(to bottom, #c4e8f0 0%, #cce6f0 100%);
+      }
+      .dropdown-menu {
+        background-color: #cce6ff;
+      }
+    </style>
+  <% elsif current_user.group_id == 3 %>
+    <style type="text/css">
+      .navbar-default {
+        background-image: linear-gradient(to bottom, #ffd9b3 0%, #ffe6cc 100%);
+      }
+      .navbar-default .navbar-nav > .open > a,
+      .navbar-default .navbar-nav > .active > a {
+        background-image: linear-gradient(to bottom, #ffd9b3 0%, #ffe6cc 100%);
+      }
+      .dropdown-menu {
+        background-color: #ffe6cc;
+      }
+    </style>
+  <% end %>
+
+  <nav class="navbar navbar-fixed-top user-bar" role="navigation">
+    <div class="container-fluid">
+      <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav navbar-right">
+          <li style="margin-right: 15px;">
+            <form class="navbar-search pull-right" method="get" action="/advanced_search">
+              <input type="hidden" name="farnell_page" value="1">
+              <input type="hidden" name="products_page" value="1">
+              <table>
+                <tr>
+                  <td class="exist-label">
+                    <span>В наличии</span><br>
+                      <% if params['exist_only'] %>
+                        <% checked = 'checked="checked"' %>
+                      <% else %>
+                        <% checked = '' %>
+                      <% end %>
+                    <input type="checkbox" name="exist_only" id="exist-checkbox" <%= checked %> />
+                  </td>
+                  <td>
+                  <input type="text" class="search-query search_form" name="q" placeholder="Расширенный поиск" value="<%= params['q'] %>">
+                  <input style="margin-bottom: 5px;" type="submit" class="btn btn-info" value="Найти">
+                  </td>
+                </tr>
+              </table>
+            </form>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav navbar">
+          <li>
+            <div style="margin-bottom: 0px; margin-top: 5px; margin-right: 15px;">
+              <b><%= hello_user %></b><br>
+              Текущая дата:<b><%= Time.now.strftime(" %d.%m.%Y") %></b>
+            </div>
+          </li>
+          <li>
+            <% unless current_user.group_id == 1 %>
+              <div style="margin-bottom: 0px; margin-top: 5px; margin-right: 15px;">
+                <table>
+                  <tr>
+                    <td>Курс &euro; ЦБ РФ:</td>
+                    <td>&nbsp</td>
+                    <td style="font-weight: bold; color: red;">
+                      <%= @courseEuro.round(2) %>р.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Курс &euro; ПОЛИГОН:</td>
+                    <td>&nbsp</td>
+                    <td style="font-weight: bold; color: red;">
+                      <%= (@courseEuro + (@courseEuro / 100) * @addCBR.text_value.to_f).round(2) %>р.
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            <% else %>
+              <div style="margin-bottom: 0px; margin-top: 15px; margin-right: 15px;">
+                <table>
+                  <tr>
+                    <td>Курс &euro; ЦБ РФ:</td>
+                    <td>&nbsp</td>
+                    <td style="font-weight: bold; color: red;">
+                      <%= @courseEuro %>р.
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            <% end %>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+<% end %>

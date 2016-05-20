@@ -3,29 +3,34 @@
 <% else %>
   <% stock = 0 %>
 <% end %>
+
 <% unless Quantity.find_by(product_id: product.id).nil? %>
   <% reserved = Quantity.find_by(product_id: product.id).reserved %>
 <% else %>
   <% reserved = 0 %>
 <% end %>
+
 <% unless Quantity.find_by(product_id: product.id).nil? %>
   <% ordered = Quantity.find_by(product_id: product.id).ordered %>
 <% else %>
   <% ordered = 0 %>
 <% end %>
+
 <% unless Quantity.find_by(product_id: product.id).nil? %>
   <% pieces_per_pack = Quantity.find_by(product_id: product.id).pieces_per_pack %>
 <% else %>
   <% pieces_per_pack = 0 %>
 <% end %>
+
 <% unless Quantity.find_by(product_id: product.id).nil? %>
   <% minimum = Quantity.find_by(product_id: product.id).minimum %>
 <% else %>
   <% minimum = 0 %>
 <% end %>
+
 <% if user_signed_in? %>
   <% if current_user.group_id == 2 or current_user.group_id == 3 %>
-    <table class="table table-condensed">
+    <table class="table table-condensed table-responsive">
       <tr>
         <td>&nbspДоступно:</td><td style="font-weight: bolder; align-content: right;">&nbsp<%= stock - reserved %>&nbsp</td><td style="align-content: right;">шт.</td>
       </tr>
@@ -43,7 +48,7 @@
       </tr>
     </table>
   <% elsif current_user.group_id == 1 %>
-    <table class="table table-condensed">
+    <table class="table table-condensed table-responsive">
       <tr>
         <td>&nbspДоступно:</td><td style="font-weight: bolder; align-content: right;">&nbsp<%= stock - reserved %>&nbsp</td><td style="align-content: right;">шт.</td>
       </tr>

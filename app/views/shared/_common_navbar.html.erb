@@ -1,0 +1,58 @@
+<div class="container-fluid">
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" style="margin-bottom: 5px; margin-top: -10px" href=<%= root_path %>><%= image_tag('logo185.png', alt: 'Компания "ПОЛИГОН"') %></a>
+  </div>
+  <div class="navbar-collapse collapse">
+    <ul class="nav navbar-nav">
+      <li><%= link_to 'Новости', news_items_path %></li>
+      <li><%= link_to 'Публикации', publications_index_path %></li>
+      <li><%= link_to 'Каталог', categories_path %></li>
+      <% unless user_signed_in? %>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Поиск <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li>
+              <form class="navbar-search pull-left" method="get" action="/search">
+              <input type="text" class="search-query search_form" name="q" placeholder="поиск">
+              </form>
+            </li>
+          </ul>
+        </li>
+      <% end %>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Информация <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+          <li><a href=<%= company_about_path %>> <i class="glyphicon glyphicon-saved"></i>  О компании</a></li>
+          <li><a href=<%= content_sertificates_path %>> <i class="glyphicon glyphicon-certificate"></i>  Сертификаты</a></li>
+          <li><a href=<%= feedback_booklets_path %>> <i class="glyphicon glyphicon-book"></i>  Буклеты и каталоги</a></li>
+          <li><a href=<%= company_vacancies_path %>> <i class="glyphicon glyphicon-bullhorn"></i>  Список вакансий</a></li>
+          <li><a href=<%= feedback_mailing_list_path %>><i class="glyphicon glyphicon-envelope"></i>  Рассылка новостей</a></li>
+          <li class="divider"></li>
+          <li><%= link_to 'Обмен ссылками', company_links_path %></li>
+          <li><%= link_to 'Карта сайта', sitemap_path %></li>
+          <li><%= link_to 'Контакты', company_contacts_path %></li>
+          <li class="divider"></li>
+          <li>
+            <% if user_signed_in? %>
+              <%= link_to 'Выйти из служебного интерфейса', destroy_user_session_path, :method => :get %>
+            <% else %>
+              <%= link_to 'Служебный вход', new_user_session_path %>
+              <%#= link_to 'Зарегистрироваться', new_user_registration_path %>
+            <% end %>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <%= link_to '(812) 325-42-20', company_contacts_path, class: "phone" %>
+      </li>
+    </ul>
+  </div><!--/.nav-collapse -->
+</div>

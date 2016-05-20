@@ -1,6 +1,7 @@
 // Place all the styles related to the search controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
 table {
   caption {
     color:red;
@@ -19,7 +20,9 @@ table {
   }
 }
 
-
+.page_info {
+  margin-bottom: 10px;
+}
 
 .digg_pagination {
   background: white;

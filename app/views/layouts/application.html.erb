@@ -1,295 +1,72 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/html">
 <html lang="ru">
-<head>
-  <title>Компания "ПОЛИГОН"</title>
-  <link href='https://fonts.googleapis.com/css?family=PT+Sans&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
-  <link href='https://fonts.googleapis.com/css?family=Marck+Script&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <head>
+    <title>Компания "ПОЛИГОН"</title>
+    <link href='https://fonts.googleapis.com/css?family=PT+Sans&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Marck+Script&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Ubuntu+Condensed&subset=latin,cyrillic-ext' rel='stylesheet' type='text/css'>
+    <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
 
-  <%= csrf_meta_tags %>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <%= csrf_meta_tags %>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <meta name="description" content="">
-  <meta name="author" content="">
-  <%= favicon_link_tag 'favicon.ico' %>
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <%= favicon_link_tag 'favicon.ico' %>
 
-  <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-  <!--[if lt IE 9]>
-  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-  <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-  <![endif]-->
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <![endif]-->
 
-  <link href="/feeds" rel="alternate" title="RSS feed" type="application/rss+xml">
-</head>
+    <link href="/feeds" rel="alternate" title="RSS feed" type="application/rss+xml">
+  </head>
 
-<body>
-<% if user_signed_in? %>
-  <% if current_user.group_id == 1 %>
-    <style type="text/css">
-      .navbar-default {
-        background-image: linear-gradient(to bottom, #66ff33 0%, #8cff66 100%);
-      }
-      .navbar-default .navbar-nav > .open > a,
-      .navbar-default .navbar-nav > .active > a {
-        background-image: linear-gradient(to bottom, #66ff2c 0%, #8cff60 100%);
-      }
-      .dropdown-menu {
-        background-color: #8cff60;
-      }
-    </style>
-  <% elsif current_user.group_id == 2 %>
-    <style type="text/css">
-      .navbar-default {
-        background-image: linear-gradient(to bottom, #c4e8ff 0%, #cce6ff 100%);
-      }
-      .navbar-default .navbar-nav > .open > a,
-      .navbar-default .navbar-nav > .active > a {
-        background-image: linear-gradient(to bottom, #c4e8f0 0%, #cce6f0 100%);
-      }
-      .dropdown-menu {
-        background-color: #cce6ff;
-      }
-    </style>
-  <% elsif current_user.group_id == 3 %>
-    <style type="text/css">
-      .navbar-default {
-        background-image: linear-gradient(to bottom, #ffd9b3 0%, #ffe6cc 100%);
-      }
-      .navbar-default .navbar-nav > .open > a,
-      .navbar-default .navbar-nav > .active > a {
-        background-image: linear-gradient(to bottom, #ffd9b3 0%, #ffe6cc 100%);
-      }
-      .dropdown-menu {
-        background-color: #ffe6cc;
-      }
-    </style>
-  <% end %>
-<% end %>
+  <body>
+    <%= render "shared/user_navbar" %>
 
-<% if user_signed_in? %>
-  <style>
-    body {
-      padding-top: 50px;
-    }
-    .main-bar {
-      margin-top: 50px;
-    }
-    .user-bar {
-      background-image: linear-gradient(to bottom, #d3d6d2 0%, #cccfff 100%);
-    }
-    .search_form {
-      width: 370px;
-      height: 40px;
-    }
-    .exist-label{
-      width: 70px;
-      display:block;
-      text-align: center;
-      font-weight: normal;
-      font-size: 11px;
-      padding-top: 7px;
-      text-align: right;
-    }
-  </style>
-  <nav class="navbar navbar-fixed-top user-bar" role="navigation">
+    <!-- Fixed navbar -->
+    <div class="navbar navbar-default navbar-fixed-top main-bar" role="navigation">
+      <%= render "shared/common_navbar" %>
+    </div>
+
     <div class="container-fluid">
-      <div class="navbar-collapse collapse">
-        <ul class="nav navbar-nav navbar-right">
-          <li style="margin-right: 15px;">
-            <form class="navbar-search pull-right" method="get" action="/advanced_search">
-              <input type="hidden" name="farnell_page" value="1">
-              <input type="hidden" name="products_page" value="1">
-              <table>
-                <tr>
-                  <td class="exist-label">
-                    <span>В наличии</span><br>
-                      <% if params['exist_only'] %>
-                        <% checked = 'checked="checked"' %>
-                      <% else %>
-                        <% checked = '' %>
-                      <% end %>
-                    <input type="checkbox" name="exist_only" id="exist-checkbox" <%= checked %> />
-                  </td>
-                  <td>
-                  <input type="text" class="search-query search_form" name="q" placeholder="Расширенный поиск" value="<%= params['q'] %>">
-                  <input style="margin-bottom: 5px;" type="submit" class="btn btn-info" value="Найти">
-                  </td>
-                </tr>
-              </table>
-            </form>
-          </li>
-        </ul>
-        <ul class="nav navbar-nav navbar">
-          <li>
-            <div style="margin-bottom: 0px; margin-top: 5px; margin-right: 15px;">
-              <b><%= hello_user %></b><br>
-              Текущая дата:<b><%= Time.now.strftime(" %d.%m.%Y") %></b>
-            </div>
-          </li>
-          <li>
-            <% unless current_user.group_id == 1 %>
-              <div style="margin-bottom: 0px; margin-top: 5px; margin-right: 15px;">
-                <table>
-                  <tr>
-                    <td>Курс &euro; ЦБ РФ:</td>
-                    <td>&nbsp</td>
-                    <td style="font-weight: bold; color: red;">
-                      <%= @courseEuro.round(2) %>р.
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Курс &euro; ПОЛИГОН:</td>
-                    <td>&nbsp</td>
-                    <td style="font-weight: bold; color: red;">
-                      <%= (@courseEuro + (@courseEuro / 100) * @addCBR.text_value.to_f).round(2) %>р.
-                    </td>
-                  </tr>
-                </table>
-              </div>
-            <% else %>
-              <div style="margin-bottom: 0px; margin-top: 15px; margin-right: 15px;">
-                <table>
-                  <tr>
-                    <td>Курс &euro; ЦБ РФ:</td>
-                    <td>&nbsp</td>
-                    <td style="font-weight: bold; color: red;">
-                      <%= @courseEuro %>р.
-                    </td>
-                  </tr>
-                </table>
-              </div>
-            <% end %>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-<% end %>
-<!-- Fixed navbar -->
-<div class="navbar navbar-default navbar-fixed-top main-bar" role="navigation">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" style="margin-bottom: 5px; margin-top: -10px" href=<%= root_path %>><%= image_tag('logo185.png', alt: 'Компания "ПОЛИГОН"') %></a>
-    </div>
-    <div class="navbar-collapse collapse">
-      <ul class="nav navbar-nav">
-        <li><%= link_to 'Новости', news_items_path %></li>
-        <li><%= link_to 'Публикации', publications_index_path %></li>
-        <li><%= link_to 'Каталог', categories_path %></li>
-        <% unless user_signed_in? %>
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Поиск <b class="caret"></b></a>
-            <ul class="dropdown-menu">
-              <li>
-                <form class="navbar-search pull-left" method="get" action="/search">
-                <input type="text" class="search-query search_form" name="q" placeholder="поиск">
-                </form>
-              </li>
-            </ul>
-          </li>
-        <% end %>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Информация <b class="caret"></b></a>
-          <ul class="dropdown-menu">
-            <li><a href=<%= company_about_path %>> <i class="glyphicon glyphicon-saved"></i>  О компании</a></li>
-            <li><a href=<%= content_sertificates_path %>> <i class="glyphicon glyphicon-certificate"></i>  Сертификаты</a></li>
-            <li><a href=<%= feedback_booklets_path %>> <i class="glyphicon glyphicon-book"></i>  Буклеты и каталоги</a></li>
-            <li><a href=<%= company_vacancies_path %>> <i class="glyphicon glyphicon-bullhorn"></i>  Список вакансий</a></li>
-            <li><a href=<%= feedback_mailing_list_path %>><i class="glyphicon glyphicon-envelope"></i>  Рассылка новостей</a></li>
-            <li class="divider"></li>
-            <li><%= link_to 'Обмен ссылками', company_links_path %></li>
-            <li><%= link_to 'Карта сайта', sitemap_path %></li>
-            <li><%= link_to 'Контакты', company_contacts_path %></li>
-            <li class="divider"></li>
-            <li>
-              <% if user_signed_in? %>
-                <%= link_to 'Выйти из служебного интерфейса', destroy_user_session_path, :method => :get %>
-              <% else %>
-                <%= link_to 'Служебный вход', new_user_session_path %>
-                <%#= link_to 'Зарегистрироваться', new_user_registration_path %>
-              <% end %>
-            </li>
-          </ul>
-        </li>
-        <li>
-          <%= link_to '(812) 325-42-20', company_contacts_path, class: "phone" %>
-        </li>
-      </ul>
-    </div><!--/.nav-collapse -->
-  </div>
-</div>
 
-<div class="container-fluid">
+      <div class="row row-offcanvas row-offcanvas-right">
 
-  <div class="row row-offcanvas row-offcanvas-right">
+        <div class="col-md-1" >
+        </div><!--/span-->
 
-    <div class="col-md-1" >
-    </div>
+        <div class="col-xs-12 col-md-9">
+          <p class="pull-right visible-xs">
+            <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Боковое меню</button>
+          </p>
+          <br><br>
+          <% flash.each do |key, value| %>
+            <br><div class="alert alert-<%= key %>"><%= value %></div>
+          <% end %>
+          <%= yield %>
+        </div><!--/span-->
 
-    <div class="col-xs-12 col-md-9">
-      <p class="pull-right visible-xs">
-        <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Боковое меню</button>
-      </p>
-      <br><br>
-      <% flash.each do |key, value| %>
-        <div class="alert alert-<%= key %>"><%= value %></div>
-      <% end %>
-      <%= yield %>
-    </div><!--/span-->
+        <div class="col-md-2 sidebar-offcanvas" id="sidebar" role="navigation"><br><br><br>
+          <%= render "shared/sidebar_vendors" %>
+        </div><!--/span-->
 
-    <div class="col-xs-6 col-md-2 sidebar-offcanvas" id="sidebar" role="navigation"><br><br><br>
-      <div class="list-group">
-        <%= link_to image_tag("logo/logo_200x60/tele.gif", alt: '"TELE"', title: "реле времени и контроля из Австрии", :class => 'partners list-group-item'), :action => 'show', :controller => 'categories', :id => '142' %>
-        <%= link_to image_tag("logo/logo_200x60/benedict.gif", alt: '"Benedict"', title: "Контакторы, пускатели, защита Benedict", :class => "partners list-group-item"), :action => 'show', :controller => 'categories', :id => '5094' %>
-        <%= link_to image_tag("logo/logo_200x60/citel.gif", alt: '"CITEL"', title: "CITEL - устройства молниезащиты", :class => "partners list-group-item"), :action => 'show', :controller => 'categories', :id => '74' %>
-        <%= link_to image_tag("logo/logo_200x60/graesslin.gif", alt: '"Graesslin"', title: "Graesslin - таймеры и фотореле. Сделано в Германии.", :class => "partners list-group-item"), :action => 'show', :controller => 'categories', :id => '5414' %>
-        <%= link_to image_tag("logo/logo_200x60/sonder.gif", alt: '"SONDER"', title: "SONDER - термостаты", :class => "partners list-group-item"), :action => 'show', :controller => 'categories', :id => '5535' %>
-        <%= link_to image_tag("logo/logo_200x60/relequick.gif", alt: '"RELEQUICK"', title: "RELEQUICK - интерфейсные реле", :class => "partners list-group-item"), :action => 'show', :controller => 'categories', :id => '5818' %>
-        <%= link_to image_tag("logo/logo_200x60/comat_releco.gif", alt: '"COMAT-RELECO"', title: "COMAT-RELECO - промышленные промежуточные реле", :class => "partners list-group-item"), :action => 'show', :controller => 'categories', :id => '5933' %>
-        <%= link_to image_tag("logo/logo_200x60/emko.gif", alt: '"EMKO"', title: "EMKO - температурные датчики и и контроллеры", :class => "partners list-group-item"), :action => 'show', :controller => 'categories', :id => '5583' %>
-        <%= link_to image_tag("logo/logo_200x60/cbi.gif", alt: '"CBI"', title: "Профессиональные автоматические выключатели", :class => "partners list-group-item"), :action => 'show', :controller => 'categories', :id => '5512' %>
-        <%= link_to image_tag("logo/logo_200x60/tehnoplast.gif", alt: '"TEHNOPLAST"', title: "Электротехнические шкафы TEHNOPLAST", :class => "partners list-group-item"), :action => 'show', :controller => 'categories', :id => '6441' %>
-        <%= link_to image_tag("logo/logo_200x60/huber-suhner.gif", alt: '"HUBER+SUHNER"', title: "ВЧ-разъемы, оптические компоненты", :class => "partners list-group-item"), :action => 'show', :controller => 'categories', :id => '4847' %>
-        <%= link_to image_tag("logo/logo_200x60/farnell.gif", alt: '"FARNELL"', title: "мировой лидер в области поставок электронных компонентов", :class => "partners list-group-item"), feedback_farnell_path %>
-        <%= link_to image_tag("logo/logo_200x60/poligonspb.gif", alt: '"ПОЛИГОН"', title: "ПОЛИГОН - производитель модульных устройств автоматики и защиты из Санкт-Петербурга", :class => "partners list-group-item"), :action => 'show', :controller => 'categories', :id => '6321' %>
-        <%= link_to image_tag("logo/logo_200x60/vemer.gif", alt: '"VEMER"', title: "производитель промышленных решений для измерения и контроля основных электрических параметров", :class => "partners list-group-item"), :action => 'show', :controller => 'categories', :id => '5650' %>
-      </div>
-    </div><!--/span-->
+      </div><!--/row-->
 
-  </div><!--/row-->
+      <footer>
+        <p>&copy; ООО "ПОЛИГОН" 2016</p>
+      </footer>
 
-  <footer>
-    <p>&copy; ООО "ПОЛИГОН" 2016</p>
-  </footer>
+    </div><!--/.container-->
 
-</div><!--/.container-->
+    <!-- JavaScript placed at the end of the document so the pages load faster -->
+    <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
 
-<!-- JavaScript
-================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
-
-<%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-<script type="text/javascript">
-  $(document).ready(function() {
-    var clip = new ZeroClipboard($(".copy-btn"));
-    $("a.fancybox").fancybox();
-  });
-
-  function no_pdf() {
-    alert("Для этого устройства даташит не обнаружен.");
-  }
-</script>
-</body>
+  </body>
 </html>

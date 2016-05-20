@@ -1,0 +1,44 @@
+<div id="catalogsOrder">
+  <h2>Получить каталоги по почте: </h2>
+  <form method="post" action="catalogs_order">
+    <div>
+      <h4>Ваши данные: </h4>
+      <label title="Ваше имя">&nbsp;</label>
+      <input placeholder="Имя" name="name" id="name" type="text">
+      <br>
+      <label title="Название вашей компании">&nbsp;</label>
+      <input placeholder="Компания" name="company" id="company" type="text">
+      <br>
+      <label title="Ваш e-mail">&nbsp;</label>
+      <input placeholder="e-mail" name="email" id="email" type="text">
+      <br>
+      <label title="Ваш почтовый адрес">&nbsp;</label>
+      <textarea placeholder="Адрес" name="address" id="address"></textarea>
+      <br>
+    </div>
+    <div>
+      <h4>Выберите каталоги: </h4>
+
+      <input name="catalogue[]" value="tele" id="tele" type="checkbox">
+      <label>TELE </label>
+      <br>
+
+      <input name="catalogue[]" value="releco" id="releco" type="checkbox">
+      <label>Comat/Releco </label>
+      <br>
+
+      <input name="catalogue[]" value="graesslin" id="graesslin" type="checkbox">
+      <label>Graesslin </label>
+      <br>
+
+      <input name="catalogue[]" value="benedict" id="benedict" type="checkbox">
+      <label>Benedict </label>
+      <br>
+
+      <input name="catalogue[]" value="citel" id="citel" type="checkbox">
+      <label>Citel </label>
+      <br>
+      <input value="Заказать" type="submit">
+    </div>
+  </form>
+</div>
