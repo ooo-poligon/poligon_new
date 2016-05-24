@@ -6,125 +6,77 @@
 
   <section class="wraper">
 
-    <figure class='small2'>
-      <%= link_to (image_tag "design/tele_cat_device.png", alt: '"TELE"', title: "TELE"), Category.find(142) %>
-      <figcaption class="transition-050 opacity85">
-        <a href="categories/142">
-          <strong class="text transition-050 title">"TELE"</strong>
-          <span class="text transition-050 desc">"Реле времени и контроля из Австрии"</span>
-        </a>
-      </figcaption>
-    </figure>
+    <%= render "shared/index_figure", locals: {
+      image_path: "design/tele_cat_device.png",
+      title: "TELE",
+      description: "Реле времени и контроля из Австрии",
+      link: Category.find(142) } %>
 
-    <figure class='small2'>
-      <%= link_to (image_tag "design/comat-releco_cat_device.png", alt: '"COMAT-RELECO"', title: "COMAT-RELECO"), Category.find(5933) %>
-      <figcaption class="transition-050 opacity85">
-        <a href="categories/5933">
-          <strong class="text transition-050 title">"COMAT-RELECO"</strong>
-          <span class="text transition-050 desc">""Промышленные промежуточные реле</span>
-        </a>
-      </figcaption>
-    </figure>
+    <%= render "shared/index_figure", locals: {
+      image_path: "design/comat-releco_cat_device.png",
+      title: "COMAT-RELECO",
+      description: "Промышленные промежуточные реле",
+      link: Category.find(5933) } %>
 
-    <figure class='small2'>
-      <%= link_to (image_tag "design/emko_cat_device.png", alt: '"EMKO"', title: "EMKO"), Category.find(5583) %>
-      <figcaption class="transition-050 opacity85">
-        <a href="categories/5583">
-          <strong class="text transition-050 title">"EMKO"</strong>
-          <span class="text transition-050 desc">"Tемпературные датчики и и контроллеры"</span>
-        </a>
-      </figcaption>
-    </figure>
+    <%= render "shared/index_figure", locals: {
+      image_path: "design/emko_cat_device.png",
+      title: "EMKO",
+      description: "Tемпературные датчики и и контроллеры",
+      link: Category.find(5583) } %>
 
-    <figure class='small2'>
-      <%= link_to (image_tag "design/benedict_cat_device.png", alt: '"BENEDICT"', title: "BENEDICT"), Category.find(5094) %>
-      <figcaption class="transition-050 opacity85">
-        <a href="categories/5094">
-          <strong class="text transition-050 title">"BENEDICT"</strong>
-          <span class="text transition-050 desc">"Контакторы, пускатели, защита BENEDICT"</span>
-        </a>
-      </figcaption>
-    </figure>
+    <%= render "shared/index_figure", locals: {
+      image_path: "design/benedict_cat_device.png",
+      title: "BENEDICT",
+      description: "Контакторы, пускатели, защита",
+      link: Category.find(5094) } %>
 
-    <figure class='small2'>
-      <%= link_to (image_tag "design/citel_cat_device.png", alt: '"CITEL"', title: "CITEL"), Category.find(74) %>
-      <figcaption class="transition-050 opacity85">
-        <a href="categories/74">
-          <strong class="text transition-050 title">"CITEL"</strong>
-          <span class="text transition-050 desc">"устройства молниезащиты"</span>
-        </a>
-      </figcaption>
-    </figure>
+    <%= render "shared/index_figure", locals: {
+      image_path: "design/citel_cat_device.png",
+      title: "CITEL",
+      description: "Устройства молниезащиты",
+      link: Category.find(74) } %>
 
-    <figure class='small2'>
-      <%= link_to (image_tag "design/graesslin_cat_device.png", alt: '"GRAESSLIN"', title: "GRAESSLIN"), Category.find(5414) %>
-      <figcaption class="transition-050 opacity85">
-        <a href="categories/5414">
-          <strong class="text transition-050 title">"GRAESSLIN"</strong>
-          <span class="text transition-050 desc">"Tаймеры и фотореле. Сделано в Германии."</span>
-        </a>
-      </figcaption>
-    </figure>
+    <%= render "shared/index_figure", locals: {
+      image_path: "design/graesslin_cat_device.png",
+      title: "GRAESSLIN",
+      description: "Tаймеры и фотореле. Сделано в Германии",
+      link: Category.find(5414) } %>
 
-    <figure class='small2'>
-      <%= link_to (image_tag "design/sonder_cat_device.png", alt: '"SONDER"', title: "SONDER"), Category.find(5535) %>
-      <figcaption class="transition-050 opacity85">
-        <a href="categories/5535">
-          <strong class="text transition-050 title">"SONDER"</strong>
-          <span class="text transition-050 desc">"SONDER - термостаты"</span>
-        </a>
-      </figcaption>
-    </figure>
+    <%= render "shared/index_figure", locals: {
+      image_path: "design/sonder_cat_device.png",
+      title: "SONDER",
+      description: "Термостаты",
+      link: Category.find(5535) } %>
 
-    <figure class='small2'>
-      <%= link_to (image_tag "design/relequick_cat_device.png", alt: '"RELEQUICK"', title: "RELEQUICK"), Category.find(5818) %>
-      <figcaption class="transition-050 opacity85">
-        <a href="categories/5818">
-          <strong class="text transition-050 title">"RELEQUICK"</strong>
-          <span class="text transition-050 desc">"RELEQUICK - интерфейсные реле"</span>
-        </a>
-      </figcaption>
-    </figure>
+    <%= render "shared/index_figure", locals: {
+      image_path: "design/relequick_cat_device.png",
+      title: "RELEQUICK",
+      description: "Интерфейсные реле",
+      link: Category.find(5818) } %>
 
-    <figure class='small2'>
-      <%= link_to (image_tag "design/cbi_cat_device.png", alt: 'CBI Electric', title: 'CBI Electric'), Category.find(5512) %>
-      <figcaption class="transition-050 opacity85">
-        <a href="categories/5512">
-          <strong class="text transition-050 title">"CBI Electric"</strong>
-          <span class="text transition-050 desc">"Профессиональные автоматические выключатели"</span>
-        </a>
-      </figcaption>
-    </figure>
+    <%= render "shared/index_figure", locals: {
+      image_path: "design/cbi_cat_device.png",
+      title: "CBI Electric",
+      description: "Профессиональные автоматические выключатели",
+      link: Category.find(5512) } %>
 
-    <figure class='small2'>
-      <%= link_to (image_tag "design/poligonspb_cat_device.png", alt: 'НПФ "ПОЛИГОН"', title: 'НПФ "ПОЛИГОН"'), Category.find(6321) %>
-      <figcaption class="transition-050 opacity85">
-        <a href="categories/6321">
-          <strong class="text transition-050 title">"НПФ "ПОЛИГОН""</strong>
-          <span class="text transition-050 desc">"производитель модульных устройств автоматики и защиты из Санкт-Петербурга"</span>
-        </a>
-      </figcaption>
-    </figure>
+    <%= render "shared/index_figure", locals: {
+      image_path: "design/poligonspb_cat_device.png",
+      title: 'НПФ "ПОЛИГОН"',
+      description: "Производитель модульных устройств автоматики и защиты из Санкт-Петербурга",
+      link: Category.find(6321) } %>
 
-    <figure class='small2'>
-      <%= link_to (image_tag "design/huber-suhner_cat_device.png", alt: 'HUBER+SUHNER', title: 'HUBER+SUHNER'), Category.find(4847) %>
-      <figcaption class="transition-050 opacity85">
-        <a href="categories/4847">
-          <strong class="text transition-050 title">"HUBER+SUHNER"</strong>
-          <span class="text transition-050 desc">"ВЧ-разъемы, оптические компоненты"</span>
-        </a>
-      </figcaption>
-    </figure>
+    <%= render "shared/index_figure", locals: {
+      image_path: "design/huber-suhner_cat_device.png",
+      title: 'HUBER+SUHNER',
+      description: "ВЧ-разъемы, оптические компоненты",
+      link: Category.find(4847) } %>
 
-    <figure class='small2'>
-      <%= link_to (image_tag "design/tehnoplast_cat_device.png", alt: 'TEHNOPLAST', title: 'TEHNOPLAST'), Category.find(6441) %>
-      <figcaption class="transition-050 opacity85">
-        <a href="categories/6441">
-          <strong class="text transition-050 title">"TEHNOPLAST"</strong>
-          <span class="text transition-050 desc">"Электротехнические шкафы TEHNOPLAST"</span>
-        </a>
-      </figcaption>
-    </figure>
+    <%= render "shared/index_figure", locals: {
+      image_path: "design/tehnoplast_cat_device.png",
+      title: 'TEHNOPLAST',
+      description: "Электротехнические шкафы",
+      link: Category.find(6441) } %>
 
   </section>
 

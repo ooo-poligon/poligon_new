@@ -37,21 +37,6 @@ group :test do
   gem 'webrat', '0.7.3'
 end
 
-# To use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
-
-# To use Jbuilder templates for JSON
-# gem 'jbuilder'
-
-# Use unicorn as the app server
-# gem 'unicorn'
-
-# Deploy with Capistrano
 group :development do
   gem 'mina'
-  #gem 'capistrano'
-  #gem 'rvm-capistrano', require: false # нужен для корректной работы с rvm
 end
-
-# To use debugger
-# gem 'debugger'
