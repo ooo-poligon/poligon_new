@@ -12,7 +12,7 @@ require 'mina/rvm'    # for rvm support. (http://rvm.io)
 
 set :domain, '89.253.227.59'
 set :deploy_to, '/var/www/poligon_ror'
-set :repository, "git@github.com:poligon-info/poligon_new.git"
+set :repository, "git@github.com:ooo-poligon/poligon_new.git"
 set :branch, 'master'
 
 # For system-wide RVM install.
