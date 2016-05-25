@@ -1,0 +1,31 @@
+<div id="vendors-logo-div">
+  <% case @vendors_categories_ids & @parents_categories_ids %>
+  <% when [142] %>
+    <%= image_tag("design/vendors_locations/tele_location.jpg", alt: '"TELE"', title: "реле времени и контроля из Австрии", :class => 'img img-responsive vendor-location-picture') %>
+  <% when [5094] %>
+    <%= link_to image_tag("logo/category_vendors/benedict.gif", alt: '"Benedict"', title: "Контакторы, пускатели, защита Benedict", :class => "vendors-logos"), :action => 'show', :controller => 'categories', :id => '5094' %>
+  <% when [74] %>
+    <%= link_to image_tag("logo/category_vendors/citel.gif", alt: '"CITEL"', title: "CITEL - устройства молниезащиты", :class => "vendors-logos"), :action => 'show', :controller => 'categories', :id => '74' %>
+  <% when [5414] %>
+    <%= link_to image_tag("logo/category_vendors/graesslin.gif", alt: '"Graesslin"', title: "Graesslin - таймеры и фотореле. Сделано в Германии.", :class => "vendors-logos"), :action => 'show', :controller => 'categories', :id => '5414' %>
+  <% when [5535] %>
+    <%= link_to image_tag("logo/category_vendors/sonder.gif", alt: '"SONDER"', title: "SONDER - термостаты", :class => "vendors-logos"), :action => 'show', :controller => 'categories', :id => '5535' %>
+  <% when [5818] %>
+    <%= link_to image_tag("logo/category_vendors/relequick.gif", alt: '"RELEQUICK"', title: "RELEQUICK - интерфейсные реле", :class => "vendors-logos"), :action => 'show', :controller => 'categories', :id => '5818' %>
+  <% when [5933] %>
+    <%= link_to image_tag("logo/category_vendors/comat_releco.gif", alt: '"COMAT-RELECO"', title: "COMAT-RELECO - промышленные промежуточные реле", :class => "vendors-logos"), :action => 'show', :controller => 'categories', :id => '5933' %>
+  <% when [5583] %>
+    <%= link_to image_tag("logo/category_vendors/emko.gif", alt: '"EMKO"', title: "EMKO - температурные датчики и и контроллеры", :class => "vendors-logos"), :action => 'show', :controller => 'categories', :id => '5583' %>
+  <% when [5512] %>
+    <%= link_to image_tag("logo/category_vendors/cbi.gif", alt: '"CBI"', title: "Профессиональные автоматические выключатели", :class => "vendors-logos"), :action => 'show', :controller => 'categories', :id => '5512' %>
+  <% when [6441] %>
+    <%= link_to image_tag("logo/category_vendors/tehnoplast.gif", alt: '"TEHNOPLAST"', title: "Электротехнические шкафы TEHNOPLAST", :class => "vendors-logos"), :action => 'show', :controller => 'categories', :id => '6441' %>
+  <% when [4847] %>
+    <%= link_to image_tag("logo/category_vendors/huber-suhner.gif", alt: '"HUBER+SUHNER"', title: "ВЧ-разъемы, оптические компоненты", :class => "vendors-logos"), :action => 'show', :controller => 'categories', :id => '4847' %>
+  <% when [6321] %>
+    <%= link_to image_tag("logo/category_vendors/poligonspb.gif", alt: '"ПОЛИГОН"', title: "ПОЛИГОН - производитель модульных устройств автоматики и защиты из Санкт-Петербурга", :class => "vendors-logos"), :action => 'show', :controller => 'categories', :id => '6321' %>
+  <% when [5650] %>
+    <%= link_to image_tag("logo/category_vendors/vemer.gif", alt: '"VEMER"', title: "производитель промышленных решений для измерения и контроля основных электрических параметров", :class => "vendors-logos"), :action => 'show', :controller => 'categories', :id => '5650' %>
+  <% else %>
+  <% end %>
+</div>

@@ -21,9 +21,13 @@ class CategoriesController < ApplicationController
     @recentCategory = Category.available.find(params[:id])
     @parentCategory = Category.available.find(@recentCategory.parent)
     @parents_array  = parents_of @recentCategory
+    @parents_categories_ids = []
+    @parents_array.each do |parent|
+      @parents_categories_ids.push parent.id
+    end
+    @vendors_categories_ids = [142, 5094, 74, 5414, 5535, 5818, 5933, 5583, 5512, 6441, 4847, 6321, 5650]
     @products = []
     addCBR = Setting.find_by title: 'addCBR'
-
     Product.available.where(category_id: params[:id]).each do |product|
       minihash = []
       if product.currency_id == 1

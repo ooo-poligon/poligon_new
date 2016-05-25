@@ -1,33 +1,44 @@
-<h2><%= @recentCategory.title %></h2>
-
 <ol class="breadcrumb">
   <li><%= link_to 'Каталог', categories_path %></li>
   <% @parents_array.reverse_each do |item| %>
     <li><%= link_to item.title, item %></li>
   <% end %>
 </ol>
-
-<% if @subCategories.empty? %>
-  <%= @recentCategory.description.html_safe if (!@recentCategory.description.nil?) %>
-<% else %>
-  <div class="row">
-
-    <div class="col-md-3 categories-left"  >
-      <ul class="nav nav-pills nav-stacked categories-navigation">
-        <% @subCategories.each do |sc| %>
-            <li><%= link_to sc.title, sc %></li>
-        <% end %>
-      </ul>
-    </div>
-
-    <div class="col-md-9 categories-right" >
+<div class="row">
+  <div class="col-md-3 categories-left"  >
+    <%= render "shared/category_vendor_logo" %>
+    <% unless @subCategories.empty? %>
+    <ul class="nav nav-pills nav-stacked categories-navigation">
+      <% @subCategories.each do |sc| %>
+          <li><%= link_to sc.title, sc %></li>
+      <% end %>
+    </ul>
+    <% end %>
+  </div>
+  <div class="col-md-9 categories-right" >
+    <div class="container-fluid" >
+      <div class="row" >
+        <div class="col-md-12" >
+          <%= render "shared/vendor_location_picture" %>
+        </div>
+      </div>
+      <div class="row" >
+        <div class="col-md-12" >
+          <div class="category-header">
+            <h2><%= @recentCategory.title %></h2>
+          </div>
+        </div>
+      </div>
       <%= @recentCategory.description
                          .gsub('href="/PDF', 'href="http://www.poligon.info/PDF')
                          .gsub('src="/images', 'src="http://www.poligon.info/images')
                          .html_safe if !@recentCategory.description.nil? %>
     </div>
-
   </div>
-<% end %>
-
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <%= render "shared/utils/categories_tables" %>
+  </div>
+</div>
 <%= render "shared/products_table" %>

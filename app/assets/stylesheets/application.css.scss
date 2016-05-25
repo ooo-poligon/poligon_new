@@ -46,6 +46,22 @@ footer  {
   margin-top: 40px;
 }
 
+.breadcrumb {
+  margin-top: 25px;
+}
+
+mark,
+.mark {
+  background-color: #fff;
+  padding: .2em;
+}
+
+table caption {
+  color: orange;
+  font-weight: bold;
+  font-size: 22px;
+}
+
 .prices-table {
   font-family: 'Ubuntu Condensed', sans-serif;
   font-size: 13px;
@@ -221,6 +237,86 @@ body:before {
   padding-bottom: 5px;
   margin-top: 3px;
 }
+
+.vendors-logos {
+  width: 300px;
+  //padding-left: 50%;
+  //padding-right: 50%;
+  margin-bottom: 5px;
+  padding-bottom: 0px;
+  position: relative;
+  display: block;
+  background-color: #fff;
+}
+
+.vendors-catalog-link {
+  font-family: 'Marck Script', cursive;
+  font-size: 20px;
+  text-align: center;
+  padding-bottom: 20px;
+  a {
+    color: brown;
+  }
+}
+
+.vendor-location-picture {
+  //margin-bottom: 20px;
+}
+
+.category-header {
+  position: relative;
+}
+
+.category-image {
+  text-align: right;
+  float: right;
+}
+
+.load-monitor th {font-size: 12px;}
+.load-monitor th, .load-monitor td {border-bottom: 1px solid #ABE391; border-collapse: separate; border-spacing: 0px 0px; padding: 0px;}
+.load-monitor tr {border-collapse: collapse; border: none; padding: 0px;}
+.load-monitor thead tr th {border-collapse: separate;}
+.load-monitor {text-align: center;}
+.load-monitor tbody td{font-size: 13px; width: 25px;}
+.load-monitor tr td:nth-child(odd){background: #ABE391;}
+.load-monitor tr td:first-child, .load-monitor tbody tr th{background: white; text-align: right;}
+.table > tbody > tr > th,
+.table > tbody > tr > td {
+  vertical-align: bottom;
+}
+
+table.tele-zebra {
+	border-collapse: collapse;
+}
+table.tele-zebra  caption{
+	text-align: left;
+	background-color: #79B542;
+	color: white;
+	padding-left: 1em;
+}
+table.tele-zebra tr:nth-child(even){
+	background-color: #ABE391;
+}
+
+table.tele-zebra tr:nth-child(odd){
+	background-color: #DDDDDD;
+}
+table.tele-zebra th{
+	background-color: white;
+}
+table.tele-zebra td,table.tele-zebra th{
+	border: ridge 3px #999999;
+}
+
+.w100px{width: 100px;}
+.w200px{width: 200px;}
+.w300px{width: 300px;}
+
+.w100p{width: 100%;}
+.p4px{padding: 4px;}
+
+
+.h50px{height: 50px;}
 
 .phone {
   font-weight: bold;
