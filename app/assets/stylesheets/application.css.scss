@@ -20,21 +20,23 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "bootstrap/theme";
+@import "antibootstrap/navbar";
+@import "antibootstrap/dropdowns";
 
 html, body {
   height: 100%;
-  #font-family: 'Ubuntu Mono';
+  //font-family: 'Ubuntu Mono';
 }
 
 h2 {
-  #font-family: 'Marck Script', cursive;
+  //font-family: 'Marck Script', cursive;
   font-size: 30px;
   font-weight: bold;
   color: red;
 }
 
 h3 {
-  font-family: 'Marck Script', cursive;
+  //font-family: 'Marck Script', cursive;
   font-size: 24px;
   color: blue;
 }
@@ -44,10 +46,20 @@ footer  {
     text-align: center;
   }
   margin-top: 40px;
+  margin-bottom: 20px;
+}
+
+.table-striped > tbody > tr:nth-of-type(odd) {
+  background-color: #ebf2ff;
 }
 
 .breadcrumb {
   margin-top: 25px;
+  background-color: #d6e4ff;
+}
+
+.main-content {
+  //border: solid 1px;
 }
 
 mark,
@@ -71,6 +83,14 @@ table caption {
 .list-group {
   box-shadow: 0 0px 0px rgba(0, 0, 0, 0);
   max-width: 200px;
+  float: right;
+}
+
+.left-vendors-list {
+  float: left;
+}
+
+.right-vendors-list {
   float: right;
 }
 
@@ -230,16 +250,21 @@ body:before {
   }
 }
 
+.sidebar-offcanvas {
+  background-color: #fff;
+}
+
 .partners {
-  width: 180px;
-  height: 60px;
-  padding-left: 10px;
+  width: 200px;
+  //height: 47px;
+  padding-left:  10px;
+  padding-right: 10px;
   padding-bottom: 5px;
-  margin-top: 3px;
+  margin-top: 7px;
 }
 
 .vendors-logos {
-  width: 300px;
+  width: 250px;
   //padding-left: 50%;
   //padding-right: 50%;
   margin-bottom: 5px;
@@ -250,8 +275,8 @@ body:before {
 }
 
 .vendors-catalog-link {
-  font-family: 'Marck Script', cursive;
-  font-size: 20px;
+  //font-family: 'Marck Script', cursive;
+  font-size: 16px;
   text-align: center;
   padding-bottom: 20px;
   a {
@@ -391,15 +416,15 @@ div.lics img {
 }
 
 .module {
-  h1 {
-    text-align: center;
-  }
   margin: auto;
+  align-content: center;
 }
 
 .module h1 {
+  text-align: center;
   padding-top: 20px;
-  font-family: 'Marck Script', cursive;
+  padding-bottom: 20px;
+  //font-family: 'Marck Script', cursive;
   font-size: 60px;
 }
 
@@ -410,6 +435,10 @@ div.lics img {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
+}
+
+.module {
+  text-align: center;
 }
 
 .module .big {
@@ -429,7 +458,12 @@ div.lics img {
 
 .module .small2 {
   float: left;
-  width: 25%;
+  width: 24.8%;
+}
+
+.module .small3 {
+  float: left;
+  width: 16.5%;
 }
 
 .module figure img {

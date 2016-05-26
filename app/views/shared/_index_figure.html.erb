@@ -1,10 +1,10 @@
-<figure class='small2'>
+<figure class = "<%= locals[:tag_class] %>" >
   <% img_title = locals[:title] %>
   <% img_alt = locals[:title] + " - " + locals[:description] %>
   <%= link_to (image_tag locals[:image_path], alt: img_alt, title: img_title), locals[:link] %>
   <figcaption class="transition-050 opacity85">
-    <a href="categories/locals[:category_id]">
-      <strong class="text transition-050 title">"<%= locals[:title] %>"</strong>
+    <a href="categories/<%= locals[:link].id %>">
+      <strong class="text transition-050 title"><%= locals[:title] %></strong>
       <span class="text transition-050 desc">"<%= locals[:description] %>"</span>
     </a>
   </figcaption>
