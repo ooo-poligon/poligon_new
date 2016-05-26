@@ -1,5 +1,7 @@
 # -*- encoding : utf-8 -*-
 Poligon::Application.routes.draw do
+  get 'welcome/hello'
+
   get 'users/sign_in'
   devise_for :users
   resources :news_items
@@ -92,6 +94,7 @@ Poligon::Application.routes.draw do
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
   root :to => "content#home"
+  # root :to => "welcome#hello"
 
   # See how all your routes lay out with "rake routes"
 
