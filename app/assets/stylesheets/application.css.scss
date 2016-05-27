@@ -293,9 +293,20 @@ body:before {
 }
 
 .category-image {
-  img {width: 200px;}
+  img {
+    width: 200px;
+  }
   text-align: right;
   float: right;
+}
+
+.news-image {
+  img {
+    width: 200px;
+    border:1px dotted grey;
+  }
+  text-align: left;
+  float: left;
 }
 
 .load-monitor th {font-size: 12px;}

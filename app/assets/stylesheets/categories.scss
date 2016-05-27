@@ -120,3 +120,17 @@ table.releco th:nth-child(8){
   width: 40px;
   text-align: center;
 }
+
+table.tele-zanaveska td+td,
+table.tele-zanaveska td+td+td+td,
+table.tele-zanaveska td+td+td+td+td+td,
+table.tele-zanaveska td+td+td+td+td+td+td+td,
+table.tele-zanaveska td+td+td+td+td+td+td+td+td+td,
+table.tele-zanaveska td+td+td+td+td+td+td+td+td+td+td+td{background-color: #ABE391; width: 24px; text-align: center;}
+
+
+table.tele-zanaveska td+td+td,
+table.tele-zanaveska td+td+td+td+td,
+table.tele-zanaveska td+td+td+td+td+td+td,
+table.tele-zanaveska td+td+td+td+td+td+td+td+td,
+table.tele-zanaveska td+td+td+td+td+td+td+td+td+td+td{background-color: white;; width: 24px; text-align: center;}

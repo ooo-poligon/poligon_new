@@ -2094,4 +2094,12 @@
     </tbody>
 
   </table>
+<% elsif @recentCategory.id == 5028 %>
+  <%= render partial: 'shared/utils/tele_safety_relays' %>
+<% elsif @recentCategory.id == 5035 %>
+  <%= render partial: 'shared/utils/tele_transformators' %>
+<% elsif @recentCategory.id == 5040 %>
+  <%= render partial: 'shared/utils/tele_digital_timers' %>
+<% elsif @recentCategory.id == 5041 %>
+  <%= render partial: 'shared/utils/tele_clock_counters' %>
 <% end %>
