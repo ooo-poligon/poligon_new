@@ -34,43 +34,40 @@
         <p style="font-weight: bold; color: red;">Описание в формате PDF отсутствует</p>
       <% end %>
       <hr>
-      <% if user_signed_in? %>
-        <% unless @product.price == 0 %>
-          <h3>Цены:</h3>
-          <%= render partial: 'shared/product_prices_table', locals: {product: @product} %>
-          <%= render "shared/copy_buttons", locals: { product: @product } if current_user.group_id != 1 %>
+      <%= render "shared/price_cases", locals: { retail_price: @retail_price } %>
+      <p style="color: green">
+        <% if !Quantity.find_by(product_id: @product.id).nil? && Quantity.find_by(product_id: @product.id).stock > 0 %>
+          <i>Товар есть на складе</i>
         <% else %>
-          <p>
-            <b style="font-size: 12px; color: red; font-weight: bolder;">Цена не установлена.</b>
-          </p>
+          <i>Срок поставки: <%= @product.delivery_time %></i>
         <% end %>
-        <h3>Количество:</h3>
-        <%= render partial: 'shared/product_quantities_table', locals: {product: @product } %>
-        <h3 style="display: inline;">Срок поставки:</h3>
-          <span style="font-size: 14px; color: green; float: right; padding-top: 4px; padding-right: 10px;"><%= @product.delivery_time %>.</span>
-        <br><br>
-      <% else %>
-        <%= render "shared/price_cases", locals: { retail_price: @retail_price } %>
-        <p style="color: green">
-          <% if !Quantity.find_by(product_id: @product.id).nil? && Quantity.find_by(product_id: @product.id).stock > 0 %>
-            <i>Товар есть на складе</i>
-          <% else %>
-            <i>Срок поставки: <%= @product.delivery_time %></i>
-          <% end %>
-        </p>
-      <% end %>
+      </p>
     </div>
     <div class="col-xs-8">
       <ul class="nav nav-tabs">
-        <li class="active"><a href="#properties_tab" data-toggle="tab">Технические характеристики</a></li>
+        <% if user_signed_in? %>
+          <li class="active"><a href="#product_data_tab" data-toggle="tab">Цены и наличие</a></li>
+          <li><a href="#properties_tab" data-toggle="tab">Технические характеристики</a></li>
+        <% else %>
+          <li class="active"><a href="#properties_tab" data-toggle="tab">Технические характеристики</a></li>
+        <% end %>
         <li><a href="#functions_tab" data-toggle="tab">Функции</a></li>
         <li><a href="#plugs_tab" data-toggle="tab">Схемы подключения</a></li>
         <li><a href="#dimensions_tab" data-toggle="tab">Размеры</a></li>
       </ul>
       <div class="tab-content">
-        <div class="tab-pane fade in active" id="properties_tab">
-          <%= render "shared/product_properties_tab" %>
-        </div>
+        <% if user_signed_in? %>
+          <div class="tab-pane fade in active" id="product_data_tab">
+            <%= render "shared/product_data_tab" %>
+          </div>
+          <div class="tab-pane fade" id="properties_tab">
+            <%= render "shared/product_properties_tab" %>
+          </div>
+        <% else %>
+          <div class="tab-pane fade in active" id="properties_tab">
+            <%= render "shared/product_properties_tab" %>
+          </div>
+        <% end %>
         <div class="tab-pane fade" id="functions_tab">
           <%= render "shared/product_functions_tab" %>
         </div>

@@ -1,53 +1,54 @@
 <% if !@products.empty? %>
-    <br>
-    <table class="table table-striped">
-      <thead>
+  <br>
+  <table class="table table-striped">
+    <thead>
       <tr>
         <th style="width: 10%;">Изображение</th>
         <th style="width: 60%;">Продукт</th>
-
         <th style="width: 5%;">Наличие</th>
         <th style="width: 15%;">Поставка</th>
         <th style="width: 10%;">Стоимость</th>
       </tr>
-      </thead>
-      <% @products.each do |product_array| %>
-          <tr>
-            <% productImage = ImageFile.where('owner_id = ? and file_type_id = 1', product_array[0].id).first %>
-            <% unless productImage.nil? %>
-              <% if productImage.path[0] != 'c' %>
-                <% productImage.path.gsub!(productImage.path[0], 'c') %>
-                <% imagePath = productImage.path.gsub!("c:\\poligon_images", "http://www.poligon.info/images").gsub!("\\", "/") %>
-              <% else %>
-                <% imagePath = productImage.path.gsub!("c:\\poligon_images", "http://www.poligon.info/images").gsub!("\\", "/") %>
-              <% end %>
-              <td><%= link_to image_tag(imagePath, class: "img-responsive center-block product-image-container"), imagePath, class: "fancybox" %></td>
+    </thead>
+    <% sorted_products = @products.sort_by! {|obj| obj[0].title}.reverse %>
+    <% sorted_products = sorted_products.sort_by {|obj| obj[2]}.reverse %>
+    <% sorted_products.each do |product_array| %>
+      <tr>
+        <% productImage = ImageFile.where('owner_id = ? and file_type_id = 1', product_array[0].id).first %>
+        <% unless productImage.nil? %>
+          <% if productImage.path[0] != 'c' %>
+            <% productImage.path.gsub!(productImage.path[0], 'c') %>
+            <% imagePath = productImage.path.gsub!("c:\\poligon_images", "http://www.poligon.info/images").gsub!("\\", "/") %>
           <% else %>
-              <td></td>
-              <% end %>
-            <td>
-              <table>
-                <tr>
-                  <td><span class="product-title"><%= link_to product_array[0].title, product_array[0] %></span></td>
-                </tr>
-                <tr>
-                  <td><%= product_array[0].description %></td>
-                </tr>
-              </table>
-            </td>
-            <% if !Quantity.find_by(product_id: product_array[0].id).nil? && Quantity.find_by(product_id: product_array[0].id).stock > 0 %>
-              <td style="text-align: center;"><%= image_tag("green.gif") %></td>
-              <td>Есть на складе</td>
-            <% else %>
-                <td style="text-align: center;"><%= image_tag("grey.gif") %></td>
-                <td><%= product_array[0].delivery_time %></td>
-            <% end %>
-            <% unless product_array[1] == 0 %>
-                <td><%= product_array[1] %> руб.</td>
-            <% else %>
-                <td style="align-content: center;">Звоните:<br>(812)325-42-20</td>
-            <% end %>
-          </tr>
-      <% end %>
-    </table>
+            <% imagePath = productImage.path.gsub!("c:\\poligon_images", "http://www.poligon.info/images").gsub!("\\", "/") %>
+          <% end %>
+          <td><%= link_to image_tag(imagePath, class: "img-responsive center-block product-image-container"), imagePath, class: "fancybox" %></td>
+        <% else %>
+          <td></td>
+        <% end %>
+        <td>
+          <table>
+            <tr>
+              <td><span class="product-title"><%= link_to product_array[0].title, product_array[0] %></span></td>
+            </tr>
+            <tr>
+              <td><%= product_array[0].description %></td>
+            </tr>
+          </table>
+        </td>
+        <% if product_array[2] > 0 %>
+          <td style="text-align: center;"><%= image_tag("green.gif") %></td>
+          <td>Есть на складе</td>
+        <% else %>
+            <td style="text-align: center;"><%= image_tag("grey.gif") %></td>
+            <td><%= product_array[0].delivery_time %></td>
+        <% end %>
+        <% unless product_array[1] == 0 %>
+            <td><%= product_array[1] %> руб.</td>
+        <% else %>
+            <td style="align-content: center;">Звоните:<br>(812)325-42-20</td>
+        <% end %>
+      </tr>
+    <% end %>
+  </table>
 <% end %>

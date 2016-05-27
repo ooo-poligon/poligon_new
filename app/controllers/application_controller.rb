@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   before_filter :configure_permitted_parameters, if: :devise_controller?
   before_filter :getCourse
 
-  helper_method :get_prices_eur, :get_prices_rub, :hello_user, :parents_of
+  helper_method :get_prices_eur, :get_prices_rub, :hello_user, :parents_of, :rub_case_with_kopeiki
 
   def get_prices_eur(product)
     prices_array = []
@@ -51,7 +51,40 @@ class ApplicationController < ActionController::Base
     parents_array
   end
 
+  def rub_case_with_kopeiki decimal_number
+    dec_part = decimal_number%1
+    rub_part = (decimal_number - dec_part).to_i
+    kop_part = (dec_part * 100).to_i
+    rub_case = cases rub_part, 'рубль'
+    kop_case = cases kop_part, 'копейка'
+    html_output = "<p><b style=\"font-size: 16px; color: blue; font-weight: bolder;\">" +
+                  "Цена: #{rub_part} #{rub_case} #{kop_part} #{kop_case}.</b></p>"
+    html_output.html_safe
+  end
+
   protected
+
+  def cases (number, kind)
+    if kind == 'рубль'
+      if (number%10 == 1)
+        'рубль'
+      elsif (number%10 == 2) || (number%10 == 3) || (number%10 == 4)
+        'рубля'
+      else
+        'рублей'
+      end
+    elsif kind == 'копейка'
+      if (number%10 == 1)
+        'копейка'
+      elsif (number%10 == 2) || (number%10 == 3) || (number%10 == 4)
+        'копейки'
+      else
+        'копеек'
+      end
+    else
+      ''
+    end
+  end
 
   def configure_permitted_parameters
      devise_parameter_sanitizer.for(:sign_in) { |u| u.permit(:name, :email, :group_id, :subscribe) }

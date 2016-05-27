@@ -1,17 +1,5 @@
 <% if (locals[:retail_price] != 0) %>
-  <% if (locals[:retail_price]%10 == 1) %>
-    <p>
-      <b style="font-size: 18px; color: blue; font-weight: bolder;">Цена: <%= locals[:retail_price] %> рубль.</b>
-    </p>
-  <% elsif (locals[:retail_price]%10 == 2) || (locals[:retail_price]%10 == 3) || (locals[:retail_price]%10 == 4) %>
-    <p>
-      <b style="font-size: 18px; color: blue; font-weight: bolder;">Цена: <%= locals[:retail_price] %> рубля.</b>
-    </p>
-  <% else %>
-    <p>
-      <b style="font-size: 18px; color: blue; font-weight: bolder;">Цена: <%= locals[:retail_price] %> рублей.</b>
-    </p>
-  <% end %>
+  <%= rub_case_with_kopeiki locals[:retail_price] %>
 <% else %>
   <p>
     <b style="font-size: 12px; color: red; font-weight: bolder;">Звоните: (812) 325-42-20</b>

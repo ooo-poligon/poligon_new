@@ -29,13 +29,21 @@ class CategoriesController < ApplicationController
     @products = []
     addCBR = Setting.find_by title: 'addCBR'
     Product.available.where(category_id: params[:id]).each do |product|
-      minihash = []
+      one_product_array = []
       if product.currency_id == 1
-        minihash.push(product, (product.price * (@courseEuro + (@courseEuro / 100) * addCBR.text_value.to_f) * product.rate).round)
+        if !Quantity.find_by(product_id: product.id).nil? && Quantity.find_by(product_id: product.id).stock > 0
+          one_product_array.push(product, (product.price * (@courseEuro + (@courseEuro / 100) * addCBR.text_value.to_f) * product.rate).round(2), 1)
+        else
+          one_product_array.push(product, (product.price * (@courseEuro + (@courseEuro / 100) * addCBR.text_value.to_f) * product.rate).round(2), 0)
+        end
       elsif product.currency_id == 2
-        minihash.push(product, product.rub_retail.round)
+        if !Quantity.find_by(product_id: product.id).nil? && Quantity.find_by(product_id: product.id).stock > 0
+          one_product_array.push(product, product.rub_retail.round(2), 1)
+        else
+          one_product_array.push(product, product.rub_retail.round(2), 0)
+        end
       end
-      @products.push(minihash)
+      @products.push(one_product_array)
     end
 
   end
