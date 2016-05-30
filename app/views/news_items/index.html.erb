@@ -2,13 +2,21 @@
 
 <table class="table table-striped">
   <tr>
-    <th style="width: 80%;">Наименование</th>
-    <th style="width: 20%;">Дата публикации</th>
+    <th style="width: 10%;">Иллюстрация</th>
+    <th style="width: 80%;">Краткое описание</th>
+    <th style="width: 10%;">Дата</th>
   </tr>
 
 <% @news_items.each do |news_item| %>
+  <% image_path = news_item.image_path.gsub!("c:\\poligon_images", "http://www.poligon.info/images").gsub!("\\", "/") if !news_item.image_path.nil? %>
   <tr>
-    <td><%= link_to news_item.title, news_item %></td>
+    <td><%= image_tag(image_path, alt: news_item.title, title: news_item.title, class: 'img img-responsive news-image') if !news_item.image_path.nil? %></td>
+    <td>
+      <table>
+        <tr><td><b><%= link_to news_item.title, news_item %></b></td></tr>
+        <tr><td><%= news_item.preview.html_safe %></td></tr>
+      </table>
+    </td>
     <td><%= news_item.created_at.strftime("%d.%m.%Y") %></td>
   </tr>
 <% end %>

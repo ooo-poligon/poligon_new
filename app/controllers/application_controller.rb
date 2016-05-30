@@ -68,6 +68,8 @@ class ApplicationController < ActionController::Base
     if kind == 'рубль'
       if (number%10 == 1)
         'рубль'
+      elsif (number == 11) || (number == 12) || (number == 13) || (number == 14)
+        'рублей'
       elsif (number%10 == 2) || (number%10 == 3) || (number%10 == 4)
         'рубля'
       else
@@ -76,6 +78,8 @@ class ApplicationController < ActionController::Base
     elsif kind == 'копейка'
       if (number%10 == 1)
         'копейка'
+      elsif (number == 11) || (number == 12) || (number == 13) || (number == 14)
+        'копеек'
       elsif (number%10 == 2) || (number%10 == 3) || (number%10 == 4)
         'копейки'
       else

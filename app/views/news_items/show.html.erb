@@ -3,7 +3,16 @@
 </p>
 <br/>
 <div class="container-fluid">
-  <%= @news_item.content.html_safe %>
+  <div class="row" >
+    <div class="col-md-3" >
+      <% image_path = @news_item.image_path.gsub!("c:\\poligon_images", "http://www.poligon.info/images").gsub!("\\", "/") %>
+      <%= image_tag(image_path, alt: @news_item.title, title: @news_item.title, class: 'img img-responsive news-image') %>
+    </div>
+    <div class="col-md-9" >
+      <%= @news_item.content.html_safe %>
+    </div>
+  </div>
+
   <br/>
   <p style="float: right; color: #bcbcbc">
     <b>Дата создания:</b>
