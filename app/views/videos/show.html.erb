@@ -9,14 +9,5 @@
       .html_safe %>
 </p>
 <%= render partial: 'shared/videos_list', locals: { videos: @videos } %>
-<p>
-  <b>Дата создания:</b>
-  <%= @video.created_at %>
-</p>
 
-<%= link_to 'К списку видео', videos_path %>
-<br>
-<br>
-<hr>
-<br>
-
+<%= render 'shared/article_footer', locals: { item: @video } %>

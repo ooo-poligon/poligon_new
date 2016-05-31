@@ -62,6 +62,15 @@ footer  {
   //border: solid 1px;
 }
 
+.article-footer {
+  margin-top: 40px;
+  margin-bottom: 20px;
+  p {
+    float: right;
+    color: #bcbcbc;
+  }
+}
+
 mark,
 .mark {
   background-color: #fff;

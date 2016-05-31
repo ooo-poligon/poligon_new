@@ -16,4 +16,5 @@ class AdditionsController < ApplicationController
       format.json { render json: @addition }
     end
   end
+
 end

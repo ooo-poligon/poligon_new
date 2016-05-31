@@ -9,13 +9,4 @@
       .html_safe %>
 </p>
 
-<p>
-  <b>Дата создания:</b>
-  <%= @article.created_at %>
-</p>
-
-<%= link_to 'К списку статей', articles_path %>
-<br>
-<br>
-<hr>
-<br>
+<%= render 'shared/article_footer', locals: { item: @article } %>

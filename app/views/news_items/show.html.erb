@@ -12,12 +12,6 @@
       <%= @news_item.content.html_safe %>
     </div>
   </div>
-
-  <br/>
-  <p style="float: right; color: #bcbcbc">
-    <b>Дата создания:</b>
-    <%= @news_item.created_at.strftime("%d.%m.%Y") %>
-  </p>
 </div>
-<br/>
-<b><%= link_to 'К списку новостей', news_items_path %></b>
+
+<%= render 'shared/article_footer', locals: { item: @news_item } %>

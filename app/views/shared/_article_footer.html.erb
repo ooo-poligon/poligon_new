@@ -1,0 +1,16 @@
+<div class='article-footer'>
+  <p>
+    <b>Дата создания:</b>
+    <%= locals[:item].created_at.strftime("%d.%m.%Y") %>
+  </p>
+
+  <%= button_to 'К списку новостей',   news_items_path, method: :get, class: 'btn btn-success' if locals[:item].is_a? NewsItem %>
+  <%= button_to 'К списку дополнений', additions_path, method: :get, class: 'btn btn-success' if locals[:item].is_a? Addition %>
+  <%= button_to 'К списку статей',     articles_path, method: :get, class: 'btn btn-success' if locals[:item].is_a? Article %>
+  <%= button_to 'К списку обзоров',    reviews_path, method: :get, class: 'btn btn-success' if locals[:item].is_a? Review %>
+  <%= button_to 'К списку видео',      videos_path, method: :get, class: 'btn btn-success' if locals[:item].is_a? Video %>
+
+  <br>
+  <br>
+  <hr>
+</div>
