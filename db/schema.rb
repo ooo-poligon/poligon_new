@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 20160429090428) do
     t.datetime "created_at",                    null: false
     t.string   "title",      limit: 255
     t.datetime "updated_at",                    null: false
+    t.string   "image_path", limit: 255
   end
 
   create_table "analogs", force: :cascade do |t|
@@ -42,6 +43,7 @@ ActiveRecord::Schema.define(version: 20160429090428) do
     t.datetime "updated_at",               null: false
     t.string   "title",      limit: 255
     t.text     "content",    limit: 65535
+    t.string   "image_path",      limit: 255
   end
 
   create_table "b_iblock_element", primary_key: "ID", force: :cascade do |t|
@@ -150,6 +152,7 @@ ActiveRecord::Schema.define(version: 20160429090428) do
     t.string   "title",      limit: 255
     t.text     "content",    limit: 65535
     t.text     "preview",    limit: 65535
+    t.string   "image_path",      limit: 255
   end
 
   create_table "post_types", force: :cascade do |t|
@@ -270,6 +273,7 @@ ActiveRecord::Schema.define(version: 20160429090428) do
     t.text     "content",    limit: 65535
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
+    t.string   "image_path", limit: 255
   end
 
   create_table "series", force: :cascade do |t|
@@ -345,6 +349,7 @@ ActiveRecord::Schema.define(version: 20160429090428) do
     t.text     "content",    limit: 65535
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
+    t.string   "image_path", limit: 255
   end
 
   add_foreign_key "files", "file_types", name: "FK_63xcug2xhs8fhmde2qrls55rn"

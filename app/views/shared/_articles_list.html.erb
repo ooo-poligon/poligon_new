@@ -1,0 +1,28 @@
+<table class="table table-striped">
+  <tr>
+    <th style="width: 10%;">Иллюстрация</th>
+    <% if locals[:items][0].is_a? NewsItem %>
+      <th style="width: 80%;">Краткое описание</th>
+    <% else %>
+      <th style="width: 80%;">Название</th>
+    <% end %>
+    <th style="width: 10%;">Дата</th>
+  </tr>
+  <% locals[:items].each do |item| %>
+    <% image_path = item.image_path.gsub!("c:\\poligon_images", "http://www.poligon.info/images").gsub!("\\", "/") if !item.image_path.nil? %>
+    <tr>
+      <td><%= image_tag(image_path, alt: item.title, title: item.title, class: 'img img-responsive news-image') if !item.image_path.nil? %></td>
+      <% if item.is_a? NewsItem %>
+        <td>
+          <table>
+            <tr><td><b><%= link_to item.title, item %></b></td></tr>
+            <tr><td><%= item.preview.html_safe %></td></tr>
+          </table>
+        </td>
+      <% else %>
+        <td><b><%= link_to item.title, item %></b></td>
+      <% end %>
+      <td><%= item.created_at.strftime("%d.%m.%Y") %></td>
+    </tr>
+  <% end %>
+</table>
