@@ -16,10 +16,19 @@
 //= require bootstrap-sprockets
 //= require search
 //= require zeroclipboard
+//= require tablehover
 
 $(document).ready(function() {
   var clip = new ZeroClipboard($(".copy-btn"));
   $("a.fancybox").fancybox();
+  $('.backlight').tableHover({
+    colClass: 'hover',
+    rowClass: 'hover',
+    headCols: true,
+    spanRows: false,
+    spanCols: false,
+    ignoreRows: [1,2]
+  });
 });
 
 function no_pdf() {

@@ -53,3 +53,26 @@ div #swf-description p {
   font-style: italic;
   background: silver;
 }
+
+/* таблицы с посдветкой */
+table.backlight td.hover, table.backlight th.hover{
+	background-color: #69f;
+	color: white;
+	font-weight: bold;
+}
+table.backlight td.hovercell, table.backlight th.hovercell{
+	background-color: #abc;
+}
+table.backlight td.click, table.backlight th.click{
+	background-color: #bbb;
+}
+table.backlight td.hoverrow, table.backlight th.hoverrow{
+	background-color: #6df;
+}
+table.hhi-inverter-table thead th{
+	text-align: center;
+}
+table.hhi-inverter-table td{
+	text-align: center;
+	border: silver 1px solid;
+}
