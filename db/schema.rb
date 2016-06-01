@@ -61,6 +61,7 @@ ActiveRecord::Schema.define(version: 20160429090428) do
     t.string  "title",       limit: 255,   default: "", null: false
     t.text    "description", limit: 65535
     t.integer "published",   limit: 4,     default: 1
+    t.string   "image_path", limit: 255
   end
 
   add_index "categories", ["title"], name: "title", unique: true, using: :btree

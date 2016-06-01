@@ -29,10 +29,20 @@
           </div>
         </div>
       </div>
-      <%= @recentCategory.description
-                         .gsub('href="/PDF', 'href="http://www.poligon.info/PDF')
-                         .gsub('src="/images', 'src="http://www.poligon.info/images')
-                         .html_safe if !@recentCategory.description.nil? %>
+      <div class="row" >
+        <div class="col-md-9" >
+          <%= @recentCategory.description
+                             .gsub('href="/PDF', 'href="http://www.poligon.info/PDF')
+                             .gsub('src="/images', 'src="http://www.poligon.info/images')
+                             .html_safe if !@recentCategory.description.nil? %>
+        </div>
+        <div class="col-md-3" >
+          <div class="category-image">
+            <% image_path = @recentCategory.image_path.gsub!("c:\\poligon_images", "http://www.poligon.info/images").gsub!("\\", "/") if !@recentCategory.image_path.nil? %>
+            <%= image_tag(image_path, alt: @recentCategory.title, title: @recentCategory.title, class: 'img img-responsive category-image') if !@recentCategory.image_path.nil?  %>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
