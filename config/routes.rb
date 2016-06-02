@@ -1,5 +1,7 @@
 # -*- encoding : utf-8 -*-
 Poligon::Application.routes.draw do
+  get 'sertificates/index'
+
   get 'welcome/hello'
 
   get 'users/sign_in'
@@ -12,7 +14,8 @@ Poligon::Application.routes.draw do
   resources :additions
   resources :products
   resources :content
-  #resources :users
+
+  get 'sertificates/download'
   get "devise/new", to: "devise/sessions#new"
   get "publications/index"
   get "articles/index"

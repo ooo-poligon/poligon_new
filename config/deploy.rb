@@ -20,7 +20,7 @@ set :branch, 'master'
 
 # Manually create these paths in shared/ (eg: shared/config/database.yml) in your server.
 # They will be linked in the 'deploy:link_shared_paths' step.
-set :shared_paths, ['config/database.yml', 'config/secrets.yml', 'config/application.yml', 'log']
+set :shared_paths, ['config/database.yml', 'config/secrets.yml', 'config/application.yml', 'log', 'public/files']
 
 # Optional settings:
   set :user, 'ror'    # Username in the server to SSH to.

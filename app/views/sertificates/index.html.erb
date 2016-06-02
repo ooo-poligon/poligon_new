@@ -1,0 +1,22 @@
+<h1>Сертификаты</h1>
+<% @vendors.each do |vendor| %>
+  <div style="display: inline">
+    <h2><%= vendor.title %></h2>
+    <span>
+      <%= form_for :vendor_id,
+        url:  { action:"download", controller: "sertificates"},
+        html: { method: :get} do |f| %>
+        <%= f.hidden_field :vendor_id, value: vendor.id%>
+        <%= f.submit "Скачать все PDF одним архивом", class: "btn btn-info" %>
+      <% end %>
+    </span>
+  </div>
+  <br>
+  <ul>
+    <% @sertificates.each do |sertificate| %>
+      <%  if vendor.id == sertificate.vendor_id %>
+        <li><%= render 'shared/sertificates_list', locals: { sertificate: sertificate } %></li>
+      <% end %>
+    <% end %>
+  </ul>
+<% end %>

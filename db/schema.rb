@@ -11,13 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160429090428) do
+ActiveRecord::Schema.define(version: 20160602091915) do
 
   create_table "additions", force: :cascade do |t|
-    t.text     "content",    limit: 4294967295
     t.datetime "created_at",                    null: false
-    t.string   "title",      limit: 255
     t.datetime "updated_at",                    null: false
+    t.string   "title",      limit: 255
+    t.text     "content",    limit: 4294967295
     t.string   "image_path", limit: 255
   end
 
@@ -43,25 +43,15 @@ ActiveRecord::Schema.define(version: 20160429090428) do
     t.datetime "updated_at",               null: false
     t.string   "title",      limit: 255
     t.text     "content",    limit: 65535
-    t.string   "image_path",      limit: 255
+    t.string   "image_path", limit: 255
   end
-
-  create_table "b_iblock_element", primary_key: "ID", force: :cascade do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "title",      limit: 255,   default: "", null: false
-    t.text     "preview",    limit: 65535
-    t.text     "content",    limit: 65535
-  end
-
-  add_index "b_iblock_element", ["title"], name: "NAME", using: :btree
 
   create_table "categories", force: :cascade do |t|
     t.integer "parent",      limit: 4
     t.string  "title",       limit: 255,   default: "", null: false
     t.text    "description", limit: 65535
     t.integer "published",   limit: 4,     default: 1
-    t.string   "image_path", limit: 255
+    t.string  "image_path",  limit: 255
   end
 
   add_index "categories", ["title"], name: "title", unique: true, using: :btree
@@ -151,9 +141,9 @@ ActiveRecord::Schema.define(version: 20160429090428) do
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
     t.string   "title",      limit: 255
-    t.text     "content",    limit: 65535
     t.text     "preview",    limit: 65535
-    t.string   "image_path",      limit: 255
+    t.text     "content",    limit: 65535
+    t.string   "image_path", limit: 255
   end
 
   create_table "post_types", force: :cascade do |t|
@@ -194,22 +184,22 @@ ActiveRecord::Schema.define(version: 20160429090428) do
     t.string  "serie",              limit: 255
     t.integer "product_kind_id",    limit: 4,          default: 1
     t.string  "vendor",             limit: 255
-    t.integer "plugin_owner_id",    limit: 4,          default: 0,   null: false
     t.float   "special",            limit: 53,         default: 1.0, null: false
     t.float   "rate",               limit: 53,         default: 1.0, null: false
     t.float   "discount1",          limit: 53,         default: 1.0, null: false
     t.float   "discount2",          limit: 53,         default: 1.0, null: false
     t.float   "discount3",          limit: 53,         default: 1.0, null: false
-    t.float   "rub_retail",         limit: 53,         default: 1.0, null: false
-    t.integer "accessory_owner_id", limit: 4,          default: 0.0, null: false
+    t.float   "rub_retail",         limit: 53,         default: 0.0, null: false
+    t.integer "plugin_owner_id",    limit: 4,          default: 1,   null: false
     t.integer "currency_id",        limit: 4,          default: 1,   null: false
+    t.integer "accessory_owner_id", limit: 4,          default: 0,   null: false
   end
 
   add_index "products", ["category_id"], name: "FK_of5oeawsy50x878ic9tyapdnv", using: :btree
+  add_index "products", ["currency_id"], name: "FK_products_currencies", using: :btree
   add_index "products", ["product_kind_id"], name: "FK_products_product_kinds", using: :btree
   add_index "products", ["serie"], name: "FK_products_series", using: :btree
   add_index "products", ["vendor"], name: "FK_products_vendors", using: :btree
-  add_index "products", ["currency_id"], name: "FK_products_currencies", using: :btree
 
   create_table "products_accessories", force: :cascade do |t|
     t.integer "product_id",   limit: 4, default: 0, null: false
@@ -270,10 +260,10 @@ ActiveRecord::Schema.define(version: 20160429090428) do
   add_index "quantity", ["product_id"], name: "FK_fmxkkqbgn373sbv3ghbdinqkx", using: :btree
 
   create_table "reviews", force: :cascade do |t|
-    t.string   "title",      limit: 255
-    t.text     "content",    limit: 65535
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
+    t.string   "title",      limit: 255
+    t.text     "content",    limit: 65535
     t.string   "image_path", limit: 255
   end
 
@@ -285,6 +275,21 @@ ActiveRecord::Schema.define(version: 20160429090428) do
 
   add_index "series", ["title"], name: "UK_hsvdwda43ces5322tlgcgl4sk", unique: true, using: :btree
   add_index "series", ["vendor_id"], name: "FK_ed8kdle1myybdci4nfqw6wftk", using: :btree
+
+  create_table "sertificates", force: :cascade do |t|
+    t.integer  "vendor_id",       limit: 4
+    t.string   "title",           limit: 255
+    t.text   "description",       limit: 255
+    t.string   "image_path",      limit: 255
+    t.string   "pdf_path",        limit: 255
+    t.string   "doc_type",        limit: 255
+    t.date     "creation_date"
+    t.date     "expiration_date"
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+  end
+
+  add_index "sertificates", ["vendor_id"], name: "index_sertificates_on_vendor_id", using: :btree
 
   create_table "settings", force: :cascade do |t|
     t.string  "title",      limit: 50,             null: false
@@ -346,10 +351,10 @@ ActiveRecord::Schema.define(version: 20160429090428) do
   add_index "vendors", ["title"], name: "UK_33oxww6kw5ov79h6q8pd0wm5b", unique: true, using: :btree
 
   create_table "videos", force: :cascade do |t|
-    t.string   "title",      limit: 255
-    t.text     "content",    limit: 65535
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
+    t.string   "title",      limit: 255
+    t.text     "content",    limit: 65535
     t.string   "image_path", limit: 255
   end
 
@@ -363,6 +368,7 @@ ActiveRecord::Schema.define(version: 20160429090428) do
   add_foreign_key "posts", "tickets"
   add_foreign_key "posts", "users"
   add_foreign_key "products", "categories", name: "FK_products_categories"
+  add_foreign_key "products", "currencies", name: "FK_products_currencies"
   add_foreign_key "products", "product_kinds", name: "FK_ga42cu8ch92tuig4t8oo06hn8"
   add_foreign_key "products", "series", column: "serie", primary_key: "title", name: "FK_ni7gdwd360jaafq7b7m1gug4v"
   add_foreign_key "products", "vendors", column: "vendor", primary_key: "title", name: "FK_h9ix3xgma67xlseqy1hap6rfa"
@@ -380,4 +386,5 @@ ActiveRecord::Schema.define(version: 20160429090428) do
   add_foreign_key "users", "companies"
   add_foreign_key "users", "groups"
   add_foreign_key "vendors", "currencies", name: "FK_nsbv37hiaemev6th5cuqgs6aa"
+  add_foreign_key "vendors", "sertificates", name: "FK_sertificates_vendors"
 end
