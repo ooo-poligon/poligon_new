@@ -27,7 +27,7 @@ class SertificatesController < ApplicationController
       end
     end
     #@archive = package_of sertificates_for_archive
-    @archive = "#{Rails.root}/public/files/sertificates/BENEDICT/BENEDICT_sertificate_2015-2020_01.pdf"
+    #@archive = "#{Rails.root}/public/files/sertificates/BENEDICT/BENEDICT_sertificate_2015-2020_01.pdf"
   end
 
   def package_of array_for_archiving
