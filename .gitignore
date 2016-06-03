@@ -20,6 +20,7 @@
 # Ignore external source of images and pdf files
 /public/images
 /public/pdf
+/public/files
 
 # Ignore db settings
 
