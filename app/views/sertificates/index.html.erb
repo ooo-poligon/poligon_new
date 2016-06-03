@@ -12,11 +12,12 @@
     </span>
   </div>
   <br>
-  <ul>
     <% @sertificates.each do |sertificate| %>
+    <ul style="list-style-type:none">
       <%  if vendor.id == sertificate.vendor_id %>
         <li><%= render 'shared/sertificates_list', locals: { sertificate: sertificate } %></li>
       <% end %>
+    </ul>
     <% end %>
-  </ul>
+
 <% end %>

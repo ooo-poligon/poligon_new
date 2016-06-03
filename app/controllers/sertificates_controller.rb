@@ -1,11 +1,13 @@
 class SertificatesController < ApplicationController
-  before_action :set_archive, only: [:download]
+
+  include ActionController::Streaming
+  include Zipline
 
   def index
     @sertificates = Sertificate.all
     @vendors = []
     @sertificates.each do |s|
-      @vendors.push Vendor.find(s.vendor_id)
+      @vendors.push Vendor.find(s.vendor_id) if !@vendors.include? Vendor.find(s.vendor_id)
     end
   end
 
@@ -13,23 +15,23 @@ class SertificatesController < ApplicationController
   end
 
   def download
-    send_file @archive
-  end
-
-  private
-
-  def set_archive
-    vendor_id = params[:vendor_id]
-    sertificates_for_archive = []
+    require 'open-uri'
+    vendor_id = params[:vendor_id][:vendor_id].to_i  # {"vendor_id"=>"3"}
+    sertificates_to_zip = []
     Sertificate.all.each do |s|
       if s.vendor_id == vendor_id
-        sertificates_for_archive.push s.pdf_path
+        sertificate_url  = s.pdf_path.gsub!("c:\\poligon_sertificates", "http://www.poligon.info/poligon_sertificates").gsub!("\\", "/")
+        sertificate_path = ('sertificates/' + s.pdf_path.match(/([^\/]*)$/)[1])
+        sertificates_to_zip.push [sertificate_url, sertificate_path]
       end
     end
-    #@archive = package_of sertificates_for_archive
-    #@archive = "#{Rails.root}/public/files/sertificates/BENEDICT/BENEDICT_sertificate_2015-2020_01.pdf"
+    file_mappings = sertificates_to_zip.lazy.map { |url, path| [open(url), path] }
+    zipline(file_mappings, 'sertificates.zip')
+
+    #require 'open-uri'
+    #url = 'http://someserver.com/path/../filename.jpg'
+    #data = open(url).read
+    #send_data data, :disposition => 'attachment', :filename=>"photo.jpg"
   end
 
-  def package_of array_for_archiving
-  end
 end

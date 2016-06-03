@@ -26,6 +26,7 @@ gem 'figaro'
 gem 'rack-mini-profiler', require: false
 gem 'zeroclipboard-rails'
 gem 'turbolinks'
+gem 'zipline'
 
 group :assets do
   gem 'coffee-rails'
@@ -39,4 +40,5 @@ end
 
 group :development do
   gem 'mina'
+  gem 'puma'
 end
