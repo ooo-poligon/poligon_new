@@ -14,7 +14,7 @@
       <h4><%= locals[:sertificate].doc_type + ' ' %>
         <span style="color: green;"><%= locals[:sertificate].title %></span>
       </h4>
-      <p><%= locals[:sertificate].description.html_safe %></p>
+      <p><%= simple_format locals[:sertificate].description %></p>
     </div>
   </div>
 </div>

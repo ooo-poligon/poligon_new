@@ -1,5 +1,10 @@
 class UserMailer < ActionMailer::Base
 
+  def test_email(subject)
+    @subject = subject
+    mail(to: "klekotnev@poligon.info", subject: 'Test')
+  end
+
   def welcome_email(email)
     @email = email
     @url  = 'http://new.poligon.info'

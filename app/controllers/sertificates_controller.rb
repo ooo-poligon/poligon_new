@@ -26,12 +26,8 @@ class SertificatesController < ApplicationController
       end
     end
     file_mappings = sertificates_to_zip.lazy.map { |url, path| [open(url), path] }
+    #UserMailer.test_email(sertificates_to_zip).deliver_now
     zipline(file_mappings, 'sertificates.zip')
-
-    #require 'open-uri'
-    #url = 'http://someserver.com/path/../filename.jpg'
-    #data = open(url).read
-    #send_data data, :disposition => 'attachment', :filename=>"photo.jpg"
   end
 
 end
