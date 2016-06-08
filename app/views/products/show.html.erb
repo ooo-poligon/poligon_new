@@ -6,6 +6,9 @@
   <% end %>
 </ol>
 <h2><%= @product.title %></h2>
+<% unless @product.article.nil? %>
+  <h5><%= "Артикул: " + @product.article %></h5>
+<% end %>
 <h4>Тип устройств: <%= @productKind.title %></h4>
 <p><%= @product.description %></p>
 <p style="color: red; font-weight: bolder;">
