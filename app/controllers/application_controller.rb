@@ -66,7 +66,7 @@ class ApplicationController < ActionController::Base
 
   def cases (number, kind)
     if kind == 'рубль'
-      if (number == 11) || (number == 12) || (number == 13) || (number == 14)
+      if (number%100 == 11) || (number%100 == 12) || (number%100 == 13) || (number%100 == 14)
         'рублей'
       elsif (number%10 == 1)
         'рубль'
