@@ -57,8 +57,13 @@ class ApplicationController < ActionController::Base
     kop_part = (dec_part * 100).to_i
     rub_case = cases rub_part, 'рубль'
     kop_case = cases kop_part, 'копейка'
-    html_output = "<p><b style=\"font-size: 16px; color: blue; font-weight: bolder;\">" +
-                  "Цена: #{rub_part} #{rub_case} #{kop_part} #{kop_case}.</b></p>"
+    unless kop_part == 0
+      html_output = "<p><b style=\"font-size: 16px; color: blue; font-weight: bolder;\">" +
+                    "Цена: #{rub_part} #{rub_case} #{kop_part} #{kop_case}.</b></p>"
+    else
+      html_output = "<p><b style=\"font-size: 16px; color: blue; font-weight: bolder;\">" +
+                    "Цена: #{rub_part} #{rub_case}.</b></p>"
+    end
     html_output.html_safe
   end
 
