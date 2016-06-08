@@ -1,4 +1,6 @@
-<table class="table tele-zebra">
+<br>
+<table class="table table-striped tele-zebra">
+<caption>Счётчики часов</caption>
 <thead>
 	<tr>
 		<th>Серия</th>
@@ -18,36 +20,44 @@
 	<td rowspan="2">0,1ч</td>
 	<td>28,2х53,2х63</td>
 	<td>
-		<entity name="TBG30.18 12-48VDC" prop="onStoreImage"/>
-		<entity name="TBG30.18 12-48VDC" prop="link"/>
+		<% product_id = Product.find_by(article: '711056').id %>
+<img src='<%= quantity_image_for product_id %>'
+style='width: 10px; height: 10px;' title=''/>
+		<a href='/products/<%= product_id %>'  title='' style=''>TBG30.18 12-48VDC</a>
 	</td>
-	<td><entity name="TBG30.18 12-48VDC" prop="article"/></td>
+	<td>711056</td>
 </tr>
 <tr>
 	<td>48x48x48</td>
 	<td>
-		<entity name="TBG40.17 12-48VDC" prop="onStoreImage"/>
-		<entity name="TBG40.17 12-48VDC" prop="link"/>
+		<% product_id = Product.find_by(article: '711025').id %>
+<img src='<%= quantity_image_for product_id %>'
+style='width: 10px; height: 10px;' title=''/>
+		<a href='/products/<%= product_id %>'  title='' style=''>TBG40.17 12-48VDC</a>
 	</td>
-	<td><entity name="TBG40.17 12-48VDC" prop="article"/></td>
+	<td>711025</td>
 </tr>
 <tr>
 	<td rowspan="2">99 999ч</td>
 	<td rowspan="2">0,1ч</td>
 	<td>85х17,5х61,5</td>
 	<td>
-		<entity name="TBG70.18 12-48VDC" prop="onStoreImage"/>
-		<entity name="TBG70.18 12-48VDC" prop="link"/>
+		<% product_id = Product.find_by(article: '711435').id %>
+<img src='<%= quantity_image_for product_id %>'
+style='width: 10px; height: 10px;' title=''/>
+		<a href='/products/<%= product_id %>'  title='' style=''>TBG70.18 12-48VDC</a>
 	</td>
-	<td><entity name="TBG70.18 12-48VDC" prop="article"/></td>
+	<td>711435</td>
 </tr>
 <tr>
 	<td>90x35x60</td>
 	<td>
-		<entity name="TBG70.29 12-48VDC" prop="onStoreImage"/>
-		<entity name="TBG70.29 12-48VDC" prop="link"/>
+		<% product_id = Product.find_by(article: '711408').id %>
+<img src='<%= quantity_image_for product_id %>'
+style='width: 10px; height: 10px;' title=''/>
+		<a href='/products/<%= product_id %>'  title='' style=''>TBG70.29 12-48VDC</a>
 	</td>
-	<td><entity name="TBG70.29 12-48VDC" prop="article"/></td>
+	<td>711408</td>
 </tr>
 
 
@@ -58,10 +68,12 @@
 	<td>0,01ч</td>
 	<td>45х48х38</td>
 	<td>
-		<entity name="TBW40.18 24VAC 50Hz" prop="onStoreImage"/>
-		<entity name="TBW40.18 24VAC 50Hz" prop="link"/>
+		<% product_id = Product.find_by(article: '711045').id %>
+<img src='<%= quantity_image_for product_id %>'
+style='width: 10px; height: 10px;' title=''/>
+		<a href='/products/<%= product_id %>'  title='' style=''>TBW40.18 24VAC 50Hz</a>
 	</td>
-	<td><entity name="TBW40.18 24VAC 50Hz" prop="article"/></td>
+	<td>711045</td>
 </tr>
 
 
@@ -71,18 +83,22 @@
 	<td rowspan="2">0,01ч</td>
 	<td>45х48х38</td>
 	<td>
-		<entity name="TBW40.18 115VAC 50Hz" prop="onStoreImage"/>
-		<entity name="TBW40.18 115VAC 50Hz" prop="link"/>
+		<% product_id = Product.find_by(article: '711042').id %>
+<img src='<%= quantity_image_for product_id %>'
+style='width: 10px; height: 10px;' title=''/>
+		<a href='/products/<%= product_id %>'  title='' style=''>TBW40.18 115VAC 50Hz</a>
 	</td>
-	<td><entity name="TBW40.18 115VAC 50Hz" prop="article"/></td>
+	<td>711042</td>
 </tr>
 <tr>
 	<td>85х17,5х61,5</td>
 	<td>
-		<entity name="TBW70.18 115VAC 50Hz" prop="onStoreImage"/>
-		<entity name="TBW70.18 115VAC 50Hz" prop="link"/>
+		<% product_id = Product.find_by(article: '711434').id %>
+<img src='<%= quantity_image_for product_id %>'
+style='width: 10px; height: 10px;' title=''/>
+		<a href='/products/<%= product_id %>'  title='' style=''>TBW70.18 115VAC 50Hz</a>
 	</td>
-	<td><entity name="TBW70.18 115VAC 50Hz" prop="article"/></td>
+	<td>711434</td>
 </tr>
 
 <tr>
@@ -91,28 +107,34 @@
 	<td rowspan="3">0,01ч</td>
 	<td>28,2х53,2х63</td>
 	<td>
-		<entity name="TBW30.18 230VAC 50Hz" prop="onStoreImage"/>
-		<entity name="TBW30.18 230VAC 50Hz" prop="link"/>
+		<% product_id = Product.find_by(article: '711050').id %>
+<img src='<%= quantity_image_for product_id %>'
+style='width: 10px; height: 10px;' title=''/>
+		<a href='/products/<%= product_id %>'  title='' style=''>TBW30.18 230VAC 50Hz</a>
 	</td>
-	<td><entity name="TBW30.18 230VAC 50Hz" prop="article"/></td>
+	<td>711050</td>
 </tr>
 
 <tr>
 	<td>45x48x38</td>
 	<td>
-		<entity name="TBW40.18 230VAC 50Hz" prop="onStoreImage"/>
-		<entity name="TBW40.18 230VAC 50Hz" prop="link"/>
+		<% product_id = Product.find_by(article: '711040').id %>
+<img src='<%= quantity_image_for product_id %>'
+style='width: 10px; height: 10px;' title=''/>
+		<a href='/products/<%= product_id %>'  title='' style=''>TBW40.18 230VAC 50Hz</a>
 	</td>
-	<td><entity name="TBW40.18 230VAC 50Hz" prop="article"/></td>
+	<td>711040</td>
 </tr>
 
 <tr>
 	<td>85x18,5x61,5</td>
 	<td>
-		<entity name="TBW70.18 230VAC 50Hz" prop="onStoreImage"/>
-		<entity name="TBW70.18 230VAC 50Hz" prop="link"/>
+		<% product_id = Product.find_by(article: '711430').id %>
+<img src='<%= quantity_image_for product_id %>'
+style='width: 10px; height: 10px;' title=''/>
+		<a href='/products/<%= product_id %>'  title='' style=''>TBW70.18 230VAC 50Hz</a>
 	</td>
-	<td><entity name="TBW70.18 230VAC 50Hz" prop="article"/></td>
+	<td>711430</td>
 </tr>
 
 <tr>
@@ -121,10 +143,12 @@
 	<td>0,1ч</td>
 	<td>90х35х60</td>
 	<td>
-		<entity name="TBW70.29 24VAC 50/60Hz" prop="onStoreImage"/>
-		<entity name="TBW70.29 24VAC 50/60Hz" prop="link"/>
+		<% product_id = Product.find_by(article: '711355').id %>
+<img src='<%= quantity_image_for product_id %>'
+style='width: 10px; height: 10px;' title=''/>
+		<a href='/products/<%= product_id %>'  title='' style=''>TBW70.29 24VAC 50/60Hz</a>
 	</td>
-	<td><entity name="TBW70.29 24VAC 50/60Hz" prop="article"/></td>
+	<td>711355</td>
 </tr>
 
 <tr>
@@ -133,10 +157,12 @@
 	<td>0,1ч</td>
 	<td>105х35х60</td>
 	<td>
-		<entity name="TBW70.89 48VAC 50/60Hz" prop="onStoreImage"/>
-		<entity name="TBW70.89 48VAC 50/60Hz" prop="link"/>
+		<% product_id = Product.find_by(article: '711139').id %>
+<img src='<%= quantity_image_for product_id %>'
+style='width: 10px; height: 10px;' title=''/>
+		<a href='/products/<%= product_id %>'  title='' style=''>TBW70.89 48VAC 50/60Hz</a>
 	</td>
-	<td><entity name="TBW70.89 48VAC 50/60Hz" prop="article"/></td>
+	<td>711139</td>
 </tr>
 
 <tr>
@@ -145,10 +171,12 @@
 	<td>0,1ч</td>
 	<td>105х35х60</td>
 	<td>
-		<entity name="TBW70.89 115VAC 50/60Hz" prop="onStoreImage"/>
-		<entity name="TBW70.89 115VAC 50/60Hz" prop="link"/>
+		<% product_id = Product.find_by(article: '711140').id %>
+<img src='<%= quantity_image_for product_id %>'
+style='width: 10px; height: 10px;' title=''/>
+		<a href='/products/<%= product_id %>'  title='' style=''>TBW70.89 115VAC 50/60Hz</a>
 	</td>
-	<td><entity name="TBW70.89 115VAC 50/60Hz" prop="article"/></td>
+	<td>711140</td>
 </tr>
 
 <tr>
@@ -157,22 +185,26 @@
 	<td rowspan="2">0,1ч</td>
 	<td>105х35х60</td>
 	<td>
-		<entity name="TBW70.89 230VAC 50/60Hz" prop="onStoreImage"/>
-		<entity name="TBW70.89 230VAC 50/60Hz" prop="link"/>
+		<% product_id = Product.find_by(article: '711141').id %>
+<img src='<%= quantity_image_for product_id %>'
+style='width: 10px; height: 10px;' title=''/>
+		<a href='/products/<%= product_id %>'  title='' style=''>TBW70.89 230VAC 50/60Hz</a>
 	</td>
-	<td><entity name="TBW70.89 230VAC 50/60Hz" prop="article"/></td>
+	<td>711141</td>
 </tr>
 <tr>
 	<td>90х35х60</td>
 	<td>
-		<entity name="TBW70.29 230VAC 50/60Hz" prop="onStoreImage"/>
-		<entity name="TBW70.29 230VAC 50/60Hz" prop="link"/>
+		<% product_id = Product.find_by(article: '711350').id %>
+<img src='<%= quantity_image_for product_id %>'
+style='width: 10px; height: 10px;' title=''/>
+		<a href='/products/<%= product_id %>'  title='' style=''>TBW70.29 230VAC 50/60Hz</a>
 	</td>
-	<td><entity name="TBW70.29 230VAC 50/60Hz" prop="article"/></td>
+	<td>711350</td>
 </tr>
 
 </tbody></table>
-<table class="table"><tbody>
+<table><tbody>
 <tr>
 	<th>TBG/TBW 30.XX</th>
 	<th>TBG/TBW 40.XX</th>
@@ -180,10 +212,10 @@
 	<th>TBG/TBW 70.29(89)</th>
 </tr>
 <tr>
-	<td><entity name="TBW30.18 230VAC 50Hz" prop="jpg" style="height: 100px;"/></td>
-	<td><entity name="TBW40.18 230VAC 50Hz" prop="jpg" style="height: 150px;"/></td>
-	<!-- <td><entity name="TBW70.18 230VAC 50Hz" prop="jpg" style="height: 150px;"/></td> -->
-	<td><entity name="TBW70.29 230VAC 50/60Hz" prop="jpg" style="height: 150px;"/></td>
+	<td><img src='http://www.poligon.info/images/catalog/TELE/devices/TBW30.18_230VAC_50HZ_device.jpg' class='show' alt='TBW30.18 230VAC 50Hz' title='' style='height: 100px;'/></td>
+	<td><img src='http://www.poligon.info/images/catalog/TELE/devices/TBW40.18_230VAC_50HZ_device.jpg' class='show' alt='TBW40.18 230VAC 50Hz' title='' style='height: 150px;'/></td>
+	<!-- <td><img src='/images/catalog/TELE/devices/TBW_70.18_230VAC_50HZ_device.jpg' class='show' alt='TBW70.18 230VAC 50Hz' title='' style='height: 150px;'/></td> -->
+	<td><img src='http://www.poligon.info/images/catalog/TELE/devices/TBW70.29_230VAC_50_60HZ_device.jpg' class='show' alt='TBW70.29 230VAC 50/60Hz' title='' style='height: 150px;'/></td>
 </tr>
 </tbody></table>
 
@@ -198,7 +230,7 @@
 
 <p><strong>См. также: </strong><a href="/categories/5423">счётчики часов наработки Graesslin</a></p>
 
-<table class="table tele-zebra">
+<table class="table table-striped tele-zebra">
 <caption>Аксессуары</caption>
 <thead><tr><th></th><th>Тип</th><th>Артикул</th></tr></thead>
 <tbody>

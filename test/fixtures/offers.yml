@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  descripiton: MyText
+  image_path: MyString
+  available: false
+  begin_date: 2016-06-06
+  expiration_date: 2016-06-06
+  landing_page_url: MyString
+
+two:
+  title: MyString
+  descripiton: MyText
+  image_path: MyString
+  available: false
+  begin_date: 2016-06-06
+  expiration_date: 2016-06-06
+  landing_page_url: MyString

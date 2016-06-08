@@ -53,7 +53,7 @@ class ApplicationController < ActionController::Base
 
   def rub_case_with_kopeiki decimal_number
     dec_part = (decimal_number%1).round(2)
-    rub_part = (decimal_number - dec_part).to_i
+    rub_part = (decimal_number - (decimal_number%1)).to_i
     kop_part = (dec_part * 100).to_i
     rub_case = cases rub_part, 'рубль'
     kop_case = cases kop_part, 'копейка'
@@ -66,10 +66,10 @@ class ApplicationController < ActionController::Base
 
   def cases (number, kind)
     if kind == 'рубль'
-      if (number%10 == 1)
-        'рубль'
-      elsif (number == 11) || (number == 12) || (number == 13) || (number == 14)
+      if (number == 11) || (number == 12) || (number == 13) || (number == 14)
         'рублей'
+      elsif (number%10 == 1)
+        'рубль'
       elsif (number%10 == 2) || (number%10 == 3) || (number%10 == 4)
         'рубля'
       else

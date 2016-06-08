@@ -1,0 +1,65 @@
+<table class="table table-striped tele-zebra">
+<caption>Сборки реле</caption>
+<thead>
+	<tr>
+		<th>Контакты</th>
+		<th>Номинальное напряжение</th>
+		<th>Колодка</th>
+		<th>LED/варистор</th>
+		<th>Защитный диод</th>
+		<th>Тип</th>
+		<th>Артикул</th>
+	</tr>
+</thead>
+<tbody>
+<tr>
+	<th rowspan="5">2CO</th>
+	<th>24V AC</th>
+	<td>PSS8/3</td>
+	<td>LED</td>
+	<td></td>
+	<td><% product_id = Product.find_by(article: '100686').id %>
+<img src='<%= quantity_image_for product_id %>'
+style='width: 10px; height: 10px;' title=''/><a href='/products/<%= product_id %>'  title='' style=''>SET RP524+LD+PSS8+HB (PQ10)</a></td>
+	<td>100686</td>
+</tr>
+<tr>
+	<th rowspan="2">24V DC</th>
+	<td>PSS8/3</td>
+	<td>LED</td>
+	<td>&#9632;</td>
+	<td><% product_id = Product.find_by(article: '100681').id %>
+<img src='<%= quantity_image_for product_id %>'
+style='width: 10px; height: 10px;' title=''/><a href='/products/<%= product_id %>'  title='' style=''>SET RP024+LD/FD+PSS8+HB (PQ10)</a></td>
+	<td>100681</td>
+</tr>
+<tr>
+	<td>ES 50</td>
+	<td>LED</td>
+	<td>&#9632;</td>
+	<td><%# product_id = Product.find_by(article: '180501').id %>
+<img src='/assets/grey.gif'
+style='width: 10px; height: 10px;' title=''/>SET RP024+LD/FD+ES50+HB (PQ12)</td>
+	<td></td>
+</tr>
+<tr>
+	<th rowspan="2">230V AC</th>
+	<td>PSS8/3</td>
+	<td>LED</td>
+	<td></td>
+	<td><% product_id = Product.find_by(article: '100684').id %>
+<img src='<%= quantity_image_for product_id %>'
+style='width: 10px; height: 10px;' title=''/><a href='/products/<%= product_id %>'  title='' style=''>SET RP730+LD+PSS8+HB (PQ10)</a></td>
+	<td>100684</td>
+</tr>
+<tr>
+	<td>ES50/3</td>
+	<td>варистор</td>
+	<td></td>
+	<td><%# product_id = Product.find_by(article: '180501').id %>
+<img src='/assets/grey.gif'
+style='width: 10px; height: 10px;' title=''/>SET RP730+LD/Varistor+ES50/3+HB (PQ12)</td>
+	<td></td>
+</tr>
+</tbody>
+</table>

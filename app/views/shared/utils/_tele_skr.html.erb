@@ -1,0 +1,107 @@
+<table class="table table-striped tele-zebra"><caption>Интерфейсные реле</caption>
+<thead>
+	<tr>
+		<th>Контакты</th>
+		<th colspan="2">Номинальное напряжение</th>
+		<th>Тип</th>
+		<th>Артикул</th>
+		<th></th>
+	</tr>
+</thead>
+<tbody>
+	<tr>
+		<th rowspan="3">1 перекидной контакт</th>
+		<td>AC/DC</td>
+		<td>24V</td>
+		<td><% product_id = Product.find_by(article: '180501').id %>
+<img src='<%= quantity_image_for product_id %>'
+style='width: 10px; height: 10px;' title=''/>
+<a href='/products/<%= product_id %>'  title='' style=''>SKR 524</a></td>
+		<td>180501</td>
+		<th class="img" rowspan="3"><img title="TELE - интерфейсное реле SKR" alt="интерфейсное реле SKR" src="http://www.poligon.info/images/design/categories/TELE/SKR 024.jpg" class="h200px"></th>
+	</tr>
+	<tr>
+		<td>DC</td>
+		<td>24V</td>
+		<td><% product_id = Product.find_by(article: '180500').id %>
+<img src='<%= quantity_image_for product_id %>'
+style='width: 10px; height: 10px;' title=''/>
+<a href='/products/<%= product_id %>'  title='' style=''>SKR 024</a></td>
+		<td>180500</td>
+	</tr>
+	<tr>
+		<td>AC</td>
+		<td>230V</td>
+		<td><% product_id = Product.find_by(article: '180502').id %>
+<img src='<%= quantity_image_for product_id %>'
+style='width: 10px; height: 10px;' title=''/>
+<a href='/products/<%= product_id %>'  title='' style=''>SKR 730</a></td>
+		<td>180502</td>
+	</tr>
+</tbody></table>
+
+<table class="table table-striped tele-zebra"><caption>Интерфейсные реле со сменными релейными модулями</caption>
+<thead>
+	<tr>
+		<th>Контакты</th>
+		<th colspan="2">Номинальное напряжение</th>
+		<th>Тип</th>
+		<th>Артикул</th>
+		<th></th>
+	</tr>
+</thead>
+<tbody>
+<tr>
+	<th rowspan="3">1 перекидной контакт</th>
+	<td>AC/DC</td>
+	<td>24V</td>
+	<td><%# product_id = Product.find_by(article: '180504').id %>
+<img src='/assets/grey.gif'
+style='width: 10px; height: 10px;' title=''/>
+<a href='/products/<%#= product_id %>'  title='' style=''>STKR 524</a></td>
+	<td>180504</td>
+	<th class="img" rowspan="3"><img title="TELE - интерфейсное реле STKR" alt="интерфейсное реле со сменными релейными модулями" src="http://www.poligon.info/images/design/categories/TELE/STKR 524.jpg" class="h200px"></th>
+</tr>
+<tr>
+	<td>DC</td>
+	<td>24V</td>
+	<td><% product_id = Product.find_by(article: '180503').id %>
+<img src='<%= quantity_image_for product_id %>'
+style='width: 10px; height: 10px;' title=''/>
+<a href='/products/<%= product_id %>'  title='' style=''>STKR 024</a></td>
+	<td>180503</td>
+</tr>
+<tr>
+	<td>AC</td>
+	<td>230V</td>
+	<td><%# product_id = Product.find_by(article: '180505').id %>
+<img src='/assets/grey.gif'
+style='width: 10px; height: 10px;' title=''/>
+<a href='/products/<%#= product_id %>'  title='' style=''>STKR 730</a></td>
+	<td>180505</td>
+</tr>
+</tbody></table>
+
+<table class="table table-striped tele-zebra"><caption>Сменные реле</caption>
+<thead>
+	<tr>
+		<th>Номинальное напряжение</th>
+		<th>для серии</th>
+		<th>Тип</th>
+		<th>Артикул</th>
+	</tr>
+</thead>
+<tbody>
+<tr>
+	<td>24VDC</td>
+	<td>STKR 024, STKR 524</td>
+	<td>RM699V-3011-85-1024</td>
+	<td>100660</td>
+</tr>
+<tr>
+	<td>60VDC</td>
+	<td>STKR 730 (230V AC)</td>
+	<td>RM699V-3011-85-1060</td>
+	<td>100661</td>
+</tr>
+</tbody></table>

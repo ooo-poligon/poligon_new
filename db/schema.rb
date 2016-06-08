@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160602091915) do
+ActiveRecord::Schema.define(version: 20160606122230) do
 
   create_table "additions", force: :cascade do |t|
     t.datetime "created_at",                    null: false
@@ -146,6 +146,26 @@ ActiveRecord::Schema.define(version: 20160602091915) do
     t.string   "image_path", limit: 255
   end
 
+  create_table "offers", force: :cascade do |t|
+    t.string   "title",            limit: 255
+    t.text     "descripiton",      limit: 65535
+    t.string   "image_path",       limit: 255
+    t.boolean  "available"
+    t.date     "begin_date"
+    t.date     "expiration_date"
+    t.string   "landing_page_url", limit: 255
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+  end
+
+  create_table "offers_products", id: false, force: :cascade do |t|
+    t.integer "offer_id",   limit: 4, null: false
+    t.integer "product_id", limit: 4, null: false
+  end
+
+  add_index "offers_products", ["offer_id"], name: "index_offers_products_on_offer_id", using: :btree
+  add_index "offers_products", ["product_id"], name: "index_offers_products_on_product_id", using: :btree
+
   create_table "post_types", force: :cascade do |t|
     t.string   "title",      limit: 255
     t.datetime "created_at",             null: false
@@ -279,14 +299,14 @@ ActiveRecord::Schema.define(version: 20160602091915) do
   create_table "sertificates", force: :cascade do |t|
     t.integer  "vendor_id",       limit: 4
     t.string   "title",           limit: 255
-    t.text   "description",       limit: 255
+    t.text     "description",     limit: 65535
     t.string   "image_path",      limit: 255
     t.string   "pdf_path",        limit: 255
     t.string   "doc_type",        limit: 255
     t.date     "creation_date"
     t.date     "expiration_date"
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
   end
 
   add_index "sertificates", ["vendor_id"], name: "index_sertificates_on_vendor_id", using: :btree
@@ -340,10 +360,10 @@ ActiveRecord::Schema.define(version: 20160602091915) do
   add_index "users", ["group_id"], name: "index_users_on_group_id", using: :btree
 
   create_table "vendors", force: :cascade do |t|
+    t.string  "title",       limit: 255,        null: false
     t.text    "address",     limit: 4294967295
     t.text    "description", limit: 4294967295
     t.float   "rate",        limit: 53
-    t.string  "title",       limit: 255,        null: false
     t.integer "currency_id", limit: 4
   end
 
@@ -382,9 +402,9 @@ ActiveRecord::Schema.define(version: 20160602091915) do
   add_foreign_key "property_values", "properties", name: "FK_property_values_properties"
   add_foreign_key "quantity", "products", name: "FK_fmxkkqbgn373sbv3ghbdinqkx"
   add_foreign_key "series", "vendors", name: "FK_ed8kdle1myybdci4nfqw6wftk"
+  add_foreign_key "sertificates", "vendors", name: "FK_sertificates_vendors"
   add_foreign_key "tickets", "users"
   add_foreign_key "users", "companies"
   add_foreign_key "users", "groups"
   add_foreign_key "vendors", "currencies", name: "FK_nsbv37hiaemev6th5cuqgs6aa"
-  add_foreign_key "vendors", "sertificates", name: "FK_sertificates_vendors"
 end

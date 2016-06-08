@@ -134,3 +134,10 @@ table.tele-zanaveska td+td+td+td+td,
 table.tele-zanaveska td+td+td+td+td+td+td,
 table.tele-zanaveska td+td+td+td+td+td+td+td+td,
 table.tele-zanaveska td+td+td+td+td+td+td+td+td+td+td{background-color: white;; width: 24px; text-align: center;}
+
+table.cols-5-align-center td+td{
+	text-align: center;
+}
+
+.h200px {height: 200px;}
+.add-images img{/*width: 100%;*/ height: 200px;}

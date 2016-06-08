@@ -1,0 +1,60 @@
+<br>
+<table class="table table-strped tele-zebra">
+<caption>Миниатюрные промежуточные реле серии RA</caption>
+<thead>
+<tr>
+	<th colspan="2">Номинальное напряжение</th>
+	<th>Тип</th>
+	<th>Атрикул</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+	<th rowspan="3">AC</th>
+	<% product_id = 121632 %>
+	<td>24V</td>
+	<td>
+		<img src='<%= quantity_image_for product_id %>'
+		style='width: 10px; height: 10px;'
+		title=''/>
+		<a href="/products/<%= product_id %>"  title='' style=''>RA 524L</a>
+	</td>
+	<td>100623LD</td>
+</tr>
+<tr>
+	<% product_id = 121629 %>
+	<td>115V</td>
+	<td><img src='<%= quantity_image_for product_id %>'
+		 style='width: 10px; height: 10px;'
+		 title=''/> <a href='/products/<%= product_id %>'  title='' style=''>RA 615L</a></td>
+	<td>100621LD</td>
+</tr>
+<tr>
+	<% product_id = 121630 %>
+	<td>230V</td>
+	<td><img src='<%= quantity_image_for product_id %>'
+		style='width: 10px; height: 10px;'
+		title=''/> <a href='/products/<%= product_id %>'  title='' style=''>RA 730L</a></td>
+	<td>100624LD</td>
+</tr>
+
+<tr>
+	<th rowspan="2">DC</th>
+	<% product_id = 121633 %>
+	<td>12V</td>
+	<td><img src='<%= quantity_image_for product_id %>'
+		style='width: 10px; height: 10px;'
+		title=''/> <a href='/products/<%= product_id %>'  title='' style=''>RA 012L</a></td>
+	<td>100625LD</td>
+</tr>
+<tr>
+	<% product_id = 121631 %>
+	<td>24V</td>
+	<td><img src='<%= quantity_image_for product_id %>'
+		style='width: 10px; height: 10px;'
+		title=''/><a href='/products/<%= product_id %>'  title='' style=''>RA 024L</a></td>
+	<td>100622LD</td>
+</tr>
+
+</tbody></table>
+<%= render partial: 'shared/utils/tele_kolodki' %>

@@ -1,208 +1,207 @@
-<table class="table tele-zebra">
-  <caption>Цифровые таймеры для монтажа на DIN-рейку. Напряжение питания 230V AC</caption>
-  <thead>
-  	<tr>
-  		<th rowspan="2">Каналы</th>
-  		<th colspan="2">Контакты</th>
-  		<th rowspan="2">Коммутируемый ток</th>
-  		<th rowspan="2">Номинальное потребление</th>
-  		<th rowspan="2">Размеры (мм)</th>
-  		<th rowspan="2">Тип</th>
-  		<th rowspan="2">Артикул</th>
-  	</tr>
-  	<tr>
-  		<th>CO</th>
-  		<th>NO</th>
-  	</tr>
-  <thead>
-  <tbody>
-  	<tr>
-  		<td>1</td>
-  		<td>1</td>
-  		<td></td>
-  		<td>4000VA</td>
-  		<td>1,5VA</td>
-  		<td>90x35,8x60</td>
-  		<td>
-  			<entity name="TSC29.11 pro 230VAC" prop="onStoreImage"/>
-  			<entity name="TSC29.11 pro 230VAC" prop="link"/></td>
-  		<td><entity name="TSC29.11 pro 230VAC" prop="article"/></td>
-  	</tr>
-  	<tr>
-  		<td>1</td>
-  		<td></td>
-  		<td>1</td>
-  		<td>4000VA</td>
-  		<td>1,5VA</td>
-  		<td>90x35,8x60</td>
-  		<td>
-  			<entity name="TSC18.10 pro 230VAC" prop="onStoreImage"/>
-  			<entity name="TSC18.10 pro 230VAC" prop="link"/>
-  		</td>
-  		<td><entity name="TSC18.10 pro 230VAC" prop="article"/></td>
-  	</tr>
-  	<tr>
-  		<td>2</td>
-  		<td>2</td>
-  		<td></td>
-  		<td>4000VA</td>
-  		<td>1,5VA</td>
-  		<td>90x35,8x60</td>
-  		<td>
-  			<entity name="TSC28.21 pro 230VAC" prop="onStoreImage"/>
-  			<entity name="TSC28.21 pro 230VAC" prop="link"/>
-  		</td>
-  		<td><entity name="TSC28.21 pro 230VAC" prop="article"/></td>
-  	</tr>
-  	<tr>
-  		<td>2</td>
-  		<td>2</td>
-  		<td></td>
-  		<td>4000VA</td>
-  		<td>1,5VA</td>
-  		<td>90x35,8x60</td>
-  		<td>
-  			<entity name="TSC29.23 pro 230VAC" prop="onStoreImage"/>
-  			<entity name="TSC29.23 pro 230VAC" prop="link"/>
-  		</td>
-  		<td><entity name="TSC29.23 pro 230VAC" prop="article"/></td>
-  	</tr>
-  	<tr>
-  		<td>2</td>
-  		<td>2</td>
-  		<td></td>
-  		<td>2500VA</td>
-  		<td>2VA</td>
-  		<td>120x71,5x60</td>
-  		<td>
-  			<entity name="TSC98.20 pro 230VAC" prop="onStoreImage"/>
-  			<entity name="TSC98.20 pro 230VAC" prop="link"/>
-  		</td>
-  		<td><entity name="TSC98.20 pro 230VAC" prop="article"/></td>
-  	</tr>
-  	<tr>
-  		<td>4</td>
-  		<td>3</td>
-  		<td>1</td>
-  		<td>2500VA</td>
-  		<td>2VA</td>
-  		<td>120x71,5x60</td>
-  		<td>
-  			<entity name="TSC98.40 pro 230VAC" prop="onStoreImage"/>
-  			<entity name="TSC98.40 pro 230VAC" prop="link"/>
-  		</td>
-  		<td><entity name="TSC98.40 pro 230VAC" prop="article"/></td>
-  	</tr>
-  </tbody>
-</table>
+<table class="table table-striped tele-zebra"><caption>Цифровые таймеры для монтажа на DIN-рейку. Напряжение питания 230V AC</caption>
+<thead>
+	<tr>
+		<th rowspan="2">Каналы</th>
+		<th colspan="2">Контакты</th>
+		<th rowspan="2">Коммутируемый ток</th>
+		<th rowspan="2">Номинальное потребление</th>
+		<th rowspan="2">Размеры (мм)</th>
+		<th rowspan="2">Тип</th>
+		<th rowspan="2">Артикул</th>
+	</tr>
+	<tr>
+		<th>CO</th>
+		<th>NO</th>
+	</tr>
+<thead>
+<tbody>
+	<tr>
+		<td>1</td>
+		<td>1</td>
+		<td></td>
+		<td>4000VA</td>
+		<td>1,5VA</td>
+		<td>90x35,8x60</td>
+		<td>
+			<%# product_id = Product.find_by(article: '180057').id %>
+<img src='/assets/grey.gif'
+style='width: 10px; height: 10px;' title=''/>
+			TSC29.11 pro 230VAC</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>1</td>
+		<td></td>
+		<td>1</td>
+		<td>4000VA</td>
+		<td>1,5VA</td>
+		<td>90x35,8x60</td>
+		<td>
+			<% product_id = Product.find_by(article: '711144').id %>
+<img src='<%= quantity_image_for product_id %>'
+style='width: 10px; height: 10px;' title=''/>
+			<a href='/products/<%= product_id %>'  title='' style=''>TSC18.10 pro 230VAC</a>
+		</td>
+		<td>711144</td>
+	</tr>
+	<tr>
+		<td>2</td>
+		<td>2</td>
+		<td></td>
+		<td>4000VA</td>
+		<td>1,5VA</td>
+		<td>90x35,8x60</td>
+		<td>
+			<% product_id = Product.find_by(article: '711143').id %>
+<img src='<%= quantity_image_for product_id %>'
+style='width: 10px; height: 10px;' title=''/>
+			<a href='/products/<%= product_id %>'  title='' style=''>TSC28.21 pro 230VAC</a>
+		</td>
+		<td>711143</td>
+	</tr>
+	<tr>
+		<td>2</td>
+		<td>2</td>
+		<td></td>
+		<td>4000VA</td>
+		<td>1,5VA</td>
+		<td>90x35,8x60</td>
+		<td>
+			<%# product_id = Product.find_by(article: '180057').id %>
+<img src='/assets/grey.gif'
+style='width: 10px; height: 10px;' title=''/>
+			TSC29.23 pro 230VAC
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>2</td>
+		<td>2</td>
+		<td></td>
+		<td>2500VA</td>
+		<td>2VA</td>
+		<td>120x71,5x60</td>
+		<td>
+			<% product_id = Product.find_by(article: '711132').id %>
+<img src='<%= quantity_image_for product_id %>'
+style='width: 10px; height: 10px;' title=''/>
+			<a href='/products/<%= product_id %>'  title='' style=''>TSC98.20 pro 230VAC</a>
+		</td>
+		<td>711132</td>
+	</tr>
+	<tr>
+		<td>4</td>
+		<td>3</td>
+		<td>1</td>
+		<td>2500VA</td>
+		<td>2VA</td>
+		<td>120x71,5x60</td>
+		<td>
+			<% product_id = Product.find_by(article: '711131').id %>
+<img src='<%= quantity_image_for product_id %>'
+style='width: 10px; height: 10px;' title=''/>
+			<a href='/products/<%= product_id %>'  title='' style=''>TSC98.40 pro 230VAC</a>
+		</td>
+		<td>711131</td>
+	</tr>
+</tbody></table>
 
-<table class="table tele-zebra">
-  <caption>Цифровые таймеры для монтажа на панель</caption>
-  <thead>
-  	<tr>
-  		<th rowspan="2">Напряжение питания</th>
-  		<th rowspan="2">Каналы</th>
-  		<th colspan="2">Контакты</th>
-  		<th rowspan="2">Коммутируемый ток</th>
-  		<th rowspan="2">Номинальное потребление</th>
-  		<th rowspan="2">Размеры (мм)</th>
-  		<th rowspan="2">Тип</th>
-  		<th rowspan="2">Артикул</th>
-  	</tr>
-  	<tr>
-  		<th>CO</th>
-  		<th>NO</th>
-  	</tr>
-  <thead>
-  <tbody>
-  	<tr>
-  		<td>24V</td>
-  		<td>1</td>
-  		<td>1</td>
-  		<td></td>
-  		<td>4000VA</td>
-  		<td>0,9VA</td>
-  		<td>94,5x72x53</td>
-  		<td>
-  			<entity name="TSC44.12 24VAC" prop="onStoreImage"/>
-  			<entity name="TSC44.12 24VAC" prop="link"/>
-  		</td>
-  		<td><entity name="TSC44.12 24VAC" prop="article"/></td>
-  	</tr>
-  	<tr>
-  		<td>115V</td>
-  		<td>1</td>
-  		<td>1</td>
-  		<td></td>
-  		<td>4000VA</td>
-  		<td>2,8VA</td>
-  		<td>94,5x72x53</td>
-  		<td>
-  			<entity name="TSC44.12 115VAC" prop="onStoreImage"/>
-  			<entity name="TSC44.12 115VAC" prop="link"/>
-  		</td>
-  		<td><entity name="TSC44.12 115VAC" prop="article"/></td>
-  	</tr>
-  	<tr>
-  		<td>230V</td>
-  		<td>1</td>
-  		<td>1</td>
-  		<td></td>
-  		<td>4000VA</td>
-  		<td>1,5VA</td>
-  		<td>94,5x72x53</td>
-  		<td>
-  			<entity name="TSC44.12 230VAC" prop="onStoreImage"/>
-  			<entity name="TSC44.12 230VAC" prop="link"/>
-  		</td>
-  		<td><entity name="TSC44.12 230VAC" prop="article"/></td>
-  	</tr>
-  	<tr>
-  		<td>24V</td>
-  		<td>2</td>
-  		<td>1</td>
-  		<td>1</td>
-  		<td>4000VA</td>
-  		<td>1,3VA</td>
-  		<td>94,5x72x53</td>
-  		<td>
-  			<entity name="TSC44.22 24VAC" prop="onStoreImage"/>
-  			<entity name="TSC44.22 24VAC" prop="link"/>
-  		</td>
-  		<td><entity name="TSC44.22 24VAC" prop="article"/></td>
-  	</tr>
-  	<tr>
-  		<td>230V</td>
-  		<td>2</td>
-  		<td>1</td>
-  		<td>1</td>
-  		<td>4000VA</td>
-  		<td>1,5VA</td>
-  		<td>94,5x72x53</td>
-  		<td>
-  			<entity name="TSC44.22 230VAC" prop="onStoreImage"/>
-  			<entity name="TSC44.22 230VAC" prop="link"/>
-  		</td>
-  		<td><entity name="TSC44.22 230VAC" prop="article"/></td>
-  	</tr>
-  </tbody>
-</table>
-
-<table class="table" style="margin: 0 auto;">
-  <thead>
-  	<tr>
-  		<th>TSC18.10</th>
-  		<th>TSC28.10</th>
-  		<th>TSC98.10</th>
-  		<th>TSC44</th>
-  	</tr>
-  </thead>
-  <tbody>
-  	<tr>
-  		<td><img src="http://www.poligon.info/images/design/categories/TELE/TSC18_10.jpg" alt="цифровой таймер" style="height: 160px;" class="show"/></td>
-  		<td><img src="http://www.poligon.info/images/design/categories/TELE/TSC28_10.jpg" alt="цифровой таймер" style="height: 160px;" class="show"/></td>
-  		<td><img src="http://www.poligon.info/images/design/categories/TELE/TSC98_10.jpg" alt="цифровой таймер" style="height: 160px;" class="show"/></td>
-  		<td><img src="http://www.poligon.info/images/design/categories/TELE/TSC44.jpg" alt="цифровой таймер" style="height: 160px;" class="show"/></td>
-  	</tr>
-  </tbody>
-</table>
+<table class="table table-striped tele-zebra"><caption>Цифровые таймеры для монтажа на панель</caption>
+<thead>
+	<tr>
+		<th rowspan="2">Напряжение питания</th>
+		<th rowspan="2">Каналы</th>
+		<th colspan="2">Контакты</th>
+		<th rowspan="2">Коммутируемый ток</th>
+		<th rowspan="2">Номинальное потребление</th>
+		<th rowspan="2">Размеры (мм)</th>
+		<th rowspan="2">Тип</th>
+		<th rowspan="2">Артикул</th>
+	</tr>
+	<tr>
+		<th>CO</th>
+		<th>NO</th>
+	</tr>
+<thead>
+<tbody>
+	<tr>
+		<td>24V</td>
+		<td>1</td>
+		<td>1</td>
+		<td></td>
+		<td>4000VA</td>
+		<td>0,9VA</td>
+		<td>94,5x72x53</td>
+		<td>
+			<% product_id = Product.find_by(article: '711676').id %>
+<img src='<%= quantity_image_for product_id %>'
+style='width: 10px; height: 10px;' title=''/>
+			<a href='/products/<%= product_id %>'  title='' style=''>TSC44.12 24VAC</a>
+		</td>
+		<td>711676</td>
+	</tr>
+	<tr>
+		<td>115V</td>
+		<td>1</td>
+		<td>1</td>
+		<td></td>
+		<td>4000VA</td>
+		<td>2,8VA</td>
+		<td>94,5x72x53</td>
+		<td>
+			<% product_id = Product.find_by(article: '711576').id %>
+<img src='<%= quantity_image_for product_id %>'
+style='width: 10px; height: 10px;' title=''/>
+			<a href='/products/<%= product_id %>'  title='' style=''>TSC44.12 115VAC</a>
+		</td>
+		<td>711576</td>
+	</tr>
+	<tr>
+		<td>230V</td>
+		<td>1</td>
+		<td>1</td>
+		<td></td>
+		<td>4000VA</td>
+		<td>1,5VA</td>
+		<td>94,5x72x53</td>
+		<td>
+			<%# product_id = Product.find_by(article: '180057').id %>
+<img src='/assets/grey.gif'
+style='width: 10px; height: 10px;' title=''/>
+			TSC44.12 230VAC
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>24V</td>
+		<td>2</td>
+		<td>1</td>
+		<td>1</td>
+		<td>4000VA</td>
+		<td>1,3VA</td>
+		<td>94,5x72x53</td>
+		<td>
+			<%# product_id = Product.find_by(article: '180057').id %>
+<img src='/assets/grey.gif'
+style='width: 10px; height: 10px;' title=''/>
+			TSC44.22 24VAC
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>230V</td>
+		<td>2</td>
+		<td>1</td>
+		<td>1</td>
+		<td>4000VA</td>
+		<td>1,5VA</td>
+		<td>94,5x72x53</td>
+		<td>
+			<% product_id = Product.find_by(article: '711579').id %>
+<img src='<%= quantity_image_for product_id %>'
+style='width: 10px; height: 10px;' title=''/>
+			<a href='/products/<%= product_id %>'  title='' style=''>TSC44.22 230VAC</a>
+		</td>
+		<td>711579</td>
+	</tr>
+</tbody></table>

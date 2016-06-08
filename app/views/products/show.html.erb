@@ -34,7 +34,7 @@
         <p style="font-weight: bold; color: red;">Описание в формате PDF отсутствует</p>
       <% end %>
       <hr>
-      <%= render "shared/price_cases", locals: { retail_price: @retail_price } %>
+      <%= render "shared/price_cases", locals: { retail_price: get_prices_rub(@product)[0] } %>
       <p style="color: green">
         <% if !Quantity.find_by(product_id: @product.id).nil? && Quantity.find_by(product_id: @product.id).stock > 0 %>
           <i>Товар есть на складе</i>

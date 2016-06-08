@@ -1,5 +1,9 @@
 # -*- encoding : utf-8 -*-
 Poligon::Application.routes.draw do
+  get 'offers/index'
+
+  get 'offers/show'
+
   get 'sertificates/index'
 
   get 'welcome/hello'
