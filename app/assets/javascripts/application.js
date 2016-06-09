@@ -29,6 +29,12 @@ $(document).ready(function() {
     spanCols: false,
     ignoreRows: [1,2]
   });
+
+  $(function () {
+    $('#accordion').on('shown.bs.collapse', function (e) {
+    var offset = $('.panel.panel-default > .panel-collapse.in').offset();
+    if(offset)$('html,body').scrollTop(offset.top - 300); });
+  });
 });
 
 function no_pdf() {

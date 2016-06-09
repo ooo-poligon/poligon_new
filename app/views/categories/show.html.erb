@@ -16,7 +16,7 @@
     <% end %>
     <% unless @recentCategory.more_info.nil? || @recentCategory.more_info == '' %>
       <br>
-      <button type="button" class="btn btn-info" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+      <button type="button" class="btn btn-info" data-toggle="collapse" data-parent="#accordion" href="#additionInfo">
         <span class="glyphicon glyphicon-info-sign"></span>&nbsp;Дополнительная информация
       </button>
     <% end %>
@@ -45,7 +45,7 @@
         <div class="col-md-3" >
           <div class="category-image">
             <% image_path = @recentCategory.image_path.gsub!("c:\\poligon_images", "http://www.poligon.info/images").gsub!("\\", "/") if !@recentCategory.image_path.nil? %>
-            <%= image_tag(image_path, alt: @recentCategory.title, title: @recentCategory.title, class: 'img img-responsive category-image') if !@recentCategory.image_path.nil?  %>
+            <%= link_to(image_tag(image_path, class: "img img-responsive center-block category-image", alt: @recentCategory.title, title: @recentCategory.title, :width => '200px'), image_path, class: "fancybox") if !@recentCategory.image_path.nil? %>
           </div>
         </div>
       </div>
@@ -58,7 +58,7 @@
   <div class="col-md-12">
     <div class="panel-group" id="accordion">
       <div class="panel panel-default">
-        <div id="collapseOne" class="panel-collapse collapse">
+        <div id="additionInfo" class="panel-collapse collapse">
           <div class="panel-body">
             <%= render partial: @recentCategory.more_info if !@recentCategory.more_info.nil? && @recentCategory.more_info != '' %>
           </div>
