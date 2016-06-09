@@ -105,13 +105,17 @@
     <% elsif product.currency_id == 2 %>
       <table class="table table-condensed table-responsive prices-table">
         <tr class="warning">
-          <td style="text-align:left">
+          <td width="18%" style="text-align:left">
             Розница:
           </td>
-          <td style="color: green; text-align:right; ">
+          <td width="5%" style="color: green; text-align:right; ">
+          </td>
+          <td width="27%" style="color: green; text-align:right; ">
+          </td>
+          <td width="25%" style="color: green; text-align:right; ">
             <%= product.rub_retail.round(2) %>р.
           </td>
-          <td style="color: brown; text-align:right; ">
+          <td width="25%" style="color: brown; text-align:right; ">
             <%= (product.rub_retail / 1.18).round(2) %>р.
           </td>
         </tr>
@@ -312,11 +316,18 @@
     <% elsif product.currency_id == 2 %>
       <table class="table table-condensed table-responsive prices-table">
         <tr class="warning">
-          <td style="text-align:left">
+          <td width="18%" style="text-align:left">
             Розница:
           </td>
-          <td style="text-align:right; color: green;">
+          <td width="5%" style="text-align:right; color: green;">
+          </td>
+          <td width="27%" style="text-align:right; color: green;">
+          </td>
+          <td width="25%" style="text-align:right; color: green;">
             <%= product.rub_retail.round(2) %>р.
+          </td>
+          <td width="25%" style="text-align:right; color: brown;">
+            <%= (product.rub_retail / 1.18).round(2) %>р.
           </td>
         </tr>
         <tr class="info">
@@ -324,7 +335,13 @@
             Закупочная:
           </td>
           <td style="text-align:right; color: green;">
+          </td>
+          <td style="text-align:right; color: green;">
+          </td>
+          <td style="text-align:right; color: green;">
             <%= product.price.round(2) %>р.
+          </td>
+          <td style="text-align:right; color: green;">
           </td>
         </tr>
       </table>
@@ -504,13 +521,17 @@
     <% elsif product.currency_id == 2 %>
       <table class="table table-condensed table-responsive prices-table">
         <tr class="warning">
-          <td style="text-align:left">
+          <td width="18%" style="text-align:left">
             Розница:
           </td>
-          <td style="text-align:right; color: green;">
+          <td width="5%" style="text-align:right; color: green;">
+          </td>
+          <td width="27%" style="text-align:right; color: green;">
+          </td>
+          <td width="25%" style="text-align:right; color: green;">
             <%= product.rub_retail.round(2) %>р.
           </td>
-          <td style="text-align:right; color: green;">
+          <td width="25%" style="text-align:right; color: brown;">
             <%= (product.rub_retail / 1.18).round(2) %>р.
           </td>
         </tr>

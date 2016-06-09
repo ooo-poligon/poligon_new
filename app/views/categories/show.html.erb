@@ -14,6 +14,12 @@
       <% end %>
     </ul>
     <% end %>
+    <% unless @recentCategory.more_info.nil? || @recentCategory.more_info == '' %>
+      <br>
+      <button type="button" class="btn btn-info" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+        <span class="glyphicon glyphicon-info-sign"></span>&nbsp;Дополнительная информация
+      </button>
+    <% end %>
   </div>
   <div class="col-md-9 categories-right" >
     <div class="container-fluid" >
@@ -46,9 +52,19 @@
     </div>
   </div>
 </div>
+
+<br>
 <div class="row">
   <div class="col-md-12">
-    <%= render "shared/utils/categories_tables" %>
+    <div class="panel-group" id="accordion">
+      <div class="panel panel-default">
+        <div id="collapseOne" class="panel-collapse collapse">
+          <div class="panel-body">
+            <%= render partial: @recentCategory.more_info if !@recentCategory.more_info.nil? && @recentCategory.more_info != '' %>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 <%= render "shared/products_table" %>

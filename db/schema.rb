@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160606122230) do
+ActiveRecord::Schema.define(version: 20160609070248) do
 
   create_table "additions", force: :cascade do |t|
     t.datetime "created_at",                    null: false
@@ -52,6 +52,7 @@ ActiveRecord::Schema.define(version: 20160606122230) do
     t.text    "description", limit: 65535
     t.integer "published",   limit: 4,     default: 1
     t.string  "image_path",  limit: 255
+    t.string  "more_info",   limit: 255
   end
 
   add_index "categories", ["title"], name: "title", unique: true, using: :btree
