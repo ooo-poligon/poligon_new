@@ -146,3 +146,12 @@ table.cols-5-align-center td+td{
     height: 100px;
     width: auto;
 }
+
+/*  газовые разрядники */
+//table.gdt {width: 940px;}
+table.gdt td {border: 1px white solid;}
+table.gdt td img{max-width: 190px;}
+table.gdt th{font-size: 70%;}
+.gdt-icon img{width: 40px;}
+table.gdt tr:nth-child(odd){background: #dccde4;}
+table.gdt tr:nth-child(even){background: #c39fcb;}
