@@ -9,7 +9,7 @@ class UserMailer < ActionMailer::Base
     @user    = user
     @subject = subject
     @certificate = certificate
-    mail(to: user, subject: subject)
+    mail(to: user, bcc: "klekotnev@poligon.info", subject: subject)
   end
 
   def welcome_email(email)

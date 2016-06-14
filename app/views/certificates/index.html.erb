@@ -17,7 +17,7 @@
           </div>
           <div style="float: right; padding-top: 20px;">
             <%= form_for :vendor_id,
-              url:  { action:"download", controller: "sertificates"},
+              url:  { action:"download", controller: "certificates"},
               html: { method: :get} do |f| %>
               <%= f.hidden_field :vendor_id, value: vendor.id%>
               <%= f.submit "Скачать все PDF одним архивом", class: "btn btn-info" %>
@@ -30,10 +30,10 @@
 
     <div id="<%= vendor.id %>" class="panel-collapse collapse <%#= in_class %>">
       <div class="panel-body">
-        <% @sertificates.each do |sertificate| %>
+        <% @certificates.each do |certificate| %>
         <ul style="list-style-type:none">
-          <%  if vendor.id == sertificate.vendor_id %>
-            <li><%= render 'shared/sertificates_list', locals: { sertificate: sertificate } %></li>
+          <%  if vendor.id == certificate.vendor_id %>
+            <li><%= render 'shared/certificates_list', locals: { certificate: certificate } %></li>
           <% end %>
         </ul>
         <% end %>

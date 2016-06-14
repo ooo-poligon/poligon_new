@@ -1,0 +1,20 @@
+<% image_path = locals[:certificate].image_path.gsub!("c:\\poligon_certificates", "http://www.poligon.info/poligon_certificates").gsub!("\\", "/") %>
+<% pdf_path   = locals[:certificate].pdf_path.gsub!(  "c:\\poligon_certificates", "http://www.poligon.info/poligon_certificates").gsub!("\\", "/") %>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-4">
+      <p>
+        <%= link_to image_tag( image_path,
+          alt: locals[:certificate].title,
+          title: locals[:certificate].title,
+          :class => 'img-responsive' ), pdf_path %>
+      </p>
+    </div>
+    <div class="col-md-8">
+      <h4><%= locals[:certificate].doc_type + ' ' %>
+        <span style="color: green;"><%= locals[:certificate].title %></span>
+      </h4>
+      <p><%= simple_format locals[:certificate].description %></p>
+    </div>
+  </div>
+</div>

@@ -1,4 +1,4 @@
-class Sertificate < ActiveRecord::Base
+class Certificate < ActiveRecord::Base
   belongs_to :vendor
 
   searchable do
