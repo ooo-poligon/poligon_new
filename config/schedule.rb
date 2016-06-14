@@ -22,7 +22,7 @@
 set :environment, "production"
 set :output, {error: "log/cron_error_log.log", standard: "log/cron_log.log"}
 
-every 1.day, at: '13:40 pm' do
+every 1.day, at: '13:41 pm' do
   # specify the task name as a string
   rake 'check_certificates_expiration'
 end
