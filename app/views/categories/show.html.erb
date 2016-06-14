@@ -36,13 +36,18 @@
         </div>
       </div>
       <div class="row" >
-        <div class="col-md-9" >
+        <% unless @recentCategory.image_path.nil? %>
+          <% col_left, col_right = '9', '3' %>
+        <% else %>
+          <% col_left, col_right = '12', '0' %>
+        <% end %>
+        <div class="col-md-<%= col_left %>" >
           <%= @recentCategory.description
                              .gsub('href="/PDF', 'href="http://www.poligon.info/PDF')
                              .gsub('src="/images', 'src="http://www.poligon.info/images')
                              .html_safe if !@recentCategory.description.nil? %>
         </div>
-        <div class="col-md-3" >
+        <div class="col-md-<%= col_right %>" >
           <div class="category-image">
             <% image_path = @recentCategory.image_path.gsub!(
               "c:\\poligon_images", "http://www.poligon.info/images"

@@ -5,6 +5,13 @@ class UserMailer < ActionMailer::Base
     mail(to: "klekotnev@poligon.info", subject: 'Test')
   end
 
+  def certificate_expiration_email(user, subject, certificate)
+    @user    = user
+    @subject = subject
+    @certificate = certificate
+    mail(to: user, subject: subject)
+  end
+
   def welcome_email(email)
     @email = email
     @url  = 'http://new.poligon.info'

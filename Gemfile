@@ -27,6 +27,7 @@ gem 'rack-mini-profiler', require: false
 gem 'zeroclipboard-rails'
 gem 'turbolinks'
 gem 'zipline'
+gem 'whenever', require: false
 
 group :assets do
   gem 'coffee-rails'
