@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160609070248) do
+ActiveRecord::Schema.define(version: 20160614064155) do
 
   create_table "additions", force: :cascade do |t|
     t.datetime "created_at",                    null: false
@@ -56,6 +56,21 @@ ActiveRecord::Schema.define(version: 20160609070248) do
   end
 
   add_index "categories", ["title"], name: "title", unique: true, using: :btree
+
+  create_table "certificates", force: :cascade do |t|
+    t.integer  "vendor_id",       limit: 4
+    t.string   "title",           limit: 255
+    t.text     "description",     limit: 65535
+    t.string   "image_path",      limit: 255
+    t.string   "pdf_path",        limit: 255
+    t.string   "doc_type",        limit: 255
+    t.date     "creation_date"
+    t.date     "expiration_date"
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+  end
+
+  add_index "certificates", ["vendor_id"], name: "index_certificates_on_vendor_id", using: :btree
 
   create_table "companies", force: :cascade do |t|
     t.string   "title",      limit: 255
@@ -297,21 +312,6 @@ ActiveRecord::Schema.define(version: 20160609070248) do
   add_index "series", ["title"], name: "UK_hsvdwda43ces5322tlgcgl4sk", unique: true, using: :btree
   add_index "series", ["vendor_id"], name: "FK_ed8kdle1myybdci4nfqw6wftk", using: :btree
 
-  create_table "sertificates", force: :cascade do |t|
-    t.integer  "vendor_id",       limit: 4
-    t.string   "title",           limit: 255
-    t.text     "description",     limit: 65535
-    t.string   "image_path",      limit: 255
-    t.string   "pdf_path",        limit: 255
-    t.string   "doc_type",        limit: 255
-    t.date     "creation_date"
-    t.date     "expiration_date"
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
-  end
-
-  add_index "sertificates", ["vendor_id"], name: "index_sertificates_on_vendor_id", using: :btree
-
   create_table "settings", force: :cascade do |t|
     t.string  "title",      limit: 50,             null: false
     t.string  "kind",       limit: 50,             null: false
@@ -379,6 +379,7 @@ ActiveRecord::Schema.define(version: 20160609070248) do
     t.string   "image_path", limit: 255
   end
 
+  add_foreign_key "certificates", "vendors", name: "FK_sertificates_vendors"
   add_foreign_key "files", "file_types", name: "FK_63xcug2xhs8fhmde2qrls55rn"
   add_foreign_key "files", "products", column: "owner_id", name: "FK_5ok1awgnfwcf01537ylbycyq1"
   add_foreign_key "functions", "product_kinds", name: "FK_functions_product_kinds"
@@ -403,7 +404,6 @@ ActiveRecord::Schema.define(version: 20160609070248) do
   add_foreign_key "property_values", "properties", name: "FK_property_values_properties"
   add_foreign_key "quantity", "products", name: "FK_fmxkkqbgn373sbv3ghbdinqkx"
   add_foreign_key "series", "vendors", name: "FK_ed8kdle1myybdci4nfqw6wftk"
-  add_foreign_key "sertificates", "vendors", name: "FK_sertificates_vendors"
   add_foreign_key "tickets", "users"
   add_foreign_key "users", "companies"
   add_foreign_key "users", "groups"

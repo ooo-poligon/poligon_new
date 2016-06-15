@@ -4,7 +4,7 @@ Poligon::Application.routes.draw do
 
   get 'offers/show'
 
-  get 'sertificates/index'
+  get 'certificates/index'
 
   get 'welcome/hello'
 
@@ -19,7 +19,7 @@ Poligon::Application.routes.draw do
   resources :products
   resources :content
 
-  get 'sertificates/download'
+  get 'certificates/download'
   get "devise/new", to: "devise/sessions#new"
   get "publications/index"
   get "articles/index"
@@ -33,7 +33,7 @@ Poligon::Application.routes.draw do
   get "company/contacts"
   get "company/vacancies"
   get "company/links"
-  get "content/sertificates"
+  get "content/certificates"
   get "content/download_pdf"
   get "content/farnell"
   get "feedback/booklets"

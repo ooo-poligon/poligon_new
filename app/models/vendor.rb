@@ -1,3 +1,3 @@
 class Vendor < ActiveRecord::Base
-  has_many :sertificates
+  has_many :certificates
 end

@@ -1,0 +1,7 @@
+
+<% @certificate.each do |certificate| %>
+  <%= "Внимание! " +
+      certificate.doc_type + " " + certificate.title +
+      ", предоставленный компании \"" + Vendor.find(certificate.vendor_id).title + "\" " +
+      certificate.creation_date.to_s + " истекает " + certificate.expiration_date.to_s %>
+<% end %>
