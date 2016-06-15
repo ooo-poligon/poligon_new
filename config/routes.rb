@@ -1,55 +1,53 @@
 # -*- encoding : utf-8 -*-
 Poligon::Application.routes.draw do
-  get 'offers/index'
+  # get 'welcome/hello'
 
-  get 'offers/show'
-
-  get 'certificates/index'
-
-  get 'welcome/hello'
-
-  get 'users/sign_in'
   devise_for :users
-  resources :news_items
-  resources :categories
-  resources :articles
-  resources :videos
-  resources :reviews
-  resources :additions
-  resources :products
-  resources :content
+  resources  :news_items
+  resources  :categories
+  resources  :articles
+  resources  :videos
+  resources  :reviews
+  resources  :additions
+  resources  :products
+  resources  :content
 
   get 'certificates/download'
-  get "devise/new", to: "devise/sessions#new"
+  get 'certificates/index'
+
+  get 'offers/index'
+  get 'offers/show'
+
   get "publications/index"
-  get "articles/index"
-  get "videos/index"
-  get "reviews/index"
-  get "additions/index"
-  get "products/index"
-  get "categories/index"
-  get "categories/show"
+
   get "company/about"
   get "company/contacts"
   get "company/vacancies"
   get "company/links"
+
   get "content/certificates"
   get "content/download_pdf"
   get "content/farnell"
-  get "feedback/booklets"
-  get 'feedback/mailing_list'
-  get 'feedback/confirm_subscription'
-  get 'feedback/confirm_unsubscription'
-  get 'feedback/farnell'
-  get 'search', to: 'search#search'
-  get 'advanced_search', to: 'search#advanced_search'
-  get "sitemap" => "sitemap#show", format: :html, as: :sitemap
-  get "sitemap/sitemap", format: :xml
-  get 'feeds', to: 'announce#index', format: 'rss'
+
+  get  'feedback/booklets'
+  get  'feedback/mailing_list'
+  get  'feedback/confirm_subscription'
+  get  'feedback/confirm_unsubscription'
+  get  'feedback/farnell'
   post 'feedback/subscribe' => 'feedback#subscribe'
   post 'feedback/unsubscribe' => 'feedback#unsubscribe'
   post 'feedback/catalogs_order' => 'feedback#catalogs_order'
   post 'feedback/farnell_order' => 'feedback#farnell_order'
+
+  get 'search', to: 'search#search'
+
+  get 'advanced_search', to: 'search#advanced_search'
+
+  get "sitemap" => "sitemap#show", format: :html
+  get "sitemap/sitemap", format: :xml
+
+  get 'feeds', to: 'announce#index', format: 'rss'
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

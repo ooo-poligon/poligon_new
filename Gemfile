@@ -43,3 +43,7 @@ group :development do
   gem 'mina'
   gem 'puma'
 end
+
+group :production do
+  gem 'exception_notification'
+end

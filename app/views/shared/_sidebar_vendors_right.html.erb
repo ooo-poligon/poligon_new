@@ -1,9 +1,9 @@
 <div class="list-group right-vendors-list">
-  <%= link_to image_tag("logo/logo_200x60/emko.gif", alt: '"EMKO"', title: "EMKO - температурные датчики и и контроллеры", :class => "partners list-group-item img-responsive img-responsive"), :action => 'show', :controller => 'categories', :id => '5583' %>
-  <%= link_to image_tag("logo/logo_200x60/cbi.gif", alt: '"CBI"', title: "Профессиональные автоматические выключатели", :class => "partners list-group-item img-responsive"), :action => 'show', :controller => 'categories', :id => '5512' %>
-  <%= link_to image_tag("logo/logo_200x60/tehnoplast.gif", alt: '"TEHNOPLAST"', title: "Электротехнические шкафы TEHNOPLAST", :class => "partners list-group-item img-responsive"), :action => 'show', :controller => 'categories', :id => '6441' %>
-  <%= link_to image_tag("logo/logo_200x60/huber-suhner.gif", alt: '"HUBER+SUHNER"', title: "ВЧ-разъемы, оптические компоненты", :class => "partners list-group-item img-responsive"), :action => 'show', :controller => 'categories', :id => '4847' %>
+  <%= link_to image_tag("logo/logo_200x60/emko.gif", alt: '"EMKO"', title: "EMKO - температурные датчики и и контроллеры", :class => "partners list-group-item img-responsive img-responsive"), category_path(5583) %>
+  <%= link_to image_tag("logo/logo_200x60/cbi.gif", alt: '"CBI"', title: "Профессиональные автоматические выключатели", :class => "partners list-group-item img-responsive"), category_path(5512) %>
+  <%= link_to image_tag("logo/logo_200x60/tehnoplast.gif", alt: '"TEHNOPLAST"', title: "Электротехнические шкафы TEHNOPLAST", :class => "partners list-group-item img-responsive"), category_path(6441) %>
+  <%= link_to image_tag("logo/logo_200x60/huber-suhner.gif", alt: '"HUBER+SUHNER"', title: "ВЧ-разъемы, оптические компоненты", :class => "partners list-group-item img-responsive"), category_path(4847) %>
   <%= link_to image_tag("logo/logo_200x60/farnell.gif", alt: '"FARNELL"', title: "мировой лидер в области поставок электронных компонентов", :class => "partners list-group-item img-responsive"), feedback_farnell_path %>
-  <%= link_to image_tag("logo/logo_200x60/poligonspb.gif", alt: '"ПОЛИГОН"', title: "ПОЛИГОН - производитель модульных устройств автоматики и защиты из Санкт-Петербурга", :class => "partners list-group-item img-responsive"), :action => 'show', :controller => 'categories', :id => '6321' %>
-  <%= link_to image_tag("logo/logo_200x60/vemer.gif", alt: '"VEMER"', title: "производитель промышленных решений для измерения и контроля основных электрических параметров", :class => "partners list-group-item img-responsive"), :action => 'show', :controller => 'categories', :id => '5650' %>
+  <%= link_to image_tag("logo/logo_200x60/poligonspb.gif", alt: '"ПОЛИГОН"', title: "ПОЛИГОН - производитель модульных устройств автоматики и защиты из Санкт-Петербурга", :class => "partners list-group-item img-responsive"), category_path(6321) %>
+  <%= link_to image_tag("logo/logo_200x60/vemer.gif", alt: '"VEMER"', title: "производитель промышленных решений для измерения и контроля основных электрических параметров", :class => "partners list-group-item img-responsive"), category_path(5650) %>
 </div>
