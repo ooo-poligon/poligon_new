@@ -1,7 +1,6 @@
 require 'mina/bundler'
 require 'mina/rails'
 require 'mina/git'
-# require 'mina/rbenv'  # for rbenv support. (http://rbenv.org)
 require 'mina/rvm'    # for rvm support. (http://rvm.io)
 require 'mina/whenever'
 
@@ -17,7 +16,8 @@ set :repository, "git@github.com:ooo-poligon/poligon_new.git"
 set :branch, 'master'
 
 # For system-wide RVM install.
-  set :rvm_path, '/usr/local/rvm/bin/rvm'
+  #set :rvm_path, '/usr/local/rvm/bin/rvm'
+  set :rvm_path, '/usr/local/rvm/scripts/rvm'
 
 # Manually create these paths in shared/ (eg: shared/config/database.yml) in your server.
 # They will be linked in the 'deploy:link_shared_paths' step.
