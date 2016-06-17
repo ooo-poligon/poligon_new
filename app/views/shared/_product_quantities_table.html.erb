@@ -28,9 +28,22 @@
   <% minimum = 0 %>
 <% end %>
 
+<% unless Setting.find_by(title: 'quantityUpdateDate').nil? %>
+  <% updateDate = Setting.find_by(title: 'quantityUpdateDate').text_value %>
+<% else %>
+  <% updateDate = "нет данных" %>
+<% end %>
+
+
+
 <% if user_signed_in? %>
   <% if current_user.group_id == 2 or current_user.group_id == 3 %>
     <table class="table table-condensed table-responsive">
+      <tr>
+        <td>&nbspНа дату:</td>
+        <td style="font-weight: bolder; color: violet;"><%= updateDate %></td>
+        <td></td>
+      </tr>
       <tr>
         <td>&nbspДоступно:</td><td style="font-weight: bolder; align-content: right;">&nbsp<%= stock - reserved %>&nbsp</td><td style="align-content: right;">шт.</td>
       </tr>
