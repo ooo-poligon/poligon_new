@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 Poligon::Application.routes.draw do
-  # get 'welcome/hello'
+  # get  'welcome/hello'
 
   devise_for :users
   resources  :news_items
@@ -12,22 +12,23 @@ Poligon::Application.routes.draw do
   resources  :products
   resources  :content
 
-  get 'certificates/download'
-  get 'certificates/index'
+  get  'certificates/download'
+  get  'certificates/index'
 
-  get 'offers/index'
-  get 'offers/show'
+  get  'offers/index'
+  get  'offers/show'
 
-  get "publications/index"
+  get  'publications/index'
 
-  get "company/about"
-  get "company/contacts"
-  get "company/vacancies"
-  get "company/links"
+  get  'company/about'
+  get  'company/contacts'
+  get  'company/vacancies'
+  get  'company/links'
 
-  get "content/certificates"
-  get "content/download_pdf"
-  get "content/farnell"
+  root :to => 'content#home'
+  get  'content/certificates'
+  get  'content/download_pdf'
+  get  'content/farnell'
 
   get  'feedback/booklets'
   get  'feedback/mailing_list'
@@ -39,14 +40,14 @@ Poligon::Application.routes.draw do
   post 'feedback/catalogs_order' => 'feedback#catalogs_order'
   post 'feedback/farnell_order' => 'feedback#farnell_order'
 
-  get 'search', to: 'search#search'
+  get  'search', to: 'search#search'
 
-  get 'advanced_search', to: 'search#advanced_search'
+  get  'advanced_search', to: 'search#advanced_search'
 
-  get "sitemap" => "sitemap#show", format: :html
-  get "sitemap/sitemap", format: :xml
+  get  'sitemap' => 'sitemap#show', format: :html
+  get  'sitemap.xml' => 'sitemap#sitemap', format: :xml
 
-  get 'feeds', to: 'announce#index', format: 'rss'
+  get  'feeds', to: 'announce#index', format: 'rss'
 
 
   # The priority is based upon order of creation:
@@ -66,12 +67,12 @@ Poligon::Application.routes.draw do
   # Sample resource route with options:
   #   resources :products do
   #     member do
-  #       get 'short'
+  #       get  'short'
   #       post 'toggle'
   #     end
   #
   #     collection do
-  #       get 'sold'
+  #       get  'sold'
   #     end
   #   end
 
@@ -85,7 +86,7 @@ Poligon::Application.routes.draw do
   #   resources :products do
   #     resources :comments
   #     resources :sales do
-  #       get 'recent', :on => :collection
+  #       get  'recent', :on => :collection
   #     end
   #   end
 
@@ -96,14 +97,13 @@ Poligon::Application.routes.draw do
   #     resources :products
   #   end
 
-  # You can have the root of your site routed with "root"
+  # You can have the root of your site routed with 'root'
   # just remember to delete public/index.html.
-  root :to => "content#home"
-  # root :to => "welcome#hello"
+  # root :to => 'welcome#hello'
 
-  # See how all your routes lay out with "rake routes"
+  # See how all your routes lay out with 'rake routes'
 
   # This is a legacy wild controller route that's not recommended for RESTful applications.
-  # Note: This route will make all actions in every controller accessible via GET requests.
+  # Note: This route will make all actions in every controller accessible via get  requests.
   # match ':controller(/:action(/:id))(.:format)'
 end
