@@ -10,7 +10,7 @@ class SearchController < ApplicationController
   def search
     @products = Sunspot.search(Product) do
       #fulltext search
-      fulltext params['q'] do
+      fulltext ("\"" + params['q'] + "\"") do
         phrase_fields :title => 2.0
         phrase_slop   1
       end
@@ -27,7 +27,7 @@ class SearchController < ApplicationController
 
     @articles = Sunspot.search(Article) do
       #fulltext search
-      fulltext params['q']
+      fulltext ("\"" + params['q'] + "\"")
 
       #scoping
       if params.has_key?(:title)
@@ -43,7 +43,7 @@ class SearchController < ApplicationController
 
     @additions = Sunspot.search(Addition) do
       #fulltext search
-      fulltext params['q']
+      fulltext ("\"" + params['q'] + "\"")
 
       #scoping
       if params.has_key?(:title)
@@ -59,7 +59,7 @@ class SearchController < ApplicationController
 
     @reviews = Sunspot.search(Review) do
       #fulltext search
-      fulltext params['q']
+      fulltext ("\"" + params['q'] + "\"")
 
       #scoping
       if params.has_key?(:title)
@@ -75,7 +75,7 @@ class SearchController < ApplicationController
 
     @videos = Sunspot.search(Video) do
       #fulltext search
-      fulltext params['q']
+      fulltext ("\"" + params['q'] + "\"")
 
       #scoping
       if params.has_key?(:title)
@@ -91,7 +91,7 @@ class SearchController < ApplicationController
 
     @news_items = Sunspot.search(NewsItem) do
       #fulltext search
-      fulltext params['q']
+      fulltext ("\"" + params['q'] + "\"")
 
       #scoping
       if params.has_key?(:title)
@@ -107,7 +107,7 @@ class SearchController < ApplicationController
 
     @categories = Sunspot.search(Category) do
       #fulltext search
-      fulltext params['q']
+      fulltext ("\"" + params['q'] + "\"")
 
       #scoping
       if params.has_key?(:title)
@@ -123,7 +123,7 @@ class SearchController < ApplicationController
 
     @static_contents = Sunspot.search(StaticContent) do
       #fulltext search
-      fulltext params['q']
+      fulltext ("\"" + params['q'] + "\"")
 
       #scoping
       if params.has_key?(:title)
@@ -155,10 +155,11 @@ class SearchController < ApplicationController
       end
 
       #fulltext search
-      fulltext params['q'] do
+      fulltext ("\"" + params['q'] + "\"") do
         phrase_fields :title => 2.0
         phrase_slop   1
       end
+
 
       #scoping
       if params.has_key?(:title)
@@ -174,7 +175,7 @@ class SearchController < ApplicationController
 
     @analogs = Sunspot.search(Analog) do
       #fulltext search
-      fulltext params['q'] do
+      fulltext ("\"" + params['q'] + "\"") do
         phrase_fields :title => 2.0
         phrase_fields :prototype => 2.0
         phrase_slop   1
@@ -191,7 +192,7 @@ class SearchController < ApplicationController
 
     @articles = Sunspot.search(Article) do
       #fulltext search
-      fulltext params['q']
+      fulltext ("\"" + params['q'] + "\"")
 
       #scoping
       if params.has_key?(:title)
@@ -207,7 +208,7 @@ class SearchController < ApplicationController
 
     @additions = Sunspot.search(Addition) do
       #fulltext search
-      fulltext params['q']
+      fulltext ("\"" + params['q'] + "\"")
 
       #scoping
       if params.has_key?(:title)
@@ -223,7 +224,7 @@ class SearchController < ApplicationController
 
     @reviews = Sunspot.search(Review) do
       #fulltext search
-      fulltext params['q']
+      fulltext ("\"" + params['q'] + "\"")
 
       #scoping
       if params.has_key?(:title)
@@ -239,7 +240,7 @@ class SearchController < ApplicationController
 
     @videos = Sunspot.search(Video) do
       #fulltext search
-      fulltext params['q']
+      fulltext ("\"" + params['q'] + "\"")
 
       #scoping
       if params.has_key?(:title)
@@ -255,7 +256,7 @@ class SearchController < ApplicationController
 
     @news_items = Sunspot.search(NewsItem) do
       #fulltext search
-      fulltext params['q']
+      fulltext ("\"" + params['q'] + "\"")
 
       #scoping
       if params.has_key?(:title)
@@ -271,7 +272,7 @@ class SearchController < ApplicationController
 
     @categories = Sunspot.search(Category) do
       #fulltext search
-      fulltext params['q']
+      fulltext ("\"" + params['q'] + "\"")
 
       #scoping
       if params.has_key?(:title)
@@ -287,7 +288,7 @@ class SearchController < ApplicationController
 
     @static_contents = Sunspot.search(StaticContent) do
       #fulltext search
-      fulltext params['q']
+      fulltext ("\"" + params['q'] + "\"")
 
       #scoping
       if params.has_key?(:title)
