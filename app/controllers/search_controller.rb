@@ -10,16 +10,16 @@ class SearchController < ApplicationController
   def search
     @products = Sunspot.search(Product) do
       #fulltext search
-      fulltext ("\"" + params['q'] + "\"") do
+      fulltext ("\"" + params[:q] + "\"") do
         phrase_fields :title => 2.0
         phrase_slop   1
       end
       #scoping
       if params.has_key?(:title)
-        with :title, params['q']
+        with :title, params[:q]
       end
       if params.has_key?(:description)
-        with :description, params['q']
+        with :description, params[:q]
       end
       paginate :page => params[:products_page], :per_page => 10
     end
@@ -27,14 +27,14 @@ class SearchController < ApplicationController
 
     @articles = Sunspot.search(Article) do
       #fulltext search
-      fulltext ("\"" + params['q'] + "\"")
+      fulltext ("\"" + params[:q] + "\"")
 
       #scoping
       if params.has_key?(:title)
-        with :title, params['q']
+        with :title, params[:q]
       end
       if params.has_key?(:content)
-        with :content, params['q']
+        with :content, params[:q]
       end
 
       paginate :page => params[:articles_page], :per_page => 25
@@ -43,14 +43,14 @@ class SearchController < ApplicationController
 
     @additions = Sunspot.search(Addition) do
       #fulltext search
-      fulltext ("\"" + params['q'] + "\"")
+      fulltext ("\"" + params[:q] + "\"")
 
       #scoping
       if params.has_key?(:title)
-        with :title, params['q']
+        with :title, params[:q]
       end
       if params.has_key?(:content)
-        with :content, params['q']
+        with :content, params[:q]
       end
 
       paginate :page => params[:additions_page], :per_page => 25
@@ -59,14 +59,14 @@ class SearchController < ApplicationController
 
     @reviews = Sunspot.search(Review) do
       #fulltext search
-      fulltext ("\"" + params['q'] + "\"")
+      fulltext ("\"" + params[:q] + "\"")
 
       #scoping
       if params.has_key?(:title)
-        with :title, params['q']
+        with :title, params[:q]
       end
       if params.has_key?(:content)
-        with :content, params['q']
+        with :content, params[:q]
       end
 
       paginate :page => params[:reviews_page], :per_page => 25
@@ -75,14 +75,14 @@ class SearchController < ApplicationController
 
     @videos = Sunspot.search(Video) do
       #fulltext search
-      fulltext ("\"" + params['q'] + "\"")
+      fulltext ("\"" + params[:q] + "\"")
 
       #scoping
       if params.has_key?(:title)
-        with :title, params['q']
+        with :title, params[:q]
       end
       if params.has_key?(:content)
-        with :content, params['q']
+        with :content, params[:q]
       end
 
       paginate :page => params[:videos_page], :per_page => 25
@@ -91,14 +91,14 @@ class SearchController < ApplicationController
 
     @news_items = Sunspot.search(NewsItem) do
       #fulltext search
-      fulltext ("\"" + params['q'] + "\"")
+      fulltext ("\"" + params[:q] + "\"")
 
       #scoping
       if params.has_key?(:title)
-        with :title, params['q']
+        with :title, params[:q]
       end
       if params.has_key?(:content)
-        with :content, params['q']
+        with :content, params[:q]
       end
 
       paginate :page => params[:news_items_page], :per_page => 25
@@ -107,14 +107,14 @@ class SearchController < ApplicationController
 
     @categories = Sunspot.search(Category) do
       #fulltext search
-      fulltext ("\"" + params['q'] + "\"")
+      fulltext ("\"" + params[:q] + "\"")
 
       #scoping
       if params.has_key?(:title)
-        with :title, params['q']
+        with :title, params[:q]
       end
       if params.has_key?(:description)
-        with :description, params['q']
+        with :description, params[:q]
       end
 
       paginate :page => params[:categories_page], :per_page => 25
@@ -123,14 +123,14 @@ class SearchController < ApplicationController
 
     @static_contents = Sunspot.search(StaticContent) do
       #fulltext search
-      fulltext ("\"" + params['q'] + "\"")
+      fulltext ("\"" + params[:q] + "\"")
 
       #scoping
       if params.has_key?(:title)
-        with :title, params['q']
+        with :title, params[:q]
       end
       if params.has_key?(:content)
-        with :content, params['q']
+        with :content, params[:q]
       end
 
       paginate :page => params[:static_contents_page], :per_page => 25
@@ -155,7 +155,8 @@ class SearchController < ApplicationController
       end
 
       #fulltext search
-      fulltext ("\"" + params['q'] + "\"") do
+      query = ("\"" + params[:q] + "\"")
+      fulltext query do
         phrase_fields :title => 2.0
         phrase_slop   1
       end
@@ -163,10 +164,10 @@ class SearchController < ApplicationController
 
       #scoping
       if params.has_key?(:title)
-        with :title, params['q']
+        with :title, params[:q]
       end
       if params.has_key?(:description)
-        with :description, params['q']
+        with :description, params[:q]
       end
       paginate :page => params[:products_page], :per_page => 10
     end
@@ -175,7 +176,7 @@ class SearchController < ApplicationController
 
     @analogs = Sunspot.search(Analog) do
       #fulltext search
-      fulltext ("\"" + params['q'] + "\"") do
+      fulltext ("\"" + params[:q] + "\"") do
         phrase_fields :title => 2.0
         phrase_fields :prototype => 2.0
         phrase_slop   1
@@ -183,7 +184,7 @@ class SearchController < ApplicationController
 
       #scoping
       if params.has_key?(:title)
-        with :title, params['q']
+        with :title, params[:q]
       end
 
       paginate :page => params[:analogs_page], :per_page => 25
@@ -192,14 +193,14 @@ class SearchController < ApplicationController
 
     @articles = Sunspot.search(Article) do
       #fulltext search
-      fulltext ("\"" + params['q'] + "\"")
+      fulltext ("\"" + params[:q] + "\"")
 
       #scoping
       if params.has_key?(:title)
-        with :title, params['q']
+        with :title, params[:q]
       end
       if params.has_key?(:content)
-        with :content, params['q']
+        with :content, params[:q]
       end
 
       paginate :page => params[:articles_page], :per_page => 25
@@ -208,14 +209,14 @@ class SearchController < ApplicationController
 
     @additions = Sunspot.search(Addition) do
       #fulltext search
-      fulltext ("\"" + params['q'] + "\"")
+      fulltext ("\"" + params[:q] + "\"")
 
       #scoping
       if params.has_key?(:title)
-        with :title, params['q']
+        with :title, params[:q]
       end
       if params.has_key?(:content)
-        with :content, params['q']
+        with :content, params[:q]
       end
 
       paginate :page => params[:additions_page], :per_page => 25
@@ -224,14 +225,14 @@ class SearchController < ApplicationController
 
     @reviews = Sunspot.search(Review) do
       #fulltext search
-      fulltext ("\"" + params['q'] + "\"")
+      fulltext ("\"" + params[:q] + "\"")
 
       #scoping
       if params.has_key?(:title)
-        with :title, params['q']
+        with :title, params[:q]
       end
       if params.has_key?(:content)
-        with :content, params['q']
+        with :content, params[:q]
       end
 
       paginate :page => params[:reviews_page], :per_page => 25
@@ -240,14 +241,14 @@ class SearchController < ApplicationController
 
     @videos = Sunspot.search(Video) do
       #fulltext search
-      fulltext ("\"" + params['q'] + "\"")
+      fulltext ("\"" + params[:q] + "\"")
 
       #scoping
       if params.has_key?(:title)
-        with :title, params['q']
+        with :title, params[:q]
       end
       if params.has_key?(:content)
-        with :content, params['q']
+        with :content, params[:q]
       end
 
       paginate :page => params[:videos_page], :per_page => 25
@@ -256,14 +257,14 @@ class SearchController < ApplicationController
 
     @news_items = Sunspot.search(NewsItem) do
       #fulltext search
-      fulltext ("\"" + params['q'] + "\"")
+      fulltext ("\"" + params[:q] + "\"")
 
       #scoping
       if params.has_key?(:title)
-        with :title, params['q']
+        with :title, params[:q]
       end
       if params.has_key?(:content)
-        with :content, params['q']
+        with :content, params[:q]
       end
 
       paginate :page => params[:news_items_page], :per_page => 25
@@ -272,14 +273,14 @@ class SearchController < ApplicationController
 
     @categories = Sunspot.search(Category) do
       #fulltext search
-      fulltext ("\"" + params['q'] + "\"")
+      fulltext ("\"" + params[:q] + "\"")
 
       #scoping
       if params.has_key?(:title)
-        with :title, params['q']
+        with :title, params[:q]
       end
       if params.has_key?(:description)
-        with :description, params['q']
+        with :description, params[:q]
       end
 
       paginate :page => params[:categories_page], :per_page => 25
@@ -288,14 +289,14 @@ class SearchController < ApplicationController
 
     @static_contents = Sunspot.search(StaticContent) do
       #fulltext search
-      fulltext ("\"" + params['q'] + "\"")
+      fulltext ("\"" + params[:q] + "\"")
 
       #scoping
       if params.has_key?(:title)
-        with :title, params['q']
+        with :title, params[:q]
       end
       if params.has_key?(:content)
-        with :content, params['q']
+        with :content, params[:q]
       end
 
       paginate :page => params[:static_contents_page], :per_page => 25
@@ -303,7 +304,7 @@ class SearchController < ApplicationController
     @static_contents.execute!
 
     @addCBR = Setting.find_by title: 'AddCBR'
-    @farnell_products = farnell_search params['q']
+    @farnell_products = farnell_search params[:q]
     #@farnell_products = @farnell_products.paginate(:page => params[:farnell_page], :per_page => 10) if @farnell_products.is_a? Array
     render layout: 'no_vendors'
   end
