@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html">
+<html lang="ru">
+  <head>
+    <title>Компания "ПОЛИГОН"</title>
+    <link href='https://fonts.googleapis.com/css?family=PT+Sans&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Marck+Script&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Ubuntu+Condensed&subset=latin,cyrillic-ext' rel='stylesheet' type='text/css'>
+    <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+
+    <%= csrf_meta_tags %>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <%= favicon_link_tag 'favicon.ico' %>
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <![endif]-->
+
+    <link href="/feeds" rel="alternate" title="RSS feed" type="application/rss+xml">
+  </head>
+
+  <body>
+    <%= render "shared/user_navbar" %>
+
+    <!-- Fixed navbar -->
+    <div class="navbar navbar-default navbar-fixed-top main-bar" role="navigation">
+      <%= render "shared/common_navbar" %>
+    </div>
+
+    <div class="container-fluid">
+
+      <div class="row row-offcanvas row-offcanvas-right">
+
+
+
+        <div class="col-xs-12 col-md-12 main-content" >
+          <p class="pull-right visible-xs">
+            <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Боковое меню</button>
+          </p>
+          <br><br>
+          <% flash.each do |key, value| %>
+            <br><div class="alert alert-<%= key %>"><%= value %></div>
+          <% end %>
+          <br>
+          <%= yield %>
+        </div><!--/span-->
+
+
+
+      </div><!--/row-->
+
+      <footer>
+        <p>&copy; ООО "ПОЛИГОН" 2016</p>
+      </footer>
+
+    </div><!--/.container-->
+
+    <!-- JavaScript placed at the end of the document so the pages load faster -->
+    <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+
+  </body>
+</html>
