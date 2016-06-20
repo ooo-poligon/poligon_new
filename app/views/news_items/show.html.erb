@@ -4,11 +4,14 @@
 <br/>
 <div class="container-fluid">
   <div class="row" >
-    <div class="col-md-3" >
-      <% image_path = @news_item.image_path.gsub!("c:\\poligon_images", "http://www.poligon.info/images").gsub!("\\", "/") %>
+    <div class="col-xs-3 col-md-3" >
+      <% image_path = @news_item.image_path
+        .gsub("c:\\poligon_images", "http://www.poligon.info/images")
+        .gsub("\\", "/")
+        .gsub('<img', '<img class="img-responsive" ') %>
       <%= image_tag(image_path, alt: @news_item.title, title: @news_item.title, class: 'img img-responsive news-image') %>
     </div>
-    <div class="col-md-9" >
+    <div class="col-xs-9 col-md-9" >
       <%= @news_item.content.html_safe %>
     </div>
   </div>
