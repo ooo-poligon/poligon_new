@@ -6,49 +6,6 @@ GIT
       faraday (>= 0.9.1)
       multi_json (>= 1.11.0)
 
-GIT
-  remote: git://github.com/rspec/rspec-core.git
-  revision: 9456a3144031f93985a7a23db29af14ec9552a0f
-  branch: master
-  specs:
-    rspec-core (3.5.0.pre)
-      rspec-support (= 3.5.0.pre)
-
-GIT
-  remote: git://github.com/rspec/rspec-expectations.git
-  revision: 501a513a4259e82e1cf04442b45a1fedaa2fbcce
-  branch: master
-  specs:
-    rspec-expectations (3.5.0.pre)
-      diff-lcs (>= 1.2.0, < 2.0)
-      rspec-support (= 3.5.0.pre)
-
-GIT
-  remote: git://github.com/rspec/rspec-mocks.git
-  revision: 53fd0a3daaa2b659aba18b0fc1dcdc8e698bb82f
-  branch: master
-  specs:
-    rspec-mocks (3.5.0.pre)
-      diff-lcs (>= 1.2.0, < 2.0)
-      rspec-support (= 3.5.0.pre)
-
-GIT
-  remote: git://github.com/rspec/rspec-support.git
-  revision: 46ded3f0852d1d3b6f389ea9d793e5fb50c8573a
-  branch: master
-  specs:
-    rspec-support (3.5.0.pre)
-
-GIT
-  remote: git://github.com/rspec/rspec.git
-  revision: 07ae35f97b7e4f83fe1c080b5d9bf025fe979bc4
-  branch: master
-  specs:
-    rspec (3.5.0.pre)
-      rspec-core (= 3.5.0.pre)
-      rspec-expectations (= 3.5.0.pre)
-      rspec-mocks (= 3.5.0.pre)
-
 GEM
   remote: http://rubygems.org/
   specs:
@@ -306,6 +263,23 @@ GEM
       railties (>= 4.2.0, < 5.1)
     rsolr (1.0.13)
       builder (>= 2.1.2)
+    rspec-core (3.4.4)
+      rspec-support (~> 3.4.0)
+    rspec-expectations (3.4.0)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.4.0)
+    rspec-mocks (3.4.1)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.4.0)
+    rspec-rails (3.4.2)
+      actionpack (>= 3.0, < 4.3)
+      activesupport (>= 3.0, < 4.3)
+      railties (>= 3.0, < 4.3)
+      rspec-core (~> 3.4.0)
+      rspec-expectations (~> 3.4.0)
+      rspec-mocks (~> 3.4.0)
+      rspec-support (~> 3.4.0)
+    rspec-support (3.4.1)
     ruby_dep (1.3.1)
     rubyzip (1.1.2)
     sass (3.4.22)
@@ -411,11 +385,7 @@ DEPENDENCIES
   puma
   rack-mini-profiler
   rails (= 4.2.5)
-  rspec!
-  rspec-core!
-  rspec-expectations!
-  rspec-mocks!
-  rspec-support!
+  rspec-rails
   sass-rails (>= 3.2)
   selenium-webdriver
   shoulda-matchers
