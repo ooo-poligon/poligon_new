@@ -7,6 +7,7 @@
       .gsub('href="/PDF', 'href="http://www.poligon.info/PDF')
       .gsub('src="/js', 'src="http://www.poligon.info/js')
       .gsub('src="/images', 'src="http://www.poligon.info/images')
+      .gsub('<img', '<img class="img-responsive" ')
       .html_safe %>
 </p>
 

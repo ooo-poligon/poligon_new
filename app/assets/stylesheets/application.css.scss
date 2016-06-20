@@ -23,22 +23,181 @@
 @import "antibootstrap/navbar";
 @import "antibootstrap/dropdowns";
 
+
 html, body {
   height: 100%;
   //font-family: 'Ubuntu Mono';
 }
 
-h2 {
-  //font-family: 'Marck Script', cursive;
-  font-size: 30px;
-  font-weight: bold;
-  color: red;
+@media (max-width: 800px) {
+  body {
+    font-family: "PT Sans", sans-serif;
+    font-size: 9px;
+  }
+
+  h1 {
+    //font-family: 'Marck Script', cursive;
+    font-size: 20px;
+    font-weight: bold;
+    color: green;
+  }
+
+  h2 {
+    //font-family: 'Marck Script', cursive;
+    font-size: 16px;
+    font-weight: bold;
+    color: red;
+  }
+
+  h3 {
+    //font-family: 'Marck Script', cursive;
+    font-size: 12px;
+    color: blue;
+  }
+
+  .poligon-logo {
+    max-width: 90px;
+    margin-top: 10px;
+  }
+
+  .phone {
+    font-weight: bold;
+    font-size: 10px;
+  }
+
+  .search_form {
+    width: 200px;
+    height: 30px;
+  }
+
+  .exist-label{
+    width: 70px;
+    display:block;
+    text-align: center;
+    font-weight: normal;
+    font-size: 11px;
+    padding-top: 7px;
+    text-align: right;
+  }
+
+  .module h1 {
+      font-size: 20px;
+  }
+
+  .module.title {
+      font-size: 16px;
+  }
 }
 
-h3 {
-  //font-family: 'Marck Script', cursive;
-  font-size: 24px;
-  color: blue;
+@media (min-width: 800px) and (max-width: 1024px) {
+  body {
+    font-family: "PT Sans", sans-serif;
+    font-size: 11px;
+  }
+
+  h1 {
+    //font-family: 'Marck Script', cursive;
+    font-size: 20px;
+    font-weight: bold;
+    color: green;
+  }
+
+  h2 {
+    //font-family: 'Marck Script', cursive;
+    font-size: 14px;
+    font-weight: bold;
+    color: red;
+  }
+
+  h3 {
+    //font-family: 'Marck Script', cursive;
+    font-size: 12px;
+    color: blue;
+  }
+
+  .poligon-logo {
+    max-width: 100px;
+    margin-top: 7px;
+  }
+
+  .phone {
+    font-weight: bold;
+    font-size: 12px;
+  }
+
+  .search_form {
+    width: 250px;
+    height: 40px;
+  }
+
+  .exist-label{
+    width: 70px;
+    display:block;
+    text-align: center;
+    font-weight: normal;
+    font-size: 11px;
+    padding-top: 7px;
+    text-align: right;
+  }
+
+  .module h1 {
+      font-size: 20px;
+  }
+
+  .module.title {
+      font-size: 16px;
+  }
+}
+
+@media (min-width: 1025px) {
+
+  h1 {
+    //font-family: 'Marck Script', cursive;
+    font-size: 22px;
+    font-weight: bold;
+    color: green;
+  }
+
+  h2 {
+    //font-family: 'Marck Script', cursive;
+    font-size: 18px;
+    font-weight: bold;
+    color: red;
+  }
+
+  h3 {
+    //font-family: 'Marck Script', cursive;
+    font-size: 16px;
+    color: blue;
+  }
+
+  .phone {
+    font-weight: bold;
+    font-size: 20px;
+  }
+
+  .search_form {
+    width: 370px;
+    height: 40px;
+  }
+
+  .exist-label{
+    width: 70px;
+    display:block;
+    text-align: center;
+    font-weight: normal;
+    font-size: 11px;
+    padding-top: 7px;
+    text-align: right;
+  }
+
+  .module h1 {
+      font-size: 22px;
+  }
+
+  .module.title {
+      font-size: 18px;
+  }
 }
 
 footer  {
@@ -285,11 +444,11 @@ body:before {
 
 .vendors-catalog-link {
   //font-family: 'Marck Script', cursive;
-  font-size: 16px;
+  //font-size: 16px;
   text-align: center;
   padding-bottom: 20px;
   a {
-    color: brown;
+    color: green;
   }
 }
 
@@ -303,7 +462,7 @@ body:before {
 
 .category-image {
   img {
-    max-width: 200px;
+    //max-width: 200px;
     max-height: 250px;
   }
   text-align: right;
@@ -364,11 +523,6 @@ table.tele-zebra td,table.tele-zebra th{
 
 
 .h50px{height: 50px;}
-
-.phone {
-  font-weight: bold;
-  font-size: 20px;
-}
 
 .search_form {
   margin-top: 5px;
@@ -446,7 +600,7 @@ div.lics img {
   padding-top: 20px;
   padding-bottom: 20px;
   //font-family: 'Marck Script', cursive;
-  font-size: 60px;
+  //font-size: 60px;
 }
 
 .module figure {
@@ -524,7 +678,7 @@ div.lics img {
   display: inline-block;
   padding: -10px;
   text-transform: uppercase;
-  font-size: 20px;
+  //font-size: 20px;
   color: #105cb6;
 }
 
