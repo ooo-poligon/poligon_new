@@ -2,7 +2,7 @@
 Poligon::Application.routes.draw do
   # get  'welcome/hello'
 
-  devise_for :users
+
   resources  :news_items
   resources  :categories
   resources  :articles
@@ -48,6 +48,9 @@ Poligon::Application.routes.draw do
   get  'sitemap.xml' => 'sitemap#sitemap', format: :xml
 
   get  'feeds', to: 'announce#index', format: 'rss'
+
+  devise_for :users
+
 
 
   # The priority is based upon order of creation:

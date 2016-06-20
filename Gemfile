@@ -47,9 +47,7 @@ group :development do
 end
 
 group :development, :test do
-  %w[rspec rspec-core rspec-expectations rspec-mocks rspec-support].each do |lib|
-    gem lib, :git => "git://github.com/rspec/#{lib}.git", :branch => 'master'
-  end
+  gem 'rspec-rails'
   gem 'spork-rails'
   gem 'guard-spork'
   gem 'childprocess'
