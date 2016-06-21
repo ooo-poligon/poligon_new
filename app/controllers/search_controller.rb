@@ -306,7 +306,12 @@ class SearchController < ApplicationController
     @addCBR = Setting.find_by title: 'AddCBR'
     @farnell_products = farnell_search params[:q]
     #@farnell_products = @farnell_products.paginate(:page => params[:farnell_page], :per_page => 10) if @farnell_products.is_a? Array
-    render layout: 'no_vendors'
+    begin
+      render layout: 'no_vendors'
+    rescue
+      #render layout: 'application'
+    end
+
   end
 
 private
