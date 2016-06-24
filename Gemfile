@@ -45,6 +45,11 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.4'
   gem 'shoulda-matchers'
   gem 'factory_girl_rails'
+  gem 'spring'
+  gem 'guard'
+  gem 'guard-spring'
+  gem 'guard-rspec'
+  gem 'guard-cucumber'
 end
 
 group :development do
