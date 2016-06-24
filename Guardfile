@@ -31,7 +31,7 @@ end
 #  * zeus: 'zeus rspec' (requires the server to be started separately)
 #  * 'just' rspec: 'rspec'
 
-guard :rspec, cmd: 'rspec', cli: "--tag ~@slow", all_after_pass: true, all_on_start: false, keep_failed: true, spring: true, bundler: false do
+guard :rspec, cmd: 'spring rspec --tag ~@slow', all_after_pass: true, all_on_start: false, failed_mode: :keep do
 # guard :rspec, cmd: "rspec" do
   require "guard/rspec/dsl"
   dsl = Guard::RSpec::Dsl.new(self)
@@ -93,7 +93,7 @@ cucumber_options = {
   # notification: false
 }
 
-guard 'cucumber', cmd: 'cucumber', all_on_start: false, cli: '--format progress --no-profile', command_prefix: 'spring', bundler: false do
+guard 'cucumber', cmd: 'cucumber', cmd_additional_args: '--format progress --no-profile', all_on_start: false do
 #guard "cucumber", cucumber_options do
   watch(%r{^features/.+\.feature$})
   watch(%r{^features/support/.+$}) { "features" }

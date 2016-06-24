@@ -39,6 +39,8 @@ group :test do
   gem 'database_cleaner'
   gem 'capybara'
   gem 'selenium-webdriver'
+  gem 'email_spec'
+  gem 'launchy'
 end
 
 group :development, :test do
@@ -46,6 +48,8 @@ group :development, :test do
   gem 'shoulda-matchers'
   gem 'factory_girl_rails'
   gem 'spring'
+  gem 'spring-commands-rspec'
+  gem "spring-commands-cucumber"
   gem 'guard'
   gem 'guard-spring'
   gem 'guard-rspec'
