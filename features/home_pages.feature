@@ -1,8 +1,10 @@
-Feature: Viewer visits the Home Page
-  In order to read the page
-  As a viewer
-  I want to see the home page of my app
+# language: ru
 
-  Scenario: View home page
-    Given   I am on the home page
-    Then    I should see 'Сайт компании ООО "ПОЛИГОН"'
+Функционал: Посещение домашней страницы
+  Для того чтобы начать работу с сайтом
+  Как обычный посетитель
+  Я хочу зайти на заглавную страницу сайта
+
+  Сценарий: Посещение домашней страницы сайта
+    Допустим я перешёл в браузере по адресу http://new.poligon.info
+    Тогда я должен увидеть надпись 'Сайт компании ООО "ПОЛИГОН"'
