@@ -1,5 +1,5 @@
 Допустим(/^я сотрудник отдела маркетинга или отдела продаж$/) do
-  pending # Write code here that turns the phrase above into concrete actions
+  @user = User.new(group_id: 3, email: "test_user@poligon.info", encrypted_password: "00000000")
 end
 
 Допустим(/^я нахожусь на странице с результатами поиска по названию товара$/) do

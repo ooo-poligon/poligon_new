@@ -3,11 +3,7 @@
   <% img_alt = locals[:title] + " - " + locals[:description] %>
   <%= link_to (image_tag locals[:image_path], alt: img_alt, title: img_title), locals[:link] %>
   <figcaption class="transition-050 opacity85">
-    <% if locals[:link].is_a? Category %>
-      <a href="categories/<%= locals[:link].id %>">
-    <% else %>
-      <a href="<%= locals[:link] %>">
-    <% end %>
+    <a href="<%= locals[:link] %>">
       <strong class="text transition-050 title"><%= locals[:title] %></strong>
       <span class="text transition-050 desc">"<%= locals[:description] %>"</span>
     </a>

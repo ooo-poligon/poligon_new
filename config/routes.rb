@@ -51,17 +51,21 @@ Poligon::Application.routes.draw do
 
   devise_for :users
 
+  get 'categories/142'  => 'categories/tele',         :as => 'categories/tele'
+  get 'categories/5933' => 'categories/comat_releco', :as => 'categories/comat_releco'
+  get 'categories/5583'  => 'categories/emko',        :as => 'categories/emko'
+  get 'categories/5094' => 'categories/benedict',     :as => 'categories/benedict'
+  get 'categories/74'   => 'categories/citel',        :as => 'categories/citel'
+  get 'categories/5414' => 'categories/graesslin',    :as => 'categories/graesslin'
+  get 'categories/5535' => 'categories/sonder',       :as => 'categories/sonder'
+  get 'categories/5818' => 'categories/relequick',    :as => 'categories/relequick'
+  get 'categories/5512' => 'categories/cbi',          :as => 'categories/cbi'
+  get 'categories/6321' => 'categories/poligonspb',   :as => 'categories/poligonspb'
+  get 'categories/4847' => 'categories/huber_suhner', :as => 'categories/huber_suhner'
+  get 'categories/6441' => 'categories/tehnoplast',   :as => 'categories/tehnoplast'
 
 
-  # The priority is based upon order of creation:
-  # first created -> highest priority.
 
-  # Sample of regular route:
-  #   match 'products/:id' => 'catalog#view'
-  # Keep in mind you can assign values other than :controller and :action
-
-  # Sample of named route:
-  #   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase
   # This route can be invoked with purchase_url(:id => product.id)
 
   # Sample resource route (maps HTTP verbs to controller actions automatically):
