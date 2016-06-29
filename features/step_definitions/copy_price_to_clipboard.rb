@@ -1,34 +1,45 @@
 Допустим(/^я успешно залогинился как сотрудник отдела маркетинга$/) do
-  Group.create!(id: 3)
-  @user3 = User.create!(
-              name: "Третий тестовый чувак",
-              email: "test3@test.ru",
-              password: 'qwerqwer3',
-              group_id: 3
+  Category.create!(id: 1, title: 'TELE', parent: 0)
+  Currency.create!(id: 1, title: 'EUR')
+  Vendor.create!(title: 'TELE')
+  #Serie.create!(title: 'GAMMA')
+  ProductKind.create!(id: 1, title: 'без определения')
+  Product.create!(title: 'G4', price: 1.0, category_id: 1)
+
+  Group.create!(id: 2)
+  Setting.create!(title: 'addCBR', kind: 'PriceCalcSettings', text_value: '5')
+  @user = User.create!(
+              name: "Просто тестовый чувак",
+              email: "test@test.ru",
+              password: 'qwerqwer',
+              group_id: 2
               )
   visit new_user_session_path
-  fill_in 'Email', with: @user3.email
-  fill_in 'Пароль', with: @user3.password
+  fill_in 'Email', with: @user.email
+  fill_in 'Пароль', with: @user.password
   click_button("Войти")
-  expect(page).to have_content text
+  expect(page).to have_content "Вход в систему выполнен."
   expect(page).to have_css('.user-bar')
 end
 
 Допустим(/^я нахожусь на странице с результатами поиска по названию товара$/) do
-  visit advanced_search_path
-  
+  visit root_path
+  fill_in 'Расширенный поиск', with: 'G4'
+  click_button 'Найти'
+  expect(page).to have_content "Поиск по складу"
+  puts page
 end
 
-Допустим(/^в результатах поиска по складу присутствует хотя бы один товар$/) do
-  pending # Write code here that turns the phrase above into concrete actions
+Допустим(/^результат поиска имеет один или более найденных товаров$/) do
+  expect(page).not_to have_content "Поиск по складу не дал результатов"
 end
 
-Допустим(/^найденному товару сопоставлена таблица цен с кнопками для копирования в буфер обмена$/) do
-  pending # Write code here that turns the phrase above into concrete actions
+Допустим(/^найденным товарам сопоставлена таблица цен с кнопками для копирования в буфер обмена$/) do
+  expect(page).to have_content('EUR')
 end
 
 Когда(/^я нажимаю на кнопку с нужным типом цены$/) do
-  pending # Write code here that turns the phrase above into concrete actions
+  click_button("EUR")
 end
 
 Тогда(/^информация о цене помещается в буфер обмена$/) do

@@ -41,7 +41,7 @@ end
   fill_in 'Email', with: @user.email
   fill_in 'Пароль', with: @user.password
   click_button("Войти")
-  expect(page).to have_content text
+  expect(page).to have_content "Вход в систему выполнен."
   expect(page).to have_css('.user-bar')
 end
 

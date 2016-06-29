@@ -3,14 +3,41 @@
 # newer version of cucumber-rails. Consider adding your own code to a new file
 # instead of editing this one. Cucumber will automatically load all features/**/*.rb
 # files.
+#####################################################
+ENV['RACK_ENV'] = 'test'
 
+
+
+require 'selenium-webdriver'
+require 'capybara/cucumber'
+require 'rspec'
+
+
+#####################################################
 require 'cucumber/rails'
 # Make sure this require is after you require cucumber/rails/world.
 require 'email_spec' # add this line if you use spork
 require 'email_spec/cucumber'
 
+=begin
+require_relative '../../../web'
+
+Capybara.app = Ollert
+Capybara.default_wait_time = 10
+=end
+
 Before do
   I18n.locale = :ru
+
+  # use the following web driver to run tests
+  Capybara.javascript_driver = :selenium
+
+  if Capybara.current_driver == :selenium
+    require 'headless'
+
+    headless = Headless.new
+    headless.start
+  end
 end
 # Capybara defaults to CSS3 selectors rather than XPath.
 # If you'd prefer to use XPath, just uncomment this line and adjust any
