@@ -304,7 +304,7 @@ class SearchController < ApplicationController
     @static_contents.execute!
 
     @addCBR = Setting.find_by title: 'AddCBR'
-    @farnell_products = farnell_search params[:q]
+    #@farnell_products = farnell_search params[:q]
 
     render layout: 'no_vendors'
   end

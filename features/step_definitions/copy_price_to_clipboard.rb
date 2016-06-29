@@ -1,12 +1,5 @@
 Допустим(/^я успешно залогинился как сотрудник отдела маркетинга$/) do
-  Group.create!(id: 2)
   Group.create!(id: 3)
-  @user2 = User.create!(
-              name: "Второй тестовый чувак",
-              email: "test2@test.ru",
-              password: 'qwerqwer2',
-              group_id: 2
-              )
   @user3 = User.create!(
               name: "Третий тестовый чувак",
               email: "test3@test.ru",
@@ -14,15 +7,16 @@
               group_id: 3
               )
   visit new_user_session_path
-  fill_in 'Email', with: @user2.email
-  fill_in 'Пароль', with: @user2.password
+  fill_in 'Email', with: @user3.email
+  fill_in 'Пароль', with: @user3.password
   click_button("Войти")
   expect(page).to have_content text
   expect(page).to have_css('.user-bar')
 end
 
 Допустим(/^я нахожусь на странице с результатами поиска по названию товара$/) do
-  visit "/advanced_search?farnell_page=1&products_page=1&exist_only=on&q=G4"
+  visit advanced_search_path
+  
 end
 
 Допустим(/^в результатах поиска по складу присутствует хотя бы один товар$/) do
