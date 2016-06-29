@@ -316,7 +316,7 @@ private
   rescue ArgumentError
     nil
   end
-
+=begin
   def farnell_search query
     farnell_products = []
     @query = query
@@ -349,4 +349,5 @@ private
     end
     farnell_products
   end
+=end
 end
