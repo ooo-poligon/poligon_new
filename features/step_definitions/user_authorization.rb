@@ -1,47 +1,55 @@
-Допустим(/^я зарегистрированный пользователь "([^"]*)" с паролем "([^"]*)"$/) do |arg1, arg2|
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-Допустим(/^я на странице Авторизация$/) do
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-Если(/^ввожу в поле Логин "([^"]*)"$/) do |arg1|
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-Если(/^ввожу в поле Пароль "([^"]*)"$/) do |arg1|
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-Если(/^кликаю кнопку "([^"]*)"$/) do |arg1|
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-То(/^я должен увидеть уведомление "([^"]*)"$/) do |arg1|
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-То(/^я должен оказаться на странице Страница пользователя$/) do
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
 Допустим(/^я зарегистрированный пользователь$/) do
-  pending # Write code here that turns the phrase above into concrete actions
+  Group.create!(id: 1)
+  @user = User.create!(
+              name: "Просто тестовый чувак",
+              email: "test@test.ru",
+              password: 'qwerqwer',
+              group_id: 1
+              )
+end
+
+Допустим(/^я на странице 'Служебный вход ООО "ПОЛИГОН"'$/) do
+  visit new_user_session_path
 end
 
 Если(/^ввожу правильные логин и пароль$/) do
-  pending # Write code here that turns the phrase above into concrete actions
+  fill_in 'Email', with: @user.email
+  fill_in 'Пароль', with: @user.password
+end
+
+Если(/^кликаю кнопку "([^"]*)"$/) do |text|
+  click_button("Войти")
+end
+
+То(/^я должен увидеть уведомление "([^"]*)"$/) do |text|
+  expect(page).to have_content text
+end
+
+То(/^я должен получить доступ к дополнительной верхней панели для зарегистрированных пользователей$/) do
+  expect(page).to have_css('.user-bar')
 end
 
 Допустим(/^я успешно залогинился$/) do
-  pending # Write code here that turns the phrase above into concrete actions
+  Group.create!(id: 1)
+  @user = User.create!(
+              name: "Просто тестовый чувак",
+              email: "test@test.ru",
+              password: 'qwerqwer',
+              group_id: 1
+              )
+  visit new_user_session_path
+  fill_in 'Email', with: @user.email
+  fill_in 'Пароль', with: @user.password
+  click_button("Войти")
+  expect(page).to have_content text
+  expect(page).to have_css('.user-bar')
 end
 
-Если(/^я кликаю ссылку "([^"]*)"$/) do |arg1|
-  pending # Write code here that turns the phrase above into concrete actions
+
+Если(/^я кликаю ссылку "([^"]*)"$/) do |text|
+  click_link("Выйти из служебного интерфейса")
 end
 
-То(/^я должен оказаться на странице Авторизация$/) do
-  pending # Write code here that turns the phrase above into concrete actions
+То(/^я НЕ должен иметь доступ к дополнительной верхней панели для зарегистрированных пользователей$/) do
+  expect(page).not_to have_css('.user-bar')
 end
