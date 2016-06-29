@@ -1,4 +1,6 @@
 Допустим(/^я успешно залогинился как сотрудник отдела маркетинга$/) do
+  FarnellKey.create!(id: 1, api_key: ENV["FARNELL_KEY1"])
+  FarnellKey.create!(id: 2, api_key: ENV["FARNELL_KEY2"])
   Category.create!(id: 1, title: 'TELE', parent: 0)
   Currency.create!(id: 1, title: 'EUR')
   Vendor.create!(title: 'TELE')

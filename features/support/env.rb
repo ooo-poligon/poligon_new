@@ -4,7 +4,7 @@
 # instead of editing this one. Cucumber will automatically load all features/**/*.rb
 # files.
 #####################################################
-ENV['RACK_ENV'] = 'test'
+#ENV['RACK_ENV'] = 'test'
 
 
 
@@ -16,7 +16,7 @@ require 'rspec'
 #####################################################
 require 'cucumber/rails'
 # Make sure this require is after you require cucumber/rails/world.
-require 'email_spec' # add this line if you use spork
+# require 'email_spec' # add this line if you use spork
 require 'email_spec/cucumber'
 
 =begin
@@ -31,6 +31,7 @@ Before do
 
   # use the following web driver to run tests
   Capybara.javascript_driver = :selenium
+  Capybara.default_max_wait_time = 10
 
   if Capybara.current_driver == :selenium
     require 'headless'

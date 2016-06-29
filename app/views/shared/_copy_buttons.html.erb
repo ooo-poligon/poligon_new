@@ -1,3 +1,10 @@
+<script>
+  function copied_alert() {
+    alert("Данные скопированы в системный буфер обмена: \n\"" +
+        "\"\nТеперь вы можете вставить их в ваш документ.");
+  }
+</script>
+
 <div style="float: right;">
   <% quantity = Quantity.find_by( product_id: locals[:product].id ) %>
   <% result_quantity = 0 %>

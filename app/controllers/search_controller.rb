@@ -328,13 +328,12 @@ private
       @results_number =  10
       farnell_params = (params['farnell_page'].to_i - 1)
       @results_offset = (farnell_params * @results_number)
-      farnell_api_key = FarnellKey.find(rand(1..2)).api_key
       farnell_request_uri = "https://api.element14.com/catalog/products" +
                             "?callInfo.responseDataFormat=xml" +
                             "&callInfo.omitXmlSchema=false" +
                             "&term=any%3A" + @query  +
                             "&storeInfo.id=ru.farnell.com" +
-                            "&callInfo.apiKey=" + farnell_api_key +
+                            "&callInfo.apiKey=" + ENV["FARNELL_KEY#{rand(1..2)}"] +
                             "&resultsSettings.offset=" + @results_offset.to_s +
                             "&resultsSettings.numberOfResults=" + @results_number.to_s +
                             "&resultsSettings.responseGroup=large"
