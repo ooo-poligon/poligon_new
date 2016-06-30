@@ -30,6 +30,7 @@ $(document).ready(function() {
     ignoreRows: [1,2]
   });
 
+
   $(function () {
     $('#accordion').on('shown.bs.collapse', function (e) {
     var offset = $('.panel.panel-default > .panel-collapse.in').offset();

@@ -43,9 +43,10 @@ end
 end
 
 Тогда(/^информация о цене помещается в буфер обмена$/) do
-  pending # Write code here that turns the phrase above into concrete actions
+  all("global-zeroclipboard-flash-bridge").first
 end
 
 Тогда(/^я могу вставить её в любой документ в моей операционной системе$/) do
-  pending # Write code here that turns the phrase above into concrete actions
+  all(".search_form").first.send_keys [:control, 'v']
+  expect(all(".search_form").first.value).to have_content('евро c НДС. Количество:')
 end
