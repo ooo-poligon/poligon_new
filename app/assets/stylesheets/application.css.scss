@@ -733,3 +733,13 @@ div.lics img {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
+
+//Hovers in menu "Информация"
+.dropdown-menu > li > a:hover,
+.dropdown-menu > li > a:focus {
+  background-image: -webkit-linear-gradient(top, #24468a 0%, #27498d 100%);
+  background-image: linear-gradient(to bottom, #24468a 0%, #27498d 100%);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#24468A', endColorstr='#27498d', GradientType=0);
+  background-color: #27498d;
+}
