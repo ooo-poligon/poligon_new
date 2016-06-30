@@ -3,43 +3,45 @@
 # newer version of cucumber-rails. Consider adding your own code to a new file
 # instead of editing this one. Cucumber will automatically load all features/**/*.rb
 # files.
-#####################################################
-#ENV['RACK_ENV'] = 'test'
 
-
-
-require 'selenium-webdriver'
-require 'capybara/cucumber'
-require 'rspec'
-
-
-#####################################################
 require 'cucumber/rails'
 # Make sure this require is after you require cucumber/rails/world.
-# require 'email_spec' # add this line if you use spork
+require 'email_spec' # add this line if you use spork
 require 'email_spec/cucumber'
 
-=begin
-require_relative '../../../web'
+require 'capybara'
+require 'capybara/cucumber'
+require 'capybara/rails'
+require 'capybara/dsl'
+require 'capybara/session'
+require 'selenium/webdriver'
 
-Capybara.app = Ollert
-Capybara.default_wait_time = 10
-=end
+
+Capybara.register_driver :chrome do |app|
+  # optional
+  client = Selenium::WebDriver::Remote::Http::Default.new
+  # optional
+  client.timeout = 120
+  Capybara::Selenium::Driver.new(app, :browser => :chrome, :http_client => client)
+end
+
+Capybara.javascript_driver = :chrome
 
 Before do
   I18n.locale = :ru
-
-  # use the following web driver to run tests
-  Capybara.javascript_driver = :selenium
-  Capybara.default_max_wait_time = 10
-
-  if Capybara.current_driver == :selenium
-    require 'headless'
-
-    headless = Headless.new
-    headless.start
-  end
 end
+
+#Include headless
+require_relative 'headless'
+
+
+After do |scenario|
+    if scenario.failed?
+        puts scenario.name
+        puts scenario.exception.message
+    end
+end
+
 # Capybara defaults to CSS3 selectors rather than XPath.
 # If you'd prefer to use XPath, just uncomment this line and adjust any
 # selectors in your step definitions to use the XPath syntax.
