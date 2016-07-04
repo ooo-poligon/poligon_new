@@ -16,9 +16,11 @@
     <% end %>
     <% unless @recentCategory.more_info.nil? || @recentCategory.more_info == '' %>
       <br>
-      <button type="button" class="btn btn-info" data-toggle="collapse" data-parent="#accordion" href="#additionInfo">
-        <span class="glyphicon glyphicon-info-sign"></span>&nbsp;Дополнительные материалы
-      </button>
+      <div style="text-align: center;" >
+        <button type="button" class="btn btn-info" data-toggle="collapse" data-parent="#accordion" href="#additionInfo">
+          <span class="glyphicon glyphicon-info-sign"></span><br>Дополнительные<br>материалы
+        </button>
+      </div>
     <% end %>
   </div>
   <div class="col-xs-9 col-md-9 categories-right" >

@@ -15,6 +15,7 @@ require 'capybara/rails'
 require 'capybara/dsl'
 require 'capybara/session'
 require 'selenium/webdriver'
+require "factory_girl/step_definitions"
 
 
 Capybara.register_driver :chrome do |app|
