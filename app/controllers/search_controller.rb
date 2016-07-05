@@ -7,6 +7,8 @@ class SearchController < ApplicationController
 
   require 'active_support/core_ext/hash/conversions'
 
+  before_filter :sanitize_q
+
   def search
     @products = Sunspot.search(Product) do
       #fulltext search
@@ -310,6 +312,10 @@ class SearchController < ApplicationController
   end
 
 private
+
+  def sanitize_q
+    params[:q] = "" if params[:q].nil?
+  end
 
   def number_or_nil string
     Integer(string || '')

@@ -20,14 +20,14 @@
   <% end %>
   <% unless price == 0 %>
     <% if locals[:product].currency_id == 1 %>
-      <button class="btn btn-info copy-btn" id="copy-eur" data-clipboard-text="<%= locals[:product].title %> — Цена: <%= price %> евро c НДС. Количество: <%= result_quantity %> шт.">
+      <button class="btn btn-info copy-btn" id="copy-eur" data-clipboard-text="<%= locals[:product].title %> — Цена: <%= price %> евро c НДС. Наличие на складе: <%= result_quantity %> шт.">
         EUR
       </button>
     <% end %>
-    <button class="btn btn-success copy-btn" id="copy-rub" data-clipboard-text="<%= locals[:product].title %> — Цена: <%= price_rub %> рублей c НДС. Количество: <%= result_quantity %> шт.">
+    <button class="btn btn-success copy-btn" id="copy-rub" data-clipboard-text="<%= locals[:product].title %> — Цена: <%= price_rub %> рублей c НДС. Наличие на складе: <%= result_quantity %> шт.">
       RUB
     </button>
-    <button class="btn btn-warning copy-btn" id="copy-rub-nonds" data-clipboard-text="<%= locals[:product].title %> — Цена: <%= price_rub_nonds %> рублей без НДС. Количество: <%= result_quantity %> шт.">
+    <button class="btn btn-warning copy-btn" id="copy-rub-nonds" data-clipboard-text="<%= locals[:product].title %> — Цена: <%= price_rub_nonds %> рублей без НДС. Наличие на складе: <%= result_quantity %> шт.">
       Без НДС
     </button>
   <% end %>

@@ -48,5 +48,5 @@ end
 
 Тогда(/^я могу вставить её в любой документ в моей операционной системе$/) do
   all(".search_form").first.send_keys [:control, 'v']
-  expect(all(".search_form").first.value).to have_content('евро c НДС. Количество:')
+  expect(all(".search_form").first.value).to have_content('евро c НДС. Наличие на складе:')
 end
