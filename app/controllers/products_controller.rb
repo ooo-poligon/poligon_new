@@ -13,8 +13,8 @@ class ProductsController < ApplicationController
     elsif @product.currency_id == 2
       @retail_price = @product.rub_retail
     end
-    @productImage = ImageFile.where("owner_id = ? and file_type_id = 1", @product.id).first
-    @productPdf   = ImageFile.where("owner_id = ? and file_type_id = 2", @product.id).first
+    @productImage = DataFile.where("owner_id = ? and file_type_id = 1", @product.id).first
+    @productPdf   = DataFile.where("owner_id = ? and file_type_id = 2", @product.id).first
     productFunctions = ProductFunction.where("product_id = ?", @product.id)
     function_ids = []
     productFunctions.each do |pf|

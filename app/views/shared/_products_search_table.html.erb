@@ -11,7 +11,7 @@
   <tbody>
     <% locals[:products].results.sort_by! {|obj| obj.title}.each do |product| %>
       <tr>
-        <% productImage = ImageFile.where('owner_id = ? and file_type_id = 1', product.id).first %>
+        <% productImage = DataFile.where('owner_id = ? and file_type_id = 1', product.id).first %>
         <% if productImage != nil %>
           <% imagePath = productImage.path.gsub!("c:\\poligon_images", "http://www.poligon.info/images").gsub!("\\", "/") %>
           <td><%= link_to image_tag(imagePath, class: "img-responsive center-block product-image-container"), imagePath, class: "fancybox" %></td>

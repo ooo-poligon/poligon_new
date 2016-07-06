@@ -145,7 +145,7 @@ class SearchController < ApplicationController
   before_action :getCourse
 
   def advanced_search
-    @products_pdfs = ImageFile.where(file_type_id: 2)
+    @products_pdfs = DataFile.where(file_type_id: 2)
 
     @products = Sunspot.search(Product) do
       if params['exist_only']
