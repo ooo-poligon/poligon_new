@@ -6,6 +6,13 @@ GIT
       faraday (>= 0.9.1)
       multi_json (>= 1.11.0)
 
+GIT
+  remote: git://github.com/stympy/faker.git
+  revision: 3b4368a51ecafc21952f28d5456d1e19cf6b1454
+  specs:
+    faker (1.6.3)
+      i18n (~> 0.5)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -386,6 +393,7 @@ DEPENDENCIES
   email_spec
   exception_notification
   factory_girl_rails
+  faker!
   fancybox-rails
   figaro
   gibbon!

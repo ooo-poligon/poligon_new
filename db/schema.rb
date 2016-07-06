@@ -88,12 +88,6 @@ ActiveRecord::Schema.define(version: 20160629094232) do
     t.string "title", limit: 255, null: false
   end
 
-  create_table "farnell_keys", force: :cascade do |t|
-    t.string   "api_key",    limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-  end
-
   create_table "file_types", force: :cascade do |t|
     t.string "type", limit: 255, null: false
   end
@@ -306,7 +300,7 @@ ActiveRecord::Schema.define(version: 20160629094232) do
   create_table "series", force: :cascade do |t|
     t.text    "description", limit: 4294967295
     t.string  "title",       limit: 255
-    t.integer "vendor_id",   limit: 4,          null: false
+    t.integer "vendor_id",   limit: 4, default: 1
   end
 
   add_index "series", ["title"], name: "UK_hsvdwda43ces5322tlgcgl4sk", unique: true, using: :btree
@@ -392,8 +386,8 @@ ActiveRecord::Schema.define(version: 20160629094232) do
   add_foreign_key "products", "categories", name: "FK_products_categories"
   add_foreign_key "products", "currencies", name: "FK_products_currencies"
   add_foreign_key "products", "product_kinds", name: "FK_ga42cu8ch92tuig4t8oo06hn8"
-  add_foreign_key "products", "series", column: "serie", primary_key: "title", name: "FK_ni7gdwd360jaafq7b7m1gug4v"
-  add_foreign_key "products", "vendors", column: "vendor", primary_key: "title", name: "FK_h9ix3xgma67xlseqy1hap6rfa"
+  #add_foreign_key "products", "series", column: "serie", primary_key: "title", name: "FK_ni7gdwd360jaafq7b7m1gug4v"
+  #add_foreign_key "products", "vendors", column: "vendor", primary_key: "title", name: "FK_h9ix3xgma67xlseqy1hap6rfa"
   add_foreign_key "products_functions", "functions", name: "FK_products_functions_functions", on_update: :cascade, on_delete: :cascade
   add_foreign_key "products_functions", "products", name: "FK_products_functions_products", on_update: :cascade, on_delete: :cascade
   add_foreign_key "properties", "products", name: "FK_9igpep0fc0ccn6ufp49qb0d3l"

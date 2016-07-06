@@ -1,4 +1,7 @@
 class Category < ActiveRecord::Base
+  has_many :products
+
+  validates :title, uniqueness: true
 
   searchable do
     text :title, :as => :code_textp

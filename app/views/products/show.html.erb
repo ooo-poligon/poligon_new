@@ -14,7 +14,19 @@
 <p style="color: red; font-weight: bolder;">
   <%= @product.anons if !@product.anons.nil? %>
 </p>
-<hr>
+<br>
+<ul class="nav nav-tabs">
+  <% if user_signed_in? %>
+    <li class="active"><a href="#product_data_tab" data-toggle="tab">Цены и наличие</a></li>
+    <li><a href="#properties_tab" data-toggle="tab">Технические характеристики</a></li>
+  <% else %>
+    <li class="active"><a href="#properties_tab" data-toggle="tab">Технические характеристики</a></li>
+  <% end %>
+  <li><a href="#functions_tab" data-toggle="tab">Функции</a></li>
+  <li><a href="#plugs_tab" data-toggle="tab">Схемы подключения</a></li>
+  <li><a href="#dimensions_tab" data-toggle="tab">Размеры</a></li>
+</ul>
+<br><br>
 <div class="container-fluid">
   <div class="row">
     <div class="col-xs-4">
@@ -47,17 +59,6 @@
       </p>
     </div>
     <div class="col-xs-8">
-      <ul class="nav nav-tabs">
-        <% if user_signed_in? %>
-          <li class="active"><a href="#product_data_tab" data-toggle="tab">Цены и наличие</a></li>
-          <li><a href="#properties_tab" data-toggle="tab">Технические характеристики</a></li>
-        <% else %>
-          <li class="active"><a href="#properties_tab" data-toggle="tab">Технические характеристики</a></li>
-        <% end %>
-        <li><a href="#functions_tab" data-toggle="tab">Функции</a></li>
-        <li><a href="#plugs_tab" data-toggle="tab">Схемы подключения</a></li>
-        <li><a href="#dimensions_tab" data-toggle="tab">Размеры</a></li>
-      </ul>
       <div class="tab-content">
         <% if user_signed_in? %>
           <div class="tab-pane fade in active" id="product_data_tab">
