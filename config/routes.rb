@@ -1,7 +1,7 @@
 # -*- encoding : utf-8 -*-
 Poligon::Application.routes.draw do
-  # get  'welcome/hello'
 
+  # get  'welcome/hello'
 
   resources  :news_items
   resources  :categories
@@ -64,7 +64,7 @@ Poligon::Application.routes.draw do
   get 'categories/4847' => 'categories/huber_suhner', :as => 'categories/huber_suhner'
   get 'categories/6441' => 'categories/tehnoplast',   :as => 'categories/tehnoplast'
 
-
+  get 'errors/routing'
 
   # This route can be invoked with purchase_url(:id => product.id)
 
@@ -113,4 +113,5 @@ Poligon::Application.routes.draw do
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via get  requests.
   # match ':controller(/:action(/:id))(.:format)'
+  match '*a', to: 'errors#routing', via: :get
 end

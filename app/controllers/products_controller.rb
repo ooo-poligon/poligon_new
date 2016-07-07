@@ -25,11 +25,8 @@ class ProductsController < ApplicationController
       @functions.push(Function.find(id))
     end
     @productKind = ProductKind.find(@product.product_kind_id)
-    propertyTypes = KindsType.where("product_kind_id = ?", @productKind.id)
-    propertyTypeIds = []
-    propertyTypes.each do |pt|
-      propertyTypeIds.push(pt.property_type_id)
-    end
+    propertyTypes = @productKind.property_types
+    propertyTypeIds = propertyTypes.each { |pt| pt.id }
     @propertyTypesOfProduct = []
     propertyTypeIds.each do |id|
       @propertyTypesOfProduct.push(PropertyType.find(id))

@@ -129,13 +129,13 @@ ActiveRecord::Schema.define(version: 20160629094232) do
     t.string "tableName", limit: 255, null: false
   end
 
-  create_table "kinds_types", force: :cascade do |t|
+  create_table "product_kinds_property_types", force: :cascade do |t|
     t.integer "product_kind_id",  limit: 4, default: 0, null: false
     t.integer "property_type_id", limit: 4, default: 0, null: false
   end
 
-  add_index "kinds_types", ["product_kind_id"], name: "FK__product_kinds", using: :btree
-  add_index "kinds_types", ["property_type_id"], name: "FK__property_types", using: :btree
+  add_index "product_kinds_property_types", ["product_kind_id"], name: "FK__product_kinds", using: :btree
+  add_index "product_kinds_property_types", ["property_type_id"], name: "FK__property_types", using: :btree
 
   create_table "measures", force: :cascade do |t|
     t.string "number_code",    limit: 3
@@ -158,7 +158,7 @@ ActiveRecord::Schema.define(version: 20160629094232) do
 
   create_table "offers", force: :cascade do |t|
     t.string   "title",            limit: 255
-    t.text     "descripiton",      limit: 65535
+    t.text     "description",      limit: 65535
     t.string   "image_path",       limit: 255
     t.boolean  "available"
     t.date     "begin_date"
@@ -270,7 +270,7 @@ ActiveRecord::Schema.define(version: 20160629094232) do
     t.string  "cond",        limit: 255
     t.string  "value",       limit: 255
     t.integer "measure_id",  limit: 4
-    t.integer "property_id", limit: 4,   null: false
+    t.integer "property_id", limit: 4
     t.integer "product_id",  limit: 4
   end
 
@@ -378,8 +378,8 @@ ActiveRecord::Schema.define(version: 20160629094232) do
   add_foreign_key "files", "products", column: "owner_id", name: "FK_5ok1awgnfwcf01537ylbycyq1"
   add_foreign_key "functions", "product_kinds", name: "FK_functions_product_kinds"
   add_foreign_key "functions", "products", name: "FK_paqylsqoi8kvkqxanutgqpg9a"
-  add_foreign_key "kinds_types", "product_kinds", name: "FK__product_kinds", on_update: :cascade, on_delete: :cascade
-  add_foreign_key "kinds_types", "property_types", name: "FK__property_types", on_update: :cascade, on_delete: :cascade
+  add_foreign_key "product_kinds_property_types", "product_kinds", name: "FK__product_kinds", on_update: :cascade, on_delete: :cascade
+  add_foreign_key "product_kinds_property_types", "property_types", name: "FK__property_types", on_update: :cascade, on_delete: :cascade
   add_foreign_key "posts", "post_types"
   add_foreign_key "posts", "tickets"
   add_foreign_key "posts", "users"
