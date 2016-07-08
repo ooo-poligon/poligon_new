@@ -27,7 +27,7 @@ end
   fill_in 'Расширенный поиск', with: 'G4'
   click_button 'Найти'
   expect(page).to have_content "Поиск по складу"
-  #puts page
+  #puts Product.all[0].title
 end
 
 Допустим(/^результат поиска имеет один или более найденных товаров$/) do

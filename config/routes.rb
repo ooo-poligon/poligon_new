@@ -3,12 +3,12 @@ Poligon::Application.routes.draw do
 
   # get  'welcome/hello'
 
-  resources  :news_items
+  resources  :news_items, only: [:index, :show]
   resources  :categories
-  resources  :articles
-  resources  :videos
-  resources  :reviews
-  resources  :additions
+  resources  :articles, only: [:index, :show]
+  resources  :videos, only: [:index, :show]
+  resources  :reviews, only: [:index, :show]
+  resources  :additions, only: [:index, :show]
   resources  :products
   resources  :content
 
