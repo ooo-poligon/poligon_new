@@ -29,6 +29,7 @@ module Poligon
 
     config.assets.enabled = true
     config.assets.precompile += %w(*.js)
+    config.exceptions_app = self.routes
   end
 end
 

@@ -139,15 +139,4 @@ class ApplicationController < ActionController::Base
     @courseEuro = course.to_f
   end
 
-  rescue_from ActionController::RoutingError, :with => :render_404
-
-  private
-
-  def render_404(exception = nil)
-    if exception
-        logger.info "Rendering 404: #{exception.message}"
-    end
-    render 'errors/routing'
-  end
-
 end

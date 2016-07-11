@@ -1,5 +1,13 @@
 class ErrorsController < ApplicationController
-  def routing
-    render_404
+  def not_found
+    render(status: 404)
+  end
+
+  def not_processable
+    render(status: 422)
+  end
+
+  def internal_server_error
+    render(status: 500)
   end
 end

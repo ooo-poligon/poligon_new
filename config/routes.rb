@@ -4,13 +4,12 @@ Poligon::Application.routes.draw do
   # get  'welcome/hello'
 
   resources  :news_items, only: [:index, :show]
-  resources  :categories
-  resources  :articles, only: [:index, :show]
-  resources  :videos, only: [:index, :show]
-  resources  :reviews, only: [:index, :show]
-  resources  :additions, only: [:index, :show]
-  resources  :products
-  resources  :content
+  resources  :categories, only: [:index, :show]
+  resources  :articles,   only: [:index, :show]
+  resources  :videos,     only: [:index, :show]
+  resources  :reviews,    only: [:index, :show]
+  resources  :additions,  only: [:index, :show]
+  resources  :products,   only: [        :show]
 
   get  'certificates/download'
   get  'certificates/index'
@@ -25,7 +24,8 @@ Poligon::Application.routes.draw do
   get  'company/vacancies'
   get  'company/links'
 
-  root :to => 'content#home'
+  root to: 'content#home'
+  get  'content/show'
   get  'content/certificates'
   get  'content/download_pdf'
   get  'content/farnell'
@@ -64,7 +64,6 @@ Poligon::Application.routes.draw do
   get 'categories/4847' => 'categories/huber_suhner', :as => 'categories/huber_suhner'
   get 'categories/6441' => 'categories/tehnoplast',   :as => 'categories/tehnoplast'
 
-  get 'errors/routing'
 
   # This route can be invoked with purchase_url(:id => product.id)
 
@@ -113,5 +112,7 @@ Poligon::Application.routes.draw do
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via get  requests.
   # match ':controller(/:action(/:id))(.:format)'
-  match '*a', to: 'errors#routing', via: :get
+  match "/404", :to => "errors#not_found", :via => :all
+  match "/422", :to => "errors#not_processable", :via => :all
+  match "/500", :to => "errors#internal_server_error", :via => :all
 end
