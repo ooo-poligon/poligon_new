@@ -1,4 +1,4 @@
 class Function < ActiveRecord::Base
-  belongs_to :product_kind
-  belongs_to :product
+  has_and_belongs_to_many :product_kinds
+  belongs_to :vendor
 end

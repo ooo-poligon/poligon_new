@@ -1,7 +1,7 @@
 # -*- encoding : utf-8 -*-
 Poligon::Application.routes.draw do
 
-  # get  'welcome/hello'
+  #get  'welcome/hello'
 
   resources  :news_items, only: [:index, :show]
   resources  :categories, only: [:index, :show]

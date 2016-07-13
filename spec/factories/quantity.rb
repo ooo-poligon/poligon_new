@@ -1,12 +1,12 @@
 require 'faker'
 
 FactoryGirl.define do
-  factory :quantity do |f|
-    f.minimum         { Faker::Number.number(4) }
-    f.ordered         { Faker::Number.number(4) }
-    f.pieces_per_pack { Faker::Number.number(4) }
-    f.reserved        { Faker::Number.number(4) }
-    f.stock           { Faker::Number.number(4) }
+  factory :quantity do
+    minimum         { Faker::Number.number(4) }
+    ordered         { Faker::Number.number(4) }
+    pieces_per_pack { Faker::Number.number(4) }
+    reserved        { Faker::Number.number(4) }
+    stock           { Faker::Number.number(4) }
     product
   end
 end

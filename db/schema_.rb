@@ -222,7 +222,7 @@ ActiveRecord::Schema.define(version: 20160713094607) do
     t.string  "ean",                limit: 255
     t.integer "outdated",           limit: 4
     t.float   "price",              limit: 53,                       null: false
-    t.string  "serie",              limit: 255
+    t.string  "series",              limit: 255,        default: "",  null: false
     t.integer "product_kind_id",    limit: 4,          default: 1
     t.string  "vendor",             limit: 255
     t.float   "special",            limit: 53,         default: 1.0, null: false
@@ -234,17 +234,13 @@ ActiveRecord::Schema.define(version: 20160713094607) do
     t.integer "plugin_owner_id",    limit: 4,          default: 1,   null: false
     t.integer "currency_id",        limit: 4,          default: 1,   null: false
     t.integer "accessory_owner_id", limit: 4,          default: 0,   null: false
-    t.integer "vendor_id",          limit: 4
-    t.integer "series_id",          limit: 4
   end
 
   add_index "products", ["category_id"], name: "FK_of5oeawsy50x878ic9tyapdnv", using: :btree
   add_index "products", ["currency_id"], name: "FK_products_currencies", using: :btree
   add_index "products", ["product_kind_id"], name: "FK_products_product_kinds", using: :btree
-  add_index "products", ["serie"], name: "FK_products_series", using: :btree
-  add_index "products", ["series_id"], name: "index_products_on_serie_id", using: :btree
+  add_index "products", ["series"], name: "FK_products_series", using: :btree
   add_index "products", ["vendor"], name: "FK_products_vendors", using: :btree
-  add_index "products", ["vendor_id"], name: "index_products_on_vendor_id", using: :btree
 
   create_table "products_accessories", force: :cascade do |t|
     t.integer "product_id",   limit: 4, default: 0, null: false
@@ -314,7 +310,7 @@ ActiveRecord::Schema.define(version: 20160713094607) do
 
   create_table "series", force: :cascade do |t|
     t.text    "description", limit: 4294967295
-    t.string  "title",       limit: 255,                    null: false
+    t.string  "title",       limit: 255
     t.integer "vendor_id",   limit: 4,          default: 1
   end
 
@@ -402,8 +398,8 @@ ActiveRecord::Schema.define(version: 20160713094607) do
   add_foreign_key "products", "categories", name: "FK_products_categories"
   add_foreign_key "products", "currencies", name: "FK_products_currencies"
   add_foreign_key "products", "product_kinds", name: "FK_ga42cu8ch92tuig4t8oo06hn8"
-  add_foreign_key "products", "series", name: "FK_products_series_2"
-  add_foreign_key "products", "vendors", name: "FK_products_vendors"
+  add_foreign_key "products", "series", column: "series", primary_key: "title", name: "FK_products_series"
+  add_foreign_key "products", "vendors", column: "vendor", primary_key: "title", name: "FK_h9ix3xgma67xlseqy1hap6rfa"
   add_foreign_key "products_functions", "functions", name: "FK_products_functions_functions", on_update: :cascade, on_delete: :cascade
   add_foreign_key "products_functions", "products", name: "FK_products_functions_products", on_update: :cascade, on_delete: :cascade
   add_foreign_key "properties", "products", name: "FK_9igpep0fc0ccn6ufp49qb0d3l"

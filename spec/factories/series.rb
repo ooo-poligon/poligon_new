@@ -1,9 +1,9 @@
 require 'faker'
 
 FactoryGirl.define do
-  factory :serie do |f|
-    f.title       { Faker::Lorem.word }
-    f.description { Faker::Lorem.paragraph }
+  factory :serie do
+    title       { Faker::Lorem.word }
+    description { Faker::Lorem.paragraph }
     vendor
   end
 end

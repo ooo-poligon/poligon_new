@@ -1,12 +1,12 @@
 require 'faker'
 
 FactoryGirl.define do
-  factory :static_content do |f|
-    f.title      { Faker::Lorem.sentence }
-    f.directory  { Faker::Lorem.word }
-    f.page       { Faker::Lorem.word }
-    f.content    { Faker::Lorem.paragraph }
-    f.created_at { Faker::Date.between(12.days.ago, Date.today) }
-    f.updated_at { Faker::Date.between(12.days.ago, Date.today) }
+  factory :static_content do
+    title      { Faker::Lorem.sentence }
+    directory  { Faker::Lorem.word }
+    page       { Faker::Lorem.word }
+    content    { Faker::Lorem.paragraph }
+    created_at { Faker::Date.between(12.days.ago, Date.today) }
+    updated_at { Faker::Date.between(12.days.ago, Date.today) }
   end
 end

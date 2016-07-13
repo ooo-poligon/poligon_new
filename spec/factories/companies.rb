@@ -1,15 +1,15 @@
 require 'faker'
 
 FactoryGirl.define do
-  factory :company do |f|
-    f.title      { Faker::Lorem.sentence }
-    f.address    { Faker::Lorem.sentence }
-    f.phone      { Faker::PhoneNumber.phone_number }
-    f.fax        { Faker::PhoneNumber.phone_number }
-    f.email      { Faker::Internet.email }
-    f.site       { Faker::Internet.domain_name }
-    f.dealer     { Faker::Boolean.boolean }
-    f.created_at { Faker::Date.between(12.days.ago, Date.today) }
-    f.updated_at { Faker::Date.between(12.days.ago, Date.today) }
+  factory :company do
+    title      { Faker::Lorem.sentence }
+    address    { Faker::Lorem.sentence }
+    phone      { Faker::PhoneNumber.phone_number }
+    fax        { Faker::PhoneNumber.phone_number }
+    email      { Faker::Internet.email }
+    site       { Faker::Internet.domain_name }
+    dealer     { Faker::Boolean.boolean }
+    created_at { Faker::Date.between(12.days.ago, Date.today) }
+    updated_at { Faker::Date.between(12.days.ago, Date.today) }
   end
 end
