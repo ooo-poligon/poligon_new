@@ -19,8 +19,12 @@
           <td></td>
         <% end %>
         <td style="vertical-align: top;">
-          <table class="table table-responsive">
-            <%= render "shared/breadcrumb_search", locals: { product: product } %>
+          <table class="table table-responsive" style="height: 100%">
+            <!--<tr>
+              <td>
+                <%= render "shared/breadcrumb_search", locals: { product: product } %>
+              </td>
+            </tr>-->
             <tr>
             <% unless product.article.nil? or product.article == '' %>
               <td>
@@ -38,6 +42,9 @@
             </tr>
             <tr>
               <td><%= product.description %></td>
+            </tr>
+            <tr>
+              <td><%= render "shared/open_pdf_button", locals: { product: product, products_pdfs: @products_pdfs } %></td>
             </tr>
           </table>
         </td>
@@ -61,7 +68,6 @@
               </tr>
               <tr>
                 <td>
-                  <%= render "shared/open_pdf_button", locals: { product: product, products_pdfs: @products_pdfs } %>
                   <%= render "shared/copy_buttons", locals: { product: product } if current_user.group_id != 1 %>
                 </td>
               </tr>

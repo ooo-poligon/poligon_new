@@ -1,34 +1,36 @@
-<script>
-  function copied_alert() {
-    alert("Данные скопированы в системный буфер обмена: \n\"" +
-        "\"\nТеперь вы можете вставить их в ваш документ.");
-  }
-</script>
-
-<div style="float: right;">
-  <% quantity = Quantity.find_by( product_id: locals[:product].id ) %>
-  <% result_quantity = 0 %>
-  <% result_quantity = quantity.stock - quantity.reserved  if !quantity.nil? %>
-  <% if get_prices_eur(locals[:product])[1].round(2) == get_prices_eur(locals[:product])[0].round(2) %>
-    <% price = get_prices_eur(locals[:product])[0].round(2) %>
-    <% price_rub = get_prices_rub(locals[:product])[0].round(2) %>
-    <% price_rub_nonds = price_rub / 1.18 %>
-  <% else %>
-    <% price = get_prices_eur(locals[:product])[1].round(2) %>
-    <% price_rub = get_prices_rub(locals[:product])[1].round(2) %>
-    <% price_rub_nonds = price_rub / 1.18 %>
-  <% end %>
-  <% unless price == 0 %>
-    <% if locals[:product].currency_id == 1 %>
-      <button class="btn btn-info copy-btn" id="copy-eur" data-clipboard-text="<%= locals[:product].title %> — Цена: <%= price %> евро c НДС. Наличие на складе: <%= result_quantity %> шт.">
-        EUR
-      </button>
-    <% end %>
-    <button class="btn btn-success copy-btn" id="copy-rub" data-clipboard-text="<%= locals[:product].title %> — Цена: <%= price_rub %> рублей c НДС. Наличие на складе: <%= result_quantity %> шт.">
-      RUB
-    </button>
-    <button class="btn btn-warning copy-btn" id="copy-rub-nonds" data-clipboard-text="<%= locals[:product].title %> — Цена: <%= price_rub_nonds %> рублей без НДС. Наличие на складе: <%= result_quantity %> шт.">
-      Без НДС
-    </button>
-  <% end %>
-</div>
+<% quantity = Quantity.find_by( product_id: locals[:product].id ) %>
+<% result_quantity = 0 %>
+<% result_quantity = quantity.stock - quantity.reserved  if !quantity.nil? %>
+<% if get_prices_eur(locals[:product])[1].round(2) == get_prices_eur(locals[:product])[0].round(2) %>
+  <% price = get_prices_eur(locals[:product])[0].round(2) %>
+  <% price_rub = get_prices_rub(locals[:product])[0].round(2) %>
+  <% price_rub_nonds = price_rub / 1.18 %>
+<% else %>
+  <% price = get_prices_eur(locals[:product])[1].round(2) %>
+  <% price_rub = get_prices_rub(locals[:product])[1].round(2) %>
+  <% price_rub_nonds = price_rub / 1.18 %>
+<% end %>
+<% unless price == 0 %>
+  <table class="table table-responsive">
+    <tr>
+      <td width="23%"></td>
+      <td width="27%" align="right">
+        <% if locals[:product].currency_id == 1 %>
+          <button class="btn btn-info copy-btn" id="copy-eur" data-clipboard-text="<%= locals[:product].title %> — Цена: <%= price %> евро c НДС. Наличие на складе: <%= result_quantity %> шт.">
+            EUR
+          </button>
+        <% end %>
+      </td>
+      <td width="25%" align="right">
+        <button class="btn btn-success copy-btn" id="copy-rub" data-clipboard-text="<%= locals[:product].title %> — Цена: <%= price_rub %> рублей c НДС. Наличие на складе: <%= result_quantity %> шт.">
+          RUB
+        </button>
+      </td>
+      <td width="25%" align="right">
+        <button class="btn btn-warning copy-btn" id="copy-rub-nonds" data-clipboard-text="<%= locals[:product].title %> — Цена: <%= price_rub_nonds %> рублей без НДС. Наличие на складе: <%= result_quantity %> шт.">
+          Без НДС
+        </button>
+      </td>
+    </tr>
+  </table>
+<% end %>

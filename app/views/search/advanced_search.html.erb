@@ -33,7 +33,7 @@
       </div>
     <% end %>
 
-    <% if !@farnell_products.nil? and @farnell_products.size > 0 %>
+    <% if !@farnell_products.nil? and @farnell_products.size > 0 and !@farnell_products[0].nil? %>
       <% unless @farnell_products[0] == ["HTTPError"] %>
         <%#= @farnell_products[0] %>
         <%= render "shared/farnell_search_table", locals: { farnell_products: @farnell_products } %>

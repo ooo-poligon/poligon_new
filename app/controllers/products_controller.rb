@@ -23,15 +23,29 @@ class ProductsController < ApplicationController
     productFunctions.each do |pf|
       function_ids.push pf.function_id
     end
+
     @functions                 = []
     function_ids.each do |id|
       @functions.push Function.find(id)
     end
-    @productKind               = ProductKind.find(@product.product_kind_id)
-    propertyTypes              = @productKind.property_types
-    propertyTypeIds            = propertyTypes.each { |pt| pt.id }
-    @propertyTypesOfProduct    = propertyTypeIds.each { |id| PropertyType.find(id) }
-    @properties                = []
+
+    # опеделяем тип устройства
+    @productKind = ProductKind.find(@product.product_kind_id)
+
+    # находим все виды свойств, присущих этому типу устройств
+    propertyTypes = @productKind.property_types
+
+    @propertyTypesOfProduct   = []
+    propertyTypesIdsOfProduct = []
+    propertyTypes.each do |pt|
+      @propertyTypesOfProduct.push   PropertyType.find(pt.id)
+      propertyTypesIdsOfProduct.push PropertyType.find(pt.id).id
+    end
+    # дополняем типы свойств дочерними типами основных
+    PropertyType.all.each do |all_pt|
+      @propertyTypesOfProduct.push PropertyType.find(all_pt.id) if propertyTypesIdsOfProduct.include? all_pt.parent
+    end
+    @properties = []
     @propertyTypesOfProduct.each do |ptp|
       array = []
       array.push(ptp.id)
