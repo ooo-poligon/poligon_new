@@ -1,0 +1,46 @@
+<% @propertyTypesOfProduct.reverse.each do |property_type| %>
+  <% property_kind = locals[:property_kind] %>
+  <% if property_type.property_kind_id == property_kind.id %>
+    <% unless Property.where("property_type_id = ?", property_type.id).empty? %>
+    <div class="table-responsive">
+      <table class="table table-hover" style=" margin-bottom: 0px;">
+        <tbody>
+          <% p_count = 0 %>
+          <% @properties.each do |p| %>
+            <% if p[0] == property_type.id %>
+              <% p[1].each do |prop| %>
+                <% values = PropertyValue.where("property_id = ? and product_id = ?", prop.id, @product.id) %>
+                <% value_count = 0 %>
+                <% values.each do |value| %>
+                  <tr>
+                    <table class="table table-responsive" style=" margin-bottom: 10px;">
+                      <% if p_count < 1 %>
+                        <thead>
+                          <span style="color: blue; font-size: 14px">
+                            <%= property_type.title unless property_type.title == property_kind.title %>
+                          </span>
+                        </thead>
+                      <% end %>
+                      <tbody>
+                        <% p_count += 1 %>
+                        <% if value_count < 1 %>
+                          <td style="width: 35%;"><%= prop.title %></td>
+                        <% else %>
+                          <td style="width: 35%;"></td>
+                        <% end %>
+                        <td  align="right" style="width: 45%;"><em><%= value.cond %>:</em></td>
+                        <td style="width: 20%;"><%= value.value %> <i><%= Measure.find(value.measure_id).symbol_ru %></i></td>
+                      </tbody>
+                    </table>
+                  </tr>
+                  <% value_count += 1 %>
+                <% end %>
+              <% end %>
+            <% end %>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <% end %>
+  <% end %>
+<% end %>

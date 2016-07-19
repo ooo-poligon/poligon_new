@@ -29,6 +29,8 @@ class ProductsController < ApplicationController
       @functions.push Function.find(id)
     end
 
+    @propertyKinds = PropertyKind.all
+
     # опеделяем тип устройства
     @productKind = ProductKind.find(@product.product_kind_id)
 
