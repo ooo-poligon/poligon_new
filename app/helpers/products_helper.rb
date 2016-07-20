@@ -12,7 +12,7 @@ module ProductsHelper
     extension = ".jpg"
     #extension = ".gif" if vendor_title == "POLIGONSPB"
     product_title = product.title.gsub(' ', '_').gsub('/', '_').upcase
-    product_title = transliterize product_title if vendor_title == "POLIGONSPB"
+    product_title = transliterize product_title # if vendor_title == "POLIGONSPB"
     picture_path_exist_only "http://poligon.info/images/catalog/#{ vendor_title }/#{ prop }s/#{ product_title }_#{ prop + number + extension}"
   end
 
