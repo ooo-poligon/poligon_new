@@ -1,7 +1,7 @@
 class Product < ActiveRecord::Base
   belongs_to :category
-  belongs_to :vendor, class_name: 'Vendor', foreign_key: 'vendor'
-  belongs_to :serie, class_name: 'Serie', foreign_key: 'serie'
+  belongs_to :vendor
+  belongs_to :series_item
   belongs_to :product_kind
   belongs_to :currency
   has_many   :data_files

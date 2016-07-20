@@ -22,7 +22,7 @@ FactoryGirl.define do
     category
     product_kind
     currency
-    serie
+    series_item
     vendor
   end
 end
