@@ -29,29 +29,54 @@ class ProductsController < ApplicationController
       @functions.push Function.find(id)
     end
 
-    @propertyKinds = PropertyKind.all
-
     # опеделяем тип устройства
     @productKind = ProductKind.find(@product.product_kind_id)
 
     # находим все виды свойств, присущих этому типу устройств
-    propertyTypes = @productKind.property_types
+    @propertyTypesOfProduct_unordered = []
+    (@productKind.property_types).each do |type|
+      array = []
+      case type.title
+      when "Функционал"
+        array.push 1
+        array.push type
+        @propertyTypesOfProduct_unordered.push array
+      when "Задержки времени"
+        array.push 2
+        array.push type
+        @propertyTypesOfProduct_unordered.push array
+      when "Электротехнические параметры"
+        array.push 3
+        array.push type
+        @propertyTypesOfProduct_unordered.push array
+      when "Условия эксплуатации"
+        array.push 4
+        array.push type
+        @propertyTypesOfProduct_unordered.push array
+      when "Механическое исполнение"
+        array.push 5
+        array.push type
+        @propertyTypesOfProduct_unordered.push array
+      when "Физические параметры"
+        array.push 6
+        array.push type
+        @propertyTypesOfProduct_unordered.push array
+      when "Происхождение"
+        array.push 7
+        array.push type
+        @propertyTypesOfProduct_unordered.push array
+      end
+    end
 
-    @propertyTypesOfProduct   = []
-    propertyTypesIdsOfProduct = []
-    propertyTypes.each do |pt|
-      @propertyTypesOfProduct.push   PropertyType.find(pt.id)
-      propertyTypesIdsOfProduct.push PropertyType.find(pt.id).id
+    @propertyTypesOfProduct = @propertyTypesOfProduct_unordered.sort do |a, b|
+      a[0] <=> b[0]
     end
-    # дополняем типы свойств дочерними типами основных
-    PropertyType.all.each do |all_pt|
-      @propertyTypesOfProduct.push PropertyType.find(all_pt.id) if propertyTypesIdsOfProduct.include? all_pt.parent
-    end
+
     @properties = []
     @propertyTypesOfProduct.each do |ptp|
       array = []
-      array.push(ptp.id)
-      array.push(Property.where("property_type_id = ?", ptp.id))
+      array.push(ptp[1].id)
+      array.push(Property.where("property_type_id = ?", ptp[1].id))
       @properties.push array
     end
   end

@@ -1,10 +1,1 @@
-<ul>
-<% @propertyKinds.each do |property_kind| %>
-  <li>
-    <span style="color: darkgreen; font-weight: bold; font-size: 18px">
-      <%= property_kind.title %>
-    </span>
-    <%= render "shared/product_property_type_table", locals: { property_kind: property_kind } %>
-  </li>
-<% end %>
-</ul>
+<%= render "shared/product_property_type_table" %>
