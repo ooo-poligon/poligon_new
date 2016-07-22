@@ -26,7 +26,7 @@
                         <td style="width: 35%;"></td>
                       <% end %>
                       <td  align="right" style="width: 45%;"><%= value.cond %>:</td>
-                      <td style="width: 20%;"><%= value.value %> <%= Measure.find(value.measure_id).symbol_en %></td>
+                      <td style="width: 20%;"><%= value.value %> <%= Measure.find(value.measure_id).symbol_en unless (value.measure_id).nil? %></td>
                     </tbody>
                   </table>
                 </tr>
