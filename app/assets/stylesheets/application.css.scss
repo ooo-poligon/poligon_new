@@ -69,7 +69,7 @@ html, body {
 
   .search_form {
     width: 200px;
-    height: 30px;
+    height: 25px;
   }
 
   .exist-label{
@@ -94,7 +94,7 @@ html, body {
 @media (min-width: 800px) and (max-width: 1024px) {
   body {
     font-family: "PT Sans", sans-serif;
-    font-size: 11px;
+    font-size: 10px;
   }
 
   h1 {
@@ -152,30 +152,34 @@ html, body {
 }
 
 @media (min-width: 1025px) {
+  body {
+    font-family: "PT Sans", sans-serif;
+    font-size: 12px;
+  }
 
   h1 {
     //font-family: 'Marck Script', cursive;
-    font-size: 20px;
+    font-size: 18px;
     font-weight: bold;
     color: green;
   }
 
   h2 {
     //font-family: 'Marck Script', cursive;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: bold;
     color: red;
   }
 
   h3 {
     //font-family: 'Marck Script', cursive;
-    font-size: 16px;
+    font-size: 14px;
     color: blue;
   }
 
   .phone {
     font-weight: bold;
-    font-size: 20px;
+    font-size: 18px;
   }
 
   .search_form {
@@ -194,11 +198,11 @@ html, body {
   }
 
   .module h1 {
-      font-size: 20px;
+      font-size: 18px;
   }
 
   .module.title {
-      font-size: 18px;
+      font-size: 16px;
   }
 }
 
@@ -206,8 +210,8 @@ footer  {
   p {
     text-align: center;
     font-family: 'Anonymous Pro', sans-serif;
-    font-size: 14px;
-    font-size: 1.4vw;
+    font-size: 12px;
+    font-size: 1.3vw;
     letter-spacing: 0px;
     color: #5a8aea;
   }
@@ -246,7 +250,7 @@ mark,
 table caption {
   color: orange;
   font-weight: bold;
-  font-size: 22px;
+  font-size: 20px;
 }
 
 .prices-table {
