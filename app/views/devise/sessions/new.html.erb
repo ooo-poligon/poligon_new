@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-xs-2 col-md-2"></div>
     <div class="col-xs-8 col-md-8">
-      <h1>Служебный вход ООО "ПОЛИГОН"</h1>
+      <h1 align="center">Служебный вход ООО "ПОЛИГОН"</h1>
       <% if user_signed_in? %>
           <b><%= hello_user %></b>
           <p>Вы уже получили доступ к служебному интерфейсу.</p>
@@ -22,8 +22,16 @@
               <%= f.check_box :remember_me, style: "margin-left: 0px; margin-top: 0px;" %>
               <%= f.label :remember_me %>
             </div>
-          <% end -%>
-          <%= f.submit "Войти", class: "btn btn-lg btn-primary btn-block" %>
+          <% end %>
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-md-4"></div>
+              <div class="col-md-4">
+                <%= f.submit "Войти", class: "btn btn-lg btn-primary btn-block" %>
+              </div>
+              <div class="col-md-4"></div>
+            </div>
+          </div>
           <br>
           <%#= render "devise/shared/links" %>
         <% end %>

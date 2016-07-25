@@ -112,10 +112,17 @@ class ApplicationController < ActionController::Base
     require 'net/http'
     url = URI.parse('http://www.poligon.info/upload/course.euro')
     req = Net::HTTP::Get.new(url.to_s)
-    res = Net::HTTP.start(url.host, url.port) {|http|
-      http.request(req)
-    }
-    @courseEuro = res.body.to_s.to_f
+    begin
+      res = Net::HTTP.start(url.host, url.port) {|http|
+        http.request(req)
+      }
+      @courseEuro = res.body.to_s.to_f
+    rescue
+      lines = File.open('current_course_euro', 'r') do |f|
+        f.readline
+      end
+      @courseEuro = lines[1].to_f
+    end
   end
 
   def parse_cbr

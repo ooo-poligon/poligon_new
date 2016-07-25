@@ -12,15 +12,23 @@
             </div>
           </h3>
           <ul class="nav masthead-nav">
-            <li class="active"><a href="#">Главная</a></li>
-            <li><a href="#">Каталог</a></li>
-            <li><a href="#">Контакты</a></li>
+            <li><%= link_to 'Главная',         content_home_path %></li>
+            <li><%= link_to 'Новости',         news_items_path %></li>
+            <li><%= link_to 'Публикации',      publications_index_path %></li>
+            <li><%= link_to 'Каталог',         categories_path %></li>
+            <li class="active">
+                <%= link_to '(812) 325-42-20', company_contacts_path %></li>
           </ul>
         </div>
       </div>
 
       <div class="inner hello-cover">
-
+        <%= image_tag("poligon_1000_trans.jpg", class: "img-responsive center-block", width: '400px') %>
+        <br>
+        <h1 class="cover-heading">Электротехнические устройства и электронные компоненты</h1>
+          <p class="lead">
+            Офицальный дистрибьютер ведущих европейских электротехнических брендов в России
+          </p>
       </div>
 
       <div class="mastfoot">

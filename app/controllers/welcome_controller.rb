@@ -1,5 +1,5 @@
 class WelcomeController < ApplicationController
-  #def hello
-  #  render layout: 'welcome'
-  #end
+  def hello
+    render layout: 'welcome'
+  end
 end

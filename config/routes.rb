@@ -1,7 +1,7 @@
 # -*- encoding : utf-8 -*-
 Poligon::Application.routes.draw do
 
-  #get  'welcome/hello'
+  # root to: 'welcome#hello'
 
   resources  :news_items, only: [:index, :show]
   resources  :categories, only: [:index, :show]
@@ -24,7 +24,7 @@ Poligon::Application.routes.draw do
   get  'company/vacancies'
   get  'company/links'
 
-  root to: 'content#home'
+  root  'content#home'
   get  'content/show'
   get  'content/certificates'
   get  'content/download_pdf'

@@ -32,6 +32,15 @@
 html, body {
     height: 100%;
 }
+
+.cover-heading {
+  font-family: 'Marck Script', cursive;
+  font-size: 32px;
+  font-size: 1.6vw;
+  font-weight: bold;
+  color: green;
+}
+
 .wrapper {
   min-height: 100%;
   height: auto !important;
@@ -59,7 +68,7 @@ html, body {
   }
 
   h1 {
-    //font-family: 'Marck Script', cursive;
+    font-family: 'Marck Script', cursive;
     font-size: 18px;
     font-weight: bold;
     color: green;
@@ -119,7 +128,7 @@ html, body {
   }
 
   h1 {
-    //font-family: 'Marck Script', cursive;
+    font-family: 'Marck Script', cursive;
     font-size: 18px;
     font-weight: bold;
     color: green;
@@ -179,8 +188,8 @@ html, body {
   }
 
   h1 {
-    //font-family: 'Marck Script', cursive;
-    font-size: 18px;
+    font-family: 'Marck Script', cursive;
+    font-size: 20px;
     font-weight: bold;
     color: green;
   }
@@ -219,7 +228,7 @@ html, body {
   }
 
   .module h1 {
-      font-size: 18px;
+      font-size: 20px;
   }
 
   .module.title {
@@ -229,6 +238,86 @@ html, body {
 
 footer  {
 
+}
+
+.carousel-control {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 15%;
+  opacity: 0.5;
+  filter: alpha(opacity=50);
+  font-size: 20px;
+  color: darkblue;
+  text-align: center;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+  background-color: rgba(152, 81, 37, 0);
+}
+
+.carousel-control.left {
+  background-image: -webkit-linear-gradient(left, rgba(0, 0, 0, 0.0001) 0%, rgba(0, 0, 0, 0.0001) 100%);
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.0001) 0%, rgba(0, 0, 0, 0.0001) 100%);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#80000000', endColorstr='#00000000', GradientType=1);
+}
+
+.carousel-control.right {
+  left: auto;
+  right: 0;
+  background-image: -webkit-linear-gradient(left, rgba(0, 0, 0, 0.0001) 0%, rgba(0, 0, 0, 0.0001) 100%);
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.0001) 0%, rgba(0, 0, 0, 0.0001) 100%);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00000000', endColorstr='#80000000', GradientType=1);
+}
+
+.carousel-indicators {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  z-index: 15;
+  width: 60%;
+  margin-left: -30%;
+  padding-left: 0;
+  list-style: none;
+  text-align: center;
+}
+
+.carousel-indicators li {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  margin: 1px;
+  text-indent: -999px;
+  border: 1px solid darkblue;
+  border-radius: 10px;
+  cursor: pointer;
+  background-color: #000 \9;
+  background-color: transparent;
+}
+
+.carousel-indicators .active {
+  margin: 0;
+  width: 12px;
+  height: 12px;
+  background-color: darkblue;
+}
+
+.carousel-caption {
+  position: absolute;
+  left: 15%;
+  right: 15%;
+  bottom: 20px;
+  z-index: 10;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  color: darkblue;
+  text-align: center;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+}
+
+.carousel-caption .btn {
+  text-shadow: none;
 }
 
 .table-striped > tbody > tr:nth-of-type(odd) {
@@ -557,8 +646,9 @@ table.tele-zebra td,table.tele-zebra th{
 }
 
 .iso9001 {
-  padding: 20pt;
-  padding-top: 60pt;
+  position: absolute;
+  right: 100px;
+  bottom: 50px;
   img {
     width: 160px;
   }
