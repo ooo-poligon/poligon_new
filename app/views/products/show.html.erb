@@ -3,8 +3,6 @@
 
 <% unless @product.article.nil? %>
   <h4><b><%= @productKind.title %></b> <span style="color: red;" ><%= @product.title + " (" + @product.article + ")" %></span></h4>
-<% else %>
-  <h4><b><%= @productKind.title %></b> <span style="color: red;" ><%= @product.title %></span></h4>
 <% end %>
 <p><%= @product.description %></p>
 <p style="color: red; font-weight: bolder;">

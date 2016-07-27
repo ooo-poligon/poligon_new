@@ -1,6 +1,7 @@
 # -*- encoding : utf-8 -*-
 
 require 'net/http'
+#require 'uri'
 
 module ProductsHelper
 
@@ -19,7 +20,7 @@ module ProductsHelper
   private
 
   def validated(uri)
-    uri.gsub('<', '_').gsub('>', '_').gsub('^', '_').gsub('\"', '_').gsub('\'', '_')
+    URI.escape uri.gsub('<', '_').gsub('>', '_').gsub('^', '_').gsub('\"', '_').gsub('\'', '_').gsub(' ', '_')
   end
 
   def picture_path_exist_only(picture_path)
