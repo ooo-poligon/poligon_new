@@ -44,7 +44,7 @@
         <p style="font-weight: bold; color: red;">нет изображения</p>
       <% end %>
       <hr>
-      <% if @productPdf != nil and @productPdf.path != "c:\\poligon_datasheets\\" and @productPdf.path != "\\\\Server03\\бд_сайта\\poligon_datasheets\\datasheets\\" %>
+      <% if @productPdf != nil and @productPdf.path != "c:\\poligon_datasheets\\" and @productPdf.path != "\\\\Server03\\бд_сайта\\poligon_datasheets\\" %>
         <p>
           <% if @productPdf.path[0] != 'c' %>
             <% pdfPath = @productPdf.path.gsub("\\\\Server03\\бд_сайта\\poligon_datasheets\\datasheets", "http://www.poligon.info/PDF").gsub("\\", "/") %>
