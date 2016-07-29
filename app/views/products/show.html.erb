@@ -46,7 +46,12 @@
       <hr>
       <% if @productPdf != nil and @productPdf.path != "c:\\poligon_datasheets\\" and @productPdf.path != "\\\\Server03\\бд_сайта\\poligon_datasheets\\datasheets" %>
         <p>
-          <% pdfPath = @productPdf.path.gsub!("c:\\poligon_datasheets\\datasheets", "http://www.poligon.info/PDF")
+          <% if @productPdf.path[0] != 'c' %>
+            <% pdfPath = @productPdf.path.gsub("\\\\Server03\\бд_сайта\\poligon_datasheets\\datasheets", "http://www.poligon.info/PDF").gsub("\\", "/") %>
+          <% else %>
+            <% pdfPath = @productPdf.path.gsub!("c:\\poligon_datasheets\\datasheets", "http://www.poligon.info/PDF").gsub!("\\", "/") %>
+          <% end %>
+          <%# pdfPath = @productPdf.path.gsub!("c:\\poligon_datasheets\\datasheets", "http://www.poligon.info/PDF")
             .gsub("\\\\Server03\\бд_сайта\\poligon_datasheets\\datasheets", "http://www.poligon.info/PDF").gsub!("\\", "/") %>
           <%= image_tag("design/pdf_doc.gif", height: '20', width: '20') %>
           <%= link_to( " Описание в формате PDF", pdfPath) %>
