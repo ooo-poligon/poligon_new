@@ -53,6 +53,7 @@
           <div class="category-image">
             <% image_path = @recentCategory.image_path.gsub!(
               "c:\\poligon_images", "http://www.poligon.info/images"
+              ).gsub("\\\\Server03\\бд_сайта\\poligon_images", "http://www.poligon.info/images"
               ).gsub!("\\", "/") if !@recentCategory.image_path.nil? %>
             <%= link_to(image_tag(
               image_path,

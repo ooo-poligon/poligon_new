@@ -1,7 +1,8 @@
 <div style="float: left;">
   <% product_pdf = locals[:products_pdfs].find_by(owner_id: locals[:product].id) %>
-  <% if !product_pdf.nil? and !product_pdf.path.nil? and product_pdf.path != "c:\\poligon_datasheets\\" %>
-    <% pdf_path = product_pdf.path.gsub!("c:\\poligon_datasheets\\datasheets", "http://www.poligon.info/PDF").gsub!("\\", "/") %>
+  <% if !product_pdf.nil? and !product_pdf.path.nil? and product_pdf.path != "c:\\poligon_datasheets\\" and product_pdf.path != "\\\\Server03\\бд_сайта\\poligon_datasheets\\datasheets" %>
+    <% pdf_path = product_pdf.path.gsub!("c:\\poligon_datasheets\\datasheets", "http://www.poligon.info/PDF"
+      ).gsub("\\\\Server03\\бд_сайта\\poligon_datasheets\\datasheets", "http://www.poligon.info/PDF").gsub!("\\", "/") %>
     <button type="button" class="btn btn-danger" target="_blank" onclick="window.open(&quot;<%= pdf_path %>&quot;)" >
       PDF
     </button>
