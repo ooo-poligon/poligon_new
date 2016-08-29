@@ -34,8 +34,6 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
-<<<<<<< HEAD
-=======
 group :test do
   gem 'capybara'
   gem 'selenium-webdriver'
@@ -60,27 +58,11 @@ group :development, :test do
   gem 'guard-cucumber'
 end
 
->>>>>>> master
 group :development do
   gem 'mina'
   gem 'puma'
 end
 
-<<<<<<< HEAD
-#group :development, :test do
-#  gem 'rspec-rails'
-#  gem 'cucumber-rails', require: false
-#  gem 'factory_girl_rails'
-#end
-
-#group :test do
-#  gem 'shoulda-matchers'
-#  gem 'database_cleaner'
-#  gem 'selenium-webdriver'
-#end
-
-=======
->>>>>>> master
 group :production do
   gem 'exception_notification'
 end
