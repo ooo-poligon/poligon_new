@@ -1,0 +1,27 @@
+<% category = locals[:category] %>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-3">
+      <% unless category.image_path.nil? %>
+        <% category_image_path = category.image_path.gsub('c:\poligon_images', 'http://www.poligon.info/images') %>
+        <%= image_tag(
+            category_image_path,
+            alt: category.title,
+            class: "sub-category-image img img-responsive"
+          ) %>
+      <% end %>
+
+    </div>
+    <div class="col-md-9">
+      <p>
+        <%= category.description
+          .gsub('href="/PDF', 'href="http://www.poligon.info/PDF')
+          .gsub('src="/images', 'src="http://www.poligon.info/images')
+          .html_safe if !@recentCategory.description.nil? %>
+      </p>
+      <p>
+        <%= link_to "Подробнее", category_path(category.id), class: "btn btn-info" %>
+      </p>
+    </div>
+  </div>
+</div>
