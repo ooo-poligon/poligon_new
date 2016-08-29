@@ -20,7 +20,7 @@
             <%# productImage.path.gsub!(productImage.path[0], 'c') %>
             <% imagePath = productImage.path.gsub("\\\\Server03\\бд_сайта\\poligon_images", "http://www.poligon.info/images").gsub("\\", "/") %>
           <% else %>
-            <% imagePath = productImage.path.gsub!("c:\\poligon_images", "http://www.poligon.info/images").gsub!("\\", "/") %>
+            <% imagePath = productImage.path.gsub("c:\\poligon_images", "http://www.poligon.info/images").gsub("\\", "/") %>
           <% end %>
           <td><%= link_to image_tag(imagePath, class: "img-responsive center-block product-image-container"), imagePath, class: "fancybox" %></td>
         <% else %>
