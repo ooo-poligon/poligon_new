@@ -51,7 +51,7 @@
           <% if @productPdf.path[0] != 'c' %>
             <% pdfPath = @productPdf.path.gsub("\\\\Server03\\бд_сайта\\poligon_datasheets\\datasheets", "http://www.poligon.info/PDF").gsub("\\", "/") %>
           <% else %>
-            <% pdfPath = @productPdf.path.gsub!("c:\\poligon_datasheets\\datasheets", "http://www.poligon.info/PDF").gsub!("\\", "/") %>
+            <% pdfPath = @productPdf.path.gsub("c:\\poligon_datasheets\\datasheets", "http://www.poligon.info/PDF").gsub("\\", "/") %>
           <% end %>
           <%# pdfPath = @productPdf.path.gsub!("c:\\poligon_datasheets\\datasheets", "http://www.poligon.info/PDF")
             .gsub("\\\\Server03\\бд_сайта\\poligon_datasheets\\datasheets", "http://www.poligon.info/PDF").gsub!("\\", "/") %>
