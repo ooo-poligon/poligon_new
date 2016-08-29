@@ -12,12 +12,12 @@
     <% locals[:products].results.sort_by! {|obj| obj.title}.each do |product| %>
       <tr>
         <% productImage = DataFile.where('owner_id = ? and file_type_id = 1', product.id).first %>
-        <% if productImage != nil %>
+        <% unless productImage.nil? %>
           <% if productImage.path[0] != 'c' %>
             <%# productImage.path.gsub!(productImage.path[0], 'c') %>
             <% imagePath = productImage.path.gsub("\\\\Server03\\бд_сайта\\poligon_images", "http://www.poligon.info/images").gsub("\\", "/") %>
           <% else %>
-            <% imagePath = productImage.path.gsub!("c:\\poligon_images", "http://www.poligon.info/images").gsub!("\\", "/") %>
+            <% imagePath = productImage.path.gsub("c:\\poligon_images", "http://www.poligon.info/images").gsub("\\", "/") %>
           <% end %>
           <%# imagePath = productImage.path.gsub!("c:\\poligon_images", "http://www.poligon.info/images")
             .gsub("\\\\Server03\\бд_сайта\\poligon_images", "http://www.poligon.info/images").gsub!("\\", "/") %>
