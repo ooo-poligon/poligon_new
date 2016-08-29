@@ -44,18 +44,18 @@
           <% col_left, col_right = '12', '0' %>
         <% end %>
         <div class="col-xs-<%= col_left %> col-md-<%= col_left %>" >
-          <p>
-            <%= @recentCategory.description
+          <!--<p>
+            <%#= @recentCategory.description
               .gsub('href="/PDF', 'href="http://www.poligon.info/PDF')
               .gsub('src="/images', 'src="http://www.poligon.info/images')
               .html_safe if !@recentCategory.description.nil? %>
           </p>
-          <% @subCategories.each do |sub| %>
-            <% unless sub.description.nil? or sub.description == "" %>
-              <p><%= render "shared/sub_category_item", locals: { category: sub } %></p>
-            <% end %>
-          <% end %>
-          <%#= @recentCategory.description
+          <%# @subCategories.each do |sub| %>
+            <%# unless sub.description.nil? or sub.description == "" %>
+              <p><%#= render "shared/sub_category_item", locals: { category: sub } %></p>-->
+            <%# end %>
+          <%# end %>
+          <%= @recentCategory.description
                              .gsub('href="/PDF', 'href="http://www.poligon.info/PDF')
                              .gsub('src="/images', 'src="http://www.poligon.info/images')
                              .html_safe if !@recentCategory.description.nil? %>
