@@ -357,14 +357,11 @@ private
           farnell_products.push result_products
         end
       end
-<<<<<<< HEAD
-=======
       farnell_products
     rescue OpenURI::HTTPError => e
       response = Array.new
       response.push ["HTTPError"]
       response.push [e.to_s]
->>>>>>> master
     end
   end
 
