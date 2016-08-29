@@ -34,11 +34,39 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
+<<<<<<< HEAD
+=======
+group :test do
+  gem 'capybara'
+  gem 'selenium-webdriver'
+  gem 'headless'
+  gem 'email_spec'
+  gem 'launchy'
+end
+
+group :development, :test do
+  gem 'rspec-rails', '~> 3.4'
+  gem 'cucumber-rails', :require => false
+  gem 'database_cleaner'
+  gem 'shoulda-matchers'
+  gem 'factory_girl_rails'
+  gem 'faker', github: 'stympy/faker'
+  gem 'spring'
+  gem 'spring-commands-rspec'
+  gem "spring-commands-cucumber"
+  gem 'guard'
+  gem 'guard-spring'
+  gem 'guard-rspec'
+  gem 'guard-cucumber'
+end
+
+>>>>>>> master
 group :development do
   gem 'mina'
   gem 'puma'
 end
 
+<<<<<<< HEAD
 #group :development, :test do
 #  gem 'rspec-rails'
 #  gem 'cucumber-rails', require: false
@@ -51,6 +79,8 @@ end
 #  gem 'selenium-webdriver'
 #end
 
+=======
+>>>>>>> master
 group :production do
   gem 'exception_notification'
 end

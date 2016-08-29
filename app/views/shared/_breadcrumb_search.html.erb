@@ -1,21 +1,18 @@
-<tr>
-  <td>
-    <ol class="breadcrumb" style="padding-left: 2px; margin-bottom: 0px; background-color: #ffffff; font-size: 12px;">
-      <% if Category.find(locals[:product].category_id).published == 1 %>
-        <% parents_of(locals[:product].category_id).reverse_each do |item| %>
-          <li><%= link_to item.title, item, style: "color: orange; background-color: #ffffff;" %></li>
-        <% end %>
+<ol class="breadcrumb">
+  <li><%= link_to 'Каталог', categories_path %></li>
+  <% if Category.find(locals[:product].category_id).published == 1 %>
+    <% parents_of(locals[:product].category_id).reverse_each do |item| %>
+      <li><%= link_to item.title, item %></li>
+    <% end %>
+  <% else %>
+    <% element = Category.find(locals[:product].category_id) %>
+    <% untouchable = element.title %>
+    <% parents_of(locals[:product].category_id).reverse_each do |item| %>
+      <% if item.title == untouchable %>
+        <li style="color: grey;" ><%= item.title %></li>
       <% else %>
-        <% element = Category.find(locals[:product].category_id) %>
-        <% untouchable = element.title %>
-        <% parents_of(locals[:product].category_id).reverse_each do |item| %>
-          <% if item.title == untouchable %>
-            <li style="color: grey; background-color: #ffffff;" ><%= item.title %></li>
-          <% else %>
-            <li><%= link_to item.title, item, style: "color: orange; background-color: #ffffff;" %></li>
-          <% end %>
-        <% end %>
+        <li><%= link_to item.title, item %></li>
       <% end %>
-    </ol>
-  </td>
-</tr>
+    <% end %>
+  <% end %>
+</ol>

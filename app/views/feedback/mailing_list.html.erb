@@ -1,32 +1,38 @@
-<h1>
-  Управление рассылкой новостей.
-</h1>
-<br>
-<p>
-  Здесь Вы можете оформить подписку на рассылку новостей и обновлений нашего сайта.
-  Для этого введите Ваш e-mail в текстовое поле и нажмите кнопку "Подписаться".
-  На указанный адрес Вам придёт уведомление о подписке. Для того, чтобы подтвердить
-  Ваше намерение получать новостную рассылку с нашего сайта, перейдите по ссылке,
-  указанной в письме для завершения регистрации.
-<p>
-<br>
+<h1 align="center">Управление рассылкой новостей.</h1>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+      <br>
+      <p>
+        Здесь Вы можете оформить подписку на рассылку новостей и обновлений нашего сайта.
+        Для этого введите Ваш e-mail в текстовое поле и нажмите кнопку "Подписаться".
+        На указанный адрес Вам придёт уведомление о подписке. Для того, чтобы подтвердить
+        Ваше намерение получать новостную рассылку с нашего сайта, перейдите по ссылке,
+        указанной в письме для завершения регистрации.
+      <p>
+      <br>
 
-<form name="email_form" method="post" action="/feedback/subscribe">
-  <input name="email" type="email" placeholder="email address">
-  <input name="submit" type="submit" value="Подписаться">
-</form>
+      <form name="email_form" method="post" action="/feedback/subscribe">
+        <input name="email" type="email" placeholder="email address">
+        <input name="submit" type="submit" value="Подписаться">
+      </form>
 
-<br>
-<hr>
-<br>
-  <p>
-  Если Вы уже подписаны на рассылку и желаете отказаться от неё, введите Ваш e-mail
-  в текстовое поле и нажмите на кнопку "Отказаться". Для того, чтобы подтвердить
-  Ваше намерение отказаться от новостной рассылки с нашего сайта, перейдите по ссылке,
-  указанной в письме для завершения отмены подписки.
-  </p>
-<br>
-<form name="email_form1" method="post" action="/feedback/unsubscribe">
-  <input name="email" type="email" placeholder="email address">
-  <input name="submit" type="submit" value="Отказаться">
-</form>
+      <br>
+      <hr>
+      <br>
+        <p>
+        Если Вы уже подписаны на рассылку и желаете отказаться от неё, введите Ваш e-mail
+        в текстовое поле и нажмите на кнопку "Отказаться". Для того, чтобы подтвердить
+        Ваше намерение отказаться от новостной рассылки с нашего сайта, перейдите по ссылке,
+        указанной в письме для завершения отмены подписки.
+        </p>
+      <br>
+      <form name="email_form1" method="post" action="/feedback/unsubscribe">
+        <input name="email" type="email" placeholder="email address">
+        <input name="submit" type="submit" value="Отказаться">
+      </form>
+    </div>
+    <div class="col-md-3"></div>
+  </div>
+</div>

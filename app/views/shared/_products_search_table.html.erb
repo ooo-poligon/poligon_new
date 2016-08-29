@@ -11,16 +11,27 @@
   <tbody>
     <% locals[:products].results.sort_by! {|obj| obj.title}.each do |product| %>
       <tr>
-        <% productImage = ImageFile.where('owner_id = ? and file_type_id = 1', product.id).first %>
-        <% if productImage != nil %>
-          <% imagePath = productImage.path.gsub!("c:\\poligon_images", "http://www.poligon.info/images").gsub!("\\", "/") %>
+        <% productImage = DataFile.where('owner_id = ? and file_type_id = 1', product.id).first %>
+        <% unless productImage.nil? %>
+          <% if productImage.path[0] != 'c' %>
+            <%# productImage.path.gsub!(productImage.path[0], 'c') %>
+            <% imagePath = productImage.path.gsub("\\\\Server03\\бд_сайта\\poligon_images", "http://www.poligon.info/images").gsub("\\", "/") %>
+          <% else %>
+            <% imagePath = productImage.path.gsub("c:\\poligon_images", "http://www.poligon.info/images").gsub("\\", "/") %>
+          <% end %>
+          <%# imagePath = productImage.path.gsub!("c:\\poligon_images", "http://www.poligon.info/images")
+            .gsub("\\\\Server03\\бд_сайта\\poligon_images", "http://www.poligon.info/images").gsub!("\\", "/") %>
           <td><%= link_to image_tag(imagePath, class: "img-responsive center-block product-image-container"), imagePath, class: "fancybox" %></td>
         <% else %>
           <td></td>
         <% end %>
         <td style="vertical-align: top;">
-          <table class="table table-responsive">
-            <%= render "shared/breadcrumb_search", locals: { product: product } %>
+          <table class="table table-responsive" style="height: 100%">
+            <!--<tr>
+              <td>
+                <%= render "shared/breadcrumb_search", locals: { product: product } %>
+              </td>
+            </tr>-->
             <tr>
             <% unless product.article.nil? or product.article == '' %>
               <td>
@@ -38,6 +49,9 @@
             </tr>
             <tr>
               <td><%= product.description %></td>
+            </tr>
+            <tr>
+              <td><%= render "shared/open_pdf_button", locals: { product: product, products_pdfs: @products_pdfs } %></td>
             </tr>
           </table>
         </td>
@@ -61,7 +75,6 @@
               </tr>
               <tr>
                 <td>
-                  <%= render "shared/open_pdf_button", locals: { product: product, products_pdfs: @products_pdfs } %>
                   <%= render "shared/copy_buttons", locals: { product: product } if current_user.group_id != 1 %>
                 </td>
               </tr>

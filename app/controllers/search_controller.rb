@@ -7,6 +7,8 @@ class SearchController < ApplicationController
 
   require 'active_support/core_ext/hash/conversions'
 
+  before_filter :sanitize_q
+
   def search
     @products = Sunspot.search(Product) do
       #fulltext search
@@ -143,7 +145,7 @@ class SearchController < ApplicationController
   before_action :getCourse
 
   def advanced_search
-    @products_pdfs = ImageFile.where(file_type_id: 2)
+    @products_pdfs = DataFile.where(file_type_id: 2)
 
     @products = Sunspot.search(Product) do
       if params['exist_only']
@@ -311,42 +313,59 @@ class SearchController < ApplicationController
 
 private
 
+  def sanitize_q
+    params[:q] = "" if params[:q].nil?
+  end
+
   def number_or_nil string
     Integer(string || '')
   rescue ArgumentError
     nil
   end
 
-  def farnell_search query
-    farnell_products = []
-    @query = query
-    @results_number =  10
-    farnell_params = (params['farnell_page'].to_i - 1)
-    @results_offset = (farnell_params * @results_number)
-    farnell_api_key = FarnellKey.find(rand(1..2)).api_key
-    farnell_request_uri = "https://api.element14.com/catalog/products" +
-                          "?callInfo.responseDataFormat=xml" +
-                          "&callInfo.omitXmlSchema=false" +
-                          "&term=any%3A" + @query  +
-                          "&storeInfo.id=ru.farnell.com" +
-                          "&callInfo.apiKey=" + farnell_api_key +
-                          "&resultsSettings.offset=" + @results_offset.to_s +
-                          "&resultsSettings.numberOfResults=" + @results_number.to_s +
-                          "&resultsSettings.responseGroup=large"
-    if farnell_request_uri.ascii_only?
-      @summary = number_or_nil Nokogiri::XML(
-                 open(farnell_request_uri)).xpath("//ns1:keywordSearchReturn//ns1:numberOfResults").text
-      result = Nokogiri::XML(open(farnell_request_uri))
-      result_products = Hash.from_xml(result.to_s)["keywordSearchReturn"]["products"]
-      @rp = open(farnell_request_uri).read
-      if result_products.is_a? Array
-        result_products.each do |prod|
-          farnell_products.push prod
-        end
-      else
-        farnell_products.push result_products
-      end
-    end
-    farnell_products
+  def forbidden? request
+    open(farnell_request_uri)
   end
+
+  def farnell_search query
+    begin
+      farnell_products = []
+      @query = query
+      @results_number =  10
+      farnell_params = (params['farnell_page'].to_i - 1)
+      @results_offset = (farnell_params * @results_number)
+      farnell_request_uri = "https://api.element14.com/catalog/products" +
+                            "?callInfo.responseDataFormat=xml" +
+                            "&callInfo.omitXmlSchema=false" +
+                            "&term=any%3A" + @query  +
+                            "&storeInfo.id=ru.farnell.com" +
+                            "&callInfo.apiKey=" + ENV["FARNELL_KEY#{rand(1..2)}"] +
+                            "&resultsSettings.offset=" + @results_offset.to_s +
+                            "&resultsSettings.numberOfResults=" + @results_number.to_s +
+                            "&resultsSettings.responseGroup=large"
+      if farnell_request_uri.ascii_only?
+        @summary = number_or_nil Nokogiri::XML(
+                   open(farnell_request_uri)).xpath("//ns1:keywordSearchReturn//ns1:numberOfResults").text
+        result = Nokogiri::XML(open(farnell_request_uri))
+        result_products = Hash.from_xml(result.to_s)["keywordSearchReturn"]["products"]
+        @rp = open(farnell_request_uri).read
+        if result_products.is_a? Array
+          result_products.each do |prod|
+            farnell_products.push prod
+          end
+        else
+          farnell_products.push result_products
+        end
+      end
+<<<<<<< HEAD
+=======
+      farnell_products
+    rescue OpenURI::HTTPError => e
+      response = Array.new
+      response.push ["HTTPError"]
+      response.push [e.to_s]
+>>>>>>> master
+    end
+  end
+
 end

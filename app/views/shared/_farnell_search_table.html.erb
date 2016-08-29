@@ -48,10 +48,16 @@
                     data-toggle="collapse" data-target=<%= "#" + count.to_s %>>
                     Отображение характеристик
                   </button>
-                  <% unless product["datasheets"].is_a? Array %>
-                    <button type="button" class="btn btn-danger" target="_blank" onclick="window.open(&quot;<%= product["datasheets"]["url"] %>&quot;)" >
-                      PDF
-                    </button>
+                  <% unless (product["datasheets"].is_a? Array) %>
+                    <% unless (product["datasheets"].nil?) %>
+                      <button type="button" class="btn btn-danger" target="_blank" onclick="window.open(&quot;<%= product["datasheets"]["url"] %>&quot;)" >
+                        PDF
+                      </button>
+                    <% else %>
+                      <button type="button" class="btn disabled" >
+                        PDF
+                      </button>
+                    <% end %>
                   <% else %>
                     <button type="button" class="btn btn-danger" target="_blank" onclick="window.open(&quot;<%= product["datasheets"][0]["url"] %>&quot;)" >
                       PDF

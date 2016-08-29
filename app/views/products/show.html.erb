@@ -1,35 +1,60 @@
 <p id="notice"><%= notice %></p>
-<ol class="breadcrumb">
-  <li><%= link_to 'Каталог', categories_path %></li>
-  <% @parents_array.reverse_each do |item| %>
-      <li><%= link_to item.title, item %></li>
-  <% end %>
-</ol>
-<h2><%= @product.title %></h2>
+<%= render "shared/breadcrumb_search", locals: { product: @product } %>
+
 <% unless @product.article.nil? %>
-  <h5><%= "Артикул: " + @product.article %></h5>
+  <h4><b><%= @productKind.title %></b> <span style="color: red;" ><%= @product.title + " (" + @product.article + ")" %></span></h4>
+<% else %>
+  <h4><b><%= @productKind.title %></b> <span style="color: red;" ><%= @product.title %></span></h4>
 <% end %>
-<h4>Тип устройств: <%= @productKind.title %></h4>
 <p><%= @product.description %></p>
 <p style="color: red; font-weight: bolder;">
   <%= @product.anons if !@product.anons.nil? %>
 </p>
-<hr>
+<br>
+<ul class="nav nav-tabs">
+  <% if user_signed_in? %>
+    <li class="pull-right"><a href="#product_data_tab" data-toggle="tab">Цены и наличие</a></li>
+    <li class="pull-right"><a href="#dimensions_tab" data-toggle="tab">Размеры</a></li>
+    <li class="pull-right"><a href="#plugs_tab" data-toggle="tab">Схемы подключения</a></li>
+    <li class="pull-right"><a href="#functions_tab" data-toggle="tab">Функции</a></li>
+    <li class="pull-right active"><a href="#properties_tab" data-toggle="tab">Технические характеристики</a></li>
+  <% else %>
+    <li class="pull-right"><a href="#dimensions_tab" data-toggle="tab">Размеры</a></li>
+    <li class="pull-right"><a href="#plugs_tab" data-toggle="tab">Схемы подключения</a></li>
+    <li class="pull-right"><a href="#functions_tab" data-toggle="tab">Функции</a></li>
+    <li class="pull-right active"><a href="#properties_tab" data-toggle="tab">Технические характеристики</a></li>
+  <% end %>
+
+</ul>
+<br>
 <div class="container-fluid">
   <div class="row">
-    <div class="col-xs-4">
+    <div class="col-xs-3">
       <% if @productImage != nil %>
         <p>
-          <% imagePath = @productImage.path.gsub!("c:\\poligon_images", "http://www.poligon.info/images").gsub!("\\", "/") %>
-          <%= link_to(image_tag(imagePath, class: "img-responsive center-block", :width => '200px'), imagePath, class: "fancybox") %>
+          <% if @productImage.path[0] != 'c' %>
+            <%# productImage.path.gsub!(productImage.path[0], 'c') %>
+            <% imagePath = @productImage.path.gsub("\\\\Server03\\бд_сайта\\poligon_images", "http://www.poligon.info/images").gsub("\\", "/") %>
+          <% else %>
+            <% imagePath = @productImage.path.gsub!("c:\\poligon_images", "http://www.poligon.info/images").gsub!("\\", "/") %>
+          <% end %>
+          <%# imagePath = @productImage.path.gsub!("c:\\poligon_images", "http://www.poligon.info/images")
+            .gsub("\\\\Server03\\бд_сайта\\poligon_images", "http://www.poligon.info/images").gsub!("\\", "/") %>
+          <%= link_to(image_tag(imagePath, class: "img-responsive center-block", :width => '220px'), imagePath, class: "fancybox") %>
         </p>
       <% else %>
         <p style="font-weight: bold; color: red;">нет изображения</p>
       <% end %>
       <hr>
-      <% if @productPdf != nil and @productPdf.path != "c:\\poligon_datasheets\\" %>
+      <% if @productPdf != nil and @productPdf.path != "c:\\poligon_datasheets\\" and @productPdf.path != "\\\\Server03\\бд_сайта\\poligon_datasheets\\" %>
         <p>
-          <% pdfPath = @productPdf.path.gsub!("c:\\poligon_datasheets\\datasheets", "http://www.poligon.info/PDF").gsub!("\\", "/") %>
+          <% if @productPdf.path[0] != 'c' %>
+            <% pdfPath = @productPdf.path.gsub("\\\\Server03\\бд_сайта\\poligon_datasheets\\datasheets", "http://www.poligon.info/PDF").gsub("\\", "/") %>
+          <% else %>
+            <% pdfPath = @productPdf.path.gsub!("c:\\poligon_datasheets\\datasheets", "http://www.poligon.info/PDF").gsub!("\\", "/") %>
+          <% end %>
+          <%# pdfPath = @productPdf.path.gsub!("c:\\poligon_datasheets\\datasheets", "http://www.poligon.info/PDF")
+            .gsub("\\\\Server03\\бд_сайта\\poligon_datasheets\\datasheets", "http://www.poligon.info/PDF").gsub!("\\", "/") %>
           <%= image_tag("design/pdf_doc.gif", height: '20', width: '20') %>
           <%= link_to( " Описание в формате PDF", pdfPath) %>
         </p>
@@ -46,24 +71,13 @@
         <% end %>
       </p>
     </div>
-    <div class="col-xs-8">
-      <ul class="nav nav-tabs">
-        <% if user_signed_in? %>
-          <li class="active"><a href="#product_data_tab" data-toggle="tab">Цены и наличие</a></li>
-          <li><a href="#properties_tab" data-toggle="tab">Технические характеристики</a></li>
-        <% else %>
-          <li class="active"><a href="#properties_tab" data-toggle="tab">Технические характеристики</a></li>
-        <% end %>
-        <li><a href="#functions_tab" data-toggle="tab">Функции</a></li>
-        <li><a href="#plugs_tab" data-toggle="tab">Схемы подключения</a></li>
-        <li><a href="#dimensions_tab" data-toggle="tab">Размеры</a></li>
-      </ul>
+    <div class="col-xs-9">
       <div class="tab-content">
         <% if user_signed_in? %>
-          <div class="tab-pane fade in active" id="product_data_tab">
+          <div class="tab-pane fade" id="product_data_tab">
             <%= render "shared/product_data_tab" %>
           </div>
-          <div class="tab-pane fade" id="properties_tab">
+          <div class="tab-pane fade in active" id="properties_tab">
             <%= render "shared/product_properties_tab" %>
           </div>
         <% else %>
@@ -75,10 +89,10 @@
           <%= render "shared/product_functions_tab" %>
         </div>
         <div class="tab-pane fade" id="plugs_tab">
-          <%= render "shared/product_plugs_tab" %>
+          <%= render "shared/product_plugs_or_dimensions_tab", locals: { product: @product, pic_type: 'plug', count: 3 } %>
         </div>
         <div class="tab-pane fade" id="dimensions_tab">
-          <%= render "shared/product_dimensions_tab" %>
+          <%= render "shared/product_plugs_or_dimensions_tab", locals: { product: @product, pic_type: 'dim', count: nil } %>
         </div>
       </div>
     </div>

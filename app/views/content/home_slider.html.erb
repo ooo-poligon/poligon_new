@@ -1,0 +1,49 @@
+<br><br>
+<div id="myCarousel" class="carousel slide" data-ride="carousel">
+  <!-- Indicators -->
+  <ol class="carousel-indicators">
+    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+    <li data-target="#myCarousel" data-slide-to="1"></li>
+    <li data-target="#myCarousel" data-slide-to="2"></li>
+    <li data-target="#myCarousel" data-slide-to="3"></li>
+  </ol>
+
+  <!-- Wrapper for slides -->
+  <div class="carousel-inner" role="listbox">
+    <div class="item active">
+      <%= image_tag "slides/tele_banner.jpg", alt: "Tele", class: "img-responsive" %>
+    </div>
+
+    <div class="item">
+      <%= image_tag "slides/citel_banner.jpg", alt: "Citel", class: "img-responsive" %>
+    </div>
+
+    <div class="item">
+      <%= image_tag "slides/benedict_banner.jpg", alt: "Benedict", class: "img-responsive" %>
+    </div>
+
+    <div class="item">
+      <%= image_tag "slides/graesslin_banner.jpg", alt: "Graesslin", class: "img-responsive" %>
+    </div>
+  </div>
+
+  <!-- Left and right controls -->
+  <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+    <span class="sr-only">Назад</span>
+  </a>
+  <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+    <span class="sr-only">Вперёд</span>
+  </a>
+</div>
+
+<% @content.each do |c| %>
+    <!--<h1 align="center"><%= c.title %></h1>-->
+    <div><%= c.content.html_safe %></div>
+    <div class="iso9001">
+      <p>
+        <%= link_to(image_tag("ISO9001.gif", class: "img-responsive center-block", width: '150px'), 'http://poligon.info/PDF/cert/POLIGON_ISO9001.pdf') %>
+      </p>
+    </div>
+<% end %>

@@ -1,16 +1,15 @@
 # -*- encoding : utf-8 -*-
 Poligon::Application.routes.draw do
-  # get  'welcome/hello'
 
+  # root to: 'welcome#hello'
 
-  resources  :news_items
-  resources  :categories
-  resources  :articles
-  resources  :videos
-  resources  :reviews
-  resources  :additions
-  resources  :products
-  resources  :content
+  resources  :news_items, only: [:index, :show]
+  resources  :categories, only: [:index, :show]
+  resources  :articles,   only: [:index, :show]
+  resources  :videos,     only: [:index, :show]
+  resources  :reviews,    only: [:index, :show]
+  resources  :additions,  only: [:index, :show]
+  resources  :products,   only: [        :show]
 
   get  'certificates/download'
   get  'certificates/index'
@@ -25,7 +24,8 @@ Poligon::Application.routes.draw do
   get  'company/vacancies'
   get  'company/links'
 
-  root :to => 'content#home'
+  root  'content#home'
+  get  'content/show'
   get  'content/certificates'
   get  'content/download_pdf'
   get  'content/farnell'
@@ -51,17 +51,20 @@ Poligon::Application.routes.draw do
 
   devise_for :users
 
+  get 'categories/142'  => 'categories/tele',         :as => 'categories/tele'
+  get 'categories/5933' => 'categories/comat_releco', :as => 'categories/comat_releco'
+  get 'categories/5583'  => 'categories/emko',        :as => 'categories/emko'
+  get 'categories/5094' => 'categories/benedict',     :as => 'categories/benedict'
+  get 'categories/74'   => 'categories/citel',        :as => 'categories/citel'
+  get 'categories/5414' => 'categories/graesslin',    :as => 'categories/graesslin'
+  get 'categories/5535' => 'categories/sonder',       :as => 'categories/sonder'
+  get 'categories/5818' => 'categories/relequick',    :as => 'categories/relequick'
+  get 'categories/5512' => 'categories/cbi',          :as => 'categories/cbi'
+  get 'categories/6321' => 'categories/poligonspb',   :as => 'categories/poligonspb'
+  get 'categories/4847' => 'categories/huber_suhner', :as => 'categories/huber_suhner'
+  get 'categories/6441' => 'categories/tehnoplast',   :as => 'categories/tehnoplast'
 
 
-  # The priority is based upon order of creation:
-  # first created -> highest priority.
-
-  # Sample of regular route:
-  #   match 'products/:id' => 'catalog#view'
-  # Keep in mind you can assign values other than :controller and :action
-
-  # Sample of named route:
-  #   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase
   # This route can be invoked with purchase_url(:id => product.id)
 
   # Sample resource route (maps HTTP verbs to controller actions automatically):
@@ -109,4 +112,7 @@ Poligon::Application.routes.draw do
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via get  requests.
   # match ':controller(/:action(/:id))(.:format)'
+  match "/404", :to => "errors#not_found", :via => :all
+  match "/422", :to => "errors#not_processable", :via => :all
+  match "/500", :to => "errors#internal_server_error", :via => :all
 end

@@ -1,0 +1,17 @@
+<!-- propose we would get maximum 3 schemes per product -->
+<% for i in (1..3) do %>
+  <% count = locals[:count] %>
+  <% count = i unless locals[:count] == nil %>
+  <% imagePath = prop_image_path_for(locals[:product], locals[:pic_type], count) %>
+  <% if imagePath %>
+    <% begin %>
+      <p>
+        <%= link_to(image_tag(imagePath, class: "img-responsive center-block", style: "max-width: 400px;", height: '200px'), imagePath, class: "fancybox") %>
+      </p>
+      <% break if count == nil %>
+    <% end %>
+  <% else %>
+    <% break %>
+  <% end %>
+  <br>
+<% end %>

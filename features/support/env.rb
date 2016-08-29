@@ -5,6 +5,46 @@
 # files.
 
 require 'cucumber/rails'
+<<<<<<< HEAD
+=======
+# Make sure this require is after you require cucumber/rails/world.
+require 'email_spec' # add this line if you use spork
+require 'email_spec/cucumber'
+
+require 'capybara'
+require 'capybara/cucumber'
+require 'capybara/rails'
+require 'capybara/dsl'
+require 'capybara/session'
+require 'selenium/webdriver'
+require "factory_girl/step_definitions"
+
+
+Capybara.register_driver :chrome do |app|
+  # optional
+  client = Selenium::WebDriver::Remote::Http::Default.new
+  # optional
+  client.timeout = 120
+  Capybara::Selenium::Driver.new(app, :browser => :chrome, :http_client => client)
+end
+
+Capybara.javascript_driver = :chrome
+
+Before do
+  I18n.locale = :ru
+end
+
+#Include headless
+require_relative 'headless'
+
+
+After do |scenario|
+    if scenario.failed?
+        puts scenario.name
+        puts scenario.exception.message
+    end
+end
+>>>>>>> master
 
 # Capybara defaults to CSS3 selectors rather than XPath.
 # If you'd prefer to use XPath, just uncomment this line and adjust any
@@ -55,4 +95,3 @@ end
 # The :transaction strategy is faster, but might give you threading problems.
 # See https://github.com/cucumber/cucumber-rails/blob/master/features/choose_javascript_database_strategy.feature
 Cucumber::Rails::Database.javascript_strategy = :truncation
-

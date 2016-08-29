@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/html">
-<html lang="ru">
+<html xmlns="http://www.w3.org/1999/html" lang="ru" code="<%= response.try(:code) if defined?(response) %>">
   <head>
     <title>Компания "ПОЛИГОН"</title>
     <link href='https://fonts.googleapis.com/css?family=PT+Sans&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Marck+Script&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Ubuntu+Condensed&subset=latin,cyrillic-ext' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Anonymous+Pro:700,400&subset=cyrillic,latin' rel='stylesheet' type='text/css'>
     <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
 
     <%= csrf_meta_tags %>
@@ -35,36 +35,41 @@
       <%= render "shared/common_navbar" %>
     </div>
 
-    <div class="container-fluid">
+    <div class="wrapper">
+      <div class="container-fluid" style="height: 100%;">
 
-      <div class="row row-offcanvas row-offcanvas-right">
+        <div class="row row-offcanvas row-offcanvas-right">
 
-        <div class="col-xs-2 col-md-2 sidebar-offcanvas" id="sidebar1" role="navigation"><br><br><br>
-          <%= render "shared/sidebar_vendors_left" %>
-        </div><!--/span-->
+          <div class="col-xs-2 col-md-2 sidebar-offcanvas" id="sidebar1" role="navigation"><br><br><br>
+            <%= render "shared/sidebar_vendors_left" %>
+          </div><!--/span-->
 
-        <div class="col-xs-8 col-md-8 main-content" >
-          <p class="pull-right visible-xs">
-            <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Боковое меню</button>
-          </p>
-          <br><br>
-          <% flash.each do |key, value| %>
-            <br><div class="alert alert-<%= key %>"><%= value %></div>
-          <% end %>
-          <%= yield %>
-        </div><!--/span-->
+          <div class="col-xs-8 col-md-8 main-content" >
+            <p class="pull-right visible-xs">
+              <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Боковое меню</button>
+            </p>
+            <br><br>
+            <% flash.each do |key, value| %>
+              <br><div class="alert alert-<%= key %>"><%= value %></div>
+            <% end %>
+            <br>
+            <%= yield %>
+          </div><!--/span-->
 
-        <div class="col-xs-2 col-md-2 sidebar-offcanvas" id="sidebar2" role="navigation"><br><br><br>
-          <%= render "shared/sidebar_vendors_right" %>
-        </div><!--/span-->
+          <div class="col-xs-2 col-md-2 sidebar-offcanvas" id="sidebar2" role="navigation"><br><br><br>
+            <%= render "shared/sidebar_vendors_right" %>
+          </div><!--/span-->
 
-      </div><!--/row-->
+        </div><!--/row-->
+      </div><!--/.container-->
+      <div class="push"></div>
+    </div>
 
-      <footer>
-        <p>&copy; ООО "ПОЛИГОН" 2016</p>
-      </footer>
+    <div class="footer">
 
-    </div><!--/.container-->
+      <p>&copy; ООО "ПОЛИГОН" 2016</p>
+
+    </div>
 
     <!-- JavaScript placed at the end of the document so the pages load faster -->
     <%= javascript_include_tag "application", "data-turbolinks-track" => true %>

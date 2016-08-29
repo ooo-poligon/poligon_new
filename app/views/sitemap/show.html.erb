@@ -1,7 +1,7 @@
 <br>
 
 <header>
-  <h1>Карта сайта</h1>
+  <h1 align="center">Карта сайта</h1>
 </header>
 
 
@@ -54,7 +54,7 @@
 <h3>Категории</h3>
 <% @categories.each do |category| %>
   <a href="<%= category_url(category) %>">
-    <h4><%= category.title %></h4>
+    <%= category.title %><br>
   </a>
 <% end %>
 <hr>
@@ -62,6 +62,6 @@
 <h3>Устройства</h3>
 <% @products.each do |product| %>
   <a href="<%= product_url(product) %>">
-    <h5><%= product.title %></h5>
+    <%= product.title %><br>
   </a>
 <% end %>

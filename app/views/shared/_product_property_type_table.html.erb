@@ -1,0 +1,41 @@
+<% @propertyTypesOfProduct.each do |property_type| %>
+  <div class="table-responsive">
+    <table class="table table-hover" style=" margin-bottom: 0px;">
+      <tbody>
+        <% p_count = 0 %>
+        <% @properties.each do |p| %>
+          <% if p[0] == property_type[1].id %>
+            <% p[1].each do |prop| %>
+              <% values = PropertyValue.where("property_id = ? and product_id = ?", prop.id, @product.id) %>
+              <% value_count = 0 %>
+              <% values.each do |value| %>
+                <tr>
+                  <table class="table table-responsive table-striped" style="margin-top: 0px; margin-bottom: 5px;">
+                    <% if p_count < 1 %>
+                      <thead>
+                        <span style="color: blue; font-size: 14px">
+                          <%#= property_type[1].title %>
+                        </span>
+                      </thead>
+                    <% end %>
+                    <tbody>
+                      <% p_count += 1 %>
+                      <% if value_count < 1 %>
+                        <td style="width: 35%; padding: 4px;"><b><%= prop.title %></b></td>
+                      <% else %>
+                        <td style="width: 35%; padding: 4px;"></td>
+                      <% end %>
+                      <td  align="right" style="width: 35%; padding: 4px;"><%= value.cond %>:</td>
+                      <td style="width: 30%; padding: 4px;"><%= value.value %> <%= Measure.find(value.measure_id).symbol_en unless (value.measure_id).nil? %></td>
+                    </tbody>
+                  </table>
+                </tr>
+                <% value_count += 1 %>
+              <% end %>
+            <% end %>
+          <% end %>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+<% end %>

@@ -14,36 +14,46 @@
     <strong>Поиск по складу не дал результатов.</strong> Попробуйте переформулировать запрос.
   </div>
 <% end %>
+<% unless current_user.nil? %>
+  <!-- If current user isn't a dealer, we'll show him search results by analogs and farnell -->
+  <% if current_user.group_id != 1 %>
 
-<!-- If current user isn't a dealer, we'll show him search results by analogs and farnell -->
-<% if current_user.group_id != 1 %>
-
-  <% if !@analogs.results.nil? and @analogs.results.size > 0 %>
-    <%= render "shared/analogs_search_table", locals: { analogs: @analogs } %>
-    <div class="flickr_pagination">
-      <div class="page_info">
-        <%= page_entries_info @analogs.results %>
+    <% if !@analogs.results.nil? and @analogs.results.size > 0 %>
+      <%= render "shared/analogs_search_table", locals: { analogs: @analogs } %>
+      <div class="flickr_pagination">
+        <div class="page_info">
+          <%= page_entries_info @analogs.results %>
+        </div>
+        <%= will_paginate @analogs.results, :param_name => 'analogs_page', :container => false %>
       </div>
-      <%= will_paginate @analogs.results, :param_name => 'analogs_page', :container => false %>
-    </div>
-  <% else %>
-    <br>
-    <div class="alert alert-info" role="alert">
-      <strong>Поиск по аналогам не дал результатов.</strong> Попробуйте переформулировать запрос.
-    </div>
-  <% end %>
+    <% else %>
+      <br>
+      <div class="alert alert-info" role="alert">
+        <strong>Поиск по аналогам не дал результатов.</strong> Попробуйте переформулировать запрос.
+      </div>
+    <% end %>
 
-  <% if !@farnell_products.nil? and @farnell_products.size > 0 %>
-    <%= render "shared/farnell_search_table", locals: { farnell_products: @farnell_products } %>
-  <% else %>
-    <br>
-    <div class="alert alert-warning" role="alert">
-      <strong>Поиск по складам FARNELL не дал результатов.</strong> Попробуйте переформулировать запрос.
-    </div>
-  <% end %>
+    <% if !@farnell_products.nil? and @farnell_products.size > 0 and !@farnell_products[0].nil? %>
+      <% unless @farnell_products[0] == ["HTTPError"] %>
+        <%#= @farnell_products[0] %>
+        <%= render "shared/farnell_search_table", locals: { farnell_products: @farnell_products } %>
+      <% else %>
+        <br>
+        <div class="alert alert-error" role="alert">
+          <strong>"Поиск по FARNELL пока недоступен.</strong> Ответ сервера: <%= @farnell_products[1][0] %>
+        </div>
+      <% end %>
+    <%else %>
+      <br>
+      <div class="alert alert-warning" role="alert">
+        <strong>Поиск по складам FARNELL не дал результатов.</strong> Попробуйте переформулировать запрос.
+      </div>
+    <% end %>
 
+  <% end %>
+<% else %>
+  <p>Попробуйте перелогиниться и повторить поиск</p>
 <% end %>
-
 <hr>
 
 <%= render "shared/common_search" %>
