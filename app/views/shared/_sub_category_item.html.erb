@@ -2,17 +2,18 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-3">
-      <% unless category.image_path.nil? %>
-        <% category_image_path = category.image_path.gsub(
-        '\\\\Server03\\бд_сайта\\poligon_images', 'http://www.poligon.info/images')
-        .gsub("\\", "/") %>
-        <%= image_tag(
-            category_image_path,
-            alt: category.title,
-            class: "sub-category-image img img-responsive"
-          ) %>
-      <% end %>
-
+      <div class="category-picture-container">
+        <% unless category.image_path.nil? %>
+          <% category_image_path = category.image_path.gsub(
+          '\\\\Server03\\бд_сайта\\poligon_images', 'http://www.poligon.info/images')
+          .gsub("\\", "/") %>
+          <%= image_tag(
+              category_image_path,
+              alt: category.title,
+              class: "img img-responsive"
+            ) %>
+        <% end %>
+      </div>
     </div>
     <div class="col-md-9">
       <p>
