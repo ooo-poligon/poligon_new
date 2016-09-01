@@ -61,7 +61,7 @@
                              .html_safe if !@recentCategory.description.nil? %>
         </div>
         <div class="col-xs-<%= col_right %> col-md-<%= col_right %>" >
-          <div class="category-image">
+          <div class="img img-responsive category-image">
             <% image_path = @recentCategory.image_path.gsub("\\\\Server03\\бд_сайта\\poligon_images", "http://www.poligon.info/images"
               ).gsub("\\", "/") if !@recentCategory.image_path.nil? %>
             <%= link_to(image_tag(
