@@ -265,15 +265,16 @@ ActiveRecord::Schema.define(version: 20160718144529) do
 
   create_table "properties", force: :cascade do |t|
     t.string  "title",            limit: 255
+    t.string  "option",           limit: 255
+    t.string  "symbol",           limit: 255
     t.integer "value_id",         limit: 4
     t.integer "property_type_id", limit: 4,   null: false
     t.integer "product_id",       limit: 4
-    t.string  "value",            limit: 255
   end
 
-  add_index "properties", ["product_id"], name: "FK_9igpep0fc0ccn6ufp49qb0d3l", using: :btree
-  add_index "properties", ["property_type_id"], name: "FK_96042v65bcon50fh4tjf3alxk", using: :btree
-  add_index "properties", ["value_id"], name: "FK_properties_property_values", using: :btree
+  add_index "properties", ["product_id"],       name: "FK_9igpep0fc0ccn6ufp49qb0d3l",  using: :btree
+  add_index "properties", ["property_type_id"], name: "FK_96042v65bcon50fh4tjf3alxk",  using: :btree
+  add_index "properties", ["value_id"],         name: "FK_properties_property_values", using: :btree
 
   create_table "property_kinds", force: :cascade do |t|
     t.string   "title",      limit: 255
@@ -396,36 +397,69 @@ ActiveRecord::Schema.define(version: 20160718144529) do
     t.string   "image_path", limit: 255
   end
 
-  add_foreign_key "certificates",                 "vendors", name: "FK_sertificates_vendors"
-  add_foreign_key "files",                        "file_types", name: "FK_63xcug2xhs8fhmde2qrls55rn"
-  add_foreign_key "files",                        "products",       column: "owner_id",             name: "FK_5ok1awgnfwcf01537ylbycyq1"
-  add_foreign_key "functions",                    "product_kinds",      name: "FK_ddj46cl3uvc0b1t7x355xsp2f"
-  add_foreign_key "functions",                    "vendors",           name: "FK_paqylsqoi8kvkqxanutgqpg9a"
-  add_foreign_key "kinds_types",                  "product_kinds",     name: "FK__product_kinds", on_update: :cascade, on_delete: :cascade
-  add_foreign_key "kinds_types",                  "property_types",    name: "FK__property_types", on_update: :cascade, on_delete: :cascade
-  add_foreign_key "posts",                        "post_types"
-  add_foreign_key "posts",                        "tickets"
-  add_foreign_key "posts",                        "users"
-  add_foreign_key "product_kinds_property_types", "product_kinds",     name: "product_kinds_property_types_ibfk_1", on_update: :cascade, on_delete: :cascade
-  add_foreign_key "product_kinds_property_types", "property_types",    name: "product_kinds_property_types_ibfk_2", on_update: :cascade, on_delete: :cascade
-  add_foreign_key "products",                     "categories",                            name: "FK_products_categories"
-  add_foreign_key "products",                     "currencies",                            name: "FK_products_currencies"
-  add_foreign_key "products",                     "product_kinds",                         name: "FK_ga42cu8ch92tuig4t8oo06hn8"
-  add_foreign_key "products",                     "series_items", column: "series_item_id",      name: "FK_products_series_items_2"
-  add_foreign_key "products",                     "vendors",                               name: "FK_products_vendors"
-  add_foreign_key "products_functions",           "functions",                   name: "FK_products_functions_functions", on_update: :cascade, on_delete: :cascade
-  add_foreign_key "products_functions",           "products",                    name: "FK_products_functions_products", on_update: :cascade, on_delete: :cascade
-  add_foreign_key "properties",                   "products",                            name: "FK_9igpep0fc0ccn6ufp49qb0d3l"
-  add_foreign_key "properties",                   "property_types",                      name: "FK_96042v65bcon50fh4tjf3alxk"
-  add_foreign_key "properties",                   "property_values", column: "value_id", name: "FK_properties_property_values"
-  add_foreign_key "property_types",               "property_kinds"
-  add_foreign_key "property_values",              "measures",                       name: "FK_property_values_measures"
-  add_foreign_key "property_values",              "products",                       name: "FK__products"
-  add_foreign_key "property_values",              "properties",                     name: "FK_property_values_properties"
-  add_foreign_key "quantity",                     "products",                              name: "FK_fmxkkqbgn373sbv3ghbdinqkx"
-  add_foreign_key "series_items",                 "vendors",                                 name: "FK_ed8kdle1myybdci4nfqw6wftk"
-  add_foreign_key "tickets",                      "users"
-  add_foreign_key "users",                        "companies"
-  add_foreign_key "users",                        "groups"
-  add_foreign_key "vendors",                      "currencies",                            name: "FK_nsbv37hiaemev6th5cuqgs6aa"
+  add_foreign_key "certificates", "vendors",        name: "FK_sertificates_vendors"
+
+  add_foreign_key "files", "file_types",            name: "FK_63xcug2xhs8fhmde2qrls55rn"
+  add_foreign_key "files", "products",              name: "FK_5ok1awgnfwcf01537ylbycyq1",
+                                                    column: "owner_id"
+
+  add_foreign_key "functions", "product_kinds",     name: "FK_ddj46cl3uvc0b1t7x355xsp2f"
+  add_foreign_key "functions", "vendors",           name: "FK_paqylsqoi8kvkqxanutgqpg9a"
+
+  add_foreign_key "kinds_types", "product_kinds",   name: "FK__product_kinds",
+                                                    on_update: :cascade,
+                                                    on_delete: :cascade
+  add_foreign_key "kinds_types", "property_types",  name: "FK__property_types",
+                                                    on_update: :cascade,
+                                                    on_delete: :cascade
+
+  add_foreign_key "posts", "post_types"
+  add_foreign_key "posts", "tickets"
+  add_foreign_key "posts",  "users"
+
+  add_foreign_key "product_kinds_property_types", "product_kinds",
+                                                    name: "product_kinds_property_types_ibfk_1",
+                                                    on_update: :cascade,
+                                                    on_delete: :cascade
+  add_foreign_key "product_kinds_property_types", "property_types",
+                                                    name: "product_kinds_property_types_ibfk_2",
+                                                    on_update: :cascade,
+                                                    on_delete: :cascade
+
+  add_foreign_key "products", "categories",         name: "FK_products_categories"
+  add_foreign_key "products", "currencies",         name: "FK_products_currencies"
+  add_foreign_key "products", "product_kinds",      name: "FK_ga42cu8ch92tuig4t8oo06hn8",
+                                                    column: "owner_id"
+  add_foreign_key "products", "series_items",       name: "FK_products_series_items_2",
+                                                    column: "series_item_id"
+  add_foreign_key "products", "vendors",            name: "FK_products_vendors"
+
+  add_foreign_key "products_functions", "functions",name: "FK_products_functions_functions",
+                                                    on_update: :cascade,
+                                                    on_delete: :cascade
+  add_foreign_key "products_functions", "products", name: "FK_products_functions_products",
+                                                    on_update: :cascade,
+                                                    on_delete: :cascade
+
+  add_foreign_key "properties", "products",         name: "FK_9igpep0fc0ccn6ufp49qb0d3l"
+  add_foreign_key "properties", "property_types",   name: "FK_96042v65bcon50fh4tjf3alxk"
+  add_foreign_key "properties", "property_values",  name: "FK_properties_property_values",
+                                                    column: "value_id"
+
+  add_foreign_key "property_types", "property_kinds"
+
+  add_foreign_key "property_values", "measures",    name: "FK_property_values_measures"
+  add_foreign_key "property_values", "products",    name: "FK__products"
+  add_foreign_key "property_values", "properties",  name: "FK_property_values_properties"
+
+  add_foreign_key "quantity", "products",           name: "FK_fmxkkqbgn373sbv3ghbdinqkx"
+
+  add_foreign_key "series_items", "vendors",        name: "FK_ed8kdle1myybdci4nfqw6wftk"
+
+  add_foreign_key "tickets", "users"
+
+  add_foreign_key "users", "companies"
+  add_foreign_key "users", "groups"
+
+  add_foreign_key "vendors", "currencies",          name: "FK_nsbv37hiaemev6th5cuqgs6aa"
 end
