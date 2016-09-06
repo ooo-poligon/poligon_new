@@ -1,1 +1,26 @@
-<%= render "shared/product_property_type_table" %>
+<table class="table table-responsive table-striped" style="margin-bottom: 0px;">
+  <tbody>
+    <% @propHash.each do |key ,value| %>
+    <tr>
+      <td width="50%">
+        <p class="property-title">
+          <%= key.title %>
+        </p>
+        <p class="property-optional">
+          <%= key.optional %>
+        </p>
+      </td>
+      <td width="25%">
+        <p class="property-symbol">
+          <%= key.symbol %>
+        </p>
+      </td>
+      <td width="25%">
+        <p class="property-value">
+          <%= value %>
+        </p>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -32,6 +32,18 @@ class ProductsController < ApplicationController
     # опеделяем тип устройства
     @productKind = ProductKind.find(@product.product_kind_id)
 
+    @propHash = {}
+    Property.where(product_kind_id: @productKind).each do |property|
+      value_for_product = PropertyValue.find_by(
+                                                property_id: property.id,
+                                                product_id:  @product.id
+                                              )
+        if unless value_for_product.nil?
+          @propHash[property] = value_for_product.value
+        end
+      end
+    end
+=begin
     # находим все виды свойств, присущих этому типу устройств
     @propertyTypesOfProduct_unordered = []
     (@productKind.property_types).each do |type|
@@ -79,5 +91,6 @@ class ProductsController < ApplicationController
       array.push(Property.where("property_type_id = ?", ptp[1].id))
       @properties.push array
     end
+=end
   end
 end
