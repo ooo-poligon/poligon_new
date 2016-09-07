@@ -43,15 +43,31 @@ h3 {
     background: #f8b0f8;
   }
 }
+.property-td {
+  border: 1px solid;
+  border-color: #cccccc;
+}
 .property-title {
   font-weight: bold;
+  padding: 0px;
+  margin: 0px 8px 0px 8px;
+}
+.property-title-without-optional {
+  font-weight: bold;
+  margin: 8px 8px 8px 8px;
 }
 .property-optional {
   font-style: italic;
+  padding: 0px;
+  margin: 0px 8px 0px 8px;
 }
 .property-symbol {
   font-weight: bold;
+  padding: 0px;
+  margin: 0px 8px 0px 8px;
 }
 .property-value {
   font-weight: bolder;
+  padding: 0px;
+  margin: 0px 8px 0px 8px;
 }

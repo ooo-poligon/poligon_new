@@ -1,21 +1,27 @@
-<table class="table table-responsive table-striped" style="margin-bottom: 0px;">
+<table class="table table-responsive table-striped" style="margin-bottom: 0px; border: 1px solid; border-color: #cccccc;" >
   <tbody>
     <% @propHash.each do |key ,value| %>
     <tr>
-      <td width="50%">
-        <p class="property-title">
-          <%= key.title %>
-        </p>
-        <p class="property-optional">
-          <%= key.optional %>
-        </p>
+      <td class="property-td" width="70%" style="padding: 0px; vertical-align: middle;">
+        <% if key.optional == "" or key.optional.nil? %>
+          <p class="property-title-without-optional">
+            <%= key.title %>
+          </p>
+        <% else %>
+          <p class="property-title">
+            <%= key.title %>
+          </p>
+          <p class="property-optional">
+            <%= key.optional %>
+          </p>
+        <% end %>
       </td>
-      <td width="25%">
+      <td class="property-td" width="10%" style="padding: 0px; vertical-align: middle;">
         <p class="property-symbol">
           <%= key.symbol %>
         </p>
       </td>
-      <td width="25%">
+      <td class="property-td" width="30%" style="padding: 0px; vertical-align: middle;">
         <p class="property-value">
           <%= value %>
         </p>
