@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160902071911) do
+ActiveRecord::Schema.define(version: 20160907142727) do
 
   create_table "additions", force: :cascade do |t|
     t.datetime "created_at",                    null: false
@@ -272,6 +272,7 @@ ActiveRecord::Schema.define(version: 20160902071911) do
   add_index "products_functions", ["product_id"], name: "FK_products_functions_products", using: :btree
 
   create_table "properties", force: :cascade do |t|
+    t.integer "order_number",     limit: 4
     t.string  "title",            limit: 255
     t.string  "optional",         limit: 255
     t.string  "symbol",           limit: 255

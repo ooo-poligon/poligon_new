@@ -29,20 +29,23 @@ class ProductsController < ApplicationController
       @functions.push Function.find(id)
     end
 
-    # опеделяем тип устройства
     @productKind = ProductKind.find(@product.product_kind_id)
-
     @propHash = {}
-    Property.where(product_kind_id: @productKind).each do |property|
+    @all_product_kind_properties = Property.where(product_kind_id: @productKind)
+    @all_product_kind_properties.each do |property|
       value_for_product = PropertyValue.find_by(
                                                 property_id: property.id,
                                                 product_id:  @product.id
                                               )
-        if unless value_for_product.nil?
-          @propHash[property] = value_for_product.value
-        end
+      unless value_for_product.nil?
+        @propHash[property] = [value_for_product.value, property.order_number]
       end
     end
+    propArray = []
+    @propHash.each do |key ,value|
+      propArray.push [value[1], key, value[0]]
+    end
+    @sortedArray = propArray.sort {|a,b| a[0] <=> b[0]}
 =begin
     # находим все виды свойств, присущих этому типу устройств
     @propertyTypesOfProduct_unordered = []

@@ -1,29 +1,30 @@
+<%#= @all_product_kind_properties.to_a %>
 <table class="table table-responsive table-striped" style="margin-bottom: 0px; border: 1px solid; border-color: #cccccc;" >
   <tbody>
-    <% @propHash.each do |key ,value| %>
+    <% @sortedArray.each do |prop| %>
     <tr>
       <td class="property-td" width="70%" style="padding: 0px; vertical-align: middle;">
-        <% if key.optional == "" or key.optional.nil? %>
+        <% if prop[1].optional == "" or prop[1].optional.nil? %>
           <p class="property-title-without-optional">
-            <%= key.title %>
+            <%= prop[1].title %>
           </p>
         <% else %>
           <p class="property-title">
-            <%= key.title %>
+            <%= prop[1].title %>
           </p>
           <p class="property-optional">
-            <%= key.optional %>
+            <%= prop[1].optional %>
           </p>
         <% end %>
       </td>
       <td class="property-td" width="10%" style="padding: 0px; vertical-align: middle;">
         <p class="property-symbol">
-          <%= key.symbol %>
+          <%= prop[1].symbol %>
         </p>
       </td>
       <td class="property-td" width="30%" style="padding: 0px; vertical-align: middle;">
         <p class="property-value">
-          <%= value %>
+          <%= prop[2] %>
         </p>
       </td>
     </tr>
