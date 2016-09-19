@@ -2,32 +2,34 @@
 <table class="table table-responsive table-striped" style="margin-bottom: 0px; border: 1px solid; border-color: #cccccc;" >
   <tbody>
     <% @sortedArray.each do |prop| %>
-    <tr>
-      <td class="property-td" width="70%" style="padding: 0px; vertical-align: middle;">
-        <% if prop[1].optional == "" or prop[1].optional.nil? %>
-          <p class="property-title-without-optional">
-            <%= prop[1].title %>
+    <% unless prop[2].nil? or prop[2] == "" %>
+      <tr>
+        <td class="property-td" width="70%" style="padding: 0px; vertical-align: middle;">
+          <% if prop[1].optional == "" or prop[1].optional.nil? %>
+            <p class="property-title-without-optional">
+              <%= prop[1].title %>
+            </p>
+          <% else %>
+            <p class="property-title">
+              <%= prop[1].title %>
+            </p>
+            <p class="property-optional">
+              <%= prop[1].optional %>
+            </p>
+          <% end %>
+        </td>
+        <td class="property-td" width="10%" style="padding: 0px; vertical-align: middle;">
+          <p class="property-symbol">
+            <%= prop[1].symbol %>
           </p>
-        <% else %>
-          <p class="property-title">
-            <%= prop[1].title %>
+        </td>
+        <td class="property-td" width="30%" style="padding: 0px; vertical-align: middle;">
+          <p class="property-value">
+            <%= prop[2] %>
           </p>
-          <p class="property-optional">
-            <%= prop[1].optional %>
-          </p>
-        <% end %>
-      </td>
-      <td class="property-td" width="10%" style="padding: 0px; vertical-align: middle;">
-        <p class="property-symbol">
-          <%= prop[1].symbol %>
-        </p>
-      </td>
-      <td class="property-td" width="30%" style="padding: 0px; vertical-align: middle;">
-        <p class="property-value">
-          <%= prop[2] %>
-        </p>
-      </td>
-    </tr>
+        </td>
+      </tr>
+    <% end %>
     <% end %>
   </tbody>
 </table>

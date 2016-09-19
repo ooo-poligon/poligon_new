@@ -272,7 +272,6 @@ ActiveRecord::Schema.define(version: 20160907142727) do
   add_index "products_functions", ["product_id"], name: "FK_products_functions_products", using: :btree
 
   create_table "properties", force: :cascade do |t|
-    t.integer "order_number",     limit: 4
     t.string  "title",            limit: 255
     t.string  "optional",         limit: 255
     t.string  "symbol",           limit: 255
@@ -280,6 +279,7 @@ ActiveRecord::Schema.define(version: 20160907142727) do
     t.integer "product_id",       limit: 4
     t.integer "value_id",         limit: 4
     t.integer "product_kind_id",  limit: 4
+    t.integer "order",            limit: 4
   end
 
   add_index "properties", ["product_id"], name: "FK_9igpep0fc0ccn6ufp49qb0d3l", using: :btree
