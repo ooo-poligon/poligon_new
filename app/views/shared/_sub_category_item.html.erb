@@ -1,28 +1,40 @@
 <% category = locals[:category] %>
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-md-3">
-      <div class="category-picture-container">
-        <% unless category.image_path.nil? %>
-          <% category_image_path = category.image_path.gsub(
-          '\\\\Server03\\бд_сайта\\poligon_images', 'http://www.poligon.info/images')
-          .gsub("\\", "/") %>
-          <%= image_tag(
-              category_image_path,
-              alt: category.title,
-              class: "img img-responsive"
-            ) %>
-        <% end %>
+<div class="row">
+  <div class="col-md-2">
+    <div class="category-picture-container">
+      <% unless category.image_path.nil? %>
+        <% category_image_path = category.image_path.gsub(
+        '\\\\Server03\\бд_сайта\\poligon_images', 'http://www.poligon.info/images')
+        .gsub("\\", "/") %>
+        <%= image_tag(
+            category_image_path,
+            alt: category.title,
+            class: "img img-responsive category-list-image"
+          ) %>
+      <% end %>
+    </div>
+  </div>
+  <div class="col-md-10" style="max-height: 140px;  overflow: hidden;">
+    <div style="max-height: 90px;  min-height: 90px;  overflow: hidden;">
+      <div style="max-height: 60px;  min-height: 60px;  overflow: hidden;">
+        <p style="max-height: 100%;">
+          <%= category.description
+            .gsub('href="/PDF', 'href="http://www.poligon.info/PDF')
+            .gsub('src="/images', 'src="http://www.poligon.info/images')
+            .html_safe if !@recentCategory.description.nil? %>
+        </p>
+      </div>
+      <div style="max-height: 30px;  min-height: 30px;  overflow: hidden;">
+        <hr />
       </div>
     </div>
-    <div class="col-md-9">
-      <p>
-        <%= category.description
-          .gsub('href="/PDF', 'href="http://www.poligon.info/PDF')
-          .gsub('src="/images', 'src="http://www.poligon.info/images')
-          .html_safe if !@recentCategory.description.nil? %>
+    <div style="max-height: 10px; min-height: 10px;  overflow: hidden;">
+      <p style="max-height: 100%;">
       </p>
-      <p>
+
+    </div>
+    <div style="max-height: 30px; min-height: 30px;  overflow: hidden; float: right;">
+      <p style="max-height: 100%;">
         <%= link_to "Подробнее", category_path(category.id), class: "btn btn-info btn-xs" %>
       </p>
     </div>
