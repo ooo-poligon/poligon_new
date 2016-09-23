@@ -51,11 +51,7 @@
               .html_safe if !@recentCategory.description.nil? %>
           </p>
         </div>
-        <% @subCategories.each do |sub| %>
-          <% unless sub.description.nil? or sub.description == "" %>
-            <p><%= render "shared/sub_category_item", locals: { category: sub } %></p>
-          <% end %>
-        <% end %>
+
         <div class="col-xs-<%= col_right %> col-md-<%= col_right %>" >
           <div class="img img-responsive category-image">
             <% image_path = @recentCategory.image_path.gsub("\\\\Server03\\бд_сайта\\poligon_images", "http://www.poligon.info/images"
@@ -68,6 +64,13 @@
                 class: "fancybox"
                                   ) if !@recentCategory.image_path.nil? %>
           </div>
+        </div>
+        <div class="container-fluid">
+          <% @subCategories.each do |sub| %>
+            <% unless sub.description.nil? or sub.description == "" %>
+              <p><%= render "shared/sub_category_item", locals: { category: sub } %></p>
+            <% end %>
+          <% end %>
         </div>
       </div>
     </div>
