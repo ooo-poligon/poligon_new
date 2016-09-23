@@ -65,16 +65,17 @@
                                   ) if !@recentCategory.image_path.nil? %>
           </div>
         </div>
-        <div class="container-fluid">
-          <% @subCategories.each do |sub| %>
-            <% unless sub.description.nil? or sub.description == "" %>
-              <p><%= render "shared/sub_category_item", locals: { category: sub } %></p>
-            <% end %>
-          <% end %>
-        </div>
       </div>
     </div>
+    <div class="container-fluid">
+      <% @subCategories.each do |sub| %>
+        <% unless sub.description.nil? or sub.description == "" %>
+          <p><%= render "shared/sub_category_item", locals: { category: sub } %></p>
+        <% end %>
+      <% end %>
+    </div>
   </div>
+
 </div>
 
 <br>
