@@ -8,6 +8,7 @@ module ProductsHelper
   def prop_image_path_for(product, prop, picture_number)
     number ||= picture_number.to_s
     vendor_title = Vendor.find(product.vendor_id).title.upcase
+    #vendor_title = "ПОЛИГОН"
     vendor_title = "POLIGONSPB" if vendor_title == "ПОЛИГОН"
     vendor_title = "no_vendor"  if vendor_title == "не указан"
     extension = ".jpg"

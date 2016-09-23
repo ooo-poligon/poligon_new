@@ -332,14 +332,14 @@ ActiveRecord::Schema.define(version: 20160907142727) do
     t.string   "image_path", limit: 255
   end
 
-  create_table "series", force: :cascade do |t|
-    t.text    "description", limit: 4294967295
-    t.string  "title",       limit: 255
-    t.integer "vendor_id",   limit: 4,          null: false
-  end
+  #create_table "series", force: :cascade do |t|
+  #  t.text    "description", limit: 4294967295
+  #  t.string  "title",       limit: 255
+  #  t.integer "vendor_id",   limit: 4,          null: false
+  #end
 
-  add_index "series", ["title"], name: "UK_hsvdwda43ces5322tlgcgl4sk", unique: true, using: :btree
-  add_index "series", ["vendor_id"], name: "FK_ed8kdle1myybdci4nfqw6wftk", using: :btree
+  #add_index "series", ["title"], name: "UK_hsvdwda43ces5322tlgcgl4sk", unique: true, using: :btree
+  #add_index "series", ["vendor_id"], name: "FK_ed8kdle1myybdci4nfqw6wftk", using: :btree
 
   create_table "series_items", force: :cascade do |t|
     t.text    "description", limit: 4294967295
@@ -432,9 +432,9 @@ ActiveRecord::Schema.define(version: 20160907142727) do
   add_foreign_key "products", "categories", name: "FK_products_categories"
   add_foreign_key "products", "currencies", name: "FK_products_currencies"
   add_foreign_key "products", "product_kinds", name: "FK_ga42cu8ch92tuig4t8oo06hn8"
-  add_foreign_key "products", "series", column: "serie", primary_key: "title", name: "FK_ni7gdwd360jaafq7b7m1gug4v"
+  #add_foreign_key "products", "series", column: "serie", primary_key: "title", name: "FK_ni7gdwd360jaafq7b7m1gug4v"
   add_foreign_key "products", "series_items", name: "FK_products_series_2"
-  add_foreign_key "products", "vendors", column: "vendor", primary_key: "title", name: "FK_h9ix3xgma67xlseqy1hap6rfa"
+  #add_foreign_key "products", "vendors", column: "vendor", primary_key: "title", name: "FK_h9ix3xgma67xlseqy1hap6rfa"
   add_foreign_key "products", "vendors", name: "FK_products_vendors"
   add_foreign_key "products_functions", "functions", name: "FK_products_functions_functions", on_update: :cascade, on_delete: :cascade
   add_foreign_key "products_functions", "products", name: "FK_products_functions_products", on_update: :cascade, on_delete: :cascade
@@ -447,7 +447,7 @@ ActiveRecord::Schema.define(version: 20160907142727) do
   add_foreign_key "property_values", "products", name: "FK__products"
   add_foreign_key "property_values", "properties", name: "FK_property_values_properties"
   add_foreign_key "quantity", "products", name: "FK_fmxkkqbgn373sbv3ghbdinqkx"
-  add_foreign_key "series", "vendors", name: "FK_ed8kdle1myybdci4nfqw6wftk"
+  #add_foreign_key "series", "vendors", name: "FK_ed8kdle1myybdci4nfqw6wftk"
   add_foreign_key "series_items", "vendors", name: "series_items_ibfk_1"
   add_foreign_key "tickets", "users"
   add_foreign_key "users", "companies"

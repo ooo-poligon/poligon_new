@@ -50,16 +50,12 @@
               .gsub('src="/images', 'src="http://www.poligon.info/images')
               .html_safe if !@recentCategory.description.nil? %>
           </p>
-          <% @subCategories.each do |sub| %>
-            <% unless sub.description.nil? or sub.description == "" %>
-              <p><%= render "shared/sub_category_item", locals: { category: sub } %></p>
-            <% end %>
-          <% end %>
-          <%#= @recentCategory.description
-                             .gsub('href="/PDF', 'href="http://www.poligon.info/PDF')
-                             .gsub('src="/images', 'src="http://www.poligon.info/images')
-                             .html_safe if !@recentCategory.description.nil? %>
         </div>
+        <% @subCategories.each do |sub| %>
+          <% unless sub.description.nil? or sub.description == "" %>
+            <p><%= render "shared/sub_category_item", locals: { category: sub } %></p>
+          <% end %>
+        <% end %>
         <div class="col-xs-<%= col_right %> col-md-<%= col_right %>" >
           <div class="img img-responsive category-image">
             <% image_path = @recentCategory.image_path.gsub("\\\\Server03\\бд_сайта\\poligon_images", "http://www.poligon.info/images"
