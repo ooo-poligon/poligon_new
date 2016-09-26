@@ -17,10 +17,10 @@
     </div>
   </div>
   <div class="col-md-10" style="max-height: 140px;  overflow: hidden;">
-    <div style="max-height: 90px;  min-height: 90px;  overflow: hidden;">
-      <div style="max-height: 60px;  min-height: 60px;  overflow: hidden;">
+    <div style="max-height: 100px;  min-height: 100px;  overflow: hidden;">
+      <div style="max-height: 98px;  min-height: 98px;  overflow: hidden;">
         <p style="color: blue; font-weight: bolder;">
-          <%= category.title %>
+          <%= link_to category.title, category_path(category.id) %>
         </p>
         <p style="max-height: 100%;">
           <%= category.description
@@ -29,19 +29,9 @@
             .html_safe if !@recentCategory.description.nil? %>
         </p>
       </div>
-      <div style="max-height: 30px;  min-height: 30px;  overflow: hidden;">
-        <hr />
+      <div style="max-height: 2px;  min-height: 2px;  overflow: hidden;">
+        <hr style="max-height: 100%; margin-top: 1px; margin-bottom: 0px;" />
       </div>
-    </div>
-    <div style="max-height: 10px; min-height: 10px;  overflow: hidden;">
-      <p style="max-height: 100%;">
-      </p>
-
-    </div>
-    <div style="max-height: 30px; min-height: 30px;  overflow: hidden; float: right;">
-      <p style="max-height: 100%;">
-        <%= link_to "Подробнее", category_path(category.id), class: "btn btn-info btn-xs" %>
-      </p>
     </div>
   </div>
 </div>
