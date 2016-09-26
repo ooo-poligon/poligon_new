@@ -54,15 +54,23 @@
 
         <div class="col-xs-<%= col_right %> col-md-<%= col_right %>" >
           <div class="img img-responsive category-image">
-            <% image_path = @recentCategory.image_path.gsub("\\\\Server03\\бд_сайта\\poligon_images", "http://www.poligon.info/images"
-              ).gsub("\\", "/") if !@recentCategory.image_path.nil? %>
-            <%= link_to(image_tag(
-              image_path,
-                class: "img img-responsive center-block category-image",
-                alt: @recentCategory.title,
-                title: @recentCategory.title), image_path,
-                class: "fancybox"
-                                  ) if !@recentCategory.image_path.nil? %>
+            <% unless @recentCategory.image_path.nil? %>
+              <% if @recentCategory.image_path.downcase.include?(".jpg") or
+                    @recentCategory.image_path.downcase.include?(".jpeg") or
+                    @recentCategory.image_path.downcase.include?(".gif") or
+                    @recentCategory.image_path.downcase.include?(".png") %>
+                <% image_path = @recentCategory.image_path.gsub("\\\\Server03\\бд_сайта\\poligon_images", "http://www.poligon.info/images"
+                  ).gsub("\\", "/") %>
+
+                <%= link_to(image_tag(
+                  image_path,
+                    class: "img img-responsive center-block category-image",
+                    alt: @recentCategory.title,
+                    title: @recentCategory.title), image_path,
+                    class: "fancybox"
+                                      ) if !@recentCategory.image_path.nil? %>
+              <% end %>
+            <% end %>
           </div>
         </div>
       </div>

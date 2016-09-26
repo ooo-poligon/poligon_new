@@ -23,10 +23,10 @@
           <%= link_to category.title, category_path(category.id) %>
         </p>
         <p style="max-height: 100%;">
-          <% if category.summary.size < 400 %>
+          <% if category.summary.size < 280 %>
             <%= category.summary %>
           <% else %>
-            <%= category.summary.slice!(0..400) %>
+            <%= category.summary.slice!(0..280) %>
             <span style="color: blue;">
               <%= link_to " ...читать далее", category_path(category.id) %>
             </span>
