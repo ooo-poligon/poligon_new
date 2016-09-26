@@ -115,6 +115,9 @@ class SearchController < ApplicationController
       if params.has_key?(:title)
         with :title, params[:q]
       end
+      if params.has_key?(:summary)
+        with :summary, params[:q]
+      end
       if params.has_key?(:description)
         with :description, params[:q]
       end
@@ -280,6 +283,9 @@ class SearchController < ApplicationController
       #scoping
       if params.has_key?(:title)
         with :title, params[:q]
+      end
+      if params.has_key?(:summary)
+        with :summary, params[:q]
       end
       if params.has_key?(:description)
         with :description, params[:q]

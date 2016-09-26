@@ -23,10 +23,14 @@
           <%= link_to category.title, category_path(category.id) %>
         </p>
         <p style="max-height: 100%;">
-          <%= category.description
-            .gsub('href="/PDF', 'href="http://www.poligon.info/PDF')
-            .gsub('src="/images', 'src="http://www.poligon.info/images')
-            .html_safe if !@recentCategory.description.nil? %>
+          <% if category.summary.size < 400 %>
+            <%= category.summary %>
+          <% else %>
+            <%= category.summary.slice!(0..400) %>
+            <span style="color: blue;">
+              <%= link_to " ...читать далее", category_path(category.id) %>
+            </span>
+          <% end %>
         </p>
       </div>
       <div style="max-height: 2px;  min-height: 2px;  overflow: hidden;">

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160907142727) do
+ActiveRecord::Schema.define(version: 20160926114911) do
 
   create_table "additions", force: :cascade do |t|
     t.datetime "created_at",                    null: false
@@ -53,6 +53,7 @@ ActiveRecord::Schema.define(version: 20160907142727) do
     t.integer "published",   limit: 4,     default: 1
     t.string  "image_path",  limit: 255
     t.string  "more_info",   limit: 255
+    t.text    "summary",     limit: 65535
   end
 
   add_index "categories", ["title"], name: "title", unique: true, using: :btree
@@ -272,6 +273,7 @@ ActiveRecord::Schema.define(version: 20160907142727) do
   add_index "products_functions", ["product_id"], name: "FK_products_functions_products", using: :btree
 
   create_table "properties", force: :cascade do |t|
+    t.integer "order_number",     limit: 4
     t.string  "title",            limit: 255
     t.string  "optional",         limit: 255
     t.string  "symbol",           limit: 255
@@ -279,7 +281,6 @@ ActiveRecord::Schema.define(version: 20160907142727) do
     t.integer "product_id",       limit: 4
     t.integer "value_id",         limit: 4
     t.integer "product_kind_id",  limit: 4
-    t.integer "order",            limit: 4
   end
 
   add_index "properties", ["product_id"], name: "FK_9igpep0fc0ccn6ufp49qb0d3l", using: :btree
@@ -332,14 +333,14 @@ ActiveRecord::Schema.define(version: 20160907142727) do
     t.string   "image_path", limit: 255
   end
 
-  #create_table "series", force: :cascade do |t|
-  #  t.text    "description", limit: 4294967295
-  #  t.string  "title",       limit: 255
-  #  t.integer "vendor_id",   limit: 4,          null: false
-  #end
+  create_table "series", force: :cascade do |t|
+    t.text    "description", limit: 4294967295
+    t.string  "title",       limit: 255
+    t.integer "vendor_id",   limit: 4,          null: false
+  end
 
-  #add_index "series", ["title"], name: "UK_hsvdwda43ces5322tlgcgl4sk", unique: true, using: :btree
-  #add_index "series", ["vendor_id"], name: "FK_ed8kdle1myybdci4nfqw6wftk", using: :btree
+  add_index "series", ["title"], name: "UK_hsvdwda43ces5322tlgcgl4sk", unique: true, using: :btree
+  add_index "series", ["vendor_id"], name: "FK_ed8kdle1myybdci4nfqw6wftk", using: :btree
 
   create_table "series_items", force: :cascade do |t|
     t.text    "description", limit: 4294967295
@@ -432,9 +433,9 @@ ActiveRecord::Schema.define(version: 20160907142727) do
   add_foreign_key "products", "categories", name: "FK_products_categories"
   add_foreign_key "products", "currencies", name: "FK_products_currencies"
   add_foreign_key "products", "product_kinds", name: "FK_ga42cu8ch92tuig4t8oo06hn8"
-  #add_foreign_key "products", "series", column: "serie", primary_key: "title", name: "FK_ni7gdwd360jaafq7b7m1gug4v"
+  add_foreign_key "products", "series", column: "serie", primary_key: "title", name: "FK_ni7gdwd360jaafq7b7m1gug4v"
   add_foreign_key "products", "series_items", name: "FK_products_series_2"
-  #add_foreign_key "products", "vendors", column: "vendor", primary_key: "title", name: "FK_h9ix3xgma67xlseqy1hap6rfa"
+  add_foreign_key "products", "vendors", column: "vendor", primary_key: "title", name: "FK_h9ix3xgma67xlseqy1hap6rfa"
   add_foreign_key "products", "vendors", name: "FK_products_vendors"
   add_foreign_key "products_functions", "functions", name: "FK_products_functions_functions", on_update: :cascade, on_delete: :cascade
   add_foreign_key "products_functions", "products", name: "FK_products_functions_products", on_update: :cascade, on_delete: :cascade
@@ -447,7 +448,7 @@ ActiveRecord::Schema.define(version: 20160907142727) do
   add_foreign_key "property_values", "products", name: "FK__products"
   add_foreign_key "property_values", "properties", name: "FK_property_values_properties"
   add_foreign_key "quantity", "products", name: "FK_fmxkkqbgn373sbv3ghbdinqkx"
-  #add_foreign_key "series", "vendors", name: "FK_ed8kdle1myybdci4nfqw6wftk"
+  add_foreign_key "series", "vendors", name: "FK_ed8kdle1myybdci4nfqw6wftk"
   add_foreign_key "series_items", "vendors", name: "series_items_ibfk_1"
   add_foreign_key "tickets", "users"
   add_foreign_key "users", "companies"

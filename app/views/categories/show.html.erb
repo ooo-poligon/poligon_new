@@ -69,7 +69,7 @@
     </div>
     <div class="container-fluid">
       <% @subCategories.each do |sub| %>
-        <% unless sub.description.nil? or sub.description == "" %>
+        <% unless sub.summary.nil? or sub.summary == "" %>
           <p><%= render "shared/sub_category_item", locals: { category: sub } %></p>
         <% end %>
       <% end %>
