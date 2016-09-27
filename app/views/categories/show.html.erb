@@ -64,11 +64,10 @@
 
                 <%= link_to(image_tag(
                   image_path,
-                    class: "img img-responsive center-block category-image",
-                    alt: @recentCategory.title,
-                    title: @recentCategory.title), image_path,
-                    class: "fancybox"
-                                      ) if !@recentCategory.image_path.nil? %>
+                  class: "img img-responsive center-block category-image",
+                  alt: @recentCategory.title,
+                  title: @recentCategory.title), image_path,
+                  class: "fancybox") if !@recentCategory.image_path.nil? %>
               <% end %>
             <% end %>
           </div>

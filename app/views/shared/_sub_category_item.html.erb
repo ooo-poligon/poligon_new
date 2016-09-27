@@ -24,7 +24,7 @@
         </p>
         <p style="max-height: 100%;">
           <% if category.summary.size < 280 %>
-            <%= category.summary %>
+            <%= simple_format category.summary %>
           <% else %>
             <%= category.summary.slice!(0..280) %>
             <span style="color: blue;">
