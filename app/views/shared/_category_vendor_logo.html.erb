@@ -21,10 +21,25 @@
     </p>
   <% when [74] %>
     <%= link_to image_tag("logo/category_vendors/citel.gif", alt: '"CITEL"', title: "CITEL - устройства молниезащиты", :class => "vendors-logos img-responsive"), :action => 'show', :controller => 'categories', :id => '74' %>
-    <p class="vendors-catalog-link">
+    <p class="vendors-catalog-link" slyle="margin: 0 0 0px;">
       <% pdfPath = "http://www.poligon.info/PDF/CITEL/citel-catalog-rus.pdf" %>
       <%= image_tag("design/pdf_doc.gif", height: '20', width: '20') %>
       <%= link_to( " Основной каталог CITEL (рус.)", pdfPath) %>
+    </p>
+    <p class="vendors-catalog-link" slyle="margin: 0 0 0px;">
+      <% pdfPath = "http://www.poligon.info/PDF/CITEL/AC1000V.pdf" %>
+      <%= image_tag("design/pdf_doc.gif", height: '20', width: '20') %>
+      <%= link_to( " Устройства грозозащиты, молниезащиты и УЗИП для сетей переменного тока до 1000В", pdfPath) %>
+    </p>
+    <p class="vendors-catalog-link" slyle="margin: 0 0 0px;">
+      <% pdfPath = "http://www.poligon.info/PDF/CITEL/DC1000V.pdf" %>
+      <%= image_tag("design/pdf_doc.gif", height: '20', width: '20') %>
+      <%= link_to( " Устройства грозозащиты, молниезащиты и УЗИП для сетей постоянного тока до 1000В", pdfPath) %>
+    </p>
+    <p class="vendors-catalog-link" slyle="margin: 0 0 0px;">
+      <% pdfPath = "http://www.poligon.info/PDF/CITEL/2-class.pdf" %>
+      <%= image_tag("design/pdf_doc.gif", height: '20', width: '20') %>
+      <%= link_to( " Обзор УЗИП 2го класса", pdfPath) %>
     </p>
   <% when [5414] %>
     <%= link_to image_tag("logo/category_vendors/graesslin.gif", alt: '"Graesslin"', title: "Graesslin - таймеры и фотореле. Сделано в Германии.", :class => "vendors-logos img-responsive"), :action => 'show', :controller => 'categories', :id => '5414' %>

@@ -44,12 +44,18 @@
           <% col_left, col_right = '12', '0' %>
         <% end %>
         <div class="col-xs-<%= col_left %> col-md-<%= col_left %>" >
-          <p>
-            <%= @recentCategory.description
-              .gsub('href="/PDF', 'href="http://www.poligon.info/PDF')
-              .gsub('src="/images', 'src="http://www.poligon.info/images')
-              .html_safe if !@recentCategory.description.nil? %>
-          </p>
+          <% if @recentCategory.description.nil? or @recentCategory.description == "" %>
+            <p>
+              <%= @recentCategory.summary if !@recentCategory.summary.nil? %>
+            </p>
+          <% else %>
+            <p>
+              <%= @recentCategory.description
+                .gsub('href="/PDF', 'href="http://www.poligon.info/PDF')
+                .gsub('src="/images', 'src="http://www.poligon.info/images')
+                .html_safe if !@recentCategory.description.nil? %>
+            </p>
+          <% end %>
         </div>
 
         <div class="col-xs-<%= col_right %> col-md-<%= col_right %>" >
@@ -76,7 +82,7 @@
     </div>
     <div class="container-fluid">
       <% @subCategories.each do |sub| %>
-        <% unless sub.summary.nil? or sub.summary == "" %>
+        <% unless sub.summary.nil? and sub.image_path.nil? %>
           <p><%= render "shared/sub_category_item", locals: { category: sub } %></p>
         <% end %>
       <% end %>

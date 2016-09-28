@@ -22,16 +22,18 @@
         <p style="color: blue; font-weight: bolder;">
           <%= link_to category.title, category_path(category.id) %>
         </p>
-        <p style="max-height: 100%;">
-          <% if category.summary.size < 280 %>
-            <%= simple_format category.summary %>
-          <% else %>
-            <%= category.summary.slice!(0..280) %>
-            <span style="color: blue;">
-              <%= link_to " ...читать далее", category_path(category.id) %>
-            </span>
-          <% end %>
-        </p>
+        <% unless category.summary.nil? %>
+          <p style="max-height: 100%;">
+            <% if category.summary.size < 280 %>
+              <%= simple_format category.summary %>
+            <% else %>
+              <%= category.summary.slice!(0..280) %>
+              <span style="color: blue;">
+                <%= link_to " ...читать далее", category_path(category.id) %>
+              </span>
+            <% end %>
+          </p>
+        <% end %>
       </div>
       <div style="max-height: 2px;  min-height: 2px;  overflow: hidden;">
         <hr style="max-height: 100%; margin-top: 1px; margin-bottom: 0px;" />
