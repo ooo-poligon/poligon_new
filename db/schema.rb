@@ -52,7 +52,7 @@ ActiveRecord::Schema.define(version: 20160926114911) do
     t.text    "description", limit: 65535
     t.integer "published",   limit: 4,     default: 1
     t.string  "image_path",  limit: 255
-    t.string  "more_info",   limit: 255
+    t.text    "more_info",   limit: 65535
     t.text    "summary",     limit: 65535
   end
 

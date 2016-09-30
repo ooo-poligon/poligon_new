@@ -98,7 +98,13 @@
       <div class="panel panel-default">
         <div id="additionInfo" class="panel-collapse collapse">
           <div class="panel-body">
-            <%= render partial: @recentCategory.more_info if !@recentCategory.more_info.nil? && @recentCategory.more_info != '' %>
+            <% if !@recentCategory.more_info.nil? && @recentCategory.more_info != '' %>
+              <% if @recentCategory.more_info.include?("shared/utils/") %>
+                <%= render partial: @recentCategory.more_info %>
+              <% else %>
+                <%= @recentCategory.more_info.html_safe %>
+              <% end %>
+            <% end %>
           </div>
         </div>
       </div>
