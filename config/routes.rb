@@ -24,7 +24,7 @@ Poligon::Application.routes.draw do
   get  'company/vacancies'
   get  'company/links'
 
-  root  'content#home'
+  root 'content#home'
   get  'content/show'
   get  'content/certificates'
   get  'content/download_pdf'
@@ -63,6 +63,9 @@ Poligon::Application.routes.draw do
   get 'categories/6321' => 'categories/poligonspb',   :as => 'categories/poligonspb'
   get 'categories/4847' => 'categories/huber_suhner', :as => 'categories/huber_suhner'
   get 'categories/6441' => 'categories/tehnoplast',   :as => 'categories/tehnoplast'
+
+  get 'hello', to: 'welcome#hello'
+  get 'react', to: 'welcome#react'
 
 
   # This route can be invoked with purchase_url(:id => product.id)

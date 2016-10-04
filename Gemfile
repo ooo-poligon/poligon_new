@@ -28,6 +28,7 @@ gem 'zeroclipboard-rails'
 gem 'turbolinks'
 gem 'zipline'
 gem 'whenever', require: false
+gem 'react-rails'
 
 group :assets do
   gem 'coffee-rails'

@@ -17,6 +17,9 @@
 //= require search
 //= require zeroclipboard
 //= require tablehover
+//= require react
+//= require react_ujs
+//= require components
 
 $(document).ready(function() {
   var clip = new ZeroClipboard($(".copy-btn"));
