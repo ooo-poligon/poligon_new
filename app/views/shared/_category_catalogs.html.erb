@@ -1,0 +1,113 @@
+<div id="category-catalogs-div">
+  <% case @vendors_categories_ids & @parents_categories_ids %>
+  <% when [142] %>
+    <p class="vendors-catalog-link">
+      <% pdfPath = "http://www.poligon.info/PDF/TELE/TELE_Main_Catalogue_2011-2012_RU.pdf" %>
+      <%= image_tag("design/pdf_doc.gif", height: '20', width: '20') %>
+      <%= link_to( " Основной каталог TELE", pdfPath) %>
+    </p>
+  <% when [5094] %>
+    <p class="vendors-catalog-link">
+      <% pdfPath = "http://www.poligon.info/PDF/BENEDICT/benedict-general-catalogue-D946E-2015.pdf" %>
+      <%= image_tag("design/pdf_doc.gif", height: '20', width: '20') %>
+      <%= link_to( " Основной каталог на 2015г. (англ.)", pdfPath) %>
+    </p>
+    <p class="vendors-catalog-link">
+      <% pdfPath = "http://www.poligon.info/PDF/BENEDICT/Benedict_2012-Main_catalog_rus.pdf" %>
+      <%= image_tag("design/pdf_doc.gif", height: '20', width: '20') %>
+      <%= link_to( " Основной каталог на 2012г. (рус.)", pdfPath) %>
+    </p>
+  <% when [74] %>
+    <p class="vendors-catalog-link">
+      <% pdfPath = "http://www.poligon.info/PDF/CITEL/citel-catalog-rus.pdf" %>
+      <%= image_tag("design/pdf_doc.gif", height: '20', width: '20') %>
+      <%= link_to( " Основной каталог CITEL (рус.)", pdfPath) %>
+    </p>
+    <p class="vendors-catalog-link">
+      <% pdfPath = "http://www.poligon.info/PDF/CITEL/AC1000V.pdf" %>
+      <%= image_tag("design/pdf_doc.gif", height: '20', width: '20') %>
+      <%= link_to( " Устройства грозозащиты, молниезащиты и УЗИП для сетей переменного тока до 1000В", pdfPath) %>
+    </p>
+    <p class="vendors-catalog-link">
+      <% pdfPath = "http://www.poligon.info/PDF/CITEL/DC1000V.pdf" %>
+      <%= image_tag("design/pdf_doc.gif", height: '20', width: '20') %>
+      <%= link_to( " Устройства грозозащиты, молниезащиты и УЗИП для сетей постоянного тока до 1000В", pdfPath) %>
+    </p>
+    <p class="vendors-catalog-link">
+      <% pdfPath = "http://www.poligon.info/PDF/CITEL/2-class.pdf" %>
+      <%= image_tag("design/pdf_doc.gif", height: '20', width: '20') %>
+      <%= link_to( " Обзор УЗИП 2го класса", pdfPath) %>
+    </p>
+  <% when [5414] %>
+    <p class="vendors-catalog-link">
+      <% pdfPath = "http://www.poligon.info/PDF/GRAESSLIN/Trade_Program_2014-2015_EN.pdf" %>
+      <%= image_tag("design/pdf_doc.gif", height: '20', width: '20') %>
+      <%= link_to( " Каталог Graesslin на 2014-2015гг. (англ.)", pdfPath) %>
+    </p>
+    <p class="vendors-catalog-link">
+      <% pdfPath = "http://www.poligon.info/PDF/GRAESSLIN/GRAESSLIN_Main_Catalogue_rus.pdf" %>
+      <%= image_tag("design/pdf_doc.gif", height: '20', width: '20') %>
+      <%= link_to( " Каталог Graesslin на 2010-2011гг. (рус.)", pdfPath) %>
+    </p>
+  <% when [5535] %>
+    <p class="vendors-catalog-link">
+      <% pdfPath = "http://www.poligon.info/PDF/SONDER/Manual_TA1000_TA3000.pdf" %>
+      <%= image_tag("design/pdf_doc.gif", height: '20', width: '20') %>
+      <%= link_to( " Инструкция для термостатов серий TA1000 и TA3000", pdfPath) %>
+    </p>
+  <% when [5818] %>
+    <p class="vendors-catalog-link">
+      <% pdfPath = "http://www.poligon.info/PDF/RELEQUICK/Catalogue.pdf" %>
+      <%= image_tag("design/pdf_doc.gif", height: '20', width: '20') %>
+      <%= link_to( " Основной каталог RELEQUICK", pdfPath) %>
+    </p>
+  <% when [5933] %>
+    <p class="vendors-catalog-link">
+      <% pdfPath = "http://www.poligon.info/PDF/RELECO/Comat-Releco_World_of_relays_2015-2016.pdf" %>
+      <%= image_tag("design/pdf_doc.gif", height: '20', width: '20') %>
+      <%= link_to( " Полный каталог Comat/Releco 2015-2016 (англ.)", pdfPath) %>
+    </p>
+    <p class="vendors-catalog-link">
+      <% pdfPath = "http://www.poligon.info/PDF/RELECO/RELECO_CATALOG.pdf" %>
+      <%= image_tag("design/pdf_doc.gif", height: '20', width: '20') %>
+      <%= link_to( " Каталог продукции RELECO (рус.)", pdfPath) %>
+    </p>
+    <p class="vendors-catalog-link">
+      <% pdfPath = "http://www.poligon.info/PDF/RELECO/RELECO_Ka_Railway_2012e.pdf" %>
+      <%= image_tag("design/pdf_doc.gif", height: '20', width: '20') %>
+      <%= link_to( " Каталог изделий для жд-транспорта", pdfPath) %>
+    </p>
+  <% when [5583] %>
+    <p class="vendors-catalog-link">
+      <% pdfPath = "http://www.poligon.info/PDF/EMKO/EMKO_Main_Catalogue(thermocontrollers)_rus.pdf" %>
+      <%= image_tag("design/pdf_doc.gif", height: '20', width: '20') %>
+      <%= link_to( " Основной каталог EMKO (рус.)", pdfPath) %>
+    </p>
+  <% when [5512] %>
+    <p class="vendors-catalog-link">
+      <% pdfPath = "http://www.poligon.info/PDF/CBI/CBI-circuit_breaker.en.pdf" %>
+      <%= image_tag("design/pdf_doc.gif", height: '20', width: '20') %>
+      <%= link_to( " Краткий обзор автоматических выключателей CBI (англ.)", pdfPath) %>
+    </p>
+  <% when [6441] %>
+  <% when [4847] %>
+    <p class="vendors-catalog-link">
+      <% pdfPath = "http://www.hubersuhner.com/ru/Service-Contact/Downloads" %>
+      <%= image_tag("design/pdf_doc.gif", height: '20', width: '20') %>
+      <%= link_to( " Все каталоги HUBER+SUHNER", pdfPath) %>
+    </p>
+  <% when [6321] %>
+    <p class="vendors-catalog-link">
+      <% pdfPath = "http://poligonspb.ru/about/sertifikaty/" %>
+      <%= image_tag("design/pdf_doc.gif", height: '20', width: '20') %>
+      <%= link_to( ' Все каталоги НПФ "ПОЛИГОН"', pdfPath) %>
+    </p>
+  <% when [5650] %>
+    <p class="vendors-catalog-link">
+      <% pdfPath = "http://www.poligon.info/PDF/VEMER/VEMER_main.pdf" %>
+      <%= image_tag("design/pdf_doc.gif", height: '20', width: '20') %>
+      <%= link_to( " Основной каталог VEMER (рус.)", pdfPath) %>
+    </p>
+  <% else %>
+  <% end %>
+</div>

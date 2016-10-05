@@ -33,6 +33,10 @@
               </span>
             <% end %>
           </p>
+        <% else %>
+          <p style="max-height: 100%;">
+            <%= simple_format category.description %>
+          </p>
         <% end %>
       </div>
       <div style="max-height: 2px;  min-height: 2px;  overflow: hidden;">
