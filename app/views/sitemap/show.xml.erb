@@ -12,7 +12,7 @@
 
   <% @news_items.each do |news_item| %>
     <url>
-      <loc><%= news_item.title %></loc>
+      <loc><%= news_item_url(news_item) %></loc>
       <changefreq>daily</changefreq>
     </url>
   <% end %>
