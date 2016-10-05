@@ -28,8 +28,6 @@ gem 'zeroclipboard-rails'
 gem 'turbolinks'
 gem 'zipline'
 gem 'whenever', require: false
-gem 'react-rails', github: 'reactjs/react-rails'
-gem 'gon'
 
 group :assets do
   gem 'coffee-rails'
