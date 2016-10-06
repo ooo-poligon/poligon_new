@@ -9,7 +9,7 @@
     <th style="width: 10%;">Дата</th>
   </tr>
   <% locals[:items].each do |item| %>
-    <% image_path = item.image_path.gsub!("c:\\poligon_images", "http://www.poligon.info/images").gsub!("\\", "/") if !item.image_path.nil? %>
+    <% image_path = item.image_path.gsub("\\\\Server03\\бд_сайта\\poligon_images", "http://www.poligon.info/images").gsub!("\\", "/") if !item.image_path.nil? %>
     <tr>
       <td><%= image_tag(image_path, alt: item.title, title: item.title, class: 'img img-responsive news-image') if !item.image_path.nil? %></td>
       <% if item.is_a? NewsItem %>
