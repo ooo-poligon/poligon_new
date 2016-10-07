@@ -72,9 +72,9 @@
                             <%= attribute["attributeValue"].html_safe if !attribute["attributeValue"].nil? %>
                             <%= attribute["attributeUnit"].html_safe if !attribute["attributeUnit"].nil?  %></li>
                           <% else %>
-                            <li><%= attribute["attributeLabel"][0] %>:
-                            <%= attribute["attributeValue"].html_safe if !attribute["attributeValue"].nil? %>
-                            <%= attribute["attributeUnit"].html_safe if !attribute["attributeUnit"].nil?  %></li>
+                            <li><%= attribute[0]["attributeLabel"] %>:
+                            <%= attribute[0]["attributeValue"].html_safe if !attribute[0]["attributeValue"].nil? %>
+                            <%= attribute[0]["attributeUnit"].html_safe if !attribute[0]["attributeUnit"].nil?  %></li>
                           <% end %>
                         <% end %>
                       </ul>
