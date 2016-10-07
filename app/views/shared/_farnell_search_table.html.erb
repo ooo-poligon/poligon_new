@@ -64,6 +64,7 @@
                     </button>
                   <% end %>
                   <div id=<%= count.to_s %> class="collapse">
+                  <% unless (product["datasheets"].is_a? Array) %>
                     <% unless product["attributes"].nil? %>
                       <ul>
                         <% product["attributes"].each do |attribute| %>
@@ -75,6 +76,19 @@
                     <% else %>
                       <p>характеристики не указаны</p>
                     <% end %>
+                  <% else %>
+                    <% unless product["attributes"].nil? %>
+                      <ul>
+                        <% product["attributes"].each do |attribute| %>
+                          <li><%= attribute[0]["attributeLabel"] %>:
+                          <%= attribute["attributeValue"].html_safe if !attribute["attributeValue"].nil? %>
+                          <%= attribute["attributeUnit"].html_safe if !attribute["attributeUnit"].nil?  %></li>
+                        <% end %>
+                      </ul>
+                    <% else %>
+                      <p>характеристики не указаны</p>
+                    <% end %>
+                  <% end %>
                   </div>
                 </td>
               </tr>
