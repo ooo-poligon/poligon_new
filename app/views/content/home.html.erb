@@ -1,9 +1,9 @@
 <% @content.each do |c| %>
-    <h1 align="center"><%= c.title %></h1>
-    <div><%= c.content.html_safe %></div>
-    <div>
-      <p>
-        <%= link_to(image_tag("ISO9001.gif", class: "img-responsive center-block", width: '150px'), 'http://poligon.info/PDF/cert/POLIGON_ISO9001.pdf') %>
-      </p>
-    </div>
+  <h1 align="center"><%= c.title %></h1>
+  <div><%= c.content.html_safe %></div>
+  <div>
+    <p>
+      <%= link_to(image_tag("ISO9001.gif", class: "img-responsive center-block", width: '150px'), 'http://poligon.info/PDF/cert/POLIGON_ISO9001.pdf') %>
+    </p>
+  </div>
 <% end %>

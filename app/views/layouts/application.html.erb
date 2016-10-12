@@ -6,15 +6,14 @@
   <head>
     <%= meta_tags(
       title: title,
-      description: description
+      description: description,
+      keywords: get_keywords_from(description)
       ) %>
     <link href='https://fonts.googleapis.com/css?family=PT+Sans&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Marck+Script&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Ubuntu+Condensed&subset=latin,cyrillic-ext' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Anonymous+Pro:700,400&subset=cyrillic,latin' rel='stylesheet' type='text/css'>
     <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-
-    <meta name="author" content="">
     <%= favicon_link_tag 'favicon.ico' %>
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
