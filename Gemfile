@@ -28,7 +28,6 @@ gem 'zeroclipboard-rails'
 gem 'turbolinks'
 gem 'zipline'
 gem 'whenever', require: false
-gem 'meta-tags-helpers', '~> 0.2.0'
 
 group :assets do
   gem 'coffee-rails'
