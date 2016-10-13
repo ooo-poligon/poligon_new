@@ -1,3 +1,5 @@
+<% title = 'Расширенный результат поиска по запросу "' + params[:q] + '"' %>
+<% generate_meta_from title %>
 <br>
 
 <% if !@products.results.nil? and @products.results.size > 0 %>

@@ -9,7 +9,9 @@
           <%= link_to "Выйти", destroy_user_session_path, :method => 'delete' %>
       <% else %>
         <%= form_for(resource, as: resource_name, url: session_path(resource_name), class: "form-signin", role: "form") do |f| %>
-          <h2 class="form-signin-heading">Введите Ваши данные</h2>
+          <% title = "Введите Ваши данные" %>
+          <% generate_meta_from title %>
+          <h2 class="form-signin-heading"><%= title %></h2>
           <div class="field">
             <%= f.email_field :email, autofocus: true, class: "form-control", placeholder: "Email" %>
           </div>

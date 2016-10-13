@@ -1,5 +1,6 @@
 <% @content.each do |c| %>
   <% if c.page == params[:id] %>
+  <% generate_meta_from c.title %>
     <h1><%= c.title %></h1>
     <div>
       <%= c.content.gsub('href="/PDF', 'href="http://www.poligon.info/PDF')

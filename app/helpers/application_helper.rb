@@ -23,7 +23,7 @@ module ApplicationHelper
       :"og:type"         => "article",
       :"og:title"        => opts[:title],
       :"og:description"  => opts[:description],
-      :"keywords"        => "keyword",
+      :"keywords"        => opts[:keywords],
       :"author"          => "Igor Klekotnev",
       :"og:image"        => opts[:"og:image"],
       :"csrf-param"      => request_forgery_protection_token,
@@ -68,15 +68,5 @@ module ApplicationHelper
         normalized[:"#{key}"] = v
       end
     end
-  end
-
-  def get_keywords_from (source)
-    forbidden_symbols = 
-    output = []
-    source.split(" ").each do |s|
-      s.gsub!(/[^0-9a-zа-я ]/i, '')
-      output << s if s.size > 3
-    end
-    output.join(", ")
   end
 end

@@ -1,20 +1,12 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/html" lang="ru" code="<%= response.try(:code) if defined?(response) %>">
   <head>
-    <title>Компания "ПОЛИГОН"</title>
+    <%= meta_tags %>
     <link href='https://fonts.googleapis.com/css?family=PT+Sans&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Marck+Script&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Ubuntu+Condensed&subset=latin,cyrillic-ext' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Anonymous+Pro:700,400&subset=cyrillic,latin' rel='stylesheet' type='text/css'>
     <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-
-    <%= csrf_meta_tags %>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <meta name="description" content="">
-    <meta name="author" content="">
     <%= favicon_link_tag 'favicon.ico' %>
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->

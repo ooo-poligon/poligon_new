@@ -1,5 +1,7 @@
 <p id="notice"><%= notice %></p>
-<h1><%= @review.title %></h1>
+<% title = @review.title %>
+<% generate_meta_from title %>
+<h1><%= title %></h1>
 <p>
   <%= @review.content.html_safe
       .gsub('href="/PDF', 'href="http://www.poligon.info/PDF')

@@ -1,3 +1,5 @@
+<% title = 'Результат поиска по запросу "' + params[:q] + '"' %>
+<% generate_meta_from title %>
 <h2>Результат поиска по запросу <i><b>"<%= params[:q] %>"</b></i>:</h2>
 
 <% if !@products.results.empty? %>

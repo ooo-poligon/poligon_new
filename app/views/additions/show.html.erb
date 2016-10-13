@@ -1,6 +1,8 @@
 <p id="notice"><%= notice %></p>
 <br>
-<h1><%= @addition.title %></h1>
+<% title = @addition.title %>
+<% generate_meta_from title %>
+<h1><%= title %></h1>
 
 <p>
   <%= @addition.content.html_safe

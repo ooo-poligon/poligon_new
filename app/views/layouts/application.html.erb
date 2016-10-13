@@ -1,14 +1,7 @@
-<%  title = "new.poligon.info"
-    description = 'Сайт компании "ПОЛИГОН"' %>
-
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/html" lang="ru" code="<%= response.try(:code) if defined?(response) %>">
   <head>
-    <%= meta_tags(
-      title: title,
-      description: description,
-      keywords: get_keywords_from(description)
-      ) %>
+    <%= meta_tags %>
     <link href='https://fonts.googleapis.com/css?family=PT+Sans&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Marck+Script&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Ubuntu+Condensed&subset=latin,cyrillic-ext' rel='stylesheet' type='text/css'>

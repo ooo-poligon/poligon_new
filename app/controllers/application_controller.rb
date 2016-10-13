@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   before_filter :configure_permitted_parameters, if: :devise_controller?
   before_filter :getCourse
 
-  helper_method :get_prices_eur, :get_prices_rub, :hello_user, :parents_of, :rub_case_with_kopeiki
+  helper_method :get_prices_eur, :get_prices_rub, :hello_user, :parents_of, :rub_case_with_kopeiki, :set_meta, :generate_meta_from
 
   def get_prices_eur(product)
     prices_array = []
@@ -67,7 +67,43 @@ class ApplicationController < ActionController::Base
     html_output.html_safe
   end
 
+  def _meta_tags_hash
+    @_meta_tags_hash ||= {}
+  end
+
+  def set_meta(options)
+    _meta_tags_hash.deep_merge!(normalize_meta_hash(options))
+  end
+
+  def generate_meta_from(input)
+    set_meta  "title" => "new.poligon.info | " + input,
+              "og:title" => input,
+              "description" => ('Страница сайта "' + input + '"'),
+              "og:description" => ('Страница сайта "' + input + '"'),
+              "keywords" => get_keywords_from(input)
+  end
+
   protected
+
+  def normalize_meta_hash(hash)
+    normalized = {}
+    normalize_meta_hash_walker(hash, normalized)
+    normalized
+  end
+
+  def normalize_meta_hash_walker(hash, normalized, current = nil)
+    hash.each do |k, v|
+      thisPath = current ? current.dup : []
+      thisPath << k.to_s
+
+      if v.is_a?(Hash)
+        normalize_meta_hash_walker(v, normalized, thisPath)
+      elsif v
+        key = thisPath.join ":"
+        normalized[:"#{key}"] = v
+      end
+    end
+  end
 
   def cases (number, kind)
     if kind == 'рубль'
@@ -144,6 +180,16 @@ class ApplicationController < ActionController::Base
 
     File.open('current_course_euro', 'w') {|f| f.write(to_file[1] + "\n" + to_file[0].to_s) }
     @courseEuro = course.to_f
+  end
+
+  def get_keywords_from (source)
+    forbidden_symbols = 
+    output = []
+    source.split(" ").each do |s|
+      s.gsub!(/[^0-9a-zа-я ]/i, '')
+      output << s.mb_chars.downcase if s.size > 3
+    end
+    output.join(", ")
   end
 
 end

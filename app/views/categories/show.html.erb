@@ -35,7 +35,9 @@
       <div class="row" >
         <div class="col-xs-12 col-md-12" >
           <div class="category-header">
-            <h2><%= @recentCategory.title %></h2>
+            <% title = @recentCategory.title %>
+            <% generate_meta_from title %>
+            <h2><%= title %></h2>
           </div>
         </div>
       </div>

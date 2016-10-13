@@ -1,4 +1,6 @@
-<h1 align="center">Список новостей</h1>
+<% title = "Список новостей" %>
+<% generate_meta_from title %>
+<h1 align="center"><%= title %></h1>
 
 <%= render 'shared/articles_list', locals: { items: @news_items } %>
 

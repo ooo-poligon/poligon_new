@@ -39,7 +39,7 @@
 </div>
 
 <% @content.each do |c| %>
-    <!--<h1 align="center"><%= c.title %></h1>-->
+    <% generate_meta_from c.title %>
     <div><%= c.content.html_safe %></div>
     <div class="iso9001">
       <p>

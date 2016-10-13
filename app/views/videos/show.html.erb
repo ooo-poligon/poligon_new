@@ -1,6 +1,8 @@
 <p id="notice"><%= notice %></p>
 <br>
-<h1><%= @video.title %></h1>
+<% title = @video.title %>
+<% generate_meta_from title %>
+<h1><%= title %></h1>
 <p>
   <%= @video.content.html_safe
       .gsub('href="/PDF', 'href="http://www.poligon.info/PDF')

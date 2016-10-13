@@ -1,4 +1,5 @@
 <% @content.each do |c| %>
+  <% generate_meta_from c.title %>
   <h1 align="center"><%= c.title %></h1>
   <div><%= c.content.html_safe %></div>
   <div>
