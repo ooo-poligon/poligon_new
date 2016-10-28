@@ -33,3 +33,6 @@
 /config/application.yml
 
 /rerun.txt
+/nbproject/
+/.project
+/.settings

@@ -43,7 +43,11 @@ class ApplicationController < ActionController::Base
 
   def parents_of(category_id)
     parents_array = []
-    element = Category.find(category_id)
+    if category_id.class == Fixnum
+      element = Category.find(category_id)
+    else
+      element = Category.find(category_id.id)
+    end
     while element.parent != 0
         parents_array.push(element)
         element = Category.find(element.parent)
