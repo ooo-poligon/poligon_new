@@ -10,19 +10,19 @@
           image_tag(
             category_image_path,
             alt: category.title,
-            class: "img img-responsive img-thumbnail"
+            class: "img img-responsive"
           )
         ), category_path(category.id) %>
       <% end %>
     </div>
   </div>
-  <div class="col-md-10" style="max-height: 200px;  overflow: hidden;">
-    <div style="max-height: 200px;  min-height: 200px;  overflow: hidden;">
-      <div style="max-height: 198px;  min-height: 198px;  overflow: hidden;">
+  <div class="col-md-10" style="max-height: 140px;  overflow: hidden;">
+    <div style="max-height: 100px;  min-height: 100px;  overflow: hidden;">
+      <div style="max-height: 98px;  min-height: 98px;  overflow: hidden;">
         <p style="color: blue; font-weight: bolder;">
           <%= link_to category.title, category_path(category.id) %>
         </p>
-      <% unless category.summary.nil? %>
+        <% unless category.summary.nil? %>
           <p style="max-height: 100%;">
             <% if category.summary.size < 280 %>
               <%= simple_format category.summary %>
@@ -32,6 +32,10 @@
                 <%= link_to " ...читать далее", category_path(category.id) %>
               </span>
             <% end %>
+          </p>
+        <% else %>
+          <p style="max-height: 100%;">
+            <%= simple_format category.description %>
           </p>
         <% end %>
       </div>

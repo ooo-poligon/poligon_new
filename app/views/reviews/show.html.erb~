@@ -1,0 +1,9 @@
+<p id="notice"><%= notice %></p>
+<% title = @review.title %>
+<% generate_meta_from title %>
+<h1><%= title %></h1>
+<p>
+  <%= @review.content %>
+</p>
+
+<%= render 'shared/article_footer', locals: { item: @review } %>
