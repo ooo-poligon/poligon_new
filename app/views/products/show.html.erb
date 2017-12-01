@@ -82,11 +82,11 @@
           <div class="tab-pane fade" id="product_data_tab">
             <%= render "shared/product_data_tab" %>
           </div>
-          <div class="tab-pane fade in active" id="properties_tab">
+          <div class="tab-pane fade" id="properties_tab">
             <%= render "shared/product_properties_tab" %>
           </div>
         <% else %>
-          <div class="tab-pane fade in active" id="properties_tab">
+          <div class="tab-pane fade" id="properties_tab">
             <%= render "shared/product_properties_tab" %>
           </div>
         <% end %>
@@ -99,7 +99,7 @@
         <div class="tab-pane fade" id="dimensions_tab">
           <%= render "shared/product_plugs_or_dimensions_tab", locals: { product: @product, pic_type: 'dim', count: nil } %>
         </div>
-        <div class="tab-pane fade" id="full_description_tab">
+        <div class="tab-pane fade in active" id="full_description_tab">
           <%= render "shared/product_full_description_tab" %>
         </div>
       </div>
