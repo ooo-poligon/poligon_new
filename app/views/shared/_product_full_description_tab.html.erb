@@ -1,3 +1,10 @@
+ <% if @product.outdated == 1 %>
+        <p> <%= @product.title %> снято с производства
+         </p> 
+      <% else %>
+      <% end %>
+
+
 <%= @product.full_description
   .gsub('href="/PDF', 'href="http://www.poligon.info/PDF')
   .gsub('src="/images', 'src="http://www.poligon.info/images')
