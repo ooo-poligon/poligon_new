@@ -1,0 +1,3 @@
+class Price < ActiveRecord::Base
+    self.table_name = "price"
+end

@@ -3,7 +3,7 @@
 
 <% unless @product.article.nil? %>
   <% title = @productKind.title + " " + @product.title + " (" + @product.article + ")" %>
-  <h1><span style="color: black;" ><%= @productKind.title %></span> <b><span style="color: red;" ><%= @product.title + " (" + @product.article + ")" %></span></b></h1>
+  <h4><b><%= @productKind.title %></b> <span style="color: red;" ><%= @product.title + " (" + @product.article + ")" %></span></h4>
 <% else %>
   <% title = @productKind.title + " " + @product.title %>
   <h4><b><%= @productKind.title %></b> <span style="color: red;" ><%= @product.title %></span></h4>
@@ -17,9 +17,17 @@
 <ul class="nav nav-tabs">
   <% if user_signed_in? %>
     <li class="pull-right"><a href="#product_data_tab" data-toggle="tab">Цены и наличие</a></li>
-    <li class="pull-right"><a href="#general_information_tab" data-toggle="tab">Общая информация</a></li>
+    <li class="pull-right"><a href="#dimensions_tab" data-toggle="tab">Размеры</a></li>
+    <li class="pull-right"><a href="#plugs_tab" data-toggle="tab">Схемы подключения</a></li>
+    <li class="pull-right"><a href="#functions_tab" data-toggle="tab">Функции</a></li>
+    <li class="pull-right"><a href="#properties_tab" data-toggle="tab">Технические характеристики</a></li>
+    <li class="pull-right active"><a href="#full_description_tab" data-toggle="tab">Описание</a></li>
   <% else %>
-    <li class="pull-right"><a href="#general_information_tab" data-toggle="tab">Общая информация</a></li>
+    <li class="pull-right"><a href="#dimensions_tab" data-toggle="tab">Размеры</a></li>
+    <li class="pull-right"><a href="#plugs_tab" data-toggle="tab">Схемы подключения</a></li>
+    <li class="pull-right"><a href="#functions_tab" data-toggle="tab">Функции</a></li>
+    <li class="pull-right"><a href="#properties_tab" data-toggle="tab">Технические характеристики</a></li>
+    <li class="pull-right active"><a href="#full_description_tab" data-toggle="tab">Описание</a></li>
   <% end %>
 
 </ul>
@@ -69,36 +77,31 @@
       </p>
     </div>
     <div class="col-xs-9">
-      <div class="tab-content" width="70%">
+      <div class="tab-content">
         <% if user_signed_in? %>
           <div class="tab-pane fade" id="product_data_tab">
             <%= render "shared/product_data_tab" %>
           </div>
-          <div class="tab-pane fade in active" id="general_information_tab">
-            <h2>Описание:</h2>
-            <%= render "shared/product_full_description_tab" %>
-            <h2>Технические характеристики:</h2>
+          <div class="tab-pane fade" id="properties_tab">
             <%= render "shared/product_properties_tab" %>
-            <h2>Функции:</h2>
-            <%= render "shared/product_functions_tab" %>
-            <h2>Схема подключения:</h2>
-            <%= render "shared/product_plugs_or_dimensions_tab", locals: { product: @product, pic_type: 'plug', count: 3 } %>
-            <h2>Габаритные размеры:</h2>
-            <%= render "shared/product_plugs_or_dimensions_tab", locals: { product: @product, pic_type: 'dim', count: nil } %>
           </div>
         <% else %>
-          <div class="tab-pane fade in active" id="general_information_tab">
-            <h2>Описание:</h2>
-            <%= render "shared/product_full_description_tab" %>
-            <h2>Технические характеристики:</h2>
+          <div class="tab-pane fade" id="properties_tab">
             <%= render "shared/product_properties_tab" %>
-            <h2>Функции:</h2>
-            <%= render "shared/product_functions_tab" %>
-            <h2>Схема подключения:</h2>
-            <%= render "shared/product_plugs_or_dimensions_tab", locals: { product: @product, pic_type: 'plug', count: 3 } %>
-            Габаритные размеры:
-            <%= render "shared/product_plugs_or_dimensions_tab", locals: { product: @product, pic_type: 'dim', count: nil } %>
+          </div>
         <% end %>
+        <div class="tab-pane fade" id="functions_tab">
+          <%= render "shared/product_functions_tab" %>
+        </div>
+        <div class="tab-pane fade" id="plugs_tab">
+          <%= render "shared/product_plugs_or_dimensions_tab", locals: { product: @product, pic_type: 'plug', count: 3 } %>
+        </div>
+        <div class="tab-pane fade" id="dimensions_tab">
+          <%= render "shared/product_plugs_or_dimensions_tab", locals: { product: @product, pic_type: 'dim', count: nil } %>
+        </div>
+        <div class="tab-pane fade in active" id="full_description_tab">
+          <%= render "shared/product_full_description_tab" %>
+        </div>
       </div>
     </div>
   </div>
