@@ -85,7 +85,7 @@
             <%= render "shared/product_plugs_or_dimensions_tab", locals: { product: @product, pic_type: 'plug', count: 3 } %>
             <h2>Габаритные размеры:</h2>
             <%= render "shared/product_plugs_or_dimensions_tab", locals: { product: @product, pic_type: 'dim', count: nil } %>
-          </div>
+          
         <% else %>
           <div class="tab-pane fade in active" id="general_information_tab">
             <h2>Описание:</h2>
@@ -96,7 +96,7 @@
             <%= render "shared/product_functions_tab" %>
             <h2>Схема подключения:</h2>
             <%= render "shared/product_plugs_or_dimensions_tab", locals: { product: @product, pic_type: 'plug', count: 3 } %>
-            Габаритные размеры:
+            <h2>Габаритные размеры:</h2>
             <%= render "shared/product_plugs_or_dimensions_tab", locals: { product: @product, pic_type: 'dim', count: nil } %>
         <% end %>
       </div>
