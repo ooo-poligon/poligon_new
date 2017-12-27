@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160926114911) do
+ActiveRecord::Schema.define(version: 20171220103724) do
 
   create_table "additions", force: :cascade do |t|
     t.datetime "created_at",                    null: false
@@ -54,8 +54,10 @@ ActiveRecord::Schema.define(version: 20160926114911) do
     t.string  "image_path",  limit: 255
     t.text    "more_info",   limit: 65535
     t.text    "summary",     limit: 65535
+    t.string  "slug",        limit: 255
   end
 
+  add_index "categories", ["slug"], name: "index_categories_on_slug", unique: true, using: :btree
   add_index "categories", ["title"], name: "title", unique: true, using: :btree
 
   create_table "certificates", force: :cascade do |t|
@@ -221,29 +223,48 @@ ActiveRecord::Schema.define(version: 20160926114911) do
 
   create_table "products", force: :cascade do |t|
     t.integer "category_id",        limit: 4
-    t.string  "title",              limit: 255,        default: "",  null: false
-    t.text    "description",        limit: 4294967295
-    t.text    "anons",              limit: 4294967295
+    t.string  "title",              limit: 255,   default: "",  null: false
+    t.text    "description",        limit: 65535
+    t.text    "anons",              limit: 65535
     t.string  "article",            limit: 255
+    t.text    "full_description",   limit: 65535
     t.integer "available",          limit: 4
-    t.text    "delivery_time",      limit: 4294967295
+    t.text    "delivery_time",      limit: 65535
     t.string  "ean",                limit: 255
     t.integer "outdated",           limit: 4
-    t.float   "price",              limit: 53,                       null: false
+    t.float   "price",              limit: 53,                  null: false
     t.integer "series_item_id",     limit: 4
-    t.integer "product_kind_id",    limit: 4,          default: 1
+    t.integer "product_kind_id",    limit: 4,     default: 1
     t.integer "vendor_id",          limit: 4
-    t.float   "special",            limit: 53,         default: 1.0, null: false
-    t.float   "rate",               limit: 53,         default: 1.0, null: false
-    t.float   "discount1",          limit: 53,         default: 1.0, null: false
-    t.float   "discount2",          limit: 53,         default: 1.0, null: false
-    t.float   "discount3",          limit: 53,         default: 1.0, null: false
-    t.float   "rub_retail",         limit: 53,         default: 0.0, null: false
-    t.integer "plugin_owner_id",    limit: 4,          default: 1,   null: false
-    t.integer "currency_id",        limit: 4,          default: 1,   null: false
-    t.integer "accessory_owner_id", limit: 4,          default: 0,   null: false
+    t.float   "special",            limit: 53,    default: 1.0, null: false
+    t.float   "rate",               limit: 53,    default: 1.0, null: false
+    t.float   "discount1",          limit: 53,    default: 1.0, null: false
+    t.float   "discount2",          limit: 53,    default: 1.0, null: false
+    t.float   "discount3",          limit: 53,    default: 1.0, null: false
+    t.float   "rub_retail",         limit: 53,    default: 0.0, null: false
+    t.integer "plugin_owner_id",    limit: 4,     default: 1,   null: false
+    t.integer "currency_id",        limit: 4,     default: 1,   null: false
+    t.integer "accessory_owner_id", limit: 4,     default: 0,   null: false
     t.string  "serie",              limit: 255
     t.string  "vendor",             limit: 255
+    t.text    "price_date",         limit: 255
+    t.string  "slug",               limit: 255
+    t.integer "number_card_1c",     limit: 4,                   null: false
+    t.float   "base_price",         limit: 24,    default: 0.0, null: false
+    t.float   "supplier_price",     limit: 24,    default: 0.0, null: false
+    t.float   "rrp",                limit: 24,    default: 0.0, null: false
+    t.float   "special_price",      limit: 24,    default: 0.0, null: false
+    t.float   "opt_price",          limit: 24,    default: 0.0, null: false
+    t.float   "price_10",           limit: 24,    default: 0.0, null: false
+    t.float   "dealer_price",       limit: 24,    default: 0.0, null: false
+    t.float   "rs_price_1",         limit: 24,    default: 0.0, null: false
+    t.float   "rs_price_2",         limit: 24,    default: 0.0, null: false
+    t.float   "rs_price_3",         limit: 24,    default: 0.0, null: false
+    t.float   "rs_price_4",         limit: 24,    default: 0.0, null: false
+    t.float   "rs_price_5",         limit: 24,    default: 0.0, null: false
+    t.float   "rub_base_price",     limit: 24,    default: 0.0, null: false
+    t.float   "new_supplier_price", limit: 24
+    t.string  "comments_price",     limit: 255
   end
 
   add_index "products", ["category_id"], name: "FK_of5oeawsy50x878ic9tyapdnv", using: :btree
@@ -251,6 +272,7 @@ ActiveRecord::Schema.define(version: 20160926114911) do
   add_index "products", ["product_kind_id"], name: "FK_products_product_kinds", using: :btree
   add_index "products", ["serie"], name: "FK_ni7gdwd360jaafq7b7m1gug4v", using: :btree
   add_index "products", ["series_item_id"], name: "index_products_on_serie_id", using: :btree
+  add_index "products", ["slug"], name: "index_products_on_slug", unique: true, using: :btree
   add_index "products", ["vendor"], name: "FK_h9ix3xgma67xlseqy1hap6rfa", using: :btree
   add_index "products", ["vendor_id"], name: "index_products_on_vendor_id", using: :btree
 
@@ -365,6 +387,12 @@ ActiveRecord::Schema.define(version: 20160926114911) do
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
     t.string   "title",      limit: 255
+  end
+
+  create_table "super_prices", force: :cascade do |t|
+    t.float    "supplier_price", limit: 24
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
 
   create_table "tickets", force: :cascade do |t|

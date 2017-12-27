@@ -5,31 +5,21 @@ class ProductsController < ApplicationController
 
   def show
 
-    
     @product                   = Product.find(params[:id])
     @parents_array             = parents_of(@product.category_id)
     @addCBR                    = Setting.find_by title: 'addCBR'
-    
-   @price			   = Price.find_by(product_id: @product_id)
-=begin то что выше, Крутень 10.12.2017 работа с таблицей price в db
-=end	
+     
+
     if @product.currency_id    == 1
       course_multiplier        = (@courseEuro + (@courseEuro / 100) * @addCBR.text_value.to_f)
-      @retail_price            =  10
-=begin @product.price * @product.rate * course_multiplier 
-=end
-
+      @retail_price            = @product.price * @product.rate * course_multiplier
     elsif @product.currency_id == 2
-      @retail_price            =  @price.base_price
-=begin @product.rub_retail
-=end
-
+      @retail_price            = @product.rub_retail
     end
 
     @productImage              = DataFile.where("owner_id = ? and file_type_id = 1", @product.id).first
     @productPdf                = DataFile.where("owner_id = ? and file_type_id = 2", @product.id).first
     productFunctions           = ProductFunction.where("product_id = ?", @product.id)
-
     function_ids               = []
     productFunctions.each do |pf|
       function_ids.push pf.function_id

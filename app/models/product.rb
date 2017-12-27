@@ -8,6 +8,7 @@ class Product < ActiveRecord::Base
   has_many   :properties
   has_many   :property_values
   has_one    :quantity
+  has_one    :prices
   has_and_belongs_to_many :offers
 
   scope :available, -> { where(available: 1) }
