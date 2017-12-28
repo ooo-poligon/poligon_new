@@ -12,7 +12,7 @@ class ProductsController < ApplicationController
 
     if @product.currency_id    == 1
       course_multiplier        = (@courseEuro + (@courseEuro / 100) * @addCBR.text_value.to_f)
-      @retail_price            = @product.base_price * course_multiplier
+      @retail_price            = @product.price * @product.rate * course_multiplier
 =begin
 @retail_price            = @product.price * @product.rate * course_multiplier
 =end   
