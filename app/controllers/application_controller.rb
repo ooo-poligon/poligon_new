@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
     prices_array << retail - (retail/100 * product.discount1)
     prices_array << retail - (retail/100 * product.discount2)
     prices_array << retail - (retail/100 * product.discount3)
-    prices_array << product_price
+    prices_array << product.price
     prices_array
   end
 
