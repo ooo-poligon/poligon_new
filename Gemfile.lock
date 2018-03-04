@@ -246,7 +246,7 @@ GEM
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
-    puma (3.4.0)
+    puma (3.11.2)
     rack (1.6.4)
     rack-mini-profiler (0.10.1)
       rack (>= 1.2.0)
@@ -407,12 +407,12 @@ DEPENDENCIES
   jquery-turbolinks
   launchy
   mandrill-api
-  mina
+  mina (= 0.3.8)
   mysql2
   nokogiri
   progress_bar
   protected_attributes
-  puma
+  puma (= 3.11.2)
   rack-mini-profiler
   rails (= 4.2.5)
   rspec-rails (~> 3.4)

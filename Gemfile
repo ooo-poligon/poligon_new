@@ -51,7 +51,7 @@ group :development, :test do
   gem 'faker', github: 'stympy/faker'
   gem 'spring'
   gem 'spring-commands-rspec'
-  gem "spring-commands-cucumber"
+  gem 'spring-commands-cucumber'
   gem 'guard'
   gem 'guard-spring'
   gem 'guard-rspec'
@@ -59,8 +59,8 @@ group :development, :test do
 end
 
 group :development do
-  gem 'mina'
-  gem 'puma'
+  gem 'mina', '0.3.8'
+  gem 'puma', '= 3.11.2'
 end
 
 group :production do
