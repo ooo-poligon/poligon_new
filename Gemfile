@@ -66,3 +66,6 @@ end
 group :production do
   gem 'exception_notification'
 end
+
+# Added at 2018-03-09 00:03:34 +0300 by igor:
+gem "byebug", "~> 10.0", :groups => [:development, :test]
