@@ -10,21 +10,21 @@ require 'mina/whenever'
 #   repository   - Git repo to clone from. (needed by mina/git)
 #   branch       - Branch name to deploy. (needed by mina/git)
 
-set :domain, '89.253.227.59'
-set :deploy_to, '/var/www/poligon_ror'
-set :repository, "git@github.com:ooo-poligon/poligon_new.git"
-set :branch, 'master'
+set :domain, 'klekotnev.com'
+set :deploy_to, '/home/deploy/www/poligon.klekotnev.com'
+set :repository, 'git@github.com:ooo-poligon/poligon_new.git'
+set :branch, 'develop'
 
 # For system-wide RVM install.
   #set :rvm_path, '/usr/local/rvm/bin/rvm'
-  set :rvm_path, '/usr/local/rvm/scripts/rvm'
+  set :rvm_path, '/home/deploy/.rvm/scripts/rvm'
 
 # Manually create these paths in shared/ (eg: shared/config/database.yml) in your server.
 # They will be linked in the 'deploy:link_shared_paths' step.
 set :shared_paths, ['config/database.yml', 'config/secrets.yml', 'config/application.yml', 'log']
 
 # Optional settings:
-  set :user, 'ror'    # Username in the server to SSH to.
+  set :user, 'deploy'    # Username in the server to SSH to.
 #  set :port, '30000'     # SSH port number.
   set :forward_agent, true     # SSH forward_agent.
 
@@ -36,7 +36,7 @@ task :environment do
   # invoke :'rbenv:load'
 
   # For those using RVM, use this to load an RVM version@gemset.
-  invoke :'rvm:use[ruby-2.3.1@default]'
+  invoke :'rvm:use[ruby-2.2.4@poligon]'
 end
 
 # Put any custom mkdir's in here for when `mina setup` is ran.
