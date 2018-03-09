@@ -11,6 +11,9 @@ Poligon::Application.routes.draw do
   resources  :additions,  only: [:index, :show]
   resources  :products,   only: [        :show]
 
+  get 'cart/show'
+  get 'cart/add'
+
   get  'certificates/download'
   get  'certificates/index'
 
