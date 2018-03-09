@@ -79,7 +79,7 @@ task :deploy => :environment do
     invoke :'bundle:install'
     invoke :'whenever:clear'
     invoke :'whenever:update'
-    #invoke :'rails:db_migrate'
+    invoke :'rails:db_migrate'
     invoke :'rails:assets_precompile'
     invoke :'deploy:cleanup'
 
