@@ -28,6 +28,7 @@ gem 'zeroclipboard-rails'
 gem 'turbolinks'
 gem 'zipline'
 gem 'whenever', require: false
+gem 'rusprice'
 
 group :assets do
   gem 'coffee-rails'

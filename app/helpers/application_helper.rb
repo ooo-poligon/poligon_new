@@ -12,6 +12,12 @@ module ApplicationHelper
     end
   end
 
+  def spaces_on(number, sep = " ")
+    number.to_s.tap do |s|
+      :go while s.gsub!(/^([^.]*)(\d)(?=(\d{3})+)/, "\\1\\2#{sep}")
+    end
+  end
+
   def meta_tags(opts = {})
     opts = normalize_meta_hash(opts)
 
