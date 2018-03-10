@@ -60,7 +60,7 @@
       <span class="sht">шт</span>
       <span class="modal-input"><span>0</span> руб.</span>
       </span>
-      <a href="" class="add-basket active">В корзину</a>
+      <%= button_to 'В корзину', line_items_path(product_id: locals[:product_array][0], price: locals[:product_array][1]), class: 'add-basket active' %>
     </div>
     <!--<div class="catalog-st">-->
       <!--<div class="nav-catalog-card">-->

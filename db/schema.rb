@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180309194319) do
+ActiveRecord::Schema.define(version: 20180310210406) do
 
   create_table "additions", force: :cascade do |t|
     t.datetime "created_at",                    null: false
@@ -44,6 +44,11 @@ ActiveRecord::Schema.define(version: 20180309194319) do
     t.string   "title",      limit: 255
     t.text     "content",    limit: 65535
     t.string   "image_path", limit: 255
+  end
+
+  create_table "carts", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "categories", force: :cascade do |t|
@@ -150,6 +155,14 @@ ActiveRecord::Schema.define(version: 20180309194319) do
 
   add_index "kinds_types", ["product_kind_id"], name: "FK__product_kinds", using: :btree
   add_index "kinds_types", ["property_type_id"], name: "FK__property_types", using: :btree
+
+  create_table "line_items", force: :cascade do |t|
+    t.integer  "product_id", limit: 4
+    t.integer  "cart_id",    limit: 4
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+    t.integer  "quantity",   limit: 4, default: 1
+  end
 
   create_table "measures", force: :cascade do |t|
     t.string "number_code",    limit: 3
