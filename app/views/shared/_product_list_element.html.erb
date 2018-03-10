@@ -35,11 +35,11 @@
       <% if locals[:product_array][1] == 0 %>
         <span class="price">Звоните:<br>(812)325-42-20</span>
       <% else %>
-        <span class="price"><%= locals[:product_array][1].ruspace(true) %></span>
+        <span class="price"><%= locals[:product_array][1].rpss %></span>
       <% end %>
       <span class="retail-title">Розничная цена</span>
       <span class="retail-price dont-sale">
-        <%= locals[:product_array][1] == 0 ? "Не указана" : locals[:product_array][1].ruspace(true) %>
+        <%= locals[:product_array][1] == 0 ? "Не указана" : locals[:product_array][1].rpss %>
       </span><br>
       <% if locals[:product_array][2] > 0 %>
         <span><%= image_tag("green.gif") %></span>

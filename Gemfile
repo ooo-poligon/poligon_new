@@ -28,7 +28,7 @@ gem 'zeroclipboard-rails'
 gem 'turbolinks'
 gem 'zipline'
 gem 'whenever', require: false
-gem 'rusprice', '~> 1.0'
+gem 'rusprice', '~> 1.1'
 
 group :assets do
   gem 'coffee-rails'
