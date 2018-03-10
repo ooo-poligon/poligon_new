@@ -32,10 +32,10 @@
   </div>
   <div class="catalog-col-right sale">
     <div class="catalog-st">
-      <% unless locals[:product_array][1] == 0 %>
-        <span class="price"><%= locals[:product_array][1].ruspace(true) %></span>
-      <% else %>
+      <% if locals[:product_array][1] == 0 %>
         <span class="price">Звоните:<br>(812)325-42-20</span>
+      <% else %>
+        <span class="price"><%= locals[:product_array][1].ruspace(true) %></span>
       <% end %>
       <span class="retail-title">Розничная цена</span>
       <span class="retail-price dont-sale">
