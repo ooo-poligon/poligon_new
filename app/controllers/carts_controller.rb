@@ -1,4 +1,6 @@
 class CartsController < ApplicationController
+  respond_to :html, :json, :js
+
   def show
     @cart = Cart.find(params[:id])
   rescue ActiveRecord::RecordNotFound
@@ -8,6 +10,7 @@ class CartsController < ApplicationController
     respond_to do |format|
       format.html
       format.json { render json: @cart}
+      format.js
     end
   end
 

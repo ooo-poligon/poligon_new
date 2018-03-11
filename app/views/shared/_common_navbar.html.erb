@@ -64,7 +64,11 @@
           </li>
         </ul>
       </li>
-      <li><a href=<%= carts_show_path %>> <span class="shopping-cart"><i class="glyphicon glyphicon-shopping-cart"></i>  Корзина</span></a></li>
+      <li>
+        <%= link_to '<span class="shopping-cart"><i class="glyphicon glyphicon-shopping-cart"></i>  Корзина</span>'.html_safe,
+                      cart_path(@current_cart.id),
+                      {remote: true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window'} %>
+      </li>
       <li>
         <%= link_to '(812) 325-42-20', company_contacts_path, class: "phone" %>
       </li>
