@@ -23,7 +23,7 @@ describe NewsItemsController do
   describe 'GET #show' do
     before do
       sign_in nil
-      get :show, id: FactoryGirl.create(:news_item)
+      get :show, id: FactoryBot.create(:news_item)
     end
     it "expects page normal loading" do
       expect(response).to have_http_status(200)

@@ -48,7 +48,7 @@ group :development, :test do
   gem 'cucumber-rails', '1.4.3', :require => false
   gem 'database_cleaner', '1.5.3'
   gem 'shoulda-matchers', '3.1.1'
-  gem 'factory_girl_rails', '4.7.0'
+  gem 'factory_bot_rails'
   gem 'faker', github: 'stympy/faker'
   gem 'spring', '1.7.1'
   gem 'spring-commands-rspec', '1.0.4'

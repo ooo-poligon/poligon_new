@@ -1,6 +1,6 @@
 require 'faker'
 
-FactoryGirl.define do
+FactoryBot.define do
   factory :analogs_variant do
     title     { Faker::Lorem.sentence }
     analog_id { Faker::Number.number(5) }

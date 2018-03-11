@@ -1,6 +1,6 @@
 require 'faker'
 
-FactoryGirl.define do
+FactoryBot.define do
   factory :property_kind do
     title   { Faker::Lorem.sentence }
     created_at { Faker::Date.between(5.days.ago, 2.days.ago) }

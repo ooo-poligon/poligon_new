@@ -1,6 +1,6 @@
 require 'faker'
 
-FactoryGirl.define do
+FactoryBot.define do
   factory :product do
     title              { Faker::Lorem.sentence }
     description        { Faker::Lorem.paragraph }

@@ -1,6 +1,6 @@
 require 'faker'
 
-FactoryGirl.define do
+FactoryBot.define do
   factory :quantity do
     minimum         { Faker::Number.number(4) }
     ordered         { Faker::Number.number(4) }

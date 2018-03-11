@@ -1,6 +1,6 @@
 require 'faker'
 
-FactoryGirl.define do
+FactoryBot.define do
   factory :property do
     title      { Faker::Lorem.sentence }
     #value      { Faker::Lorem.sentence }
