@@ -41,6 +41,7 @@ group :test do
   gem 'headless', '2.2.3'
   gem 'email_spec', '2.1.0'
   gem 'launchy', '2.4.3'
+  gem 'chromedriver-helper'
 end
 
 group :development, :test do
