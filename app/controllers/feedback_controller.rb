@@ -1,6 +1,8 @@
 class FeedbackController < ApplicationController
   require 'digest/md5'
 
+  skip_before_action :verify_authenticity_token
+
   def mailing_list
   end
 
