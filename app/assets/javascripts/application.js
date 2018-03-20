@@ -12,6 +12,11 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.slicknav.min
+//= require lightcase
+//= require owl.carousel.min
+//= require spotlight
+//= require script
 //= require fancybox
 //= require bootstrap-sprockets
 //= require search

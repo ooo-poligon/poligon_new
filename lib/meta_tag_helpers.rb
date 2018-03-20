@@ -31,7 +31,7 @@ module MetaTagsHelpers
       default   = {
         :charset           => "utf-8", 
         :"X-UA-Compatible" => "IE=edge,chrome=1", 
-        :viewport          => "width=device-width",
+        :viewport          => "width=device-width, initial-scale=1",
         :"og:url"          => "#{request.url}", 
         :"og:type"         => "article",
         :"og:title"        => opts[:title],
@@ -41,9 +41,9 @@ module MetaTagsHelpers
         :"csrf-token"      => form_authenticity_token
       }
 
-      override_hash = controller.instance_variable_get("@_meta_tags_hash") || {}      
+      override_hash = controller.instance_variable_get("@_meta_tags_hash") || {}
       meta_hash = default.deep_merge(opts).deep_merge(override_hash)
-        
+
       html = ""
       html << "<title>#{h(meta_hash.delete(:title)) }</title>\n"
       meta_hash.each {|k,value_or_array|

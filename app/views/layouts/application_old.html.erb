@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html" lang="ru" code="<%= response.try(:code) if defined?(response) %>">
+  <head>
+    <%= meta_tags %>
+    <link href='https://fonts.googleapis.com/css?family=PT+Sans&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Marck+Script&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Ubuntu+Condensed&subset=latin,cyrillic-ext' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Anonymous+Pro:700,400&subset=cyrillic,latin' rel='stylesheet' type='text/css'>
+    <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+    <%= favicon_link_tag 'favicon.ico' %>
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <![endif]-->
+
+    <link href="/feeds" rel="alternate" title="RSS feed" type="application/rss+xml">
+  </head>
+
+  <body>
+    <%= render "shared/yandex_metrika" %>
+    <%= render "shared/user_navbar" %>
+
+    <!-- Fixed navbar -->
+    <div class="navbar navbar-default navbar-fixed-top main-bar" role="navigation">
+      <%= render "shared/common_navbar" %>
+    </div>
+
+    <div class="wrapper">
+      <div class="container-fluid" style="height: 100%;">
+
+        <div class="row row-offcanvas row-offcanvas-right">
+
+          <div class="col-xs-2 col-md-2 sidebar-offcanvas" id="sidebar1" role="navigation"><br><br><br>
+            <%= render "shared/sidebar_vendors_left" %>
+          </div><!--/span-->
+
+          <div class="col-xs-8 col-md-8 main-content" >
+            <p class="pull-right visible-xs">
+              <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Боковое меню</button>
+            </p>
+            <br><br>
+            <% flash.each do |key, value| %>
+              <br><div class="alert alert-<%= key %>"><%= value %></div>
+            <% end %>
+            <div id="modal-window" class="modal fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content"></div>
+              </div>
+            </div>
+            <br>
+            <%= yield %>
+          </div><!--/span-->
+
+          <div class="col-xs-2 col-md-2 sidebar-offcanvas" id="sidebar2" role="navigation"><br><br><br>
+            <%= render "shared/sidebar_vendors_right" %>
+          </div><!--/span-->
+
+        </div><!--/row-->
+      </div><!--/.container-->
+      <div class="push"></div>
+
+    </div>
+
+    <div class="footer">
+
+      <p>&copy; ООО "ПОЛИГОН" 2017</p>
+
+    </div>
+
+    <!-- JavaScript placed at the end of the document so the pages load faster -->
+    <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+
+  </body>
+</html>
