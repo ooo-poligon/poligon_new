@@ -16,10 +16,10 @@ require 'capybara/rails'
 require 'capybara/dsl'
 require 'capybara/session'
 require 'selenium/webdriver'
-require "factory_girl/step_definitions"
+# require "factory_bot/step_definitions"
 
 
-Capybara.register_driver :chrome do |app|
+Capybara.register_driver :selenium do |app|
   # optional
   client = Selenium::WebDriver::Remote::Http::Default.new
   # optional
@@ -27,7 +27,7 @@ Capybara.register_driver :chrome do |app|
   Capybara::Selenium::Driver.new(app, :browser => :chrome, :http_client => client)
 end
 
-Capybara.javascript_driver = :chrome
+Capybara.javascript_driver = :selenium
 
 Before do
   I18n.locale = :ru

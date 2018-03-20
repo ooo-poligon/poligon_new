@@ -1,6 +1,6 @@
 require 'faker'
 
-FactoryGirl.define do
+FactoryBot.define do
   factory :video do
     title      { Faker::Lorem.sentence }
     content    { Faker::Lorem.paragraph }

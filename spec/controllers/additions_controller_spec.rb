@@ -23,7 +23,7 @@ describe AdditionsController do
   describe 'GET #show' do
     before do
       sign_in nil
-      get :show, id: FactoryGirl.create(:addition)
+      get :show, id: FactoryBot.create(:addition)
     end
     it "expects page normal loading" do
       expect(response).to have_http_status(200)

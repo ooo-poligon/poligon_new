@@ -1,6 +1,7 @@
 # -*- encoding : utf-8 -*-
 Poligon::Application.routes.draw do
 
+  resources :line_items
   # root to: 'welcome#hello'
 
   resources  :news_items, only: [:index, :show]
@@ -10,6 +11,10 @@ Poligon::Application.routes.draw do
   resources  :reviews,    only: [:index, :show]
   resources  :additions,  only: [:index, :show]
   resources  :products,   only: [        :show]
+  resources  :carts
+
+  get 'carts/show'
+  get 'carts/add'
 
   get  'certificates/download'
   get  'certificates/index'
@@ -39,6 +44,7 @@ Poligon::Application.routes.draw do
   post 'feedback/unsubscribe' => 'feedback#unsubscribe'
   post 'feedback/catalogs_order' => 'feedback#catalogs_order'
   post 'feedback/farnell_order' => 'feedback#farnell_order'
+  post 'line_items' => "line_items#create"
 
   get  'search', to: 'search#search'
 

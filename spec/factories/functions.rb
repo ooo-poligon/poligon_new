@@ -1,6 +1,6 @@
 require 'faker'
 
-FactoryGirl.define do
+FactoryBot.define do
   factory :function do
     title        { Faker::Lorem.sentence }
     symbol       { Faker::Lorem.characters(10) }

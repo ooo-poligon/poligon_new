@@ -1,6 +1,6 @@
 require 'faker'
 
-FactoryGirl.define do
+FactoryBot.define do
   factory :user do
     name                { Faker::Name.name_with_middle }
     phone               { Faker::Lorem.characters(255) }

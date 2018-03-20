@@ -1,61 +1,64 @@
-source 'http://rubygems.org' # was https in original
+source 'https://rubygems.org'
 
 gem 'rails', '4.2.5'
-gem 'i18n'
-gem 'mysql2'
+gem 'i18n' , '0.7.0'
+gem 'mysql2', '0.4.4'
 gem 'bootstrap-sass', '~> 3.3.5'
 gem 'sass-rails', '>= 3.2'
-gem 'autoprefixer-rails'
-gem 'protected_attributes'
-gem 'tzinfo-data'
+gem 'autoprefixer-rails', '6.3.6.2'
+gem 'protected_attributes', '1.1.4'
+gem 'tzinfo-data', '1.2016.5'
 gem 'sunspot_rails', '2.2.4'
 gem 'sunspot_solr', '2.2.4'
 gem 'will_paginate', '~> 3.0.5'
-gem 'progress_bar'
-gem 'fancybox-rails'
-gem 'therubyracer', :platform => :ruby
-gem 'jquery-rails'
-gem 'jquery-turbolinks'
-gem 'nokogiri'
-gem 'devise'
-gem 'devise-i18n'
+gem 'progress_bar', '1.0.5'
+gem 'fancybox-rails', '0.3.1'
+gem 'therubyracer', '0.12.2', :platform => :ruby
+gem 'jquery-rails', '4.1.1'
+gem 'jquery-turbolinks', '2.1.0'
+gem 'nokogiri', '1.6.8'
+gem 'devise', '4.1.1'
+gem 'devise-i18n', '1.1.0'
 gem 'gibbon', git: 'git://github.com/amro/gibbon.git'
 gem 'sucker_punch', '~> 1.0'
-gem 'mandrill-api'
-gem 'figaro'
-gem 'rack-mini-profiler', require: false
-gem 'zeroclipboard-rails'
-gem 'turbolinks'
-gem 'zipline'
-gem 'whenever', require: false
+gem 'mandrill-api', '1.0.53'
+gem 'figaro', '1.1.1'
+gem 'rack-mini-profiler', '0.10.7', require: false
+gem 'zeroclipboard-rails', '0.1.1'
+gem 'turbolinks', '2.5.3'
+gem 'zipline', '0.0.10'
+gem 'whenever', '0.9.7', require: false
+gem 'rusprice', '~> 1.2'
 
 group :assets do
-  gem 'coffee-rails'
+  gem 'coffee-rails', '4.1.1'
   gem 'uglifier', '>= 1.0.3'
 end
 
 group :test do
-  gem 'capybara'
-  gem 'selenium-webdriver'
-  gem 'headless'
-  gem 'email_spec'
-  gem 'launchy'
+  gem 'capybara', '2.7.1'
+  gem 'selenium-webdriver', '2.53.4'
+  gem 'headless', '2.2.3'
+  gem 'email_spec', '2.1.0'
+  gem 'launchy', '2.4.3'
+  gem 'chromedriver-helper'
 end
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.4'
-  gem 'cucumber-rails', :require => false
-  gem 'database_cleaner'
-  gem 'shoulda-matchers'
-  gem 'factory_girl_rails'
+  gem 'cucumber-rails', '1.4.3', :require => false
+  gem 'database_cleaner', '1.5.3'
+  gem 'shoulda-matchers', '3.1.1'
+  gem 'factory_bot_rails'
   gem 'faker', github: 'stympy/faker'
-  gem 'spring'
-  gem 'spring-commands-rspec'
-  gem 'spring-commands-cucumber'
-  gem 'guard'
-  gem 'guard-spring'
-  gem 'guard-rspec'
-  gem 'guard-cucumber'
+  gem 'spring', '1.7.1'
+  gem 'spring-commands-rspec', '1.0.4'
+  gem 'spring-commands-cucumber', '1.0.1'
+  gem 'guard', '2.14.0'
+  gem 'guard-spring', '1.1.1'
+  gem 'guard-rspec', '4.7.2'
+  gem 'guard-cucumber', '2.1.2'
+  gem 'rubocop'
 end
 
 group :development do
@@ -64,8 +67,5 @@ group :development do
 end
 
 group :production do
-  gem 'exception_notification'
+  gem 'exception_notification', '4.1.4'
 end
-
-# Added at 2018-03-09 00:03:34 +0300 by igor:
-gem "byebug", "~> 10.0", :groups => [:development, :test]

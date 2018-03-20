@@ -1,5 +1,7 @@
 <% if (locals[:retail_price] != 0) %>
-  <%= rub_case_with_kopeiki locals[:retail_price] %>
+  <p><b style="font-size: 16px; font-size: 0.8vw; color: blue; font-weight: bolder;">
+    Цена: <%= locals[:retail_price].ruspace %>
+  </b></p>
 <% else %>
   <p>
     <b style="font-size: 12px; font-size: 1.2vw; color: red; font-weight: bolder;">Звоните: (812) 325-42-20</b>

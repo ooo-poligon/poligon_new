@@ -1,6 +1,6 @@
 require 'faker'
 
-FactoryGirl.define do
+FactoryBot.define do
   factory :setting do
     title      { Faker::Lorem.characters(50) }
     kind       { Faker::Lorem.characters(50) }

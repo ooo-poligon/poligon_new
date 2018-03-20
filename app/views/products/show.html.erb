@@ -67,6 +67,9 @@
           <i>Срок поставки: <%= @product.delivery_time %></i>
         <% end %>
       </p>
+      <div class="catalog-st">
+        <%= button_to 'В корзину', line_items_path(product_id: @product.id), {remote: true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window', class: 'add-basket active'} %>
+      </div>
     </div>
     <div class="col-xs-9">
       <div class="tab-content">

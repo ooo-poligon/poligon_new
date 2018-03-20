@@ -4,7 +4,7 @@
   Vendor.create!(title: 'TELE')
   #Serie.create!(title: 'GAMMA')
   ProductKind.create!(id: 1, title: 'без определения')
-  Product.create!(title: 'G4', price: 1.0, category_id: 1)
+  Product.create!(title: 'G4', price: 1.0, category_id: 1, number_card_1c: 0)
 
   Group.create!(id: 2)
   Setting.create!(title: 'addCBR', kind: 'PriceCalcSettings', text_value: '5')

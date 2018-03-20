@@ -1,6 +1,6 @@
 require 'faker'
 
-FactoryGirl.define do
+FactoryBot.define do
   factory :category do
     id          { Faker::Number.number(4) }
     parent      { Faker::Number.number(4) }

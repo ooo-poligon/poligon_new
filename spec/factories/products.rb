@@ -1,6 +1,6 @@
 require 'faker'
 
-FactoryGirl.define do
+FactoryBot.define do
   factory :product do
     title              { Faker::Lorem.sentence }
     description        { Faker::Lorem.paragraph }
@@ -12,6 +12,7 @@ FactoryGirl.define do
     delivery_time      { Faker::Lorem.sentence }
     plugin_owner_id    { Faker::Number.number(4) }
     accessory_owner_id { Faker::Number.number(4) }
+    number_card_1c     { Faker::Number.number(4) }
     price              { Faker::Number.positive }
     special            { Faker::Number.positive }
     rate               { Faker::Number.positive }

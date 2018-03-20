@@ -1,14 +1,16 @@
 # -*- encoding : utf-8 -*-
 class ApplicationController < ActionController::Base
-  protect_from_forgery
+  protect_from_forgery with: :exception
+
+  before_action :current_cart
 
   before_filter :configure_permitted_parameters, if: :devise_controller?
   before_filter :getCourse
 
-  helper_method :get_prices_eur, :get_prices_rub, :hello_user, :parents_of, :rub_case_with_kopeiki, :set_meta, :generate_meta_from
+  helper_method :get_prices_eur, :get_prices_rub, :hello_user, :parents_of, :set_meta, :generate_meta_from
 
   def get_prices_eur(product)
-        prices_array = []
+    prices_array = []
     retail = product.price * product.rate
     prices_array << retail
     prices_array << retail - (retail/100 * product.special)
@@ -55,22 +57,6 @@ class ApplicationController < ActionController::Base
     parents_array
   end
 
-  def rub_case_with_kopeiki decimal_number
-    dec_part = (decimal_number%1).round(2)
-    rub_part = (decimal_number - (decimal_number%1)).to_i
-    kop_part = (dec_part * 100).to_i
-    rub_case = cases rub_part, 'рубль'
-    kop_case = cases kop_part, 'копейка'
-    unless kop_part == 0
-      html_output = "<p><b style=\"font-size: 16px; font-size: 0.8vw; color: blue; font-weight: bolder;\">" +
-                    "Цена: #{rub_part} #{rub_case} #{kop_part} #{kop_case}.</b></p>"
-    else
-      html_output = "<p><b style=\"font-size: 16px; font-size: 0.8vw; color: blue; font-weight: bolder;\">" +
-                    "Цена: #{rub_part} #{rub_case}.</b></p>"
-    end
-    html_output.html_safe
-  end
-
   def _meta_tags_hash
     @_meta_tags_hash ||= {}
   end
@@ -106,32 +92,6 @@ class ApplicationController < ActionController::Base
         key = thisPath.join ":"
         normalized[:"#{key}"] = v
       end
-    end
-  end
-
-  def cases (number, kind)
-    if kind == 'рубль'
-      if (number%100 == 11) || (number%100 == 12) || (number%100 == 13) || (number%100 == 14)
-        'рублей'
-      elsif (number%10 == 1)
-        'рубль'
-      elsif (number%10 == 2) || (number%10 == 3) || (number%10 == 4)
-        'рубля'
-      else
-        'рублей'
-      end
-    elsif kind == 'копейка'
-      if (number == 11) || (number == 12) || (number == 13) || (number == 14)
-        'копеек'
-      elsif (number%10 == 1)
-        'копейка'
-      elsif (number%10 == 2) || (number%10 == 3) || (number%10 == 4)
-        'копейки'
-      else
-        'копеек'
-      end
-    else
-      ''
     end
   end
 
@@ -194,6 +154,24 @@ class ApplicationController < ActionController::Base
       output << s.mb_chars.downcase if s.size > 3
     end
     output.join(", ")
+  end
+
+  private
+
+  def current_cart
+    if session[:cart_id]
+      cart = Cart.find_by(:id => session[:cart_id])
+      if cart.present?
+        @current_cart = cart
+      else
+        session[:cart_id] = nil
+      end
+    end
+
+    if session[:cart_id] == nil
+      @current_cart = Cart.create
+      session[:cart_id] = @current_cart.id
+    end
   end
 
 end
