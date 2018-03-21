@@ -1,0 +1,241 @@
+<header>
+  <div class="container">
+    <div class="row top-header">
+      <div class="col-sm-4 col-md-3 logo">
+        <a href=<%= root_path %>><%= image_tag('logo/logo.png', alt: 'Компания "ПОЛИГОН"') %></a>
+        <div class="slogan">дистрибуция электротехники</div>
+      </div>
+      <div class="hidden-sm col-lg-2 top-info">
+        <p class="info-title">Интернет-каталог «ПОЛИГОН»</p>
+        <p>электротехника и автоматика <br>европейской надежности</p>
+      </div>
+      <div class="col-sm-4 col-md-5 col-lg-3 top-contacts">
+        <p class="top-phone"><a href="tel:+78123254220">+7 812 325 42 20</a> <span>- Санкт-Петербург</span></p>
+        <p class="top-phone"><a href="tel:+78001234578">+7 800 123 45 78</a> <span>- бесплатно по России</span></p>
+        <p class="top-time">с 9:30 до 18:00 <span>по рабочим дням</span></p>
+      </div>
+      <div class="col-sm-4 col-md-4 top-right">
+        <p class="top-enter"><a href=<%= new_user_session_path %>>Вход для партнеров</a></p>
+        <div class="row">
+          <div class="col-sm-3 col-md-5 top-cart"><a href=<%= carts_show_path %>><span></span> 0 <i>товаров</i></a></div>
+          <div class="col-sm-9 col-md-7 top-search">
+            <form method="get" action="/search">
+              <input type="text" name="q" placeholder="Поиск по сайту">
+              <button type="submit">Поиск</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row bot-header">
+      <div class="col-sm-4 col-md-3 top-menu">
+        <div class="col-sm-6 production">Продукция<span></span>
+          <div class="top-menu-air"></div>
+          <div class="production-widget widget">
+            <div class="container">
+              <div class="row">
+                <div class="production-block"><div class="x"></div>
+                  <div class="col-xs-6 col-sm-4 col-md-3">
+                    <ul class="production-item">
+                      <li class="production-title">
+                        <a href="#" class="production-logo"><img src="img/brandlogo_1.png" alt=""></a>
+                        <span class="production-country">Австрия</span>
+                      </li>
+                      <li><a href="#">Реле времени</a></li>
+                      <li><a href="#">Реле контроля</a></li>
+                      <li><a href="#">Реле контроля нагрузки</a></li>
+                      <li><a href="#">Системы управления</a></li>
+                      <li><a href="#">Плавный пуск и торможение</a></li>
+                      <li><a href="#">Промежуточные реле</a></li>
+                    </ul>
+                  </div>
+                  <div class="col-xs-6 col-sm-4 col-md-3">
+                    <ul class="production-item">
+                      <li class="production-title">
+                        <a href="#" class="production-logo"><img src="img/brandlogo_2.png" alt=""></a>
+                        <span class="production-country">Австрия</span>
+                      </li>
+                      <li><a href="#">Контакторы промышленные</a></li>
+                      <li><a href="#">Контракторы модульные</a></li>
+                      <li><a href="#">Микроконтакторы</a></li>
+                      <li><a href="#">Миниконтакторы</a></li>
+                      <li><a href="#">Пускатели</a></li>
+                      <li><a href="#">Тепловые реле</a></li>
+                      <li><a href="#">Мотор-автоматы</a></li>
+                      <li><a href="#">Переключатели</a></li>
+                      <li><a href="#">Основные выключатели AC</a></li>
+                      <li><a href="#">Переключатели DC</a></li>
+                    </ul>
+                  </div>
+                  <div class="col-xs-6 col-sm-4 col-md-3">
+                    <ul class="production-item">
+                      <li class="production-title">
+                        <a href="#" class="production-logo"><img src="img/brandlogo_8.png" alt=""></a>
+                        <span class="production-country">Швейцария</span>
+                      </li>
+                      <li><a href="#">Интерфейсные реле</a></li>
+                      <li><a href="#">Миниатюрные реле</a></li>
+                      <li><a href="#">Промышленные реле</a></li>
+                      <li><a href="#">Реле повышенной надежности</a></li>
+                      <li><a href="#">Твердотельные реле</a></li>
+                      <li><a href="#">Реле для высоких пусковых токов</a></li>
+                      <li><a href="#">Реле контроля двигателя</a></li>
+                      <li><a href="#">Твердотельные контакторы</a></li>
+                      <li><a href="#">Устройства плавного пуска</a></li>
+                      <li><a href="#">Релейная автоматика</a></li>
+                      <li><a href="#">Колодки</a></li>
+                    </ul>
+                  </div>
+                  <div class="col-xs-6 col-sm-4 col-md-3">
+                    <ul class="production-item">
+                      <li class="production-title">
+                        <a href="#" class="production-logo"><img src="img/brandlogo_4.png" alt=""></a>
+                        <span class="production-country">Сербия</span>
+                      </li>
+                      <li><a href="#">Щиты встраиваемые (серия e)</a></li>
+                      <li><a href="#">Щиты настенные IP65 (серия d)</a></li>
+                      <li><a href="#">Щиты настенные IP40, IP30 (серия c)</a></li>
+                      <li><a href="#">Щиты эконом IP40, IP30  (серия a)</a></li>
+                      <li><a href="#">Щиты встраиваемые IP40 (серия F)</a></li>
+                      <li><a href="#">Аксессуары</a></li>
+                    </ul>
+                  </div>
+                  <div class="col-xs-6 col-sm-4 col-md-3">
+                    <ul class="production-item">
+                      <li class="production-title">
+                        <a href="#" class="production-logo"><img src="img/brandlogo_3.png" alt=""></a>
+                        <span class="production-country">Франция</span>
+                      </li>
+                      <li><a href="#">Защита сетей питания</a></li>
+                      <li><a href="#">Защита светодионого освещения</a></li>
+                      <li><a href="#">Защита линий телекоммуникации</a></li>
+                      <li><a href="#">Защита линий передачи данных</a></li>
+                    </ul>
+                  </div>
+                  <div class="col-xs-6 col-sm-4 col-md-3">
+                    <ul class="production-item">
+                      <li class="production-title">
+                        <a href="#" class="production-logo"><img src="img/brandlogo_7.png" alt=""></a>
+                        <span class="production-country">ЮАР</span>
+                      </li>
+                      <li><a href="#">Миниатюрные автоматические выключатели</a></li>
+                      <li><a href="#">Автоматические выключатели для оборудования</a></li>
+                      <li><a href="#">Защита от токов утечки</a></li>
+                    </ul>
+                  </div>
+                  <div class="col-xs-6 col-sm-4 col-md-3">
+                    <ul class="production-item">
+                      <li class="production-title">
+                        <a href="#" class="production-logo"><img src="img/brandlogo_10.png" alt=""></a>
+                        <span class="production-country">Германия</span>
+                      </li>
+                      <li><a href="#">Таймеры цифровые</a></li>
+                      <li><a href="#">Таймеры механические</a></li>
+                      <li><a href="#">Термостаты комнатные</a></li>
+                      <li><a href="#">Датчики движения и присутствия</a></li>
+                      <li><a href="#">Фотореле</a></li>
+                      <li><a href="#">Лестничные таймеры</a></li>
+                    </ul>
+                  </div>
+                  <div class="col-xs-6 col-sm-4 col-md-3">
+                    <ul class="production-item">
+                      <li class="production-title">
+                        <a href="#" class="production-logo"><img src="img/brandlogo_5.png" alt=""></a>
+                        <span class="production-country">Турция</span>
+                      </li>
+                      <li><a href="#">Контроллеры</a></li>
+                      <li><a href="#">Температурные контроллеры</a></li>
+                      <li><a href="#">Температурные датчики</a></li>
+                      <li><a href="#">Цифровые тахометры</a></li>
+                      <li><a href="#">Цифровые измерители длины</a></li>
+                      <li><a href="#">Таймеры</a></li>
+                      <li><a href="#">Счетчики</a></li>
+                      <li><a href="#">Цифровые потенциометры</a></li>
+                      <li><a href="#">Цифровые индикаторы</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6 brands">Бренды
+          <div class="top-menu-air"></div>
+          <div class="brands-widget widget">
+            <div class="container">
+              <div class="row">
+                <div class="partners-block"><div class="x"></div>
+                  <div class="col-sm-2 partner-logo"><a href="#!"><img src="img/brandlogo_1.png" alt=""></a>
+                    <span>TELE-HAASE - Промышленная автоматика из Австрии</span>
+                  </div>
+                  <div class="col-sm-2 partner-logo"><a href="#!"><img src="img/brandlogo_2.png" alt=""></a>
+                    <span>Описание 2</span>
+                  </div>
+                  <div class="col-sm-2 partner-logo"><a href="#!"><img src="img/brandlogo_3.png" alt=""></a>
+                    <span>Описание 3</span>
+                  </div>
+                  <div class="col-sm-2 partner-logo"><a href="#!"><img src="img/brandlogo_4.png" alt=""></a>
+                    <span>и так далее</span>
+                  </div>
+                  <div class="col-sm-2 partner-logo"><a href="#!"><img src="img/brandlogo_5.png" alt=""></a>
+                    <span>и так далее</span>
+                  </div>
+                  <div class="col-sm-2 partner-logo"><a href="#!"><img src="img/brandlogo_6.png" alt=""></a>
+                    <span>и так далее</span>
+                  </div>
+                  <div class="col-sm-2 partner-logo"><a href="#!"><img src="img/brandlogo_7.png" alt=""></a>
+                    <span>и так далее</span>
+                  </div>
+                  <div class="col-sm-2 partner-logo"><a href="#!"><img src="img/brandlogo_8.png" alt=""></a>
+                    <span>и так далее</span>
+                  </div>
+                  <div class="col-sm-2 partner-logo"><a href="#!"><img src="img/brandlogo_9.png" alt=""></a>
+                    <span>и так далее</span>
+                  </div>
+                  <div class="col-sm-2 partner-logo"><a href="#!"><img src="img/brandlogo_10.png" alt=""></a>
+                    <span>и так далее</span>
+                  </div>
+                  <div class="col-sm-2 partner-logo"><a href="#!"><img src="img/brandlogo_11.png" alt=""></a>
+                    <span>и так далее</span>
+                  </div>
+                  <div class="col-sm-2 partner-logo"><a href="#!"><img src="img/brandlogo_12.png" alt=""></a>
+                    <span>и так далее</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-8 col-md-9 top-nav">
+        <ul class="nav-list">
+          <li><a href="#!">Мы</a>
+            <div class="top-menu-air"></div>
+            <div class="nav-widget">
+              <div class="container">
+                <div class="row">
+                  <div class="nav-block"><div class="x"></div>
+                    <div class="col-xs-6 col-sm-3">
+                      <ul class="sub-list">
+                        <li><a href="#">О нас</a></li>
+                        <li><a href="#">Программа поставок</a></li>
+                        <li><a href="#">Проектные условия</a></li>
+                        <li><a href="#">Дилерам </a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li><a href="#!">PDF-материалы</a></li>
+          <li><a href="#!">На складе</a></li>
+          <li><a href="#!">Контакты</a></li>
+          <li><a href="#!">Оплата-доставка</a></li>
+          <li><a href="#!">Решения</a></li>
+          <li><a href="#!">Sale</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</header>
