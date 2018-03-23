@@ -230,7 +230,7 @@ button:hover {
 	left: 15px;
 	width: 16px;
 	height: 16px;
-	background: url(../../../public/img/sprite.png) no-repeat 0 0;
+	background: url('sprite.png') no-repeat 0 0;
 }
 .top-cart a i {
 	font-style: normal;
@@ -255,7 +255,7 @@ button:hover {
     height: 38px;
     width: 45px;
     font-size: 0;
-    background: #3f6bd2 url(../../../public/img/sprite.png) no-repeat -22px 10px;
+    background: #3f6bd2 url('sprite.png') no-repeat -22px 10px;
 }
 .production, .brands {
 	position: static;
@@ -276,7 +276,7 @@ button:hover {
     height: 10px;
 	margin-left: 5px;
     font-size: 0;
-    background:url(../../../public/img/sprite.png) no-repeat -73px 0px;
+    background:url('sprite.png') no-repeat -73px 0px;
 }
 .top-nav {
 	position: relative;
@@ -533,7 +533,7 @@ span.production-country {
     display: block;
     width: 5px;
     height: 7px;
-    background: url(../../../public/img/sprite.png) no-repeat -105px 0px;
+    background: url('sprite.png') no-repeat -105px 0px;
 }
 .main-slider {
 	position: relative;
@@ -637,7 +637,7 @@ span.production-country {
     top: 12px;
     width: 10px;
     height: 15px;
-    background: url(../../../public/img/sprite.png) no-repeat -35px -33px;
+    background: url('sprite.png') no-repeat -35px -33px;
 }
 .main-articles {
 	margin-top: 50px;
@@ -949,7 +949,7 @@ footer .owl-carousel .owl-next {
 	left: 15px;
 	width: 16px;
 	height: 16px;
-	background: url(../../../public/img/sprite.png) no-repeat 0 -34px;
+	background: url('sprite.png') no-repeat 0 -34px;
 }
 .bot-cart a:hover {
 	opacity: 0.7;
@@ -979,7 +979,7 @@ footer .owl-carousel .owl-next {
 	padding-right: 10px;
 	width: 16px;
 	height: 26px;
-	background: url(../../../public/img/sprite.png) no-repeat -65px -27px;
+	background: url('sprite.png') no-repeat -65px -27px;
 }
 #to-top:hover {
 	opacity: 0.7;
@@ -1097,7 +1097,7 @@ footer .owl-carousel .owl-next {
     display: block;
     width: 16px;
     height: 16px;
-    background: url(../../../public/img/sprite.png) no-repeat -129px 2px;
+    background: url('sprite.png') no-repeat -129px 2px;
     position: absolute;
     top: 15px;
     right: 15px;
@@ -1107,7 +1107,7 @@ footer .owl-carousel .owl-next {
 }
 .x:hover {
 	opacity: 0.4;
-    background: url(../../../public/img/sprite.png) no-repeat -129px 2px;
+    background: url('sprite.png') no-repeat -129px 2px;
 }
 
 
@@ -1721,10 +1721,10 @@ button.mp__button-main.mp--on {
 		width: 100%;
 		max-width: 50px;
 		font-size: 0;
-		background:url(../../../public/img/sprite.png) no-repeat -39px -52px;
+		background:url('sprite.png') no-repeat -39px -52px;
 	}
 	.mobile-search-button.touched {
-		background: #274690 url(../../../public/img/sprite.png) no-repeat -18px 16px;
+		background: #274690 url('sprite.png') no-repeat -18px 16px;
 	}
 	.search-widget {
 		display: none;
@@ -1778,7 +1778,7 @@ button.mp__button-main.mp--on {
 		width: 100%;
 		max-width: 50px;
 		font-size: 0;
-		background:url(../../../public/img/sprite.png) no-repeat 10px -54px;
+		background:url('sprite.png') no-repeat 10px -54px;
 	}
 	.mobile-cart-icon span {
 		position: absolute;
