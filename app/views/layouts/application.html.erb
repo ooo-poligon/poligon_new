@@ -10,27 +10,60 @@
 </head>
 <body>
 <%= render "shared/yandex_metrika" %>
-<%= render "shared/mainpage/header" %>
-<%= render "shared/mainpage/mobile_header" %>
+<%= render "shared/mainpage/header",
+           :teleSubCategories         => Category.available.where(parent: 142 ),
+           :comatRelecoSubCategories  => Category.available.where(parent: 5933),
+           :emkoSubCategories         => Category.available.where(parent: 5583),
+           :benedictSubCategories     => Category.available.where(parent: 5094),
+           :citelSubCategories        => Category.available.where(parent: 74  ),
+           :graesslinSubCategories    => Category.available.where(parent: 5414),
+           :sonderSubCategories       => Category.available.where(parent: 5535),
+           :relequickSubCategories    => Category.available.where(parent: 5818),
+           :cbiSubCategories          => Category.available.where(parent: 5512),
+           :polygonSubCategories      => Category.available.where(parent: 6321),
+           :huberSuhnerSubCategories  => Category.available.where(parent: 4847),
+           :tehnoplastSubCategories   => Category.available.where(parent: 6925) %>
+<%= render "shared/mainpage/mobile_header",
+           :teleSubCategories         => Category.available.where(parent: 142 ),
+           :comatRelecoSubCategories  => Category.available.where(parent: 5933),
+           :emkoSubCategories         => Category.available.where(parent: 5583),
+           :benedictSubCategories     => Category.available.where(parent: 5094),
+           :citelSubCategories        => Category.available.where(parent: 74  ),
+           :graesslinSubCategories    => Category.available.where(parent: 5414),
+           :sonderSubCategories       => Category.available.where(parent: 5535),
+           :relequickSubCategories    => Category.available.where(parent: 5818),
+           :cbiSubCategories          => Category.available.where(parent: 5512),
+           :polygonSubCategories      => Category.available.where(parent: 6321),
+           :huberSuhnerSubCategories  => Category.available.where(parent: 4847),
+           :tehnoplastSubCategories   => Category.available.where(parent: 6925) %>
 
 <div class="container">
   <div class="row">
-    <div class="col-sm-4 col-md-3 aside">
-      <%= render("shared/mainpage/category_menu") %>
-    </div>
-    <div class="col-sm-8 col-md-9 content">
-      <div class="row">
-        <%= yield %>
+    <% if controller_name == 'categories' %>
+      <div class="col-sm-12 col-md-12 content">
+        <div class="row">
+          <%= yield %>
+        </div>
       </div>
-      <%= render("shared/mainpage/trio") %>
-      <%= render("shared/mainpage/partners") %>
-    </div>
+    <% else %>
+      <div class="col-sm-4 col-md-3 aside">
+        <%= render("shared/mainpage/category_menu") %>
+      </div>
+      <div class="col-sm-8 col-md-9 content">
+        <div class="row">
+          <%= yield %>
+        </div>
+      </div>
+    <% end %>
   </div>
 </div>
 
-<%= render("shared/mainpage/articles") %>
-<%= render("shared/mainpage/apply") %>
-<%= render("shared/mainpage/news") %>
+<% if controller_name == 'content' and action_name == 'home' %>
+  <%= render("shared/mainpage/articles") %>
+  <%= render("shared/mainpage/apply") %>
+  <%= render("shared/mainpage/news") %>
+<% end %>
+
 <%= render("shared/mainpage/footer") %>
 <%= render("shared/mainpage/bot_line") %>
 <%= render("shared/mainpage/modal_dialog") %>

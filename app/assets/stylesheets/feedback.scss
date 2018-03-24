@@ -1,0 +1,161 @@
+// Place all the styles related to the feedback controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+#catalogsOrder{
+  border: 1px black solid;
+  //border-radius: 6px;
+  width: 500px;
+  float: left;
+}
+
+#catalogsOrder h2{
+  margin: 0px 5px;
+}
+
+#catalogsOrder h3{
+  margin: 0px;
+}
+
+#catalogsOrder form {
+  height: 140px;
+}
+#catalogsOrder form div{
+  margin: 5px;
+  float: left;
+}
+
+#catalogsOrder form textarea{
+  height: 36px;
+}
+
+label.pic {
+  display: inline-block;
+  width: 32px;
+  vertical-align: top;
+}
+
+label.pic+*{
+  width: 200px;
+}
+label.text{
+  width: 180px;
+  display: inline-block;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+label[for=name] {
+  background: url('/images/icons/user_suit.png') center no-repeat;
+}
+label[for=company] {
+  background: url('/images/icons/application_home.png') center no-repeat;
+}
+label[for=telephone] {
+  background: url('/images/icons/phone.png') center no-repeat;
+}
+
+label[for=address]{
+  background: url('/images/icons/house.png') center no-repeat;
+}
+
+#catalogsOrder input[type=submit]{
+  float: right;
+}
+label[for=tele]{
+  background: rgb(122, 181, 28);
+}
+label[for=releco]{
+  background: rgb(35, 127, 185);
+}
+label[for=graesslin]{
+  background: #B0BEB9;/*rgb(197, 218, 167);*/
+}
+label[for=benedict]{
+  background: #2e8b57;/*#808B9F;*/
+}
+
+#catalogsThumbs{
+  float: left;
+  width: 175px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+#catalogsThumbs img{
+  /*width: 125px;*/
+  height: 150px;
+  display: none;
+}
+#catalogsOrder img{
+  width: 120px;
+  padding: 1px;
+  display: none;
+}
+
+.first-pdf {
+  font-weight: bold;
+  font-stretch: expanded;
+}
+.first-pdf .cover{
+  width: 180px;
+  border: 2px solid black;
+}
+
+.cover {
+  width: 60px;
+  border: 1px solid black;
+}
+
+.style12 {font-size: 14px; font-weight: bold; color: #FFFFFF; }
+
+#farnell h3{
+  margin: 6px 0px 0px 8px;
+  font-size: 15px;
+}
+#farnell{
+  background-color: silver;
+  border: 1px black solid;
+  //border-radius: 8px;
+  width: 500px;
+  height: 210px;
+}
+#farnell form textarea {
+  width: 274px;
+  height: 150px;
+}
+label {
+  display: inline-block;
+  //width: 32px;
+}
+label[for=order]{
+  float: left;
+  display: block;
+  width: 10em;
+}
+label[for=company] {
+  background: url("http://www.poligon.info/images/icons/application_home.png") center no-repeat;
+}
+
+label[for=name] {
+  background: url('/images/icons/user_suit.png') center no-repeat;
+}
+label[for=email] {
+  background: url('/images/icons/email.png') center no-repeat;
+  border: 1px dotted black;
+  margin: -1px;
+}
+label[for=telephone] {
+  background: url('/images/icons/phone.png') center no-repeat;
+}
+
+#farnell p {
+  margin: 0px;
+}
+#farnell input {
+  margin: 6px;
+  width: 142px;
+}
+#farnell input[type=image]{
+  width: 150px;
+}

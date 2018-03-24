@@ -11,7 +11,7 @@
         <%= link_to image_tag("logo/brands/citel.png", alt: '"CITEL"', title: "CITEL - устройства молниезащиты"), category_path(74) %>
       </div>
       <div class="col-xs-4 col-md-2 partner-logo">
-        <%= link_to image_tag("logo/brands/grasslin.png", alt: '"Graesslin"', title: "Graesslin - таймеры и фотореле. Сделано в Германии"), category_path(5414) %>
+        <%= link_to image_tag("logo/brands/graesslin.png", alt: '"Graesslin"', title: "Graesslin - таймеры и фотореле. Сделано в Германии"), category_path(5414) %>
       </div>
       <div class="col-xs-4 col-md-2 partner-logo">
         <%= link_to image_tag("logo/brands/sonder.png", alt: '"SONDER"', title: "SONDER - термостаты"), category_path(5535) %>
@@ -39,7 +39,7 @@
       </div>
     </div>
   </div>
-  <div class="partners-button"><a href="#!">Все производители</a></div>
+  <div class="partners-button"><%= link_to "Все производители", categories_path %></div>
   <div class="partners-text">
     Используйте качественное оборудование от специализированных европейских брендов из Австрии, Германии, Франции, Швейцарии, Испании, Швеции, Сербии и России.
   </div>

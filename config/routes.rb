@@ -59,7 +59,7 @@ Poligon::Application.routes.draw do
 
   get 'categories/142'  => 'categories/tele',         :as => 'categories/tele'
   get 'categories/5933' => 'categories/comat_releco', :as => 'categories/comat_releco'
-  get 'categories/5583'  => 'categories/emko',        :as => 'categories/emko'
+  get 'categories/5583' => 'categories/emko',         :as => 'categories/emko'
   get 'categories/5094' => 'categories/benedict',     :as => 'categories/benedict'
   get 'categories/74'   => 'categories/citel',        :as => 'categories/citel'
   get 'categories/5414' => 'categories/graesslin',    :as => 'categories/graesslin'
@@ -68,7 +68,7 @@ Poligon::Application.routes.draw do
   get 'categories/5512' => 'categories/cbi',          :as => 'categories/cbi'
   get 'categories/6321' => 'categories/poligonspb',   :as => 'categories/poligonspb'
   get 'categories/4847' => 'categories/huber_suhner', :as => 'categories/huber_suhner'
-  get 'categories/6441' => 'categories/tehnoplast',   :as => 'categories/tehnoplast'
+  get 'categories/6925' => 'categories/tehnoplast',   :as => 'categories/tehnoplast'
 
   get 'hello', to: 'welcome#hello'
   get 'react', to: 'welcome#react'

@@ -12,7 +12,7 @@
           <%= link_to image_tag("logo/brands/citel.png", alt: '"CITEL"', title: "CITEL - устройства молниезащиты"), category_path(74) %>
         </div>
         <div class="col-sm-3 col-md-1 partner-logo">
-          <%= link_to image_tag("logo/brands/grasslin.png", alt: '"Graesslin"', title: "Graesslin - таймеры и фотореле. Сделано в Германии"), category_path(5414) %>
+          <%= link_to image_tag("logo/brands/graesslin.png", alt: '"Graesslin"', title: "Graesslin - таймеры и фотореле. Сделано в Германии"), category_path(5414) %>
         </div>
         <div class="col-sm-3 col-md-1 partner-logo">
           <%= link_to image_tag("logo/brands/sonder.png", alt: '"SONDER"', title: "SONDER - термостаты"), category_path(5535) %>
@@ -71,7 +71,7 @@
           <div class="twenty">Нам 20 лет!</div>
         </div>
         <div class="col-sm-4 col-md-3 footer-info">
-          Информация на сайте <a href="#">poligon.info</a> не является публичной офертой.
+          Информация на сайте <%= link_to "poligon.info", root_path %> не является публичной офертой.
           При использовании материалов ссылка на сайт обязательна. 18+.
           <p><a href="#">Политика конфиденциальности.</a></p>
           <p><a href="#">Соглашение об использовании сайта.</a></p>
@@ -83,7 +83,7 @@
             Примеры применения <br>
             Статьи и обзоры <br>
             Распродажа <br>
-            <a href="#!">ПЕРЕЙТИ В КАТАЛОГ &gt;&gt;</a>
+            <%= link_to "ПЕРЕЙТИ В КАТАЛОГ >>", categories_path %>
           </p>
         </div>
         <div class="col-sm-4 col-md-4 footer-contacts">
@@ -93,12 +93,12 @@
           <p class="footer-address">Санкт-Петербург, Льва Толстого, д.7</p>
           <div class="footer-carousel">
             <div class="owl-carousel" id="footer-carousel">
-              <div class="item"><a href="#"><img src="img/artphoto_1.jpg" alt=""></a></div>
-              <div class="item"><a href="#"><img src="img/artphoto_2.jpg" alt=""></a></div>
-              <div class="item"><a href="#"><img src="img/artphoto_3.jpg" alt=""></a></div>
-              <div class="item"><a href="#"><img src="img/artphoto_4.jpg" alt=""></a></div>
-              <div class="item"><a href="#"><img src="img/artphoto_5.jpg" alt=""></a></div>
-              <div class="item"><a href="#"><img src="img/artphoto_6.jpg" alt=""></a></div>
+              <div class="item"><%= link_to image_tag("office/artphoto_1.jpg"), company_about_path %></div>
+              <div class="item"><%= link_to image_tag("office/artphoto_2.jpg"), company_about_path %></div>
+              <div class="item"><%= link_to image_tag("office/artphoto_3.jpg"), company_about_path %></div>
+              <div class="item"><%= link_to image_tag("office/artphoto_4.jpg"), company_about_path %></div>
+              <div class="item"><%= link_to image_tag("office/artphoto_5.jpg"), company_about_path %></div>
+              <div class="item"><%= link_to image_tag("office/artphoto_6.jpg"), company_about_path %></div>
             </div>
           </div>
         </div>

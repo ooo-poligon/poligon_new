@@ -1,0 +1,78 @@
+// Place all the styles related to the Additions controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+table.benedict-FLC td{
+  padding: 5px;
+}
+table.benedict-FLC td:nth-child(1){
+  font-weight: bold;
+}
+table.benedict-FLC td:nth-child(9){
+  background-color: gray;
+}
+div#player {
+  float: left;
+}
+ul#swf-index{
+  float: left;
+  text-align: center;
+  margin-left: 24px;
+}
+ul#swf-index li{
+  padding: 0;
+  border: 1px gray solid;
+  border-radius: 5px;
+}
+ul#swf-index li a{
+  font-size: 120%;
+  font-weight: bold;
+  width: 100%;
+  height: 100%;
+  display: inline-block;
+  text-decoration: none;
+  border-bottom: 1px dotted blue;
+}
+li a.currentSwf{
+  background: #f0df04;
+}
+div#player {
+  width: 550px;
+  height: 500px;
+
+}
+div#player div{
+  display: none;
+}
+div #swf-description p {
+  display: none;
+  width: 120px;
+  float: left;
+  margin-left: 12px;
+  text-align: center;
+  font-style: italic;
+  background: silver;
+}
+
+/* таблицы с посдветкой */
+table.backlight td.hover, table.backlight th.hover{
+	background-color: #69f;
+	color: white;
+	font-weight: bold;
+}
+table.backlight td.hovercell, table.backlight th.hovercell{
+	background-color: #abc;
+}
+table.backlight td.click, table.backlight th.click{
+	background-color: #bbb;
+}
+table.backlight td.hoverrow, table.backlight th.hoverrow{
+	background-color: #6df;
+}
+table.hhi-inverter-table thead th{
+	text-align: center;
+}
+table.hhi-inverter-table td{
+	text-align: center;
+	border: silver 1px solid;
+}
