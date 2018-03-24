@@ -1,40 +1,26 @@
+<%
+  newsItems = NewsItem.all.order("created_at DESC").limit(3)
+%>
 <div class="main-news">
   <div class="container">
     <h2>Свежие новости и изделия</h2>
     <div class="row">
+      <% newsItems.each do |newsItem| %>
       <div class="col-sm-4">
         <div class="row news-item">
-          <div class="col-xs-6 news-photo"><a href="#!"><%= image_tag("news/newsphoto.jpg") %></a></div>
+          <% image_path = newsItem.image_path
+              .gsub("\\\\Server03\\бд_сайта\\poligon_images", "http://www.poligon.info/images")
+              .gsub("\\", "/") %>
+          <div class="col-xs-6 news-photo"><%= link_to image_tag(image_path), news_item_path(newsItem.id) %></div>
           <div class="col-xs-6 news-info">
-            <div class="news-date">01/02/2016</div>
-            <div class="news-title">TELE ist Mitglied bei der Smart Electric Power Alliance</div>
-            <div class="news-text">TELE ist seit Anfang 2016 Mitglied des US-amerikanischen Verbands Smart Electric Power Alliance (SEPA)...</div>
+            <div class="news-date"><%= newsItem.created_at %></div>
+            <div class="news-title"><%= newsItem.title %></div>
+            <div class="news-text"><%= newsItem.preview %></div>
             <div class="news-link"><a href="#!">читать далее</a></div>
           </div>
         </div>
       </div>
-      <div class="col-sm-4">
-        <div class="row news-item">
-          <div class="col-xs-6 news-photo"><a href="#!"><%= image_tag("news/newsphoto.jpg") %></a></div>
-          <div class="col-xs-6 news-info">
-            <div class="news-date">01/02/2016</div>
-            <div class="news-title">TELE ist Mitglied bei der Smart Electric Power Alliance</div>
-            <div class="news-text">TELE ist seit Anfang 2016 Mitglied des US-amerikanischen Verbands Smart Electric Power Alliance (SEPA)...</div>
-            <div class="news-link"><a href="#!">читать далее</a></div>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-4">
-        <div class="row news-item">
-          <div class="col-xs-6 news-photo"><a href="#!"><%= image_tag("news/newsphoto.jpg") %></a></div>
-          <div class="col-xs-6 news-info">
-            <div class="news-date">01/02/2016</div>
-            <div class="news-title">TELE ist Mitglied bei der Smart Electric Power Alliance</div>
-            <div class="news-text">TELE ist seit Anfang 2016 Mitglied des US-amerikanischen Verbands Smart Electric Power Alliance (SEPA)...</div>
-            <div class="news-link"><a href="#!">читать далее</a></div>
-          </div>
-        </div>
-      </div>
+      <% end %>
     </div>
     <div class="view-all"><%= link_to "Все новости", news_items_path %></div>
   </div>
