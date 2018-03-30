@@ -3,13 +3,14 @@
 <head>
   <%= meta_tags %>
   <title>Полигон - дистрибуция электротехники</title>
-  <link rel="icon" type="image/png" href="img/favicon-32x32.png" sizes="32x32">
-  <link rel="icon" type="image/png" href="img/favicon-16x16.png" sizes="16x16">
+  <%= favicon_link_tag "favicon-32x32.png", rel: "icon", type: "image/png", sizes: "32x32" %>
+  <%= favicon_link_tag "favicon-16x16.png", rel: "icon", type: "image/png", sizes: "16x16" %>
 
   <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
 </head>
 <body>
 <%= render "shared/yandex_metrika" %>
+
 <%= render "shared/mainpage/header",
            :teleSubCategories         => Category.available.where(parent: 142 ),
            :comatRelecoSubCategories  => Category.available.where(parent: 5933),
@@ -36,7 +37,7 @@
            :polygonSubCategories      => Category.available.where(parent: 6321),
            :huberSuhnerSubCategories  => Category.available.where(parent: 4847),
            :tehnoplastSubCategories   => Category.available.where(parent: 6925) %>
-
+<%= render "shared/user_navbar" %>
 <div class="container">
   <div class="row">
     <% if controller_name == 'categories' %>
