@@ -22,18 +22,22 @@
   <body>
     <%= render "shared/yandex_metrika" %>
     <%= render "shared/user_navbar" %>
-
-    <!-- Fixed navbar -->
-    <div class="navbar navbar-default navbar-fixed-top main-bar" role="navigation">
-      <%= render "shared/common_navbar" %>
-    </div>
+    <%= render "shared/mainpage/header",
+               :teleSubCategories         => Category.available.where(parent: 142 ),
+               :comatRelecoSubCategories  => Category.available.where(parent: 5933),
+               :emkoSubCategories         => Category.available.where(parent: 5583),
+               :benedictSubCategories     => Category.available.where(parent: 5094),
+               :citelSubCategories        => Category.available.where(parent: 74  ),
+               :graesslinSubCategories    => Category.available.where(parent: 5414),
+               :sonderSubCategories       => Category.available.where(parent: 5535),
+               :relequickSubCategories    => Category.available.where(parent: 5818),
+               :cbiSubCategories          => Category.available.where(parent: 5512),
+               :polygonSubCategories      => Category.available.where(parent: 6321),
+               :huberSuhnerSubCategories  => Category.available.where(parent: 4847),
+               :tehnoplastSubCategories   => Category.available.where(parent: 6925) %>
 
     <div class="container-fluid">
-
       <div class="row row-offcanvas row-offcanvas-right">
-
-
-
         <div class="col-xs-12 col-md-12 main-content" >
           <p class="pull-right visible-xs">
             <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Боковое меню</button>

@@ -1,5 +1,10 @@
+<% if controller.controller_name == "search" && controller.action_name == "advanced_search" %>
+  <% container_class = "container-fluid" %>
+<% else %>
+  <% container_class = "container" %>
+<%end%>
 <header>
-  <div class="container">
+  <div class="<%= container_class %>">
     <div class="row top-header">
       <div class="col-sm-4 col-md-3 logo">
         <a href=<%= root_path %>><%= image_tag('logo/logo.png', alt: 'Компания "ПОЛИГОН"') %></a>
