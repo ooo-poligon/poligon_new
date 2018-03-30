@@ -15,7 +15,13 @@
         <p class="top-time">с 9:30 до 18:00 <span>по рабочим дням</span></p>
       </div>
       <div class="col-sm-4 col-md-4 top-right">
-        <p class="top-enter"><%= link_to "Вход для партнеров", new_user_session_path %></p>
+        <p class="top-enter">
+          <% if user_signed_in? %>
+            <%= link_to "Выход", destroy_user_session_path %>
+          <% else %>
+            <%= link_to "Вход для партнеров", new_user_session_path %>
+          <% end %>
+        </p>
         <div class="row">
           <div class="col-sm-3 col-md-5 top-cart"><a href=<%= carts_show_path %>><span></span> 0 <i>товаров</i></a></div>
           <div class="col-sm-9 col-md-7 top-search">

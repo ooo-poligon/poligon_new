@@ -10,7 +10,7 @@
 </head>
 <body>
 <%= render "shared/yandex_metrika" %>
-
+<%= render "shared/user_navbar" %>
 <%= render "shared/mainpage/header",
            :teleSubCategories         => Category.available.where(parent: 142 ),
            :comatRelecoSubCategories  => Category.available.where(parent: 5933),
@@ -37,7 +37,6 @@
            :polygonSubCategories      => Category.available.where(parent: 6321),
            :huberSuhnerSubCategories  => Category.available.where(parent: 4847),
            :tehnoplastSubCategories   => Category.available.where(parent: 6925) %>
-<%= render "shared/user_navbar" %>
 <div class="container">
   <div class="row">
     <% if controller_name == 'categories' %>
