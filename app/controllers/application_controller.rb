@@ -159,10 +159,15 @@ class ApplicationController < ActionController::Base
   private
 
   def current_cart
+    @total_quantity = 0
     if session[:cart_id]
       cart = Cart.find_by(:id => session[:cart_id])
       if cart.present?
         @current_cart = cart
+        line_items = LineItem.where(cart_id: @current_cart.id)
+        line_items.each do |item|
+          @total_quantity += item.quantity
+        end
       else
         session[:cart_id] = nil
       end

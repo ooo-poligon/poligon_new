@@ -28,7 +28,12 @@
           <% end %>
         </p>
         <div class="row">
-          <div class="col-sm-3 col-md-5 top-cart"><a href=<%= carts_show_path %>><span></span> 0 <i>товаров</i></a></div>
+          <div class="col-sm-3 col-md-5 top-cart">
+            <%= link_to render("shared/cart_quantity"),
+                        cart_path(@current_cart.id),
+                        {remote: true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window'}
+            %>
+          </div>
           <div class="col-sm-9 col-md-7 top-search">
             <form method="get" action="/search">
               <input type="text" name="q" placeholder="Поиск по сайту">

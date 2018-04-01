@@ -1,74 +1,109 @@
 <% productImage = DataFile.where('owner_id = ? and file_type_id = 1', locals[:product_array][0].id).first %>
-<div class="catalog-col">
-  <div class="catalog-col-left">
-    <div class="catalog-col-img">
-      <% unless productImage.nil? %>
-        <% if productImage.path[0] != 'c' %>
-          <% imagePath = productImage.path.gsub("\\\\Server03\\бд_сайта\\poligon_images", "http://www.poligon.info/images").gsub("\\", "/") %>
-        <% else %>
-          <% imagePath = productImage.path.gsub("c:\\poligon_images", "http://www.poligon.info/images").gsub("\\", "/") %>
-        <% end %>
-        <%= link_to image_tag(imagePath, class: "img-responsive center-block product-image-container"), imagePath, class: "fancybox" %>
-      <% else %>
-        <p></p>
-      <% end %>
+<% product = locals[:product_array][0] %>
+
+<div class="product">
+  <div class="row">
+    <div class="col-xs-7 product-left">
+      <div class="col-xs-4 product-photo">
+        <div class="product-photo-img">
+          <% unless productImage.nil? %>
+            <% if productImage.path[0] != 'c' %>
+              <% imagePath = productImage.path.gsub("\\\\Server03\\бд_сайта\\poligon_images", "http://www.poligon.info/images").gsub("\\", "/") %>
+            <% else %>
+              <% imagePath = productImage.path.gsub("c:\\poligon_images", "http://www.poligon.info/images").gsub("\\", "/") %>
+            <% end %>
+            <%= link_to image_tag(imagePath, class: "img-responsive center-block product-image-container"), imagePath, class: "fancybox" %>
+          <% else %>
+            <p></p>
+          <% end %>
+        </div>
+        <div class="product-adv"><a href="card.html#tab-advant" class="to-advant" target="_blank">Преимущества</a></div>
+      </div>
+      <div class="col-xs-8 product-descr">
+        <h3><%= link_to locals[:product_array][0].title, locals[:product_array][0] %></h3>
+        <p class="product-art">Артикул: <span><%= locals[:product_array][0].article.nil? ? "-" : locals[:product_array][0].article %></span></p>
+        <p class="product-manuf">Производитель: <span><a href="/categories/<%= locals[:product_array][3].code %>"><%= locals[:product_array][3].title %></a></span></p>
+        <p class="product-text"><%= locals[:product_array][0].description %></p>
+        <ul class="product-list">
+          <li><a>Параметры</a>
+            <div class="hid-text">
+              <strong>Параметры</strong>
+              <p>Здесь какой-то текст</p>
+              <p>или пункт характеристики</p>
+              <div class="hide-hid-text">Свернуть</div>
+            </div>
+          </li>
+          <li><a href="#!">Скачать PDF</a></li>
+          <li><a href="#!">Каталог производителя</a></li>
+          <li><a href="card.html" target="_blank">Преимущества</a></li>
+        </ul>
+        <div class="row product-options">
+          <div class="col-xs-6 product-option product-quick-delivery">
+            <a href="#!">Быстрая доставка</a>
+            <div class="info"><span></span>
+              <div class="info-text">
+                <p>Доставляем Деловыми линиями Major, СДЭК, Пони Экспресс. Возможна доставка до пункта выдачи. Отправка ежедневно.</p>
+                <a href="#!">Более подробная инфомация</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-xs-6 product-option product-condition-payment">
+            <a href="#!">Условия оплаты</a>
+            <div class="info"><span></span>
+              <div class="info-text"><p>Тут другая подсказка</p></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
     </div>
-    <!--<p class="buy-p">С этим покупают <a data-modal="buy_modal" href="#">Посмотреть</a></p>-->
-  </div>
-  <div class="catalog-col-middle">
-    <h2>
-      <span class="product-title"><%= link_to locals[:product_array][0].title, locals[:product_array][0] %></span>
-    </h2>
-    <p><%= locals[:product_array][0].description %></p>
-    <ul>
-      <li><span>Артикул</span> <span><%= locals[:product_array][0].article.nil? ? "Не указан" : locals[:product_array][0].article %></span></li>
-      <li><span>Производитель</span> <span><a href="/categories/<%= locals[:product_array][3].code %>"><%= locals[:product_array][3].title %></a></span></li>
-    </ul>
-    <div class="icons">
-      <div class="icons-col right">
-        <img alt="" style="width: 150px;" src="http://poligon.info<%= locals[:product_array][3].logo %>">
+    <div class="col-xs-5 product-right">
+      <div class="product-price">
+        Цена:
+        <span class="product-old-price">
+          <% if locals[:product_array][1] == 0 %>
+            <span class="price">Звоните:<br>(812)325-42-20</span>
+          <% else %>
+            <span class="price"><%= locals[:product_array][1].rpss %></span>
+          <% end %>
+        </span>
+        <span class="product-new-price">
+          <% if locals[:product_array][1] == 0 %>
+            <span class="price">Звоните:<br>(812)325-42-20</span>
+          <% else %>
+            <span class="price"><%= locals[:product_array][1].rpss %></span>
+          <% end %>
+        </span>
+      </div>
+      <div class="price-request"><a href="#!" data-toggle="modal" data-target="#special">Запросить спец.цену</a></div>
+      <div class="product-presence">
+        <% if locals[:product_array][2] > 0 %>
+          <span><%= image_tag("green.gif") %></span>
+          <span>На складе: <%= locals[:product_array][2] %> шт. </span><br>
+          <span>Срок дополнительной поставки: <%= locals[:product_array][0].delivery_time %></span>
+        <% else %>
+          <span><%= image_tag("grey.gif") %></span>
+          <span>Товар временно отсутствует. </span>
+          <span>Срок поставки: <%= locals[:product_array][0].delivery_time %></span>
+        <% end %>
+      </div>
+      <div class="product-list">
+        <ul>
+          <li>Страна бренда:  Австрия</li>
+          <li>Отгрузка кратно:  1шт.</li>
+          <li>Официальный дистрибьютор в РФ</li>
+        </ul>
+      </div>
+      <div class="product-incart">
+        <%= form_tag(line_items_path, method: "post",  remote: true) do %>
+          <%= hidden_field_tag(:product_id, product.id) %>
+          <%= hidden_field_tag(:price, locals[:product_array][1]) %>
+          <%= hidden_field_tag(:minimum, 1) %>
+          <button type="submit" data-toggle="modal" data-target="#modal-window">В корзину</button>
+          <%= number_field_tag(:quantity, 1, class: "quantity",  step: 1, min: 1, pattern: "^[0-9]+$") %> <span>шт.</span>
+        <% end %>
       </div>
     </div>
-  </div>
-  <div class="catalog-col-right sale">
-    <div class="catalog-st">
-      <% if locals[:product_array][1] == 0 %>
-        <span class="price">Звоните:<br>(812)325-42-20</span>
-      <% else %>
-        <span class="price"><%= locals[:product_array][1].rpss %></span>
-      <% end %>
-      <span class="retail-title">Розничная цена</span>
-      <span class="retail-price dont-sale">
-        <%= locals[:product_array][1] == 0 ? "Не указана" : locals[:product_array][1].rpss %>
-      </span><br>
-      <% if locals[:product_array][2] > 0 %>
-        <span><%= image_tag("green.gif") %></span>
-        <span>На складе: <%= locals[:product_array][2] %> шт. </span>
-        <span>Срок дополнительной поставки: <%= locals[:product_array][0].delivery_time %></span>
-      <% else %>
-        <span><%= image_tag("grey.gif") %></span>
-        <span>Товар временно отсутствует. </span>
-        <span>Срок поставки: <%= locals[:product_array][0].delivery_time %></span>
-      <% end %>
-      <div class="clear"></div>
-    </div>
-    <div class="catalog-st">
-      <span class="p-m">
-      <input type="hidden" class="price" value="<%= locals[:product_array][1] %>">
-      <input type="hidden" class="minMainNumber" value="1">
-      <input type="number" placeholder="" class="requestedNumber" step="1" min="1" value="1" pattern="^[0-9]+$">
-      <span class="sht">шт</span>
-      <span class="modal-input"><span>0</span> руб.</span>
-      </span>
-      <%= button_to 'В корзину', line_items_path(product_id: locals[:product_array][0], price: locals[:product_array][1]), {remote: true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window', class: 'add-basket active'} %>
-    </div>
-    <!--<div class="catalog-st">-->
-      <!--<div class="nav-catalog-card">-->
-        <!--<span class="availability">Посмотреть наличие</span>-->
-        <!--<span class="add-my-catalog">В Мое избранное</span>-->
-        <!--<br>-->
-        <!--<span class="compare">Сравнить</span>-->
-      <!--</div>-->
-    <!--</div>-->
   </div>
 </div>

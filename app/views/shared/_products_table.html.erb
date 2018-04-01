@@ -2,7 +2,7 @@
   <br>
   <% sorted_products = @products.sort_by! {|obj| obj[0].title}.reverse %>
   <% sorted_products = sorted_products.sort_by {|obj| obj[2]}.reverse %>
-  <div class="catalog-content">
+  <div class="products">
     <% sorted_products.each do |product_array| %>
       <%= render "shared/product_list_element", locals: { product_array: product_array } %>
     <% end %>

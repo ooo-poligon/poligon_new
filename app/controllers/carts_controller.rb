@@ -19,8 +19,14 @@ class CartsController < ApplicationController
     @cart.destroy
     session[:cart_id] = nil
     respond_to do |format|
-      format.html { redirect_to root_url, notice: 'Теперь ваша корзина пуста!'}
+      format.html { redirect_to root_url, notice: 'Ваша корзина пуста!'}
       format.json { head :ok}
+    end
+  end
+
+  def update_cart_quantity
+    respond_to do |format|
+      format.js
     end
   end
 end

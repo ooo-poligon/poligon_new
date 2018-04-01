@@ -15,6 +15,7 @@ Poligon::Application.routes.draw do
 
   get 'carts/show'
   get 'carts/add'
+  post 'carts/update_cart_quantity'
 
   get  'certificates/download'
   get  'certificates/index'

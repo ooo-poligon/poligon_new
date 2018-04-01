@@ -46,3 +46,13 @@ $(document).ready(function() {
 function no_pdf() {
   alert("Для этого устройства даташит не обнаружен.");
 }
+
+$('div.modal').on('hidden.bs.modal', function () {
+    $.ajax({
+        url: "/carts/update_cart_quantity",
+        method: "post"
+    }).done(function(html) {
+        $("div.top-cart a").html;
+        $("div.bot-cart a").html;
+    });
+})
