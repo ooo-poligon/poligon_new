@@ -7,15 +7,15 @@ end
 end
 
 Когда(/^я кликаю по логотипу компании в верхнем левом углу сайта$/) do
-  find('.navbar-brand').click
+  find('.logo').click
 end
 
 Когда(/^я кликаю по пункту меню "([^"]*)" в верхней навигационой панели сайта$/) do |link_name|
-  visit news_items_path              if link_name == "Новости"
-  visit publications_index_path      if link_name == "Публикации"
-  visit categories_path              if link_name == "Каталог"
-  visit offers_index_path            if link_name == "Специальные предложения"
-  all('.dropdown').first.click       if link_name == "Поиск"
+  visit feedback_booklets_path       if link_name == "PDF-материалы"
+  visit company_contacts_path        if link_name == "Контакты"
+  visit company_about_path           if link_name == "О нас"
+  visit offers_index_path            if link_name == "Sale"
+  # all('.dropdown').first.click       if link_name == "Поиск"
 end
 
 Тогда(/^я должен увидеть заголовок "([^"]*)"$/) do |text|
