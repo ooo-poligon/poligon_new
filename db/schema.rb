@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180310210406) do
+ActiveRecord::Schema.define(version: 20180401081737) do
 
   create_table "additions", force: :cascade do |t|
     t.datetime "created_at",                    null: false
@@ -162,6 +162,7 @@ ActiveRecord::Schema.define(version: 20180310210406) do
     t.datetime "created_at",                       null: false
     t.datetime "updated_at",                       null: false
     t.integer  "quantity",   limit: 4, default: 1
+    t.integer  "order_id",   limit: 4
   end
 
   create_table "measures", force: :cascade do |t|
@@ -202,6 +203,15 @@ ActiveRecord::Schema.define(version: 20180310210406) do
 
   add_index "offers_products", ["offer_id"], name: "index_offers_products_on_offer_id", using: :btree
   add_index "offers_products", ["product_id"], name: "index_offers_products_on_product_id", using: :btree
+
+  create_table "orders", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.text     "address",    limit: 65535
+    t.string   "email",      limit: 255
+    t.string   "pay_type",   limit: 255
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
 
   create_table "post_types", force: :cascade do |t|
     t.string   "title",      limit: 255

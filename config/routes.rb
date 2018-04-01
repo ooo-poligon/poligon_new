@@ -1,21 +1,21 @@
 # -*- encoding : utf-8 -*-
 Poligon::Application.routes.draw do
 
+  resources :orders
   resources :line_items
-  # root to: 'welcome#hello'
-
-  resources  :news_items, only: [:index, :show]
-  resources  :categories, only: [:index, :show]
-  resources  :articles,   only: [:index, :show]
-  resources  :videos,     only: [:index, :show]
-  resources  :reviews,    only: [:index, :show]
-  resources  :additions,  only: [:index, :show]
-  resources  :products,   only: [        :show]
-  resources  :carts
+  resources :news_items, only: [:index, :show]
+  resources :categories, only: [:index, :show]
+  resources :articles,   only: [:index, :show]
+  resources :videos,     only: [:index, :show]
+  resources :reviews,    only: [:index, :show]
+  resources :additions,  only: [:index, :show]
+  resources :products,   only: [        :show]
+  resources :carts
 
   get 'carts/show'
   get 'carts/add'
   post 'carts/update_cart_quantity'
+  post 'orders/send_order_email'
 
   get  'certificates/download'
   get  'certificates/index'
