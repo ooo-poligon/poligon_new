@@ -24,6 +24,16 @@ module ApplicationHelper
     end
   end
 
+  def cart_total_amount cart
+    total_amount = 0
+    line_items = cart.line_items
+    line_items.each do |line_item|
+      total_amount += line_item.price * line_item.quantity
+    end
+
+    total_amount
+  end
+
   def meta_tags(opts = {})
     opts = normalize_meta_hash(opts)
 

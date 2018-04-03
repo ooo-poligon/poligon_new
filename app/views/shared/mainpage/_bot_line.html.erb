@@ -6,7 +6,7 @@
                   cart_path(@current_cart.id),
                   {remote: true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window'}
       %>
-      <div class="bot-sum"><span></span>На сумму 0.00 руб.</div>
+      <div class="bot-sum"><%= render("shared/cart_sum") %></div>
     </div>
   </div>
 </div>

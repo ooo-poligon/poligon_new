@@ -6,22 +6,22 @@
 <div class="modal-body">
   <ul>
     <% @cart.line_items.each do |line_item| %>
-      <li><%= line_item.quantity %> &times; <%= line_item.product.title %></li>
+      <li><%= line_item.quantity %> &times; <%= line_item.product.title %> <%= line_item.price * line_item.quantity %></li>
       <% items[line_item.product.id] = line_item.quantity %>
     <% end %>
     <%= button_to 'Очистить корзину', @cart, method: :delete, confirm: 'Вы уверены?' %>
   </ul>
 </div>
 <div class="modal-footer">
-  <button class="btn" data-dismiss="modal" aria-hidden="true">Закрыть</button>
-  <button class="btn btn-primary">Save changes</button>
-</div>
-<div>
-  <%= form_tag(orders_send_order_email_path, method: "post") do %>
-    <% items.each do |key, item| %>
-      <%= hidden_field_tag "items["+key.to_s+"]", item %>
+  <button class="btn" data-dismiss="modal" aria-hidden="true">Продолжить покупки</button>
+  <button class="btn btn-danger">Оформить заказ</button>
+  <div>
+    <%= form_tag(orders_send_order_email_path, method: "post") do %>
+      <% items.each do |key, item| %>
+        <%= hidden_field_tag "items["+key.to_s+"]", item %>
+      <% end %>
+      <%= email_field_tag(:email, nil, placeholder: "Enter your mail") %>
+      <button type="submit">Жду звонка</button>
     <% end %>
-    <%= email_field_tag(:email, nil, placeholder: "Enter your mail") %>
-    <button type="submit">Жду звонка</button>
-  <% end %>
+  </div>
 </div>

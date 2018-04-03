@@ -65,14 +65,14 @@
           <% if locals[:product_array][1] == 0 %>
             <span class="price">Звоните:<br>(812)325-42-20</span>
           <% else %>
-            <span class="price"><%= locals[:product_array][1].rpss %></span>
+            <span class="price"><%= locals[:product_array][1].to_s + ' руб.' %></span>
           <% end %>
         </span>
         <span class="product-new-price">
           <% if locals[:product_array][1] == 0 %>
             <span class="price">Звоните:<br>(812)325-42-20</span>
           <% else %>
-            <span class="price"><%= locals[:product_array][1].rpss %></span>
+            <span class="price"><%= locals[:product_array][1].to_s + ' руб.' %></span>
           <% end %>
         </span>
       </div>
