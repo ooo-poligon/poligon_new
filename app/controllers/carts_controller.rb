@@ -29,4 +29,10 @@ class CartsController < ApplicationController
       format.js
     end
   end
+
+  def update_cart_sum
+    respond_to do |format|
+      format.js
+    end
+  end
 end

@@ -55,4 +55,11 @@ $('div.modal').on('hidden.bs.modal', function () {
         $("div.top-cart a").html;
         $("div.bot-cart a").html;
     });
+
+    $.ajax({
+        url: "/carts/update_cart_sum",
+        method: "post"
+    }).done(function(html) {
+        $("div.bot-sum").html;
+    });
 })
