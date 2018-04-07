@@ -59,6 +59,14 @@
       </div>
       <div class="col-sm-8 col-md-9 content">
         <div class="row">
+          <% flash.each do |key, value| %>
+            <br><div class="alert alert-<%= key %>"><%= value %></div>
+          <% end %>
+          <div id="modal-window" class="modal fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content"></div>
+            </div>
+          </div>
           <%= yield %>
         </div>
         <%= render "shared/mainpage/trio" %>
