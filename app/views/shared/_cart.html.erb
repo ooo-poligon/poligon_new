@@ -6,7 +6,14 @@
 <div class="modal-body">
   <ul>
     <% @cart.line_items.each do |line_item| %>
-      <li><%= line_item.quantity %> &times; <%= line_item.product.title %> <%= line_item.price * line_item.quantity %></li>
+      <li id="line-item-<%= line_item.id.to_s %>">
+        <div>
+          <%= line_item.quantity %> &times; <%= line_item.product.title %> <%= line_item.price * line_item.quantity %>
+          <%= form_tag(carts_remove_from_cart_path(id: line_item.product.id), method: "post", remote: true) do %>
+            <%= submit_tag "Удалить позицию" %>
+          <% end %>
+        </div>
+      </li>
       <% items[line_item.product.id] = line_item.quantity %>
     <% end %>
     <%= button_to 'Очистить корзину', @cart, method: :delete, confirm: 'Вы уверены?' %>

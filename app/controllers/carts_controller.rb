@@ -35,4 +35,22 @@ class CartsController < ApplicationController
       format.js
     end
   end
+
+  def remove_from_cart
+    begin
+      product = Product.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      logger.error("Attemptccess invalid product #{params[:id]}")
+      respond_to do |format|
+        format.html { redirect_to root_url, notice: 'Invalid product'}
+      end
+    else
+      @cart = Cart.find(@current_cart.id)
+      @product_id = product.id
+      @current_line = @cart.remove_product(@product_id)
+      respond_to do |format|
+        format.js
+      end
+    end
+  end
 end

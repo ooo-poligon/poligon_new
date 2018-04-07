@@ -179,4 +179,8 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def find_or_make_cart
+    @cart = (session[:cart] ||= Cart.new)
+  end
+
 end
