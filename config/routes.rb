@@ -71,10 +71,6 @@ Poligon::Application.routes.draw do
   get 'categories/4847' => 'categories/huber_suhner', :as => 'categories/huber_suhner'
   get 'categories/6925' => 'categories/tehnoplast',   :as => 'categories/tehnoplast'
 
-  get 'hello', to: 'welcome#hello'
-  get 'react', to: 'welcome#react'
-
-
   # This route can be invoked with purchase_url(:id => product.id)
 
   # Sample resource route (maps HTTP verbs to controller actions automatically):
