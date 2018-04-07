@@ -1,11 +1,7 @@
 <% items = {} %>
-<div class="modal-header">
-  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-  <h3 id="myModalLabel">Корзина</h3>
-</div>
-<div class="modal-body">
+<div>
   <ul>
-    <% @cart.line_items.each do |line_item| %>
+    <% @current_cart.line_items.each do |line_item| %>
       <li id="line-item-<%= line_item.id.to_s %>">
         <div>
           <%= line_item.quantity %> &times; <%= line_item.product.title %> <%= line_item.price * line_item.quantity %>
@@ -19,9 +15,9 @@
     <%= button_to 'Очистить корзину', @cart, method: :delete, confirm: 'Вы уверены?' %>
   </ul>
 </div>
-<div class="modal-footer">
+<div>
   <button class="btn" data-dismiss="modal" aria-hidden="true">Продолжить покупки</button>
-  <%= button_to 'Оформить заказ', new_order_path, method: :get, class: 'btn btn-danger' %>
+  <%= button_to 'Оформить заказ', orders_path(cart: @current_cart.id), method: :post, class: 'btn btn-danger' %>
   <div>
     <%= form_tag(orders_send_order_email_path, method: "post") do %>
       <% items.each do |key, item| %>

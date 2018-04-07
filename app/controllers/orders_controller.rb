@@ -52,7 +52,7 @@ class OrdersController < ApplicationController
       @email = params[:phone]
       UserMailer.products_order_email(@phone, line_items).deliver_now
       respond_to do |format|
-        format.html { redirect_to root_url, notice: 'Ваша заявка принята.'}
+        format.html { redirect_to root_url, notice: 'Спасибо, мы получили заявку. В ближайшее время менеджер свяжется для подтверждения заказа.'}
       end
     else
       flash[:error] = "Поле e-mail не заполнено!"

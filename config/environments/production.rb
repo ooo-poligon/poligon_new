@@ -101,6 +101,6 @@ Rails.application.configure do
     #:deliver_with => :deliver, # Rails >= 4.2.1 do not need this option since it defaults to :deliver_now
     :email_prefix => "[ERROR] ",
     :sender_address => %{"new.poligon.info" <no-reply@poligon.info>},
-    :exception_recipients => %w{klekotnev@poligon.info}
+    :exception_recipients => %w{robot@poligon.info}
   }
 end
