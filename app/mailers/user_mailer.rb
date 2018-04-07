@@ -44,9 +44,9 @@ class UserMailer < ActionMailer::Base
     mail(to: @receiver, bcc: 'webmaster@poligon.info', subject: 'Заказ FARNELL с сайта new.poliogn.info')
   end
 
-  def products_order_email(email, order)
+  def products_order_email(phone, order)
     @receiver = Setting.find_by(title: 'siteOrdersReceiver').text_value
-    @email    = email
+    @phone    = phone
     @order    = order
     mail(to: @receiver, bcc: 'webmaster@poligon.info', subject: 'Заказ товаров с сайта new.poliogn.info')
   end

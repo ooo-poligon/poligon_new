@@ -27,7 +27,7 @@
       <% items.each do |key, item| %>
         <%= hidden_field_tag "items["+key.to_s+"]", item %>
       <% end %>
-      <%= email_field_tag(:email, nil, placeholder: "Enter your mail") %>
+      <%= phone_field_tag(:phone, nil, placeholder: "Введите номер телефона") %>
       <button type="submit">Жду звонка</button>
     <% end %>
   </div>

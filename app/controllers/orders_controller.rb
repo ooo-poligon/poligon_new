@@ -48,9 +48,9 @@ class OrdersController < ApplicationController
   def send_order_email
     line_items   = params[:items]
 
-    if params[:email] != ''
-      @email = params[:email]
-      UserMailer.products_order_email(@email, line_items).deliver_now
+    if params[:phone] != ''
+      @email = params[:phone]
+      UserMailer.products_order_email(@phone, line_items).deliver_now
       respond_to do |format|
         format.html { redirect_to root_url, notice: 'Ваша заявка принята.'}
       end
