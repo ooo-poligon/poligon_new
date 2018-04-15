@@ -69,8 +69,6 @@
           </div>
           <%= yield %>
         </div>
-        <%= render "shared/mainpage/trio" %>
-        <%= render "shared/mainpage/partners" %>
       </div>
     <% end %>
   </div>
@@ -80,6 +78,13 @@
   <%= render("shared/mainpage/articles") %>
   <%= render("shared/mainpage/apply") %>
   <%= render("shared/mainpage/news") %>
+<% end %>
+
+<% if controller_name == 'products' %>
+  <%= render "shared/products/send_request" %>
+<% else %>
+  <%= render "shared/mainpage/trio" %>
+  <%= render "shared/mainpage/partners" %>
 <% end %>
 
 <%= render("shared/mainpage/footer") %>

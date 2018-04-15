@@ -1,106 +1,193 @@
 <p id="notice"><%= notice %></p>
 <%= render "shared/breadcrumb_search", locals: { product: @product } %>
 
-<% unless @product.article.nil? %>
-  <% title = @productKind.title + " " + @product.title + " (" + @product.article + ")" %>
-  <h1><span style="color: black;" ><%= @productKind.title %></span> <b><span style="color: red;" ><%= @product.title + " (" + @product.article + ")" %></span></b></h1>
+<% if @productImage.path[0] != 'c' %>
+  <% imagePath = @productImage.path.gsub("\\\\Server03\\бд_сайта\\poligon_images", "http://www.poligon.info/images").gsub("\\", "/") %>
 <% else %>
-  <% title = @productKind.title + " " + @product.title %>
-  <h4><b><%= @productKind.title %></b> <span style="color: red;" ><%= @product.title %></span></h4>
+  <% imagePath = @productImage.path.gsub("c:\\poligon_images", "http://www.poligon.info/images").gsub("\\", "/") %>
 <% end %>
-<% generate_meta_from title %>
-<p><%= @product.description %></p>
-<p style="color: red; font-weight: bolder;">
-  <%= @product.anons if !@product.anons.nil? %>
-</p>
-<br>
-<ul class="nav nav-tabs">
-  <% if user_signed_in? %>
-    <li class="pull-right"><a href="#product_data_tab" data-toggle="tab">Цены и наличие</a></li>
-    <li class="pull-right"><a href="#general_information_tab" data-toggle="tab">Общая информация</a></li>
-  <% else %>
-    <li class="pull-right"><a href="#general_information_tab" data-toggle="tab">Общая информация</a></li>
-  <% end %>
 
-</ul>
-<br>
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-xs-3">
-      <% if @productImage != nil %>
-        <p>
-          <% if @productImage.path[0] != 'c' %>
-            <%# productImage.path.gsub!(productImage.path[0], 'c') %>
-            <% imagePath = @productImage.path.gsub("\\\\Server03\\бд_сайта\\poligon_images", "http://www.poligon.info/images").gsub("\\", "/") %>
-          <% else %>
-            <% imagePath = @productImage.path.gsub("c:\\poligon_images", "http://www.poligon.info/images").gsub("\\", "/") %>
-          <% end %>
-          <%# imagePath = @productImage.path.gsub!("c:\\poligon_images", "http://www.poligon.info/images")
-            .gsub("\\\\Server03\\бд_сайта\\poligon_images", "http://www.poligon.info/images").gsub!("\\", "/") %>
-          <%= link_to(image_tag(imagePath, class: "img-responsive center-block", :width => '220px'), imagePath, class: "fancybox") %>
-        </p>
-      <% else %>
-        <p style="font-weight: bold; color: red;">нет изображения</p>
-      <% end %>
-      <hr>
-      <% if @productPdf != nil and @productPdf.path != "c:\\poligon_datasheets\\" and @productPdf.path != "\\\\Server03\\бд_сайта\\poligon_datasheets\\" %>
-        <p>
-          <% if @productPdf.path[0] != 'c' %>
-            <% pdfPath = @productPdf.path.gsub("\\\\Server03\\бд_сайта\\poligon_datasheets\\datasheets", "http://www.poligon.info/PDF").gsub("\\", "/") %>
-          <% else %>
-            <% pdfPath = @productPdf.path.gsub("c:\\poligon_datasheets\\datasheets", "http://www.poligon.info/PDF").gsub("\\", "/") %>
-          <% end %>
-          <%# pdfPath = @productPdf.path.gsub!("c:\\poligon_datasheets\\datasheets", "http://www.poligon.info/PDF")
-            .gsub("\\\\Server03\\бд_сайта\\poligon_datasheets\\datasheets", "http://www.poligon.info/PDF").gsub!("\\", "/") %>
-          <%= image_tag("design/pdf_doc.gif", height: '20', width: '20') %>
-          <%= link_to( " Описание в формате PDF", pdfPath) %>
-        </p>
-      <% else %>
-        <p style="font-weight: bold; color: red;">Описание в формате PDF отсутствует</p>
-      <% end %>
-      <hr>
-      <%= render "shared/price_cases", locals: { retail_price: get_prices_rub(@product)[0] } %>
-      <p style="color: green">
-        <% if !Quantity.find_by(product_id: @product.id).nil? && Quantity.find_by(product_id: @product.id).stock > 0 %>
-          <i>Товар есть на складе</i>
-        <% else %>
-          <i>Срок поставки: <%= @product.delivery_time %></i>
-        <% end %>
-      </p>
-      <div class="catalog-st">
-        <div class="product-incart">
-          <%= form_tag(line_items_path, method: "post",  remote: true) do %>
-            <%= hidden_field_tag(:product_id, @product.id) %>
-            <%= hidden_field_tag(:price, get_prices_rub(@product)[0]) %>
-            <%= hidden_field_tag(:minimum, 1) %>
-            <button type="submit" data-toggle="modal" data-target="#modal-window">В корзину</button>
-            <%= number_field_tag(:quantity, 1, class: "quantity",  step: 1, min: 1, pattern: "^[0-9]+$") %> <span>шт.</span>
-          <% end %>
+<div class="card-block">
+  <h1>Миниконтактор-реле K1 K1-07D22 12</h1>
+  <div class="card">
+    <div class="row">
+      <div class="col-md-4 card-gallery">
+        <div class="xzoom-container">
+          <%= link_to(image_tag('card_zoom.png', class: "zoomik", id: "zoomik", alt: ''), "#gallery", class: "zoom-ik") %>
+          <div class="main-photo">
+            <%= image_tag(imagePath, class: "xzoom5", id: "xzoom-magnific", original: imagePath, alt: '', style: "width: 271.984px;") %>
+          </div>
+          <div id="gallery" class="xzoom-thumbs">
+            <% if @productImage != nil %>
+              <%= link_to(image_tag(imagePath, class: "xzoom-gallery xactive", width: '40', xpreview: imagePath, title: '', alt: ''), imagePath) %>
+            <% else %>
+              <p style="font-weight: bold; color: red;">нет изображения</p>
+            <% end %>
+          </div>
+          <div class="card-logo">
+            <a href="#!">
+              <%= image_tag(@product.vendor.logo, alt: '') %>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-8 card-info">
+        <div class="card-top">
+          <div class="card-duo">
+            <div class="row">
+              <div class="col-sm-7 card-duo-left">
+                <div class="product-price">
+                  Цена:
+                  <span class="product-old-price">
+                    <% if @retail_price == 0 %>
+                      <span class="price">Звоните:<br>(812)325-42-20</span>
+                    <% else %>
+                      <span class="price"><%= @retail_price.round(2).to_s + ' руб.' %></span>
+                    <% end %>
+                  </span>
+                  <span class="product-new-price">
+                  <% if @retail_price == 0 %>
+                    <span class="price">Звоните:<br>(812)325-42-20</span>
+                  <% else %>
+                    <span class="price"><%= @retail_price.round(2).to_s + ' руб.' %></span>
+                  <% end %>
+                </span>
+                </div>
+                <div class="product-list">
+                  <ul>
+                    <li>
+                      Наличие:
+                      <% if !Quantity.find_by(product_id: @product.id).nil? && Quantity.find_by(product_id: @product.id).stock > 0 %>
+                        <%= Quantity.find_by(product_id: @product.id).stock.to_s + ' шт.' %>
+                      <% else %>
+                        <i>Срок поставки: <%= @product.delivery_time %></i>
+                      <% end %>
+                    </li>
+                    <li>Страна бренда:
+                      <%= @product.vendor.address %>
+                    </li>
+                    <li>Отгрузка кратно:  1шт.</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="col-md-5 card-duo-right">
+                <div class="product-incart">
+                  <%= form_tag(line_items_path, method: "post",  remote: true) do %>
+                    <%= hidden_field_tag(:product_id, @product.id) %>
+                    <%= hidden_field_tag(:price, @retail_price) %>
+                    <%= hidden_field_tag(:minimum, 1) %>
+                    <button type="submit" data-toggle="modal" data-target="#modal-window">В корзину</button>
+                    <div class="card-quan">
+                      <%= number_field_tag(:quantity, 1, class: "product-quantity",  step: 1, min: 1, pattern: "^[0-9]+$") %> <span>шт.</span>
+                    </div>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-text"><%= @product.description %></div>
+          <div class="row product-options">
+            <div class="col-xs-6 col-sm-4 product-option product-quick-delivery">
+              <a href="#!">Быстрая доставка</a>
+              <div class="info"><span></span>
+                <div class="info-text">
+                  <p>Доставляем Деловыми линиями Major, СДЭК, Пони Экспресс. Возможна доставка до пункта выдачи. Отправка ежедневно.</p>
+                  <a href="#!">Более подробная инфомация</a>
+                </div>
+              </div>
+            </div>
+            <div class="col-xs-6 col-sm-4 product-option product-condition-payment">
+              <a href="#!">Условия оплаты</a>
+              <div class="info"><span></span>
+                <div class="info-text"><p>Тут другая подсказка</p></div>
+              </div>
+            </div>
+            <div class="col-xs-6 col-sm-4 product-option product-advant">
+              <a href="#tab-advant" class="to-advant">Узнать о преимуществах</a>
+            </div>
+          </div>
+        </div>
+        <div class="card-middle">
+          <div class="row">
+            <div class="col-sm-6 card-order-info">
+              <h4>Информация для заказа</h4>
+              <p class="product-name">Наименование: <%= @product.title %></p>
+              <p class="product-art">Артикул: <span><%= @product.article ? @product.article : '-' %></span></p>
+              <p class="product-manuf">Производитель: <span><a href="#"><%= @product.vendor.title %></a></span></p>
+            </div>
+            <div class="col-sm-6 card-order-docs">
+              <div class="doc-button"><a href="#!"><span></span>Скачать документацию</a></div>
+              <div class="distr-button"><a href="#!"><span></span>Официальный дистрибьютор <%= @product.vendor.title %></a></div>
+            </div>
+          </div>
+        </div>
+        <div class="card-bottom">
+          <div class="card-request">
+            <div class="row">
+              <div class="col-sm-8 card-request-text">Запросить проектные условия:
+                <input class="product-quantity" type="text" value="1"> <span>шт.</span>
+              </div>
+              <div class="col-sm-4 card-request-button"><button>Запросить</button></div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-    <div class="col-xs-9">
-      <div class="tab-content">
-        <% if user_signed_in? %>
-          <div class="tab-pane fade" id="product_data_tab">
-            <%= render "shared/product_data_tab" %>
-          </div>
-          <div class="tab-pane fade in active" id="general_information_tab">
-            <%= render "shared/product_full_description_tab" %>
-            <%= render "shared/product_properties_tab" %>
-            <%= render "shared/product_functions_tab" %>
-            <%= render "shared/product_plugs_or_dimensions_tab", locals: { product: @product, pic_type: 'plug', count: 3 } %>
-            <%= render "shared/product_plugs_or_dimensions_tab", locals: { product: @product, pic_type: 'dim', count: nil } %>
-          </div>
-        <% else %>
-          <div class="tab-pane fade in active" id="general_information_tab">
-            <%= render "shared/product_full_description_tab" %>
-            <%= render "shared/product_properties_tab" %>
-            <%= render "shared/product_functions_tab" %>
-            <%= render "shared/product_plugs_or_dimensions_tab", locals: { product: @product, pic_type: 'plug', count: 3 } %>
-            <%= render "shared/product_plugs_or_dimensions_tab", locals: { product: @product, pic_type: 'dim', count: nil } %>
-            </div>
-        <% end %>
+    <div class="card-description">
+      <ul class="tabs card-tabs">
+        <li><p>Общая информация</p></li>
+        <li><p><span class="card-pdf">pdf</span>и сертификаты</p></li>
+        <li id="tab-advant"><p>Преимущества</p></li>
+        <li><p>Цены и наличие</p></li>
+        <li><a href="#!">Задать вопрос о товаре</a></li>
+      </ul>
+      <div class="card-box">
+        <table class="table table-bordered table-responsive">
+          <tbody><tr>
+            <td>информация</td>
+            <td>данные</td>
+          </tr>
+          <tr>
+            <td>информация</td>
+            <td>данные</td>
+          </tr>
+          <tr>
+            <td>информация</td>
+            <td>данные</td>
+          </tr>
+          <tr>
+            <td>информация</td>
+            <td>данные</td>
+          </tr>
+          <tr>
+            <td>информация</td>
+            <td>данные</td>
+          </tr>
+          <tr>
+            <td>информация</td>
+            <td>данные</td>
+          </tr>
+          <tr>
+            <td>информация</td>
+            <td>данные</td>
+          </tr>
+          <tr>
+            <td>информация</td>
+            <td>данные</td>
+          </tr>
+          </tbody></table>
+        <div class="card-scheme">
+          <!--<img src="img/scheme.jpg" alt="">-->
+        </div>
+      </div>
+      <div class="card-box" style="display: none;">
+        инфо 2
+      </div>
+      <div class="card-box" id="advant" style="display: none;">
+        тут преимущества
+      </div>
+      <div class="card-box" style="display: none;">
+        инфо 4
       </div>
     </div>
   </div>

@@ -1,0 +1,105 @@
+<p id="notice"><%= notice %></p>
+<%= render "shared/breadcrumb_search", locals: { product: @product } %>
+
+<% unless @product.article.nil? %>
+  <% title = @productKind.title + " " + @product.title + " (" + @product.article + ")" %>
+  <h1><span style="color: black;" ><%= @productKind.title %></span> <b><span style="color: red;" ><%= @product.title + " (" + @product.article + ")" %></span></b></h1>
+<% else %>
+  <% title = @productKind.title + " " + @product.title %>
+  <h4><b><%= @productKind.title %></b> <span style="color: red;" ><%= @product.title %></span></h4>
+<% end %>
+<% generate_meta_from title %>
+<p><%= @product.description %></p>
+<p style="color: red; font-weight: bolder;">
+  <%= @product.anons if !@product.anons.nil? %>
+</p>
+<br>
+<ul class="nav nav-tabs">
+  <% if user_signed_in? %>
+    <li class="pull-right"><a href="#product_data_tab" data-toggle="tab">Цены и наличие</a></li>
+    <li class="pull-right"><a href="#general_information_tab" data-toggle="tab">Общая информация</a></li>
+  <% else %>
+    <li class="pull-right"><a href="#general_information_tab" data-toggle="tab">Общая информация</a></li>
+  <% end %>
+
+</ul>
+<br>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xs-3">
+      <% if @productImage != nil %>
+        <p>
+          <% if @productImage.path[0] != 'c' %>
+            <%# productImage.path.gsub!(productImage.path[0], 'c') %>
+            <% imagePath = @productImage.path.gsub("\\\\Server03\\бд_сайта\\poligon_images", "http://www.poligon.info/images").gsub("\\", "/") %>
+          <% else %>
+            <% imagePath = @productImage.path.gsub("c:\\poligon_images", "http://www.poligon.info/images").gsub("\\", "/") %>
+          <% end %>
+          <%= link_to(image_tag(imagePath, class: "img-responsive center-block", :width => '220px'), imagePath, class: "fancybox") %>
+        </p>
+      <% else %>
+        <p style="font-weight: bold; color: red;">нет изображения</p>
+      <% end %>
+      <hr>
+      <% if @productPdf != nil and @productPdf.path != "c:\\poligon_datasheets\\" and @productPdf.path != "\\\\Server03\\бд_сайта\\poligon_datasheets\\" %>
+        <p>
+          <% if @productPdf.path[0] != 'c' %>
+            <% pdfPath = @productPdf.path.gsub("\\\\Server03\\бд_сайта\\poligon_datasheets\\datasheets", "http://www.poligon.info/PDF").gsub("\\", "/") %>
+          <% else %>
+            <% pdfPath = @productPdf.path.gsub("c:\\poligon_datasheets\\datasheets", "http://www.poligon.info/PDF").gsub("\\", "/") %>
+          <% end %>
+          <%# pdfPath = @productPdf.path.gsub!("c:\\poligon_datasheets\\datasheets", "http://www.poligon.info/PDF")
+            .gsub("\\\\Server03\\бд_сайта\\poligon_datasheets\\datasheets", "http://www.poligon.info/PDF").gsub!("\\", "/") %>
+          <%= image_tag("design/pdf_doc.gif", height: '20', width: '20') %>
+          <%= link_to( " Описание в формате PDF", pdfPath) %>
+        </p>
+      <% else %>
+        <p style="font-weight: bold; color: red;">Описание в формате PDF отсутствует</p>
+      <% end %>
+      <hr>
+      <%= render "shared/price_cases", locals: { retail_price: get_prices_rub(@product)[0] } %>
+      <p style="color: green">
+        <% if !Quantity.find_by(product_id: @product.id).nil? && Quantity.find_by(product_id: @product.id).stock > 0 %>
+          <i>Товар есть на складе</i>
+        <% else %>
+          <i>Срок поставки: <%= @product.delivery_time %></i>
+        <% end %>
+      </p>
+      <div class="catalog-st">
+        <div class="product-incart">
+          <%= form_tag(line_items_path, method: "post",  remote: true) do %>
+            <%= hidden_field_tag(:product_id, @product.id) %>
+            <%= hidden_field_tag(:price, get_prices_rub(@product)[0]) %>
+            <%= hidden_field_tag(:minimum, 1) %>
+            <button type="submit" data-toggle="modal" data-target="#modal-window">В корзину</button>
+            <%= number_field_tag(:quantity, 1, class: "quantity",  step: 1, min: 1, pattern: "^[0-9]+$") %> <span>шт.</span>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-9">
+      <div class="tab-content">
+        <% if user_signed_in? %>
+          <div class="tab-pane fade" id="product_data_tab">
+            <%= render "shared/product_data_tab" %>
+          </div>
+          <div class="tab-pane fade in active" id="general_information_tab">
+            <%= render "shared/product_full_description_tab" %>
+            <%= render "shared/product_properties_tab" %>
+            <%= render "shared/product_functions_tab" %>
+            <%= render "shared/product_plugs_or_dimensions_tab", locals: { product: @product, pic_type: 'plug', count: 3 } %>
+            <%= render "shared/product_plugs_or_dimensions_tab", locals: { product: @product, pic_type: 'dim', count: nil } %>
+          </div>
+        <% else %>
+          <div class="tab-pane fade in active" id="general_information_tab">
+            <%= render "shared/product_full_description_tab" %>
+            <%= render "shared/product_properties_tab" %>
+            <%= render "shared/product_functions_tab" %>
+            <%= render "shared/product_plugs_or_dimensions_tab", locals: { product: @product, pic_type: 'plug', count: 3 } %>
+            <%= render "shared/product_plugs_or_dimensions_tab", locals: { product: @product, pic_type: 'dim', count: nil } %>
+            </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

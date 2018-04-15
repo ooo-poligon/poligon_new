@@ -1,0 +1,13 @@
+UPDATE `vendors` SET `logo`='logo/brands/tele.png' WHERE `id`='1';
+UPDATE `vendors` SET `logo`='logo/brands/citel.png' WHERE `id`='2';
+UPDATE `vendors` SET `logo`='logo/brands/benedict.png' WHERE `id`='3';
+UPDATE `vendors` SET `logo`='logo/brands/graesslin.png' WHERE `id`='4';
+UPDATE `vendors` SET `logo`='logo/brands/sonder.png' WHERE `id`='5';
+UPDATE `vendors` SET `logo`='logo/brands/relequick.png' WHERE `id`='6';
+UPDATE `vendors` SET `logo`='logo/brands/comat_releco.png' WHERE `id`='7';
+UPDATE `vendors` SET `logo`='logo/brands/polygon.png' WHERE `id`='8';
+UPDATE `vendors` SET `logo`='logo/brands/emko.png' WHERE `id`='9';
+UPDATE `vendors` SET `logo`='logo/brands/cbi.png' WHERE `id`='10';
+UPDATE `vendors` SET `logo`='logo/brands/vemer.png' WHERE `id`='11';
+UPDATE `vendors` SET `logo`='logo/brands/tehnoplast.png' WHERE `id`='14';
+UPDATE `vendors` SET `logo`='logo/brands/huber_suhner.png' WHERE `id`='15';

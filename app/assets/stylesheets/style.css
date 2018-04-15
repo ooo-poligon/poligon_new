@@ -219,7 +219,7 @@ button:hover {
 	position: relative;
 	display: block;
 	color: #fff;
-	font-size: 12px;
+	font-size: 14px;
 	padding: 10px 10px 10px 40px;
 	background: #3f6bd2;
 }
@@ -230,7 +230,7 @@ button:hover {
 	left: 15px;
 	width: 16px;
 	height: 16px;
-	background: url('sprite.png') no-repeat 0 0;
+	background: url(sprite.png) no-repeat 0 0;
 }
 .top-cart a i {
 	font-style: normal;
@@ -255,7 +255,7 @@ button:hover {
     height: 38px;
     width: 45px;
     font-size: 0;
-    background: #3f6bd2 url('sprite.png') no-repeat -22px 10px;
+    background: #3f6bd2 url(sprite.png) no-repeat -22px 10px;
 }
 .production, .brands {
 	position: static;
@@ -276,7 +276,7 @@ button:hover {
     height: 10px;
 	margin-left: 5px;
     font-size: 0;
-    background:url('sprite.png') no-repeat -73px 0px;
+    background:url(sprite.png) no-repeat -73px 0px;
 }
 .top-nav {
 	position: relative;
@@ -526,7 +526,7 @@ span.production-country {
     display: block;
     width: 5px;
     height: 7px;
-    background: url('sprite.png') no-repeat -105px 0px;
+    background: url(sprite.png) no-repeat -105px 0px;
 }
 .main-slider {
 	position: relative;
@@ -630,7 +630,7 @@ span.production-country {
     top: 12px;
     width: 10px;
     height: 15px;
-    background: url('sprite.png') no-repeat -35px -33px;
+    background: url(sprite.png) no-repeat -35px -33px;
 }
 .main-articles {
 	margin-top: 50px;
@@ -1812,7 +1812,7 @@ footer .owl-carousel .owl-next {
 	display: inline-block;
 	vertical-align: top;
 	color: #3f6bd2;
-	font-size: 12px;
+	font-size: 14px;
 	padding: 5px 10px 5px 40px;
 	background: #fff;
 }
@@ -2611,7 +2611,7 @@ footer .owl-carousel .owl-next {
   background-repeat: no-repeat;
   border-radius: 100%;
   opacity: .7;
-  background: url(../img/xloading.gif);
+  background: url(xloading.gif);
   width: 48px;
   height: 48px;
 }

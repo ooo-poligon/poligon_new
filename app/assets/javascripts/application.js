@@ -18,10 +18,12 @@
 //= require spotlight
 //= require script
 //= require fancybox
+//= require magnific-popup
 //= require bootstrap-sprockets
 //= require search
 //= require zeroclipboard
 //= require tablehover
+//= require products
 
 $(document).ready(function() {
   var clip = new ZeroClipboard($(".copy-btn"));
