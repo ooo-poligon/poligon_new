@@ -51,4 +51,15 @@ class UserMailer < ActionMailer::Base
     mail(to: @receiver, bcc: 'robot@poligon.info', subject: 'Заказ товаров с сайта new.poliogn.info')
   end
 
+  def request_question_email(city, name, company, email, phone, message)
+    @receiver = Setting.find_by(title: 'siteOrdersReceiver').text_value
+    @city     = city
+    @name     = name
+    @company  = company
+    @email    = email
+    @phone    = phone
+    @message  = message
+    mail(to: @receiver, bcc: 'robot@poligon.info', subject: 'Задан вопрос / отправлен запрос с сайта new.poliogn.info')
+  end
+
 end

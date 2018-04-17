@@ -1,30 +1,30 @@
 <div class="fb">
   <div class="fb-content container">
     <h2>Задать вопрос / отправить запрос:</h2>
-    <form id="fb-form" name="fb-form">
+    <form id="fb-form" name="fb-form" method="post" action="<%= feedback_send_request_or_question_path %>">
       <div class="row special-row">
         <div class="col-sm-6 form-input">
-          <input class="modal-input city-send" name="name-send" placeholder="Город" type="text">
+          <input class="modal-input city-send" name="city" placeholder="Город" type="text">
         </div>
       </div>
       <div class="row special-row">
         <div class="col-sm-6 form-input req">
-          <input class="modal-input name-send" name="phone-send" placeholder="Имя" required="" type="text">
+          <input class="modal-input name-send" name="name" placeholder="Имя" required="" type="text">
         </div>
         <div class="col-sm-6 form-input">
-          <input class="modal-input company-send" name="mail-send" placeholder="Компания" type="text">
+          <input class="modal-input company-send" name="company" placeholder="Компания" type="text">
         </div>
       </div>
       <div class="row special-row">
         <div class="col-sm-6 form-input req">
-          <input class="modal-input mail-send" name="phone-send" placeholder="E-mail" required="" type="text">
+          <input class="modal-input mail-send" name="email" placeholder="E-mail" required="" type="text">
         </div>
         <div class="col-sm-6 form-input req">
-          <input class="modal-input phone-send" name="mail-send" placeholder="Телефон" required="" type="text">
+          <input class="modal-input phone-send" name="phone" placeholder="Телефон" required="" type="text">
         </div>
       </div>
       <div class="form-textarea">
-        <textarea class="message-send" name="message-send" placeholder="Ваше сообщение"></textarea>
+        <textarea class="message-send" name="message" placeholder="Ваше сообщение"></textarea>
       </div>
       <div class="fb-buttons">
         <button class="fb-remove" type="reset">Удалить</button>
