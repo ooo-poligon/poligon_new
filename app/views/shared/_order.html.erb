@@ -58,6 +58,7 @@
             </td>
           </tr>
           <% sum += line_item.price * line_item.quantity %>
+          <% items[line_item.id.to_s] = "quantity:" + line_item.quantity.to_s + ";price:" + sum.to_s %>
         <% end %>
       </table>
       <br><br>
@@ -88,7 +89,7 @@
     <br><br>
     <div style="width: 70%; padding-left: 250px;">
       <div>
-        <button class="btn" style="float:left;">Продолжить покупки</button>
+        <%= button_to 'Продолжить покупки', categories_path, method: :get, class: 'btn btn-default', style: 'float:left' %>
       </div>
       <div>
         <%= button_to 'Оформить заказ', orders_path(cart: @current_cart.id), method: :post, class: 'btn btn-danger', style: 'float:right' %>

@@ -1,3 +1,7 @@
-Получен заказ:
-<%= @email %><br>
-<%= @order %><br>
+Получен заказ №<%= @order.id %>:
+Телефон заказчика: <%= @phone %><br>
+Состав заказа:
+<% line_items = LineItem.where(order_id: @order.id) %>
+<% line_items.each do |line_item| %>
+  <p><%= line_item.product.title + ": " + (line_item.price/line_item.quantity).to_s + " x " + line_item.quantity.to_s + " = " + line_item.price.to_s %></p>
+<% end %>

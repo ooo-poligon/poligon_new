@@ -54,11 +54,18 @@ class OrdersController < ApplicationController
   end
 
   def send_order_email
-    line_items   = params[:items]
+    order = Order.new(phone: params[:phone])
+    order.save
+    line_items = params[:items].to_unsafe_h
+    line_items.each do |id, item|
+      line_values = to_hash item
+      line_item = LineItem.find(id)
+      line_item.update(quantity: line_values['quantity'].to_i, price: line_values['price'].to_f, order_id: order.id, cart_id: nil)
+    end
 
     if params[:phone] != ''
-      @email = params[:phone]
-      UserMailer.products_order_email(@phone, line_items).deliver_now
+      @phone = params[:phone]
+      UserMailer.products_order_email(@phone, order).deliver_now
       respond_to do |format|
         format.html { redirect_to root_url, notice: 'Спасибо, мы получили заявку. В ближайшее время менеджер свяжется для подтверждения заказа.'}
       end
@@ -75,6 +82,18 @@ class OrdersController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def order_params
-      params.require(:order).permit(:name, :address, :email, :pay_type, :cart)
+      params.require(:order).permit(:name, :address, :email, :items, :cart)
     end
+
+  def to_hash(string, arr_sep=';', key_sep=':')
+    array = string.split(arr_sep)
+    hash = {}
+
+    array.each do |e|
+      key_value = e.split(key_sep)
+      hash[key_value[0]] = key_value[1]
+    end
+
+    hash
+  end
 end

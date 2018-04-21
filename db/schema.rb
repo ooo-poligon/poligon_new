@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180403204652) do
+ActiveRecord::Schema.define(version: 20180421205701) do
 
   create_table "additions", force: :cascade do |t|
     t.datetime "created_at",                    null: false
@@ -212,6 +212,7 @@ ActiveRecord::Schema.define(version: 20180403204652) do
     t.string   "pay_type",   limit: 255
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
+    t.string   "phone",      limit: 255
   end
 
   create_table "post_types", force: :cascade do |t|

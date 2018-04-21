@@ -82,7 +82,7 @@
 
 <% if controller_name == 'products' %>
   <%= render "shared/products/send_request" %>
-<% elsif controller_name == 'orders' %>
+<% elsif ['orders', 'categories'].include? controller_name %>
 <% else %>
   <%= render "shared/mainpage/trio" %>
   <%= render "shared/mainpage/partners" %>
