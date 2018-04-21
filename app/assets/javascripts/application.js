@@ -24,6 +24,7 @@
 //= require zeroclipboard
 //= require tablehover
 //= require products
+//= require line_items
 
 $(document).ready(function() {
   var clip = new ZeroClipboard($(".copy-btn"));

@@ -1,5 +1,6 @@
 class LineItemsController < ApplicationController
   before_action :set_line_item, only: [:show, :edit, :update, :destroy]
+  skip_before_filter :verify_authenticity_token, :only => [:update_quantity]
 
   # GET /line_items
   def index
@@ -53,6 +54,20 @@ class LineItemsController < ApplicationController
   def destroy
     @line_item.destroy
     redirect_to line_items_url, notice: 'Line item was successfully destroyed.'
+  end
+
+  def update_quantity
+    line_item = LineItem.find(params[:line_item_id])
+    old_quantity = line_item.quantity
+    new_quantity = params[:quantity]
+    if line_item.update(quantity: new_quantity)
+      quantity = new_quantity
+    else
+      quantity = old_quantity
+    end
+    respond_to do |format|
+      format.json { render json: quantity }
+    end
   end
 
   private

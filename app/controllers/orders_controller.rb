@@ -13,6 +13,10 @@ class OrdersController < ApplicationController
   # GET /orders/new
   def new
     @order = Order.new
+    # respond_to do |format|
+    #   format.html new.html.erb
+    #   format.json { render json: @order }
+    # end
   end
 
   # GET /orders/1/edit
@@ -21,10 +25,14 @@ class OrdersController < ApplicationController
 
   # POST /orders
   def create
+    if @current_cart.line_items.empty?
+      redirect_to order_path, notice: 'Ваша корзина пуста'
+      return
+    end
     @order = Order.new(order_params)
 
     if @order.save
-      redirect_to @order, notice: 'Order was successfully created.'
+      redirect_to @order, notice: 'Заказ принят.'
     else
       render :new
     end
@@ -67,6 +75,6 @@ class OrdersController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def order_params
-      params.require(:order).permit(:name, :address, :email, :pay_type)
+      params.require(:order).permit(:name, :address, :email, :pay_type, :cart)
     end
 end

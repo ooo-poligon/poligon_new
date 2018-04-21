@@ -2,7 +2,7 @@
 Poligon::Application.routes.draw do
 
   resources :orders
-  resources :line_items
+  resources :line_items, except: [:index]
   resources :news_items, only: [:index, :show]
   resources :categories, only: [:index, :show]
   resources :articles,   only: [:index, :show]
@@ -16,9 +16,10 @@ Poligon::Application.routes.draw do
   get 'carts/add'
   post 'carts/update_cart_quantity'
   post 'carts/update_cart_sum'
-  post 'carts/remove_from_cart'
   post 'orders/send_order_email'
   post 'feedback/send_request_or_question'
+  post 'line_items/update_quantity'
+  delete 'carts/remove_from_cart'
 
   get  'certificates/download'
   get  'certificates/index'
