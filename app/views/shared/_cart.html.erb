@@ -8,11 +8,16 @@
     <% @cart.line_items.each do |line_item| %>
       <li id="line-item-<%= line_item.id.to_s %>">
         <div>
-          <%= line_item.quantity %> &times; <%= line_item.product.title %> <%= line_item.price * line_item.quantity %>
-          <%= form_tag(carts_remove_from_cart_path(id: line_item.product.id), method: "post", remote: true) do %>
-            <%= submit_tag "Удалить позицию" %>
-          <% end %>
-        </div>
+          <div style="float: left;">
+            <%= line_item.quantity %> &times; <%= line_item.product.title %> <%= line_item.price * line_item.quantity %>
+          </div>
+          <div style="float: right;">
+            <%= button_to carts_remove_from_cart_modal_path(id: line_item.product.id), class: "delete-glyphicons", remote: true do %>
+              <span class="glyphicon glyphicon-remove-circle" style="color: red; background: white;"></span>
+            <% end %>
+          </div>
+          <div style="clear:both;"></div>
+        </div><br>
       </li>
       <% items[line_item.product.id] = line_item.quantity %>
     <% end %>

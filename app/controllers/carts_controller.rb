@@ -37,6 +37,22 @@ class CartsController < ApplicationController
   end
 
   def remove_from_cart
+    remove_line_item
+    respond_to do |format|
+      format.js {}
+    end
+  end
+
+  def remove_from_cart_modal
+    remove_line_item
+    respond_to do |format|
+      format.js {}
+    end
+  end
+
+  private
+
+  def remove_line_item
     begin
       product = Product.find(params[:id])
     rescue ActiveRecord::RecordNotFound
@@ -48,9 +64,6 @@ class CartsController < ApplicationController
       @cart = Cart.find(@current_cart.id)
       @product_id = product.id
       @current_line = @cart.remove_product(@product_id)
-      respond_to do |format|
-        format.js
-      end
     end
   end
 end

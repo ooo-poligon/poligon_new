@@ -19,7 +19,8 @@ Poligon::Application.routes.draw do
   post 'orders/send_order_email'
   post 'feedback/send_request_or_question'
   post 'line_items/update_quantity'
-  delete 'carts/remove_from_cart'
+  post 'carts/remove_from_cart'
+  post 'carts/remove_from_cart_modal'
 
   get  'certificates/download'
   get  'certificates/index'
