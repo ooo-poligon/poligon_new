@@ -1,15 +1,18 @@
 <div class="row">
-  <div class="col-xs-3 col-md-3 categories-left"  >
-    <%= render "shared/category_vendor_logo" %>
-    <% unless @subCategories.empty? %>
-    <ul class="nav nav-pills nav-stacked categories-navigation">
-      <% @subCategories.each do |sc| %>
-          <li><%= link_to sc.title, sc %></li>
+  <div class="col-sm-4 col-md-3 aside" >
+    <div class="category-menu final">
+      <% unless @subCategories.empty? %>
+        <ul>
+          <% @subCategories.each do |sc| %>
+            <li><%= link_to sc.title, sc %></li>
+          <% end %>
+        </ul>
       <% end %>
-    </ul>
-    <% end %>
+    </div>
     <br>
-    <%= render "shared/category_catalogs" %>
+    <div class="catalog-price">
+      <%= render "shared/category_catalogs" %>
+    </div>
     <% unless @recentCategory.more_info.nil? || @recentCategory.more_info == '' %>
       <br>
       <div style="text-align: center;" >
@@ -19,99 +22,130 @@
       </div>
     <% end %>
   </div>
-  <div class="col-xs-9 col-md-9 categories-right" >
-    <div class="container-fluid" >
-      <ol class="breadcrumb">
-        <li><%= link_to 'Каталог', categories_path %></li>
-        <% @parents_array.reverse_each do |item| %>
-          <li><%= link_to item.title, item %></li>
-        <% end %>
-      </ol>
-      <div class="row" >
-        <div class="col-md-12" >
-          <%= render "shared/vendor_location_picture" %>
-        </div>
-      </div>
-      <div class="row" >
-        <div class="col-xs-12 col-md-12" >
-          <div class="category-header">
-            <% title = @recentCategory.title %>
-            <% generate_meta_from title %>
-            <h2><%= title %></h2>
+  <div class="col-sm-8 col-md-9 content" >
+    <div class="row breadcrumbs">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><%= link_to 'Каталог', categories_path %></li>
+          <% @parents_array.reverse_each do |item| %>
+            <li class="breadcrumb-item"><%= link_to item.title, item %></li>
+          <% end %>
+        </ol>
+      </nav>
+    </div>
+    <div class="category">
+      <% title = @recentCategory.title %>
+      <% generate_meta_from title %>
+      <h1><%= title %></h1>
+      <div class="category-info">
+        <div class="top-category">
+          <div class="row">
+            <%= render("shared/category_info_item") %>
           </div>
         </div>
-      </div>
-      <div class="row" >
-        <% unless @recentCategory.image_path.nil? %>
-          <% col_left, col_right = '9', '3' %>
-        <% else %>
-          <% col_left, col_right = '12', '0' %>
-        <% end %>
-        <div class="col-xs-<%= col_left %> col-md-<%= col_left %>" >
-          <% if @recentCategory.description.nil? or @recentCategory.description == "" %>
-            <p>
-              <%= @recentCategory.summary if !@recentCategory.summary.nil? %>
-            </p>
-          <% else %>
-            <p>
-              <%= @recentCategory.description
-                .gsub('href="/PDF', 'href="http://www.poligon.info/PDF')
-                .gsub('src="/images', 'src="http://www.poligon.info/images')
-                .html_safe if !@recentCategory.description.nil? %>
-            </p>
-          <% end %>
+
+        <div class="sub-category">
+          <div class="row">
+            <%= render("shared/category_info_item") %>
+          </div>
         </div>
 
-        <div class="col-xs-<%= col_right %> col-md-<%= col_right %>" >
-          <div class="img img-responsive category-image">
-            <% unless @recentCategory.image_path.nil? %>
-              <% if @recentCategory.image_path.downcase.include?(".jpg") or
-                    @recentCategory.image_path.downcase.include?(".jpeg") or
-                    @recentCategory.image_path.downcase.include?(".gif") or
-                    @recentCategory.image_path.downcase.include?(".png") %>
-                <% image_path = @recentCategory.image_path.gsub("\\\\Server03\\бд_сайта\\poligon_images", "http://www.poligon.info/images"
-                  ).gsub("\\", "/") %>
-
-                <%= link_to(image_tag(
-                  image_path,
-                  class: "img img-responsive center-block category-image",
-                  alt: @recentCategory.title,
-                  title: @recentCategory.title), image_path,
-                  class: "fancybox") if !@recentCategory.image_path.nil? %>
-              <% end %>
+        <div class="category-info-text">
+          <div class="show-sub"><span></span><p><i>скрыть остальные</i><b>показать остальные</b></p></div>
+          <div class="row" >
+            <% if @recentCategory.description.nil? or @recentCategory.description == "" %>
+              <p>
+                <%= @recentCategory.summary if !@recentCategory.summary.nil? %>
+              </p>
+            <% else %>
+              <p>
+                <%= @recentCategory.description
+                        .gsub('href="/PDF', 'href="http://www.poligon.info/PDF')
+                        .gsub('src="/images', 'src="http://www.poligon.info/images')
+                        .html_safe if !@recentCategory.description.nil? %>
+              </p>
             <% end %>
           </div>
-        </div>
-      </div>
-    </div>
-    <div class="container-fluid">
-      <% @subCategories.each do |sub| %>
-        <% unless sub.summary.nil? and sub.image_path.nil? %>
-          <p><%= render "shared/sub_category_item", locals: { category: sub } %></p>
-        <% end %>
-      <% end %>
-    </div>
-    <br>
-    <div class="row">
-      <div class="col-md-12">
-        <div class="panel-group" id="accordion">
-          <div class="panel panel-default">
-            <div id="additionInfo" class="panel-collapse collapse">
-              <div class="panel-body">
-                <% if !@recentCategory.more_info.nil? && @recentCategory.more_info != '' %>
-                  <% if @recentCategory.more_info.include?("shared/utils/") %>
-                    <%= render partial: @recentCategory.more_info %>
-                  <% else %>
-                    <%= @recentCategory.more_info.html_safe %>
-                  <% end %>
-                <% end %>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="panel-group" id="accordion">
+                <div class="panel panel-default">
+                  <div id="additionInfo" class="panel-collapse collapse">
+                    <div class="panel-body">
+                      <% if !@recentCategory.more_info.nil? && @recentCategory.more_info != '' %>
+                        <% if @recentCategory.more_info.include?("shared/utils/") %>
+                          <%= render partial: @recentCategory.more_info %>
+                        <% else %>
+                          <%= @recentCategory.more_info.html_safe %>
+                        <% end %>
+                      <% end %>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+
+      <div class="category-filter">
+        <div class="category-filter-top">
+          <div class="row">
+            <div class="col-xs-12 col-sm-6 filter-title">
+              <h3>Фильтр товаров</h3>
+              <div class="filter-status"><span class="on">показать</span>/<span class="off active">скрыть</span></div>
+            </div>
+            <div class="col-xs-12 col-sm-6 filter-search">
+              <div class="row">
+                <div class="col-md-5 filter-search-title"><h4>Быстрый поиск</h4></div>
+                <div class="col-sm-12 col-md-7 filter-search-input">
+                  <input type="text" placeholder="Поиск"><button type="submit">Найти</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="category-filter-bottom">
+          <div class="def-level">
+            <div class="def-item">Уровень защиты</div>
+            <div class="def-item"><input type="checkbox" id="def-all"><label for="def-all">Все</label></div>
+            <div class="def-item"><input type="checkbox" id="def-herm"><label for="def-herm">Герметичное</label></div>
+            <div class="def-item"><input type="checkbox" id="def-abs"><label for="def-abs">Товары в  наличии</label></div>
+            <div class="def-item"><input type="checkbox" id="def-sub"><label for="def-sub">Искать в подкатегориях</label></div>
+          </div>
+          <div class="category-filter-options">
+            <table class="category-filter-table" id="reset-select">
+              <tr>
+                <td><label>Количество контактов</label>
+                  <select><option>1</option><option>2</option><option>3</option><option>4</option></select>
+                </td>
+                <td><label>Тип обмотки</label>
+                  <select><option>1</option><option>2</option><option>3</option><option>4</option></select>
+                </td>
+                <td><label>Номинальный ток</label>
+                  <select><option>1</option><option>2</option><option>3</option><option>4</option></select>
+                </td>
+                <td><button class="pc filter-reset" type="reset" from="">Cброс</button></td>
+              </tr>
+              <tr>
+                <td><label>Напряжение питания</label>
+                  <select><option>1</option><option>2</option><option>3</option><option>4</option></select>
+                </td>
+                <td><label>Материал контакта</label>
+                  <select><option>1</option><option>2</option><option>3</option><option>4</option></select>
+                </td>
+                <td><label>Установка</label>
+                  <select><option>1</option><option>2</option><option>3</option><option>4</option></select>
+                </td>
+                <td><button class="mobile filter-reset" type="reset">Cброс</button><button type="submit">Найти</button></td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <%= render "shared/products_table" %>
     </div>
-    <%= render "shared/products_table" %>
   </div>
 
 </div>

@@ -3,10 +3,6 @@ require "rails_helper"
 RSpec.describe LineItemsController, type: :routing do
   describe "routing" do
 
-    it "routes to #index" do
-      expect(:get => "/line_items").to route_to("line_items#index")
-    end
-
     it "routes to #new" do
       expect(:get => "/line_items/new").to route_to("line_items#new")
     end

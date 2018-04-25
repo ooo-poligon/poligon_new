@@ -39,7 +39,7 @@
            :tehnoplastSubCategories   => Category.available.where(parent: 6925) %>
 <div class="container">
   <div class="row">
-    <% if controller_name == 'categories' %>
+    <% if ['categories', 'publications'].include? controller_name%>
       <div class="col-sm-12 col-md-12 content">
         <div class="row">
           <% flash.each do |key, value| %>
@@ -69,7 +69,7 @@
           </div>
           <%= yield %>
         </div>
-        <% unless ['orders', 'categories'].include? controller_name %>
+        <% unless ['orders', 'categories', 'publications'].include? controller_name %>
           <%= render "shared/mainpage/trio" %>
           <%= render "shared/mainpage/partners" %>
         <% end %>
