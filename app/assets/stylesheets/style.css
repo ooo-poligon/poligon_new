@@ -1804,7 +1804,7 @@ footer .owl-carousel .owl-next {
 	z-index: 1;
 }
 .bot-cart {
-	width: 280px;
+	width: 360px;
 	float: right;
 }
 .bot-cart a {
@@ -1834,6 +1834,7 @@ footer .owl-carousel .owl-next {
     color: #fff;
     padding-top: 5px;
     padding-left: 15px;
+    float: right;
 }
 #to-top {
 	position: relative;

@@ -38,13 +38,13 @@
               <div class="col-sm-7 card-duo-left">
                 <div class="product-price">
                   Цена:
-                  <span class="product-old-price">
-                    <% if @retail_price == 0 %>
-                      <span class="price">Звоните:<br>(812)325-42-20</span>
-                    <% else %>
-                      <span class="price"><%= @retail_price.round(2).to_s + ' руб.' %></span>
-                    <% end %>
-                  </span>
+                  <!--<span class="product-old-price">-->
+                    <!--<% if @retail_price == 0 %>-->
+                      <!--<span class="price">Звоните:<br>(812)325-42-20</span>-->
+                    <!--<% else %>-->
+                      <!--<span class="price"><%= @retail_price.round(2).to_s + ' руб.' %></span>-->
+                    <!--<% end %>-->
+                  <!--</span>-->
                   <span class="product-new-price">
                   <% if @retail_price == 0 %>
                     <span class="price">Звоните:<br>(812)325-42-20</span>
