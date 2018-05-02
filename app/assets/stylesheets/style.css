@@ -1458,7 +1458,7 @@ input.product-quantity {
 	color: #333;
 }
 .card-request-text {
-	padding: 10px 15px;
+	padding: 8px 15px;
 }
 .card-bottom {
 	margin-top: 10px;
@@ -2233,7 +2233,7 @@ footer .owl-carousel .owl-next {
 	padding: 0 36px 0 0;
 }
 .jq-number__field {
-	width: 100px;
+	width: 70px;
 	border: 1px solid #c1c1c1;
 }
 .jq-number__field:hover {

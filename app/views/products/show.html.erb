@@ -25,7 +25,7 @@
             <% end %>
           </div>
           <div class="card-logo">
-            <a href="#!">
+            <a href="<%= category_path(@product.vendor.code) %>">
               <%= image_tag(@product.vendor.logo, alt: '') %>
             </a>
           </div>
@@ -113,7 +113,7 @@
               <h4>Информация для заказа</h4>
               <p class="product-name">Наименование: <%= @product.title %></p>
               <p class="product-art">Артикул: <span><%= @product.article ? @product.article : '-' %></span></p>
-              <p class="product-manuf">Производитель: <span><a href="#"><%= @product.vendor.title %></a></span></p>
+              <p class="product-manuf">Производитель: <span><a href="<%= category_path(@product.vendor.code) %>"><%= @product.vendor.title %></a></span></p>
             </div>
             <div class="col-sm-6 card-order-docs">
               <div class="doc-button"><a href="#!"><span></span>Скачать документацию</a></div>
@@ -124,10 +124,17 @@
         <div class="card-bottom">
           <div class="card-request">
             <div class="row">
+              <%= form_tag(line_items_path, method: "post",  remote: true) do %>
+                <%= hidden_field_tag(:product_id, @product.id) %>
+                <%= hidden_field_tag(:price, get_prices_rub(@product)[0]) %>
+                <%= hidden_field_tag(:minimum, 1) %>
+              <% end %>
               <div class="col-sm-8 card-request-text">Запросить проектные условия:
-                <input class="product-quantity" type="text" value="1"> <span>шт.</span>
+                <%= number_field_tag(:quantity, 1, class: "quantity-product",  step: 1, min: 1, pattern: "^[0-9]+$") %> <span>шт.</span>
               </div>
-              <div class="col-sm-4 card-request-button"><button>Запросить</button></div>
+              <div class="col-sm-4 card-request-button">
+                <button type="submit" data-toggle="modal" data-target="#recall">Запросить</button>
+              </div>
             </div>
           </div>
         </div>
@@ -139,7 +146,7 @@
         <li><p><span class="card-pdf">pdf</span>и сертификаты</p></li>
         <li id="tab-advant"><p>Преимущества</p></li>
         <li><p>Цены и наличие</p></li>
-        <li><a href="#!">Задать вопрос о товаре</a></li>
+        <li><a href="#fb-form">Задать вопрос о товаре</a></li>
       </ul>
       <div class="card-box">
         <table class="table table-bordered table-responsive">
