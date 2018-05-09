@@ -8,6 +8,7 @@ class CategoriesController < ApplicationController
   before_action :getCourse
 
   def show
+    @currentCategoryId = params[:id]
     @addCBR = Setting.find_by title: 'addCBR'
     @allUpLevelCategories = []
     @allUpLevelCategoriesIds = []
@@ -17,9 +18,10 @@ class CategoriesController < ApplicationController
     @allUpLevelCategories.each do |category|
       @allUpLevelCategoriesIds.push(category.id)
     end
-    @subCategories  = Category.available.where(parent: params[:id])
-    @recentCategory = Category.available.find(params[:id])
+    @subCategories  = Category.available.where(parent: @currentCategoryId)
+    @recentCategory = Category.available.find(@currentCategoryId)
     @parentCategory = Category.available.find(@recentCategory.parent)
+    @preCategories  = Category.available.where(parent: @parentCategory.id)
     @parents_array  = parents_of @recentCategory
     @parents_categories_ids = []
     @parents_array.each do |parent|
@@ -28,7 +30,7 @@ class CategoriesController < ApplicationController
     @vendors_categories_ids = [142, 5094, 74, 5414, 5535, 5818, 5933, 5583, 5512, 6441, 4847, 6321, 5650]
     @products = []
     addCBR = Setting.find_by title: 'addCBR'
-    Product.available.where(category_id: params[:id]).each do |product|
+    Product.available.where(category_id: @currentCategoryId).each do |product|
       vendor = Vendor.find(product.vendor_id)
       one_product_array = []
       product_price = 0

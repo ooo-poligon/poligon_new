@@ -2,6 +2,11 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.row {
+  margin-right: 0;
+  margin-left: 0;
+}
+
 /* Transitions */
 .transition-050 {
   -moz-transition: 0.50s;
@@ -639,4 +644,12 @@ table.releco{ //width: 700px;}
   position: absolute;
   right: 0;
   top: 3px;
+}
+
+.category-menu-selected {
+  text-decoration: underline;
+}
+
+.category-menu-not-selected {
+
 }
