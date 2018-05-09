@@ -1,10 +1,12 @@
+<% category = locals[:subCategory] %>
 <div class="col-xs-6 col-sm-4 col-lg-3">
   <div class="category-info-item">
     <div class="col-sm-3 category-item-photo">
-      <a href="#!"><img src="img/mid_photo.jpg" alt=""></a>
+      <% unless category.image_path.to_s.empty? then imagePath = category.image_path.gsub("\\\\Server03\\бд_сайта\\poligon_images", "http://www.poligon.info/images").gsub("\\", "/") else imagePath = '' end %>
+      <%= link_to image_tag(imagePath, alt: category.title, title: category.title), category %>
     </div>
     <div class="col-sm-9 category-item-text">
-      <a href="#!">Серии 55. Миниатюрные реле общего назначения (7-10 А)Серии 55. Миниатюрные реле</a>
+      <%= link_to category.title, category %>
     </div>
   </div>
 </div>

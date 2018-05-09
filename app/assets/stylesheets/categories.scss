@@ -3,8 +3,28 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .row {
-  margin-right: 0;
+  margin-right: -15px;
   margin-left: 0;
+}
+
+.category-catalogs-table td {
+  padding-bottom: 5px;
+}
+
+.price-request input {
+  display: block;
+  border: #ccc 1px solid;
+  padding: 5px 15px;
+  font-size: 12px;
+  font-weight: 600;
+  text-align: center;
+  max-width: 165px;
+  box-sizing: border-box;
+  background-color: white;
+}
+
+.product-options {
+  margin-left: -15px;
 }
 
 /* Transitions */

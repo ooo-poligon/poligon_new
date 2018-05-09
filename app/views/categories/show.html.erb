@@ -45,18 +45,32 @@
       <% generate_meta_from title %>
       <h1><%= title %></h1>
       <div class="category-info">
+        <% count = 0 %>
+        <% topCategories = [] %>
+        <% subCategories = [] %>
+        <% @subCategories.each do |sc| %>
+          <% if count < 8 %>
+            <% topCategories.push sc %>
+          <% end %>
+          <% if count >= 8 %>
+            <% subCategories.push sc %>
+          <% end %>
+          <% count += 1 %>
+        <% end %>
         <div class="top-category">
           <div class="row">
-            <%= render("shared/category_info_item") %>
+            <% topCategories.each do |sc| %>
+              <%= render("shared/category_info_item", locals: { subCategory: sc }) %>
+            <% end %>
           </div>
         </div>
-
         <div class="sub-category">
           <div class="row">
-            <%= render("shared/category_info_item") %>
+            <% subCategories.each do |sc| %>
+              <%= render("shared/category_info_item", locals: { subCategory: sc }) %>
+            <% end %>
           </div>
         </div>
-
         <div class="category-info-text">
           <div class="show-sub"><span></span><p><i>скрыть остальные</i><b>показать остальные</b></p></div>
           <div class="row" >

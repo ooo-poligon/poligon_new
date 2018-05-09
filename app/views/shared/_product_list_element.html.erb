@@ -17,7 +17,7 @@
             <p></p>
           <% end %>
         </div>
-        <div class="product-adv"><a href="card.html#tab-advant" class="to-advant" target="_blank">Преимущества</a></div>
+        <!--<div class="product-adv"><a href="card.html#tab-advant" class="to-advant" target="_blank">Преимущества</a></div>-->
       </div>
       <div class="col-xs-8 product-descr">
         <h3><%= link_to locals[:product_array][0].title, locals[:product_array][0] %></h3>
@@ -25,17 +25,17 @@
         <p class="product-manuf">Производитель: <span><a href="/categories/<%= locals[:product_array][3].code %>"><%= locals[:product_array][3].title %></a></span></p>
         <p class="product-text"><%= locals[:product_array][0].description %></p>
         <ul class="product-list">
-          <li><a>Параметры</a>
-            <div class="hid-text">
-              <strong>Параметры</strong>
-              <p>Здесь какой-то текст</p>
-              <p>или пункт характеристики</p>
-              <div class="hide-hid-text">Свернуть</div>
-            </div>
-          </li>
+          <!--<li><a>Параметры</a>-->
+            <!--<div class="hid-text">-->
+              <!--<strong>Параметры</strong>-->
+              <!--<p>Здесь какой-то текст</p>-->
+              <!--<p>или пункт характеристики</p>-->
+              <!--<div class="hide-hid-text">Свернуть</div>-->
+            <!--</div>-->
+          <!--</li>-->
           <li><a href="#!">Скачать PDF</a></li>
           <li><a href="#!">Каталог производителя</a></li>
-          <li><a href="card.html" target="_blank">Преимущества</a></li>
+          <!--<li><a href="card.html" target="_blank">Преимущества</a></li>-->
         </ul>
         <div class="row product-options">
           <div class="col-xs-6 product-option product-quick-delivery">
@@ -76,7 +76,15 @@
           <% end %>
         </span>
       </div>
-      <div class="price-request"><a href="#!" data-toggle="modal" data-target="#special">Запросить спец.цену</a></div>
+      <div class="price-request">
+        <!--<a href="#!" data-toggle="modal" data-target="#special">Запросить спец.цену</a>-->
+        <%= form_tag(line_items_path, method: "post",  remote: true) do %>
+          <%= hidden_field_tag(:product_id, locals[:product_array][0].id) %>
+          <%= hidden_field_tag(:price, locals[:product_array][1]) %>
+          <%= hidden_field_tag(:minimum, 1) %>
+          <%= submit_tag "Запросить спец.цену", class: "price-request", data: { toggle: "modal", target: "#recall" } %>
+        <% end %>
+      </div>
       <div class="product-presence">
         <% if locals[:product_array][2] > 0 %>
           <span><%= image_tag("green.gif") %></span>

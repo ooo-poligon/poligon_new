@@ -128,10 +128,10 @@
                 <%= hidden_field_tag(:product_id, @product.id) %>
                 <%= hidden_field_tag(:price, get_prices_rub(@product)[0]) %>
                 <%= hidden_field_tag(:minimum, 1) %>
-                <div class="col-sm-8 card-request-text">Запросить проектные условия:
-                  <%= number_field_tag(:quantity, 1, class: "quantity-product",  step: 1, min: 1, pattern: "^[0-9]+$") %> <span>шт.</span>
+                <div class="col-sm-9 card-request-text">Запросить проектные условия:
+                  <%= number_field_tag(:quantity, 1, class: "quantity-product",  step: 1, min: 1, pattern: "^[0-9]+$") %> <span> шт.</span>
                 </div>
-                <div class="col-sm-4 card-request-button">
+                <div class="col-sm-3 card-request-button">
                   <%= button_tag "Запросить", data: { toggle: "modal", target: "#recall" } %>
                 </div>
               <% end %>
