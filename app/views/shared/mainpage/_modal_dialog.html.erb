@@ -16,7 +16,9 @@
               <div class="form-button req">
                 <input type="file" required name="file-1[]" id="file-1" class="inputfile inputfile-1" data-multiple-caption="{count} files selected" multiple />
                 <label for="file-1"><span>+ Прикрепить файл</span></label>
-                <div class="captcha">капча тут</div>
+                <div class="captcha">
+                  <%= recaptcha_tags %>
+                </div>
               </div>
               <div class="button-send"><button type="submit">Отправить</button></div>
               <div class="modal-agree">Нажимая кнопку «Отправить» я даю согласие на <a href="#">обработку персональных данных.</a></div>
