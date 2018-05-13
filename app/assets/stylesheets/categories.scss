@@ -3,7 +3,16 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .row {
-  margin-right: -15px;
+  //margin-right: 0;
+  margin-left: 0;
+}
+
+.category-info-text {
+  margin-right: 10px;
+}
+
+.category-content {
+  margin-right: 0;
   margin-left: 0;
 }
 
@@ -23,9 +32,9 @@
   background-color: white;
 }
 
-.product-options {
-  margin-left: -15px;
-}
+//.product-options {
+//  margin-left: -27px;
+//}
 
 /* Transitions */
 .transition-050 {

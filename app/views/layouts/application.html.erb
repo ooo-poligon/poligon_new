@@ -41,7 +41,7 @@
   <div class="row">
     <% if ['categories', 'publications'].include? controller_name%>
       <div class="col-sm-12 col-md-12 content">
-        <div class="row">
+        <div class="row category-content">
           <% flash.each do |key, value| %>
             <br><div class="alert alert-<%= key %>"><%= value %></div>
           <% end %>
