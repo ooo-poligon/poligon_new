@@ -7,13 +7,14 @@ class FeedbackController < ApplicationController
   end
 
   def subscribe
-    unless params[:email] == ''
+    if params[:email] != '' && params.has_key?(:footer_agree)
       @email = params[:email]
       UserMailer.welcome_email(@email).deliver_now
       render "subscribe"
+    elsif !params.has_key?(:footer_agree)
+      flash[:error] = "Вы должны согласиться с политикой конфиденциальности!"
     else
       flash[:error] = "Поле адрееса не заполнено!"
-      render "mailing_list"
     end
   end
 
@@ -24,7 +25,6 @@ class FeedbackController < ApplicationController
       render "unsubscribe"
     else
       flash[:error] = "Поле адрееса не заполнено!"
-      render "mailing_list"
     end
   end
 

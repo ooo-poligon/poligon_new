@@ -53,14 +53,19 @@
         </div>
         <div class="col-sm-12 col-md-8 col-lg-offset-1 col-lg-7">
           <div class="row footer-sign">
-            <div class="col-sm-6 col-md-6 footer-sign-block">
-              <input type="text" placeholder="e-mail">
-              <button type="submit">Подписаться</button>
-            </div>
-            <div class="col-sm-6 col-md-6 footer-agree">
-              <input type="checkbox" id="footer-agree">
-              <label for="footer-agree"> Согласен с политикой конфиденциальности и соглашением об использовании сайта</label>
-            </div>
+            <%= form_tag(feedback_subscribe_path, method: "POST") do %>
+              <div class="col-sm-6 col-md-6 footer-sign-block">
+                <!--<input type="text" placeholder="e-mail">-->
+                <%= text_field_tag 'email', nil, placeholder: "e-mail" %>
+                <button type="submit">Подписаться</button>
+              </div>
+              <div class="col-sm-6 col-md-6 footer-agree">
+                <!--<input type="checkbox" id="footer-agree">-->
+                <%= check_box_tag 'footer_agree' %>
+                <!--<label for="footer-agree"> Согласен с политикой конфиденциальности и соглашением об использовании сайта</label>-->
+                <%= label_tag('Согласен с политикой конфиденциальности и соглашением об использовании сайта') %>
+              </div>
+            <% end %>
           </div>
         </div>
       </div>
