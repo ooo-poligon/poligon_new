@@ -1,3 +1,58 @@
-<h1>Оформление заказа</h1>
+<div class="cart">
+  <div class="container">
+    <h1>Оформление заказа</h1>
+    <%= render 'shared/order' %>
 
-<%= render 'shared/order' %>
+    <div class="phone-order">
+      <form class="phone-order-form">
+        <h3>Заказать без оформления</h3>
+        <div class="phone-order-hint">Оставьте свой телефон и наш менеджер с Вами свяжется</div>
+        <div class="phone-input"><input type="text" class="phone-send" placeholder="+7 ( ___ ) ___-__-__"></div>
+        <div class="phone-order-button"><button type="submit">Жду звонка</button></div>
+        <div class="phone-order-hint">
+          Нажимая на кнопку "Отправить заказ" Вы даете согласие на обработку <a href="#!">персональных данных.</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="order">
+  <form class="order-form">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-6 order-left">
+          <div class="order-input req">
+            <label>ФИО:</label>
+            <input type="text" id="name" onkeyup="checkParams()" required>
+          </div>
+          <div class="order-input req">
+            <label>Телефон:</label>
+            <input type="text" id="phone" class="phone-send" onkeyup="checkParams()" required>
+          </div>
+          <div class="order-input req">
+            <label>Адрес e-mail (для подтверждения, счета):</label>
+            <input type="text" id="email" onkeyup="checkParams()" required>
+          </div>
+          <div class="order-input">
+            <label>Предполагаемый адрес доставки или «самовывоз»:</label>
+            <input type="text">
+          </div>
+        </div>
+        <div class="col-sm-6 order-right">
+          <div class="order-textarea">
+            <label>Реквизиты для выставления счета (при наличии):</label>
+            <textarea></textarea>
+          </div>
+        </div>
+      </div>
+      <div class="order-hint">Оформление возможно как для компаний, так и для физических лиц.
+        После получения Вашей заявки мы свяжемся и согласуем вопросы оплаты и доставки.
+      </div>
+      <div class="order-button"><button id="send" disabled>Отправить заказ</button></div>
+      <div class="order-hint">Нажимая на кнопку "Отправить заказ" Вы даете согласие на обработку
+        <a href="#!">персональных данных.</a>
+      </div>
+    </div>
+  </form>
+</div>

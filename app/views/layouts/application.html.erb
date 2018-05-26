@@ -54,10 +54,14 @@
         </div>
       </div>
     <% else %>
-      <div class="col-sm-4 col-md-3 aside">
-        <%= render("shared/mainpage/category_menu") %>
-      </div>
-      <div class="col-sm-8 col-md-9 content">
+      <% if controller_name == 'orders' and action_name == 'new' %>
+        <div class="col-sm-12 col-md-12 content">
+      <% else %>
+        <div class="col-sm-4 col-md-3 aside">
+          <%= render("shared/mainpage/category_menu") %>
+        </div>
+        <div class="col-sm-8 col-md-9 content">
+      <% end %>
         <div class="row">
           <% flash.each do |key, value| %>
             <br><div class="alert alert-<%= key %>"><%= value %></div>

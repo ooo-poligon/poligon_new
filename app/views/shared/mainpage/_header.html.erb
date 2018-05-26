@@ -43,184 +43,186 @@
         </div>
       </div>
     </div>
-    <div class="row bot-header">
-      <div class="col-sm-4 col-md-3 top-menu">
-        <div class="col-sm-6 production">Продукция<span></span>
-          <div class="top-menu-air"></div>
-          <div class="production-widget widget">
-            <div class="container">
-              <div class="row">
-                <div class="production-block"><div class="x"></div>
-                  <div class="col-xs-6 col-sm-4 col-md-3">
-                    <ul class="production-item">
-                      <li class="production-title">
-                        <%= link_to image_tag("logo/brands/tele.png", alt: '"TELE"', title: "Промышленная автоматика из Австрии"), category_path(142), class: 'production-logo' %>
-                        <span class="production-country">Австрия</span>
-                      </li>
-                      <% teleSubCategories.each do |sc| %>
-                        <li><%= link_to sc.title, sc %></li>
-                      <% end %>
-                    </ul>
-                  </div>
-                  <div class="col-xs-6 col-sm-4 col-md-3">
-                    <ul class="production-item">
-                      <li class="production-title">
-                        <%= link_to image_tag("logo/brands/benedict.png", alt: '"Benedict"', title: "Контакторы, пускатели, защита Benedict"), category_path(5094), class: 'production-logo' %>
-                        <span class="production-country">Австрия</span>
-                      </li>
-                      <% benedictSubCategories.each do |sc| %>
-                        <li><%= link_to sc.title, sc %></li>
-                      <% end %>
-                    </ul>
-                  </div>
-                  <div class="col-xs-6 col-sm-4 col-md-3">
-                    <ul class="production-item">
-                      <li class="production-title">
-                        <%= link_to image_tag("logo/brands/comat_releco.png", alt: '"COMAT-RELECO"', title: "COMAT-RELECO - промышленные промежуточные реле"), category_path(5933), class: 'production-logo' %>
-                        <span class="production-country">Швейцария</span>
-                      </li>
-                      <% comatRelecoSubCategories.each do |sc| %>
-                        <li><%= link_to sc.title, sc %></li>
-                      <% end %>
-                    </ul>
-                  </div>
-                  <div class="col-xs-6 col-sm-4 col-md-3">
-                    <ul class="production-item">
-                      <li class="production-title">
-                        <%= link_to image_tag("logo/brands/tehnoplast.png", alt: '"TEHNOPLAST"', title: "Электротехнические шкафы TEHNOPLAST"), category_path(6925), class: 'production-logo' %>
-                        <span class="production-country">Сербия</span>
-                      </li>
-                      <% tehnoplastSubCategories.each do |sc| %>
-                        <li><%= link_to sc.title, sc %></li>
-                      <% end %>
-                    </ul>
-                  </div>
-                  <div class="col-xs-6 col-sm-4 col-md-3">
-                    <ul class="production-item">
-                      <li class="production-title">
-                        <%= link_to image_tag("logo/brands/citel.png", alt: '"CITEL"', title: "CITEL - устройства молниезащиты"), category_path(74), class: 'production-logo' %>
-                        <span class="production-country">Франция</span>
-                      </li>
-                      <% citelSubCategories.each do |sc| %>
-                        <li><%= link_to sc.title, sc %></li>
-                      <% end %>
-                    </ul>
-                  </div>
-                  <div class="col-xs-6 col-sm-4 col-md-3">
-                    <ul class="production-item">
-                      <li class="production-title">
-                        <%= link_to image_tag("logo/brands/cbi.png", alt: '"CBI"', title: "Профессиональные автоматические выключатели"), category_path(5512), class: 'production-logo' %>
-                        <span class="production-country">ЮАР</span>
-                      </li>
-                      <% cbiSubCategories.each do |sc| %>
-                        <li><%= link_to sc.title, sc %></li>
-                      <% end %>
-                    </ul>
-                  </div>
-                  <div class="col-xs-6 col-sm-4 col-md-3">
-                    <ul class="production-item">
-                      <li class="production-title">
-                        <%= link_to image_tag("logo/brands/graesslin.png", alt: '"Graesslin"', title: "Graesslin - таймеры и фотореле. Сделано в Германии"), category_path(5414), class: 'production-logo' %>
-                        <span class="production-country">Германия</span>
-                      </li>
-                      <% graesslinSubCategories.each do |sc| %>
-                        <li><%= link_to sc.title, sc %></li>
-                      <% end %>
-                    </ul>
-                  </div>
-                  <div class="col-xs-6 col-sm-4 col-md-3">
-                    <ul class="production-item">
-                      <li class="production-title">
-                        <%= link_to image_tag("logo/brands/emko.png", alt: '"EMKO"', title: "EMKO - температурные датчики и и контроллеры"), category_path(5583), class: 'production-logo' %>
-                        <span class="production-country">Турция</span>
-                      </li>
-                      <% emkoSubCategories.each do |sc| %>
-                        <li><%= link_to sc.title, sc %></li>
-                      <% end %>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-6 brands">Бренды
-          <div class="top-menu-air"></div>
-          <div class="brands-widget widget">
-            <div class="container">
-              <div class="row">
-                <div class="partners-block"><div class="x"></div>
-                  <div class="col-sm-2 partner-logo"><%= link_to image_tag("logo/brands/tele.png", alt: '"TELE"', title: "Промышленная автоматика из Австрии"), category_path(142) %>
-                    <span>TELE-HAASE - Промышленная автоматика из Австрии</span>
-                  </div>
-                  <div class="col-sm-2 partner-logo"><%= link_to image_tag("logo/brands/benedict.png", alt: '"Benedict"', title: "Контакторы, пускатели, защита Benedict"), category_path(5094) %>
-                    <span>Контакторы, пускатели, защита Benedict</span>
-                  </div>
-                  <div class="col-sm-2 partner-logo"><%= link_to image_tag("logo/brands/citel.png", alt: '"CITEL"', title: "CITEL - устройства молниезащиты"), category_path(74) %>
-                    <span>CITEL - устройства молниезащиты</span>
-                  </div>
-                  <div class="col-sm-2 partner-logo"><%= link_to image_tag("logo/brands/graesslin.png", alt: '"Graesslin"', title: "Graesslin - таймеры и фотореле. Сделано в Германии"), category_path(5414) %>
-                    <span>Graesslin - таймеры и фотореле. Сделано в Германии</span>
-                  </div>
-                  <div class="col-sm-2 partner-logo"><%= link_to image_tag("logo/brands/sonder.png", alt: '"SONDER"', title: "SONDER - термостаты"), category_path(5535) %>
-                    <span>SONDER - термостаты</span>
-                  </div>
-                  <div class="col-sm-2 partner-logo"><%= link_to image_tag("logo/brands/relequick.png", alt: '"RELEQUICK"', title: "RELEQUICK - интерфейсные реле"), category_path(5818) %>
-                    <span>RELEQUICK - интерфейсные реле</span>
-                  </div>
-                  <div class="col-sm-2 partner-logo"><%= link_to image_tag("logo/brands/comat_releco.png", alt: '"COMAT-RELECO"', title: "COMAT-RELECO - промышленные промежуточные реле"), category_path(5933) %>
-                    <span>COMAT-RELECO - промышленные промежуточные реле</span>
-                  </div>
-                  <div class="col-sm-2 partner-logo"><%= link_to image_tag("logo/brands/emko.png", alt: '"EMKO"', title: "EMKO - температурные датчики и и контроллеры"), category_path(5583) %>
-                    <span>EMKO - температурные датчики и и контроллеры</span>
-                  </div>
-                  <div class="col-sm-2 partner-logo"><%= link_to image_tag("logo/brands/cbi.png", alt: '"CBI"', title: "Профессиональные автоматические выключатели"), category_path(5512) %>
-                    <span>Профессиональные автоматические выключатели</span>
-                  </div>
-                  <div class="col-sm-2 partner-logo"><%= link_to image_tag("logo/brands/tehnoplast.png", alt: '"TEHNOPLAST"', title: "Электротехнические шкафы TEHNOPLAST"), category_path(6925) %>
-                    <span>Электротехнические шкафы TEHNOPLAST</span>
-                  </div>
-                  <div class="col-sm-2 partner-logo"><%= link_to image_tag("logo/brands/huber_suhner.png", alt: '"HUBER+SUHNER"', title: "ВЧ-разъемы, оптические компоненты"), category_path(4847) %>
-                    <span>ВЧ-разъемы, оптические компоненты</span>
-                  </div>
-                  <div class="col-sm-2 partner-logo"><%= link_to image_tag("logo/brands/polygon.png", alt: '"ПОЛИГОН"', title: "ПОЛИГОН - производитель модульных устройств автоматики и защиты из Санкт-Петербурга"), category_path(6321) %>
-                    <span>ПОЛИГОН - производитель модульных устройств автоматики и защиты из Санкт-Петербурга</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-8 col-md-9 top-nav">
-        <ul class="nav-list">
-          <li class="parent"><a href="#!">Мы</a>
+    <% unless ['orders'].include? controller_name %>
+      <div class="row bot-header">
+        <div class="col-sm-4 col-md-3 top-menu">
+          <div class="col-sm-6 production">Продукция<span></span>
             <div class="top-menu-air"></div>
-            <div class="nav-widget">
+            <div class="production-widget widget">
               <div class="container">
                 <div class="row">
-                  <div class="nav-block"><div class="x"></div>
-                    <div class="col-xs-6 col-sm-3">
-                      <ul class="sub-list">
-                        <li class="parent"><%= link_to "О нас", company_about_path %></li>
-                        <li><a href="#">Программа поставок</a></li>
-                        <li><a href="#">Проектные условия</a></li>
-                        <li><a href="#">Дилерам </a></li>
+                  <div class="production-block"><div class="x"></div>
+                    <div class="col-xs-6 col-sm-4 col-md-3">
+                      <ul class="production-item">
+                        <li class="production-title">
+                          <%= link_to image_tag("logo/brands/tele.png", alt: '"TELE"', title: "Промышленная автоматика из Австрии"), category_path(142), class: 'production-logo' %>
+                          <span class="production-country">Австрия</span>
+                        </li>
+                        <% teleSubCategories.each do |sc| %>
+                          <li><%= link_to sc.title, sc %></li>
+                        <% end %>
+                      </ul>
+                    </div>
+                    <div class="col-xs-6 col-sm-4 col-md-3">
+                      <ul class="production-item">
+                        <li class="production-title">
+                          <%= link_to image_tag("logo/brands/benedict.png", alt: '"Benedict"', title: "Контакторы, пускатели, защита Benedict"), category_path(5094), class: 'production-logo' %>
+                          <span class="production-country">Австрия</span>
+                        </li>
+                        <% benedictSubCategories.each do |sc| %>
+                          <li><%= link_to sc.title, sc %></li>
+                        <% end %>
+                      </ul>
+                    </div>
+                    <div class="col-xs-6 col-sm-4 col-md-3">
+                      <ul class="production-item">
+                        <li class="production-title">
+                          <%= link_to image_tag("logo/brands/comat_releco.png", alt: '"COMAT-RELECO"', title: "COMAT-RELECO - промышленные промежуточные реле"), category_path(5933), class: 'production-logo' %>
+                          <span class="production-country">Швейцария</span>
+                        </li>
+                        <% comatRelecoSubCategories.each do |sc| %>
+                          <li><%= link_to sc.title, sc %></li>
+                        <% end %>
+                      </ul>
+                    </div>
+                    <div class="col-xs-6 col-sm-4 col-md-3">
+                      <ul class="production-item">
+                        <li class="production-title">
+                          <%= link_to image_tag("logo/brands/tehnoplast.png", alt: '"TEHNOPLAST"', title: "Электротехнические шкафы TEHNOPLAST"), category_path(6925), class: 'production-logo' %>
+                          <span class="production-country">Сербия</span>
+                        </li>
+                        <% tehnoplastSubCategories.each do |sc| %>
+                          <li><%= link_to sc.title, sc %></li>
+                        <% end %>
+                      </ul>
+                    </div>
+                    <div class="col-xs-6 col-sm-4 col-md-3">
+                      <ul class="production-item">
+                        <li class="production-title">
+                          <%= link_to image_tag("logo/brands/citel.png", alt: '"CITEL"', title: "CITEL - устройства молниезащиты"), category_path(74), class: 'production-logo' %>
+                          <span class="production-country">Франция</span>
+                        </li>
+                        <% citelSubCategories.each do |sc| %>
+                          <li><%= link_to sc.title, sc %></li>
+                        <% end %>
+                      </ul>
+                    </div>
+                    <div class="col-xs-6 col-sm-4 col-md-3">
+                      <ul class="production-item">
+                        <li class="production-title">
+                          <%= link_to image_tag("logo/brands/cbi.png", alt: '"CBI"', title: "Профессиональные автоматические выключатели"), category_path(5512), class: 'production-logo' %>
+                          <span class="production-country">ЮАР</span>
+                        </li>
+                        <% cbiSubCategories.each do |sc| %>
+                          <li><%= link_to sc.title, sc %></li>
+                        <% end %>
+                      </ul>
+                    </div>
+                    <div class="col-xs-6 col-sm-4 col-md-3">
+                      <ul class="production-item">
+                        <li class="production-title">
+                          <%= link_to image_tag("logo/brands/graesslin.png", alt: '"Graesslin"', title: "Graesslin - таймеры и фотореле. Сделано в Германии"), category_path(5414), class: 'production-logo' %>
+                          <span class="production-country">Германия</span>
+                        </li>
+                        <% graesslinSubCategories.each do |sc| %>
+                          <li><%= link_to sc.title, sc %></li>
+                        <% end %>
+                      </ul>
+                    </div>
+                    <div class="col-xs-6 col-sm-4 col-md-3">
+                      <ul class="production-item">
+                        <li class="production-title">
+                          <%= link_to image_tag("logo/brands/emko.png", alt: '"EMKO"', title: "EMKO - температурные датчики и и контроллеры"), category_path(5583), class: 'production-logo' %>
+                          <span class="production-country">Турция</span>
+                        </li>
+                        <% emkoSubCategories.each do |sc| %>
+                          <li><%= link_to sc.title, sc %></li>
+                        <% end %>
                       </ul>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-          </li>
-          <li><%= link_to "PDF-материалы", feedback_booklets_path %></li>
-          <li><a href="#!">На складе</a></li>
-          <li><%= link_to "Контакты", company_contacts_path %></li>
-          <li><a href="#!">Оплата-доставка</a></li>
-          <li><a href="#!">Решения</a></li>
-          <li><a href="#!">Sale</a></li>
-        </ul>
+          </div>
+          <div class="col-sm-6 brands">Бренды
+            <div class="top-menu-air"></div>
+            <div class="brands-widget widget">
+              <div class="container">
+                <div class="row">
+                  <div class="partners-block"><div class="x"></div>
+                    <div class="col-sm-2 partner-logo"><%= link_to image_tag("logo/brands/tele.png", alt: '"TELE"', title: "Промышленная автоматика из Австрии"), category_path(142) %>
+                      <span>TELE-HAASE - Промышленная автоматика из Австрии</span>
+                    </div>
+                    <div class="col-sm-2 partner-logo"><%= link_to image_tag("logo/brands/benedict.png", alt: '"Benedict"', title: "Контакторы, пускатели, защита Benedict"), category_path(5094) %>
+                      <span>Контакторы, пускатели, защита Benedict</span>
+                    </div>
+                    <div class="col-sm-2 partner-logo"><%= link_to image_tag("logo/brands/citel.png", alt: '"CITEL"', title: "CITEL - устройства молниезащиты"), category_path(74) %>
+                      <span>CITEL - устройства молниезащиты</span>
+                    </div>
+                    <div class="col-sm-2 partner-logo"><%= link_to image_tag("logo/brands/graesslin.png", alt: '"Graesslin"', title: "Graesslin - таймеры и фотореле. Сделано в Германии"), category_path(5414) %>
+                      <span>Graesslin - таймеры и фотореле. Сделано в Германии</span>
+                    </div>
+                    <div class="col-sm-2 partner-logo"><%= link_to image_tag("logo/brands/sonder.png", alt: '"SONDER"', title: "SONDER - термостаты"), category_path(5535) %>
+                      <span>SONDER - термостаты</span>
+                    </div>
+                    <div class="col-sm-2 partner-logo"><%= link_to image_tag("logo/brands/relequick.png", alt: '"RELEQUICK"', title: "RELEQUICK - интерфейсные реле"), category_path(5818) %>
+                      <span>RELEQUICK - интерфейсные реле</span>
+                    </div>
+                    <div class="col-sm-2 partner-logo"><%= link_to image_tag("logo/brands/comat_releco.png", alt: '"COMAT-RELECO"', title: "COMAT-RELECO - промышленные промежуточные реле"), category_path(5933) %>
+                      <span>COMAT-RELECO - промышленные промежуточные реле</span>
+                    </div>
+                    <div class="col-sm-2 partner-logo"><%= link_to image_tag("logo/brands/emko.png", alt: '"EMKO"', title: "EMKO - температурные датчики и и контроллеры"), category_path(5583) %>
+                      <span>EMKO - температурные датчики и и контроллеры</span>
+                    </div>
+                    <div class="col-sm-2 partner-logo"><%= link_to image_tag("logo/brands/cbi.png", alt: '"CBI"', title: "Профессиональные автоматические выключатели"), category_path(5512) %>
+                      <span>Профессиональные автоматические выключатели</span>
+                    </div>
+                    <div class="col-sm-2 partner-logo"><%= link_to image_tag("logo/brands/tehnoplast.png", alt: '"TEHNOPLAST"', title: "Электротехнические шкафы TEHNOPLAST"), category_path(6925) %>
+                      <span>Электротехнические шкафы TEHNOPLAST</span>
+                    </div>
+                    <div class="col-sm-2 partner-logo"><%= link_to image_tag("logo/brands/huber_suhner.png", alt: '"HUBER+SUHNER"', title: "ВЧ-разъемы, оптические компоненты"), category_path(4847) %>
+                      <span>ВЧ-разъемы, оптические компоненты</span>
+                    </div>
+                    <div class="col-sm-2 partner-logo"><%= link_to image_tag("logo/brands/polygon.png", alt: '"ПОЛИГОН"', title: "ПОЛИГОН - производитель модульных устройств автоматики и защиты из Санкт-Петербурга"), category_path(6321) %>
+                      <span>ПОЛИГОН - производитель модульных устройств автоматики и защиты из Санкт-Петербурга</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-8 col-md-9 top-nav">
+          <ul class="nav-list">
+            <li class="parent"><a href="#!">Мы</a>
+              <div class="top-menu-air"></div>
+              <div class="nav-widget">
+                <div class="container">
+                  <div class="row">
+                    <div class="nav-block"><div class="x"></div>
+                      <div class="col-xs-6 col-sm-3">
+                        <ul class="sub-list">
+                          <li class="parent"><%= link_to "О нас", company_about_path %></li>
+                          <li><a href="#">Программа поставок</a></li>
+                          <li><a href="#">Проектные условия</a></li>
+                          <li><a href="#">Дилерам </a></li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li><%= link_to "PDF-материалы", feedback_booklets_path %></li>
+            <li><a href="#!">На складе</a></li>
+            <li><%= link_to "Контакты", company_contacts_path %></li>
+            <li><a href="#!">Оплата-доставка</a></li>
+            <li><a href="#!">Решения</a></li>
+            <li><a href="#!">Sale</a></li>
+          </ul>
+        </div>
       </div>
-    </div>
+    <% end %>
   </div>
 </header>

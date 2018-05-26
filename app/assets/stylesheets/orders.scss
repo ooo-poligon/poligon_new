@@ -1,3 +1,24 @@
 // Place all the styles related to the orders controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#delete-glyphicons {
+  background: white;
+  color: red;
+  font-size: 22px;
+}
+input[type="teL"] {
+  position: relative;
+  font-size: 12px;
+  color: #000000;
+  width: 100%;
+  background: #fff;
+  border: #c1c1c1 1px solid;
+  padding: 9px 10px;
+  transition: all ease 0.4s;
+  box-sizing: border-box;
+  font-family: 'Open Sans', sans-serif;
+}
+input[type="teL"].error {
+  border: #ea6a6a 1px solid;
+}

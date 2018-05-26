@@ -1,102 +1,109 @@
-<style>
-  .delete-glyphicons {
-    background: white;
-    color: red;
-  }
-</style>
-<% items = {} %>
-<% if @current_cart.line_items.count > 0 %>
-  <div>
+<form class="cart-table">
+  <% items = {} %>
+  <% if @current_cart.line_items.count > 0 %>
     <div>
-      <table width="100%">
-        <tr>
-          <th>Наименование</th>
-          <th>Цена</th>
-          <th>Количество</th>
-          <th>Стоимость</th>
-          <th>Статус</th>
-          <th>Удалить</th>
-        </tr>
-        <% sum = 0 %>
-        <% @current_cart.line_items.each do |line_item| %>
-          <% productImage = DataFile.where('owner_id = ? and file_type_id = 1', line_item.product.id).first %>
-          <% quantity = !Quantity.find_by(product_id: line_item.product.id).nil? && Quantity.find_by(product_id: line_item.product.id).stock > 0 ? Quantity.find_by(product_id: line_item.product.id).stock : 0 %>
-          <tr>
-            <td>
-              <div class="product-photo-img">
-                <% unless productImage.nil? %>
-                  <% if productImage.path[0] != 'c' %>
-                    <% imagePath = productImage.path.gsub("\\\\Server03\\бд_сайта\\poligon_images", "http://www.poligon.info/images").gsub("\\", "/") %>
-                  <% else %>
-                    <% imagePath = productImage.path.gsub("c:\\poligon_images", "http://www.poligon.info/images").gsub("\\", "/") %>
-                  <% end %>
-                  <%= link_to image_tag(imagePath, class: "img-responsive center-block product-image-container"), imagePath, class: "fancybox" %>
-                <% else %>
-                  <p></p>
-                <% end %>
-              </div>
-              <%= link_to(line_item.product.title, product_path(line_item.product.id)) %>
-            </td>
-            <td><%= line_item.price %></td>
-            <td>
-              <%= number_field_tag(:quantity, line_item.quantity, class: "quantity", id: line_item.id.to_s,  step: 1, min: 1, pattern: "^[0-9]+$") %> <span>шт.</span>
-            </td>
-            <td><%= line_item.price * line_item.quantity %></td>
-            <td>
-              <% if quantity > 0 %>
-                <span><%= image_tag("green.gif") %></span>
-                <span>На складе</span>
-              <% else %>
-                <span><%= image_tag("grey.gif") %></span>
-                <span>Товар временно отсутствует. </span>
-              <% end %>
-            </td>
-            <td>
-              <%= button_to carts_remove_from_cart_path(id: line_item.product.id), class: "delete-glyphicons", remote: true do %>
-                <span class="glyphicon glyphicon-remove-circle" style="color: red; background: white;"></span>
-              <% end %>
-            </td>
-          </tr>
-          <% sum += line_item.price * line_item.quantity %>
-          <% items[line_item.id.to_s] = "quantity:" + line_item.quantity.to_s + ";price:" + sum.to_s %>
-        <% end %>
-      </table>
-      <br><br>
       <div>
-        <div style="float: left;">
-          <div>
-            <a href="#" >Скачать спецификацию в формате Excel</a>
+        <table class="table-responsive">
+          <tr>
+            <td class="cart-name">Наименование</td>
+            <td class="cart-price">Цена</td>
+            <td class="cart-quantity">Количество</td>
+            <td class="cart-cost">Стоимость</td>
+            <td class="cart-status">Статус</td>
+            <td class="cart-remove">Удалить</td>
+          </tr>
+          <% sum = 0 %>
+          <% @current_cart.line_items.each do |line_item| %>
+            <% productImage = DataFile.where('owner_id = ? and file_type_id = 1', line_item.product.id).first %>
+            <% quantity = !Quantity.find_by(product_id: line_item.product.id).nil? && Quantity.find_by(product_id: line_item.product.id).stock > 0 ? Quantity.find_by(product_id: line_item.product.id).stock : 0 %>
+            <tr>
+              <td class="cart-name">
+                <div class="row">
+                  <div class="col-md-5 cart-photo">
+                    <% unless productImage.nil? %>
+                      <% if productImage.path[0] != 'c' %>
+                        <% imagePath = productImage.path.gsub("\\\\Server03\\бд_сайта\\poligon_images", "http://www.poligon.info/images").gsub("\\", "/") %>
+                      <% else %>
+                        <% imagePath = productImage.path.gsub("c:\\poligon_images", "http://www.poligon.info/images").gsub("\\", "/") %>
+                      <% end %>
+                      <%= link_to image_tag(imagePath, class: "img-responsive center-block product-image-container"), imagePath, class: "fancybox" %>
+                    <% else %>
+                      <p></p>
+                    <% end %>
+                  </div>
+                  <div class="col-md-7 cart-title">
+                    <%= link_to(line_item.product.title, product_path(line_item.product.id)) %>
+                  </div>
+                </div>
+              </td>
+              <td class="cart-price"><%= line_item.price %></td>
+              <td class="cart-quantity">
+              <span class="number-plus-minus">
+                <%= number_field_tag(:quantity, line_item.quantity, class: "quantity", id: line_item.id.to_s,  step: 1, min: 1, pattern: "^[0-9]+$") %> <span>шт.</span>
+              </span>
+              </td>
+              <td class="cart-cost"><%= line_item.price * line_item.quantity %></td>
+              <td class="cart-status">
+                <% if quantity > 0 %>
+                  <span><%= image_tag("green.gif") %></span>
+                  <span>На складе</span>
+                <% else %>
+                  <span><%= image_tag("grey.gif") %></span>
+                  <span>Товар временно отсутствует. </span>
+                <% end %>
+              </td>
+              <td>
+                <%= button_to carts_remove_from_cart_path(id: line_item.product.id), id: "delete-glyphicons", remote: true do %>
+                  <span class="glyphicon glyphicon-remove-circle" style="color: red; background: white; width: 100%; height: 100%;"></span>
+                <% end %>
+              </td>
+            </tr>
+            <% sum += line_item.price * line_item.quantity %>
+            <% items[line_item.id.to_s] = "quantity:" + line_item.quantity.to_s + ";price:" + sum.to_s %>
+          <% end %>
+        </table>
+        <div class="cart-total">
+          <div class="row">
+            <div class="col-md-6 cart-spec"><a href="#"><span></span>Скачать спецификацию в формате excel</a></div>
+            <div class="col-md-6 cart-total-price"><span>Общая стоимость:</span> <%= sum %> Руб.</div>
           </div>
         </div>
-        <div  style="float: right;">
-          <p>Общая стоимость: <%= sum %></p>
-        </div>
-        <div style="clear:both"></div>
       </div>
     </div>
-    <br><br>
-    <div style="float: right;">
-      <p>Введите номер телефона для быстрого оформления:</p>
-      <%= form_tag(orders_send_order_email_path, method: "post") do %>
-        <% items.each do |key, item| %>
-          <%= hidden_field_tag "items["+key.to_s+"]", item %>
-        <% end %>
-        <%= phone_field_tag(:phone, nil, placeholder: "+7( )") %>
+  <% else %>
+    Ваша корзина пока пуста...
+  <% end %>
+</form>
+<div class="quick-order">
+  <h3>Введите номер телефона для быстрого оформления:</h3>
+  <%= form_tag(orders_send_order_email_path, method: "post") do %>
+    <% items.each do |key, item| %>
+      <%= hidden_field_tag "items["+key.to_s+"]", item %>
+    <% end %>
+    <div class="row">
+      <div class="col-sm-7 quick-phone">
+        <%= phone_field_tag(:phone, nil, {class: "phone-send", placeholder: "+7 ( ___ ) ___-__-__"}) %>
+      </div>
+      <div class="col-sm-5 quick-button">
         <button type="submit">Отправить заказ</button>
-      <% end %>
+      </div>
     </div>
-    <div style="clear:both"></div>
-    <br><br>
-    <div style="width: 70%; padding-left: 250px;">
-      <div>
-        <%= button_to 'Продолжить покупки', categories_path, method: :get, class: 'btn btn-default', style: 'float:left' %>
-      </div>
-      <div>
-        <%= button_to 'Оформить заказ', orders_path(cart: @current_cart.id), method: :post, class: 'btn btn-danger', style: 'float:right' %>
-      </div>
-      <div style="clear:both"></div>
+    <div class="quick-order-hint">
+      Нажимая на кнопку "Отправить заказ" Вы даете согласие на обработку <a href="#">персональных данных.</a>
+    </div>
+  <% end %>
+</div>
+<div class="cart-buttons">
+  <div class="row">
+    <div class="col-sm-6 stay-but">
+      <a href="<%= categories_path %>">
+        <button type="button"><span></span>Продолжить покупки</button>
+      </a>
+    </div>
+    <div class="col-sm-6 buy-but">
+      <form action="<%= orders_path(cart: @current_cart.id) %>" method="post" >
+        <button type="submit"><span></span>Оформить заказ</button>
+      </form>
     </div>
   </div>
-<% else %>
-  Ваша корзина пока пуста...
-<% end %>
+</div>
