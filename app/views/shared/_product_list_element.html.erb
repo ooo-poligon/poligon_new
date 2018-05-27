@@ -108,7 +108,7 @@
           <%= hidden_field_tag(:product_id, product.id) %>
           <%= hidden_field_tag(:price, locals[:product_array][1]) %>
           <%= hidden_field_tag(:minimum, 1) %>
-          <button type="submit" data-toggle="modal" data-target="#modal-window">В корзину</button>
+          <button type="submit" data-toggle="modal" data-target="#quick-cart">В корзину</button>
           <%= number_field_tag(:quantity, 1, class: "quantity",  step: 1, min: 1, pattern: "^[0-9]+$") %> <span>шт.</span>
         <% end %>
       </div>

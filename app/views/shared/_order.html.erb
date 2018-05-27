@@ -1,4 +1,4 @@
-<form class="cart-table">
+<div class="cart-table">
   <% items = {} %>
   <% if @current_cart.line_items.count > 0 %>
     <div>
@@ -38,9 +38,9 @@
               </td>
               <td class="cart-price"><%= line_item.price %></td>
               <td class="cart-quantity">
-              <span class="number-plus-minus">
-                <%= number_field_tag(:quantity, line_item.quantity, class: "quantity", id: line_item.id.to_s,  step: 1, min: 1, pattern: "^[0-9]+$") %> <span>шт.</span>
-              </span>
+                <span class="number-plus-minus">
+                  <%= number_field_tag(:quantity, line_item.quantity, class: "quantity", id: line_item.id.to_s,  step: 1, min: 1, pattern: "^[0-9]+$") %> <span>шт.</span>
+                </span>
               </td>
               <td class="cart-cost"><%= line_item.price * line_item.quantity %></td>
               <td class="cart-status">
@@ -73,7 +73,7 @@
   <% else %>
     Ваша корзина пока пуста...
   <% end %>
-</form>
+</div>
 <div class="quick-order">
   <h3>Введите номер телефона для быстрого оформления:</h3>
   <%= form_tag(orders_send_order_email_path, method: "post") do %>

@@ -15,7 +15,6 @@ class Cart < ActiveRecord::Base
   def remove_product(product_id)
     li = self.line_items.find_by_product_id(product_id)
     li.destroy
-    # end
   end
 
   def minus_product(product_id)

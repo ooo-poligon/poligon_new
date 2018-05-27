@@ -4,7 +4,7 @@
     <div class="bot-cart">
       <%= link_to render("shared/cart_quantity"),
                   cart_path(@current_cart.id),
-                  {remote: true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window'}
+                  {remote: true, 'data-toggle' =>  "modal", 'data-target' => '#quick-cart'}
       %>
       <div class="bot-sum"><%= render("shared/cart_sum") %></div>
     </div>

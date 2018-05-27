@@ -62,7 +62,7 @@
       </span>
       <%= button_to 'В корзину',
                     line_items_path(product_id: locals[:product_array][0], price: locals[:product_array][1]),
-                    {remote: true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window', class: 'add-basket active'} %>
+                    {remote: true, 'data-toggle' =>  "modal", 'data-target' => '#quick-cart', class: 'add-basket active'} %>
     </div>
     <!--<div class="catalog-st">-->
       <!--<div class="nav-catalog-card">-->
