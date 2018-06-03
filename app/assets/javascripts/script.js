@@ -133,7 +133,7 @@ function recall_form() {
 	var e = $("#recall-form").serialize();
 	$.ajax({
 		type: "POST",
-		url: "include/send.php",
+		url: "/feedback/send_project_conditions",
 		data: e,
 		success: function(e) {
 			$("#close-recall").click(),

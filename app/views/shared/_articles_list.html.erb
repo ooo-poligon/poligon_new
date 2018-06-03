@@ -1,7 +1,10 @@
+<% item_class = locals[:items][0] %>
+<%= render "shared/breadcrumb_search", locals: {for: "publications", class: item_class} %>
+
 <table class="table table-striped">
   <tr>
     <th style="width: 10%;">Иллюстрация</th>
-    <% if locals[:items][0].is_a? NewsItem %>
+    <% if item_class.is_a? NewsItem %>
       <th style="width: 80%;">Краткое описание</th>
     <% else %>
       <th style="width: 80%;">Название</th>

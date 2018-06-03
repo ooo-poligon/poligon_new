@@ -15,6 +15,9 @@ class CompanyController < ApplicationController
   def links
   end
 
+  def program
+  end
+
   private
 
   def set_content

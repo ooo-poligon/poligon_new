@@ -25,7 +25,7 @@
             <% end %>
           </div>
           <div class="card-logo">
-            <a href="<%= category_path(@product.vendor.code) %>">
+            <a href="<%= category_path(@product.vendor.code) %>" target="_blank">
               <%= image_tag(@product.vendor.logo, alt: '') %>
             </a>
           </div>
@@ -88,16 +88,16 @@
           <div class="card-text"><%= @product.description %></div>
           <div class="row product-options">
             <div class="col-xs-6 col-sm-4 product-option product-quick-delivery">
-              <a href="#!">Быстрая доставка</a>
+              <a href="#">Быстрая доставка</a>
               <div class="info"><span></span>
                 <div class="info-text">
                   <p>Доставляем Деловыми линиями Major, СДЭК, Пони Экспресс. Возможна доставка до пункта выдачи. Отправка ежедневно.</p>
-                  <a href="#!">Более подробная инфомация</a>
+                  <a href="#">Более подробная инфомация</a>
                 </div>
               </div>
             </div>
             <div class="col-xs-6 col-sm-4 product-option product-condition-payment">
-              <a href="#!">Условия оплаты</a>
+              <a href="#">Условия оплаты</a>
               <div class="info"><span></span>
                 <div class="info-text"><p>Тут другая подсказка</p></div>
               </div>
@@ -116,8 +116,8 @@
               <p class="product-manuf">Производитель: <span><a href="<%= category_path(@product.vendor.code) %>"><%= @product.vendor.title %></a></span></p>
             </div>
             <div class="col-sm-6 card-order-docs">
-              <div class="doc-button"><a href="#!"><span></span>Скачать документацию</a></div>
-              <div class="distr-button"><a href="#!"><span></span>Официальный дистрибьютор <%= @product.vendor.title %></a></div>
+              <div class="doc-button"><a href="#"><span></span>Скачать документацию</a></div>
+              <div class="distr-button"><a href="<%= company_program_path %>" target="_blank"><span></span>Официальный дистрибьютор <%= @product.vendor.title %></a></div>
             </div>
           </div>
         </div>
@@ -132,7 +132,7 @@
                   <%= number_field_tag(:quantity, 1, class: "quantity-product",  step: 1, min: 1, pattern: "^[0-9]+$") %> <span> шт.</span>
                 </div>
                 <div class="col-sm-3 card-request-button">
-                  <%= button_tag "Запросить", data: { toggle: "modal", target: "#recall" } %>
+                  <%= button_tag "Запросить", data: { toggle: "modal", target: "#special" } %>
                 </div>
               <% end %>
             </div>

@@ -120,4 +120,21 @@ class FeedbackController < ApplicationController
     end
   end
 
+  def send_project_conditions
+    name    = params[:name]
+    phone   = params[:phone]
+    email   = params[:email]
+    message = params[:message]
+    file    = params[:file]
+
+    if email != ''
+      UserMailer.request_conditions_email(name, phone, email,  message, file).deliver_now
+      respond_to do |format|
+        format.html { redirect_to root_url, notice: 'Спасибо, мы получили Ваш запрос. В ближайшее время менеджер свяжется с Вами.'}
+      end
+    else
+      flash[:error] = "Поле e-mail не заполнено!"
+    end
+  end
+
 end

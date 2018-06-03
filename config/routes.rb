@@ -12,12 +12,13 @@ Poligon::Application.routes.draw do
   resources :products,   only: [        :show]
   resources :carts
 
-  get 'carts/show'
-  get 'carts/add'
-  post 'carts/update_cart_quantity'
-  post 'carts/update_cart_sum'
+  get  'carts/show'
+  get  'carts/add'
+  get  'carts/update_cart_quantity'
+  get  'carts/update_cart_sum'
   post 'orders/send_order_email'
   post 'feedback/send_request_or_question'
+  post 'feedback/send_project_conditions'
   post 'line_items/update_quantity'
   post 'carts/remove_from_cart'
   post 'carts/remove_from_cart_modal'
@@ -34,6 +35,7 @@ Poligon::Application.routes.draw do
   get  'company/contacts'
   get  'company/vacancies'
   get  'company/links'
+  get  'company/program'
 
   root 'content#home'
   get  'content/show'

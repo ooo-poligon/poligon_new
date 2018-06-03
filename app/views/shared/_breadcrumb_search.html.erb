@@ -1,18 +1,55 @@
-<ol class="breadcrumb">
-  <li><%= link_to 'Каталог', categories_path %></li>
-  <% if Category.find(locals[:product].category_id).published == 1 %>
-    <% parents_of(locals[:product].category_id).reverse_each do |item| %>
-      <li><%= link_to item.title, item %></li>
-    <% end %>
-  <% else %>
-    <% element = Category.find(locals[:product].category_id) %>
-    <% untouchable = element.title %>
-    <% parents_of(locals[:product].category_id).reverse_each do |item| %>
-      <% if item.title == untouchable %>
-        <li style="color: grey;" ><%= item.title %></li>
-      <% else %>
+<% if !locals[:product].nil? and locals[:for].nil? %>
+  <ol class="breadcrumb">
+    <li><%= link_to 'Каталог', categories_path %></li>
+    <% if Category.find(locals[:product].category_id).published == 1 %>
+      <% parents_of(locals[:product].category_id).reverse_each do |item| %>
         <li><%= link_to item.title, item %></li>
       <% end %>
+    <% else %>
+      <% element = Category.find(locals[:product].category_id) %>
+      <% untouchable = element.title %>
+      <% parents_of(locals[:product].category_id).reverse_each do |item| %>
+        <% if item.title == untouchable %>
+          <li style="color: grey;" ><%= item.title %></li>
+        <% else %>
+          <li><%= link_to item.title, item %></li>
+        <% end %>
+      <% end %>
     <% end %>
+  </ol>
+<% else %>
+  <% if (locals[:for] == 'categories') %>
+    <div class="row breadcrumbs">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><%= link_to 'Каталог', categories_path %></li>
+          <% @parents_array.reverse_each do |item| %>
+            <li class="breadcrumb-item"><%= link_to item.title, item %></li>
+          <% end %>
+        </ol>
+      </nav>
+    </div>
+  <% elsif (locals[:for] == 'publications') %>
+    <%
+      publication_types = [
+        {class: "Addition", title: "Дополнения", path: additions_path},
+        {class: "Article", title: "Статьи", path: articles_path},
+        {class: "Review", title: "Обзоры", path: reviews_path},
+        {class: "Video", title: "Видео", path: videos_path}
+      ]
+    %>
+    <div class="row breadcrumbs">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><%= link_to 'Публикации', publications_index_path %></li>
+          <% publication_types.each do |item| %>
+            <% a = locals[:item].class.name %>
+            <% if !locals[:item].nil? and locals[:item].class.name == item[:class] %>
+              <li class="breadcrumb-item"><%= link_to item[:title], item[:path] %></li>
+            <% end %>
+          <% end %>
+        </ol>
+      </nav>
+    </div>
   <% end %>
-</ol>
+<% end %>

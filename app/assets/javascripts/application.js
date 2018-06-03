@@ -38,7 +38,6 @@ $(document).ready(function() {
     ignoreRows: [1,2]
   });
 
-
   $(function () {
     $('#accordion').on('shown.bs.collapse', function (e) {
     var offset = $('.panel.panel-default > .panel-collapse.in').offset();
@@ -53,7 +52,7 @@ function no_pdf() {
 $('div.modal').on('hidden.bs.modal', function () {
     $.ajax({
         url: "/carts/update_cart_quantity",
-        method: "post"
+        method: "get"
     }).done(function(html) {
         $("div.top-cart a").html;
         $("div.bot-cart a").html;
@@ -61,8 +60,10 @@ $('div.modal').on('hidden.bs.modal', function () {
 
     $.ajax({
         url: "/carts/update_cart_sum",
-        method: "post"
+        method: "get"
     }).done(function(html) {
         $("div.bot-sum").html;
     });
+
+    $(".modal-backdrop.in").not(".fade").remove();
 })

@@ -33,22 +33,22 @@
               <!--<div class="hide-hid-text">Свернуть</div>-->
             <!--</div>-->
           <!--</li>-->
-          <li><a href="#!">Скачать PDF</a></li>
-          <li><a href="#!">Каталог производителя</a></li>
+          <li><a href="#">Скачать PDF</a></li>
+          <li><a href="#">Каталог производителя</a></li>
           <!--<li><a href="card.html" target="_blank">Преимущества</a></li>-->
         </ul>
         <div class="row product-options">
           <div class="col-xs-6 product-option product-quick-delivery">
-            <a href="#!">Быстрая доставка</a>
+            <a href="#">Быстрая доставка</a>
             <div class="info"><span></span>
               <div class="info-text">
                 <p>Доставляем Деловыми линиями Major, СДЭК, Пони Экспресс. Возможна доставка до пункта выдачи. Отправка ежедневно.</p>
-                <a href="#!">Более подробная инфомация</a>
+                <a href="#">Более подробная инфомация</a>
               </div>
             </div>
           </div>
           <div class="col-xs-6 product-option product-condition-payment">
-            <a href="#!">Условия оплаты</a>
+            <a href="#">Условия оплаты</a>
             <div class="info"><span></span>
               <div class="info-text"><p>Тут другая подсказка</p></div>
             </div>
@@ -77,12 +77,11 @@
         </span>
       </div>
       <div class="price-request">
-        <!--<a href="#!" data-toggle="modal" data-target="#special">Запросить спец.цену</a>-->
         <%= form_tag(line_items_path, method: "post",  remote: true) do %>
           <%= hidden_field_tag(:product_id, locals[:product_array][0].id) %>
           <%= hidden_field_tag(:price, locals[:product_array][1]) %>
           <%= hidden_field_tag(:minimum, 1) %>
-          <%= submit_tag "Запросить спец.цену", class: "price-request", data: { toggle: "modal", target: "#recall" } %>
+          <%= submit_tag "Запросить спец.цену", class: "price-request", data: { toggle: "modal", target: "#special" } %>
         <% end %>
       </div>
       <div class="product-presence">

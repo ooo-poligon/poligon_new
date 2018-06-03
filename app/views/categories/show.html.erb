@@ -30,16 +30,7 @@
     <% end %>
   </div>
   <div class="col-sm-8 col-md-9 content" >
-    <div class="row breadcrumbs">
-      <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item"><%= link_to 'Каталог', categories_path %></li>
-          <% @parents_array.reverse_each do |item| %>
-            <li class="breadcrumb-item"><%= link_to item.title, item %></li>
-          <% end %>
-        </ol>
-      </nav>
-    </div>
+    <%= render "shared/breadcrumb_search", locals: {for: "categories"} %>
     <div class="category">
       <% title = @recentCategory.title %>
       <% generate_meta_from title %>
@@ -109,63 +100,65 @@
         </div>
       </div>
 
-      <div class="category-filter">
-        <div class="category-filter-top">
-          <div class="row">
-            <div class="col-xs-12 col-sm-6 filter-title">
-              <h3>Фильтр товаров</h3>
-              <div class="filter-status"><span class="on">показать</span>/<span class="off active">скрыть</span></div>
-            </div>
-            <div class="col-xs-12 col-sm-6 filter-search">
-              <div class="row">
-                <div class="col-md-5 filter-search-title"><h4>Быстрый поиск</h4></div>
-                <div class="col-sm-12 col-md-7 filter-search-input">
-                  <input type="text" placeholder="Поиск"><button type="submit">Найти</button>
+      <% if !@products.empty? %>
+        <div class="category-filter">
+          <div class="category-filter-top">
+            <div class="row">
+              <div class="col-xs-12 col-sm-6 filter-title">
+                <h3>Фильтр товаров</h3>
+                <div class="filter-status"><span class="on">показать</span>/<span class="off active">скрыть</span></div>
+              </div>
+              <div class="col-xs-12 col-sm-6 filter-search">
+                <div class="row">
+                  <div class="col-md-5 filter-search-title"><h4>Быстрый поиск</h4></div>
+                  <div class="col-sm-12 col-md-7 filter-search-input">
+                    <input type="text" placeholder="Поиск"><button type="submit">Найти</button>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-        <div class="category-filter-bottom">
-          <div class="def-level">
-            <div class="def-item">Уровень защиты</div>
-            <div class="def-item"><input type="checkbox" id="def-all"><label for="def-all">Все</label></div>
-            <div class="def-item"><input type="checkbox" id="def-herm"><label for="def-herm">Герметичное</label></div>
-            <div class="def-item"><input type="checkbox" id="def-abs"><label for="def-abs">Товары в  наличии</label></div>
-            <div class="def-item"><input type="checkbox" id="def-sub"><label for="def-sub">Искать в подкатегориях</label></div>
+          <div class="category-filter-bottom">
+            <div class="def-level">
+              <div class="def-item">Уровень защиты</div>
+              <div class="def-item"><input type="checkbox" id="def-all"><label for="def-all">Все</label></div>
+              <div class="def-item"><input type="checkbox" id="def-herm"><label for="def-herm">Герметичное</label></div>
+              <div class="def-item"><input type="checkbox" id="def-abs"><label for="def-abs">Товары в  наличии</label></div>
+              <div class="def-item"><input type="checkbox" id="def-sub"><label for="def-sub">Искать в подкатегориях</label></div>
+            </div>
+            <div class="category-filter-options">
+              <table class="category-filter-table" id="reset-select">
+                <tr>
+                  <td><label>Количество контактов</label>
+                    <select><option>1</option><option>2</option><option>3</option><option>4</option></select>
+                  </td>
+                  <td><label>Тип обмотки</label>
+                    <select><option>1</option><option>2</option><option>3</option><option>4</option></select>
+                  </td>
+                  <td><label>Номинальный ток</label>
+                    <select><option>1</option><option>2</option><option>3</option><option>4</option></select>
+                  </td>
+                  <td><button class="pc filter-reset" type="reset" from="">Cброс</button></td>
+                </tr>
+                <tr>
+                  <td><label>Напряжение питания</label>
+                    <select><option>1</option><option>2</option><option>3</option><option>4</option></select>
+                  </td>
+                  <td><label>Материал контакта</label>
+                    <select><option>1</option><option>2</option><option>3</option><option>4</option></select>
+                  </td>
+                  <td><label>Установка</label>
+                    <select><option>1</option><option>2</option><option>3</option><option>4</option></select>
+                  </td>
+                  <td><button class="mobile filter-reset" type="reset">Cброс</button><button type="submit">Найти</button></td>
+                </tr>
+              </table>
+            </div>
           </div>
-          <div class="category-filter-options">
-            <table class="category-filter-table" id="reset-select">
-              <tr>
-                <td><label>Количество контактов</label>
-                  <select><option>1</option><option>2</option><option>3</option><option>4</option></select>
-                </td>
-                <td><label>Тип обмотки</label>
-                  <select><option>1</option><option>2</option><option>3</option><option>4</option></select>
-                </td>
-                <td><label>Номинальный ток</label>
-                  <select><option>1</option><option>2</option><option>3</option><option>4</option></select>
-                </td>
-                <td><button class="pc filter-reset" type="reset" from="">Cброс</button></td>
-              </tr>
-              <tr>
-                <td><label>Напряжение питания</label>
-                  <select><option>1</option><option>2</option><option>3</option><option>4</option></select>
-                </td>
-                <td><label>Материал контакта</label>
-                  <select><option>1</option><option>2</option><option>3</option><option>4</option></select>
-                </td>
-                <td><label>Установка</label>
-                  <select><option>1</option><option>2</option><option>3</option><option>4</option></select>
-                </td>
-                <td><button class="mobile filter-reset" type="reset">Cброс</button><button type="submit">Найти</button></td>
-              </tr>
-            </table>
-          </div>
         </div>
-      </div>
-
-      <%= render "shared/products_table" %>
+        <br>
+        <%= render "shared/products_table" %>
+      <% end %>
     </div>
   </div>
 

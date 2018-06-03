@@ -1,0 +1,14 @@
+<% if (locals[:for] == 'categories') %>
+<div class="row breadcrumbs">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><%= link_to 'Каталог', categories_path %></li>
+      <% @parents_array.reverse_each do |item| %>
+        <li class="breadcrumb-item"><%= link_to item.title, item %></li>
+      <% end %>
+    </ol>
+  </nav>
+</div>
+<% elsif (locals[:for] == 'publications') %>
+<% else %>
+<% end %>

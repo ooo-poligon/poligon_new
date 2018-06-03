@@ -41,7 +41,7 @@
   <div class="row">
     <% if ['categories', 'publications'].include? controller_name%>
       <div class="col-sm-12 col-md-12 content">
-        <div class="row category-content">
+        <div class="row category-row category-content">
           <% flash.each do |key, value| %>
             <br><div class="alert alert-<%= key %>"><%= value %></div>
           <% end %>
@@ -97,6 +97,7 @@
 <%= render("shared/mainpage/footer") %>
 <%= render("shared/mainpage/bot_line") %>
 <%= render("shared/mainpage/modal_dialog") %>
+<%= render("shared/mainpage/modal_special") %>
 
 <!-- JavaScript placed at the end of the document so the pages load faster -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

@@ -1,5 +1,5 @@
 <!-- Modal -->
-<div class="modal fade" id="recall" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade" id="mo" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <button class="x" id="close-recall" type="button" data-dismiss="modal" aria-hidden="true"></button>
@@ -9,18 +9,18 @@
             <h2>Оставить заявку</h2>
             <p class="or">или подобрать аналог</p>
             <form class="send-form" id="recall-form" action="javascript:void(null);" onsubmit="recall_form()">
-              <div class="form-input req"><input class="modal-input name-send" type="text" name="name-send" required placeholder="Имя"></div>
-              <div class="form-input req"><input class="modal-input phone-send" type="text" name="phone-send" required placeholder="Телефон"></div>
-              <div class="form-input req"><input class="modal-input mail-send" type="text" name="mail-send" required placeholder="E-mail"></div>
-              <div class="form-textarea"><textarea class="message-send" name="message-send" placeholder="Ваше сообщение"></textarea></div>
+              <div class="form-input req"><input class="modal-input name-send" type="text" name="name" required placeholder="Имя"></div>
+              <div class="form-input req"><input class="modal-input phone-send" type="text" name="phone" required placeholder="Телефон"></div>
+              <div class="form-input req"><input class="modal-input mail-send" type="text" name="email" required placeholder="E-mail"></div>
+              <div class="form-textarea"><textarea class="message-send" name="message" placeholder="Ваше сообщение"></textarea></div>
               <div class="form-button req">
-                <input type="file" required name="file-1[]" id="file-1" class="inputfile inputfile-1" data-multiple-caption="{count} files selected" multiple />
-                <label for="file-1"><span>+ Прикрепить файл</span></label>
+                <input type="file" required name="file[]" id="file" class="inputfile inputfile-1" data-multiple-caption="{count} files selected" multiple />
+                <label for="file"><span>+ Прикрепить файл</span></label>
                 <div class="captcha">
                   <%= recaptcha_tags %>
                 </div>
               </div>
-              <div class="button-send"><button type="submit">Отправить</button></div>
+              <div class="button-send"><button type="submit" data-dismiss="modal">Отправить</button></div>
               <div class="modal-agree">Нажимая кнопку «Отправить» я даю согласие на <a href="#">обработку персональных данных.</a></div>
               <div class="expl"><span>*</span> Поля обязательные для заполнения</div>
             </form>
