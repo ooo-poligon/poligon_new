@@ -546,8 +546,8 @@
             method: "post",
             data: {"quantity": $(this).val(), "line_item_id": $(this).attr("id")}
         }).done(function(response) {
-            $(this).val(response);
-            $(".cart-cost").load(" .cart-cost");
+            $("td#cart-cost-" + response.line_item_id).html(response.price + " Руб.");
+            $("div.cart-total-price").html("<span>Общая стоимость:</span> " + response.total + " Руб.");
         });
     });
 </script>
@@ -584,7 +584,7 @@
                           <% else %>
                             <% imagePath = productImage.path.gsub("c:\\poligon_images", "http://www.poligon.info/images").gsub("\\", "/") %>
                           <% end %>
-                          <%= link_to image_tag(imagePath, class: "img-responsive center-block product-image-container"), imagePath, class: "fancybox" %>
+                          <%= link_to(image_tag(imagePath, class: "img-responsive center-block product-image-container"), product_path(line_item.product.id)) %>
                         <% else %>
                           <p></p>
                         <% end %>
@@ -600,7 +600,7 @@
                       <%= number_field_tag(:quantity, line_item.quantity, class: "quantity", id: line_item.id.to_s,  step: 1, min: 1, pattern: "^[0-9]+$") %> <span>шт.</span>
                     </span>
                   </td>
-                  <td class="cart-cost" id="cart-cost"><%= line_item.price * line_item.quantity %> Руб.</td>
+                  <td class="cart-cost" id="cart-cost-<%= line_item.id.to_s %>"><%= line_item.price * line_item.quantity %> Руб.</td>
                   <td class="cart-status">
                     <% if quantity > 0 %>
                       <span><%= image_tag("green.gif") %></span>

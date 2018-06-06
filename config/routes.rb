@@ -14,8 +14,8 @@ Poligon::Application.routes.draw do
 
   get  'carts/show'
   get  'carts/add'
-  get  'carts/update_cart_quantity'
-  get  'carts/update_cart_sum'
+  post  'carts/update_cart_quantity'
+  post  'carts/update_cart_sum'
   post 'orders/send_order_email'
   post 'feedback/send_request_or_question'
   post 'feedback/send_project_conditions'

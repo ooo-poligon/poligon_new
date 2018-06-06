@@ -52,7 +52,7 @@ function no_pdf() {
 $('div.modal').on('hidden.bs.modal', function () {
     $.ajax({
         url: "/carts/update_cart_quantity",
-        method: "get"
+        method: "post"
     }).done(function(html) {
         $("div.top-cart a").html;
         $("div.bot-cart a").html;
@@ -60,7 +60,7 @@ $('div.modal').on('hidden.bs.modal', function () {
 
     $.ajax({
         url: "/carts/update_cart_sum",
-        method: "get"
+        method: "post"
     }).done(function(html) {
         $("div.bot-sum").html;
     });

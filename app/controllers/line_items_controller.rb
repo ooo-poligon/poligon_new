@@ -65,8 +65,18 @@ class LineItemsController < ApplicationController
     else
       quantity = old_quantity
     end
+    line_items = LineItem.where(cart_id: @current_cart.id)
+    total = 0
+    line_items.each do |item|
+      total += item.quantity * item.price
+    end
     respond_to do |format|
-      format.json { render json: quantity }
+      format.json { render json: {
+          line_item_id: line_item.id,
+          quantity: quantity,
+          price: line_item.price * quantity.to_i,
+          total: total
+      }}
     end
   end
 

@@ -8,7 +8,7 @@ $("input.quantity").change(function () {
         method: "post",
         data: {"quantity": $(this).val(), "line_item_id": $(this).attr("id")}
     }).done(function(response) {
-        $(this).val(response);
-        location.reload();
+        $("td#cart-cost-" + response.line_item_id).html(response.price + " Руб.");
+        $("div.cart-total-price").html("<span>Общая стоимость:</span> " + response.total + " Руб.");
     });
 });
