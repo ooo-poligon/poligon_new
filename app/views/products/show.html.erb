@@ -1,12 +1,14 @@
 <p id="notice"><%= notice %></p>
 <%= render "shared/breadcrumb_search", locals: { product: @product } %>
 
-<% if @productImage.path[0] != 'c' %>
-  <% imagePath = @productImage.path.gsub("\\\\Server03\\бд_сайта\\poligon_images", "http://www.poligon.info/images").gsub("\\", "/") %>
-<% else %>
-  <% imagePath = @productImage.path.gsub("c:\\poligon_images", "http://www.poligon.info/images").gsub("\\", "/") %>
+<% imagePath = "" %>
+<% if !@productImage.nil? %>
+  <% if @productImage.path[0] != 'c' %>
+    <% imagePath = @productImage.path.gsub("\\\\Server03\\бд_сайта\\poligon_images", "http://www.poligon.info/images").gsub("\\", "/") %>
+  <% else %>
+    <% imagePath = @productImage.path.gsub("c:\\poligon_images", "http://www.poligon.info/images").gsub("\\", "/") %>
+  <% end %>
 <% end %>
-
 <div class="card-block">
   <h1>Миниконтактор-реле K1 K1-07D22 12</h1>
   <div class="card">

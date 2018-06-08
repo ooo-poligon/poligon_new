@@ -36,13 +36,13 @@
                   </div>
                 </div>
               </td>
-              <td class="cart-price"><%= line_item.price %></td>
+              <td class="cart-price"><%= line_item.price %> Руб.</td>
               <td class="cart-quantity">
                 <span class="number-plus-minus">
                   <%= number_field_tag(:quantity, line_item.quantity, class: "quantity", id: line_item.id.to_s,  step: 1, min: 1, pattern: "^[0-9]+$") %> <span>шт.</span>
                 </span>
               </td>
-              <td class="cart-cost" id="cart-cost-<%= line_item.id.to_s %>"><%= line_item.price * line_item.quantity %></td>
+              <td class="cart-cost" id="cart-cost-<%= line_item.id.to_s %>"><%= line_item.price * line_item.quantity %> Руб.</td>
               <td class="cart-status">
                 <% if quantity > 0 %>
                   <span><%= image_tag("green.gif") %></span>
