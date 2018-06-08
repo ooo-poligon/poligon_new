@@ -36,6 +36,7 @@ Poligon::Application.routes.draw do
   get  'company/vacancies'
   get  'company/links'
   get  'company/program'
+  get  'company/personal'
 
   root 'content#home'
   get  'content/show'
