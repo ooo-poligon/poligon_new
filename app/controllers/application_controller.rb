@@ -165,9 +165,10 @@ class ApplicationController < ActionController::Base
       if cart.present?
         @current_cart = cart
         line_items = LineItem.where(cart_id: @current_cart.id)
-        line_items.each do |item|
-          @total_quantity += item.quantity
-        end
+        # line_items.each do |item|
+        #   @total_quantity += item.quantity
+        # end
+        @total_quantity = line_items.length
       else
         session[:cart_id] = nil
       end
