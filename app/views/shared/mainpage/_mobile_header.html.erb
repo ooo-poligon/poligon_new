@@ -25,7 +25,11 @@
               </div>
             </div>
             <div class="col-xs-4 mobile-cart">
-              <a href="#" class="mobile-cart-icon"><span>0</span></a>
+              <!--<a href="#" class="mobile-cart-icon"><span>0</span></a>-->
+              <%= link_to render("shared/mobile_cart_quantity"),
+                          cart_path(@current_cart.id),
+                          {remote: true, 'data-toggle' =>  "modal", 'data-target' => '#quick-cart', class: "mobile-cart-icon"}
+              %>
             </div>
           </div>
         </div>
