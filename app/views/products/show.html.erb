@@ -151,42 +151,27 @@
         <li><a href="#fb-form">Задать вопрос о товаре</a></li>
       </ul>
       <div class="card-box">
-        <table class="table table-bordered table-responsive">
-          <tbody><tr>
-            <td>информация</td>
-            <td>данные</td>
-          </tr>
-          <tr>
-            <td>информация</td>
-            <td>данные</td>
-          </tr>
-          <tr>
-            <td>информация</td>
-            <td>данные</td>
-          </tr>
-          <tr>
-            <td>информация</td>
-            <td>данные</td>
-          </tr>
-          <tr>
-            <td>информация</td>
-            <td>данные</td>
-          </tr>
-          <tr>
-            <td>информация</td>
-            <td>данные</td>
-          </tr>
-          <tr>
-            <td>информация</td>
-            <td>данные</td>
-          </tr>
-          <tr>
-            <td>информация</td>
-            <td>данные</td>
-          </tr>
-          </tbody></table>
-        <div class="card-scheme">
-          <!--<img src="img/scheme.jpg" alt="">-->
+        <div class="tab-content">
+          <% if user_signed_in? %>
+            <div class="tab-pane fade" id="product_data_tab">
+              <%= render "shared/product_data_tab" %>
+            </div>
+            <div class="tab-pane fade in active" id="general_information_tab">
+              <%= render "shared/product_full_description_tab" %>
+              <%= render "shared/product_properties_tab" %>
+              <%= render "shared/product_functions_tab" %>
+              <%= render "shared/product_plugs_or_dimensions_tab", locals: { product: @product, pic_type: 'plug', count: 3 } %>
+              <%= render "shared/product_plugs_or_dimensions_tab", locals: { product: @product, pic_type: 'dim', count: nil } %>
+            </div>
+          <% else %>
+            <div class="tab-pane fade in active" id="general_information_tab">
+              <%= render "shared/product_full_description_tab" %>
+              <%= render "shared/product_properties_tab" %>
+              <%= render "shared/product_functions_tab" %>
+              <%= render "shared/product_plugs_or_dimensions_tab", locals: { product: @product, pic_type: 'plug', count: 3 } %>
+              <%= render "shared/product_plugs_or_dimensions_tab", locals: { product: @product, pic_type: 'dim', count: nil } %>
+            </div>
+          <% end %>
         </div>
       </div>
       <div class="card-box" style="display: none;">
