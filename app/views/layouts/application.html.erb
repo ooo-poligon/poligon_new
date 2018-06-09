@@ -59,7 +59,7 @@
             <%= render("shared/mainpage/modal_cart") %>
             <%= yield %>
           </div>
-          <% unless ['orders', 'categories', 'publications'].include? controller_name %>
+          <% unless ['orders', 'categories', 'publications', 'products'].include? controller_name %>
             <%= render "shared/mainpage/trio" %>
             <%= render "shared/mainpage/partners" %>
           <% end %>
@@ -76,7 +76,7 @@
             <%= render("shared/mainpage/modal_cart") %>
             <%= yield %>
           </div>
-          <% unless ['orders', 'categories', 'publications'].include? controller_name %>
+          <% unless ['orders', 'categories', 'publications', 'products'].include? controller_name %>
             <%= render "shared/mainpage/trio" %>
             <%= render "shared/mainpage/partners" %>
           <% end %>
