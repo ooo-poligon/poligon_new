@@ -88,11 +88,11 @@
         <% if locals[:product_array][2] > 0 %>
           <span><%= image_tag("green.gif") %></span>
           <span>На складе: <%= locals[:product_array][2] %> шт. </span><br>
-          <span>Срок дополнительной поставки: <%= locals[:product_array][0].delivery_time %></span>
+          <!--<span>Срок дополнительной поставки: <%#= locals[:product_array][0].delivery_time %></span>-->
         <% else %>
           <span><%= image_tag("grey.gif") %></span>
-          <span>Товар временно отсутствует. </span>
-          <span>Срок поставки: <%= locals[:product_array][0].delivery_time %></span>
+          <span>Под заказ, </span><br>
+          <span>срок поставки <%= locals[:product_array][0].delivery_time %></span>
         <% end %>
       </div>
       <div class="product-list">

@@ -62,7 +62,8 @@
                       <% if !Quantity.find_by(product_id: @product.id).nil? && Quantity.find_by(product_id: @product.id).stock > 0 %>
                         <%= Quantity.find_by(product_id: @product.id).stock.to_s + ' шт.' %>
                       <% else %>
-                        <i>Срок поставки: <%= @product.delivery_time %></i>
+                        <i>Под заказ.</i>
+                        <!--<i>Срок поставки: <%#= @product.delivery_time %></i>-->
                       <% end %>
                     </li>
                     <li>Страна бренда:
