@@ -132,17 +132,12 @@
         <div class="card-bottom">
           <div class="card-request">
             <div class="row">
-              <%= form_tag(line_items_path, method: "post",  remote: true) do %>
-                <%= hidden_field_tag(:product_id, @product.id) %>
-                <%= hidden_field_tag(:price, get_prices_rub(@product)[0]) %>
-                <%= hidden_field_tag(:minimum, 1) %>
-                <div class="col-sm-9 card-request-text">Запросить проектные условия:
-                  <%= number_field_tag(:quantity, 1, class: "quantity-product",  step: 1, min: 1, pattern: "^[0-9]+$") %> <span> шт.</span>
-                </div>
-                <div class="col-sm-3 card-request-button">
-                  <%= button_tag "Запросить", data: { toggle: "modal", target: "#special" } %>
-                </div>
-              <% end %>
+              <div class="col-sm-9 card-request-text">Запросить проектные условия:
+                <%= number_field_tag(:quantity, 1, class: "quantity-product",  step: 1, min: 1, pattern: "^[0-9]+$") %> <span> шт.</span>
+              </div>
+              <div class="col-sm-3 card-request-button">
+                <%= button_tag "Запросить", data: { toggle: "modal", target: "#special" } %>
+              </div>
             </div>
           </div>
         </div>
@@ -192,3 +187,4 @@
     </div>
   </div>
 </div>
+<%= render "shared/mainpage/modal_special", locals: {product: @product} %>

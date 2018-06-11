@@ -62,13 +62,13 @@ class UserMailer < ActionMailer::Base
     mail(to: @receiver, bcc: 'robot@poligon.info', subject: 'Задан вопрос / отправлен запрос с сайта new.poliogn.info')
   end
 
-  def request_conditions_email(name, phone, email,  message, file)
+  def request_conditions_email(name, phone, email,  message, quantity)
     @receiver = Setting.find_by(title: 'siteOrdersReceiver').text_value
     @name     = name
     @phone    = phone
     @email    = email
     @message  = message
-    @file     = file
+    @quantity = quantity
     mail(to: @receiver, bcc: 'robot@poligon.info', subject: 'Задан вопрос / отправлен запрос с сайта new.poliogn.info')
   end
 

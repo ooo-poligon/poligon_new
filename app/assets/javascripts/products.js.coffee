@@ -5,4 +5,9 @@
 $('document').ready ->
   $('img.xactive').on 'click', ->
   $('img.xactive').trigger 'click'
+
+  $('#special').on 'shown.bs.modal', ->
+    quantity = $('input#quantity.quantity-product').val()
+    $('input#modal-special-quantity').val quantity
   return
+return

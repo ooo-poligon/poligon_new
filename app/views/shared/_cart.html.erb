@@ -590,7 +590,7 @@
                         <% end %>
                       </div>
                       <div class="col-md-7 cart-title">
-                        <%= line_item.product.title %>
+                        <%= link_to(line_item.product.title, product_path(line_item.product.id)) %>
                       </div>
                     </div>
                   </td>

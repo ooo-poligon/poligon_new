@@ -121,14 +121,14 @@ class FeedbackController < ApplicationController
   end
 
   def send_project_conditions
-    name    = params[:name]
-    phone   = params[:phone]
-    email   = params[:email]
-    message = params[:message]
-    file    = params[:file]
+    name     = params[:name]
+    phone    = params[:phone]
+    email    = params[:email]
+    message  = params[:message]
+    quantity = params[:quantity]
 
     if email != ''
-      UserMailer.request_conditions_email(name, phone, email,  message, file).deliver_now
+      UserMailer.request_conditions_email(name, phone, email,  message, quantity).deliver_now
       respond_to do |format|
         format.html { redirect_to root_url, notice: 'Спасибо, мы получили Ваш запрос. В ближайшее время менеджер свяжется с Вами.'}
       end

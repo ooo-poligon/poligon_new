@@ -1,3 +1,4 @@
+<% product = locals[:product] %>
 <div class="modal fade" id="special" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -6,23 +7,37 @@
         <div class="form-block">
           <div class="form-content">
             <h2>Запросить проектные условия и получить коммерческое предложение</h2>
-            <div class="special-row">Наименование изделия <span>Наименование</span></div>
-            <div class="special-row">Количество товара (шт.) <span class="number-plus-minus"><input type="number" value="60"></span></div>
-            <form id="special-form">
-              <div class="form-input req"><input class="modal-input name-send" type="text" name="name-send" required placeholder="Имя"></div>
+            <div class="special-row">
+              Наименование изделия <span><%= product.title %></span>
+            </div>
+            <%= form_tag(feedback_send_project_conditions_path, method: "post", id: "special-form") do %>
+              <div class="special-row">
+                Количество товара (шт.)
+                <span class="number-plus-minus">
+                  <input id="modal-special-quantity" type="number" name="quantity" value="60">
+                </span>
+              </div><br>
+              <%= hidden_field_tag(:product_id, product.id) %>
+              <%= hidden_field_tag(:price, get_prices_rub(product)[0]) %>
+              <%= hidden_field_tag(:minimum, 1) %>
+              <div class="form-input req">
+                <input class="modal-input name-send" type="text" name="name" required placeholder="Имя">
+              </div>
               <div class="row special-row">
                 <div class="col-sm-6 form-input req">
-                  <input class="modal-input phone-send" type="text" name="phone-send" required placeholder="Телефон">
+                  <input class="modal-input phone-send" type="text" name="phone" required placeholder="Телефон">
                 </div>
                 <div class="col-sm-6 form-input req">
-                  <input class="modal-input mail-send" type="text" name="mail-send" required placeholder="E-mail">
+                  <input class="modal-input mail-send" type="text" name="email" required placeholder="E-mail">
                 </div>
               </div>
-              <div class="form-textarea"><textarea class="message-send" name="message-send" placeholder="Ваше сообщение"></textarea></div>
-              <div class="button-send"><button type="submit">Запросить</button></div>
+              <div class="form-textarea"><textarea class="message-send" name="message" placeholder="Ваше сообщение"></textarea></div>
+              <div class="button-send">
+                <%= button_tag "Запросить", type: "submit" %>
+              </div>
               <div class="modal-agree">Нажимая кнопку «Отправить» я даю согласие на <a href="<%= company_personal_path %>">обработку персональных данных.</a></div>
               <div class="expl"><span>*</span> Поля обязательные для заполнения</div>
-            </form>
+            <% end %>
           </div>
         </div>
       </div>
