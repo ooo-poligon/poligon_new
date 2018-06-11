@@ -7,7 +7,11 @@ $('document').ready ->
   $('img.xactive').trigger 'click'
 
   $('#special').on 'shown.bs.modal', ->
-    quantity = $('input#quantity.quantity-product').val()
-    $('input#modal-special-quantity').val quantity
+    oldQuantity = $('input#modal-special-quantity').val()
+    newQuantity = $('input#quantity.quantity-product').val()
+    if newQuantity
+      $('input#modal-special-quantity').val newQuantity
+    else
+      $('input#modal-special-quantity').val oldQuantity
   return
 return
