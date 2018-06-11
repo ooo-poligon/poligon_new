@@ -119,7 +119,12 @@
               <p class="product-manuf">Производитель: <span><a href="<%= category_path(@product.vendor.code) %>"><%= @product.vendor.title %></a></span></p>
             </div>
             <div class="col-sm-6 card-order-docs">
-              <div class="doc-button"><a href="#"><span></span>Скачать документацию</a></div>
+              <div class="doc-button">
+                <% product_pdf   = DataFile.where("owner_id = ? and file_type_id = 2", @product.id).first %>
+                <% if product_pdf != nil and product_pdf.path != "c:\\poligon_datasheets\\" and product_pdf.path != "\\\\Server03\\бд_сайта\\poligon_datasheets\\" %>
+                  <%= link_to( "<span></span>Скачать документацию".html_safe, content_download_pdf_path(product_id: @product.id)) %>
+                <% end %>
+              </div>
               <div class="distr-button"><a href="<%= company_program_path %>" target="_blank"><span></span>Официальный дистрибьютор <%= @product.vendor.title %></a></div>
             </div>
           </div>

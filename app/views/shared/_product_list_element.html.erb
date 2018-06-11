@@ -1,4 +1,5 @@
-<% productImage = DataFile.where('owner_id = ? and file_type_id = 1', locals[:product_array][0].id).first %>
+<% product_image = DataFile.where('owner_id = ? and file_type_id = 1', locals[:product_array][0].id).first %>
+<% product_pdf   = DataFile.where("owner_id = ? and file_type_id = 2", locals[:product_array][0].id).first %>
 <% product = locals[:product_array][0] %>
 
 <div class="product">
@@ -6,11 +7,11 @@
     <div class="col-xs-7 product-left">
       <div class="col-xs-4 product-photo">
         <div class="product-photo-img">
-          <% unless productImage.nil? %>
-            <% if productImage.path[0] != 'c' %>
-              <% imagePath = productImage.path.gsub("\\\\Server03\\бд_сайта\\poligon_images", "http://www.poligon.info/images").gsub("\\", "/") %>
+          <% unless product_image.nil? %>
+            <% if product_image.path[0] != 'c' %>
+              <% imagePath = product_image.path.gsub("\\\\Server03\\бд_сайта\\poligon_images", "http://www.poligon.info/images").gsub("\\", "/") %>
             <% else %>
-              <% imagePath = productImage.path.gsub("c:\\poligon_images", "http://www.poligon.info/images").gsub("\\", "/") %>
+              <% imagePath = product_image.path.gsub("c:\\poligon_images", "http://www.poligon.info/images").gsub("\\", "/") %>
             <% end %>
             <%= link_to image_tag(imagePath, class: "img-responsive center-block product-image-container"), imagePath, class: "fancybox" %>
           <% else %>
@@ -33,8 +34,14 @@
               <!--<div class="hide-hid-text">Свернуть</div>-->
             <!--</div>-->
           <!--</li>-->
-          <li><a href="#">Скачать PDF</a></li>
-          <li><a href="#">Каталог производителя</a></li>
+          <li>
+            <% if product_pdf != nil and product_pdf.path != "c:\\poligon_datasheets\\" and product_pdf.path != "\\\\Server03\\бд_сайта\\poligon_datasheets\\" %>
+              <%= link_to( "Скачать PDF", content_download_pdf_path(product_id: product.id)) %>
+            <% end %>
+          </li>
+          <li>
+            <%= render "shared/category_catalogs_links", locals: {vendor_id: locals[:product_array][3].code}  %>
+          </li>
           <!--<li><a href="card.html" target="_blank">Преимущества</a></li>-->
         </ul>
         <div class="row product-options">
