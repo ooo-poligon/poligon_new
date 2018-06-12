@@ -1,4 +1,4 @@
-class OrdersController < ApplicationController
+  class OrdersController < ApplicationController
   before_action :set_order, only: [:show, :edit, :update, :destroy]
 
   # GET /orders
@@ -29,6 +29,7 @@ class OrdersController < ApplicationController
       redirect_to order_path, notice: 'Ваша корзина пуста'
       return
     end
+    line_items = LineItem.where(cart_id: params[:cart])
     @order = Order.new(order_params)
 
     if @order.save
@@ -67,7 +68,7 @@ class OrdersController < ApplicationController
       @phone = params[:phone]
       UserMailer.products_order_email(@phone, order).deliver_now
       respond_to do |format|
-        format.html { redirect_to root_url, notice: 'Спасибо, мы получили заявку. В ближайшее время менеджер свяжется для подтверждения заказа.'}
+        format.html { redirect_to root_url, notice: {title: 'Спасибо, мы получили Вашу заявку.', message: ' В ближайшее время менеджер свяжется с Вами.'}}
       end
     else
       flash[:error] = "Поле e-mail не заполнено!"

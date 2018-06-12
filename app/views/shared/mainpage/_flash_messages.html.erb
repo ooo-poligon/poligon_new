@@ -1,0 +1,24 @@
+
+<% flash.each do |type, message| %>
+  <% if message.is_a? Hash %>
+    <% title   = message[:title] %>
+    <% message = message[:message] %>
+  <% else %>
+    <% title   = "Сообщение:" %>
+  <% end %>
+  <!-- Modal -->
+  <div class="modal fade" id="message-modal" tabindex="-1" role="dialog" aria-labelledby="messageModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content modal-message" style="border-radius: 0;">
+        <button type="button" class="x" id="thx-close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <div class="modal-body text-center">
+          <div class="thx-text">
+            <h3 id="messageModalLabel"><%= title.html_safe %></h3>
+            <%= message.html_safe %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+<% flash = nil %>

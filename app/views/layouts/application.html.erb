@@ -42,9 +42,7 @@
     <% if ['categories', 'publications'].include? controller_name%>
       <div class="col-sm-12 col-md-12 content">
         <div class="row category-row category-content">
-          <% flash.each do |key, value| %>
-            <br><div class="alert alert-<%= key %>"><%= value %></div>
-          <% end %>
+          <%= render partial: "shared/mainpage/flash_messages", flash: flash %>
           <%= render("shared/mainpage/modal_cart") %>
           <%= yield %>
         </div>
@@ -53,9 +51,7 @@
       <% if controller_name == 'orders' and action_name == 'new' %>
         <div class="col-sm-12 col-md-12 content">
           <div class="row">
-            <% flash.each do |key, value| %>
-              <br><div class="alert alert-<%= key %>"><%= value %></div>
-            <% end %>
+            <%= render partial: "shared/mainpage/flash_messages", flash: flash %>
             <%= render("shared/mainpage/modal_cart") %>
             <%= yield %>
           </div>
@@ -70,9 +66,7 @@
         </div>
         <div class="col-sm-8 col-md-9 content">
           <div class="row">
-            <% flash.each do |key, value| %>
-              <br><div class="alert alert-<%= key %>"><%= value %></div>
-            <% end %>
+            <%= render partial: "shared/mainpage/flash_messages", flash: flash %>
             <%= render("shared/mainpage/modal_cart") %>
             <%= yield %>
           </div>

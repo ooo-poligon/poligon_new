@@ -12,7 +12,7 @@ class FeedbackController < ApplicationController
       UserMailer.welcome_email(@email).deliver_now
       render "subscribe"
     elsif !params.has_key?(:footer_agree)
-      flash[:error] = "Вы должны согласиться с политикой конфиденциальности!"
+      flash[:error] = {title: "Внимание!", message: "Вы должны согласиться с политикой конфиденциальности!"}
     else
       flash[:error] = "Поле адрееса не заполнено!"
     end
@@ -113,7 +113,7 @@ class FeedbackController < ApplicationController
     if email != ''
       UserMailer.request_question_email(city, name, company, email, phone, message).deliver_now
       respond_to do |format|
-        format.html { redirect_to root_url, notice: 'Спасибо, мы получили Ваш запрос. В ближайшее время менеджер свяжется с Вами.'}
+        format.html { redirect_to root_url, notice: {title: 'Спасибо, мы получили Ваш запрос.', message: ' В ближайшее время менеджер свяжется с Вами.'}}
       end
     else
       flash[:error] = "Поле e-mail не заполнено!"
@@ -130,7 +130,7 @@ class FeedbackController < ApplicationController
     if email != ''
       UserMailer.request_conditions_email(name, phone, email,  message, quantity).deliver_now
       respond_to do |format|
-        format.html { redirect_to root_url, notice: 'Спасибо, мы получили Ваш запрос. В ближайшее время менеджер свяжется с Вами.'}
+        format.html { redirect_to root_url, notice: {title: 'Спасибо, Ваш запрос уже получен.', message: ' В рабочее время мы постараемся ответить в течение 59 минут. Мы работаем с ПН по ПТ с 9:30 до 18:00MSK. <br>Вы так же можете позвонить нам по телефону +7 812 3254220, если вопрос срочный.'}}
       end
     else
       flash[:error] = "Поле e-mail не заполнено!"

@@ -78,6 +78,7 @@
   <h3>Введите номер телефона для быстрого оформления:</h3>
   <%= form_tag(orders_send_order_email_path, method: "post") do %>
     <% items.each do |key, item| %>
+      <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
       <%= hidden_field_tag "items["+key.to_s+"]", item %>
     <% end %>
     <div class="row">
@@ -101,9 +102,10 @@
       </a>
     </div>
     <div class="col-sm-6 buy-but">
-      <form action="<%= orders_path(cart: @current_cart.id) %>" method="post" >
+      <%= form_tag(orders_path(cart: @current_cart.id), method: "post") do %>
+        <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
         <button type="submit"><span></span>Оформить заказ</button>
-      </form>
+      <% end %>
     </div>
   </div>
 </div>

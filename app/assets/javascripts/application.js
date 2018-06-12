@@ -43,6 +43,10 @@ $(document).ready(function() {
     var offset = $('.panel.panel-default > .panel-collapse.in').offset();
     if(offset)$('html,body').scrollTop(offset.top - 300); });
   });
+
+  $(function () {
+      $('#message-modal').modal('show');
+  })
 });
 
 function no_pdf() {
