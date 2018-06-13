@@ -35,7 +35,7 @@
             </td>
           <% end %>
         </tr>
-        <tr class="info">
+        <tr class="info-table">
           <% unless get_prices_eur(product)[1].round(2) < get_prices_eur(product)[0].round(2) %>
             <td style="text-align:left">
               Розница:
@@ -157,7 +157,7 @@
             </td>
           <% end %>
         </tr>
-        <tr class="info">
+        <tr class="info-table">
           <% unless get_prices_eur(product)[1].round(2) < get_prices_eur(product)[0].round(2) %>
             <td style="text-align:left">
               Розница <sup style="color: red; font-size: 7pt"><%= product.rate %></sup>:
@@ -296,7 +296,7 @@
             </td>
           <% end %>
         </tr>
-        <tr class="info">
+        <tr class="info-table">
           <td style="text-align:left">
             Закупочная:
           </td>

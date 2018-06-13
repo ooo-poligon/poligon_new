@@ -80,7 +80,7 @@
               </form>
             </li>
           </ul>
-          <ul class="nav navbar-nav navbar col-md-8">
+          <ul class="nav navbar-nav navbar col-md-5">
             <li>
               <div style="margin-bottom: 0px; margin-top: 5px; margin-right: 15px;">
                 <b><%= hello_user %></b><br>
@@ -120,6 +120,15 @@
                   </table>
                 </div>
               <% end %>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar col-md-3">
+            <li>
+              <div>
+                <a href="<%= admin_panel_index_path %>">
+                  <p style="color: red; font-weight: bold; padding-top: 15px;">Панель администратора</p>
+                </a>
+              </div>
             </li>
           </ul>
         </div>
