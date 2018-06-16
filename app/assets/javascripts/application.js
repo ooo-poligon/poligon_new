@@ -70,4 +70,4 @@ $('div.modal').on('hidden.bs.modal', function () {
     });
 
     $(".modal-backdrop.in").not(".fade").remove();
-})
+});

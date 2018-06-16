@@ -26,7 +26,9 @@ class LineItemsController < ApplicationController
     product = Product.find(params[:product_id])
     quantity= params[:quantity].to_i
     price = params[:price]
-    @line_item = @cart.add_product(product.id, quantity, price)
+    stock = product.quantity.nil? ? 0 : product.quantity.stock.to_i
+    overflow = quantity - stock
+    @line_item = @cart.add_product(product.id, quantity, price, overflow)
 
     respond_to do |format|
       if @line_item.save
@@ -70,12 +72,16 @@ class LineItemsController < ApplicationController
     line_items.each do |item|
       total += item.quantity * item.price
     end
+    stock = line_item.product.quantity.nil? ? 0 : line_item.product.quantity.stock.to_i
+    overflow = quantity.to_i - stock
     respond_to do |format|
       format.json { render json: {
           line_item_id: line_item.id,
           quantity: quantity,
           price: line_item.price * quantity.to_i,
-          total: total
+          total: total,
+          overflow: overflow,
+          stock: stock
       }}
     end
   end

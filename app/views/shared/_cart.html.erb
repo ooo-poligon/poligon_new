@@ -540,107 +540,115 @@
         });
     })(jQuery);
 
-    $("input.quantity").change(function () {
+    $("input.quantity-in-cart").change(function() {
         $.ajax({
             url: "/line_items/update_quantity",
             method: "post",
             data: {"quantity": $(this).val(), "line_item_id": $(this).attr("id")}
         }).done(function(response) {
+            if (response.overflow > 0 && response.stock !== 0) {
+                $("td#cart-status-" + response.line_item_id).html('<span><%= image_tag("yellow.gif") %></span> <span>Частично в наличии</span>');
+            } else if (response.stock === 0) {
+                $("td#cart-status-" + response.line_item_id).html('<span><%= image_tag("grey.gif") %></span> <span>Под заказ</span>');
+            } else {
+                $("td#cart-status-" + response.line_item_id).html('<span><%= image_tag("green.gif") %></span> <span>На складе</span>');
+            }
             $("td#cart-cost-" + response.line_item_id).html(response.price + " Руб.");
             $("div.cart-total-price").html("<span>Общая стоимость:</span> " + response.total + " Руб.");
         });
     });
+
 </script>
 <button class="x" type="button" data-dismiss="modal" aria-hidden="true"></button>
 <div class="modal-body">
   <div class="form-block">
     <div class="form-content">
+    <% if @cart.line_items.count > 0 %>
       <h2>Вы добавили товар в корзину</h2>
       <div class="cart-table">
         <% items = {} %>
-        <% if @cart.line_items.count > 0 %>
-          <div class="quick-table">
-            <table class="table-responsive">
-              <tr>
-                <td class="cart-name">Наименование</td>
-                <td class="cart-price">Цена</td>
-                <td class="cart-quantity">Количество</td>
-                <td class="cart-cost">Стоимость</td>
-                <td class="cart-status">Статус</td>
-                <td class="cart-remove">Удалить</td>
-              </tr>
-              <% sum = 0 %>
-              <% @cart.line_items.each do |line_item| %>
-                <% productImage = DataFile.where('owner_id = ? and file_type_id = 1', line_item.product.id).first %>
-                <% quantity = !Quantity.find_by(product_id: line_item.product.id).nil? && Quantity.find_by(product_id: line_item.product.id).stock > 0 ? Quantity.find_by(product_id: line_item.product.id).stock : 0 %>
-                <tr  id="line-item-<%= line_item.id.to_s %>">
-                  <% items[line_item.product.id] = line_item.quantity %>
-                  <td class="cart-name">
-                    <div class="row">
-                      <div class="col-md-5 cart-photo">
-                        <% unless productImage.nil? %>
-                          <% if productImage.path[0] != 'c' %>
-                            <% imagePath = productImage.path.gsub("\\\\Server03\\бд_сайта\\poligon_images", "http://www.poligon.info/images").gsub("\\", "/") %>
-                          <% else %>
-                            <% imagePath = productImage.path.gsub("c:\\poligon_images", "http://www.poligon.info/images").gsub("\\", "/") %>
-                          <% end %>
-                          <%= link_to(image_tag(imagePath, class: "img-responsive center-block product-image-container"), product_path(line_item.product.id)) %>
+        <div class="quick-table">
+          <table class="table-responsive">
+            <tr>
+              <td class="cart-name">Наименование</td>
+              <td class="cart-price">Цена</td>
+              <td class="cart-quantity">Количество</td>
+              <td class="cart-cost">Сумма</td>
+              <td class="cart-status">Статус</td>
+              <td class="cart-remove">Удалить</td>
+            </tr>
+            <% sum = 0 %>
+            <% @cart.line_items.each do |line_item| %>
+              <% productImage = DataFile.where('owner_id = ? and file_type_id = 1', line_item.product.id).first %>
+              <tr  id="line-item-<%= line_item.id.to_s %>">
+                <%# items[line_item.product.id] = line_item.quantity %>
+                <td class="cart-name">
+                  <div class="row">
+                    <div class="col-md-5 cart-photo">
+                      <% unless productImage.nil? %>
+                        <% if productImage.path[0] != 'c' %>
+                          <% imagePath = productImage.path.gsub("\\\\Server03\\бд_сайта\\poligon_images", "http://www.poligon.info/images").gsub("\\", "/") %>
                         <% else %>
-                          <p></p>
+                          <% imagePath = productImage.path.gsub("c:\\poligon_images", "http://www.poligon.info/images").gsub("\\", "/") %>
                         <% end %>
-                      </div>
-                      <div class="col-md-7 cart-title">
-                        <%= link_to(line_item.product.title, product_path(line_item.product.id)) %>
-                      </div>
+                        <%= link_to(image_tag(imagePath, class: "img-responsive center-block product-image-container"), product_path(line_item.product.id)) %>
+                      <% else %>
+                        <p></p>
+                      <% end %>
                     </div>
-                  </td>
-                  <td class="cart-price"><%= line_item.price %> Руб.</td>
-                  <td class="cart-quantity">
-                    <span class="number-plus-minus">
-                      <%= number_field_tag(:quantity, line_item.quantity, class: "quantity", id: line_item.id.to_s,  step: 1, min: 1, pattern: "^[0-9]+$") %> <span>шт.</span>
-                    </span>
-                  </td>
-                  <td class="cart-cost" id="cart-cost-<%= line_item.id.to_s %>"><%= line_item.price * line_item.quantity %> Руб.</td>
-                  <td class="cart-status">
-                    <% if quantity > 0 %>
-                      <span><%= image_tag("green.gif") %></span>
-                      <span>На складе</span>
-                    <% else %>
-                      <span><%= image_tag("grey.gif") %></span>
-                      <span>Под заказ. </span>
-                    <% end %>
-                  </td>
-                  <td>
-                    <%= button_to carts_remove_from_cart_modal_path(id: line_item.product.id), id: "delete-glyphicons", remote: true do %>
-                      <span class="glyphicon glyphicon-remove-circle" style="color: red; background: white;"></span>
-                    <% end %>
-                  </td>
-                </tr>
-                <% sum += line_item.price * line_item.quantity %>
-                <% items[line_item.id.to_s] = "quantity:" + line_item.quantity.to_s + ";price:" + sum.to_s %>
-              <% end %>
-            </table>
+                    <div class="col-md-7 cart-title">
+                      <%= link_to(line_item.product.title, product_path(line_item.product.id)) %>
+                    </div>
+                  </div>
+                </td>
+                <td class="cart-price"><%= line_item.price %> Руб.</td>
+                <td class="cart-quantity">
+                  <span class="number-plus-minus">
+                    <%= number_field_tag(:quantity, line_item.quantity, class: "quantity quantity-in-cart", id: line_item.id.to_s,  step: 1, min: 1, pattern: "^[0-9]+$") %> <span>шт.</span>
+                  </span>
+                </td>
+                <td class="cart-cost" id="cart-cost-<%= line_item.id.to_s %>"><%= line_item.price * line_item.quantity %> Руб.</td>
+                <td class="cart-status" id="cart-status-<%= line_item.id.to_s %>">
+                  <% if line_item.overflow > 0 and (line_item.overflow != line_item.quantity) %>
+                    <span><%= image_tag("yellow.gif") %></span>
+                    <span>Частично в наличии</span>
+                  <% elsif line_item.overflow == line_item.quantity %>
+                    <span><%= image_tag("grey.gif") %></span>
+                    <span>Под заказ</span>
+                  <% else %>
+                    <span><%= image_tag("green.gif") %></span>
+                    <span>На складе</span>
+                  <% end %>
+                </td>
+                <td>
+                  <%= button_to carts_remove_from_cart_modal_path(id: line_item.product.id), id: "delete-glyphicons", remote: true do %>
+                    <span class="glyphicon glyphicon-remove-circle" style="color: red; background: white;"></span>
+                  <% end %>
+                </td>
+              </tr>
+              <% sum += line_item.price * line_item.quantity %>
+              <% items[line_item.id.to_s] = "quantity:" + line_item.quantity.to_s + ";price:" + sum.to_s %>
+            <% end %>
+          </table>
+        </div>
+        <div class="cart-total">
+          <div class="row">
+            <div class="col-md-6 pull-right cart-total-price"><span>Общая стоимость:</span> <%= sum %> Руб.</div>
           </div>
-          <div class="cart-total">
-            <div class="row">
-              <div class="col-md-6 pull-right cart-total-price"><span>Общая стоимость:</span> <%= sum %> Руб.</div>
+        </div>
+        <div class="cart-buttons">
+          <div class="row">
+            <div class="col-sm-6 stay-but">
+              <button type="button" data-dismiss="modal" aria-hidden="true"><span></span>Продолжить покупки</button>
+            </div>
+            <div class="col-sm-6 buy-but">
+              <a href="<%= new_order_path %>">
+                <button type="button"><span></span>Оформить заказ</button>
+              </a>
             </div>
           </div>
-          <div class="cart-buttons">
-            <div class="row">
-              <div class="col-sm-6 stay-but">
-                <button type="button" data-dismiss="modal" aria-hidden="true"><span></span>Продолжить покупки</button>
-              </div>
-              <div class="col-sm-6 buy-but">
-                <a href="<%= new_order_path %>">
-                  <button type="button"><span></span>Оформить заказ</button>
-                </a>
-              </div>
-            </div>
-          </div>
-        <% end %>
+        </div>
       </div>
-
       <div class="quick-order">
         <%= form_tag(orders_send_order_email_path, method: "post") do %>
           <h3>Быстрый заказ без оформления:</h3>
@@ -664,5 +672,8 @@
         <% end %>
       </div>
     </div>
+    <% else %>
+      <h2>Вы пока не добавили товар в корзину</h2>
+    <% end %>
   </div>
 </div>
