@@ -208,7 +208,7 @@ jQuery(document).ready(function(){
 	jQuery('.apply-tags li').click(function(){
 	jQuery(this).toggleClass("active")
 	})
-})
+});
 
 
 

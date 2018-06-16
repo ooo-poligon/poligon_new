@@ -74,6 +74,7 @@ class LineItemsController < ApplicationController
     end
     stock = line_item.product.quantity.nil? ? 0 : line_item.product.quantity.stock.to_i
     overflow = quantity.to_i - stock
+    line_item.update(overflow: overflow)
     respond_to do |format|
       format.json { render json: {
           line_item_id: line_item.id,

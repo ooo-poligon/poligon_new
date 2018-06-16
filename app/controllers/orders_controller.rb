@@ -55,23 +55,29 @@
   end
 
   def send_order_email
-    order = Order.new(phone: params[:phone])
-    order.save
-    line_items = params[:items].to_unsafe_h
-    line_items.each do |id, item|
-      line_values = to_hash item
-      line_item = LineItem.find(id)
-      line_item.update(quantity: line_values['quantity'].to_i, price: line_values['price'].to_f, order_id: order.id, cart_id: nil)
-    end
+    @phone = params[:phone] ? params[:phone] : params[:phone_wait]
+    @name = params[:name]
+    @email = params[:email]
+    @address = params[:address]
+    @requisites = params[:requisites]
 
-    if params[:phone] != ''
-      @phone = params[:phone]
-      UserMailer.products_order_email(@phone, order).deliver_now
+    if @phone != ''
+      order = Order.new(phone: @phone)
+      order.save
+      line_items = params[:items].to_unsafe_h
+      line_items.each do |id, item|
+        line_values = to_hash item
+        line_item = LineItem.find(id)
+        line_item.update(quantity: line_values['quantity'].to_i, price: line_values['price'].to_f, order_id: order.id, cart_id: nil)
+      end
+
+      UserMailer.products_order_email(@phone, order, @name, @email, @address, @requisites).deliver_now
       respond_to do |format|
         format.html { redirect_to root_url, notice: {title: 'Спасибо, мы получили Вашу заявку.', message: ' В ближайшее время менеджер свяжется с Вами.'}}
       end
     else
-      flash[:error] = "Поле e-mail не заполнено!"
+      # flash[:error] = "Поле e-mail не заполнено!"
+      redirect_to new_order_url, notice: "Поле e-mail не заполнено!"
     end
   end
 

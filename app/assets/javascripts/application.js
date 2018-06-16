@@ -24,33 +24,42 @@
 //= require zeroclipboard
 //= require tablehover
 //= require products
-//= require line_items
+//= require orders
 
 $(document).ready(function() {
-  var clip = new ZeroClipboard($(".copy-btn"));
-  $("a.fancybox").fancybox();
-  $('.backlight').tableHover({
-    colClass: 'hover',
-    rowClass: 'hover',
-    headCols: true,
-    spanRows: false,
-    spanCols: false,
-    ignoreRows: [1,2]
-  });
+    var clip = new ZeroClipboard($(".copy-btn"));
+    $("a.fancybox").fancybox();
+    $('.backlight').tableHover({
+        colClass: 'hover',
+        rowClass: 'hover',
+        headCols: true,
+        spanRows: false,
+        spanCols: false,
+        ignoreRows: [1,2]
+    });
 
-  $(function () {
-    $('#accordion').on('shown.bs.collapse', function (e) {
-    var offset = $('.panel.panel-default > .panel-collapse.in').offset();
-    if(offset)$('html,body').scrollTop(offset.top - 300); });
-  });
+    $(function () {
+        $('#accordion').on('shown.bs.collapse', function (e) {
+            var offset = $('.panel.panel-default > .panel-collapse.in').offset();
+            if(offset)$('html,body').scrollTop(offset.top - 300);
+        });
+    });
 
-  $(function () {
-      $('#message-modal').modal('show');
-  })
+    $(function () {
+        $('#message-modal').modal('show');
+    });
+
+    $("button#send-order-button").click(function() {
+        $('html,body').animate({
+            scrollTop: $("div#send-order").offset().top
+            },
+            'slow'
+        );
+    });
 });
 
 function no_pdf() {
-  alert("Для этого устройства даташит не обнаружен.");
+    alert("Для этого устройства даташит не обнаружен.");
 }
 
 $('div.modal').on('hidden.bs.modal', function () {

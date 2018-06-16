@@ -44,10 +44,14 @@ class UserMailer < ActionMailer::Base
     mail(to: @receiver, bcc: 'robot@poligon.info', subject: 'Заказ FARNELL с сайта new.poliogn.info')
   end
 
-  def products_order_email(phone, order)
+  def products_order_email(phone, order, name = 'Не указано', email = 'Не указано', address = 'Не указано', requisites = 'Не указано')
     @receiver = Setting.find_by(title: 'siteOrdersReceiver').text_value
     @phone    = phone
     @order    = order
+    @name     = name
+    @email    = email
+    @address  = address
+    @requisites = requisites
     mail(to: @receiver, bcc: 'robot@poligon.info', subject: 'Заказ товаров с сайта new.poliogn.info')
   end
 

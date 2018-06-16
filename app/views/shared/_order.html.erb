@@ -1,5 +1,5 @@
 <div class="cart-table">
-  <% items = {} %>
+  <% items = locals[:items] %>
   <% if @current_cart.line_items.count > 0 %>
     <div>
       <div>
@@ -14,19 +14,18 @@
           </tr>
           <% sum = 0 %>
           <% @current_cart.line_items.each do |line_item| %>
-            <% productImage = DataFile.where('owner_id = ? and file_type_id = 1', line_item.product.id).first %>
-            <% quantity = !Quantity.find_by(product_id: line_item.product.id).nil? && Quantity.find_by(product_id: line_item.product.id).stock > 0 ? Quantity.find_by(product_id: line_item.product.id).stock : 0 %>
+            <% product_image = DataFile.where('owner_id = ? and file_type_id = 1', line_item.product.id).first %>
             <tr>
               <td class="cart-name">
                 <div class="row">
                   <div class="col-md-5 cart-photo">
-                    <% unless productImage.nil? %>
-                      <% if productImage.path[0] != 'c' %>
-                        <% imagePath = productImage.path.gsub("\\\\Server03\\бд_сайта\\poligon_images", "http://www.poligon.info/images").gsub("\\", "/") %>
+                    <% if !product_image.nil? %>
+                      <% if product_image.path[0] != 'c' %>
+                        <% image_path = product_image.path.gsub("\\\\Server03\\бд_сайта\\poligon_images", "http://www.poligon.info/images").gsub("\\", "/") %>
                       <% else %>
-                        <% imagePath = productImage.path.gsub("c:\\poligon_images", "http://www.poligon.info/images").gsub("\\", "/") %>
+                        <% image_path = product_mage.path.gsub("c:\\poligon_images", "http://www.poligon.info/images").gsub("\\", "/") %>
                       <% end %>
-                      <%= link_to(image_tag(imagePath, class: "img-responsive center-block product-image-container"), product_path(line_item.product.id)) %>
+                      <%= link_to(image_tag(image_path, class: "img-responsive center-block product-image-container"), product_path(line_item.product.id)) %>
                     <% else %>
                       <p></p>
                     <% end %>
@@ -39,17 +38,20 @@
               <td class="cart-price"><%= line_item.price %> Руб.</td>
               <td class="cart-quantity">
                 <span class="number-plus-minus">
-                  <%= number_field_tag(:quantity, line_item.quantity, class: "quantity", id: line_item.id.to_s,  step: 1, min: 1, pattern: "^[0-9]+$") %> <span>шт.</span>
+                  <%= number_field_tag(:quantity, line_item.quantity, class: "quantity-in-cart", id: line_item.id.to_s,  step: 1, min: 1, pattern: "^[0-9]+$") %> <span>шт.</span>
                 </span>
               </td>
               <td class="cart-cost" id="cart-cost-<%= line_item.id.to_s %>"><%= line_item.price * line_item.quantity %> Руб.</td>
-              <td class="cart-status">
-                <% if quantity > 0 %>
+              <td class="cart-status" id="cart-status-<%= line_item.id.to_s %>">
+                <% if line_item.overflow > 0 and (line_item.overflow != line_item.quantity) %>
+                  <span><%= image_tag("yellow.gif") %></span>
+                  <span>Частично в наличии</span>
+                <% elsif line_item.overflow == line_item.quantity %>
+                  <span><%= image_tag("grey.gif") %></span>
+                  <span>Под заказ</span>
+                <% else %>
                   <span><%= image_tag("green.gif") %></span>
                   <span>На складе</span>
-                <% else %>
-                  <span><%= image_tag("grey.gif") %></span>
-                  <span>Под заказ. </span>
                 <% end %>
               </td>
               <td>
@@ -83,10 +85,10 @@
     <% end %>
     <div class="row">
       <div class="col-sm-7 quick-phone">
-        <%= phone_field_tag(:phone, nil, {class: "phone-send", placeholder: "+7 ( ___ ) ___-__-__"}) %>
+        <%= phone_field_tag(:phone_wait, nil, {class: "phone-send", placeholder: "+7 ( ___ ) ___-__-__"}) %>
       </div>
       <div class="col-sm-5 quick-button">
-        <button type="submit">Отправить заказ</button>
+        <button type="submit">Жду звонка</button>
       </div>
     </div>
     <div class="quick-order-hint">
@@ -102,10 +104,7 @@
       </a>
     </div>
     <div class="col-sm-6 buy-but">
-      <%= form_tag(orders_path(cart: @current_cart.id), method: "post") do %>
-        <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-        <button type="submit"><span></span>Оформить заказ</button>
-      <% end %>
+      <button type="submit" id="send-order-button"><span></span>Оформить заказ</button>
     </div>
   </div>
 </div>

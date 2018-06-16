@@ -1,48 +1,56 @@
+<% items = {} %>
 <div class="cart">
   <div class="container">
     <h1>Оформление заказа</h1>
-    <%= render 'shared/order' %>
+    <%= render 'shared/order', locals: {items: items} %>
 
-    <div class="phone-order">
-      <form class="phone-order-form">
-        <h3>Заказать без оформления</h3>
-        <div class="phone-order-hint">Оставьте свой телефон и наш менеджер с Вами свяжется</div>
-        <div class="phone-input"><input type="text" class="phone-send" placeholder="+7 ( ___ ) ___-__-__"></div>
-        <div class="phone-order-button"><button type="submit">Жду звонка</button></div>
-        <div class="phone-order-hint">
-          Нажимая на кнопку "Отправить заказ" Вы даете согласие на обработку <a href="<%= company_personal_path %>">персональных данных.</a>
-        </div>
-      </form>
-    </div>
+    <!--<div class="phone-order">-->
+      <!--<form class="phone-order-form">-->
+        <!--<h3>Заказать без оформления</h3>-->
+        <!--<div class="phone-order-hint">Оставьте свой телефон и наш менеджер с Вами свяжется</div>-->
+        <!--<div class="phone-input"><input type="text" class="phone-send" placeholder="+7 ( ___ ) ___-__-__"></div>-->
+        <!--<div class="phone-order-button"><button type="submit">Жду звонка</button></div>-->
+        <!--<div class="phone-order-hint">-->
+          <!--Нажимая на кнопку "Отправить заказ" Вы даете согласие на обработку <a href="<%#= company_personal_path %>">персональных данных.</a>-->
+        <!--</div>-->
+      <!--</form>-->
+    <!--</div>-->
   </div>
 </div>
 
-<div class="order">
+<div class="order" id="send-order">
   <form class="order-form">
+
+  </form>
+  <%= form_tag(orders_send_order_email_path, method: "post", class: "order-form") do %>
+    <% items.each do |key, item| %>
+      <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+      <%= hidden_field_tag "items["+key.to_s+"]", item %>
+    <% end %>
     <div class="container">
       <div class="row">
         <div class="col-sm-6 order-left">
           <div class="order-input req">
             <label>ФИО:</label>
-            <input type="text" id="name" onkeyup="checkParams()" required>
+            <input type="text" id="name" name="name" onkeyup="checkParams()" required>
           </div>
           <div class="order-input req">
             <label>Телефон:</label>
-            <input type="text" id="phone" class="phone-send" onkeyup="checkParams()" required>
+            <input type="text" id="phone" name="phone" class="phone-send" onkeyup="checkParams()" required>
           </div>
           <div class="order-input req">
             <label>Адрес e-mail (для подтверждения, счета):</label>
-            <input type="text" id="email" onkeyup="checkParams()" required>
+            <input type="text" id="email" name="email" onkeyup="checkParams()" required>
           </div>
           <div class="order-input">
             <label>Предполагаемый адрес доставки или «самовывоз»:</label>
-            <input type="text">
+            <input type="text" id="address" name="address">
           </div>
         </div>
         <div class="col-sm-6 order-right">
           <div class="order-textarea">
             <label>Реквизиты для выставления счета (при наличии):</label>
-            <textarea></textarea>
+            <textarea id="requisites" name="requisites"></textarea>
           </div>
         </div>
       </div>
@@ -54,5 +62,5 @@
         <a href="<%= company_personal_path %>">персональных данных.</a>
       </div>
     </div>
-  </form>
+  <% end %>
 </div>
