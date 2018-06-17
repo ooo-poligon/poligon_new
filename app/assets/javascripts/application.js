@@ -23,6 +23,7 @@
 //= require search
 //= require zeroclipboard
 //= require tablehover
+//= require images
 //= require products
 //= require orders
 

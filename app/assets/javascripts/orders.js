@@ -8,11 +8,11 @@ $("input.quantity-in-cart").change(function() {
         data: {"quantity": $(this).val(), "line_item_id": $(this).attr("id")}
     }).done(function(response) {
         if (response.overflow > 0 && response.stock !== 0) {
-            $("td#cart-status-" + response.line_item_id).html('<span><img src="/images/yellow.gif"></span> <span>Частично в наличии</span>');
+            $("td#cart-status-" + response.line_item_id).html('<span><img src='+image_path("yellow.gif")+'></span> <span>Частично в наличии</span>');
         } else if (response.stock === 0) {
-            $("td#cart-status-" + response.line_item_id).html('<span><img src="/images/grey.gif"></span> <span>Под заказ</span>');
+            $("td#cart-status-" + response.line_item_id).html('<span><img src='+image_path("grey.gif")  +'></span> <span>Под заказ</span>');
         } else {
-            $("td#cart-status-" + response.line_item_id).html('<span><img src="/images/green.gif"></span> <span>На складе</span>');
+            $("td#cart-status-" + response.line_item_id).html('<span><img src='+image_path("green.gif") +'></span> <span>На складе</span>');
         }
         $("td#cart-cost-" + response.line_item_id).html(response.price + " Руб.");
         $("div.cart-total-price").html("<span>Общая стоимость:</span> " + response.total + " Руб.");
