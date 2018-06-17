@@ -1,4 +1,3 @@
-<% product_image = DataFile.where('owner_id = ? and file_type_id = 1', locals[:product_array][0].id).first %>
 <% product_pdf   = DataFile.where("owner_id = ? and file_type_id = 2", locals[:product_array][0].id).first %>
 <% product = locals[:product_array][0] %>
 
@@ -7,7 +6,7 @@
     <div class="col-xs-7 product-left">
       <div class="col-xs-4 product-photo">
         <div class="product-photo-img">
-          <%= render "shared/product_image", locals: {product_image: product_image} %>
+          <%= render "shared/product_image", locals: {product: product} %>
         </div>
         <!--<div class="product-adv"><a href="card.html#tab-advant" class="to-advant" target="_blank">Преимущества</a></div>-->
       </div>

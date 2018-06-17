@@ -14,12 +14,11 @@
           </tr>
           <% sum = 0 %>
           <% @current_cart.line_items.each do |line_item| %>
-            <% product_image = DataFile.where('owner_id = ? and file_type_id = 1', line_item.product.id).first %>
             <tr>
               <td class="cart-name">
                 <div class="row">
                   <div class="col-md-5 cart-photo">
-                    <%= render "shared/product_image", locals: {product_image: product_image} %>
+                    <%= render "shared/product_image", locals: {product: line_item.product} %>
                   </div>
                   <div class="col-md-7 cart-title">
                     <%= link_to(line_item.product.title, product_path(line_item.product.id)) %>
@@ -57,7 +56,11 @@
         </table>
         <div class="cart-total">
           <div class="row">
-            <div class="col-md-6 cart-spec"><a href="#"><span></span>Скачать спецификацию в формате excel</a></div>
+            <div class="col-md-6 cart-spec">
+              <% if get_excel_spec @current_cart %>
+                <a href="#"><span></span>Скачать спецификацию в формате excel</a>
+              <% end %>
+            </div>
             <div class="col-md-6 cart-total-price"><span>Общая стоимость:</span> <%= sum %> Руб.</div>
           </div>
         </div>

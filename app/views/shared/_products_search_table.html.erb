@@ -11,8 +11,7 @@
   <tbody>
     <% locals[:products].results.sort_by! {|obj| obj.title}.each do |product| %>
       <tr>
-        <% product_image = DataFile.where('owner_id = ? and file_type_id = 1', product.id).first %>
-        <%= render "shared/product_image", locals: {product_image: product_image} %>
+        <%= render "shared/product_image", locals: {product: product} %>
         <td style="vertical-align: top;">
           <table class="table table-responsive" style="height: 100%">
             <!--<tr>
