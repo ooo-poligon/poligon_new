@@ -82,11 +82,11 @@ class FeedbackController < ApplicationController
   end
 
   def farnell_order
-    unless params[:name] == '' or
-           params[:email] == '' or
-           params[:company] == '' or
-           params[:phone] == '' or
-           params[:order] == ''
+    if params[:name] != '' or
+       params[:email] != '' or
+       params[:company] != '' or
+       params[:phone] != '' or
+       params[:order] != ''
 
       @name    = params[:name]
       @email   = params[:email]
@@ -109,9 +109,10 @@ class FeedbackController < ApplicationController
     email   = params[:email]
     phone   = params[:phone]
     message = params[:message]
+    product = Product.find(params[:product_id]).title
 
     if email != ''
-      UserMailer.request_question_email(city, name, company, email, phone, message).deliver_now
+      UserMailer.request_question_email(city, name, company, email, phone, message, product).deliver_now
       respond_to do |format|
         format.html { redirect_to root_url, notice: {title: 'Спасибо, мы получили Ваш запрос.', message: ' В ближайшее время менеджер свяжется с Вами.'}}
       end

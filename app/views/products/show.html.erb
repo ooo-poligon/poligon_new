@@ -2,6 +2,7 @@
 <%= render "shared/breadcrumb_search", locals: { product: @product } %>
 
 <% image_path = "" %>
+<% product_pdf   = DataFile.where("owner_id = ? and file_type_id = 2", @product.id).first %>
 <% if !@productImage.nil? and @productImage.name != '' %>
   <% if @productImage.path[0] != 'c' %>
     <% image_path = @productImage.path.gsub("\\\\Server03\\бд_сайта\\poligon_images", "http://www.poligon.info/images").gsub("\\", "/") %>
@@ -41,11 +42,11 @@
                 <div class="product-price">
                   Цена:
                   <!--<span class="product-old-price">-->
-                    <!--<% if @retail_price == 0 %>-->
+                    <!--<%# if @retail_price == 0 %>-->
                       <!--<span class="price">Звоните:<br>(812)325-42-20</span>-->
-                    <!--<% else %>-->
-                      <!--<span class="price"><%= @retail_price.round(2).to_s + ' руб.' %></span>-->
-                    <!--<% end %>-->
+                    <!--<%# else %>-->
+                      <!--<span class="price"><%#= @retail_price.round(2).to_s + ' руб.' %></span>-->
+                    <!--<%# end %>-->
                   <!--</span>-->
                   <span class="product-new-price">
                   <% if @retail_price == 0 %>
@@ -120,7 +121,6 @@
             </div>
             <div class="col-sm-6 card-order-docs">
               <div class="doc-button">
-                <% product_pdf   = DataFile.where("owner_id = ? and file_type_id = 2", @product.id).first %>
                 <% if product_pdf != nil and product_pdf.path != "c:\\poligon_datasheets\\" and product_pdf.path != "\\\\Server03\\бд_сайта\\poligon_datasheets\\" %>
                   <%= link_to( "<span></span>Скачать документацию".html_safe, content_download_pdf_path(product_id: @product.id)) %>
                 <% end %>
@@ -145,8 +145,18 @@
     </div>
     <div class="card-description">
       <ul class="tabs card-tabs">
-        <li><p>Общая информация</p></li>
-        <li><p><span class="card-pdf">pdf</span>и сертификаты</p></li>
+        <% if
+           (!@product.full_description.nil? and !@product.full_description.empty?) or
+           (!@sortedArray.nil? and !@sortedArray.empty?) or
+           (!@functions.nil? and !@functions.empty?) or
+           (!(prop_image_path_for(@product, 'plug', 3 )).nil?) or
+           (!(prop_image_path_for(@product, 'dim', nil)).nil?)
+        %>
+          <li><p>Общая информация</p></li>
+        <% end %>
+        <% if !product_pdf.nil? and product_pdf.path != "c:\\poligon_datasheets\\" and product_pdf.path != "\\\\Server03\\бд_сайта\\poligon_datasheets\\" %>
+          <li><p><span class="card-pdf">pdf</span>и сертификаты</p></li>
+        <% end %>
         <li id="tab-advant"><p>Преимущества</p></li>
         <li><p>Цены и наличие</p></li>
         <li><a href="#fb-form">Задать вопрос о товаре</a></li>
@@ -176,13 +186,46 @@
         </div>
       </div>
       <div class="card-box" style="display: none;">
-        инфо 2
+        <div class="doc-button">
+          <% if !product_pdf.nil? and product_pdf.path != "c:\\poligon_datasheets\\" and product_pdf.path != "\\\\Server03\\бд_сайта\\poligon_datasheets\\" %>
+            <%= link_to( "<span></span>Скачать документацию".html_safe, content_download_pdf_path(product_id: @product.id)) %>
+          <% end %>
+        </div>
       </div>
       <div class="card-box" id="advant" style="display: none;">
         тут преимущества
       </div>
       <div class="card-box" style="display: none;">
-        инфо 4
+        <div class="product-price">
+          Цена:
+          <!--<span class="product-old-price">-->
+          <!--<%# if @retail_price == 0 %>-->
+          <!--<span class="price">Звоните:<br>(812)325-42-20</span>-->
+          <!--<%# else %>-->
+          <!--<span class="price"><%#= @retail_price.round(2).to_s + ' руб.' %></span>-->
+          <!--<%# end %>-->
+          <!--</span>-->
+          <span class="product-new-price">
+                  <% if @retail_price == 0 %>
+                    <span class="price">Звоните:<br>(812)325-42-20</span>
+                  <% else %>
+                    <span class="price"><%= @retail_price.round(2).to_s + ' руб.' %></span>
+                  <% end %>
+                </span>
+        </div>
+        <div class="product-list">
+          <ul>
+            <li>
+              Наличие:
+              <% if !Quantity.find_by(product_id: @product.id).nil? && Quantity.find_by(product_id: @product.id).stock > 0 %>
+                <%= Quantity.find_by(product_id: @product.id).stock.to_s + ' шт.' %>
+              <% else %>
+                <i>Под заказ.</i>
+                <!--<i>Срок поставки: <%#= @product.delivery_time %></i>-->
+              <% end %>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>

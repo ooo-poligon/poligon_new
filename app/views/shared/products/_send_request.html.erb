@@ -2,6 +2,7 @@
   <div class="fb-content container">
     <h2>Задать вопрос / отправить запрос:</h2>
     <form id="fb-form" name="fb-form" method="post" action="<%= feedback_send_request_or_question_path %>">
+      <%= hidden_field_tag :product_id, @product.id %>
       <div class="row special-row">
         <div class="col-sm-6 form-input">
           <input class="modal-input city-send" name="city" placeholder="Город" type="text">
