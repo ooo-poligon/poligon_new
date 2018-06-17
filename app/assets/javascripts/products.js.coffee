@@ -7,8 +7,11 @@ $('document').ready ->
   $('img.xactive').trigger 'click'
 
   $('#special').on 'shown.bs.modal', ->
-    oldQuantity = $('input#modal-special-quantity').val()
+    oldQuantity = 60
     newQuantity = $('input#quantity.quantity-product').val()
+    if ($('input.quantity-changed').length && ($('input.quantity-changed').val() > 1))
+      newQuantity = $('input.quantity-changed').val()
+      $("input.quantity-changed").removeClass("quantity-changed")
     if newQuantity
       $('input#modal-special-quantity').val newQuantity
     else

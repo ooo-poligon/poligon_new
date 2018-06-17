@@ -1,4 +1,5 @@
 class CategoriesController < ApplicationController
+
   def index
     @upLevelCategories = Category.available.where(parent: 1)
     @addCBR = Setting.find_by title: 'addCBR'
@@ -53,6 +54,13 @@ class CategoriesController < ApplicationController
           @products.push(one_product_array)
         end
       end
+    end
+  end
+
+  def quantity_cash
+    quantity_cash = params[:quantity]
+    respond_to do |format|
+      format.json {render json: {quantity: quantity_cash}}
     end
   end
 end

@@ -26,6 +26,7 @@
 //= require images
 //= require products
 //= require orders
+//= require categories
 
 $(document).ready(function() {
     var clip = new ZeroClipboard($(".copy-btn"));
