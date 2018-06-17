@@ -1,12 +1,12 @@
 <p id="notice"><%= notice %></p>
 <%= render "shared/breadcrumb_search", locals: { product: @product } %>
 
-<% imagePath = "" %>
-<% if !@productImage.nil? %>
+<% image_path = "" %>
+<% if !@productImage.nil? and @productImage.name != '' %>
   <% if @productImage.path[0] != 'c' %>
-    <% imagePath = @productImage.path.gsub("\\\\Server03\\бд_сайта\\poligon_images", "http://www.poligon.info/images").gsub("\\", "/") %>
+    <% image_path = @productImage.path.gsub("\\\\Server03\\бд_сайта\\poligon_images", "http://www.poligon.info/images").gsub("\\", "/") %>
   <% else %>
-    <% imagePath = @productImage.path.gsub("c:\\poligon_images", "http://www.poligon.info/images").gsub("\\", "/") %>
+    <% image_path = @productImage.path.gsub("c:\\poligon_images", "http://www.poligon.info/images").gsub("\\", "/") %>
   <% end %>
 <% end %>
 <div class="card-block">
@@ -17,13 +17,13 @@
         <div class="xzoom-container">
           <%= link_to(image_tag('card_zoom.png', class: "zoomik", id: "zoomik", alt: ''), "#gallery", class: "zoom-ik") %>
           <div class="main-photo">
-            <%= image_tag(imagePath, class: "xzoom5", id: "xzoom-magnific", original: imagePath, alt: '', style: "width: 271.984px;") %>
+            <%= image_tag(image_path, class: "xzoom5", id: "xzoom-magnific", original: image_path, alt: '', style: "width: 271.984px;") %>
           </div>
           <div id="gallery" class="xzoom-thumbs">
-            <% if @productImage != nil %>
-              <%= link_to(image_tag(imagePath, class: "xzoom-gallery xactive", width: '40', xpreview: imagePath, title: '', alt: ''), imagePath) %>
+            <% if !@productImage.nil? %>
+              <%= link_to(image_tag(image_path, class: "xzoom-gallery xactive", width: '40', xpreview: image_path, title: '', alt: ''), image_path) %>
             <% else %>
-              <p style="font-weight: bold; color: red;">нет изображения</p>
+              <%= image_tag("nophoto.png", class: "img-responsive center-block product-image-container") %>
             <% end %>
           </div>
           <div class="card-logo">

@@ -558,6 +558,10 @@
         });
     });
 
+    $(document).ready(function(){
+        $('.phone-send').mask('+7 ( 999 ) 999-99-99');
+    });
+
 </script>
 <button class="x" type="button" data-dismiss="modal" aria-hidden="true"></button>
 <div class="modal-body">
@@ -579,22 +583,12 @@
             </tr>
             <% sum = 0 %>
             <% @cart.line_items.each do |line_item| %>
-              <% productImage = DataFile.where('owner_id = ? and file_type_id = 1', line_item.product.id).first %>
+              <% product_image = DataFile.where('owner_id = ? and file_type_id = 1', line_item.product.id).first %>
               <tr  id="line-item-<%= line_item.id.to_s %>">
-                <%# items[line_item.product.id] = line_item.quantity %>
                 <td class="cart-name">
                   <div class="row">
                     <div class="col-md-5 cart-photo">
-                      <% unless productImage.nil? %>
-                        <% if productImage.path[0] != 'c' %>
-                          <% imagePath = productImage.path.gsub("\\\\Server03\\бд_сайта\\poligon_images", "http://www.poligon.info/images").gsub("\\", "/") %>
-                        <% else %>
-                          <% imagePath = productImage.path.gsub("c:\\poligon_images", "http://www.poligon.info/images").gsub("\\", "/") %>
-                        <% end %>
-                        <%= link_to(image_tag(imagePath, class: "img-responsive center-block product-image-container"), product_path(line_item.product.id)) %>
-                      <% else %>
-                        <p></p>
-                      <% end %>
+                      <%= render "shared/product_image", locals: {product_image: product_image} %>
                     </div>
                     <div class="col-md-7 cart-title">
                       <%= link_to(line_item.product.title, product_path(line_item.product.id)) %>
@@ -660,14 +654,14 @@
               <%= phone_field_tag(:phone, nil, {class: "phone-send", placeholder: "+7 ( ___ ) ___-__-__"}) %>
             </div>
             <div class="col-sm-3 quick-button">
-              <button type="submit">Отправить заказ</button>
+              <button type="submit">Жду звонка</button>
             </div>
             <div class="col-sm-4 quick-message">
               Все вопросы согласует менеджер<br> при подтверждении заказа.
             </div>
           </div>
           <div class="quick-order-hint">
-            Нажимая на кнопку "Отправить заказ" Вы даете согласие на обработку <a href="<%= company_personal_path %>">персональных данных.</a>
+            Нажимая на кнопку "Жду звонка" Вы даете согласие на обработку <a href="<%= company_personal_path %>">персональных данных.</a>
           </div>
         <% end %>
       </div>

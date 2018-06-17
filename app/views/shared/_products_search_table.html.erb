@@ -11,20 +11,8 @@
   <tbody>
     <% locals[:products].results.sort_by! {|obj| obj.title}.each do |product| %>
       <tr>
-        <% productImage = DataFile.where('owner_id = ? and file_type_id = 1', product.id).first %>
-        <% unless productImage.nil? %>
-          <% if productImage.path[0] != 'c' %>
-            <%# productImage.path.gsub!(productImage.path[0], 'c') %>
-            <% imagePath = productImage.path.gsub("\\\\Server03\\бд_сайта\\poligon_images", "http://www.poligon.info/images").gsub("\\", "/") %>
-          <% else %>
-            <% imagePath = productImage.path.gsub("c:\\poligon_images", "http://www.poligon.info/images").gsub("\\", "/") %>
-          <% end %>
-          <%# imagePath = productImage.path.gsub!("c:\\poligon_images", "http://www.poligon.info/images")
-            .gsub("\\\\Server03\\бд_сайта\\poligon_images", "http://www.poligon.info/images").gsub!("\\", "/") %>
-          <td><%= link_to image_tag(imagePath, class: "img-responsive center-block product-image-container"), imagePath, class: "fancybox" %></td>
-        <% else %>
-          <td></td>
-        <% end %>
+        <% product_image = DataFile.where('owner_id = ? and file_type_id = 1', product.id).first %>
+        <%= render "shared/product_image", locals: {product_image: product_image} %>
         <td style="vertical-align: top;">
           <table class="table table-responsive" style="height: 100%">
             <!--<tr>
@@ -33,7 +21,7 @@
               </td>
             </tr>-->
             <tr>
-            <% unless product.article.nil? or product.article == '' %>
+            <% if !product.article.nil? or product.article != '' %>
               <td>
                 <span class="product-title">
                   <%= link_to "(" + product.article + ") " + product.title, product %>
@@ -62,7 +50,7 @@
           <td style="vertical-align: top;">
             <table class="table table-responsive" style="width: 100%">
               <tr>
-              <% unless product.price == 0 %>
+              <% if product.price != 0 %>
                 <td style="vertical-align: top;">
                   <%= render partial: 'shared/product_prices_table_header' %>
                   <%= render partial: 'shared/product_prices_table', locals: {product: product} %>

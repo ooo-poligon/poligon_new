@@ -19,16 +19,7 @@
               <td class="cart-name">
                 <div class="row">
                   <div class="col-md-5 cart-photo">
-                    <% if !product_image.nil? %>
-                      <% if product_image.path[0] != 'c' %>
-                        <% image_path = product_image.path.gsub("\\\\Server03\\бд_сайта\\poligon_images", "http://www.poligon.info/images").gsub("\\", "/") %>
-                      <% else %>
-                        <% image_path = product_mage.path.gsub("c:\\poligon_images", "http://www.poligon.info/images").gsub("\\", "/") %>
-                      <% end %>
-                      <%= link_to(image_tag(image_path, class: "img-responsive center-block product-image-container"), product_path(line_item.product.id)) %>
-                    <% else %>
-                      <p></p>
-                    <% end %>
+                    <%= render "shared/product_image", locals: {product_image: product_image} %>
                   </div>
                   <div class="col-md-7 cart-title">
                     <%= link_to(line_item.product.title, product_path(line_item.product.id)) %>
@@ -92,7 +83,7 @@
       </div>
     </div>
     <div class="quick-order-hint">
-      Нажимая на кнопку "Отправить заказ" Вы даете согласие на обработку <a href="<%= company_personal_path %>">персональных данных.</a>
+      Нажимая на кнопку "Жду звонка" Вы даете согласие на обработку <a href="<%= company_personal_path %>">персональных данных.</a>
     </div>
   <% end %>
 </div>

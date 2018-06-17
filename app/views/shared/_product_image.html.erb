@@ -1,0 +1,12 @@
+<% product_image = locals[:product_image] %>
+<% image_class   = locals[:image_class  ] # "fancybox" %>
+<% if !product_image.nil? and product_image.name != '' %>
+  <% if product_image.path[0] != 'c' %>
+    <% image_path = product_image.path.gsub("\\\\Server03\\бд_сайта\\poligon_images", "http://www.poligon.info/images").gsub("\\", "/") %>
+  <% else %>
+    <% image_path = product_image.path.gsub("c:\\poligon_images", "http://www.poligon.info/images").gsub("\\", "/") %>
+  <% end %>
+  <%= link_to image_tag(image_path, class: "img-responsive center-block product-image-container"), image_path, class: image_class %>
+<% else %>
+  <%= image_tag("nophoto.png", class: "img-responsive center-block product-image-container") %>
+<% end %>
