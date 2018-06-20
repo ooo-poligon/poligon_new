@@ -1,42 +1,42 @@
-# -*- encoding : utf-8 -*-
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
+Tag.create(
+  [
+    { name: 'Реле времени' },
+    { name: 'Реле контроля' },
+    { name: 'Контакторы' },
+    { name: 'Автоматические выключатели' },
+    { name: 'Измеряющие преобразователи' },
+    { name: 'Modbus' },
+    { name: 'УПП' },
+    { name: 'Реле' },
+    { name: 'Экономия пространства' }
+  ]
+)
 
-# http://media.pragprog.com/titles/rails4/code/depot_b/db/seeds.rb
+Scope.create(
+  [
+    { name: 'Насосы и двигатели' },
+    { name: 'Альтернативная энергетика' },
+    { name: 'Энергосбережение и жкх' },
+    { name: 'Производство' },
+    { name: 'Мобильность' },
+    { name: 'Прочие примеры' }
+  ]
+)
 
-#---
-# Excerpted from "Agile Web Development with Rails",
-# published by The Pragmatic Bookshelf.
-# Copyrights apply to this code. It may not be used to create training material,
-# courses, books, articles, and the like. Contact us if you are in doubt.
-# We make no guarantees that this code is fit for any purpose.
-# Visit http://www.pragmaticprogrammer.com/titles/rails4 for more book information.
-#---
-#---
-# Excerpted from "Agile Web Development with Rails, 4rd Ed.",
-# published by The Pragmatic Bookshelf.
-# Copyrights apply to this code. It may not be used to create training material,
-# courses, books, articles, and the like. Contact us if you are in doubt.
-# We make no guarantees that this code is fit for any purpose.
-# Visit http://www.pragmaticprogrammer.com/titles/rails4 for more book information.
-#---
-# encoding: utf-8
-Product.delete_all
-
-Product.create(:title => 'G4PM690VSYL20',
-               :short_description =>
-                   %{<p>
-        Реле контроля фаз для трехфазных сетей, Многофункциональное,
-        Контроль напряжения на понижение, Контроль напряжения в заданном диапазоне,
-        Напряжение контролируемой сети Un=690/400VAC, Контроль чередования (последовательности) фаз,
-        Контроль фаз на обрыв, Подключаемый контроль асимметрии фаз,
-        Необязательное подключение нейтрального проводника (N), Определение обрыва нейтрали (N),
-        Напряжение питания определяется модулем питания TR3, 2 перекидных контакта (2CO)
-      </p>},
-               :image_url =>   'catalog/TELE/devices/G4PM690VSYL20_device.jpg',
-               :retail_price => 14381.00)
+Example.create(
+  [
+    {
+      scope_id: 1,
+      product_id: 274,
+      title: 'Защита насоса от сухого хода',
+      issue: 'Pumps that are used to move polluted liquids or water with lots of loose particles tend to loose efficiency after many hours of operation. That forces you to clean the impeller wheel. Cleaning the impeller is sometimes very quirky or nearly impossible as modern pumps are closed units. A cleaning procedure without external access would be very helpful.',
+      solution: 'Pumps that are used to move polluted liquids or water with lots of loose particles tend to loose efficiency after many hours of operation. That forces you to clean the impeller wheel. Cleaning the impeller is sometimes very quirky or nearly impossible as modern pumps are closed units. A cleaning procedure without external access would be very helpful.',
+      advantages: "- используем двигатель как датчик!
+                  - не требуется дополнительных приспособлений, проводов
+                  - не требует регулярного обслуживания и чистки (в отличие от погружных датчиков)
+                  - надежно закрыто в щите и защищено от изменения параметров
+                  - не может быть незаметного обрыва провода, т.к. параметры измеряются в цепи питания насоса (надежно!)
+                  - простое решение, легко подстраивается под мощность насоса при помощи трансформатора тока (достаточно одного трансформатора тока на один насос)"
+    }
+  ]
+)

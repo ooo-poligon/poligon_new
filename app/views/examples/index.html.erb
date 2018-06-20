@@ -1,0 +1,61 @@
+<div class="apply">
+  <div class="container">
+    <div class="row breadcrumbs">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="#">Решения и примеры применения</a></li>
+          <li class="breadcrumb-item">Защита насоса от сухого хода</li>
+        </ol>
+      </nav>
+    </div>
+  </div>
+
+  <div class="apply-search-block">
+    <div class="container">
+      <div class="row">
+        <div class="apply-title col-sm-8 col-md-10">
+          <h1>Решения и примеры применения</h1>
+        </div>
+        <div class="apply-clear col-sm-4 col-md-2">
+          <button type="reset">Cбросить все Х</button>
+        </div>
+      </div>
+      <div class="apply-search">
+        <input type="text" placeholder="Поиск">
+        <button class="search-button"></button>
+      </div>
+    </div>
+  </div>
+
+  <div class="apply-menu-block">
+    <div class="container">
+      <ul class="apply-menu">
+        <% @scopes.each do |scope| %>
+          <li><%= scope.name %></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+
+  <div class="apply-tags-block">
+    <div class="container">
+      <h3>Теги</h3>
+      <ul class="apply-tags">
+        <% @tags.each do |tag| %>
+          <li><%= tag.name %></li>
+        <% end %>
+      </ul>
+      <div class="apply-result-message">Найдено решений: <%= @examples.length %></div>
+    </div>
+  </div>
+
+  <div class="inside-apply">
+    <div class="container">
+      <div class="row">
+        <% @examples.each do |example| %>
+          <%= render 'shared/example_card', locals: {example: example} %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

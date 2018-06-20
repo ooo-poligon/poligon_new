@@ -55,7 +55,19 @@
             <%= render("shared/mainpage/modal_cart") %>
             <%= yield %>
           </div>
-          <% unless ['orders', 'categories', 'publications', 'products'].include? controller_name %>
+          <% unless ['orders', 'categories', 'publications', 'products', 'examples'].include? controller_name %>
+            <%= render "shared/mainpage/trio" %>
+            <%= render "shared/mainpage/partners" %>
+          <% end %>
+        </div>
+      <% elsif controller_name == 'examples' %>
+        <div class="col-sm-12 col-md-12 content">
+          <div class="row">
+            <%= render partial: "shared/mainpage/flash_messages", flash: flash %>
+            <%= render("shared/mainpage/modal_cart") %>
+            <%= yield %>
+          </div>
+          <% unless ['orders', 'categories', 'publications', 'products', 'examples'].include? controller_name %>
             <%= render "shared/mainpage/trio" %>
             <%= render "shared/mainpage/partners" %>
           <% end %>
@@ -82,7 +94,7 @@
 
 <% if controller_name == 'content' and action_name == 'home' %>
   <%= render("shared/mainpage/articles") %>
-  <%= render("shared/mainpage/apply") %>
+  <%= render("shared/mainpage/examples") %>
   <%= render("shared/mainpage/news") %>
 <% elsif controller_name == 'products' %>
   <%= render "shared/products/send_request" %>

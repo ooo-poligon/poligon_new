@@ -1,6 +1,10 @@
 # -*- encoding : utf-8 -*-
 Poligon::Application.routes.draw do
 
+  get 'examples/index'
+
+  get 'examples/show'
+
   resources :orders
   resources :line_items, except: [:index]
   resources :news_items, only: [:index, :show]

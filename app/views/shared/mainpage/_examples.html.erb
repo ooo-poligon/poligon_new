@@ -1,0 +1,11 @@
+<div class="main-apply">
+  <div class="container">
+    <h2>Примеры применения и решения</h2>
+    <div class="row">
+      <% Example.all.each do |example| %>
+        <%= render 'shared/example_card', locals: {example: example} %>
+      <% end %>
+    </div>
+    <div class="view-all"><%= link_to 'Все примеры применения', examples_index_path %></a></div>
+  </div>
+</div>
