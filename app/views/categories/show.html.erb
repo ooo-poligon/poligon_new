@@ -2,7 +2,10 @@
   <div class="col-sm-4 col-md-3 aside" >
     <div class="category-menu final">
       <ul>
-        <% unless (0..3).include? @parentCategory.id %>
+        <% if (0..3).include? @parentCategory.id %>
+          <% # приводим на главную %>
+          <li class="back"><%= link_to "назад", root_path %></li>
+        <% else %>
           <li class="back"><%= link_to "назад", category_path(@parentCategory.id) %></li>
         <% end %>
         <% @subCategories.each do |sc| %>
