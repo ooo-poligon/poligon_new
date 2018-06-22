@@ -28,10 +28,10 @@
             <%= image_tag(image_path, class: "xzoom5", id: "xzoom-magnific", original: image_path, alt: '', style: "width: 271.984px;") %>
           </div>
           <div id="gallery" class="xzoom-thumbs">
-            <% if !@productImage.nil? %>
+            <% if !@productImage.nil? and @productImage.name != '' %>
               <%= link_to(image_tag(image_path, class: "xzoom-gallery xactive", width: '40', xpreview: image_path, title: '', alt: ''), image_path) %>
             <% else %>
-              <%= image_tag("nophoto.png", class: "img-responsive center-block product-image-container") %>
+              <%= image_tag("nophoto.png", class: "xzoom-gallery xactive", width: '40', xpreview: image_path, title: '', alt: '') %>
             <% end %>
           </div>
           <div class="card-logo">
