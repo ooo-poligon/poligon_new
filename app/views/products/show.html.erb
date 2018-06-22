@@ -11,7 +11,14 @@
   <% end %>
 <% end %>
 <div class="card-block">
-  <h1><%= @product.title %></h1>
+  <% unless @product.article.nil? %>
+    <% title = @productKind.title + " " + @product.title + " (" + @product.article + ")" %>
+    <h1><span style="color: black;" ><%= @productKind.title %></span> <b><span style="color: red;" ><%= @product.title + " (" + @product.article + ")" %></span></b></h1>
+  <% else %>
+    <% title = @productKind.title + " " + @product.title %>
+    <h4><b><%= @productKind.title %></b> <span style="color: red;" ><%= @product.title %></span></h4>
+  <% end %>
+  <% generate_meta_from title %>
   <div class="card">
     <div class="row product-card-content">
       <div class="col-md-4 card-gallery">
