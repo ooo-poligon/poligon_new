@@ -871,6 +871,7 @@ span.production-country {
     padding: 0;
     font-size: 11px;
     line-height: 13px;
+    padding-left: 5px;
 }
 .category-item-text a {
     font-size: 11px;

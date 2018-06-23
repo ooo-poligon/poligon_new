@@ -39,29 +39,51 @@
       <% generate_meta_from title %>
       <h1><%= title %></h1>
       <div class="category-info">
-        <% count = 0 %>
+        <% count = top_count = sub_count = 0 %>
         <% topCategories = [] %>
         <% subCategories = [] %>
         <% @subCategories.each do |sc| %>
           <% if count < 8 %>
             <% topCategories.push sc %>
+            <% top_count += 1 %>
           <% end %>
           <% if count >= 8 %>
             <% subCategories.push sc %>
+            <% sub_count += 1 %>
           <% end %>
           <% count += 1 %>
         <% end %>
         <div class="top-category">
           <div class="row">
-            <% topCategories.each do |sc| %>
-              <%= render("shared/category_info_item", locals: { subCategory: sc }) %>
+            <% if top_count % 4 == 0 %>
+              <% topCategories.each do |sc| %>
+                <%= render("shared/category_info_item", locals: { subCategory: sc }) %>
+              <% end %>
+            <% else %>
+              <% add_count = 4 - (top_count % 4) %>
+              <% topCategories.each_with_index do |sc, index| %>
+                <%= render("shared/category_info_item", locals: { subCategory: sc }) %>
+              <% end %>
+              <% add_count.times do %>
+                <div class="col-xs-6 col-sm-4 col-lg-3"></div>
+              <% end %>
             <% end %>
           </div>
         </div>
         <div class="sub-category">
           <div class="row">
-            <% subCategories.each do |sc| %>
-              <%= render("shared/category_info_item", locals: { subCategory: sc }) %>
+            <% if top_count % 4 == 0 %>
+              <% subCategories.each do |sc| %>
+                <%= render("shared/category_info_item", locals: { subCategory: sc }) %>
+              <% end %>
+            <% else %>
+              <% add_count = 4 - (top_count % 4) %>
+              <% subCategories.each_with_index do |sc, index| %>
+                <%= render("shared/category_info_item", locals: { subCategory: sc }) %>
+              <% end %>
+              <% add_count.times do %>
+                <div class="col-xs-6 col-sm-4 col-lg-3"></div>
+              <% end %>
             <% end %>
           </div>
         </div>
