@@ -55,9 +55,11 @@
             <%= render("shared/mainpage/modal_cart") %>
             <%= yield %>
           </div>
-          <% unless ['orders', 'categories', 'publications', 'products', 'examples'].include? controller_name %>
-            <%= render "shared/mainpage/trio" %>
+          <% if controller_name == 'content' and action_name == 'home' %>
             <%= render "shared/mainpage/partners" %>
+            <%= render "shared/mainpage/trio" %>
+          <% else %>
+            <%= render "shared/mainpage/trio" %>
           <% end %>
         </div>
       <% elsif controller_name == 'examples' %>
@@ -67,9 +69,11 @@
             <%= render("shared/mainpage/modal_cart") %>
             <%= yield %>
           </div>
-          <% unless ['orders', 'categories', 'publications', 'products', 'examples'].include? controller_name %>
-            <%= render "shared/mainpage/trio" %>
+          <% if controller_name == 'content' and action_name == 'home' %>
             <%= render "shared/mainpage/partners" %>
+            <%= render "shared/mainpage/trio" %>
+          <% else %>
+            <%= render "shared/mainpage/trio" %>
           <% end %>
         </div>
       <% else %>
@@ -82,9 +86,11 @@
             <%= render("shared/mainpage/modal_cart") %>
             <%= yield %>
           </div>
-          <% unless ['orders', 'categories', 'publications', 'products'].include? controller_name %>
-            <%= render "shared/mainpage/trio" %>
+          <% if controller_name == 'content' and action_name == 'home' %>
             <%= render "shared/mainpage/partners" %>
+            <%= render "shared/mainpage/trio" %>
+          <% else %>
+            <%= render "shared/mainpage/trio" %>
           <% end %>
         </div>
       <% end %>
