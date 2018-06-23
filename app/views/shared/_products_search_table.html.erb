@@ -11,7 +11,7 @@
   <tbody>
     <% locals[:products].results.sort_by! {|obj| obj.title}.each do |product| %>
       <tr>
-        <%= render "shared/product_image", locals: {product: product} %>
+        <td><%= render "shared/product_image", locals: {product: product} %></td>
         <td style="vertical-align: top;">
           <table class="table table-responsive" style="height: 100%">
             <!--<tr>
@@ -20,7 +20,7 @@
               </td>
             </tr>-->
             <tr>
-            <% if !product.article.nil? or product.article != '' %>
+            <% if !product.article.nil? and product.article != '' %>
               <td>
                 <span class="product-title">
                   <%= link_to "(" + product.article + ") " + product.title, product %>
