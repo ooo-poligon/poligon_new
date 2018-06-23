@@ -1,0 +1,31 @@
+<div>
+  <h2>Примеры применения</h2>
+  <% if @examples.nil? %>
+    Нет информации для отображения.
+    <% else %>
+    <table>
+      <tr>
+        <th>Название</th>
+        <th>Область применения</th>
+        <th></th>
+        <th></th>
+      </tr>
+      <% @examples.each do |example| %>
+        <tr>
+          <td>
+            <%= example.title %>
+          </td>
+          <td>
+            <%= example.scope.name %>
+          </td>
+          <td>
+            <%= link_to 'Редактировать', edit_admin_example_path(example.id) %>
+          </td>
+          <td>
+            <%= link_to 'Удалить', edit_admin_example_path(example.id) %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  <% end %>
+</div>

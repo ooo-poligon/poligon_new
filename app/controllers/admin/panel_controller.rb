@@ -1,7 +1,6 @@
-class Admin::PanelController < ApplicationController
+class Admin::PanelController < Admin::BaseController
 
   def index
-    render layout: 'no_vendors'
   end
 
 end

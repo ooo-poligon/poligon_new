@@ -88,7 +88,7 @@
               </div>
             </li>
             <li>
-              <% unless current_user.group_id == 1 %>
+              <% if current_user.group_id != 1 %>
                 <div style="margin-bottom: 0px; margin-top: 5px; margin-right: 15px;">
                   <table>
                     <tr>
@@ -125,9 +125,11 @@
           <ul class="nav navbar-nav navbar col-md-3">
             <li>
               <div>
-                <a href="<%= admin_panel_index_path %>">
-                  <p style="color: red; font-weight: bold; padding-top: 15px;">Панель администратора</p>
-                </a>
+                <% if current_user.group_id == 2 %>
+                  <a href="<%= admin_panel_index_path %>">
+                    <p style="color: red; font-weight: bold; padding-top: 15px;">Панель администратора</p>
+                  </a>
+                <% end %>
               </div>
             </li>
           </ul>

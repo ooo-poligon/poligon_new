@@ -1,10 +1,6 @@
 # -*- encoding : utf-8 -*-
 Poligon::Application.routes.draw do
 
-  get 'examples/index'
-
-  get 'examples/show'
-
   resources :orders
   resources :line_items, except: [:index]
   resources :news_items, only: [:index, :show]
@@ -16,6 +12,8 @@ Poligon::Application.routes.draw do
   resources :products,   only: [        :show]
   resources :carts
 
+  get  'examples/index'
+  get  'examples/show'
   get  'carts/show'
   get  'carts/add'
   post 'categories/quantity_cash'
@@ -118,6 +116,7 @@ Poligon::Application.routes.draw do
   # Sample resource route within a namespace:
   namespace :admin do
     resources :panel, only: [:index]
+    resources :examples
   end
 
   # You can have the root of your site routed with 'root'
