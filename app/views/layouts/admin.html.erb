@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html" lang="ru" code="<%= response.try(:code) if defined?(response) %>">
+  <head>
+    <%= meta_tags %>
+    <link href='https://fonts.googleapis.com/css?family=PT+Sans&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Marck+Script&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Ubuntu+Condensed&subset=latin,cyrillic-ext' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Anonymous+Pro:700,400&subset=cyrillic,latin' rel='stylesheet' type='text/css'>
+    <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+    <%= favicon_link_tag 'favicon.ico' %>
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <![endif]-->
+
+    <link href="/feeds" rel="alternate" title="RSS feed" type="application/rss+xml">
+  </head>
+
+  <body>
+    <%= render "shared/yandex_metrika" %>
+    <%= render "shared/user_navbar" %>
+    <%= render "shared/mainpage/header",
+               :teleSubCategories         => Category.available.where(parent: 142 ),
+               :comatRelecoSubCategories  => Category.available.where(parent: 5933),
+               :emkoSubCategories         => Category.available.where(parent: 5583),
+               :benedictSubCategories     => Category.available.where(parent: 5094),
+               :citelSubCategories        => Category.available.where(parent: 74  ),
+               :graesslinSubCategories    => Category.available.where(parent: 5414),
+               :sonderSubCategories       => Category.available.where(parent: 5535),
+               :relequickSubCategories    => Category.available.where(parent: 5818),
+               :cbiSubCategories          => Category.available.where(parent: 5512),
+               :polygonSubCategories      => Category.available.where(parent: 6321),
+               :huberSuhnerSubCategories  => Category.available.where(parent: 4847),
+               :tehnoplastSubCategories   => Category.available.where(parent: 6925) %>
+
+    <div class="container">
+      <div class="row row-offcanvas row-offcanvas-right">
+        <div class="col-xs-12 col-md-12 main-content" >
+          <p class="pull-right visible-xs">
+            <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Боковое меню</button>
+          </p>
+          <br><br>
+          <%= render partial: "shared/mainpage/flash_messages", flash: flash %>
+          <br>
+          <%= yield %>
+        </div><!--/span-->
+
+
+
+      </div><!--/row-->
+
+      <footer>
+        <p>&copy; ООО "ПОЛИГОН" 2016</p>
+      </footer>
+
+    </div><!--/.container-->
+
+    <!-- JavaScript placed at the end of the document so the pages load faster -->
+    <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+
+  </body>
+</html>

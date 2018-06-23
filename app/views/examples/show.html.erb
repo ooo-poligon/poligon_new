@@ -3,15 +3,19 @@
     <div class="row breadcrumbs">
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="#">Решения и примеры применения</a></li>
-          <li class="breadcrumb-item">Защита насоса от сухого хода</li>
+          <li class="breadcrumb-item">
+            <%= link_to 'Решения и примеры применения!', examples_index_path %>
+          </li>
+          <li class="breadcrumb-item">
+            <%= @example.title %>
+          </li>
         </ol>
       </nav>
     </div>
 
     <div class="apply-item">
       <div class="apply-title">
-        <h1>Защита насоса от сухого хода</h1>
+        <h1><%= @example.title %></h1>
       </div>
       <div class="apply-item-photos">
         <div class="row">
@@ -24,14 +28,24 @@
         <div class="row">
           <div class="col-sm-4">
             <ul class="apply-item-list">
-              <li><strong>Область применения:</strong> Насосы и двигатели</li>
+              <li><strong>Область применения:</strong> <%= @example.scope.name %></li>
             </ul>
           </div>
           <div class="col-sm-4">
             <ul class="apply-item-list">
               <li><strong>Товарная группа:</strong> Реле контроля мощности</li>
-              <li><strong>Изделие:</strong> (2390600) G2CU400V10AL10</li>
-              <li><strong>Тех документация:</strong> <a href="#!">en_g2cu400v10al10.pdf</a></li>
+              <% if @example.product.article.nil?  or @example.product.article == '' %>
+                <% product_name = @example.product.title %>
+              <% else %>
+                <% product_name = ' (' + @example.product.article + ') ' + @example.product.title %>
+                   <% end %>
+              <li><strong>Изделие:</strong> <%= product_name %></li>
+              <li><strong>Тех документация:</strong>
+                <% product_pdf = DataFile.where("owner_id = ? and file_type_id = 2", @example.product.id).first %>
+                <% if product_pdf != nil and product_pdf.path != "c:\\poligon_datasheets\\" and product_pdf.path != "\\\\Server03\\бд_сайта\\poligon_datasheets\\" %>
+                  <%= link_to( product_pdf.name, content_download_pdf_path(product_id: @example.product.id)) %>
+                <% end %>
+              </li>
               <li><strong>Теги: </strong> Насосы, Modbus</li>
             </ul>
           </div>
@@ -40,26 +54,20 @@
       <div class="apply-item-description">
         <div class="row">
           <div class="col-sm-2"><strong>Задача:</strong></div>
-          <div class="col-sm-10">Pumps that are used to move polluted liquids or water with lots of loose particles tend to loose efficiency after many hours of operation. That forces you to clean the impeller wheel. Cleaning the impeller is sometimes very quirky or nearly impossible as modern pumps are closed units. A cleaning procedure without external access would be very helpful.
+          <div class="col-sm-10">
+            <%= @example.issue %>
           </div>
         </div>
         <div class="row">
           <div class="col-sm-2"><strong>Решение:</strong></div>
-          <div class="col-sm-10">Pumps that are used to move polluted liquids or water with lots of loose particles tend to loose efficiency after many hours of operation. That forces you to clean the impeller wheel. Cleaning the impeller is sometimes very quirky or nearly impossible as modern pumps are closed units. A cleaning procedure without external access would be very helpful.
+          <div class="col-sm-10">
+            <%= @example.solution %>
           </div>
         </div>
         <div class="row">
           <div class="col-sm-2"><strong>Преимущества:</strong></div>
           <div class="col-sm-10">
-            <ul>
-              <li>- используем двигатель как датчик!</li>
-              <li>- не требуется дополнительных приспособлений, проводов </li>
-              <li>- не требует регулярного обслуживания и чистки (в отличие от погружных датчиков)</li>
-              <li>- надежно закрыто в щите и защищено от изменения параметров</li>
-              <li>- не может быть незаметного обрыва провода, т.к. параметры измеряются в цепи питания насоса (надежно!)</li>
-              <li>- простое решение, легко подстраивается под мощность насоса при помощи трансформатора тока (достаточно
-                одного трансформатора тока на один насос)</li>
-            </ul>
+            <%= @example.product.advantages %>
           </div>
         </div>
       </div>

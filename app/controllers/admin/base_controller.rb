@@ -1,5 +1,5 @@
 class Admin::BaseController < ApplicationController
-  layout 'no_vendors'
+  layout 'admin'
   before_filter :not_authenticated
 
   private

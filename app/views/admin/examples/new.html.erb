@@ -1,7 +1,6 @@
-<h2>Редактировать пример применения</h2>
-<h3><%= @example.title %></h3>
+<h2>Новый пример применения</h2>
 
-<%= form_for @example, url: {action: "update", id: @example.id} do |f| %>
+<%= form_for @example, url: {action: "create"}, html: {method: 'POST'} do |f| %>
   <%= label_tag(:title, "Название:") %>
   <%= f.text_field :title, class: 'form-control' %><br><br>
   <%= label_tag(:scope_id, "Область применения:") %>

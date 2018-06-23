@@ -1,2 +1,2 @@
-module Admin::ApplicationHelper
+module Admin::BaseHelper
 end
