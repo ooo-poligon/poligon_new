@@ -72,6 +72,10 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
+    carrierwave (1.2.2)
+      activemodel (>= 4.0.0)
+      activesupport (>= 4.0.0)
+      mime-types (>= 1.16)
     celluloid (0.17.3)
       celluloid-essentials
       celluloid-extras
@@ -410,6 +414,7 @@ DEPENDENCIES
   autoprefixer-rails (= 6.3.6.2)
   bootstrap-sass (~> 3.3.5)
   capybara (= 2.7.1)
+  carrierwave (~> 1.0)
   chromedriver-helper
   coffee-rails (= 4.1.1)
   cucumber-rails (= 1.4.3)
@@ -441,7 +446,7 @@ DEPENDENCIES
   puma (= 3.11.2)
   rack-mini-profiler (= 0.10.7)
   rails (= 4.2.5)
-  recaptcha
+  recaptcha (= 4.8.0)
   rspec-rails (~> 3.4)
   rubocop
   rusprice (~> 1.2)

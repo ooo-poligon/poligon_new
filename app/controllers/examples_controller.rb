@@ -11,6 +11,13 @@ class ExamplesController < ApplicationController
 
   def show
     @example = Example.find(params[:id])
+
+    tags = Tag.includes(:examples).where("examples.id" => @example.id)
+    example_tags = []
+    tags.each do |tag|
+      example_tags.push(tag.name)
+    end
+    @tags_string = example_tags.join(", ")
   end
 
 end

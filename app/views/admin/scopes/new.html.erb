@@ -1,0 +1,7 @@
+<h2>Новая область применения</h2>
+
+<%= form_for @scope, url: {action: "create"}, html: {method: 'POST'} do |f| %>
+  <%= label_tag(:name, "Название:") %>
+  <%= f.text_field :name, class: 'form-control' %><br><br>
+  <%= f.submit "Сохранить", class: 'btn btn-info' %>
+<% end %>

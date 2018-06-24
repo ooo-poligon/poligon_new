@@ -11,5 +11,7 @@
   <%= f.text_area :issue, size: "160x12", class: 'form-control' %><br><br>
   <%= label_tag(:issue, "Решение:") %>
   <%= f.text_area :solution, size: "160x12", class: 'form-control' %><br><br>
+  <%= f.label 'Теги (через запятую):' %>
+  <%= f.text_area :tags, value: '', class: "form-control", style: "height: 87px;"  %><br><br>
   <%= f.submit "Сохранить", class: 'btn btn-info' %>
 <% end %>

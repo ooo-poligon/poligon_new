@@ -116,7 +116,9 @@ Poligon::Application.routes.draw do
   # Sample resource route within a namespace:
   namespace :admin do
     resources :panel, only: [:index]
+    resources :scopes
     resources :examples
+    resources :tags,  only: [:index, :show]
   end
 
   # You can have the root of your site routed with 'root'

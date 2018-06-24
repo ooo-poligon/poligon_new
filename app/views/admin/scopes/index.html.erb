@@ -1,0 +1,32 @@
+<div>
+  <h2>Области применения</h2>
+  <%= link_to 'Создать новую область применения', new_admin_scope_path %>
+  <br><br>
+  <% if @scopes.nil? %>
+    Нет информации для отображения.
+    <% else %>
+    <table class="table table-striped">
+      <thead class="thead-dark">
+      <tr>
+        <th>Название</th>
+        <th>Редактирование</th>
+        <th>Удаление</th>
+      </tr>
+      </thead>
+      <% @scopes.each do |admin_scope| %>
+        <tr>
+          <td>
+            <%= admin_scope.name %>
+          </td>
+          <td>
+            <%= link_to 'Редактировать', edit_admin_scope_path(admin_scope.id) %>
+          </td>
+          <td>
+            <%= link_to 'Удалить', admin_scope_path(admin_scope.id), method: :delete, remote: true, :class => 'delete_scope',
+                        data: { confirm: "Вы уверены?" } %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  <% end %>
+</div>

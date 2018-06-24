@@ -46,7 +46,9 @@
                   <%= link_to( product_pdf.name, content_download_pdf_path(product_id: @example.product.id)) %>
                 <% end %>
               </li>
-              <li><strong>Теги: </strong> Насосы, Modbus</li>
+              <li><strong>Теги: </strong>
+                <%= @tags_string %>
+              </li>
             </ul>
           </div>
         </div>

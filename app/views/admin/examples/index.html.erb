@@ -1,6 +1,7 @@
 <div>
   <h2>Примеры применения</h2>
-  <%= link_to 'Создать новый пример применения', new_admin_example_path %>
+  <p><%= link_to 'Области применения', admin_scopes_path %></p>
+  <p><%= link_to 'Создать новый пример применения', new_admin_example_path %></p>
   <br><br>
   <% if @examples.nil? %>
     Нет информации для отображения.
@@ -11,11 +12,20 @@
         <th>Название</th>
         <th>Область применения</th>
         <th>Устройство</th>
+        <th>Теги</th>
         <th>Редактирование</th>
         <th>Удаление</th>
       </tr>
       </thead>
       <% @examples.each do |admin_example| %>
+        <%
+          tags = Tag.includes(:examples).where("examples.id" => admin_example.id)
+          example_tags = []
+          tags.each do |tag|
+            example_tags.push(tag.name)
+          end
+          tags_string = example_tags.join(", ")
+        %>
         <tr>
           <td>
             <%= admin_example.title %>
@@ -27,11 +37,14 @@
             <%= admin_example.product.title %>
           </td>
           <td>
+            <%= tags_string %>
+          </td>
+          <td>
             <%= link_to 'Редактировать', edit_admin_example_path(admin_example.id) %>
           </td>
           <td>
             <%= link_to 'Удалить', admin_example_path(admin_example.id), method: :delete, remote: true, :class => 'delete_example',
-                        data: { confirm: "You sure?" } %>
+                        data: { confirm: "Вы уверены?" } %>
           </td>
         </tr>
       <% end %>
