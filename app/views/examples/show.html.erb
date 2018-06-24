@@ -31,7 +31,12 @@
         <div class="row">
           <div class="col-sm-4">
             <ul class="apply-item-list">
-              <li><strong>Область применения:</strong> <%= @example.scope.name %></li>
+              <% if @example.scope.nil? %>
+                <% scope_name = '' %>
+              <% else %>
+                <% scope_name = @example.scope.name %>
+              <% end %>
+              <li><strong>Область применения:</strong> <%= scope_name %></li>
             </ul>
           </div>
           <div class="col-sm-4">

@@ -5,7 +5,12 @@
       <%= link_to image_tag(example.example_images.try(:first).try(:url)), examples_show_path(id: example.id) %>
     </div>
     <div class="apl-link">
-      <%= link_to example.scope.name, examples_show_path(id: example.id) %>
+      <% if example.scope.nil? %>
+        <% scope_name = '' %>
+      <% else %>
+        <% scope_name = example.scope.name %>
+      <% end %>
+      <%= link_to scope_name, examples_show_path(id: example.id) %>
     </div>
     <div class="apl-text">
       <h4><%= example.title %></h4>

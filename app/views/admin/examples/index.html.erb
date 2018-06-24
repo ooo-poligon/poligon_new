@@ -31,7 +31,12 @@
             <%= admin_example.title %>
           </td>
           <td>
-            <%= admin_example.scope.name %>
+            <% if admin_example.scope.nil? %>
+              <% scope_name = '' %>
+            <% else %>
+              <% scope_name = admin_example.scope.name %>
+            <% end %>
+            <%= scope_name %>
           </td>
           <td>
             <%= admin_example.product.title %>
