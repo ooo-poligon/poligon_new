@@ -19,9 +19,12 @@
       </div>
       <div class="apply-item-photos">
         <div class="row">
-          <div class="col-sm-6 col-md-3 apply-item-photo"><a href="img/appl_1.png" data-rel="lightcase:app"><img src="img/appl_1.png" alt=""></a></div>
-          <div class="col-sm-6 col-md-3 apply-item-photo"><a href="img/appl_2.png" data-rel="lightcase:app"><img src="img/appl_2.png" alt=""></a></div>
-          <div class="col-sm-6 col-md-3 apply-item-photo"><a href="img/appl_3.png" data-rel="lightcase:app"><img src="img/appl_3.png" alt=""></a></div>
+          <% @example.example_images.each do |image| %>
+            <div class="col-sm-6 col-md-3 apply-item-photo">
+              <%= link_to image_tag(image.url, class: "img-responsive center-block product-image-container"),
+                          image.url, class: "fancybox", data: {rel: "lightcase:app"} %>
+            </div>
+          <% end %>
         </div>
       </div>
       <div class="apply-item-info">
@@ -33,13 +36,17 @@
           </div>
           <div class="col-sm-4">
             <ul class="apply-item-list">
-              <li><strong>Товарная группа:</strong> Реле контроля мощности</li>
+              <li><strong>Товарная группа:</strong>
+                <%= link_to @example.product.category.title, category_path(@example.product.category.id) %>
+              </li>
               <% if @example.product.article.nil?  or @example.product.article == '' %>
                 <% product_name = @example.product.title %>
               <% else %>
                 <% product_name = ' (' + @example.product.article + ') ' + @example.product.title %>
-                   <% end %>
-              <li><strong>Изделие:</strong> <%= product_name %></li>
+              <% end %>
+              <li><strong>Изделие:</strong>
+                <%= link_to product_name, product_path(@example.product.id) %>
+              </li>
               <li><strong>Тех документация:</strong>
                 <% product_pdf = DataFile.where("owner_id = ? and file_type_id = 2", @example.product.id).first %>
                 <% if product_pdf != nil and product_pdf.path != "c:\\poligon_datasheets\\" and product_pdf.path != "\\\\Server03\\бд_сайта\\poligon_datasheets\\" %>

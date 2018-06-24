@@ -1,0 +1,8 @@
+<h2>Редактировать свойства товара</h2>
+<h3><%= @product.title %></h3>
+
+<%= form_for @product, url: {action: "update", id: @product.id} do |f| %>
+  <%= label_tag(:issue, "Преимущества:") %>
+  <%= f.text_area :advantages, size: "160x12", class: 'form-control' %><br><br>
+  <%= f.submit "Сохранить", class: 'btn btn-info' %>
+<% end %>

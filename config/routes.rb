@@ -118,7 +118,11 @@ Poligon::Application.routes.draw do
     resources :panel, only: [:index]
     resources :scopes
     resources :examples
+    resources :examples do
+      resources :example_images, :only => [:create, :destroy] # support #create and #destroy
+    end
     resources :tags,  only: [:index, :show]
+    resources :products, only: [:index, :edit, :update]
   end
 
   # You can have the root of your site routed with 'root'

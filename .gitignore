@@ -21,6 +21,7 @@
 /public/images
 /public/pdf
 /public/files
+/public/uploads
 
 # Ignore db settings
 

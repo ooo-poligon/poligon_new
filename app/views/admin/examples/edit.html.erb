@@ -2,6 +2,18 @@
 <h3><%= @example.title %></h3>
 
 <%= form_for @example, url: {action: "update", id: @example.id} do |f| %>
+  <div>
+    <% f.object.example_images.each_with_index do |image, index| %>
+      <div style="display: inline-block;">
+          <%= image_tag(image.url) %><br>
+          <%#= link_to "Удалить", admin_example_example_image_path(f.object.id, index), :method => :delete,
+                      data: { confirm: "Вы уверены?" } %>
+      </div>
+    <% end %>
+  </div>
+  <br><br>
+  <%= label_tag(:example_images, "Изображения:") %><br>
+  <%= f.file_field :example_images, multiple: true %><br><br>
   <%= label_tag(:title, "Название:") %>
   <%= f.text_field :title, class: 'form-control' %><br><br>
   <%= label_tag(:scope_id, "Область применения:") %>

@@ -66,7 +66,7 @@ class Admin::ExamplesController < Admin::BaseController
   private
 
   def example_params
-    params.require(:example).permit :title, :issue, :solution, :scope_id, :product_id
+    params.require(:example).permit :title, :issue, :solution, :scope_id, :product_id, {example_images: []}
   end
 
   def add_tags_to_example params_tags

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180623213748) do
+ActiveRecord::Schema.define(version: 20180624085657) do
 
   create_table "additions", force: :cascade do |t|
     t.datetime "created_at",                    null: false
@@ -96,18 +96,8 @@ ActiveRecord::Schema.define(version: 20180623213748) do
     t.string "title", limit: 255, null: false
   end
 
-  create_table "examples", force: :cascade do |t|
-    t.integer  "scope_id",   limit: 4
-    t.integer  "product_id", limit: 4
-    t.string   "title",      limit: 255
-    t.text     "issue",      limit: 65535
-    t.text     "solution",   limit: 65535
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
-  end
-
-  add_index "examples", ["product_id"], name: "index_examples_on_product_id", using: :btree
-  add_index "examples", ["scope_id"], name: "index_examples_on_scope_id", using: :btree
+# Could not dump table "examples" because of following StandardError
+#   Unknown type 'json' for column 'example_images'
 
   create_table "examples_tags", id: false, force: :cascade do |t|
     t.integer "example_id", limit: 4, null: false

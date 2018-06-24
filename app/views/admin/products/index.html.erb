@@ -1,0 +1,17 @@
+<div>
+  <h2>Товары</h2>
+  <br><br>
+  <% if @products.nil? %>
+    Нет информации для отображения.
+  <% else %>
+    <table class="table-striped" >
+      <% @products.each do |product| %>
+        <tr>
+          <td>
+            <%= link_to product.title, edit_admin_product_path(product.id) %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  <% end %>
+</div>

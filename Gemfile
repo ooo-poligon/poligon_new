@@ -31,6 +31,7 @@ gem 'whenever', '0.9.7', require: false
 gem 'rusprice', '~> 1.2'
 gem 'recaptcha', '4.8.0', require: "recaptcha/rails"
 gem 'carrierwave', '~> 1.0'
+gem 'mini_magick', '4.8.0'
 
 group :assets do
   gem 'coffee-rails', '4.1.1'

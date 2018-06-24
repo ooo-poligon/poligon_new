@@ -222,6 +222,7 @@ GEM
     mina (0.3.8)
       open4 (~> 1.3.4)
       rake
+    mini_magick (4.8.0)
     mini_portile2 (2.1.0)
     minitest (5.9.0)
     multi_json (1.12.1)
@@ -439,6 +440,7 @@ DEPENDENCIES
   launchy (= 2.4.3)
   mandrill-api (= 1.0.53)
   mina (= 0.3.8)
+  mini_magick (= 4.8.0)
   mysql2 (= 0.4.4)
   nokogiri (= 1.6.8)
   progress_bar (= 1.0.5)
