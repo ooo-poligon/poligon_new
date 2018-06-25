@@ -18,6 +18,13 @@ class ExamplesController < ApplicationController
       example_tags.push(tag.name)
     end
     @tags_string = example_tags.join(", ")
+
+    product_groups = ProductGroup.includes(:examples).where("examples.id" => @example.id)
+    example_product_groups = []
+    product_groups.each do |product_group|
+      example_product_groups.push(product_group.name)
+    end
+    @product_groups_string = example_product_groups.join(", ")
   end
 
 end

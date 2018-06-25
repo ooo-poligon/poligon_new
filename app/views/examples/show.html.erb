@@ -42,7 +42,7 @@
           <div class="col-sm-4">
             <ul class="apply-item-list">
               <li><strong>Товарная группа:</strong>
-                <%= link_to @example.product.category.title, category_path(@example.product.category.id) %>
+                <%= @product_groups_string %>
               </li>
               <% if @example.product.article.nil?  or @example.product.article == '' %>
                 <% product_name = @example.product.title %>

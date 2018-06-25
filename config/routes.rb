@@ -1,6 +1,14 @@
 # -*- encoding : utf-8 -*-
 Poligon::Application.routes.draw do
 
+  namespace :admin do
+  get 'product_groups/index'
+  end
+
+  namespace :admin do
+  get 'product_groups/show'
+  end
+
   resources :orders
   resources :line_items, except: [:index]
   resources :news_items, only: [:index, :show]

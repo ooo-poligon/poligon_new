@@ -6,9 +6,11 @@
   <%= label_tag(:title, "Название:") %>
   <%= f.text_field :title, class: 'form-control' %><br><br>
   <%= label_tag(:scope_id, "Область применения:") %>
-  <%= f.collection_select(:scope_id, Scope.all, :id, :name, class: 'form-control') %><span>&nbsp;&nbsp;</span>
+  <%= f.collection_select(:scope_id, Scope.all, :id, :name, class: 'form-control') %><span>&nbsp;&nbsp;</span><br><br>
   <%= label_tag(:product_id, "Устройство:") %>
   <%= f.collection_select(:product_id, Product.available.order(:title), :id, :title, class: 'form-control') %><br><br>
+  <%= f.label 'Товарные группы (через запятую):' %>
+  <%= f.text_area :product_groups, size: "160x12", class: 'form-control' %><br><br>
   <%= label_tag(:issue, "Задача:") %>
   <%= f.text_area :issue, size: "160x12", class: 'form-control' %><br><br>
   <%= label_tag(:issue, "Решение:") %>
