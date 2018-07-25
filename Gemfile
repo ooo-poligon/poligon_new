@@ -53,7 +53,7 @@ group :development, :test do
   gem 'database_cleaner', '1.5.3'
   gem 'shoulda-matchers', '3.1.1'
   gem 'factory_bot_rails'
-  gem 'faker', github: 'stympy/faker'
+  gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
   gem 'spring', '1.7.1'
   gem 'spring-commands-rspec', '1.0.4'
   gem 'spring-commands-cucumber', '1.0.1'

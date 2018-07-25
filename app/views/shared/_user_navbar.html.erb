@@ -102,7 +102,7 @@
                       <td>Курс &euro; ПОЛИГОН:</td>
                       <td>&nbsp</td>
                       <td style="font-weight: bold; color: red;">
-                        <%= (@courseEuro + (@courseEuro / 100) * @addCBR.text_value.to_f).round(2) %>р.
+                        <%= (@courseEuro + (@courseEuro / 100) * @addCBR.text_value.to_f).round(2) unless @addCBR.nil? %>р.
                       </td>
                     </tr>
                   </table>

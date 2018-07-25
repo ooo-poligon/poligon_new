@@ -7,11 +7,12 @@ GIT
       multi_json (>= 1.11.0)
 
 GIT
-  remote: git://github.com/stympy/faker.git
-  revision: 3b4368a51ecafc21952f28d5456d1e19cf6b1454
+  remote: https://github.com/stympy/faker.git
+  revision: 12dbcda73d5da82ad8e564099278e9019e16b9be
+  branch: master
   specs:
-    faker (1.6.3)
-      i18n (~> 0.5)
+    faker (1.9.1)
+      i18n (>= 0.7)
 
 GEM
   remote: https://rubygems.org/
