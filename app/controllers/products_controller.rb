@@ -16,7 +16,7 @@ class ProductsController < ApplicationController
       course_multiplier        = (@courseEuro + (@courseEuro / 100) * @addCBR.text_value.to_f)
       @retail_price            = @price.base_price * course_multiplier
     elsif @product.currency_id == 2
-      @retail_price            = @product.rub_retail
+      @retail_price            = @price.rub_base_price
     end
 
     @productImage              = DataFile.where("owner_id = ? and file_type_id = 1", @product.id).first
