@@ -10,28 +10,20 @@
   </thead>
   <tbody>
     <% locals[:products].results.sort_by! {|obj| obj.title}.each do |product| %>
+    <% folder_name = Vendor.find_by(id: product.vendor_id).folder_name %>
+    <% imagefile_name = Image.where("product_id = ?", product.id).first.name %>
       <tr>
-        <% productImage = DataFile.where('owner_id = ? and file_type_id = 1', product.id).first %>
-        <% unless productImage.nil? %>
-          <% if productImage.path[0] != 'c' %>
-            <%# productImage.path.gsub!(productImage.path[0], 'c') %>
-            <% imagePath = productImage.path.gsub("\\\\Server03\\бд_сайта\\poligon_images", "http://www.poligon.info/images").gsub("\\", "/") %>
-          <% else %>
-            <% imagePath = productImage.path.gsub("c:\\poligon_images", "http://www.poligon.info/images").gsub("\\", "/") %>
-          <% end %>
-          <%# imagePath = productImage.path.gsub!("c:\\poligon_images", "http://www.poligon.info/images")
-            .gsub("\\\\Server03\\бд_сайта\\poligon_images", "http://www.poligon.info/images").gsub!("\\", "/") %>
-          <td><%= link_to image_tag(imagePath, class: "img-responsive center-block product-image-container"), imagePath, class: "fancybox" %></td>
+         <% unless imagefile_name.nil? %>
+           <% imagePath = "http://www.poligon.info/images/catalog/" + folder_name.to_s + "/devices/"+ imagefile_name.to_s %>
+           <td><%= link_to image_tag(imagePath, class: "img-responsive center-block product-image-container"), imagePath, class: "fancybox" %>
         <% else %>
-          <td></td>
+           <td>
         <% end %>
+        
+        </td>
         <td style="vertical-align: top;">
           <table class="table table-responsive" style="height: 100%">
-            <!--<tr>
-              <td>
-                <%= render "shared/breadcrumb_search", locals: { product: product } %>
-              </td>
-            </tr>-->
+            
             <tr>
             <% unless product.article.nil? or product.article == '' %>
               <td>
@@ -48,10 +40,27 @@
               <% end %>
             </tr>
             <tr>
+            <b>Производитель: <%= Vendor.find_by(id: product.vendor_id).title %></b>
+            </tr>
+            <tr>
               <td><%= product.description %></td>
             </tr>
             <tr>
-              <td><%= render "shared/open_pdf_button", locals: { product: product, products_pdfs: @products_pdfs } %></td>
+              <td>
+              <div style="float: left;">
+              <% pdffile_name = Datasheet.where("product_id = ?", product.id).first.name %>
+                  <% if !pdffile_name.nil? %>
+                    <% pdf_path = "http://www.poligon.info/PDF/" + folder_name+ "/" + pdffile_name %>
+                      <button type="button" class="btn btn-danger btn-xs" target="_blank" onclick="window.open(&quot;<%= pdf_path %>&quot;)" >
+                      PDF
+                      </button>
+                    <% else %>
+                      <button type="button" class="btn btn-danger disabled btn-xs" target="_blank" onclick="no_pdf()" >
+                      no PDF
+                      </button>
+                    <% end %>
+                  </div>
+               </td>
             </tr>
           </table>
         </td>
@@ -73,11 +82,11 @@
                 </td>
               <% end %>
               </tr>
-              <tr>
+              <!--tr>
                 <td>
-                  <%= render "shared/copy_buttons", locals: { product: product } if current_user.group_id != 1 %>
+                  <%= render "shared/copy_buttons", locals: { product: product } %>
                 </td>
-              </tr>
+              </tr-->
             </table>
           </td>
         <% end %>

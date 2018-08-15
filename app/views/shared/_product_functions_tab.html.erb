@@ -10,9 +10,10 @@
         <tr>
           <td>
             <br>
+              <% f_filename = "http://www.poligon.info/images/catalog/TELE/funcs/" + f.picture_name %>
+              <% f_filename_alt = "http://www.poligon.info/images/catalog/TELE/funcs/" + f.picture_name %>
             <p>
-              <%= image_tag(
-                          f.picture_path.gsub!("\\", "/").gsub!("C:/poligon_images/", "http://www.poligon.info/images/catalog/TELE/funcs"), class: "img-responsive center-block", :width => '500px') %>
+              <%= link_to(image_tag(f_filename, class: "img-responsive center-block", :width => '500px'), f_filename, class: "fancybox") %>
             </p>
           </td>
         </tr>

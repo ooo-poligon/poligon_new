@@ -32,16 +32,16 @@ class CategoriesController < ApplicationController
     Product.available.where(category_id: params[:id]).each do |product|
       one_product_array = []
       if product.currency_id == 1
-        if !Quantity.find_by(product_id: product.id).nil? && Quantity.find_by(product_id: product.id).stock > 0
-          one_product_array.push(product, (product.price * (@courseEuro + (@courseEuro / 100) * addCBR.text_value.to_f) * product.rate).round(2), 1)
+        if !Quantity.find_by(product_id: product.id).nil? && (Quantity.find_by(product_id: product.id).stock - Quantity.find_by(product_id: product.id).reserved) > 0
+          one_product_array.push(product, (Price.find_by(product_id: product.id).base_price * (@courseEuro + (@courseEuro / 100) * addCBR.text_value.to_f)).round(2), 1)
         else
-          one_product_array.push(product, (product.price * (@courseEuro + (@courseEuro / 100) * addCBR.text_value.to_f) * product.rate).round(2), 0)
+          one_product_array.push(product, (Price.find_by(product_id: product.id).base_price * (@courseEuro + (@courseEuro / 100) * addCBR.text_value.to_f)).round(2), 0)
         end
       elsif product.currency_id == 2
         if !Quantity.find_by(product_id: product.id).nil? && Quantity.find_by(product_id: product.id).stock > 0
-          one_product_array.push(product, product.rub_retail.round(2), 1)
+          one_product_array.push(product, Price.find_by(product_id: product.id).rub_base_price(2), 1)
         else
-          one_product_array.push(product, product.rub_retail.round(2), 0)
+          one_product_array.push(product, Price.find_by(product_id: product.id).rub_base_price.round(2), 0)
         end
       end
       @products.push(one_product_array)

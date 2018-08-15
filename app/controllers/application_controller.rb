@@ -6,30 +6,41 @@ class ApplicationController < ActionController::Base
   before_filter :getCourse
 
   helper_method :get_prices_eur, :get_prices_rub, :hello_user, :parents_of, :rub_case_with_kopeiki, :set_meta, :generate_meta_from
+  
 
-  def get_prices_eur(product)
+    def get_prices_eur(product)
         prices_array = []
-    retail = product.price * product.rate
+        if @product.nil? 
+        @price = Price.where(product_id: product.id).first
+        end
+
+    retail = @price.base_price
     prices_array << retail
-    prices_array << retail - (retail/100 * product.special)
-    prices_array << retail - (retail/100 * product.discount1)
-    prices_array << retail - (retail/100 * product.discount2)
-    prices_array << retail - (retail/100 * product.discount3)
-    prices_array << product.price
+    prices_array << @price.special_price
+    prices_array << @price.price_10
+    prices_array << @price.opt_price
+    prices_array << @price.dealer_price
+    prices_array << @price.supplier_price
     prices_array
   end
 
   def get_prices_rub(product)
     prices_array = []
+    if @product.nil? 
+        @price = Price.where(product_id: product.id).first
+        end
+
     course_multiplier = (@courseEuro + (@courseEuro / 100) * @addCBR.text_value.to_f)
-    retail_ru = product.price * product.rate * course_multiplier
-    retail_ru = product.rub_retail if product.currency_id == 2
+    retail_ru = @price.base_price * course_multiplier
+    retail_ru = @price.rub_base_price if product.currency_id == 2
+    supplier_ru = @price.supplier_price * course_multiplier
+    supplier_ru = @price.rub_supplier_price if product.currency_id == 2
     prices_array << retail_ru
-    prices_array << retail_ru - (retail_ru/100 * product.special)
-    prices_array << retail_ru - (retail_ru/100 * product.discount1)
-    prices_array << retail_ru - (retail_ru/100 * product.discount2)
-    prices_array << retail_ru - (retail_ru/100 * product.discount3)
-    prices_array << product.price* course_multiplier
+    prices_array << @price.special_price * course_multiplier
+    prices_array << @price.price_10 * course_multiplier
+    prices_array << @price.opt_price * course_multiplier
+    prices_array << @price.dealer_price * course_multiplier
+    prices_array << supplier_ru
     prices_array
   end
 

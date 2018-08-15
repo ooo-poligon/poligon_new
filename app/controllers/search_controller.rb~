@@ -32,6 +32,8 @@ class SearchController < ApplicationController
     end
     @products.execute!
 
+    @price = Price.where(product_id: @product.id).first	
+
     @articles = Sunspot.search(Article) do
       #fulltext search
       fulltext ("\"" + params[:q] + "\"")
@@ -187,7 +189,7 @@ class SearchController < ApplicationController
 
     @products.execute!
 
-    
+    @price = Price.where(product_id: @products.id).first
 
     @analogs = Sunspot.search(Analog) do
       #fulltext search

@@ -1,36 +1,37 @@
-<% quantity = Quantity.find_by( product_id: locals[:product].id ) %>
+
 <% result_quantity = 0 %>
-<% result_quantity = quantity.stock - quantity.reserved  if !quantity.nil? %>
-<% if get_prices_eur(locals[:product])[1].round(2) == get_prices_eur(locals[:product])[0].round(2) %>
+<% result_quantity = Quantity.find_by(product_id: locals[:product].id).stock - Quantity.find_by(product_id: locals[:product].id).reserved %>
+
   <% price = get_prices_eur(locals[:product])[0].round(2) %>
   <% price_rub = get_prices_rub(locals[:product])[0].round(2) %>
+  <% price_rub = locals[:product].rub_retail.round(2) if locals[:product].currency_id == 2 %>
   <% price_rub_nonds = price_rub / 1.18 %>
-<% else %>
-  <% price = get_prices_eur(locals[:product])[1].round(2) %>
-  <% price_rub = get_prices_rub(locals[:product])[1].round(2) %>
-  <% price_rub_nonds = price_rub / 1.18 %>
-<% end %>
-<% unless price == 0 %>
+
   <table class="table table-responsive">
     <tr>
-      <td width="23%"></td>
-      <td width="27%" align="right">
+      <td width="25%"></td>
+      <td width="25%" align="right">
+      <% unless price == 0 %>
         <% if locals[:product].currency_id == 1 %>
-          <button class="btn btn-info copy-btn" id="copy-eur" data-clipboard-text="<%= locals[:product].title %> — Цена: <%= price %> евро c НДС. Наличие на складе: <%= result_quantity %> шт.">
+          <button class="btn btn-info copy-btn btn-xs" id="copy-eur" data-clipboard-text="<%= locals[:product].title %> — Цена: <%= price %> евро c НДС. Наличие на складе: <%= result_quantity %> шт.">
             EUR
           </button>
         <% end %>
+        <% end %>
       </td>
       <td width="25%" align="right">
-        <button class="btn btn-success copy-btn" id="copy-rub" data-clipboard-text="<%= locals[:product].title %> — Цена: <%= price_rub %> рублей c НДС. Наличие на складе: <%= result_quantity %> шт.">
+      <% unless price_rub == 0 %>
+        <button class="btn btn-success copy-btn btn-xs" id="copy-rub" data-clipboard-text="<%= locals[:product].title %> — Цена: <%= price_rub %> рублей c НДС. Наличие на складе: <%= result_quantity %> шт.">
           RUB
         </button>
+        
       </td>
       <td width="25%" align="right">
-        <button class="btn btn-warning copy-btn" id="copy-rub-nonds" data-clipboard-text="<%= locals[:product].title %> — Цена: <%= price_rub_nonds %> рублей без НДС. Наличие на складе: <%= result_quantity %> шт.">
+        <button class="btn btn-warning copy-btn btn-xs" id="copy-rub-nonds" data-clipboard-text="<%= locals[:product].title %> — Цена: <%= price_rub_nonds %> рублей без НДС. Наличие на складе: <%= result_quantity %> шт.">
           Без НДС
         </button>
+        <% end %>
       </td>
     </tr>
   </table>
-<% end %>
+

@@ -27,36 +27,33 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-xs-3">
-      <% if @productImage != nil %>
-        <p>
-          <% if @productImage.path[0] != 'c' %>
-            <%# productImage.path.gsub!(productImage.path[0], 'c') %>
-            <% imagePath = @productImage.path.gsub("\\\\Server03\\бд_сайта\\poligon_images", "http://www.poligon.info/images").gsub("\\", "/") %>
+      <% if @file.image_name_1 != nil %>
+        <p><%# Выводим изображение %>
+          <%# Формируем путь к изображению для устройства %>
+          <% imagePath = "http://www.poligon.info/images/catalog/" + (@vendor.folder_name).to_s + "/devices/"+ (@file.image_name_1).to_s %>
+          <%# Формируем Alt для изображения устройства %>
+          <% unless @product.article.nil? %>
+          <% imageAlt = (@vendor.title).to_s + " " +(@product.title).to_s + " (" + @product.article + ")" %>
           <% else %>
-            <% imagePath = @productImage.path.gsub("c:\\poligon_images", "http://www.poligon.info/images").gsub("\\", "/") %>
+          <% imageAlt = (@vendor.title).to_s + " " +(@product.title).to_s %>
           <% end %>
-          <%# imagePath = @productImage.path.gsub!("c:\\poligon_images", "http://www.poligon.info/images")
-            .gsub("\\\\Server03\\бд_сайта\\poligon_images", "http://www.poligon.info/images").gsub!("\\", "/") %>
-          <%= link_to(image_tag(imagePath, class: "img-responsive center-block", :width => '220px'), imagePath, class: "fancybox") %>
+          <%= link_to(image_tag(imagePath, class: "img-responsive center-block", :width => '220px', alt: imageAlt ), imagePath, class: "fancybox") %>
         </p>
       <% else %>
         <p style="font-weight: bold; color: red;">нет изображения</p>
       <% end %>
       <hr>
-      <% if @productPdf != nil and @productPdf.path != "c:\\poligon_datasheets\\" and @productPdf.path != "\\\\Server03\\бд_сайта\\poligon_datasheets\\" %>
+      <%# Выводим даташит %>
+      <% if @file.pdf_name != nil %>
         <p>
-          <% if @productPdf.path[0] != 'c' %>
-            <% pdfPath = @productPdf.path.gsub("\\\\Server03\\бд_сайта\\poligon_datasheets\\datasheets", "http://www.poligon.info/PDF").gsub("\\", "/") %>
-          <% else %>
-            <% pdfPath = @productPdf.path.gsub("c:\\poligon_datasheets\\datasheets", "http://www.poligon.info/PDF").gsub("\\", "/") %>
-          <% end %>
-          <%# pdfPath = @productPdf.path.gsub!("c:\\poligon_datasheets\\datasheets", "http://www.poligon.info/PDF")
+          <% pdfPath = "http://www.poligon.info/PDF/" + (@vendor.folder_name) + "/" + (@file.pdf_name).to_s %>
+              <%# pdfPath = @productPdf.path.gsub!("c:\\poligon_datasheets\\datasheets", "http://www.poligon.info/PDF")
             .gsub("\\\\Server03\\бд_сайта\\poligon_datasheets\\datasheets", "http://www.poligon.info/PDF").gsub!("\\", "/") %>
           <%= image_tag("design/pdf_doc.gif", height: '20', width: '20') %>
-          <%= link_to( " Описание в формате PDF", pdfPath) %>
+          <%= link_to( " Техническая документация", pdfPath) %>
         </p>
       <% else %>
-        <p style="font-weight: bold; color: red;">Описание в формате PDF отсутствует</p>
+        <p style="font-weight: bold; color: red;">Техническая докуметация отсутствует</p>
       <% end %>
       <hr>
       <%= render "shared/price_cases", locals: { retail_price: get_prices_rub(@product)[0] } %>
@@ -78,16 +75,18 @@
             <%= render "shared/product_full_description_tab" %>
             <%= render "shared/product_properties_tab" %>
             <%= render "shared/product_functions_tab" %>
-            <%= render "shared/product_plugs_or_dimensions_tab", locals: { product: @product, pic_type: 'plug', count: 3 } %>
-            <%= render "shared/product_plugs_or_dimensions_tab", locals: { product: @product, pic_type: 'dim', count: nil } %>
+            <%= render "shared/product_plugs_tab" %>
+            <%= render "shared/product_dimensions_tab" %>
+            <%#= render "shared/product_plugs_or_dimensions_tab", locals: { product: @product, pic_type: 'dim', count: nil } %>
           </div>
         <% else %>
           <div class="tab-pane fade in active" id="general_information_tab">
             <%= render "shared/product_full_description_tab" %>
             <%= render "shared/product_properties_tab" %>
             <%= render "shared/product_functions_tab" %>
-            <%= render "shared/product_plugs_or_dimensions_tab", locals: { product: @product, pic_type: 'plug', count: 3 } %>
-            <%= render "shared/product_plugs_or_dimensions_tab", locals: { product: @product, pic_type: 'dim', count: nil } %>
+            <%= render "shared/product_plugs_tab" %>
+            <%= render "shared/product_dimensions_tab" %>
+            <%#= render "shared/product_plugs_or_dimensions_tab", locals: { product: @product, pic_type: 'dim', count: nil } %>
             </div>
         <% end %>
       </div>

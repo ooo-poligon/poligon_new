@@ -1,0 +1,34 @@
+<!-- propose we would get maximum 2  per product -->
+<% if @file.dimension_image_1 != nil %>
+  <p><%# Выводим габаритные размеры %>
+  <%# Формируем путь к изображению габаритных размеров %>
+  <% imagePath = "http://www.poligon.info/images/catalog/" + (@vendor.folder_name).to_s + "/plugs/"+ (@file.dimension_image_1).to_s %>
+  <%# Формируем Alt для изображения габаритных размеров %>
+  <% unless @product.article.nil? %>
+    <% imageAlt = "Габаритные размеры " + (@vendor.title).to_s + " " +(@product.title).to_s + " (" + @product.article + ")" %>
+  <% else %>
+    <% imageAlt = "Габаритные размеры " + (@vendor.title).to_s + " " +(@product.title).to_s %>
+  <% end %>
+  <%= link_to(image_tag(imagePath, class: "img-responsive center-block", style: "max-width: 400px;", height: 'auto'), imagePath, class: "fancybox") %>
+  </p>
+ <% else %>
+  <p></p>
+  <% end %>
+
+<% if @file.dimension_image_2 != nil %>
+  <p><%# Выводим габаритные размеры %>
+  <%# Формируем путь к изображению габаритных размеров %>
+  <% imagePath = "http://www.poligon.info/images/catalog/" + (@vendor.folder_name).to_s + "/plugs/"+ (@file.dimension_image_2).to_s %>
+  <%# Формируем Alt для изображения габаритных размеров %>
+  <% unless @product.article.nil? %>
+    <% imageAlt = "Габаритные размеры 2:" + (@vendor.title).to_s + " " +(@product.title).to_s + " (" + @product.article + ")" %>
+  <% else %>
+    <% imageAlt = "Габаритные размеры 2:" + (@vendor.title).to_s + " " +(@product.title).to_s %>
+  <% end %>
+  <%= link_to(image_tag(imagePath, class: "img-responsive center-block", style: "max-width: 400px;", height: 'auto'), imagePath, class: "fancybox") %>
+  </p>
+ <% else %>
+  <p></p>
+  <% end %>
+
+

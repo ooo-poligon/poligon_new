@@ -11,7 +11,7 @@
 <% end %>
 
 <% unless Quantity.find_by(product_id: product.id).nil? %>
-  <% ordered = Quantity.find_by(product_id: product.id).ordered %>
+  <% ordered = Quantity.find_by(product_id: product.id).ordered_on_stock %>
 <% else %>
   <% ordered = 0 %>
 <% end %>
@@ -23,9 +23,15 @@
 <% end %>
 
 <% unless Quantity.find_by(product_id: product.id).nil? %>
-  <% minimum = Quantity.find_by(product_id: product.id).minimum %>
+  <% minimum = Quantity.find_by(product_id: product.id).minimum_stock %>
 <% else %>
   <% minimum = 0 %>
+<% end %>
+
+<% unless Quantity.find_by(product_id: product.id).nil? %>
+  <% remote_stock_citel = Quantity.find_by(product_id: product.id).remote_stock_citel %>
+<% else %>
+  <% remote_stock_citel = 0 %>
 <% end %>
 
 <% unless Setting.find_by(title: 'quantityUpdateDate').nil? %>
@@ -59,6 +65,11 @@
       <tr>
         <td>&nbspМинимум:</td><td style="font-weight: bolder; align-content: right;">&nbsp<%= minimum %>&nbsp</td><td style="align-content: right;">шт.</td>
       </tr>
+      <% if product.vendor_id == 2 %>
+      <tr>
+        <td>&nbspСклад CITEL:</td><td style="font-weight: bolder; align-content: right;">&nbsp<%= remote_stock_citel %>&nbsp</td><td style="align-content: right;">шт.</td>
+      </tr>
+      <% end %>
     </table>
   <% elsif current_user.group_id == 1 %>
     <table class="table table-condensed table-responsive">
@@ -71,6 +82,11 @@
       <tr>
         <td>&nbspЗаказано:</td><td style="font-weight: bolder; align-content: right;">&nbsp<%= ordered %>&nbsp</td><td style="align-content: right;">шт.</td>
       </tr>
+      <% if product.vendor_id == 2 %>
+      <tr>
+        <td>&nbspСклад CITEL:</td><td style="font-weight: bolder; align-content: right;">&nbsp<%= remote_stock_citel %>&nbsp</td><td style="align-content: right;">шт.</td>
+      </tr>
+      <% end %>
     </table>
   <% end %>
 <% end %>

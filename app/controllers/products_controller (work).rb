@@ -8,13 +8,11 @@ class ProductsController < ApplicationController
     @product                   = Product.find(params[:id])
     @parents_array             = parents_of(@product.category_id)
     @addCBR                    = Setting.find_by title: 'addCBR'
-    
-    
-    @price = Price.where(product_id: @product.id).first
+     
 
     if @product.currency_id    == 1
       course_multiplier        = (@courseEuro + (@courseEuro / 100) * @addCBR.text_value.to_f)
-      @retail_price            = @price.base_price * course_multiplier
+      @retail_price            = @product.price * @product.rate * course_multiplier
     elsif @product.currency_id == 2
       @retail_price            = @product.rub_retail
     end
@@ -33,10 +31,6 @@ class ProductsController < ApplicationController
     end
 
     @productKind = ProductKind.find(@product.product_kind_id)
-    @vendor = Vendor.find(@product.vendor_id)
-    @file = Files_copy.where(product_id: @product.id).first
-    
-    @quantity = Quantity.where(product_id: @product.id).first
     @propHash = {}
     @all_product_kind_properties = Property.where(product_kind_id: @productKind)
     @all_product_kind_properties.each do |property|

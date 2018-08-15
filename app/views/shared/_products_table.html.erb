@@ -14,14 +14,10 @@
     <% sorted_products = sorted_products.sort_by {|obj| obj[2]}.reverse %>
     <% sorted_products.each do |product_array| %>
       <tr>
-        <% productImage = DataFile.where('owner_id = ? and file_type_id = 1', product_array[0].id).first %>
-        <% unless productImage.nil? %>
-          <% if productImage.path[0] != 'c' %>
-            <%# productImage.path.gsub!(productImage.path[0], 'c') %>
-            <% imagePath = productImage.path.gsub("\\\\Server03\\бд_сайта\\poligon_images", "http://www.poligon.info/images").gsub("\\", "/") %>
-          <% else %>
-            <% imagePath = productImage.path.gsub("c:\\poligon_images", "http://www.poligon.info/images").gsub("\\", "/") %>
-          <% end %>
+        <% vendorFolder = Vendor.where('id = ?', product_array[0].vendor_id).first %>
+        <% productImage = Files_copy.where('product_id = ?', product_array[0].id).first %>
+        <% unless productImage.image_name_1.nil? %>
+          <% imagePath = "http://www.poligon.info/images/catalog/" + (vendorFolder.folder_name).to_s + "/devices/"+ (productImage.image_name_1).to_s %>
           <td><%= link_to image_tag(imagePath, class: "img-responsive center-block product-image-container"), imagePath, class: "fancybox" %></td>
         <% else %>
           <td></td>
