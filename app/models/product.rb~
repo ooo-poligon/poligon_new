@@ -20,7 +20,7 @@ class Product < ActiveRecord::Base
     text   :title, :as => :code_textp
     text    :description, :as => :code_textp
     text    :article, :as => :code_textp
-    text 	:vendor, :as => :code_textp do
+    text    :vendor, :as => :code_textp do
     vendor.title { |vendor| vendor.id }
   end
     integer :id
