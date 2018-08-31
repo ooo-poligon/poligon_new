@@ -34,7 +34,7 @@
         <strong>Поиск по аналогам не дал результатов.</strong> Попробуйте переформулировать запрос.
       </div>
     <% end %>
-
+    
     <% if !@farnell_products.nil? and @farnell_products.size > 0 and !@farnell_products[0].nil? %>
       <% unless @farnell_products[0] == ["HTTPError"] %>
         <%#= @farnell_products[0] %>
