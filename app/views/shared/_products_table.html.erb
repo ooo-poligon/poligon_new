@@ -15,9 +15,9 @@
     <% sorted_products.each do |product_array| %>
       <tr>
         <% vendorFolder = Vendor.where('id = ?', product_array[0].vendor_id).first %>
-        <% productImage = Files_copy.where('product_id = ?', product_array[0].id).first %>
-        <% unless productImage.image_name_1.nil? %>
-          <% imagePath = "http://www.poligon.info/images/catalog/" + (vendorFolder.folder_name).to_s + "/devices/"+ (productImage.image_name_1).to_s %>
+        
+        <% unless product_array[0].image_name_1.nil? %>
+          <% imagePath = "http://www.poligon.info/images/catalog/" + (vendorFolder.folder_name).to_s + "/devices/"+ (product_array[0].image_name_1).to_s %>
           <td><%= link_to image_tag(imagePath, class: "img-responsive center-block product-image-container"), imagePath, class: "fancybox" %></td>
         <% else %>
           <td></td>
@@ -40,9 +40,9 @@
             <td><%= product_array[0].delivery_time %></td>
         <% end %>
         <% unless product_array[1] == 0 %>
-            <td><%= product_array[1] %> руб.</td>
+            <td><%= product_array[1].round(2) %> руб.</td>
         <% else %>
-            <td style="align-content: center;">Звоните:<br>(812)325-42-20</td>
+            <td style="align-content: center;">Звонит1е:<br>(812)325-42-20</td>
         <% end %>
       </tr>
     <% end %>

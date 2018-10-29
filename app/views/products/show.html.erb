@@ -27,10 +27,10 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-xs-3">
-      <% if @file.image_name_1 != nil %>
+      <% if @product.image_name_1 != nil %>
         <p><%# Выводим изображение %>
           <%# Формируем путь к изображению для устройства %>
-          <% imagePath = "http://www.poligon.info/images/catalog/" + (@vendor.folder_name).to_s + "/devices/"+ (@file.image_name_1).to_s %>
+          <% imagePath = "http://www.poligon.info/images/catalog/" + (@vendor.folder_name).to_s + "/devices/"+ (@product.image_name_1).to_s %>
           <%# Формируем Alt для изображения устройства %>
           <% unless @product.article.nil? %>
           <% imageAlt = (@vendor.title).to_s + " " +(@product.title).to_s + " (" + @product.article + ")" %>
@@ -44,9 +44,9 @@
       <% end %>
       <hr>
       <%# Выводим даташит %>
-      <% if @file.pdf_name != nil %>
+      <% if @product.pdf_name != nil %>
         <p>
-          <% pdfPath = "http://www.poligon.info/PDF/" + (@vendor.folder_name) + "/" + (@file.pdf_name).to_s %>
+          <% pdfPath = "http://www.poligon.info/PDF/" + (@vendor.folder_name) + "/" + (@product.pdf_name).to_s %>
               <%# pdfPath = @productPdf.path.gsub!("c:\\poligon_datasheets\\datasheets", "http://www.poligon.info/PDF")
             .gsub("\\\\Server03\\бд_сайта\\poligon_datasheets\\datasheets", "http://www.poligon.info/PDF").gsub!("\\", "/") %>
           <%= image_tag("design/pdf_doc.gif", height: '20', width: '20') %>
@@ -58,7 +58,7 @@
       <hr>
       <%= render "shared/price_cases", locals: { retail_price: get_prices_rub(@product)[0] } %>
       <p style="color: green">
-        <% if !Quantity.find_by(product_id: @product.id).nil? && Quantity.find_by(product_id: @product.id).stock > 0 %>
+        <% if @product.stock > 0 %>
           <i>Товар есть на складе</i>
         <% else %>
           <i>Срок поставки: <%= @product.delivery_time %></i>

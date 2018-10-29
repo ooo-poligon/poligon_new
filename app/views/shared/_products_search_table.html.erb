@@ -11,7 +11,7 @@
   <tbody>
     <% locals[:products].results.sort_by! {|obj| obj.title}.each do |product| %>
     <% folder_name = Vendor.find_by(id: product.vendor_id).folder_name %>
-    <% imagefile_name = Files_copy.where("product_id = ?", product.id).first.image_name_1 %>
+    <% imagefile_name = product.image_name_1 %>
       <tr>
          <% unless imagefile_name.nil? %>
            <% imagePath = "http://www.poligon.info/images/catalog/" + folder_name.to_s + "/devices/"+ imagefile_name.to_s %>
@@ -48,7 +48,7 @@
             <tr>
               <td>
               <div style="float: left;">
-              <% pdffile_name = Files_copy.where("product_id = ?", product.id).first.pdf_name %>
+              <% pdffile_name = product.pdf_name %>
                   <% if !pdffile_name.nil? %>
                     <% pdf_path = "http://www.poligon.info/PDF/" + folder_name+ "/" + pdffile_name %>
                       <button type="button" class="btn btn-danger btn-xs" target="_blank" onclick="window.open(&quot;<%= pdf_path %>&quot;)" >
@@ -71,7 +71,7 @@
           <td style="vertical-align: top;">
             <table class="table table-responsive" style="width: 100%">
               <tr>
-              <% unless product.price == 0 %>
+              <% unless (product.base_price == 0 && product.currency_id == 1) || (product.rub_base_price == 0 && product.currency_id == 2)%>
                 <td style="vertical-align: top;">
                   <%= render partial: 'shared/product_prices_table_header' %>
                   <%= render partial: 'shared/product_prices_table', locals: {product: product} %>

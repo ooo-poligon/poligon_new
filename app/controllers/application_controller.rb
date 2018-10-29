@@ -10,36 +10,32 @@ class ApplicationController < ActionController::Base
 
     def get_prices_eur(product)
         prices_array = []
-        if @product.nil? 
-        @price = Price.where(product_id: product.id).first
-        end
+        
 
-    retail = @price.base_price
+    retail = product.base_price
     prices_array << retail
-    prices_array << @price.special_price
-    prices_array << @price.price_10
-    prices_array << @price.opt_price
-    prices_array << @price.dealer_price
-    prices_array << @price.supplier_price
+    prices_array << product.special_price
+    prices_array << product.price_10
+    prices_array << product.opt_price
+    prices_array << product.dealer_price
+    prices_array << product.supplier_price
     prices_array
   end
 
   def get_prices_rub(product)
     prices_array = []
-    if @product.nil? 
-        @price = Price.where(product_id: product.id).first
-        end
+    
 
     course_multiplier = (@courseEuro + (@courseEuro / 100) * @addCBR.text_value.to_f)
-    retail_ru = @price.base_price * course_multiplier
-    retail_ru = @price.rub_base_price if product.currency_id == 2
-    supplier_ru = @price.supplier_price * course_multiplier
-    supplier_ru = @price.rub_supplier_price if product.currency_id == 2
+    retail_ru = product.base_price * course_multiplier
+    retail_ru = product.rub_base_price if product.currency_id == 2
+    supplier_ru = product.supplier_price * course_multiplier
+    supplier_ru = product.rub_supplier_price if product.currency_id == 2
     prices_array << retail_ru
-    prices_array << @price.special_price * course_multiplier
-    prices_array << @price.price_10 * course_multiplier
-    prices_array << @price.opt_price * course_multiplier
-    prices_array << @price.dealer_price * course_multiplier
+    prices_array << product.special_price * course_multiplier
+    prices_array << product.price_10 * course_multiplier
+    prices_array << product.opt_price * course_multiplier
+    prices_array << product.dealer_price * course_multiplier
     prices_array << supplier_ru
     prices_array
   end

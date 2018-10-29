@@ -1,8 +1,8 @@
 <!-- propose we would get maximum 5 schemes per product -->
-<% if @file.plug_image_1 != nil %>
+<% if @product.plug_image_1 != nil %>
   <p><%# Выводим схему подключения %>
   <%# Формируем путь к изображению схемы подключения %>
-  <% imagePath = "http://www.poligon.info/images/catalog/" + (@vendor.folder_name).to_s + "/plugs/"+ (@file.plug_image_1).to_s %>
+  <% imagePath = "http://www.poligon.info/images/catalog/" + (@vendor.folder_name).to_s + "/plugs/"+ (@product.plug_image_1).to_s %>
   <%# Формируем Alt для изображения схемы подключения %>
   <% unless @product.article.nil? %>
     <% imageAlt = "Схема подключения " + (@vendor.title).to_s + " " +(@product.title).to_s + " (" + @product.article + ")" %>
@@ -15,10 +15,10 @@
   <p></p>
   <% end %>
 
-<% if @file.plug_image_2 != nil %>
+<% if @product.plug_image_2 != nil %>
   <p><%# Выводим схему подключения %>
   <%# Формируем путь к изображению схемы подключения %>
-  <% imagePath = "http://www.poligon.info/images/catalog/" + (@vendor.folder_name).to_s + "/plugs/"+ (@file.plug_image_2).to_s %>
+  <% imagePath = "http://www.poligon.info/images/catalog/" + (@vendor.folder_name).to_s + "/plugs/"+ (@product.plug_image_2).to_s %>
   <%# Формируем Alt для изображения схемы подключения %>
   <% unless @product.article.nil? %>
     <% imageAlt = "Схема подключения 2:" + (@vendor.title).to_s + " " +(@product.title).to_s + " (" + @product.article + ")" %>
@@ -31,10 +31,10 @@
   <p></p>
   <% end %>
 
-<% if @file.plug_image_3 != nil %>
+<% if @product.plug_image_3 != nil %>
   <p><%# Выводим схему подключения %>
   <%# Формируем путь к изображению схемы подключения %>
-  <% imagePath = "http://www.poligon.info/images/catalog/" + (@vendor.folder_name).to_s + "/plugs/"+ (@file.plug_image_3).to_s %>
+  <% imagePath = "http://www.poligon.info/images/catalog/" + (@vendor.folder_name).to_s + "/plugs/"+ (@product.plug_image_3).to_s %>
   <%# Формируем Alt для изображения схемы подключения %>
   <% unless @product.article.nil? %>
     <% imageAlt = "Схема подключения 3:" + (@vendor.title).to_s + " " +(@product.title).to_s + " (" + @product.article + ")" %>
@@ -47,10 +47,10 @@
   <p></p>
   <% end %>
 
-<% if @file.plug_image_4 != nil %>
+<% if @product.plug_image_4 != nil %>
   <p><%# Выводим схему подключения %>
   <%# Формируем путь к изображению схемы подключения %>
-  <% imagePath = "http://www.poligon.info/images/catalog/" + (@vendor.folder_name).to_s + "/plugs/"+ (@file.plug_image_4).to_s %>
+  <% imagePath = "http://www.poligon.info/images/catalog/" + (@vendor.folder_name).to_s + "/plugs/"+ (@product.plug_image_4).to_s %>
   <%# Формируем Alt для изображения схемы подключения %>
   <% unless @product.article.nil? %>
     <% imageAlt = "Схема подключения 4:" + (@vendor.title).to_s + " " +(@product.title).to_s + " (" + @product.article + ")" %>
@@ -63,10 +63,10 @@
   <p></p>
   <% end %>
 
-  <% if @file.plug_image_5 != nil %>
+  <% if @product.plug_image_5 != nil %>
   <p><%# Выводим схему подключения %>
   <%# Формируем путь к изображению схемы подключения %>
-  <% imagePath = "http://www.poligon.info/images/catalog/" + (@vendor.folder_name).to_s + "/plugs/"+ (@file.plug_image_5).to_s %>
+  <% imagePath = "http://www.poligon.info/images/catalog/" + (@vendor.folder_name).to_s + "/plugs/"+ (@product.plug_image_5).to_s %>
   <%# Формируем Alt для изображения схемы подключения %>
   <% unless @product.article.nil? %>
     <% imageAlt = "Схема подключения 5:" + (@vendor.title).to_s + " " +(@product.title).to_s + " (" + @product.article + ")" %>

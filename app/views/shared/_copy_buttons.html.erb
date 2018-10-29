@@ -1,10 +1,10 @@
 
 <% result_quantity = 0 %>
-<% result_quantity = Quantity.find_by(product_id: locals[:product].id).stock - Quantity.find_by(product_id: locals[:product].id).reserved %>
+<% result_quantity = locals[:product].stock - locals[:product].reserved %>
 
   <% price = get_prices_eur(locals[:product])[0].round(2) %>
   <% price_rub = get_prices_rub(locals[:product])[0].round(2) %>
-  <% price_rub = locals[:product].rub_retail.round(2) if locals[:product].currency_id == 2 %>
+  <% price_rub = locals[:product].rub_base_price.round(2) if locals[:product].currency_id == 2 %>
   <% price_rub_nonds = price_rub / 1.18 %>
 
   <table class="table table-responsive">

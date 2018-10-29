@@ -1,38 +1,20 @@
-<% unless Quantity.find_by(product_id: product.id).nil? %>
-  <% stock = Quantity.find_by(product_id: product.id).stock %>
+<% unless product.nil? %>
+  <% stock = product.stock %>
+  <% reserved = product.reserved %>
+  <% ordered = product.ordered_on_stock %>
+  <% pieces_per_pack = product.pieces_per_pack %>
+  <% minimum = product.minimum_stock %>
+  <% remote_stock_citel = product.remote_stock_citel %>
+
 <% else %>
   <% stock = 0 %>
-<% end %>
-
-<% unless Quantity.find_by(product_id: product.id).nil? %>
-  <% reserved = Quantity.find_by(product_id: product.id).reserved %>
-<% else %>
   <% reserved = 0 %>
-<% end %>
-
-<% unless Quantity.find_by(product_id: product.id).nil? %>
-  <% ordered = Quantity.find_by(product_id: product.id).ordered_on_stock %>
-<% else %>
   <% ordered = 0 %>
-<% end %>
-
-<% unless Quantity.find_by(product_id: product.id).nil? %>
-  <% pieces_per_pack = Quantity.find_by(product_id: product.id).pieces_per_pack %>
-<% else %>
   <% pieces_per_pack = 0 %>
-<% end %>
-
-<% unless Quantity.find_by(product_id: product.id).nil? %>
-  <% minimum = Quantity.find_by(product_id: product.id).minimum_stock %>
-<% else %>
   <% minimum = 0 %>
-<% end %>
-
-<% unless Quantity.find_by(product_id: product.id).nil? %>
-  <% remote_stock_citel = Quantity.find_by(product_id: product.id).remote_stock_citel %>
-<% else %>
   <% remote_stock_citel = 0 %>
 <% end %>
+
 
 <% unless Setting.find_by(title: 'quantityUpdateDate').nil? %>
   <% updateDate = Setting.find_by(title: 'quantityUpdateDate').text_value %>

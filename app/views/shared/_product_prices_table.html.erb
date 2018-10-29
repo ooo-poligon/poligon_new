@@ -9,8 +9,8 @@
   <% end %>
 
   <% information_on_the_availability = "Информация по сроку поставки требует уточнения у поставщика." %>
-    <% if (Quantity.find_by(product_id: product.id).stock - Quantity.find_by(product_id: product.id).reserved) > 0 %>
-    <% information_on_the_availability = "Наличие на складе: " + (Quantity.find_by(product_id: product.id).stock - Quantity.find_by(product_id: product.id).reserved).to_s + " шт." %>
+    <% if (product.stock - product.reserved) > 0 %>
+    <% information_on_the_availability = "Наличие на складе: " + (product.stock - product.reserved).to_s + " шт." %>
   <% else %>
     <% unless product.delivery_time.nil? %>
       <% information_on_the_availability = "Срок поставки: " + (product.delivery_time) + "." %>
