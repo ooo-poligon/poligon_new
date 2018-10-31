@@ -17,8 +17,8 @@ class ProductsController < ApplicationController
       @retail_price            = @product.rub_base_price
     end
 
-    @productImage              = DataFile.where("owner_id = ? and file_type_id = 1", @product.id).first
-    @productPdf                = DataFile.where("owner_id = ? and file_type_id = 2", @product.id).first
+    #@productImage              = DataFile.where("owner_id = ? and file_type_id = 1", @product.id).first
+    #@productPdf                = DataFile.where("owner_id = ? and file_type_id = 2", @product.id).first
     productFunctions           = ProductFunction.where("product_id = ?", @product.id)
     function_ids               = []
     productFunctions.each do |pf|
