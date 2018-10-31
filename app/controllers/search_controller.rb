@@ -153,13 +153,13 @@ class SearchController < ApplicationController
   before_action :getCourse
 
   def advanced_search
-    @products_pdfs = DataFile.where(file_type_id: 2)
+    #@products_pdfs = DataFile.where(file_type_id: 2)
 
     @products = Sunspot.search(Product) do
       if params['exist_only']
         instock_products_ids = []
-        Quantity.where("stock > 0").each do |q|
-          instock_products_ids.push q.product_id
+        Product.where("stock > 0" || "remote_stock_citel > 0").each do |q|
+          instock_products_ids.push q.id
         end
         with(:id).any_of(instock_products_ids)
       end
