@@ -1,6 +1,6 @@
-<% product_pdf   = DataFile.where("owner_id = ? and file_type_id = 2", locals[:product_array][0].id).first %>
-<% product = locals[:product_array][0] %>
 
+<% product = locals[:product_array][0] %>
+<% product_pdf   = product.pdf_name %>
 <div class="product">
   <div class="row">
     <div class="col-xs-7 product-left">
@@ -25,7 +25,7 @@
             <!--</div>-->
           <!--</li>-->
           <li>
-            <% if product_pdf != nil and product_pdf.path != "c:\\poligon_datasheets\\" and product_pdf.path != "\\\\Server03\\бд_сайта\\poligon_datasheets\\" %>
+            <% if product_pdf != nil and product_pdf != "" %>
               <%= link_to( "Скачать PDF", content_download_pdf_path(product_id: product.id)) %>
             <% end %>
           </li>

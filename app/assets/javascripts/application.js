@@ -27,9 +27,10 @@
 //= require products
 //= require orders
 //= require categories
+//= require clipboard
 
 $(document).ready(function() {
-    var clip = new ZeroClipboard($(".copy-btn"));
+    var clipboard = new Clipboard('.clipboard-btn');
     $("a.fancybox").fancybox();
     $('.backlight').tableHover({
         colClass: 'hover',
@@ -82,3 +83,5 @@ $('div.modal').on('hidden.bs.modal', function () {
 
     $(".modal-backdrop.in").not(".fade").remove();
 });
+
+

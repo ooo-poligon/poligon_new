@@ -1,11 +1,8 @@
 <% product = locals[:product] %>
-<% product_image = DataFile.where('owner_id = ? and file_type_id = 1', product.id).first %>
-<% if !product_image.nil? and product_image.name != '' %>
-  <% if product_image.path[0] != 'c' %>
-    <% image_path = product_image.path.gsub("\\\\Server03\\бд_сайта\\poligon_images", "http://www.poligon.info/images").gsub("\\", "/") %>
-  <% else %>
-    <% image_path = product_image.path.gsub("c:\\poligon_images", "http://www.poligon.info/images").gsub("\\", "/") %>
-  <% end %>
+<% product_image = product.image_name_1 %>
+<% vendorFolder = Vendor.where('id = ?', product.vendor_id).first %>
+<% if !product_image.nil? and product_image != '' %>
+  <% image_path = "http://www.poligon.info/images/catalog/" + (vendorFolder.folder_name).to_s + "/devices/"+ (product.image_name_1).to_s %>
 <% else %>
   <% image_path = "nophoto.png" %>
 <% end %>

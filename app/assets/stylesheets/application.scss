@@ -9,7 +9,9 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require fancybox
+
  */
+
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
@@ -20,6 +22,7 @@
 @import "style";
 @import "categories";
 @import "products";
+
 
 .row {
   //margin-right: 0;

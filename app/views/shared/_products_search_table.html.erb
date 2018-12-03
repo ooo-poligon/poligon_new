@@ -10,17 +10,22 @@
   </thead>
   <tbody>
     <% locals[:products].results.sort_by! {|obj| obj.title}.each do |product| %>
+    <% folder_name = Vendor.find_by(id: product.vendor_id).folder_name %>
+    <% imagefile_name = product.image_name_1 %>
       <tr>
-        <td><%= render "shared/product_image", locals: {product: product} %></td>
+         <% unless imagefile_name.nil? %>
+           <% imagePath = "http://www.poligon.info/images/catalog/" + folder_name.to_s + "/devices/"+ imagefile_name.to_s %>
+           <td><%= link_to image_tag(imagePath, class: "img-responsive center-block product-image-container"), imagePath, class: "fancybox" %>
+        <% else %>
+           <td>
+        <% end %>
+        
+        </td>
         <td style="vertical-align: top;">
           <table class="table table-responsive" style="height: 100%">
-            <!--<tr>
-              <td>
-                <%= render "shared/breadcrumb_search", locals: { product: product } %>
-              </td>
-            </tr>-->
+            
             <tr>
-            <% if !product.article.nil? and product.article != '' %>
+            <% unless product.article.nil? or product.article == '' %>
               <td>
                 <span class="product-title">
                   <%= link_to "(" + product.article + ") " + product.title, product %>
@@ -35,10 +40,27 @@
               <% end %>
             </tr>
             <tr>
+            <b>Производитель: <%= Vendor.find_by(id: product.vendor_id).title %></b>
+            </tr>
+            <tr>
               <td><%= product.description %></td>
             </tr>
             <tr>
-              <td><%= render "shared/open_pdf_button", locals: { product: product, products_pdfs: @products_pdfs } %></td>
+              <td>
+              <div style="float: left;">
+              <% pdffile_name = product.pdf_name %>
+                  <% if !pdffile_name.nil? %>
+                    <% pdf_path = "http://www.poligon.info/PDF/" + folder_name+ "/" + pdffile_name %>
+                      <button type="button" class="btn btn-danger btn-xs" target="_blank" onclick="window.open(&quot;<%= pdf_path %>&quot;)" >
+                      PDF
+                      </button>
+                    <% else %>
+                      <button type="button" class="btn btn-danger disabled btn-xs" target="_blank" onclick="no_pdf()" >
+                      no PDF
+                      </button>
+                    <% end %>
+                  </div>
+               </td>
             </tr>
           </table>
         </td>
@@ -49,7 +71,7 @@
           <td style="vertical-align: top;">
             <table class="table table-responsive" style="width: 100%">
               <tr>
-              <% if product.price != 0 %>
+              <% unless (product.base_price == 0 && product.currency_id == 1) || (product.rub_base_price == 0 && product.currency_id == 2)%>
                 <td style="vertical-align: top;">
                   <%= render partial: 'shared/product_prices_table_header' %>
                   <%= render partial: 'shared/product_prices_table', locals: {product: product} %>
@@ -60,11 +82,11 @@
                 </td>
               <% end %>
               </tr>
-              <tr>
+              <!--tr>
                 <td>
-                  <%= render "shared/copy_buttons", locals: { product: product } if current_user.group_id != 1 %>
+                  <%= render "shared/copy_buttons", locals: { product: product } %>
                 </td>
-              </tr>
+              </tr-->
             </table>
           </td>
         <% end %>

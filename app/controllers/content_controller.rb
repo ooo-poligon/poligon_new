@@ -11,16 +11,16 @@ class ContentController < ApplicationController
   end
 
   def download_pdf
-    product_pdf = DataFile.where("owner_id = ? and file_type_id = 2", params[:product_id]).first
-    if product_pdf != nil and product_pdf.path != "c:\\poligon_datasheets\\" and product_pdf.path != "\\\\Server03\\бд_сайта\\poligon_datasheets\\"
-      if product_pdf.path[0] != 'c'
-        pdf_path = product_pdf.path.gsub("\\\\Server03\\бд_сайта\\poligon_datasheets\\datasheets", "http://www.poligon.info/PDF").gsub("\\", "/")
-      else
-        pdf_path = product_pdf.path.gsub("c:\\poligon_datasheets\\datasheets", "http://www.poligon.info/PDF").gsub("\\", "/")
-      end
+    product_pdf = Product.find(params[:product_id]).pdf_name
+
+    vendor_folder_name = Vendor.find(Product.find(params[:product_id]).vendor_id).folder_name
+    if product_pdf != nil and product_pdf != ""
+        pdf_path = "http://www.poligon.info/PDF/" + vendor_folder_name + "/" + product_pdf
 
       pdf_path = URI.escape(pdf_path)
-      temp_pdf = "#{Rails.root}/public/data/temp/" + URI.escape(product_pdf.name)
+      
+
+      temp_pdf = "#{Rails.root}/public/data/temp/" + URI.escape(product_pdf)
       unless File.file?(temp_pdf)
         open(temp_pdf, 'wb') do |file|
           file << open(pdf_path).read
@@ -34,7 +34,7 @@ class ContentController < ApplicationController
       # а не в /var/www/poligon/data/www/poligon.info/
       # всё это городить не пришлось бы
       Thread.new do
-        sleep(0.5)
+        sleep(3)
         FileUtils.rm(temp_pdf)
       end
     end

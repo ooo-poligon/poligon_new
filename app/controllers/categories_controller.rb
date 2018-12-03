@@ -44,11 +44,12 @@ class CategoriesController < ApplicationController
         one_product_array = []
         product_price = 0
         if product.currency_id == 1
-          product_price = (product.price * (@courseEuro + (@courseEuro / 100) * addCBR.text_value.to_f) * product.rate).round(2)
+          product_price = (product.base_price * (@courseEuro + (@courseEuro / 100) * addCBR.text_value.to_f)).round(2)
         elsif product.currency_id == 2
-          product_price = product.rub_retail.round(2)
+          product_price = product.base_price.round(2)
         end
-        quantity = !Quantity.find_by(product_id: product.id).nil? && Quantity.find_by(product_id: product.id).stock > 0 ? Quantity.find_by(product_id: product.id).stock : 0
+        
+        quantity = product.stock
         if quantity > 0 || (quantity == 0 && recentAndSubCategoriesIds.length == 1)
           one_product_array.push(product, product_price, quantity, vendor)
           @products.push(one_product_array)

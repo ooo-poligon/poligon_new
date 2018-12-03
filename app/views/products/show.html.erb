@@ -2,14 +2,39 @@
 <%= render "shared/breadcrumb_search", locals: { product: @product } %>
 
 <% image_path = "" %>
-<% product_pdf   = DataFile.where("owner_id = ? and file_type_id = 2", @product.id).first %>
-<% if !@productImage.nil? and @productImage.name != '' %>
-  <% if @productImage.path[0] != 'c' %>
-    <% image_path = @productImage.path.gsub("\\\\Server03\\бд_сайта\\poligon_images", "http://www.poligon.info/images").gsub("\\", "/") %>
-  <% else %>
-    <% image_path = @productImage.path.gsub("c:\\poligon_images", "http://www.poligon.info/images").gsub("\\", "/") %>
-  <% end %>
+<% vendorFolder = Vendor.where('id = ?', @product.vendor_id).first %>
+
+<% if !@product.image_name_1.nil? and @product.image_name_1 != '' %>
+  <% image_path = "http://www.poligon.info/images/catalog/" + (vendorFolder.folder_name).to_s + "/devices/"+ (@product.image_name_1).to_s %>
+<% else %>
+  <% image_path = "nophoto.png" %>
 <% end %>
+
+<% if !@product.image_name_2.nil? and @product.image_name_2 != '' %>
+  <% image_path2 = "http://www.poligon.info/images/catalog/" + (vendorFolder.folder_name).to_s + "/devices/"+ (@product.image_name_2).to_s %>
+<% else %>
+  <% image_path2 = "nophoto.png" %>
+<% end %>
+
+<% if !@product.image_name_3.nil? and @product.image_name_3 != '' %>
+  <% image_path3 = "http://www.poligon.info/images/catalog/" + (vendorFolder.folder_name).to_s + "/devices/"+ (@product.image_name_3).to_s %>
+<% else %>
+  <% image_path3 = "nophoto.png" %>
+<% end %>
+
+<% if !@product.image_name_4.nil? and @product.image_name_4 != '' %>
+  <% image_path4 = "http://www.poligon.info/images/catalog/" + (vendorFolder.folder_name).to_s + "/devices/"+ (@product.image_name_4).to_s %>
+<% else %>
+  <% image_path4 = "nophoto.png" %>
+<% end %>
+
+<% if !@product.image_name_5.nil? and @product.image_name_5 != '' %>
+  <% image_path5 = "http://www.poligon.info/images/catalog/" + (vendorFolder.folder_name).to_s + "/devices/"+ (@product.image_name_5).to_s %>
+<% else %>
+  <% image_path5 = "nophoto.png" %>
+<% end %>
+
+
 <div class="card-block">
   <% unless @product.article.nil? %>
     <% title = @productKind.title + " " + @product.title + " (" + @product.article + ")" %>
@@ -25,18 +50,41 @@
         <div class="xzoom-container">
           <%= link_to(image_tag('card_zoom.png', class: "zoomik", id: "zoomik", alt: ''), "#gallery", class: "zoom-ik") %>
           <div class="main-photo">
+          <% if !@product.image_name_1.nil? and @product.image_name_1 != '' %>
             <%= image_tag(image_path, class: "xzoom5", id: "xzoom-magnific", original: image_path, alt: '', style: "width: 271.984px;") %>
+            <% else %>
+            <%= image_tag("nophoto.png", class: "xzoom5", id: "xzoom-magnific", original: "nophoto.png", alt: '', style: "width: 271.984px;") %>
+            <% end %>
           </div>
+
           <div id="gallery" class="xzoom-thumbs">
-            <% if !@productImage.nil? and @productImage.name != '' %>
+            <% if !@product.image_name_1.nil? and @product.image_name_1 != '' %>
               <%= link_to(image_tag(image_path, class: "xzoom-gallery xactive", width: '40', xpreview: image_path, title: '', alt: ''), image_path) %>
             <% else %>
               <%= image_tag("nophoto.png", class: "xzoom-gallery xactive", width: '40', xpreview: image_path, title: '', alt: '') %>
             <% end %>
+
+            <% if !@product.image_name_2.nil? and @product.image_name_2 != '' %>
+              <%= link_to(image_tag(image_path2, class: "xzoom-gallery", width: '40', xpreview: image_path2, title: '', alt: ''), image_path2) %>
+            <% end %>
+
+            <% if !@product.image_name_3.nil? and @product.image_name_3 != '' %>
+              <%= link_to(image_tag(image_path3, class: "xzoom-gallery", width: '40', xpreview: image_path3, title: '', alt: ''), image_path3) %>
+            <% end %>
+
+            <% if !@product.image_name_4.nil? and @product.image_name_4 != '' %>
+              <%= link_to(image_tag(image_path4, class: "xzoom-gallery", width: '40', xpreview: image_path4, title: '', alt: ''), image_path4) %>
+            <% end %>
+
+            <% if !@product.image_name_5.nil? and @product.image_name_5 != '' %>
+              <%= link_to(image_tag(image_path5, class: "xzoom-gallery", width: '40', xpreview: image_path5, title: '', alt: ''), image_path5) %>
+            <% end %>
           </div>
+
+          
           <div class="card-logo">
-            <a href="<%= category_path(@product.vendor.code) %>" target="_blank">
-              <%= image_tag(@product.vendor.logo, alt: '') %>
+            <a href="<%= category_path(@product.vendor.code) %>" target="_blank"> <!-- а если nil? -->
+              <%= image_tag("http://www.poligon.info/images/design/logo/" + @product.vendor.logo, alt: '') %>
             </a>
           </div>
         </div>
@@ -67,8 +115,8 @@
                   <ul>
                     <li>
                       Наличие:
-                      <% if !Quantity.find_by(product_id: @product.id).nil? && Quantity.find_by(product_id: @product.id).stock > 0 %>
-                        <%= Quantity.find_by(product_id: @product.id).stock.to_s + ' шт.' %>
+                      <% if !@product.stock.nil? && @product.stock > 0 %>
+                        <%= @product.stock.to_s + ' шт.' %>
                       <% else %>
                         <i>Под заказ.</i>
                         <!--<i>Срок поставки: <%#= @product.delivery_time %></i>-->
@@ -98,7 +146,7 @@
           </div>
           <div class="card-text"><%= @product.description %></div>
           <div class="row product-options">
-            <div class="col-xs-6 col-sm-4 product-option product-quick-delivery">
+            <div class="col-xs-6 col-sm-4 product-option product-quick-delivery info">
               <a href="#">Быстрая доставка</a>
               <div class="info"><span></span>
                 <div class="info-text">
@@ -107,7 +155,7 @@
                 </div>
               </div>
             </div>
-            <div class="col-xs-6 col-sm-4 product-option product-condition-payment">
+            <div class="col-xs-6 col-sm-4 product-option product-condition-payment info">
               <a href="#">Условия оплаты</a>
               <div class="info"><span></span>
                 <div class="info-text"><p>Тут другая подсказка</p></div>
@@ -128,7 +176,7 @@
             </div>
             <div class="col-sm-6 card-order-docs">
               <div class="doc-button">
-                <% if product_pdf != nil and product_pdf.path != "c:\\poligon_datasheets\\" and product_pdf.path != "\\\\Server03\\бд_сайта\\poligon_datasheets\\" %>
+                <% if @product.pdf_name != nil and @product.pdf_name != "" %>
                   <%= link_to( "<span></span>Скачать документацию".html_safe, content_download_pdf_path(product_id: @product.id)) %>
                 <% end %>
               </div>
@@ -161,7 +209,7 @@
         %>
           <li><p>Общая информация</p></li>
         <% end %>
-        <% if !product_pdf.nil? and product_pdf.path != "c:\\poligon_datasheets\\" and product_pdf.path != "\\\\Server03\\бд_сайта\\poligon_datasheets\\" %>
+        <% if !@product.pdf_name.nil? and @product.pdf_name!= "" %>
           <li><p><span class="card-pdf">pdf</span>и сертификаты</p></li>
         <% end %>
         <li id="tab-advant"><p>Преимущества</p></li>
@@ -200,10 +248,10 @@
           </div>
         </div>
       <% end %>
-      <% if !product_pdf.nil? and product_pdf.path != "c:\\poligon_datasheets\\" and product_pdf.path != "\\\\Server03\\бд_сайта\\poligon_datasheets\\" %>
+      <% if !@product.pdf_name.nil? and @product.pdf_name != "" %>
         <div class="card-box" style="display: none;">
           <div class="doc-button">
-            <% if !product_pdf.nil? and product_pdf.path != "c:\\poligon_datasheets\\" and product_pdf.path != "\\\\Server03\\бд_сайта\\poligon_datasheets\\" %>
+            <% if !@product_pdf.nil? and @product.pdf_name != "" %>
               <%= link_to( "<span></span>Скачать документацию".html_safe, content_download_pdf_path(product_id: @product.id)) %>
             <% end %>
           </div>
@@ -234,8 +282,8 @@
           <ul>
             <li>
               Наличие:
-              <% if !Quantity.find_by(product_id: @product.id).nil? && Quantity.find_by(product_id: @product.id).stock > 0 %>
-                <%= Quantity.find_by(product_id: @product.id).stock.to_s + ' шт.' %>
+              <% if @product.stock > 0 %>
+                <%= @product.stock.to_s + ' шт.' %>
               <% else %>
                 <i>Под заказ.</i>
                 <!--<i>Срок поставки: <%#= @product.delivery_time %></i>-->

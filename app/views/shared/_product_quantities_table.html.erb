@@ -1,32 +1,20 @@
-<% unless Quantity.find_by(product_id: product.id).nil? %>
-  <% stock = Quantity.find_by(product_id: product.id).stock %>
+<% unless product.nil? %>
+  <% stock = product.stock %>
+  <% reserved = product.reserved %>
+  <% ordered = product.ordered_on_stock %>
+  <% pieces_per_pack = product.pieces_per_pack %>
+  <% minimum = product.minimum_stock %>
+  <% remote_stock_citel = product.remote_stock_citel %>
+
 <% else %>
   <% stock = 0 %>
-<% end %>
-
-<% unless Quantity.find_by(product_id: product.id).nil? %>
-  <% reserved = Quantity.find_by(product_id: product.id).reserved %>
-<% else %>
   <% reserved = 0 %>
-<% end %>
-
-<% unless Quantity.find_by(product_id: product.id).nil? %>
-  <% ordered = Quantity.find_by(product_id: product.id).ordered %>
-<% else %>
   <% ordered = 0 %>
-<% end %>
-
-<% unless Quantity.find_by(product_id: product.id).nil? %>
-  <% pieces_per_pack = Quantity.find_by(product_id: product.id).pieces_per_pack %>
-<% else %>
   <% pieces_per_pack = 0 %>
+  <% minimum = 0 %>
+  <% remote_stock_citel = 0 %>
 <% end %>
 
-<% unless Quantity.find_by(product_id: product.id).nil? %>
-  <% minimum = Quantity.find_by(product_id: product.id).minimum %>
-<% else %>
-  <% minimum = 0 %>
-<% end %>
 
 <% unless Setting.find_by(title: 'quantityUpdateDate').nil? %>
   <% updateDate = Setting.find_by(title: 'quantityUpdateDate').text_value %>
@@ -59,6 +47,11 @@
       <tr>
         <td>&nbspМинимум:</td><td style="font-weight: bolder; align-content: right;">&nbsp<%= minimum %>&nbsp</td><td style="align-content: right;">шт.</td>
       </tr>
+      <% if product.vendor_id == 2 %>
+      <tr>
+        <td>&nbspСклад CITEL:</td><td style="font-weight: bolder; align-content: right;">&nbsp<%= remote_stock_citel %>&nbsp</td><td style="align-content: right;">шт.</td>
+      </tr>
+      <% end %>
     </table>
   <% elsif current_user.group_id == 1 %>
     <table class="table table-condensed table-responsive">
@@ -71,6 +64,11 @@
       <tr>
         <td>&nbspЗаказано:</td><td style="font-weight: bolder; align-content: right;">&nbsp<%= ordered %>&nbsp</td><td style="align-content: right;">шт.</td>
       </tr>
+      <% if product.vendor_id == 2 %>
+      <tr>
+        <td>&nbspСклад CITEL:</td><td style="font-weight: bolder; align-content: right;">&nbsp<%= remote_stock_citel %>&nbsp</td><td style="align-content: right;">шт.</td>
+      </tr>
+      <% end %>
     </table>
   <% end %>
 <% end %>
