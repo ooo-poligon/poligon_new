@@ -150,8 +150,6 @@ GEM
     figaro (1.1.1)
       thor (~> 0.14)
     formatador (0.2.5)
-    friendly_id (5.2.4)
-      activerecord (>= 4.0.0)
     gherkin (4.0.0)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
@@ -398,7 +396,6 @@ DEPENDENCIES
   faker!
   fancybox-rails
   figaro
-  friendly_id (~> 5.2.4)
   gibbon!
   guard
   guard-cucumber

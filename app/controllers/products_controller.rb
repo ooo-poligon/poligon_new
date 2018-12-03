@@ -5,7 +5,7 @@ class ProductsController < ApplicationController
 
   def show
 
-    @product                   = Product.friendly.find(params[:id])
+    @product                   = Product.find(params[:id])
     @parents_array             = parents_of(@product.category_id)
     @addCBR                    = Setting.find_by title: 'addCBR'
     

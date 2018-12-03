@@ -25,6 +25,4 @@ class Product < ActiveRecord::Base
   end
     integer :id
      end
-     extend FriendlyId
-     friendly_id :slug
 end

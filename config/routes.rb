@@ -3,7 +3,6 @@ Poligon::Application.routes.draw do
 
   # root to: 'welcome#hello'
 
-  
   resources  :news_items, only: [:index, :show]
   resources  :categories, only: [:index, :show]
   resources  :articles,   only: [:index, :show]
