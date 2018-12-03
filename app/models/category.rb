@@ -1,7 +1,7 @@
 class Category < ActiveRecord::Base
   has_many :products
-
   validates :title, uniqueness: true
+
 
   searchable do
     text :title, :as => :code_textp
@@ -11,4 +11,7 @@ class Category < ActiveRecord::Base
 
   scope :available, -> { where(published: 1) }
 
+    def to_param
+    "#{id}-#{slug}"
+    end
 end

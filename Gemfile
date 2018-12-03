@@ -28,6 +28,7 @@ gem 'zeroclipboard-rails'
 gem 'turbolinks'
 gem 'zipline'
 gem 'whenever', require: false
+gem 'friendly_id', '    ~> 5.2.4' # Note: You MUST use 5.0.0 or greater for Rails 4.0+
 
 group :assets do
   gem 'coffee-rails'
@@ -66,3 +67,4 @@ end
 group :production do
   gem 'exception_notification'
 end
+
