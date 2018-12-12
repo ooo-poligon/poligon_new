@@ -9,7 +9,6 @@ class Product < ActiveRecord::Base
   has_many   :property_values
   has_many   :line_items, dependent: :destroy
   has_many   :examples
-  has_one    :quantity
   has_one    :prices
   has_and_belongs_to_many :offers
 

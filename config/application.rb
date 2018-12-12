@@ -28,7 +28,7 @@ module Poligon
     config.encoding = "utf-8"
 
     config.assets.enabled = true
-    config.assets.precompile += %w(*.js)
+    config.assets.precompile += %w(*.js admin.css admin.js)
     config.exceptions_app = self.routes
   end
 end

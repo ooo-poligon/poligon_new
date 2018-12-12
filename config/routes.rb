@@ -78,7 +78,7 @@ Poligon::Application.routes.draw do
   devise_for :users
 
   get 'categories/142'  => 'categories/tele',         :as => 'categories/tele'
-  get 'categories/5933' => 'categories/comat_releco', :as => 'categories/comat_releco'
+  get 'categories/77' => 'categories/comat_releco', :as => 'categories/comat_releco'
   get 'categories/5583' => 'categories/emko',         :as => 'categories/emko'
   get 'categories/5094' => 'categories/benedict',     :as => 'categories/benedict'
   get 'categories/74'   => 'categories/citel',        :as => 'categories/citel'
@@ -88,43 +88,13 @@ Poligon::Application.routes.draw do
   get 'categories/5512' => 'categories/cbi',          :as => 'categories/cbi'
   get 'categories/6321' => 'categories/poligonspb',   :as => 'categories/poligonspb'
   get 'categories/4847' => 'categories/huber_suhner', :as => 'categories/huber_suhner'
-  get 'categories/6925' => 'categories/tehnoplast',   :as => 'categories/tehnoplast'
+  get 'categories/6371' => 'categories/tehnoplast',   :as => 'categories/tehnoplast'
 
-  # This route can be invoked with purchase_url(:id => product.id)
-
-  # Sample resource route (maps HTTP verbs to controller actions automatically):
-  #   resources :products
-
-  # Sample resource route with options:
-  #   resources :products do
-  #     member do
-  #       get  'short'
-  #       post 'toggle'
-  #     end
-  #
-  #     collection do
-  #       get  'sold'
-  #     end
-  #   end
-
-  # Sample resource route with sub-resources:
-  #   resources :products do
-  #     resources :comments, :sales
-  #     resource :seller
-  #   end
-
-  # Sample resource route with more complex sub-resources
-  #   resources :products do
-  #     resources :comments
-  #     resources :sales do
-  #       get  'recent', :on => :collection
-  #     end
-  #   end
 
   # Sample resource route within a namespace:
   namespace :admin do
     resources :panel, only: [:index]
-    resources :scopes
+    resources :scopes, :booklets, :static_contents
     resources :examples
     resources :examples do
       resources :example_images, :only => [:create, :destroy] # support #create and #destroy

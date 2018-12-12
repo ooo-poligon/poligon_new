@@ -13,7 +13,7 @@
 <%= render "shared/user_navbar" %>
 <%= render "shared/mainpage/header",
            :teleSubCategories         => Category.available.where(parent: 142 ),
-           :comatRelecoSubCategories  => Category.available.where(parent: 5933),
+           :comatRelecoSubCategories  => Category.available.where(parent: 77),
            :emkoSubCategories         => Category.available.where(parent: 5583),
            :benedictSubCategories     => Category.available.where(parent: 5094),
            :citelSubCategories        => Category.available.where(parent: 74  ),
@@ -23,10 +23,10 @@
            :cbiSubCategories          => Category.available.where(parent: 5512),
            :polygonSubCategories      => Category.available.where(parent: 6321),
            :huberSuhnerSubCategories  => Category.available.where(parent: 4847),
-           :tehnoplastSubCategories   => Category.available.where(parent: 6925) %>
+           :tehnoplastSubCategories   => Category.available.where(parent: 6371) %>
 <%= render "shared/mainpage/mobile_header",
            :teleSubCategories         => Category.available.where(parent: 142 ),
-           :comatRelecoSubCategories  => Category.available.where(parent: 5933),
+           :comatRelecoSubCategories  => Category.available.where(parent: 77),
            :emkoSubCategories         => Category.available.where(parent: 5583),
            :benedictSubCategories     => Category.available.where(parent: 5094),
            :citelSubCategories        => Category.available.where(parent: 74  ),
@@ -36,7 +36,7 @@
            :cbiSubCategories          => Category.available.where(parent: 5512),
            :polygonSubCategories      => Category.available.where(parent: 6321),
            :huberSuhnerSubCategories  => Category.available.where(parent: 4847),
-           :tehnoplastSubCategories   => Category.available.where(parent: 6925) %>
+           :tehnoplastSubCategories   => Category.available.where(parent: 6371) %>
 <div class="container">
   <div class="row">
     <% if ['categories', 'publications'].include? controller_name%>
@@ -81,7 +81,7 @@
           <%= render("shared/mainpage/category_menu") %>
         </div>
         <div class="col-sm-8 col-md-9 content">
-          <div class="row">
+          <div class="padding">
             <%= render partial: "shared/mainpage/flash_messages", flash: flash %>
             <%= render("shared/mainpage/modal_cart") %>
             <%= yield %>

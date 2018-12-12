@@ -8,11 +8,11 @@
 (function($){
   jQuery.fn.columnTableCharAlign = function(options){
     options = $.extend({
-        cols: 'n1+1', // номер колонки, допустимо выражение для :nth-child(), по умолчанию все
-        use_char: ',', // символ для выравнивания
-        left_offset: 3, // кол-во пробелов добиваемых слева (минимум — кол-во знаков целой части в наибольшем значении)
-        right_offset: 2, // кол-во знаков в дробной части по умолчанию
-        exclude_cells : 3 // TODO! номера ячеек для которых не проволить преобразование (напр. с текстом и т.п.) :nth-of-type() совместимое выражение
+        cols: 'n1+1', // Г­Г®Г¬ГҐГ° ГЄГ®Г«Г®Г­ГЄГЁ, Г¤Г®ГЇГіГ±ГІГЁГ¬Г® ГўГ»Г°Г Г¦ГҐГ­ГЁГҐ Г¤Г«Гї :nth-child(), ГЇГ® ГіГ¬Г®Г«Г·Г Г­ГЁГѕ ГўГ±ГҐ
+        use_char: ',', // Г±ГЁГ¬ГўГ®Г« Г¤Г«Гї ГўГ»Г°Г ГўГ­ГЁГўГ Г­ГЁГї
+        left_offset: 3, // ГЄГ®Г«-ГўГ® ГЇГ°Г®ГЎГҐГ«Г®Гў Г¤Г®ГЎГЁГўГ ГҐГ¬Г»Гµ Г±Г«ГҐГўГ  (Г¬ГЁГ­ГЁГ¬ГіГ¬ В— ГЄГ®Г«-ГўГ® Г§Г­Г ГЄГ®Гў Г¶ГҐГ«Г®Г© Г·Г Г±ГІГЁ Гў Г­Г ГЁГЎГ®Г«ГјГёГҐГ¬ Г§Г­Г Г·ГҐГ­ГЁГЁ)
+        right_offset: 2, // ГЄГ®Г«-ГўГ® Г§Г­Г ГЄГ®Гў Гў Г¤Г°Г®ГЎГ­Г®Г© Г·Г Г±ГІГЁ ГЇГ® ГіГ¬Г®Г«Г·Г Г­ГЁГѕ
+        exclude_cells : 3 // TODO! Г­Г®Г¬ГҐГ°Г  ГїГ·ГҐГҐГЄ Г¤Г«Гї ГЄГ®ГІГ®Г°Г»Гµ Г­ГҐ ГЇГ°Г®ГўГ®Г«ГЁГІГј ГЇГ°ГҐГ®ГЎГ°Г Г§Г®ГўГ Г­ГЁГҐ (Г­Г ГЇГ°. Г± ГІГҐГЄГ±ГІГ®Г¬ ГЁ ГІ.ГЇ.) :nth-of-type() Г±Г®ГўГ¬ГҐГ±ГІГЁГ¬Г®ГҐ ГўГ»Г°Г Г¦ГҐГ­ГЁГҐ
     }, options);
  
     var make = function(){
@@ -30,20 +30,20 @@
             var fraction = num_value.split(character);
             var integer = fraction[0];
             var fractional = fraction[1];
-            // может быть такое, что в ячейке оказалось целое число, без запятой
-            // место под неё заменим на пробел
+            // Г¬Г®Г¦ГҐГІ ГЎГ»ГІГј ГІГ ГЄГ®ГҐ, Г·ГІГ® Гў ГїГ·ГҐГ©ГЄГҐ Г®ГЄГ Г§Г Г«Г®Г±Гј Г¶ГҐГ«Г®ГҐ Г·ГЁГ±Г«Г®, ГЎГҐГ§ Г§Г ГЇГїГІГ®Г©
+            // Г¬ГҐГ±ГІГ® ГЇГ®Г¤ Г­ГҐВё Г§Г Г¬ГҐГ­ГЁГ¬ Г­Г  ГЇГ°Г®ГЎГҐГ«
             if(fractional == undefined){
                 fractional = '';
                 character = '&nbsp;';
             }
-            // вычисляем отбивку слева
+            // ГўГ»Г·ГЁГ±Г«ГїГҐГ¬ Г®ГІГЎГЁГўГЄГі Г±Г«ГҐГўГ 
             var difference_integer = options.left_offset - integer.length;
             if(difference_integer > 0){
                 new_value += new Array(difference_integer + 1).join('&nbsp;');
             }
-            // склеиваем всё вместе
+            // Г±ГЄГ«ГҐГЁГўГ ГҐГ¬ ГўГ±Вё ГўГ¬ГҐГ±ГІГҐ
             new_value += integer+character+fractional;
-            // отбивка справа
+            // Г®ГІГЎГЁГўГЄГ  Г±ГЇГ°Г ГўГ 
             var difference_fractional = options.right_offset - fractional.length;
             if(difference_fractional > 0){
                  new_value += new Array(difference_fractional + 1).join('&nbsp;');
@@ -56,8 +56,8 @@
   }
 
 /**
- * добавление поддержки селектора для :nth-of-type
- * взято из  jQuery Extended Selectors (http://www.keithclark.co.uk/labs/jquery-extended-selectors/)
+ * Г¤Г®ГЎГ ГўГ«ГҐГ­ГЁГҐ ГЇГ®Г¤Г¤ГҐГ°Г¦ГЄГЁ Г±ГҐГ«ГҐГЄГІГ®Г°Г  Г¤Г«Гї :nth-of-type
+ * ГўГ§ГїГІГ® ГЁГ§  jQuery Extended Selectors (http://www.keithclark.co.uk/labs/jquery-extended-selectors/)
  */
     
     function getNthIndex(cur, dir) {

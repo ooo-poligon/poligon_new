@@ -1,0 +1,13 @@
+<%= form_for @static_content, url: {action: "update"}, method: :patch, :html => {:multipart => true} do |f| %>
+
+<h2>Редактирование статического контента - <%= @static_content.page %></h2>
+
+<p>
+  <%= f.label "Контент" %>
+  <%= f.text_area :content, class: "form-control ckeditor", required: true %>
+</p>
+<p>
+  <%= f.submit "Редактировать", class: "btn btn-success" %>
+</p>
+
+<% end %>

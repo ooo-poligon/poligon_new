@@ -9,10 +9,9 @@ class ApplicationController < ActionController::Base
 
   helper_method :get_prices_eur, :get_prices_rub, :hello_user, :parents_of, :set_meta, :generate_meta_from
 
-      def get_prices_eur(product)
-        prices_array = []
-        
-
+  
+  def get_prices_eur(product)
+    prices_array = []
     retail = product.base_price
     prices_array << retail
     prices_array << product.special_price

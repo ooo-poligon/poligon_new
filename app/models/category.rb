@@ -1,4 +1,7 @@
 class Category < ActiveRecord::Base
+  has_many :subcategories, class_name: 'Category', foreign_key: 'parent'
+  belongs_to :parent_category, class_name: 'Category'
+
   has_many :products
 
   validates :title, uniqueness: true
@@ -10,5 +13,13 @@ class Category < ActiveRecord::Base
   end
 
   scope :available, -> { where(published: 1) }
+
+  def get_products
+    cat = self
+    categories_ids = self.subcategories.pluck(:id)
+    categories_ids << cat.id
+    products = Product.where(category_id: categories_ids)
+    products
+  end
 
 end

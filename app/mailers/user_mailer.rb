@@ -52,6 +52,7 @@ class UserMailer < ActionMailer::Base
     @email    = email
     @address  = address
     @requisites = requisites
+
     mail(to: @receiver, bcc: 'robot@poligon.info', subject: 'Заказ товаров с сайта new.poliogn.info')
   end
 

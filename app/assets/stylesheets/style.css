@@ -12,6 +12,13 @@ body {
     background:#fff;
     font-family: 'Open Sans', sans-serif;
 }
+
+
+.normal {
+  text-transform: none !important;
+}
+
+
 h1 {
     font-size: 24px;
     line-height: 28px;
@@ -20,7 +27,11 @@ h1 {
     margin: 0 0 30px;
     text-align: left;
     text-transform: uppercase;
+
+
 }
+
+
 h2 {
     font-size: 20px;
     line-height: 24px;
@@ -494,9 +505,15 @@ span.production-country {
 
 /*content*/
 .content {
-    padding-left: 0;
-	padding-top: 10px;
+   padding-left: 0;
+	 padding-top: 10px;
 }
+
+.padding{
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
 .container img {
     max-width: 100%;
 }
@@ -2611,11 +2628,11 @@ footer .owl-carousel .owl-next {
 }
 .jq-number__field input {
     -moz-appearance: textfield;
-    text-align: left; /* для Opera Presto */
+    text-align: left; /* Ð´Ð»Ñ Opera PrestoÂ */
 }
 .jq-number__field input::-webkit-inner-spin-button,
 .jq-number__field input::-webkit-outer-spin-button {
-    margin: 0; /* в каких-то браузерах присутствует отступ */
+    margin: 0; /* Ð² ÐºÐ°ÐºÐ¸Ñ-ÑÐ¾ Ð±ÑÐ°ÑÐ·ÐµÑÐ°Ñ Ð¿ÑÐ¸ÑÑÑÑÑÐ²ÑÐµÑ Ð¾ÑÑÑÑÐ¿ */
     -webkit-appearance: none;
 }
 .jq-checkbox,

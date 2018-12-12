@@ -29,6 +29,8 @@
 //= require categories
 //= require clipboard
 
+//= require will_paginate_infinite
+
 $(document).ready(function() {
     var clipboard = new Clipboard('.clipboard-btn');
     $("a.fancybox").fancybox();
@@ -62,7 +64,7 @@ $(document).ready(function() {
 });
 
 function no_pdf() {
-    alert("Для этого устройства даташит не обнаружен.");
+    alert("ÐÐ»Ñ ÑÑÐ¾Ð³Ð¾ ÑÑÑÑÐ¾Ð¹ÑÑÐ²Ð° Ð´Ð°ÑÐ°ÑÐ¸Ñ Ð½Ðµ Ð¾Ð±Ð½Ð°ÑÑÐ¶ÐµÐ½.");
 }
 
 $('div.modal').on('hidden.bs.modal', function () {

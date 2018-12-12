@@ -1,0 +1,36 @@
+<h1>Буклеты</h1>
+
+<%= link_to "+ Добавить", new_admin_booklet_path, class: "btn btn-success" %>
+
+<table class="table table-striped">
+  <thead class="thead-dark">
+    <tr>
+      <th>ID</th>
+      <th>Превью</th>
+      <th>Название</th>
+      <th>Печатная версия</th>
+      <th>Вид</th>
+      <th>Позиция</th>
+      <th>Vendor</th>
+      <th>Действия</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @booklets.each do |booklet| %>
+      <tr>
+        <th><%= booklet.id %></th>
+        <th><%= image_tag(booklet&.image&.url, style: "width: 100px;") %></th>
+        <th><%= booklet.title %></th>
+        <th><%= booklet.print_version %></th>
+        <th><%= "Размер: #{booklet.block_size}
+                 Цвет блока: #{booklet.block_color}
+                 Цвет граница: #{booklet.border_color}" %></th>
+        <td><%= booklet.position %></td>
+        <td><%= booklet.vendor.title %></td>
+        <td>
+          <%= link_to "Редактировать", edit_admin_booklet_path(booklet), class: "btn btn-sm btn-success" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

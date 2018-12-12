@@ -24,9 +24,11 @@ class LineItemsController < ApplicationController
   def create
     @cart = @current_cart
     product = Product.find(params[:product_id])
-    quantity= params[:quantity].to_i
+    
+    quantity = params[:quantity].to_i
     price = params[:price]
-    stock = product.quantity.nil? ? 0 : product.quantity.stock.to_i
+
+    stock = product.quantity.nil? ? 0 : product.stock.to_i
     overflow = quantity - stock
     @line_item = @cart.add_product(product.id, quantity, price, overflow)
 
@@ -72,7 +74,7 @@ class LineItemsController < ApplicationController
     line_items.each do |item|
       total += item.quantity * item.price
     end
-    stock = line_item.product.quantity.nil? ? 0 : line_item.product.quantity.stock.to_i
+    stock = line_item.product.quantity.nil? ? 0 : line_item.product.stock.to_i
     overflow = quantity.to_i - stock
     line_item.update(overflow: overflow)
     respond_to do |format|

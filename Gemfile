@@ -33,11 +33,14 @@ gem 'recaptcha', '4.8.0', require: "recaptcha/rails"
 gem 'carrierwave', '~> 1.0'
 gem 'mini_magick', '4.8.0'
 gem 'clipboard-rails'
+gem 'will_paginate_infinite'
 
 group :assets do
   gem 'coffee-rails', '4.1.1'
   gem 'uglifier', '>= 1.0.3'
 end
+
+gem 'rails-erd', group: :development
 
 group :test do
   gem 'capybara', '2.7.1'
@@ -48,7 +51,10 @@ group :test do
   gem 'chromedriver-helper'
 end
 
+gem "letter_opener", :group => :development
+
 group :development, :test do
+  gem 'pry-rails'
   gem 'rspec-rails', '~> 3.4'
   gem 'cucumber-rails', '1.4.3', :require => false
   gem 'database_cleaner', '1.5.3'

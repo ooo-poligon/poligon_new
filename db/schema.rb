@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180625204710) do
+ActiveRecord::Schema.define(version: 20181212121110) do
 
   create_table "additions", force: :cascade do |t|
     t.datetime "created_at",                    null: false
@@ -44,6 +44,22 @@ ActiveRecord::Schema.define(version: 20180625204710) do
     t.string   "title",      limit: 255
     t.text     "content",    limit: 65535
     t.string   "image_path", limit: 255
+  end
+
+  create_table "booklets", force: :cascade do |t|
+    t.string   "title",         limit: 255
+    t.text     "description",   limit: 65535
+    t.string   "image",         limit: 255
+    t.string   "file",          limit: 255
+    t.boolean  "print_version"
+    t.boolean  "vendor_show"
+    t.integer  "block_size",    limit: 4
+    t.string   "block_color",   limit: 255
+    t.string   "border_color",  limit: 255
+    t.integer  "position",      limit: 4
+    t.integer  "vendor_id",     limit: 4
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
   end
 
   create_table "carts", force: :cascade do |t|
@@ -286,7 +302,7 @@ ActiveRecord::Schema.define(version: 20180625204710) do
     t.integer "pieces_per_pack",    limit: 4,     default: 0,   null: false
     t.integer "reserved",           limit: 4,     default: 0,   null: false
     t.integer "stock",              limit: 4,     default: 0,   null: false
-    t.integer "remote_stock_citel", limit: 4,     default: 0,   null: false
+    t.integer "remote_stock",       limit: 4,     default: 0,   null: false
     t.integer "rs_stock_1",         limit: 4,     default: 0,   null: false
     t.integer "rs_stock_2",         limit: 4,     default: 0,   null: false
     t.integer "rs_stock_3",         limit: 4,     default: 0,   null: false
@@ -336,6 +352,7 @@ ActiveRecord::Schema.define(version: 20180625204710) do
     t.string  "price_date",         limit: 50
     t.string  "slug",               limit: 255
     t.text    "advantages",         limit: 65535
+    t.integer "quantity",           limit: 4,     default: 0
   end
 
   add_index "products", ["category_id"], name: "FK_of5oeawsy50x878ic9tyapdnv", using: :btree
@@ -473,6 +490,12 @@ ActiveRecord::Schema.define(version: 20180625204710) do
     t.datetime "updated_at",             null: false
   end
 
+  create_table "property_types", force: :cascade do |t|
+    t.string   "title",      limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
   create_table "property_values", force: :cascade do |t|
     t.string  "value",       limit: 255
     t.integer "property_id", limit: 4
@@ -568,6 +591,7 @@ ActiveRecord::Schema.define(version: 20180625204710) do
     t.string   "position",            limit: 255
     t.integer  "company_id",          limit: 4
     t.integer  "group_id",            limit: 4
+    t.integer  "role",                limit: 4,   default: 0
   end
 
   add_index "users", ["company_id"], name: "index_users_on_company_id", using: :btree
@@ -575,16 +599,16 @@ ActiveRecord::Schema.define(version: 20180625204710) do
   add_index "users", ["group_id"], name: "index_users_on_group_id", using: :btree
 
   create_table "vendors", force: :cascade do |t|
-    t.string  "title",       limit: 255,        null: false
+    t.string  "title",       limit: 255,                     null: false
     t.text    "address",     limit: 4294967295
     t.text    "description", limit: 4294967295
-    t.text    "status",      limit: 4294967295, null: false
-    t.text    "statuslink",  limit: 4294967295, null: false
+    t.text    "status",      limit: 4294967295,              null: false
+    t.text    "statuslink",  limit: 4294967295,              null: false
     t.text    "folder_name", limit: 4294967295
     t.float   "rate",        limit: 53
     t.integer "currency_id", limit: 4
     t.integer "code",        limit: 4
-    t.string  "logo",        limit: 255
+    t.string  "logo",        limit: 255,        default: "", null: false
   end
 
   add_index "vendors", ["currency_id"], name: "FK_nsbv37hiaemev6th5cuqgs6aa", using: :btree

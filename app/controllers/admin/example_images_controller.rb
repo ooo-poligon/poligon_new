@@ -1,5 +1,5 @@
 class Admin::ExampleImagesController < Admin::BaseController
-    before_action :set_example
+  before_action :set_example
 
   def create
     add_more_images(images_params[:example_images])

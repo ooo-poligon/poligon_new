@@ -6,7 +6,8 @@
     <link href='https://fonts.googleapis.com/css?family=Marck+Script&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Ubuntu+Condensed&subset=latin,cyrillic-ext' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Anonymous+Pro:700,400&subset=cyrillic,latin' rel='stylesheet' type='text/css'>
-    <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+    <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
+    <%= stylesheet_link_tag "admin", media: "all", "data-turbolinks-track" => true %>
     <%= favicon_link_tag 'favicon.ico' %>
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -37,28 +38,22 @@
                :tehnoplastSubCategories   => Category.available.where(parent: 6925) %>
 
     <div class="container">
-      <div class="row row-offcanvas row-offcanvas-right">
-        <div class="col-xs-12 col-md-12 main-content" >
+      <div class="row row-offcanvas row-offcanvas-right admin-wrapper">
+        
+        <div class="col-xs-12 col-md-3 main-content" >
+          <%= render partial: "layouts/admin" %>
+        </div>
+
+        <div class="col-xs-12 col-md-9 main-content" >
           <p class="pull-right visible-xs">
             <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Боковое меню</button>
           </p>
-          <br><br>
           <%= render partial: "shared/mainpage/flash_messages", flash: flash %>
-          <br>
           <%= yield %>
-        </div><!--/span-->
+        </div>
+      </div>
+    </div>
 
-
-
-      </div><!--/row-->
-
-      <footer>
-        <p>&copy; ООО "ПОЛИГОН" 2016</p>
-      </footer>
-
-    </div><!--/.container-->
-
-    <!-- JavaScript placed at the end of the document so the pages load faster -->
     <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
 
   </body>

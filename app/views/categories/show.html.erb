@@ -88,7 +88,7 @@
           </div>
         </div>
         <div class="category-info-text">
-          <div class="show-sub"><span></span><p><i>скрыть остальные</i><b>показать остальные</b></p></div>
+          <div class="show-sub show"><span></span><p><i>скрыть остальные</i><b>показать остальные</b></p></div>
           <div class="row" >
             <% if @recentCategory.description.nil? or @recentCategory.description == "" %>
               <p>
@@ -126,6 +126,8 @@
       </div>
 
       <% if !@products.empty? %>
+
+        <%#
         <div class="category-filter">
           <div class="category-filter-top">
             <div class="row">
@@ -181,8 +183,19 @@
             </div>
           </div>
         </div>
+        %>
+
         <br>
         <%= render "shared/products_table" %>
+
+          <div class="flickr_pagination">
+            <div class="page_info">
+              <%= page_entries_info @paginated %>
+            </div>
+            <%= will_paginate @paginated, renderer: WillPaginateInfinite::InfinitePagination %>
+          </div>
+
+        
       <% end %>
     </div>
   </div>

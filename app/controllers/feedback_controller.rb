@@ -55,6 +55,8 @@ class FeedbackController < ApplicationController
   end
 
   def booklets
+    @booklets = Booklet.all
+    @vendors = Vendor.where(id: @booklets.pluck(:vendor_id).uniq)
   end
 
   def catalogs_order
