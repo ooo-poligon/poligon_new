@@ -10,6 +10,7 @@ class Product < ActiveRecord::Base
   has_many   :line_items, dependent: :destroy
   has_many   :examples
   has_one    :prices
+  has_one :advantage
   has_and_belongs_to_many :offers
 
   before_destroy :ensure_not_referenced_by_any_line_item

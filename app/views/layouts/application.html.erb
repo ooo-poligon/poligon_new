@@ -81,7 +81,7 @@
           <%= render("shared/mainpage/category_menu") %>
         </div>
         <div class="col-sm-8 col-md-9 content">
-          <div class="padding">
+          <div class="">
             <%= render partial: "shared/mainpage/flash_messages", flash: flash %>
             <%= render("shared/mainpage/modal_cart") %>
             <%= yield %>
@@ -112,7 +112,6 @@
 
 <!-- JavaScript placed at the end of the document so the pages load faster -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src='https://www.google.com/recaptcha/api.js?render=6LcibX4UAAAAAC6PCVHY2CbsbaZJiQHh1qGTdhYs'></script>
 <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
 
 </body>

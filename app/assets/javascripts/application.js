@@ -31,36 +31,54 @@
 
 //= require will_paginate_infinite
 
+function submitRecaptcha() {
+  $(".captcha-form").find(".alert").remove();
+};
+
 $(document).ready(function() {
-    var clipboard = new Clipboard('.clipboard-btn');
-    $("a.fancybox").fancybox();
-    $('.backlight').tableHover({
-        colClass: 'hover',
-        rowClass: 'hover',
-        headCols: true,
-        spanRows: false,
-        spanCols: false,
-        ignoreRows: [1,2]
-    });
 
-    $(function () {
-        $('#accordion').on('shown.bs.collapse', function (e) {
-            var offset = $('.panel.panel-default > .panel-collapse.in').offset();
-            if(offset)$('html,body').scrollTop(offset.top - 300);
-        });
-    });
+  $(".captcha-form").submit(function(event) {
+    var recaptcha = $("#g-recaptcha-response").val();
+    if (recaptcha === "") {
+      event.preventDefault();
+      if ($(this).find(".captcha").parent().find(".alert").length == 0){
+        $(this).find(".captcha").before('<div class="alert alert-danger" role="alert">Подтвердите, что вы не робот!</div>');
+      } else {
+        
+      }
+    }
+  });
 
-    $(function () {
-        $('#message-modal').modal('show');
-    });
 
-    $("button#send-order-button").click(function() {
-        $('html,body').animate({
-            scrollTop: $("div#send-order").offset().top
-            },
-            'slow'
-        );
+  var clipboard = new Clipboard('.clipboard-btn');
+  $("a.fancybox").fancybox();
+  $('.backlight').tableHover({
+    colClass: 'hover',
+    rowClass: 'hover',
+    headCols: true,
+    spanRows: false,
+    spanCols: false,
+    ignoreRows: [1,2]
+  });
+
+  $(function () {
+    $('#accordion').on('shown.bs.collapse', function (e) {
+      var offset = $('.panel.panel-default > .panel-collapse.in').offset();
+      if(offset)$('html,body').scrollTop(offset.top - 300);
     });
+  });
+
+  $(function () {
+    $('#message-modal').modal('show');
+  });
+
+  $("button#send-order-button").click(function() {
+    $('html,body').animate({
+      scrollTop: $("div#send-order").offset().top
+      },
+      'slow'
+    );
+  });
 });
 
 function no_pdf() {

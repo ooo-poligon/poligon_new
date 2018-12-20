@@ -1,5 +1,4 @@
-<!-- Modal -->
-<div class="modal fade" id="mo" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade" id="recall-modal" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <button class="x" id="close-recall" type="button" data-dismiss="modal" aria-hidden="true"></button>
@@ -8,22 +7,37 @@
           <div class="form-content">
             <h2>Оставить заявку</h2>
             <p class="or">или подобрать аналог</p>
-            <form class="send-form" id="recall-form" action="javascript:void(null);" onsubmit="recall_form()">
-              <div class="form-input req"><input class="modal-input name-send" type="text" name="name" required placeholder="Имя"></div>
-              <div class="form-input req"><input class="modal-input phone-send" type="text" name="phone" required placeholder="Телефон"></div>
-              <div class="form-input req"><input class="modal-input mail-send" type="text" name="email" required placeholder="E-mail"></div>
-              <div class="form-textarea"><textarea class="message-send" name="message" placeholder="Ваше сообщение"></textarea></div>
+            <br>
+
+            <%= form_for(Contact.new, url: "/feedback/send_request_find_analogue") do |f| %>
+              <div class="form-input req">
+                <%= f.text_field :name, class: "modal-input name-send", placeholder: "Имя", required: true %>
+              </div>
+              <div class="form-input req">
+                <%= f.text_field :phone, class: "modal-input phone-send", placeholder: "Телефон", required: true %>
+              </div>
+              <div class="form-input req">
+                <%= f.text_field :email, class: "modal-input mail-send", placeholder: "E-mail", required: true %>
+              </div>
+              <div class="form-textarea">
+                <%= f.text_area :message, class: "message-send", placeholder: "Ваше сообщение" %>
+              </div>
+
+              <%= f.file_field :contact_attachments, multiple: true, name: "contact[contact_attachments][]", class: "inputfile inputfile-1", 'data-multiple-caption': "{count} files selected" %>
+              <label for="contact_contact_attachments"><span>+ Прикрепить файл</span></label>
+
               <div class="form-button req">
-                <input type="file" required name="file[]" id="file" class="inputfile inputfile-1" data-multiple-caption="{count} files selected" multiple />
-                <label for="file"><span>+ Прикрепить файл</span></label>
-                <div class="captcha">
-                  <% recaptcha_tags  %>
+                <div class="captcha captcha">
+                  <%= recaptcha_tags callback: 'submitRecaptcha' %>
                 </div>
               </div>
-              <div class="button-send"><button type="submit" data-dismiss="modal">Отправить</button></div>
-              <div class="modal-agree">Нажимая кнопку «Отправить» я даю согласие на <a href="<%= company_personal_path %>">обработку персональных данных.</a></div>
+              <div class="button-send"><%= f.button "Отправить" %></div>
+              <div class="modal-agree">Нажимая кнопку «Отправить» я даю согласие на <a href="<%= company_personal_path %>" target="_blank">обработку персональных данных.</a></div>
               <div class="expl"><span>*</span> Поля обязательные для заполнения</div>
-            </form>
+            <% end %>
+
+
+
           </div>
         </div>
       </div>

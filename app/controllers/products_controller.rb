@@ -97,4 +97,32 @@ class ProductsController < ApplicationController
     end
 =end
   end
+
+
+  def stock
+    @products = []
+    addCBR = Setting.find_by title: 'addCBR'
+
+    Product.available.where.not(stock: 0).each do |product|
+      vendor = Vendor.find(product.vendor_id)
+      
+      one_product_array = []
+      product_price = 0
+
+      if product.currency_id == 1
+        product_price = (product.base_price * (@courseEuro + (@courseEuro / 100) * addCBR.text_value.to_f)).round(2)
+      elsif product.currency_id == 2
+        product_price = product.base_price.round(2)
+      end
+      
+      quantity = product.stock
+      #
+      one_product_array.push(product, product_price, quantity, vendor)
+      @products.push(one_product_array)
+      #
+    end
+
+    @products = @products.paginate(:page => params[:page], :per_page => 10)
+  end
+
 end

@@ -1,8 +1,8 @@
 <div class="fb">
   <div class="fb-content container">
     <h2>Задать вопрос / отправить запрос:</h2>
-    <form id="fb-form" name="fb-form" method="post" action="<%= feedback_send_request_or_question_path %>">
-      <%= hidden_field_tag :product_id, @product.id %>
+    <form id="fb-form" name="fb-form" method="post" action="<%= feedback_send_request_or_question_path %>" class="captcha-form">
+      <%= hidden_field_tag :product_id, @product&.id %>
       <div class="row special-row">
         <div class="col-sm-6 form-input">
           <input class="modal-input city-send" name="city" placeholder="Город" type="text">
@@ -27,12 +27,16 @@
       <div class="form-textarea">
         <textarea class="message-send" name="message" placeholder="Ваше сообщение"></textarea>
       </div>
+      <div class="captcha">
+        <%= recaptcha_tags callback: 'submitRecaptcha' %>
+      </div>
       <div class="fb-buttons">
         <button class="fb-remove" type="reset">Удалить</button>
         <button class="fb-send" type="submit">Отправить</button>
       </div>
+
       <div class="fb-agree">
-        <p>Оперативно свяжемся и ответим на Ваш вопрос.</p>Нажимая кнопку «Отправить» я даю согласие на <a href="<%= company_personal_path %>">обработку персональных данных.</a>
+        <p>Оперативно свяжемся и ответим на Ваш вопрос.</p>Нажимая кнопку «Отправить» я даю согласие на <a href="<%= company_personal_path %>" target="_blank">обработку персональных данных.</a>
       </div>
     </form>
   </div>

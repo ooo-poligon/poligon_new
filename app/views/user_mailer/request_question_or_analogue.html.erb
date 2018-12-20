@@ -1,0 +1,16 @@
+Получена заявка или подбор аналогов:<br>
+<%= @contact&.name %><br>
+<%= @contact&.phone %><br>
+<%= @contact&.email %><br>
+<%= @contact&.message %><br>
+
+<% unless @contact.contact_attachments.empty? %>
+  Вложения файлов:
+  <% @contact.contact_attachments.each do |att| %>
+    <% url = att.file.url %>
+    <a href="<%= "#{root_url}#{url}" %>">
+      <%= "#{root_url}#{url}" %>
+    </a>
+    <br>
+  <% end %>
+<% end %>

@@ -65,7 +65,7 @@ class CategoriesController < ApplicationController
       end
     end
 
-    @paginated = @products.paginate(:page => params[:page], :per_page => 10)
+    @products = @products.paginate(:page => params[:page], :per_page => 10)
   end
 
   def quantity_cash

@@ -1,6 +1,5 @@
-
 <% product = locals[:product_array][0] %>
-<% product_pdf   = product.pdf_name %>
+<% product_pdf   = product&.pdf_name %>
 <div class="product">
   <div class="row">
     <div class="col-xs-7 product-left">

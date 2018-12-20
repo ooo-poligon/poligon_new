@@ -22,7 +22,7 @@
   <form class="order-form">
 
   </form>
-  <%= form_tag(orders_send_order_email_path, method: "post", class: "order-form") do %>
+  <%= form_tag(orders_send_order_email_path, method: "post", class: "order-form captcha-form") do %>
     <% items.each do |key, item| %>
       <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
       <%= hidden_field_tag "items["+key.to_s+"]", item %>
@@ -55,11 +55,14 @@
         </div>
       </div>
       <div class="order-hint">Оформление возможно как для компаний, так и для физических лиц.
-        После получения Вашей заявки мы свяжемся и согласуем вопросы оплаты и доставки.
+        После получения Вашей заявки мы свяжемся и согласуем вопросы оплаты и доставки.<br><br>
+      </div>
+      <div class="captcha captcha-left">
+        <%= recaptcha_tags callback: 'submitRecaptcha' %>
       </div>
       <div class="order-button"><button id="send" disabled>Отправить заказ</button></div>
       <div class="order-hint">Нажимая на кнопку "Отправить заказ" Вы даете согласие на обработку
-        <a href="<%= company_personal_path %>">персональных данных.</a>
+        <a href="<%= company_personal_path %>" target="_blank">персональных данных.</a>
       </div>
     </div>
   <% end %>

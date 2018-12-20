@@ -1,8 +1,10 @@
-<%= form_for @booklet, url: {action: "update"}, method: :patch, :html => {:multipart => true} do |f| %>
+<h1>Редактирование буклета</h1>
 
+<%= form_for @booklet, url: {action: "update"}, method: :patch, :html => {:multipart => true} do |f| %>
+  
   <p>
-    <%= f.label "Производитель" %>
-    <%= f.select :vendor_id, Vendor.pluck(:title, :id), required: true %>
+    <%= f.label "Производитель" %><br>
+    <%= f.select :vendor_id, Vendor.pluck(:title, :id), class: "form-control", required: true %>
   </p>
 
   <p>
@@ -15,35 +17,36 @@
     <%= f.text_area :description, class: "form-control", required: true %>
   </p>
 
-  <p>
-    <%= f.label "Печатная версия" %>
-    <%= f.check_box :print_version %>
+  <p style="padding: 8px 0px;">
+    <%= f.check_box :print_version %><%= f.label "Печатная версия" %>
+  </p>
+
+  <p style="padding: 8px 0px;">
+    <%= f.check_box :vendor_show %><%= f.label "Показывать в КК" %>
   </p>
 
   <p>
-    <%= f.label "Показывать в КК" %>
-    <%= f.check_box :vendor_show %>
+    <%= f.label "Размер" %><br>
+    <%= f.select :block_size, [["SMALL", "0"],["BIG", "1"]], class: "form-control", required: true %>
   </p>
 
   <p>
-    <%= f.label "Размер" %>
-    <%= f.select :block_size, ['option1', 'option2'], class: "form-control", required: true %>
-  </p>
-
-  <p>
-    <%= f.label "Позиция" %>
-    <%= f.number_field :position, class: "form-control", required: true %>
+    <%= f.label "Позиция" %><br>
+    <%= f.number_field :position, class: "" %>
   </p>
 
   <p>
     <%= f.label "Превью" %>
-    <%= f.file_field :image, accept: "image/jpeg, image/jpg, image/gif, image/png", class: "form-control"%>
+    <%= f.file_field :image, class: "inputfile inputfile-1" %>
+    <label for="booklet_image"><span>+ Прикрепить файл</span></label>
   </p>
 
   <p>
-    <%= f.label "Файл каталога" %>
-    <%= f.file_field :file, class: "form-control" %>
+    <%= f.label "Файл каталога" %><br>
+    <%= f.file_field :file, class: "inputfile inputfile-1" %>
+    <label for="booklet_file"><span>+ Прикрепить файл</span></label>
   </p>
+
 
   <%= f.submit "Редактировать каталог" %>
 <% end %>

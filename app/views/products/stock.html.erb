@@ -1,0 +1,15 @@
+<% title = "На складе" %>
+<% generate_meta_from title %>
+
+<div class="category">
+  <h1><%= title %></h1>
+
+  <%= render "shared/products_table" %>
+
+  <div class="flickr_pagination">
+    <div class="page_info">
+      <%= page_entries_info @products %>
+    </div>
+    <%= will_paginate @products %>
+  </div>
+</div>

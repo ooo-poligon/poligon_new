@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181212121110) do
+ActiveRecord::Schema.define(version: 20181218032431) do
 
   create_table "additions", force: :cascade do |t|
     t.datetime "created_at",                    null: false
@@ -19,6 +19,12 @@ ActiveRecord::Schema.define(version: 20181212121110) do
     t.string   "title",      limit: 255
     t.text     "content",    limit: 4294967295
     t.string   "image_path", limit: 255
+  end
+
+  create_table "advantages", force: :cascade do |t|
+    t.text     "content",    limit: 65535
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
   end
 
   create_table "analogs", force: :cascade do |t|
@@ -108,6 +114,22 @@ ActiveRecord::Schema.define(version: 20181212121110) do
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
     t.string   "fax",        limit: 255
+  end
+
+  create_table "contact_attachments", force: :cascade do |t|
+    t.string   "file",       limit: 255
+    t.integer  "contact_id", limit: 4
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  create_table "contacts", force: :cascade do |t|
+    t.string   "name",       limit: 255, default: ""
+    t.string   "phone",      limit: 255, default: ""
+    t.string   "email",      limit: 255, default: ""
+    t.string   "message",    limit: 255, default: ""
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
   end
 
   create_table "currencies", force: :cascade do |t|

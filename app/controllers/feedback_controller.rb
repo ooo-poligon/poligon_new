@@ -104,40 +104,64 @@ class FeedbackController < ApplicationController
     end
   end
 
-  def send_request_or_question
-    city    = params[:city]
-    name    = params[:name]
-    company = params[:company]
-    email   = params[:email]
-    phone   = params[:phone]
-    message = params[:message]
-    product = Product.find(params[:product_id]).title
+  def send_request_find_analogue
+    contact = Contact.new contact_params
+    if contact.save
+      params["contact"]["contact_attachments"].each do |attachment|
+        contact.contact_attachments.create(file: attachment)
+      end
+    end
+    UserMailer.request_question_or_analogue(contact).deliver_now
+  end
 
-    if email != ''
-      UserMailer.request_question_email(city, name, company, email, phone, message, product).deliver_now
-      respond_to do |format|
-        format.html { redirect_to root_url, notice: {title: 'Спасибо, мы получили Ваш запрос.', message: ' В ближайшее время менеджер свяжется с Вами.'}}
+  def send_request_or_question
+    if verify_recaptcha(params)
+      city    = params[:city]
+      name    = params[:name]
+      company = params[:company]
+      email   = params[:email]
+      phone   = params[:phone]
+      message = params[:message]
+      product = Product.find(params[:product_id]).title
+
+      if email != ''
+        UserMailer.request_question_email(city, name, company, email, phone, message, product).deliver_now
+        respond_to do |format|
+          format.html { redirect_to root_url, notice: {title: 'Спасибо, мы получили Ваш запрос.', message: ' В ближайшее время менеджер свяжется с Вами.'}}
+        end
+      else
+        flash[:error] = "Поле e-mail не заполнено!"
       end
     else
-      flash[:error] = "Поле e-mail не заполнено!"
+      #ошибка капчи
     end
   end
 
   def send_project_conditions
-    name     = params[:name]
-    phone    = params[:phone]
-    email    = params[:email]
-    message  = params[:message]
-    quantity = params[:quantity]
+    if verify_recaptcha(params)
+      name     = params[:name]
+      phone    = params[:phone]
+      email    = params[:email]
+      message  = params[:message]
+      quantity = params[:quantity]
 
-    if email != ''
-      UserMailer.request_conditions_email(name, phone, email,  message, quantity).deliver_now
-      respond_to do |format|
-        format.html { redirect_to root_url, notice: {title: 'Спасибо, Ваш запрос уже получен.', message: ' В рабочее время мы постараемся ответить в течение 59 минут. Мы работаем с ПН по ПТ с 9:30 до 18:00MSK. <br>Вы так же можете позвонить нам по телефону +7 812 3254220, если вопрос срочный.'}}
+      if email != ''
+        UserMailer.request_conditions_email(name, phone, email,  message, quantity).deliver_now
+        respond_to do |format|
+          format.html { redirect_to root_url, notice: {title: 'Спасибо, Ваш запрос уже получен.', message: ' В рабочее время мы постараемся ответить в течение 59 минут. Мы работаем с ПН по ПТ с 9:30 до 18:00MSK. <br>Вы так же можете позвонить нам по телефону +7 812 3254220, если вопрос срочный.'}}
+        end
+      else
+        flash[:error] = "Поле e-mail не заполнено!"
       end
     else
-      flash[:error] = "Поле e-mail не заполнено!"
+      #ошибка капчи
     end
+  end
+
+  private
+
+  def contact_params
+    params.require(:contact).permit(:name, :phone, :email, :message, :contact_attachments)
   end
 
 end

@@ -40,16 +40,18 @@
     <div class="container">
       <div class="row row-offcanvas row-offcanvas-right admin-wrapper">
         
-        <div class="col-xs-12 col-md-3 main-content" >
+        <div class="col-xs-12 col-md-3 aside" >
           <%= render partial: "layouts/admin" %>
         </div>
 
-        <div class="col-xs-12 col-md-9 main-content" >
+        <div class="col-xs-12 col-md-9 content" >
           <p class="pull-right visible-xs">
             <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Боковое меню</button>
           </p>
           <%= render partial: "shared/mainpage/flash_messages", flash: flash %>
-          <%= yield %>
+          <div class="category">
+            <%= yield %>
+          </div>
         </div>
       </div>
     </div>

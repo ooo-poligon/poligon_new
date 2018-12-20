@@ -20,7 +20,7 @@ module ProductsHelper
   private
 
   def validated(uri)
-    URI.escape uri.gsub('<', '_').gsub('>', '_').gsub('^', '_').gsub('\"', '_').gsub('\'', '_').gsub(' ', '_')
+    URI.escape uri.gsub('<', '_').gsub('>', '_').gsub('^', '_').gsub('\"', '_').gsub('\'=>', '_').gsub(' ', '_')
   end
 
   def picture_path_exist_only(picture_path)

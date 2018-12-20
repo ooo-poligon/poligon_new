@@ -55,34 +55,33 @@
   end
 
   def send_order_email
-    @phone = params[:phone] ? params[:phone] : params[:phone_wait]
-    @name = params[:name]
-    @email = params[:email]
-    @address = params[:address]
-    @requisites = params[:requisites]
+    if verify_recaptcha(params)
+      @phone = params[:phone] ? params[:phone] : params[:phone_wait]
+      @name = params[:name]
+      @email = params[:email]
+      @address = params[:address]
+      @requisites = params[:requisites]
 
-    if @phone != ''
+      if @phone != ''
 
-      order = Order.new(phone: @phone)
-      order.save
-      line_items = params[:items].to_unsafe_h
+        order = Order.new(phone: @phone)
+        order.save
+        line_items = params[:items].to_unsafe_h
 
-      line_items.each do |id, item|
-        line_values = to_hash item
-        line_item = LineItem.find(id)
-        line_item.update(quantity: line_values['quantity'].to_i, price: line_values['price'].to_f, order_id: order.id, cart_id: nil)
+        line_items.each do |id, item|
+          line_values = to_hash item
+          line_item = LineItem.find(id)
+          line_item.update(quantity: line_values['quantity'].to_i, price: line_values['price'].to_f, order_id: order.id, cart_id: nil)
+        end
+        
+        UserMailer.products_order_email(@phone, order, @name, @email, @address, @requisites).deliver_now
+        
+        respond_to do |format|
+          format.html { redirect_to root_url, notice: {title: 'Спасибо, мы получили Вашу заявку.', message: ' В ближайшее время менеджер свяжется с Вами.'}}
+        end
+      else
+        redirect_to new_order_url, notice: "Поле e-mail не заполнено!"
       end
-
-      binding.pry
-      
-      #UserMailer.products_order_email(@phone, order, @name, @email, @address, @requisites).deliver_now
-      
-      respond_to do |format|
-        format.html { redirect_to root_url, notice: {title: 'Спасибо, мы получили Вашу заявку.', message: ' В ближайшее время менеджер свяжется с Вами.'}}
-      end
-    else
-      # flash[:error] = "Поле e-mail не заполнено!"
-      redirect_to new_order_url, notice: "Поле e-mail не заполнено!"
     end
   end
 

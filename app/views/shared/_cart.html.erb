@@ -643,7 +643,7 @@
         </div>
       </div>
       <div class="quick-order">
-        <%= form_tag(orders_send_order_email_path, method: "post") do %>
+        <%= form_tag(orders_send_order_email_path, method: "post", class: "captcha-form") do %>
           <h3>Быстрый заказ без оформления:</h3>
           <% items.each do |key, item| %>
             <%= hidden_field_tag "items["+key.to_s+"]", item %>
@@ -660,7 +660,7 @@
             </div>
           </div>
           <div class="quick-order-hint">
-            Нажимая на кнопку "Жду звонка" Вы даете согласие на обработку <a href="<%= company_personal_path %>">персональных данных.</a>
+            Нажимая на кнопку "Жду звонка" Вы даете согласие на обработку <a href="<%= company_personal_path %>" target="_blank">персональных данных.</a>
           </div>
         <% end %>
       </div>

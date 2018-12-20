@@ -2,11 +2,11 @@
 Poligon::Application.routes.draw do
 
   namespace :admin do
-  get 'product_groups/index'
+    get 'product_groups/index'
   end
 
   namespace :admin do
-  get 'product_groups/show'
+    get 'product_groups/show'
   end
 
   resources :orders
@@ -30,6 +30,7 @@ Poligon::Application.routes.draw do
   post 'orders/send_order_email'
   post 'feedback/send_request_or_question'
   post 'feedback/send_project_conditions'
+  post 'feedback/send_request_find_analogue'
   post 'line_items/update_quantity'
   post 'carts/remove_from_cart'
   post 'carts/remove_from_cart_modal'
@@ -90,6 +91,7 @@ Poligon::Application.routes.draw do
   get 'categories/4847' => 'categories/huber_suhner', :as => 'categories/huber_suhner'
   get 'categories/6371' => 'categories/tehnoplast',   :as => 'categories/tehnoplast'
 
+  get 'stock', to: "products#stock"
 
   # Sample resource route within a namespace:
   namespace :admin do

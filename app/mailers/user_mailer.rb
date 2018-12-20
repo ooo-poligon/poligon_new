@@ -15,13 +15,13 @@ class UserMailer < ActionMailer::Base
   def welcome_email(email)
     @email = email
     @url  = 'http://new.poligon.info'
-    mail(to: @email, subject: 'Подписка на новости сайта new.poliogn.info')
+    mail(to: @email, subject: 'Подписка на новости сайта new.poligon.info')
   end
 
   def goodbye_email(email)
     @email = email
     @url  = 'http://new.poligon.info'
-    mail(to: @email, subject: 'Отказ от подписки на новости сайта new.poliogn.info')
+    mail(to: @email, subject: 'Отказ от подписки на новости сайта new.poligon.info')
   end
 
   def catalogs_order_email(name, email, company, address, catalogue)
@@ -31,7 +31,7 @@ class UserMailer < ActionMailer::Base
     @company   = company
     @address   = address
     @catalogue = catalogue
-    mail(to: @receiver, bcc: 'robot@poligon.info', subject: 'Заказ каталогов с сайта new.poliogn.info')
+    mail(to: @receiver, bcc: 'robot@poligon.info', subject: 'Заказ каталогов с сайта new.poligon.info')
   end
 
   def farnell_order_email(name, email, company, phone, order)
@@ -41,7 +41,7 @@ class UserMailer < ActionMailer::Base
     @company  = company
     @phone    = phone
     @order    = order
-    mail(to: @receiver, bcc: 'robot@poligon.info', subject: 'Заказ FARNELL с сайта new.poliogn.info')
+    mail(to: @receiver, bcc: 'robot@poligon.info', subject: 'Заказ FARNELL с сайта new.poligon.info')
   end
 
   def products_order_email(phone, order, name = 'Не указано', email = 'Не указано', address = 'Не указано', requisites = 'Не указано')
@@ -53,7 +53,7 @@ class UserMailer < ActionMailer::Base
     @address  = address
     @requisites = requisites
 
-    mail(to: @receiver, bcc: 'robot@poligon.info', subject: 'Заказ товаров с сайта new.poliogn.info')
+    mail(to: @receiver, bcc: 'robot@poligon.info', subject: 'Заказ товаров с сайта new.poligon.info')
   end
 
   def request_question_email(city, name, company, email, phone, message, product)
@@ -65,7 +65,13 @@ class UserMailer < ActionMailer::Base
     @phone    = phone
     @message  = message
     @product  = product
-    mail(to: @receiver, bcc: 'robot@poligon.info', subject: 'Задан вопрос / отправлен запрос с сайта new.poliogn.info')
+    mail(to: @receiver, bcc: 'robot@poligon.info', subject: 'Задан вопрос / отправлен запрос с сайта new.poligon.info')
+  end
+
+  def request_question_or_analogue(contact)
+    @receiver = Setting.find_by(title: 'siteOrdersReceiver').text_value
+    @contact = contact
+    mail(to: @receiver, bcc: 'robot@poligon.info', subject: 'Задан вопрос / отправлен запрос с сайта new.poligon.info')
   end
 
   def request_conditions_email(name, phone, email,  message, quantity)
@@ -75,7 +81,7 @@ class UserMailer < ActionMailer::Base
     @email    = email
     @message  = message
     @quantity = quantity
-    mail(to: @receiver, bcc: 'robot@poligon.info', subject: 'Задан вопрос / отправлен запрос с сайта new.poliogn.info')
+    mail(to: @receiver, bcc: 'robot@poligon.info', subject: 'Задан вопрос / отправлен запрос с сайта new.poligon.info')
   end
 
 end

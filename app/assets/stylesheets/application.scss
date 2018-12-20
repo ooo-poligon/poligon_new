@@ -12,6 +12,41 @@
 
  */
 
+.booklet-title b{
+  display: block;
+  font-size: 14px;
+  line-height: 18px;
+  color: #3f6bd2;
+  box-sizing: border-box;
+  font-weight: 600;
+}
+
+.download-btn{
+  width: 100%;
+  text-align: center;
+  color: #fff;
+  font-size: 15px;
+  text-transform: uppercase;
+  background: #3f6bd2;
+  padding: 15px 10px;
+  font-weight: 600;
+  cursor: pointer;
+  display: block;
+}
+
+.booklet-block {
+  min-height: 310px;
+}
+
+.booklet-list{
+  overflow: hidden;
+}
+
+.booklet-wrapper{
+    display: block;
+  float: left;
+  margin-bottom: 11px;
+}
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
@@ -23,6 +58,7 @@
 @import "categories";
 @import "products";
 @import "will_paginate_infinite";
+@import "modificators";
 
 .row {
   //margin-right: 0;
@@ -466,3 +502,12 @@ div.lics img {
 //  opacity: 0;
 //  visibility: hidden;
 //}
+
+.captcha {
+  display: flex;
+  justify-content: center;
+}
+
+.captcha-left {
+  justify-content: flex-start;
+}

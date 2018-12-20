@@ -37,8 +37,13 @@
 
 <div class="card-block">
   <% unless @product.article.nil? %>
-    <% title = @productKind.title + " " + @product.title + " (" + @product.article + ")" %>
-    <h1><span style="color: black;" ><%= @productKind.title %></span> <b><span style="color: red;" ><%= @product.title + " (" + @product.article + ")" %></span></b></h1>
+    <% title = @productKind.title + " " + @product.title + "" (" + @product.article + ")"" %>
+    <h1>
+      <span style="color: black;" ><%= @productKind.title %></span>
+      <b>
+        <span style="color: red;" ><%= @product.title + " (" + @product.article + ")" %></span>
+      </b>
+    </h1>
   <% else %>
     <% title = @productKind.title + " " + @product.title %>
     <h4><b><%= @productKind.title %></b> <span style="color: red;" ><%= @product.title %></span></h4>
