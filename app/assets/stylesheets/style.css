@@ -501,7 +501,7 @@ span.production-country {
 /*content*/
 .content {
    padding-left: 0;
-	 padding-top: 10px;
+	 padding-top: 20px;
 }
 
 .padding{
@@ -952,7 +952,6 @@ span.production-country {
     display: none;
 }
 .category-filter {
-    margin-top: 50px;
     position: relative;
     background: #f1f1f1;
     box-sizing: border-box;

@@ -40,13 +40,11 @@
 <div class="container">
   <div class="row">
     <% if ['categories', 'publications'].include? controller_name%>
-      <div class="col-sm-12 col-md-12 content">
-        <div class="row category-row category-content">
+
           <%= render partial: "shared/mainpage/flash_messages", flash: flash %>
           <%= render("shared/mainpage/modal_cart") %>
           <%= yield %>
-        </div>
-      </div>
+
     <% else %>
       <% if controller_name == 'orders' and action_name == 'new' %>
         <div class="col-sm-12 col-md-12 content">
@@ -56,8 +54,8 @@
             <%= yield %>
           </div>
           <% if controller_name == 'content' and action_name == 'home' %>
-            <%= render "shared/mainpage/partners" %>
             <%= render "shared/mainpage/trio" %>
+            <%= render "shared/mainpage/partners" %>
           <% else %>
             <%= render "shared/mainpage/trio" %>
           <% end %>
@@ -70,27 +68,40 @@
             <%= yield %>
           </div>
           <% if controller_name == 'content' and action_name == 'home' %>
-            <%= render "shared/mainpage/partners" %>
             <%= render "shared/mainpage/trio" %>
+            <%= render "shared/mainpage/partners" %>
           <% else %>
             <%= render "shared/mainpage/trio" %>
           <% end %>
+        </div>
+      <% elsif controller_name == "search" %>
+        </div>
+        <div class="col-sm-12 col-md-12 content">
+          <div class="">
+            <%= render partial: "shared/mainpage/flash_messages", flash: flash %>
+            <%= render("shared/mainpage/modal_cart") %>
+            <%= yield %>
+          </div>
         </div>
       <% else %>
         <div class="col-sm-4 col-md-3 aside">
           <%= render("shared/mainpage/category_menu") %>
         </div>
         <div class="col-sm-8 col-md-9 content">
-          <div class="">
+          <% if controller_name == 'content' and action_name == 'home' %>
+            <div class="row">
+          <% else %>
+            <div>
+          <% end %>
             <%= render partial: "shared/mainpage/flash_messages", flash: flash %>
             <%= render("shared/mainpage/modal_cart") %>
             <%= yield %>
           </div>
           <% if controller_name == 'content' and action_name == 'home' %>
+            <%= render "shared/mainpage/trio" %>
             <%= render "shared/mainpage/partners" %>
-            <%= render "shared/mainpage/trio" %>
           <% else %>
-            <%= render "shared/mainpage/trio" %>
+            <%= render "shared/mainpage/trio" unless controller_name == 'products' %>
           <% end %>
         </div>
       <% end %>
@@ -104,6 +115,8 @@
   <%= render("shared/mainpage/news") %>
 <% elsif controller_name == 'products' %>
   <%= render "shared/products/send_request" %>
+<% elsif controller_name == "feedback" %>
+  
 <% end %>
 
 <%= render("shared/mainpage/footer") %>

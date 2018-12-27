@@ -28,13 +28,13 @@
           <% end %>
         </p>
         <div class="row">
-          <div class="col-sm-4 col-md-6 top-cart">
+          <div class="col-sm-4 col-md-5 top-cart">
             <%= link_to render("shared/cart_quantity"),
                         cart_path(@current_cart.id),
                         {remote: true, 'data-toggle' =>  "modal", 'data-target' => '#quick-cart'}
             %>
           </div>
-          <div class="col-sm-8 col-md-6 top-search">
+          <div class="col-sm-8 col-md-7 top-search">
             <form method="get" action="/search">
               <input type="text" name="q" placeholder="Поиск по сайту">
               <button type="submit">Поиск</button>

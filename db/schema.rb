@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181218032431) do
+ActiveRecord::Schema.define(version: 20181225153921) do
 
   create_table "additions", force: :cascade do |t|
     t.datetime "created_at",                    null: false
@@ -162,6 +162,13 @@ ActiveRecord::Schema.define(version: 20181218032431) do
 
   add_index "examples_tags", ["example_id", "tag_id"], name: "index_examples_tags_on_example_id_and_tag_id", using: :btree
   add_index "examples_tags", ["tag_id", "example_id"], name: "index_examples_tags_on_tag_id_and_example_id", using: :btree
+
+  create_table "exchange_rates", force: :cascade do |t|
+    t.decimal  "eur_rate",   precision: 8, scale: 2
+    t.decimal  "usd_rate",   precision: 8, scale: 2
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+  end
 
   create_table "farnell_keys", force: :cascade do |t|
     t.string   "api_key",    limit: 255
@@ -336,8 +343,6 @@ ActiveRecord::Schema.define(version: 20181218032431) do
     t.float   "opt_price",          limit: 24,    default: 0.0, null: false
     t.float   "special_price",      limit: 24,    default: 0.0, null: false
     t.float   "base_price",         limit: 24,    default: 0.0, null: false
-    t.float   "rub_supplier_price", limit: 24,    default: 0.0, null: false
-    t.float   "rub_base_price",     limit: 24,    default: 0.0, null: false
     t.float   "rs_price_1",         limit: 24,    default: 0.0, null: false
     t.float   "rs_price_2",         limit: 24,    default: 0.0, null: false
     t.float   "rs_price_3",         limit: 24,    default: 0.0, null: false
@@ -375,8 +380,10 @@ ActiveRecord::Schema.define(version: 20181218032431) do
     t.string  "slug",               limit: 255
     t.text    "advantages",         limit: 65535
     t.integer "quantity",           limit: 4,     default: 0
+    t.integer "advantage_id",       limit: 4
   end
 
+  add_index "products", ["advantage_id"], name: "index_products_on_advantage_id", using: :btree
   add_index "products", ["category_id"], name: "FK_of5oeawsy50x878ic9tyapdnv", using: :btree
   add_index "products", ["currency_id"], name: "FK_products_currencies", using: :btree
   add_index "products", ["product_kind_id"], name: "FK_products_product_kinds", using: :btree
@@ -631,6 +638,7 @@ ActiveRecord::Schema.define(version: 20181218032431) do
     t.integer "currency_id", limit: 4
     t.integer "code",        limit: 4
     t.string  "logo",        limit: 255,        default: "", null: false
+    t.string  "advantages",  limit: 255,        default: ""
   end
 
   add_index "vendors", ["currency_id"], name: "FK_nsbv37hiaemev6th5cuqgs6aa", using: :btree

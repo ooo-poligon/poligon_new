@@ -78,9 +78,11 @@ $(document).on('mouseenter', '.top-menu > div[class*="col-"]:not(.op)', function
 		.on('click', '.top-menu div[class*="col-"]', function(e){
 			if($(window).width() <= 1024) {
 				var $this = $(this),
-					acc = $this.parent();
+				
+        acc = $this.parent();
 
 				$this.toggleClass('op');
+
 				if($this.hasClass('op')) {
 					if($this.siblings('.op').length){
 						$this.siblings('.op').removeClass('op').find('.op').slideUp(400)
@@ -90,7 +92,11 @@ $(document).on('mouseenter', '.top-menu > div[class*="col-"]:not(.op)', function
 					$this.find('.widget').slideUp(400)
 				}
 
-				return false;
+        if (e.target.tagName.toLowerCase() === 'a'){
+          window.location = e.target.href;
+        }
+
+        return false;
 			}
 		})
 });

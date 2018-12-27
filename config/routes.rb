@@ -64,6 +64,7 @@ Poligon::Application.routes.draw do
   post 'feedback/subscribe' => 'feedback#subscribe'
   post 'feedback/unsubscribe' => 'feedback#unsubscribe'
   post 'feedback/catalogs_order' => 'feedback#catalogs_order'
+  post 'feedback/order_booklets' => 'feedback#order_booklets'
   post 'feedback/farnell_order' => 'feedback#farnell_order'
   post 'line_items' => "line_items#create"
 

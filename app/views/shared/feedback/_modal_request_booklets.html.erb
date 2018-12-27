@@ -1,0 +1,58 @@
+<div id="request-booklets" class="modal fade" role="dialog" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+      <button class="x" id="close-booklets" type="button" data-dismiss="modal" aria-hidden="true"></button>
+
+      <div class="modal-body">
+        <div class="form-block">
+          <div class="form-content">
+            <h2>Заполните форму для доставки</h2>
+            <br>
+            <p style="margin-bottom: 10px; color:red;">Выбрано 2 каталога</p>
+
+            <div class="form-input req">
+              <%= text_field_tag :name, "", class: "modal-input", placeholder: "Имя", required: true %>
+            </div>
+
+            <div class="form-input req">
+              <%= text_field_tag :last_name,"", class: "modal-input", placeholder: "Фамилия", required: true %>
+            </div>
+
+            <div class="form-input req">
+              <%= text_field_tag :company,"", class: "modal-input", placeholder: "Компания", required: true %>
+            </div>
+
+            <div class="form-input req">
+              <%= text_area_tag :address, "", class: "modal-input address-input", placeholder: "Адрес", required: true %>
+            </div>
+
+            <div class="form-input req">
+              <%= text_field_tag :phone,"", class: "modal-input", placeholder: "Телефон", required: true %>
+            </div>
+
+            <div class="form-input req">
+              <%= text_field_tag :email,"", class: "modal-input", placeholder: "E-mail", required: true %>
+            </div>
+
+            <div class="form-input">
+              <%= text_area_tag :comment,"", class: "modal-input address-input", placeholder: "Комментарий" %>
+            </div>
+
+            <div class="captcha">
+              <%= recaptcha_tags callback: 'submitRecaptcha' %>
+            </div>
+
+            <div class="button-send"><%= button_tag "Заказать доставку" %></div>
+            <div class="expl"><span>*</span> Поля обязательные для заполнения</div>
+
+            <div class="modal-agree">Нажимая кнопку «Отправить» я даю согласие на <a href="<%= company_personal_path %>" target="_blank">обработку персональных данных.</a></div>
+           
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

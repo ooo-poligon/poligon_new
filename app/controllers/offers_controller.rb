@@ -3,7 +3,13 @@ class OffersController < ApplicationController
     @products = []
     addCBR = Setting.find_by title: 'addCBR'
 
-    Product.available.where(special_offer: 1).each do |product|
+    @products_list = Product.available.where(special_offer: 1)
+    if params[:vendor]
+      vendor = Vendor.find_by(title: params[:vendor])
+      @products_list = @products_list.where(vendor_id: vendor.id)
+    end
+
+    @products_list.each do |product|
       vendor = Vendor.find(product.vendor_id)
       
       one_product_array = []

@@ -6,7 +6,7 @@
   <% if image_path %>
     <% begin %>
       <p>
-        <%= link_to(image_tag(image_path, class: "img-responsive center-block", style: "max-width: 400px;", height: '200px'), image_path, class: "fancybox") %>
+        <%= link_to(image_tag(image_path, class: "img-responsive center-block tab-image", style: "max-width: 400px;", height: '200px'), image_path, class: "fancybox") %>
       </p>
       <% break if count == nil %>
     <% end %>

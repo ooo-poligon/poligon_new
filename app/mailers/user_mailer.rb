@@ -24,13 +24,15 @@ class UserMailer < ActionMailer::Base
     mail(to: @email, subject: 'Отказ от подписки на новости сайта new.poligon.info')
   end
 
-  def catalogs_order_email(name, email, company, address, catalogue)
+  def catalogs_order_email(name, last_name, email, company, address, booklet_ids, comment)
     @receiver  = Setting.find_by(title: 'siteOrdersReceiver').text_value
     @name      = name
+    @last_name = last_name
     @email     = email
     @company   = company
     @address   = address
-    @catalogue = catalogue
+    @booklet_ids = booklet_ids
+    @comment = comment
     mail(to: @receiver, bcc: 'robot@poligon.info', subject: 'Заказ каталогов с сайта new.poligon.info')
   end
 

@@ -1,203 +1,200 @@
-<div class="row">
-  <div class="col-sm-4 col-md-3 aside" >
-    <div class="category-menu final">
-      <ul>
-        <% if (0..3).include? @parentCategory.id %>
-          <% # приводим на главную %>
-          <li class="back"><%= link_to "назад", root_path %></li>
-        <% else %>
-          <li class="back"><%= link_to "назад", category_path(@parentCategory.id) %></li>
+<div class="col-sm-4 col-md-3 aside" >
+  <div class="category-menu final">
+    <ul>
+      <% if (0..3).include? @parentCategory.id %>
+        <% # приводим на главную %>
+        <li class="back"><%= link_to "назад", root_path %></li>
+      <% else %>
+        <li class="back"><%= link_to "назад", category_path(@parentCategory.id) %></li>
+      <% end %>
+      <% @subCategories.each do |sc| %>
+        <li><%= link_to sc.title, sc %></li>
+      <% end %>
+      <% if @subCategories.empty? %>
+        <% @preCategories.each do |sc| %>
+          <% category_menu_class = if @currentCategoryId.to_i == sc.id.to_i then 'category-menu-selected' else 'category-menu-not-selected' end %>
+          <li><%= link_to sc.title, sc, class: category_menu_class %></li>
         <% end %>
-        <% @subCategories.each do |sc| %>
-          <li><%= link_to sc.title, sc %></li>
-        <% end %>
-        <% if @subCategories.empty? %>
-          <% @preCategories.each do |sc| %>
-            <% category_menu_class = if @currentCategoryId.to_i == sc.id.to_i then 'category-menu-selected' else 'category-menu-not-selected' end %>
-            <li><%= link_to sc.title, sc, class: category_menu_class %></li>
-          <% end %>
-        <% end %>
-      </ul>
-    </div>
+      <% end %>
+    </ul>
+  </div>
+  <br>
+  <div class="catalog-price">
+    <%= render "shared/category_catalogs" %>
+  </div>
+  <% unless @recentCategory.more_info.nil? || @recentCategory.more_info == '' %>
     <br>
-    <div class="catalog-price">
-      <%= render "shared/category_catalogs" %>
+    <div>
+      <button type="button" class="btn btn-info" data-toggle="collapse" data-parent="#accordion" href="#additionInfo">
+        <span class="glyphicon glyphicon-info-sign"></span><br>Дополнительные<br>материалы
+      </button>
     </div>
-    <% unless @recentCategory.more_info.nil? || @recentCategory.more_info == '' %>
-      <br>
-      <div>
-        <button type="button" class="btn btn-info" data-toggle="collapse" data-parent="#accordion" href="#additionInfo">
-          <span class="glyphicon glyphicon-info-sign"></span><br>Дополнительные<br>материалы
-        </button>
+  <% end %>
+</div>
+<div class="col-sm-8 col-md-9 content" >
+  <%= render "shared/breadcrumb_search", locals: {for: "categories"} %>
+  <div class="category">
+    <% title = @recentCategory.title %>
+    <% generate_meta_from title %>
+    <h1><%= title %></h1>
+    <div class="category-info">
+      <% count = top_count = sub_count = 0 %>
+      <% topCategories = [] %>
+      <% subCategories = [] %>
+      <% @subCategories.each do |sc| %>
+        <% if count < 8 %>
+          <% topCategories.push sc %>
+          <% top_count += 1 %>
+        <% end %>
+        <% if count >= 8 %>
+          <% subCategories.push sc %>
+          <% sub_count += 1 %>
+        <% end %>
+        <% count += 1 %>
+      <% end %>
+      <div class="top-category">
+        <div class="row">
+          <% if top_count % 4 == 0 %>
+            <% topCategories.each do |sc| %>
+              <%= render("shared/category_info_item", locals: { subCategory: sc }) %>
+            <% end %>
+          <% else %>
+            <% add_count = 4 - (top_count % 4) %>
+            <% topCategories.each_with_index do |sc, index| %>
+              <%= render("shared/category_info_item", locals: { subCategory: sc }) %>
+            <% end %>
+            <% add_count.times do %>
+              <div class="col-xs-6 col-sm-4 col-lg-3"></div>
+            <% end %>
+          <% end %>
+        </div>
       </div>
+      <div class="sub-category">
+        <div class="row">
+          <% if top_count % 4 == 0 %>
+            <% subCategories.each do |sc| %>
+              <%= render("shared/category_info_item", locals: { subCategory: sc }) %>
+            <% end %>
+          <% else %>
+            <% add_count = 4 - (top_count % 4) %>
+            <% subCategories.each_with_index do |sc, index| %>
+              <%= render("shared/category_info_item", locals: { subCategory: sc }) %>
+            <% end %>
+            <% add_count.times do %>
+              <div class="col-xs-6 col-sm-4 col-lg-3"></div>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+      <div class="category-info-text">
+        <div class="show-sub show"><span></span><p><i>скрыть остальные</i><b>показать остальные</b></p></div>
+          <% if @recentCategory.description.nil? or @recentCategory.description == "" %>
+            <p>
+              <%= @recentCategory.summary if !@recentCategory.summary.nil? %>
+            </p>
+          <% else %>
+            <p>
+              <%= @recentCategory.description
+                      .gsub('href="/PDF', 'href="http://www.poligon.info/PDF')
+                      .gsub('src="/images', 'src="http://www.poligon.info/images')
+                      .html_safe if !@recentCategory.description.nil? %>
+            </p>
+          <% end %>
+
+        <div class="row" style="display: none;">
+          <div class="col-md-12">
+            <div class="panel-group" id="accordion">
+              <div class="panel panel-default">
+                <div id="additionInfo" class="panel-collapse collapse">
+                  <div class="panel-body">
+                    <% if !@recentCategory.more_info.nil? && @recentCategory.more_info != '' %>
+                      <% if @recentCategory.more_info.include?("shared/utils/") %>
+                        <%= render partial: @recentCategory.more_info %>
+                      <% else %>
+                        <%= @recentCategory.more_info.html_safe %>
+                      <% end %>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <% if !@products.empty? %>
+
+      <%#
+      <div class="category-filter">
+        <div class="category-filter-top">
+          <div class="row">
+            <div class="col-xs-12 col-sm-6 filter-title">
+              <h3>Фильтр товаров</h3>
+              <div class="filter-status"><span class="on">показать</span>/<span class="off active">скрыть</span></div>
+            </div>
+            <div class="col-xs-12 col-sm-6 filter-search">
+              <div class="row">
+                <div class="col-md-5 filter-search-title"><h4>Быстрый поиск</h4></div>
+                <div class="col-sm-12 col-md-7 filter-search-input">
+                  <input type="text" placeholder="Поиск"><button type="submit">Найти</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="category-filter-bottom">
+          <div class="def-level">
+            <div class="def-item">Уровень защиты</div>
+            <div class="def-item"><input type="checkbox" id="def-all"><label for="def-all">Все</label></div>
+            <div class="def-item"><input type="checkbox" id="def-herm"><label for="def-herm">Герметичное</label></div>
+            <div class="def-item"><input type="checkbox" id="def-abs"><label for="def-abs">Товары в  наличии</label></div>
+            <div class="def-item"><input type="checkbox" id="def-sub"><label for="def-sub">Искать в подкатегориях</label></div>
+          </div>
+          <div class="category-filter-options">
+            <table class="category-filter-table" id="reset-select">
+              <tr>
+                <td><label>Количество контактов</label>
+                  <select><option>1</option><option>2</option><option>3</option><option>4</option></select>
+                </td>
+                <td><label>Тип обмотки</label>
+                  <select><option>1</option><option>2</option><option>3</option><option>4</option></select>
+                </td>
+                <td><label>Номинальный ток</label>
+                  <select><option>1</option><option>2</option><option>3</option><option>4</option></select>
+                </td>
+                <td><button class="pc filter-reset" type="reset" from="">Cброс</button></td>
+              </tr>
+              <tr>
+                <td><label>Напряжение питания</label>
+                  <select><option>1</option><option>2</option><option>3</option><option>4</option></select>
+                </td>
+                <td><label>Материал контакта</label>
+                  <select><option>1</option><option>2</option><option>3</option><option>4</option></select>
+                </td>
+                <td><label>Установка</label>
+                  <select><option>1</option><option>2</option><option>3</option><option>4</option></select>
+                </td>
+                <td><button class="mobile filter-reset" type="reset">Cброс</button><button type="submit">Найти</button></td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+      %>
+
+      <br>
+      <%= render "shared/products_table" %>
+
+        <div class="flickr_pagination">
+          <div class="page_info">
+            <%= page_entries_info @products %>
+          </div>
+          <%= will_paginate @products %>
+        </div>
+
+      
     <% end %>
   </div>
-  <div class="col-sm-8 col-md-9 content" >
-    <%= render "shared/breadcrumb_search", locals: {for: "categories"} %>
-    <div class="category">
-      <% title = @recentCategory.title %>
-      <% generate_meta_from title %>
-      <h1><%= title %></h1>
-      <div class="category-info">
-        <% count = top_count = sub_count = 0 %>
-        <% topCategories = [] %>
-        <% subCategories = [] %>
-        <% @subCategories.each do |sc| %>
-          <% if count < 8 %>
-            <% topCategories.push sc %>
-            <% top_count += 1 %>
-          <% end %>
-          <% if count >= 8 %>
-            <% subCategories.push sc %>
-            <% sub_count += 1 %>
-          <% end %>
-          <% count += 1 %>
-        <% end %>
-        <div class="top-category">
-          <div class="row">
-            <% if top_count % 4 == 0 %>
-              <% topCategories.each do |sc| %>
-                <%= render("shared/category_info_item", locals: { subCategory: sc }) %>
-              <% end %>
-            <% else %>
-              <% add_count = 4 - (top_count % 4) %>
-              <% topCategories.each_with_index do |sc, index| %>
-                <%= render("shared/category_info_item", locals: { subCategory: sc }) %>
-              <% end %>
-              <% add_count.times do %>
-                <div class="col-xs-6 col-sm-4 col-lg-3"></div>
-              <% end %>
-            <% end %>
-          </div>
-        </div>
-        <div class="sub-category">
-          <div class="row">
-            <% if top_count % 4 == 0 %>
-              <% subCategories.each do |sc| %>
-                <%= render("shared/category_info_item", locals: { subCategory: sc }) %>
-              <% end %>
-            <% else %>
-              <% add_count = 4 - (top_count % 4) %>
-              <% subCategories.each_with_index do |sc, index| %>
-                <%= render("shared/category_info_item", locals: { subCategory: sc }) %>
-              <% end %>
-              <% add_count.times do %>
-                <div class="col-xs-6 col-sm-4 col-lg-3"></div>
-              <% end %>
-            <% end %>
-          </div>
-        </div>
-        <div class="category-info-text">
-          <div class="show-sub show"><span></span><p><i>скрыть остальные</i><b>показать остальные</b></p></div>
-          <div class="row" >
-            <% if @recentCategory.description.nil? or @recentCategory.description == "" %>
-              <p>
-                <%= @recentCategory.summary if !@recentCategory.summary.nil? %>
-              </p>
-            <% else %>
-              <p>
-                <%= @recentCategory.description
-                        .gsub('href="/PDF', 'href="http://www.poligon.info/PDF')
-                        .gsub('src="/images', 'src="http://www.poligon.info/images')
-                        .html_safe if !@recentCategory.description.nil? %>
-              </p>
-            <% end %>
-          </div>
-          <div class="row">
-            <div class="col-md-12">
-              <div class="panel-group" id="accordion">
-                <div class="panel panel-default">
-                  <div id="additionInfo" class="panel-collapse collapse">
-                    <div class="panel-body">
-                      <% if !@recentCategory.more_info.nil? && @recentCategory.more_info != '' %>
-                        <% if @recentCategory.more_info.include?("shared/utils/") %>
-                          <%= render partial: @recentCategory.more_info %>
-                        <% else %>
-                          <%= @recentCategory.more_info.html_safe %>
-                        <% end %>
-                      <% end %>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <% if !@products.empty? %>
-
-        <%#
-        <div class="category-filter">
-          <div class="category-filter-top">
-            <div class="row">
-              <div class="col-xs-12 col-sm-6 filter-title">
-                <h3>Фильтр товаров</h3>
-                <div class="filter-status"><span class="on">показать</span>/<span class="off active">скрыть</span></div>
-              </div>
-              <div class="col-xs-12 col-sm-6 filter-search">
-                <div class="row">
-                  <div class="col-md-5 filter-search-title"><h4>Быстрый поиск</h4></div>
-                  <div class="col-sm-12 col-md-7 filter-search-input">
-                    <input type="text" placeholder="Поиск"><button type="submit">Найти</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="category-filter-bottom">
-            <div class="def-level">
-              <div class="def-item">Уровень защиты</div>
-              <div class="def-item"><input type="checkbox" id="def-all"><label for="def-all">Все</label></div>
-              <div class="def-item"><input type="checkbox" id="def-herm"><label for="def-herm">Герметичное</label></div>
-              <div class="def-item"><input type="checkbox" id="def-abs"><label for="def-abs">Товары в  наличии</label></div>
-              <div class="def-item"><input type="checkbox" id="def-sub"><label for="def-sub">Искать в подкатегориях</label></div>
-            </div>
-            <div class="category-filter-options">
-              <table class="category-filter-table" id="reset-select">
-                <tr>
-                  <td><label>Количество контактов</label>
-                    <select><option>1</option><option>2</option><option>3</option><option>4</option></select>
-                  </td>
-                  <td><label>Тип обмотки</label>
-                    <select><option>1</option><option>2</option><option>3</option><option>4</option></select>
-                  </td>
-                  <td><label>Номинальный ток</label>
-                    <select><option>1</option><option>2</option><option>3</option><option>4</option></select>
-                  </td>
-                  <td><button class="pc filter-reset" type="reset" from="">Cброс</button></td>
-                </tr>
-                <tr>
-                  <td><label>Напряжение питания</label>
-                    <select><option>1</option><option>2</option><option>3</option><option>4</option></select>
-                  </td>
-                  <td><label>Материал контакта</label>
-                    <select><option>1</option><option>2</option><option>3</option><option>4</option></select>
-                  </td>
-                  <td><label>Установка</label>
-                    <select><option>1</option><option>2</option><option>3</option><option>4</option></select>
-                  </td>
-                  <td><button class="mobile filter-reset" type="reset">Cброс</button><button type="submit">Найти</button></td>
-                </tr>
-              </table>
-            </div>
-          </div>
-        </div>
-        %>
-
-        <br>
-        <%= render "shared/products_table" %>
-
-          <div class="flickr_pagination">
-            <div class="page_info">
-              <%= page_entries_info @products %>
-            </div>
-            <%= will_paginate @products %>
-          </div>
-
-        
-      <% end %>
-    </div>
-  </div>
-
 </div>

@@ -53,4 +53,14 @@ Rails.application.configure do
   config.action_mailer.perform_deliveries = true
   config.action_mailer.default_options = {from: 'Компания "ПОЛИГОН" <no-reply@poligon.info>'}
   config.action_mailer.smtp_settings = { :address => "localhost", :port => 1025 }
+
+  config.after_initialize do
+    Bullet.enable = true
+    #Bullet.alert = true
+    Bullet.bullet_logger = true
+    Bullet.console = true
+    Bullet.rails_logger = true
+    Bullet.add_footer = true
+  end
+
 end

@@ -1,8 +1,11 @@
-<% title = "На складе" %>
+<% title = "Товары на складе" %>
 <% generate_meta_from title %>
 
 <div class="category">
   <h1><%= title %></h1>
+
+  <%= render "shared/custom_search" %>
+  <%= render "shared/xls_download" %>
 
   <%= render "shared/products_table" %>
 

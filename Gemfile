@@ -52,6 +52,7 @@ group :test do
 end
 
 gem "letter_opener", :group => :development
+gem 'bullet', group: 'development'
 
 group :development, :test do
   gem 'pry-rails'

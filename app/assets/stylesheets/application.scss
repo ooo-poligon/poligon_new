@@ -12,6 +12,55 @@
 
  */
 
+ .request-booklets-modal{
+  display: none;
+  cursor: pointer;
+ }
+
+ .form-search{
+   display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+ }
+
+ .stock-td{
+     min-width: 140px;
+    text-align: center;
+    padding-top: 15px;
+ }
+
+ .product-incart-search {
+  margin-top: 0px !important;
+ }
+
+ .address-input{
+  height: 80px !important;
+ }
+
+ .price {
+  font-size: 16px;
+ }
+
+ .line-through{
+  text-decoration: line-through;
+ }
+
+ .bold{
+  font-weight: bold;
+ }
+
+ .price-red{
+  color: #e24343;
+ }
+
+ .in_stock{
+  color: #3db24e;
+ }
+
+ .ordered_on_stock{
+  color: #347cd1;
+ }
+
 .booklet-title b{
   display: block;
   font-size: 14px;
@@ -151,7 +200,6 @@
 
 .breadcrumb {
   //margin-top: 25px;
-  background-color: #d6e4ff;
 }
 
 .main-content {

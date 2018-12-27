@@ -1,0 +1,40 @@
+<div class="category-filter">
+  <div class="category-filter-top">
+    <div class="row">
+      <div class="col-xs-12 col-sm-5 filter-title">
+        <div class="row">
+
+        <div class="col-md-6">
+          <p style="font-weight: 600; font-size: 13px;">Выбор производителя</p>
+        </div>
+
+        <div class="col-md-6">
+          <select onchange="window.location=this.value">
+              <option value="<%= params[:vendor] || "" %>"><%= params[:vendor] || "" %></option>
+            <% Vendor.pluck(:title).reject(&:empty?).each do |vendor| %>
+
+              <% if controller_name == "offers" %>
+                <option value="/offers/index?vendor=<%= vendor %>"><%= vendor %></option>
+              <% else %>
+                <option value="stock?vendor=<%= vendor %>"><%= vendor %></option>
+              <% end %>
+            <% end %>
+          </select>
+        </div>
+
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-7 filter-search">
+        <div class="row">
+          <div class="col-md-7 filter-search-title"><h4>Поиск по наименованию изделия</h4></div>
+          <div class="col-sm-12 col-md-5 filter-search-input">
+            <form method="get" action="/search">
+              <input type="text" placeholder="Поиск" name="q">
+              <button type="submit">Найти</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

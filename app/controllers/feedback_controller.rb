@@ -60,23 +60,30 @@ class FeedbackController < ApplicationController
   end
 
   def catalogs_order
-    unless params[:name] == '' or
-           params[:email] == '' or
-           params[:company] == '' or
-           params[:address] == '' or
-           params[:catalogue].size == 0
+    if verify_recaptcha(params)
+      unless params[:name] == '' or
+             params[:last_name] == '' or
+             params[:email] == '' or
+             params[:company] == '' or
+             params[:address] == '' or
+             params[:booklet_ids].size == 0
 
-      @name      = params[:name]
-      @email     = params[:email]
-      @company   = params[:company]
-      @address   = params[:address]
-      @catalogue = params[:catalogue]
+        @name      = params[:name]
+        @last_name = params[:last_name]
+        @email     = params[:email]
+        @company   = params[:company]
+        @address   = params[:address]
+        @booklet_ids = params[:booklet_ids]
+        @comment = params[:comment]
 
-      UserMailer.catalogs_order_email(@name, @email, @company, @address, @catalogue).deliver_now
-      render "catalogs_order"
+        UserMailer.catalogs_order_email(@name, @last_name, @email, @company, @address, @booklet_ids, @comment).deliver_now
+        render "catalogs_order"
+      else
+        flash[:error] = "Не заполнены все необходимые поля!"
+        render "booklets"
+      end
     else
-      flash[:error] = "Не заполнены все необходимые поля!"
-      render "booklets"
+      redirect_to feedback_booklets_path
     end
   end
 

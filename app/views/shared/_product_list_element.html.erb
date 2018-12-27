@@ -35,19 +35,22 @@
         </ul>
         <div class="row product-options">
           <div class="col-xs-6 product-option product-quick-delivery">
+
             <a href="#">Быстрая доставка</a>
             <div class="info"><span></span>
               <div class="info-text">
-                <p>Доставляем Деловыми линиями Major, СДЭК, Пони Экспресс. Возможна доставка до пункта выдачи. Отправка ежедневно.</p>
-                <a href="#">Более подробная инфомация</a>
+                <p><%= @fastDelivery.text_value.html_safe %></p>
               </div>
             </div>
+
           </div>
           <div class="col-xs-6 product-option product-condition-payment">
+
             <a href="#">Условия оплаты</a>
             <div class="info"><span></span>
-              <div class="info-text"><p>Тут другая подсказка</p></div>
+              <div class="info-text"><p><%= @deliveryInfo.text_value.html_safe %></p></div>
             </div>
+
           </div>
         </div>
 
@@ -68,7 +71,7 @@
           <% if locals[:product_array][1] == 0 %>
             <span class="price">Звоните:<br>(812)325-42-20</span>
           <% else %>
-            <span class="price"><%= locals[:product_array][1].to_s + ' руб.' %></span>
+            <span class="price"><%= locals[:product_array][1].round(2).to_s + ' руб.' %></span>
           <% end %>
         </span>
       </div>

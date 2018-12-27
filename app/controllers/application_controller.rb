@@ -1,14 +1,17 @@
 # -*- encoding : utf-8 -*-
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-
   before_action :current_cart
-
   before_filter :configure_permitted_parameters, if: :devise_controller?
-  before_filter :getCourse
+  before_action :getCourse
+  helper_method :get_prices_eur, :get_prices_rub, :hello_user, :parents_of, :set_meta, :generate_meta_from, :calculate_price
 
-  helper_method :get_prices_eur, :get_prices_rub, :hello_user, :parents_of, :set_meta, :generate_meta_from
-
+  def getCourse
+    @courseEuro = ExchangeRate.last.eur_rate.to_f
+    @courseUsd = ExchangeRate.last.usd_rate.to_f
+    @fastDelivery = Setting.find_by(title: "fastDeliveryText")
+    @deliveryInfo = Setting.find_by(title: "deliveryInfo")
+  end
   
   def get_prices_eur(product)
     prices_array = []
@@ -25,12 +28,10 @@ class ApplicationController < ActionController::Base
   def get_prices_rub(product)
     prices_array = []
     
+    course_multiplier = (@courseEuro + (@courseEuro / 100) * 0.0)
 
-    course_multiplier = (@courseEuro + (@courseEuro / 100) * @addCBR.text_value.to_f)
     retail_ru = product.base_price * course_multiplier
-    retail_ru = product.rub_base_price if product.currency_id == 2
     supplier_ru = product.supplier_price * course_multiplier
-    supplier_ru = product.rub_supplier_price if product.currency_id == 2
     prices_array << retail_ru
     prices_array << product.special_price * course_multiplier
     prices_array << product.price_10 * course_multiplier
@@ -38,6 +39,29 @@ class ApplicationController < ActionController::Base
     prices_array << product.dealer_price * course_multiplier
     prices_array << supplier_ru
     prices_array
+  end
+
+  def calculate_price(product, price = nil)
+
+    currencyCourse = @courseEuro if product.currency_id = 1
+    currencyCourse = @courseUsd if product.currency_id = 3
+
+    course_multiplier = (currencyCourse + (currencyCourse / 100) * 0.0)
+
+    if price.nil?
+      product_price = product.base_price
+    else
+      product_price = price
+    end
+
+    case product.currency_id
+    when 1,3
+      calculated_price = (product_price * course_multiplier).round(2)
+    when 2
+      calculated_price = product_price.round(2)
+    end
+    
+    calculated_price
   end
 
   def hello_user
@@ -109,24 +133,6 @@ class ApplicationController < ActionController::Base
     end
     devise_parameter_sanitizer.permit(:account_update) do |user|
       user.permit(:name, :email, :password, :password_confirmation, :current_password, :group_id, :subscribe)
-    end
-  end
-
-  def getCourse
-    @addCBR = Setting.find_by title: 'addCBR'
-    require 'net/http'
-    url = URI.parse('http://www.poligon.info/upload/course.euro')
-    req = Net::HTTP::Get.new(url.to_s)
-    begin
-      res = Net::HTTP.start(url.host, url.port) {|http|
-        http.request(req)
-      }
-      @courseEuro = res.body.to_s.to_f
-    rescue
-      lines = File.open('current_course_euro', 'r') do |f|
-        f.readline
-      end
-      @courseEuro = lines[1].to_f
     end
   end
 

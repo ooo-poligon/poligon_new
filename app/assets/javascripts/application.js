@@ -28,6 +28,7 @@
 //= require orders
 //= require categories
 //= require clipboard
+//= require feedback
 
 //= require will_paginate_infinite
 
@@ -36,6 +37,18 @@ function submitRecaptcha() {
 };
 
 $(document).ready(function() {
+
+  $( ".production-widget .container" ).mouseleave(function() {
+    $(".production-widget").hide();
+  });
+
+  $(".brands-widget .container").mouseleave(function() {
+    $(".brands-widget").hide();
+  });
+
+  $(".tab-image").error(function () { 
+    $(this).hide();
+  });
 
   $(".captcha-form").submit(function(event) {
     var recaptcha = $("#g-recaptcha-response").val();

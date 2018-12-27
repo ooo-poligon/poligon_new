@@ -158,7 +158,7 @@ class SearchController < ApplicationController
     @products = Sunspot.search(Product) do
       if params['exist_only']
         instock_products_ids = []
-        Product.where("stock > 0" || "remote_stock_citel > 0").each do |q|
+        Product.where("stock > 0" || "remote_stock > 0").each do |q|
           instock_products_ids.push q.id
         end
         with(:id).any_of(instock_products_ids)

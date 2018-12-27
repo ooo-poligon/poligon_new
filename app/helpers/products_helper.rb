@@ -24,10 +24,11 @@ module ProductsHelper
   end
 
   def picture_path_exist_only(picture_path)
-    uri = URI(validated picture_path)
-    request  = Net::HTTP.new uri.host
-    response = request.request_head uri.path
-    picture_path if response.code.to_i == 200
+    #uri = URI(validated picture_path)
+    #request  = Net::HTTP.new uri.host
+    #response = request.request_head uri.path
+    #picture_path if response.code.to_i == 200
+    picture_path
   end
 
   def transliterize (string)

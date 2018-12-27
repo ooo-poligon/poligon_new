@@ -1,13 +1,54 @@
 <% title = 'Результат поиска по запросу "' + params[:q] + '"' %>
 <% generate_meta_from title %>
-<h2>Результат поиска по запросу <i><b>"<%= params[:q] %>"</b></i>:</h2>
+<h2 style="color: red;"><i>Результат поиска по запросу <b>"<%= params[:q] %>"</b></i>:</h2>
 
 <% if !@products.results.empty? %>
-  <h3>Поиск по устройствам:</h3>
-    <% @products.results.each do |product| %>
-        <h4><%= link_to product.title, product %></h4>
-        <%= product.description %>
-    <% end %>
+  <h4>Товары:</h4>
+    <table class="table">
+      <% @products.results.each do |product| %>
+        <tr>
+          <td><b><%= link_to product.title, product %></b> <% if !product.article.blank? %> (<%= product.article %>) <% end %> | <%= product.description %></td>
+          <td class="stock-td">
+
+          <% if signed_in? %>
+
+            <% if !product.stock.nil? && product.stock > 0 %>
+              <%= product.stock.to_s + ' шт.' %>
+            <% else %>
+              <i>Под заказ.</i>
+              <i>Срок поставки: <%= product.delivery_time %></i>
+            <% end %>
+
+          <% else %>
+
+            <% if !product.stock.nil? || !product.reserved.nil? || !product.remove_stock.nil? %>
+              <span class="in_stock">В наличии</span>
+            <% elsif !product.ordered_on_stock.nil? %>
+              <span class="ordered_on_stock">Ожидается</span>
+            <% else %>
+              <i>Под заказ.</i>
+              <i>Срок поставки: <%= product.delivery_time %></i>
+            <% end %>
+
+          <% end %>
+
+          </td>
+          <td style="min-width: 350px;">
+            <div class="product-incart product-incart-search">
+              <%= form_tag(line_items_path, method: "post",  remote: true, class: "form-search") do %>
+                <%= hidden_field_tag(:product_id, product.id) %>
+                <%= hidden_field_tag(:price, calculate_price(product)) %>
+                <%= hidden_field_tag(:minimum, 1) %>
+                <div class="card-quan">
+                  <%= number_field_tag(:quantity, 1, class: "product-quantity",  step: 1, min: 1, pattern: "^[0-9]+$") %> <span>шт.</span>
+                </div>
+                <button type="submit" data-toggle="modal" data-target="#quick-cart">В корзину</button>
+              <% end %>
+            </div>
+          </td>
+        </tr>
+      <% end %>
+    </table>
   <div class="flickr_pagination">
     <div class="page_info">
       <%= page_entries_info @products.results %>
@@ -15,4 +56,4 @@
     <%= will_paginate @products.results, :param_name => 'products_page', :container => false %>
   </div>
 <% end %>
-<%= render "shared/common_search" %>
+<% render "shared/common_search" %>

@@ -9,17 +9,10 @@ class ProductsController < ApplicationController
     @parents_array             = parents_of(@product.category_id)
     @addCBR                    = Setting.find_by title: 'addCBR'
      
-
-    if @product.currency_id    == 1
-      course_multiplier        = (@courseEuro + (@courseEuro / 100) * @addCBR.text_value.to_f)
-      @retail_price            = @product.base_price * course_multiplier
-    elsif @product.currency_id == 2
-      @retail_price            = @product.base_price
-    end
-
-    
+    @retail_price = calculate_price(@product, @product.base_price)
     
     productFunctions           = ProductFunction.where("product_id = ?", @product.id)
+
     function_ids               = []
     productFunctions.each do |pf|
       function_ids.push pf.function_id
@@ -32,6 +25,7 @@ class ProductsController < ApplicationController
 
     @productKind = ProductKind.find(@product.product_kind_id)
     @propHash = {}
+
     @all_product_kind_properties = Property.where(product_kind_id: @productKind)
     @all_product_kind_properties.each do |property|
       value_for_product = PropertyValue.find_by(
@@ -42,11 +36,18 @@ class ProductsController < ApplicationController
         @propHash[property] = [value_for_product.value, property.order_number]
       end
     end
+
+    #@product_properties = Property.where(product_kind_id: @productKind).pluck(:id)
+    #values = PropertyValue.where(product_id:  @product.id).includes(:properties).where(property_id: @product_properties)
+
+
     propArray = []
     @propHash.each do |key ,value|
       propArray.push [value[1], key, value[0]]
     end
     @sortedArray = propArray.sort {|a,b| a[0] <=> b[0]}
+
+
 =begin
     # находим все виды свойств, присущих этому типу устройств
     @propertyTypesOfProduct_unordered = []
@@ -103,17 +104,17 @@ class ProductsController < ApplicationController
     @products = []
     addCBR = Setting.find_by title: 'addCBR'
 
-    Product.available.where.not(stock: 0).each do |product|
+    @products_list = Product.available.where.not(stock: 0)
+    if params[:vendor]
+      vendor = Vendor.find_by(title: params[:vendor])
+      @products_list = @products_list.where(vendor_id: vendor.id)
+    end
+
+    @products_list.each do |product|
       vendor = Vendor.find(product.vendor_id)
       
       one_product_array = []
-      product_price = 0
-
-      if product.currency_id == 1
-        product_price = (product.base_price * (@courseEuro + (@courseEuro / 100) * addCBR.text_value.to_f)).round(2)
-      elsif product.currency_id == 2
-        product_price = product.base_price.round(2)
-      end
+      product_price = calculate_price(product)
       
       quantity = product.stock
       #
