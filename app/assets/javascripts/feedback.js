@@ -12,10 +12,12 @@ $(document).ready(function() {
         selected.push($(this).attr('value'));
     });
 
+    $("#selected-count").html(selected.length);
+
     if (selected.length == 0){
-      $(".request-booklets-modal").hide();
+      $(".request-booklets-modal").css('display', 'none');
     } else {
-      $(".request-booklets-modal").show();
+      $(".request-booklets-modal").css('display', 'flex');
     }
 
   });

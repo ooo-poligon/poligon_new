@@ -1,17 +1,33 @@
 <div>
   <h2>Товары</h2>
-  <br><br>
   <% if @products.nil? %>
     Нет информации для отображения.
   <% else %>
-    <table class="table-striped" >
-      <% @products.each do |product| %>
-        <tr>
-          <td>
-            <%= link_to product.title, edit_admin_product_path(product.id) %>
-          </td>
-        </tr>
-      <% end %>
+
+    <%= will_paginate @products %>
+
+    <p>А еще тут нужен поиск<br><br></p>
+
+    <table class="table table-striped">
+      <tbody>
+        <% @products.each do |product| %>
+          <tr>
+            <td>
+              <%= link_to product.title, edit_admin_product_path(product.id) %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
     </table>
+
+    <div class="flickr_pagination">
+      <div class="page_info">
+        <%= page_entries_info @products %>
+      </div>
+      <%= will_paginate @products %>
+    </div>
+
   <% end %>
 </div>
+
+

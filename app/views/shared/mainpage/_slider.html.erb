@@ -1,7 +1,15 @@
 <div class="col-sm-9 main-slider">
+
   <div class="owl-carousel" id="main-slider">
-    <div class="item"><%= link_to image_tag("sliders/slide1.jpg"), category_path(142) %></div>
-    <div class="item"><%= link_to image_tag("sliders/slide2.jpg"), category_path(142) %></div>
+
+    <% SliderItem.all.each do |slider_item| %>
+      <div class="item">
+        <a href="<%= slider_item.url %>">
+          <%= image_tag(slider_item.image) %>
+        </a>
+      </div>
+    <% end %>
+
   </div>
 </div>
 <div class="col-sm-3 advs-block">

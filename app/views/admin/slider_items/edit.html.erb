@@ -1,0 +1,17 @@
+<h1>Редактирование слайда</h1>
+
+<%= form_for @item, url: {action: "update"}, method: :patch, :html => {:multipart => true} do |f| %>
+
+  <p>
+    <%= f.label "Ссылка" %>
+    <%= f.text_field :url, class: "form-control", required: true %>
+  </p>
+
+  <p>
+    <%= f.label "Превью" %>
+    <%= f.file_field :image, class: "inputfile inputfile-1" %>
+    <label for="slider_item_image"><span>+ Прикрепить файл</span></label>
+  </p>
+
+  <%= f.submit "Редактировать слайд" %>
+<% end %>

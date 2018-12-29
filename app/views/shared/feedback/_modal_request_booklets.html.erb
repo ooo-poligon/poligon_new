@@ -9,7 +9,8 @@
           <div class="form-content">
             <h2>Заполните форму для доставки</h2>
             <br>
-            <p style="margin-bottom: 10px; color:red;">Выбрано 2 каталога</p>
+
+            <p style="margin-bottom: 10px; color:red;">Выбрано <span id="selected-count">0</span> каталогов</p>
 
             <div class="form-input req">
               <%= text_field_tag :name, "", class: "modal-input", placeholder: "Имя", required: true %>

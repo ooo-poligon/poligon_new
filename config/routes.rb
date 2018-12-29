@@ -56,6 +56,8 @@ Poligon::Application.routes.draw do
   get  'content/download_pdf'
   get  'content/farnell'
 
+  get 'oplata-dostavka' => 'content#delivery'
+
   get  'feedback/booklets'
   get  'feedback/mailing_list'
   get  'feedback/confirm_subscription'
@@ -97,7 +99,7 @@ Poligon::Application.routes.draw do
   # Sample resource route within a namespace:
   namespace :admin do
     resources :panel, only: [:index]
-    resources :scopes, :booklets, :static_contents
+    resources :scopes, :booklets, :static_contents, :slider_items
     resources :examples
     resources :examples do
       resources :example_images, :only => [:create, :destroy] # support #create and #destroy

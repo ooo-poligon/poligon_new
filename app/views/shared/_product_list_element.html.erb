@@ -79,20 +79,35 @@
         <%= submit_tag "Запросить спец.цену", class: "price-request", data: { toggle: "modal", target: "#special", product: locals[:product_array][0].id } %>
       </div>
       <div class="product-presence">
-        <% if locals[:product_array][2] > 0 %>
-          <span><%= image_tag("green.gif") %></span>
-          <span>На складе: <%= locals[:product_array][2] %> шт. </span><br>
-          <!--<span>Срок дополнительной поставки: <%#= locals[:product_array][0].delivery_time %></span>-->
-        <% else %>
-          <span><%= image_tag("grey.gif") %></span>
-          <span>Под заказ, </span><br>
-          <span>срок поставки <%= locals[:product_array][0].delivery_time %></span>
-        <% end %>
+
+          <% if signed_in? && locals[:product_array][2] > 0 %>
+
+            <% if locals[:product_array][2] > 0 %>
+              <span><%= image_tag("green.gif") %></span>
+              <%= locals[:product_array][2].to_s + ' шт.' %>
+            <% else %>
+              <span><%= image_tag("grey.gif") %></span>
+              <span>Под заказ, </span><br>
+              <span>срок поставки <%= locals[:product_array][0].delivery_time %></span>
+            <% end %>
+
+          <% else %>
+
+            <% if locals[:product_array][2] > 0 %>
+              <span><%= image_tag("green.gif") %></span>
+              <span class="in_stock">В наличии</span>
+            <% else %>
+              <i>Под заказ.</i>
+              <i>Срок поставки: <%= product.delivery_time %></i>
+            <% end %>
+
+          <% end %>
+
       </div>
       <div class="product-list">
         <ul>
-          <li>Страна бренда:  <%= locals[:product_array][0].vendor.address %></li>
-          <li>Отгрузка кратно:  1шт.</li>
+          <li>Страна бренда: <%= locals[:product_array][0].vendor.address %></li>
+          <li>Отгрузка кратно: 1шт.</li>
           <li>Официальный дистрибьютор в РФ</li>
         </ul>
       </div>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181225153921) do
+ActiveRecord::Schema.define(version: 20181229003018) do
 
   create_table "additions", force: :cascade do |t|
     t.datetime "created_at",                    null: false
@@ -577,6 +577,13 @@ ActiveRecord::Schema.define(version: 20181225153921) do
     t.string  "kind",       limit: 50,             null: false
     t.integer "int_value",  limit: 4,  default: 0
     t.string  "text_value", limit: 50
+  end
+
+  create_table "slider_items", force: :cascade do |t|
+    t.string   "image",      limit: 255
+    t.string   "url",        limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   create_table "static_contents", force: :cascade do |t|

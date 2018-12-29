@@ -1,0 +1,26 @@
+<h1>Слайдер</h1>
+
+<%= link_to "+ Добавить", new_admin_slider_item_path, class: "btn btn-success" %>
+
+<table class="table table-striped">
+  <thead class="thead-dark">
+    <tr>
+      <th>ID</th>
+      <th>Превью</th>
+      <th>URL</th>
+      <th>Действия</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @items.each do |item| %>
+      <tr>
+        <th><%= item.id %></th>
+        <th><%= image_tag(item&.image&.url, style: "width: 100px;") %></th>
+        <th><%= item.url %></th>
+        <td>
+          <%= link_to "Редактировать", edit_admin_slider_item_path(item), class: "btn btn-sm btn-success" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

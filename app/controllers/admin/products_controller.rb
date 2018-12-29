@@ -1,6 +1,6 @@
 class Admin::ProductsController < Admin::BaseController
   def index
-    @products = Product.available.order(:title)
+    @products = Product.available.order(:title).paginate(:page => params[:page], :per_page => 50)
 
     respond_to do |format|
       format.html

@@ -4,7 +4,7 @@
   
   <p>
     <%= f.label "Производитель" %><br>
-    <%= f.select :vendor_id, Topic.pluck(:title, :id), class: "form-control", required: true %>
+    <%= f.select :vendor_id, Vendor.pluck(:title, :id), class: "form-control", required: true %>
   </p>
 
   <p>

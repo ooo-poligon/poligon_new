@@ -10,6 +10,10 @@ class ContentController < ApplicationController
     @content = StaticContent.where(:directory => 'content', :page => 'homepage')
   end
 
+  def delivery
+
+  end
+
   def download_pdf
     product_pdf = Product.find(params[:product_id]).pdf_name
 

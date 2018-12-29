@@ -53,10 +53,7 @@
                 <%= link_to product_name, product_path(@example.product.id) %>
               </li>
               <li><strong>Тех документация:</strong>
-                <% product_pdf = DataFile.where("owner_id = ? and file_type_id = 2", @example.product.id).first %>
-                <% if product_pdf != nil and product_pdf.path != "c:\\poligon_datasheets\\" and product_pdf.path != "\\\\Server03\\бд_сайта\\poligon_datasheets\\" %>
-                  <%= link_to( product_pdf.name, content_download_pdf_path(product_id: @example.product.id)) %>
-                <% end %>
+                <p>Отсутствует</p>
               </li>
               <li><strong>Теги: </strong>
                 <%= @tags_string %>

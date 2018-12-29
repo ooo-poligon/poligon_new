@@ -98,10 +98,10 @@
             <%= yield %>
           </div>
           <% if controller_name == 'content' and action_name == 'home' %>
-            <%= render "shared/mainpage/trio" %>
+            <h1></h1><%= render "shared/mainpage/trio" %>
             <%= render "shared/mainpage/partners" %>
           <% else %>
-            <%= render "shared/mainpage/trio" unless controller_name == 'products' %>
+
           <% end %>
         </div>
       <% end %>

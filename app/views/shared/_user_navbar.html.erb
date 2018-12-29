@@ -98,13 +98,6 @@
                         <%= @courseEuro.round(2) %>р.
                       </td>
                     </tr>
-                    <tr>
-                      <td>Курс &euro; ПОЛИГОН:</td>
-                      <td>&nbsp</td>
-                      <td style="font-weight: bold; color: red;">
-                        <%= (@courseEuro + (@courseEuro / 100) * @addCBR.text_value.to_f).round(2) unless @addCBR.nil? %>р.
-                      </td>
-                    </tr>
                   </table>
                 </div>
               <% else %>
@@ -117,6 +110,7 @@
                         <%= @courseEuro %>р.
                       </td>
                     </tr>
+                    
                   </table>
                 </div>
               <% end %>
@@ -125,7 +119,7 @@
           <ul class="nav navbar-nav navbar col-md-3">
             <li>
               <div>
-                <% if current_user.group_id == 2 %>
+                <% if current_user.group_id == 2 || current_user.admin? %>
                   <a href="<%= admin_panel_index_path %>">
                     <p style="color: red; font-weight: bold; padding-top: 15px;">Панель администратора</p>
                   </a>
