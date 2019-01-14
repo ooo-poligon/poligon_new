@@ -28,14 +28,26 @@ class ApplicationController < ActionController::Base
 
     course_multiplier = (@courseEuro + (@courseEuro / 100) * @addCBR.text_value.to_f)
     retail_ru = product.base_price * course_multiplier
-    retail_ru = product.rub_base_price if product.currency_id == 2
+    retail_ru = product.base_price if product.currency_id == 2
+    special_ru = product.special_price * course_multiplier
+    special_ru = product.special_price if product.currency_id == 2
+    price_10_ru = product.price_10 * course_multiplier
+    price_10_ru = product.price_10 if product.currency_id == 2
+    opt_price_ru = product.opt_price * course_multiplier
+    opt_price_ru = product.opt_price if product.currency_id == 2
+    dealer_price_ru = product.dealer_price * course_multiplier
+    dealer_price_ru = product.dealer_price if product.currency_id == 2
     supplier_ru = product.supplier_price * course_multiplier
-    supplier_ru = product.rub_supplier_price if product.currency_id == 2
+    supplier_ru = product.supplier_price if product.currency_id == 2
+
+
+
+
     prices_array << retail_ru
-    prices_array << product.special_price * course_multiplier
-    prices_array << product.price_10 * course_multiplier
-    prices_array << product.opt_price * course_multiplier
-    prices_array << product.dealer_price * course_multiplier
+    prices_array << special_ru
+    prices_array << price_10_ru
+    prices_array << opt_price_ru
+    prices_array << dealer_price_ru
     prices_array << supplier_ru
     prices_array
   end

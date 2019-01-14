@@ -41,8 +41,8 @@
               </button>
             </td>
             <td width="25%" style="color: brown; text-align:right; ">
-            <button class="btn btn-xs btn-outline-primary copy-btn" id="copy-rub-spec-nonds" data-clipboard-text="<%= article_text %> <%= product.title %> — Специальная цена: <%= (get_prices_rub(product)[1] / 1.18).round(2) %> рублей без НДС. <%= information_on_the_availability %>">
-              <%= (get_prices_rub(product)[1] / 1.18).round(2) %>р.
+            <button class="btn btn-xs btn-outline-primary copy-btn" id="copy-rub-spec-nonds" data-clipboard-text="<%= article_text %> <%= product.title %> — Специальная цена: <%= (get_prices_rub(product)[1] / 1.2).round(2) %> рублей без НДС. <%= information_on_the_availability %>">
+              <%= (get_prices_rub(product)[1] / 1.20).round(2) %>р.
               </button>
             </td>
           <% else %>
@@ -61,7 +61,7 @@
           <% end %>
         </tr>
         <% end %>
-        <% if current_user.group_id == 1 or current_user.group_id == 2 or current_user.group_id == 3 or current_user.group_id == 4 %>
+        <% if current_user.group_id == 1 or current_user.group_id == 2 or current_user.group_id == 3%>
         <tr class="info">
             <td style="text-align:left">
               Базовая <sup style="color: red; font-size: 7pt"><%= (get_prices_eur(product)[0]/get_prices_eur(product)[5]).round(2) unless current_user.group_id == 1 %></sup>:
@@ -79,13 +79,13 @@
               </button>
             </td>
             <td style="color: brown; text-align:right; ">
-            <button class="btn btn-xs btn-outline-primary copy-btn" id="copy-rub-base-nonds" data-clipboard-text="<%= article_text %> <%= product.title %> — Базовая цена: <%= (get_prices_rub(product)[0] / 1.18).round(2) %> рублей без НДС. <%= information_on_the_availability %>">
-              <%= (get_prices_rub(product)[0] / 1.18).round(2) %>р.
+            <button class="btn btn-xs btn-outline-primary copy-btn" id="copy-rub-base-nonds" data-clipboard-text="<%= article_text %> <%= product.title %> — Базовая цена: <%= (get_prices_rub(product)[0] / 1.2).round(2) %> рублей без НДС. <%= information_on_the_availability %>">
+              <%= (get_prices_rub(product)[0] / 1.2).round(2) %>р.
               </button>
             </td>
         </tr>
         <% end %>
-        <% if current_user.group_id == 2 or current_user.group_id == 3 or current_user.group_id == 4%>
+        <% if current_user.group_id == 2 or current_user.group_id == 3 %>
         <tr class="success">
             <td style="text-align:left">
               Мелкий опт:
@@ -104,13 +104,13 @@
               </button>
             </td>
             <td style="color: brown; text-align:right; ">
-            <button class="btn btn-xs btn-outline-primary copy-btn" id="copy-rub-10+-nonds" data-clipboard-text="<%= article_text %> <%= product.title %> — Цена от 10 штук: <%= (get_prices_rub(product)[2] / 1.18).round(2) %> рублей без НДС. <%= information_on_the_availability %>">
-              <%= (get_prices_rub(product)[2] / 1.18).round(2) %>р.
+            <button class="btn btn-xs btn-outline-primary copy-btn" id="copy-rub-10+-nonds" data-clipboard-text="<%= article_text %> <%= product.title %> — Цена от 10 штук: <%= (get_prices_rub(product)[2] / 1.2).round(2) %> рублей без НДС. <%= information_on_the_availability %>">
+              <%= (get_prices_rub(product)[2] / 1.2).round(2) %>р.
               </button>
             </td>
         </tr>
         <% end %>
-        <% if current_user.group_id == 2 or current_user.group_id == 3 or current_user.group_id == 4%>
+        <% if current_user.group_id == 2 or current_user.group_id == 3 %>
         <tr class="info">
             <td style="text-align:left">
               Оптовая:
@@ -129,13 +129,13 @@
               </button>
             </td>
             <td style="color: brown; text-align:right; ">
-            <button class="btn btn-xs btn-outline-primary copy-btn" id="copy-rub-opt-nonds" data-clipboard-text="<%= article_text %> <%= product.title %> — Оптовая цена: <%= (get_prices_rub(product)[3] / 1.18).round(2) %> рублей без НДС. <%= information_on_the_availability %>">
-              <%= (get_prices_rub(product)[3] / 1.18).round(2) %>р.
+            <button class="btn btn-xs btn-outline-primary copy-btn" id="copy-rub-opt-nonds" data-clipboard-text="<%= article_text %> <%= product.title %> — Оптовая цена: <%= (get_prices_rub(product)[3] / 1.2).round(2) %> рублей без НДС. <%= information_on_the_availability %>">
+              <%= (get_prices_rub(product)[3] / 1.2).round(2) %>р.
               </button>
             </td>
         </tr>
         <% end %>
-        <% if current_user.group_id == 1 or current_user.group_id == 2 or current_user.group_id == 3 or current_user.group_id == 4 %>
+        <% if current_user.group_id == 1 or current_user.group_id == 2 or current_user.group_id == 3 %>
         <tr class="success">
             <td style="text-align:left">
               Дилерская:
@@ -154,8 +154,8 @@
               </button>
             </td>
             <td style="color: brown; text-align:right; ">
-            <button class="btn btn-xs btn-outline-primary copy-btn" id="copy-rub-dealer-nonds" data-clipboard-text="<%= article_text %> <%= product.title %> — Дилерская цена: <%= (get_prices_rub(product)[4] / 1.18).round(2) %> рублей без НДС. <%= information_on_the_availability %>">
-              <%= (get_prices_rub(product)[4] / 1.18).round(2) %>р.
+            <button class="btn btn-xs btn-outline-primary copy-btn" id="copy-rub-dealer-nonds" data-clipboard-text="<%= article_text %> <%= product.title %> — Дилерская цена: <%= (get_prices_rub(product)[4] / 1.2).round(2) %> рублей без НДС. <%= information_on_the_availability %>">
+              <%= (get_prices_rub(product)[4] / 1.2).round(2) %>р.
               </button>
             </td>
         </tr>
@@ -174,7 +174,7 @@
             <%= get_prices_rub(product)[5].round(2) %>р.
           </td>
           <td style="color: lightpink; text-align:right; ">
-            <%= (get_prices_rub(product)[5] / 1.18).round(2) %>р.
+            <%= (get_prices_rub(product)[5] / 1.2).round(2) %>р.
           </td>
         </tr>
         <% end %>
@@ -192,36 +192,122 @@
             <%= get_prices_rub(product)[5].round(2) %>р.
           </td>
           <td style="color: brown; text-align:right; ">
-            <%= (get_prices_rub(product)[5] / 1.18).round(2) %>р.
+            <%= (get_prices_rub(product)[5] / 1.2).round(2) %>р.
           </td>
         </tr>
         <% end %>
       </table>
     <% elsif product.currency_id == 2 %> 
       <table class="table table-condensed table-responsive prices-table">
-      <% if current_user.group_id == 1 or current_user.group_id == 2 or current_user.group_id == 3 or current_user.group_id == 4 %>
-        <tr class="warning">
-          <td width="18%" style="text-align:left">
-            Розница:
-          </td>
-          <td width="5%" style="text-align:right; color: green;">
-          </td>
-          <td width="27%" style="text-align:right; color: green;">
-          </td>
-          <td width="25%" style="text-align:right; color: green;">
-            <button class="btn btn-xs btn-outline-primary copy-btn" id="copy-rub-rub-base" data-clipboard-text="<%= article_text %> <%= product.title %> — Базовая цена: <%= get_prices_rub(product)[0].round(2) %> рублей c НДС. <%= information_on_the_availability %>">
-              <%= get_prices_rub(product)[0].round(2) %>р.
+      <% if current_user.group_id == 1 or current_user.group_id == 2 or current_user.group_id == 3 %>
+        <tr class="error">
+          <% unless get_prices_eur(product)[1].round(2) == 0 %>
+            <td width="18%" style="color: red; font-weight: bold; text-align:left">
+              Специальная:
+            </td>
+            <td width="5%" style="text-align:left">
+            </td>
+            <td width="27%" style="color: blue; text-align:right; ">
+            </td>
+            <td width="25%" style="color: green; text-align:right; ">
+            <button class="btn btn-xs btn-outline-primary copy-btn" id="copy-rub-spec" data-clipboard-text="<%= article_text %> <%= product.title %> — Специальная цена: <%= get_prices_rub(product)[1].round(2) %> рублей c НДС. <%= information_on_the_availability %>">
+              <%= get_prices_rub(product)[1].round(2) %>р.
               </button>
-          </td>
-          <td width="25%" style="text-align:right; color: brown;">
-            <button class="btn btn-xs btn-outline-primary copy-btn" id="copy-rub-rub-base-nonds" data-clipboard-text="<%= article_text %> <%= product.title %> — Базовая цена: <%= (get_prices_rub(product)[0] / 1.18).round(2) %> рублей без НДС. <%= information_on_the_availability %>">
-              <%= (get_prices_rub(product)[0] / 1.18).round(2) %>р.
-            </button>
-          </td>
+            </td>
+            <td width="25%" style="color: brown; text-align:right; ">
+            <button class="btn btn-xs btn-outline-primary copy-btn" id="copy-rub-spec-nonds" data-clipboard-text="<%= article_text %> <%= product.title %> — Специальная цена: <%= (get_prices_rub(product)[1] / 1.2).round(2) %> рублей без НДС. <%= information_on_the_availability %>">
+              <%= (get_prices_rub(product)[1] / 1.20).round(2) %>р.
+              </button>
+            </td>
+          <% else %>
+            <td width="18%" style="text-align:left">
+              Специальная:
+            </td>
+            <td width="5%" style="text-align:left">
+            </td>
+            <td width="27%" style="color: brown; text-align:right;">
+              нет
+            </td>
+            <td width="25%" style="color: green; text-align:right;">
+            </td>
+            <td width="25%">
+            </td>
+          <% end %>
         </tr>
         <% end %>
-        <% if current_user.group_id == 2 or current_user.group_id == 4 %>
+        <% if current_user.group_id == 1 or current_user.group_id == 2 or current_user.group_id == 3 %>
         <tr class="info">
+            <td style="text-align:left">
+              Базовая <sup style="color: red; font-size: 7pt"><%= (get_prices_rub(product)[0]/get_prices_rub(product)[5]).round(2) unless current_user.group_id == 1 %></sup>:
+            </td>
+            <td style="text-align:left">
+            </td>
+            <td style="color: blue; text-align:right;">
+            
+            </td>
+            <td style="color: green; text-align:right; ">
+            <button class="btn btn-xs btn-outline-primary copy-btn" id="copy-rub-base" data-clipboard-text="<%= article_text %> <%= product.title %> — Базовая цена: <%= get_prices_rub(product)[0].round(2) %> рублей c НДС. <%= information_on_the_availability %>">
+              <%= get_prices_rub(product)[0].round(2) %>р.
+              </button>
+            </td>
+            <td style="color: brown; text-align:right; ">
+            <button class="btn btn-xs btn-outline-primary copy-btn" id="copy-rub-base-nonds" data-clipboard-text="<%= article_text %> <%= product.title %> — Базовая цена: <%= (get_prices_rub(product)[0] / 1.2).round(2) %> рублей без НДС. <%= information_on_the_availability %>">
+              <%= (get_prices_rub(product)[0] / 1.2).round(2) %>р.
+              </button>
+            </td>
+        </tr>
+        <% end %>
+
+        <% if current_user.group_id == 2 or current_user.group_id == 3 %>
+        <tr class="success">
+            <td style="text-align:left">
+              Мелкий опт:
+            </td>
+            <td style="text-align:left">
+              -<%= ((1-get_prices_rub(product)[2]/get_prices_rub(product)[0])*100).round(2) %>%
+            </td>
+            <td style="color: blue; text-align:right;">
+            </td>
+            <td style="color: green; text-align:right; ">
+              <button class="btn btn-xs btn-outline-primary copy-btn" id="copy-rub-10+" data-clipboard-text="<%= article_text %> <%= product.title %> — Цена от 10 штук: <%= get_prices_rub(product)[2].round(2) %> рублей c НДС. <%= information_on_the_availability %>">
+              <%= get_prices_rub(product)[2].round(2) %>р.
+              </button>
+            </td>
+            <td style="color: brown; text-align:right; ">
+            <button class="btn btn-xs btn-outline-primary copy-btn" id="copy-rub-10+-nonds" data-clipboard-text="<%= article_text %> <%= product.title %> — Цена от 10 штук: <%= (get_prices_rub(product)[2] / 1.2).round(2) %> рублей без НДС. <%= information_on_the_availability %>">
+              <%= (get_prices_rub(product)[2] / 1.2).round(2) %>р.
+              </button>
+            </td>
+        </tr>
+        <% end %>
+        <% if current_user.group_id == 2 or current_user.group_id == 3 %>
+        <tr class="info">
+            <td style="text-align:left">
+              Оптовая:
+            </td>
+            <td style="text-align:left">
+              -<%= ((1-get_prices_rub(product)[3]/get_prices_rub(product)[0])*100).round(2) %>%
+            </td>
+            <td style="color: blue; text-align:right;">
+
+            </td>
+            <td style="color: green; text-align:right; ">
+            <button class="btn btn-xs btn-outline-primary copy-btn" id="copy-rub-opt" data-clipboard-text="<%= article_text %> <%= product.title %> — Оптовая цена: <%= get_prices_rub(product)[3].round(2) %> рублей c НДС. <%= information_on_the_availability %>">
+              <%= get_prices_rub(product)[3].round(2) %>р.
+              </button>
+            </td>
+            <td style="color: brown; text-align:right; ">
+            <button class="btn btn-xs btn-outline-primary copy-btn" id="copy-rub-opt-nonds" data-clipboard-text="<%= article_text %> <%= product.title %> — Оптовая цена: <%= (get_prices_rub(product)[3] / 1.2).round(2) %> рублей без НДС. <%= information_on_the_availability %>">
+              <%= (get_prices_rub(product)[3] / 1.2).round(2) %>р.
+              </button>
+            </td>
+        </tr>
+        <% end %>
+        
+        
+        
+        <% if current_user.group_id == 2 or current_user.group_id == 3 %>
+        <tr class="success">
           <td style="text-align:left">
             Закупочная:
           </td>
@@ -236,22 +322,7 @@
           </td>
         </tr>
         <% end %>
-        <% if current_user.group_id == 3 %>
-        <tr class="info">
-          <td style="text-align:left">
-            Закупочная:
-          </td>
-          <td style="text-align:right; color: green;">
-          </td>
-          <td style="text-align:right; color: green;">
-          </td>
-          <td style="text-align:right; color: lightgreen;">
-            <%= product.supplier_price.round(2) %>р.
-          </td>
-          <td style="text-align:right; color: green;">
-          </td>
-        </tr>
-        <% end %>
+        
       </table>
     <% end %>
 
