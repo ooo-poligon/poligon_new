@@ -1,7 +1,3 @@
-require 'pry'
-require 'net/http'
-require 'nokogiri'
-
 desc 'Get exchange rates from CBR'
 task update_exchange_rate: :environment do
   url = URI.parse('http://cbr.ru/scripts/XML_daily.asp?date_req=23/12/2018')

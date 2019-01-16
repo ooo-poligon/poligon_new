@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'rails', '4.2.5'
+gem 'puma', '~> 3.0'
 gem 'i18n' , '0.7.0'
 gem 'mysql2', '0.4.4'
 gem 'bootstrap-sass', '~> 3.3.5'
@@ -74,7 +75,6 @@ end
 
 group :development do
   gem 'mina', '0.3.8'
-  gem 'puma', '= 3.11.2'
 end
 
 group :production do

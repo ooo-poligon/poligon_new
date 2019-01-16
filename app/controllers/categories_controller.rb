@@ -44,7 +44,6 @@ class CategoriesController < ApplicationController
     #recentAndSubCategoriesIds.each do |categoryId|
 
       Product.available.where(category_id: recentAndSubCategoriesIds).includes(:vendor).each do |product|
-        #binding.pry
         #vendor = Vendor.find(product.vendor_id)
         one_product_array = []
 
