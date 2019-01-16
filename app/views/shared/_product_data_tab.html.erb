@@ -7,7 +7,7 @@
         <span style="font-size: 14px; color: green; float: right; padding-top: 4px; padding-right: 10px;"><%= @product.delivery_time %>.</span>
     </div>
     <div class="col-md-8">
-      <% unless (@product.base_price == 0 && @product.currency_id == 1) || (@product.rub_base_price == 0 && @product.currency_id ==2)%>
+      <% unless (@product.base_price == 0 )%>
         <h3>Цены:</h3>
         <%= render partial: 'shared/product_prices_table_header' %>
         <%= render partial: 'shared/product_prices_table', locals: {product: @product} %>

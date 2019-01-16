@@ -71,7 +71,7 @@
           <td style="vertical-align: top;">
             <table class="table table-responsive" style="width: 100%">
               <tr>
-              <% unless (product.base_price == 0 && product.currency_id == 1) || (product.rub_base_price == 0 && product.currency_id == 2)%>
+              <% unless (product.base_price == 0 )%>
                 <td style="vertical-align: top;">
                   <%= render partial: 'shared/product_prices_table_header' %>
                   <%= render partial: 'shared/product_prices_table', locals: {product: product} %>
