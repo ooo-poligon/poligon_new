@@ -10,13 +10,17 @@
 
         <div class="col-md-6">
           <select onchange="window.location=this.value">
-              <option value="<%= params[:vendor] || "" %>"><%= params[:vendor] || "" %></option>
-            <% Vendor.pluck(:title).reject(&:empty?).each do |vendor| %>
-
               <% if controller_name == "offers" %>
-                <option value="/offers/index?vendor=<%= vendor %>"><%= vendor %></option>
+                <option value="/offers/index">Все производители</option>
               <% else %>
-                <option value="stock?vendor=<%= vendor %>"><%= vendor %></option>
+                <option value="stock">Все производители</option>
+              <% end %>
+            <% Vendor.pluck(:title).reject(&:empty?).each do |vendor| %>
+              <% selected = vendor == params[:vendor] ? "selected" : "" %>
+              <% if controller_name == "offers" %>
+                <option value="/offers/index?vendor=<%= vendor %>" <%= selected %>><%= vendor %></option>
+              <% else %>
+                <option value="stock?vendor=<%= vendor %>" <%= selected %>><%= vendor %></option>
               <% end %>
             <% end %>
           </select>

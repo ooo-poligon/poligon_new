@@ -5,7 +5,8 @@
   <h1><%= title %></h1>
 
   <%= render "shared/custom_search" %>
-  <%= render "shared/xls_download" %>
+  <br>
+  <%= link_to "Скачать как XLS", stock_path(format: "xlsx"), class: "btn btn-default" %>
 
   <%= render "shared/products_table" %>
 

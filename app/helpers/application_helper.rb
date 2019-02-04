@@ -15,13 +15,13 @@ module ApplicationHelper
   def cart_quantity_text (number, type = 'basic')
     if type == 'basic'
       if [11, 12, 13, 14].include?(number % 100)
-        ('<span></span> '+ (number.to_s) +' <i>товаров</i>').html_safe
+        ('<span></span> '+ (number.to_s) +' товаров').html_safe
       elsif number % 10 == 1
-        ('<span></span> '+ (number.to_s) +' <i>товар</i>').html_safe
+        ('<span></span> '+ (number.to_s) +' товар').html_safe
       elsif [2, 3, 4].include?(number % 10)
-        ('<span></span> '+ (number.to_s) +' <i>товара</i>').html_safe
+        ('<span></span> '+ (number.to_s) +' товара').html_safe
       else
-        ('<span></span> '+ (number.to_s) +' <i>товаров</i>').html_safe
+        ('<span></span> '+ (number.to_s) +' товаров').html_safe
       end
     elsif type == 'mobile'
       ('<span>' + number.to_s + '</span>').html_safe

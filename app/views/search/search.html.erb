@@ -21,9 +21,9 @@
 
           <% else %>
 
-            <% if !product.stock.nil? || !product.reserved.nil? || !product.remove_stock.nil? %>
+            <% if product&.stock > 0 || product.remote_stock > 0 %>
               <span class="in_stock">В наличии</span>
-            <% elsif !product.ordered_on_stock.nil? %>
+            <% elsif product.ordered_on_stock > 0 %>
               <span class="ordered_on_stock">Ожидается</span>
             <% else %>
               <i>Под заказ.</i>

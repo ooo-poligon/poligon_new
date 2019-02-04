@@ -2,16 +2,17 @@
 <h3><%= @example.title %></h3>
 
 <%= form_for @example, url: {action: "update", id: @example.id} do |f| %>
-  <div>
+  <div style="display: flex;">
     <% f.object.example_images.each_with_index do |image, index| %>
-      <div style="display: inline-block;">
-          <%= image_tag(image.url) %><br>
-          <%#= link_to "Удалить", admin_example_example_image_path(f.object.id, index), :method => :delete,
+      <div style="display: block; height: 130px; margin-right: 10px; text-align: center;">
+          <%= image_tag(image.url, style: "height: 130px;") %><br>
+          <%= link_to "Удалить", admin_example_example_image_path(f.object.id, index), :method => :delete,
                       data: { confirm: "Вы уверены?" } %>
       </div>
     <% end %>
   </div>
-  <br><br>
+  <br>
+  <br>
   <%= label_tag(:example_images, "Изображения:") %><br>
   <%= f.file_field :example_images, multiple: true %><br><br>
   <%= label_tag(:title, "Название:") %>
@@ -19,9 +20,9 @@
   <%= label_tag(:scope_id, "Область применения:") %>
   <%= f.collection_select(:scope_id, Scope.all, :id, :name, class: 'form-control') %><span>&nbsp;&nbsp;</span><br><br>
   <%= f.label 'Товарные группы (через запятую):' %>
-  <%= f.text_area :product_groups, size: "160x12", class: 'form-control' %><br><br>
+  <%= f.text_area :product_groups, size: "160x12", class: 'form-control', value: f.object.product_groups.map{|a| a.id}.join(",") %><br><br>
   <%= label_tag(:product_id, "Устройство:") %>
-  <%= f.collection_select(:product_id, Product.available.order(:title), :id, :title, class: 'form-control') %><br><br>
+  <%= f.collection_select(:product_id, Product.available.order(:title).first(10), :id, :title, class: 'form-control') %><br><br>
   <%= label_tag(:issue, "Задача:") %>
   <%= f.text_area :issue, size: "160x12", class: 'form-control' %><br><br>
   <%= label_tag(:issue, "Решение:") %>

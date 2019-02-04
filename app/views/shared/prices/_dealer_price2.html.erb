@@ -1,0 +1,25 @@
+<% if product.dealer_price2 > 0.0 %>
+  <tr class="warning">
+      <td style="text-align:left">
+        Дилер+/проектная:
+      </td style="text-align:left">
+      <td>
+        -<%= ((1-get_prices_eur(product)[6]/get_prices_eur(product)[0])*100).round(2) %>%
+      </td>
+      <td style="color: blue; text-align:right;">
+      <button class="" data-clipboard-text="<%= article_text %><%= product.title %> — Дилер+/проектная цена: <%= get_prices_eur(product)[4].round(2) %> евро c НДС. <%= information_on_the_availability %>">
+        &euro;<%= get_prices_eur(product)[6].round(2) %>
+        </button>
+      </td>
+      <td style="color: green; text-align:right; ">
+      <button class="" data-clipboard-text="<%= article_text %><%= product.title %> — Дилер+/проектная цена: <%= get_prices_rub(product)[4].round(2) %> рублей c НДС. <%= information_on_the_availability %>">
+        <%= get_prices_rub(product)[6].round(2) %>р.
+        </button>
+      </td>
+      <td style="color: brown; text-align:right; ">
+      <button class="" data-clipboard-text="<%= article_text %><%= product.title %> — Дилер+/проектная цена: <%= (get_prices_rub(product)[4] / 1.20).round(2) %> рублей без НДС. <%= information_on_the_availability %>">
+        <%= (get_prices_rub(product)[6] / 1.20).round(2) %>р.
+        </button>
+      </td>
+  </tr>
+<% end %>

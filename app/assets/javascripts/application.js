@@ -29,6 +29,7 @@
 //= require categories
 //= require clipboard
 //= require feedback
+//= require jquery.minicolors
 
 //= require will_paginate_infinite
 
@@ -48,6 +49,7 @@ $(document).ready(function() {
 
   $(".tab-image").error(function () { 
     $(this).hide();
+    console.log("one");
   });
 
   $(".captcha-form").submit(function(event) {

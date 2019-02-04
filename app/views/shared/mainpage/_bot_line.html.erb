@@ -1,4 +1,5 @@
-<div class="bot-line">
+<% empty_class = @current_cart.line_items.count.zero? ? "empty" : "" %>
+<div class="bot-line <%= empty_class %>">
   <div class="container">
     <a href="#header" id="to-top"><span></span> Наверх</a>
     <div class="bot-cart">

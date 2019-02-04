@@ -22,7 +22,6 @@ class ContentController < ApplicationController
         pdf_path = "http://www.poligon.info/PDF/" + vendor_folder_name + "/" + product_pdf
 
       pdf_path = URI.escape(pdf_path)
-      
 
       temp_pdf = "#{Rails.root}/public/data/temp/" + URI.escape(product_pdf)
       unless File.file?(temp_pdf)

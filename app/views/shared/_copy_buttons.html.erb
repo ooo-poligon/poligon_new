@@ -4,8 +4,8 @@
 
   <% price = get_prices_eur(locals[:product])[0].round(2) %>
   <% price_rub = get_prices_rub(locals[:product])[0].round(2) %>
-  <% price_rub = locals[:product].rub_base_price.round(2) if locals[:product].currency_id == 2 %>
-  <% price_rub_nonds = price_rub / 1.18 %>
+  <% price_rub = locals[:product].base_price.round(2) if locals[:product].currency_id == 2 %>
+  <% price_rub_nonds = price_rub / 1.20 %>
 
   <table class="table table-responsive">
     <tr>

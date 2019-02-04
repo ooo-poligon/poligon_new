@@ -1,0 +1,16 @@
+<tr class="succes">
+  <td style="text-align:left">
+    Закупочная:
+  </td>
+  <td style="text-align:left">
+  </td>
+  <td style="text-align:right; color: lightblue;">
+      &euro;<%= get_prices_eur(product)[5].round(2) %>
+  </td>
+  <td style="color: lightgreen; text-align:right; ">
+    <%= get_prices_rub(product)[5].round(2) %>р.
+  </td>
+  <td style="color: lightpink; text-align:right; ">
+    <%= (get_prices_rub(product)[5] / 1.20).round(2) %>р.
+  </td>
+</tr>

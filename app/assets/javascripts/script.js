@@ -1,11 +1,15 @@
 $(window).scroll(function(){
-if($(window).scrollTop()>300){
-$('.bot-line').slideDown()
-}
-else {
-$('.bot-line').slideUp()	
-}
-})
+
+
+  if( $(window).scrollTop()>300 ) {
+    $('.bot-line').slideDown()
+  }
+    else {
+    $('.bot-line').slideUp()  
+  }
+
+
+});
 
 $(function(){
 $(document).on('mouseenter', '.nav-list li:not(.op)', function(e){

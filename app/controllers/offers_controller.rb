@@ -3,7 +3,8 @@ class OffersController < ApplicationController
     @products = []
     addCBR = Setting.find_by title: 'addCBR'
 
-    @products_list = Product.available.where(special_offer: 1)
+    @products_list = Product.available.where(special_offer: 1).order('sorting DESC')
+
     if params[:vendor]
       vendor = Vendor.find_by(title: params[:vendor])
       @products_list = @products_list.where(vendor_id: vendor.id)
@@ -28,7 +29,14 @@ class OffersController < ApplicationController
       #end
     end
 
-    @products = @products.paginate(:page => params[:page], :per_page => 10)
+    respond_to do |format|
+      format.html { @products = @products.paginate(:page => params[:page], :per_page => 10) }
+      format.xlsx { render xlsx: "POLIGON_sale_#{Date.today.strftime("%d-%m-%y")}",
+                    template: "shared/xls",
+                    locals: { workbook_name: "Товары на распродаже" }
+                  }
+    end
+
   end
 
 end

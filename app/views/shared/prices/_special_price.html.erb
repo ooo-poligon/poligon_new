@@ -1,0 +1,38 @@
+<tr class="warning">
+  <% unless get_prices_eur(product)[1].round(2) == 0 %>
+    <td width="21%" style="color: red; font-weight: bold; text-align:left">
+      Специальная:
+    </td>
+    <td width="10%" style="text-align:left">
+      -<%= ((1-get_prices_eur(product)[1]/get_prices_eur(product)[0])*100).round(2) %>%
+    </td>
+    <td width="23%" style="color: blue; text-align:right; ">
+    <button cclass="clipboard-btn btn btn-primary btn-xs btn-block" data-clipboard-text="<%= article_text %><%= product.title %> — Специальная цена: <%= get_prices_eur(product)[1].round(2) %> евро c НДС. <%= information_on_the_availability %>">
+      &euro;<%= get_prices_eur(product)[1].round(2) %>
+      </button>
+    </td>
+    <td width="23%" style="color: green; text-align:right; ">
+    <button class="clipboard-btn btn btn-xs btn-success btn-block" data-clipboard-text="<%= article_text %><%= product.title %> — Специальная цена: <%= get_prices_rub(product)[1].round(2) %> рублей c НДС. <%= information_on_the_availability %>">
+      <%= get_prices_rub(product)[1].round(2) %>р.
+      </button>
+    </td>
+    <td width="23%" style="color: brown; text-align:right; ">
+    <button class="btn btn-xs btn-danger clipboard-btn btn-block" data-clipboard-text="<%= article_text %><%= product.title %> — Специальная цена: <%= (get_prices_rub(product)[1] / 1.20).round(2) %> рублей без НДС. <%= information_on_the_availability %>">
+      <%= (get_prices_rub(product)[1] / 1.20).round(2) %>р.
+      </button>
+    </td>
+  <% else %>
+    <td style="text-align:left">
+      Специальная:
+    </td>
+    <td style="text-align:left">
+    </td>
+    <td style="color: brown; text-align:right;">
+      нет
+    </td>
+    <td style="color: green; text-align:right;">
+    </td>
+    <td style="text-align:right">
+    </td>
+  <% end %>
+</tr>

@@ -145,15 +145,17 @@ class FeedbackController < ApplicationController
   end
 
   def send_project_conditions
-    if verify_recaptcha(params)
+    if true
+    #if verify_recaptcha(params)
       name     = params[:name]
       phone    = params[:phone]
       email    = params[:email]
       message  = params[:message]
       quantity = params[:quantity]
+      product  = params[:product_id]
 
       if email != ''
-        UserMailer.request_conditions_email(name, phone, email,  message, quantity).deliver_now
+        UserMailer.request_conditions_email(name, phone, email,  message, quantity, product).deliver_now
         respond_to do |format|
           format.html { redirect_to root_url, notice: {title: 'Спасибо, Ваш запрос уже получен.', message: ' В рабочее время мы постараемся ответить в течение 59 минут. Мы работаем с ПН по ПТ с 9:30 до 18:00MSK. <br>Вы так же можете позвонить нам по телефону +7 812 3254220, если вопрос срочный.'}}
         end

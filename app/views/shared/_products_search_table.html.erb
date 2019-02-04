@@ -64,21 +64,24 @@
             </tr>
           </table>
         </td>
+
         <% if user_signed_in? %>
+
           <td style="vertical-align: top;">
             <%= render partial: 'shared/product_quantities_table', locals: {product: product} %>
           </td>
           <td style="vertical-align: top;">
             <table class="table table-responsive" style="width: 100%">
               <tr>
-              <% unless (product.base_price == 0 && product.currency_id == 1) || (product.rub_base_price == 0 && product.currency_id == 2)%>
+              <% unless (product.base_price == 0 && product.currency_id == 1) %>
                 <td style="vertical-align: top;">
                   <%= render partial: 'shared/product_prices_table_header' %>
                   <%= render partial: 'shared/product_prices_table', locals: {product: product} %>
                 </td>
               <% else %>
                 <td style="align-content: center;">
-                  Звоните:<br>(812)325-42-20
+                 <!-- Звоните:<br>(812)325-42-20 -->
+                 Нет цен
                 </td>
               <% end %>
               </tr>

@@ -201,7 +201,17 @@
               <h4>Информация для заказа</h4>
               <p class="product-name">Наименование: <%= @product.title %></p>
               <p class="product-art">Артикул: <span><%= @product.article ? @product.article : '-' %></span></p>
-              <p class="product-manuf">Производитель: <span><a href="<%= category_path(@product.vendor&.code) %>"><%= @product.vendor&.title %></a></span></p>
+              <p class="product-manuf">Производитель:
+                <span>
+                  <% unless @product&.vendor&.code.nil? %>
+                    <a href="<%= category_path(@product&.vendor&.code) %>">
+                      <%= @product.vendor&.title %>
+                    </a>
+                  <% else %>
+                    <%= @product.vendor&.title %>
+                  <% end %>
+                </span>
+              </p>
             </div>
             <div class="col-sm-6 card-order-docs">
               <div class="doc-button">
@@ -238,9 +248,7 @@
         %>
           <li><p>Общая информация</p></li>
         <% end %>
-        <% if !@product.pdf_name.nil? and @product.pdf_name!= "" %>
-          <li><p><span class="card-pdf">pdf</span>и сертификаты</p></li>
-        <% end %>
+        <li><p><span class="card-pdf">pdf</span>и сертификаты</p></li>
         <li id="tab-advant"><p>Преимущества</p></li>
         <li><a href="#fb-form">Задать вопрос о товаре</a></li>
       </ul>
@@ -253,6 +261,17 @@
       %>
         <div class="card-box">
           <div class="tab-content">
+            <% if @product.full_description.nil? && @functions.empty? %>
+              <% if @sortedArray.empty? || (@sortedArray.map{|a| a[2]}.uniq.size == 1 && @sortedArray.map{|a| a[2]}.uniq[0] == "") %>
+
+                  <% @infoDefaultText = Setting.find_by(title: "infoDefaultText") %>
+                  
+                  <p class="content-text">
+                    <%= @infoDefaultText.text_value.html_safe %>
+                  </p>
+
+              <% end %>
+            <% end %>
             <% if user_signed_in? %>
               <div class="tab-pane fade" id="product_data_tab">
                 <%= render "shared/product_data_tab" %>
@@ -276,16 +295,26 @@
           </div>
         </div>
       <% end %>
-      <% if !@product.pdf_name.nil? and @product.pdf_name != "" %>
+
         <div class="card-box" style="display: none;">
+          <% unless !@product.pdf_name.nil? and @product.pdf_name != "" %>
+            <% @pdfDefaultText = Setting.find_by(title: "pdfDefaultText") %>
+            <p style="margin-bottom: 15px;"><%= @pdfDefaultText.text_value.html_safe %></p>
+          <% end %>
           <div class="doc-button">
-            <% if !@product_pdf.nil? and @product.pdf_name != "" %>
+            <% if !@product.pdf_name.nil? and @product.pdf_name != "" %>
               <%= link_to( "<span></span>Скачать документацию".html_safe, content_download_pdf_path(product_id: @product.id)) %>
             <% end %>
           </div>
+          <div class="doc-button">
+            <%= render "shared/category_catalogs_links", locals: {vendor_id: @product.vendor.code}  %>
+          </div>
         </div>
-      <% end %>
       <div class="card-box" id="advant" style="display: none;">
+        <% if @product.advantages.blank? && @product.advantage.blank? && @product.vendor.advantages.blank? %>
+          <% @advantagesDefaultText = Setting.find_by(title: "advantagesDefaultText") %>
+          <p style="margin-bottom: 15px;"><%= @advantagesDefaultText.text_value.html_safe %></p>
+        <% end %>
 
         <% unless @product.advantages.blank? %>
           <%= @product&.advantages&.html_safe %>

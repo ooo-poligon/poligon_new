@@ -40,7 +40,7 @@ class LineItemsController < ApplicationController
       else
         format.html { render action: new }
         format.json { render json: @line_item.errors,
-        status: :unprocessable_entity }
+          status: :unprocessable_entity }
       end
     end
   end

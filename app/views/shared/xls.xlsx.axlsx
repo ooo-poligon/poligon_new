@@ -1,0 +1,10 @@
+wb = xlsx_package.workbook
+wb.add_worksheet(name: workbook_name) do |sheet|
+  sheet.add_row %w(Артикул Название Описание Производитель Stock RemoteStock)
+  @products_list.each do |product|
+    begin
+      sheet.add_row [product.article, product.title, product.description, product.vendor.title, product.stock, product.remote_stock]
+    rescue
+    end
+  end
+end

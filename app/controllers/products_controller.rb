@@ -104,10 +104,11 @@ class ProductsController < ApplicationController
     @products = []
     addCBR = Setting.find_by title: 'addCBR'
 
-    @products_list = Product.available.where.not(stock: 0)
+    @products_list = Product.includes(:vendor).available.where.not(stock: 0).order('sorting DESC')
+
     if params[:vendor]
       vendor = Vendor.find_by(title: params[:vendor])
-      @products_list = @products_list.where(vendor_id: vendor.id)
+      @products_list = @products_list.where(vendor_id: vendor&.id)
     end
 
     @products_list.each do |product|
@@ -123,7 +124,13 @@ class ProductsController < ApplicationController
       #
     end
 
-    @products = @products.paginate(:page => params[:page], :per_page => 10)
+    respond_to do |format|
+      format.html { @products = @products.paginate(:page => params[:page], :per_page => 10) }
+      format.xlsx { render xlsx: "POLIGON_stock_#{Date.today.strftime("%d-%m-%y")}",
+                    template: "shared/xls",
+                    locals: { workbook_name: "Товары на складе" }
+                  }
+    end
   end
 
 end

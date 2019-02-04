@@ -26,6 +26,16 @@
   </p>
 
   <p>
+    <%= f.label "Цвет блока" %>
+    <%= f.text_field :block_color, class: "form-control minicolors", required: true %>
+  </p>
+
+  <p>
+    <%= f.label "Цвет рамки" %>
+    <%= f.text_field :border_color, class: "form-control minicolorsBg", required: true %>
+  </p>
+
+  <p>
     <%= f.label "Размер" %><br>
     <%= f.select :block_size, ['big', 'small'], class: "form-control", required: true %>
   </p>

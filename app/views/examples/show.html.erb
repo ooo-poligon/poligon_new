@@ -20,9 +20,9 @@
       <div class="apply-item-photos">
         <div class="row">
           <% @example.example_images.each do |image| %>
-            <div class="col-sm-6 col-md-3 apply-item-photo">
+            <div class="col-sm-6 col-md-3 apply-item-photo"> 
               <%= link_to image_tag(image.url, class: "img-responsive center-block product-image-container"),
-                          image.url, class: "fancybox", data: {rel: "lightcase:app"} %>
+                          image.url, class: "fancybox", data: {rel: "li2ghtcase:app"} %>
             </div>
           <% end %>
         </div>
@@ -75,12 +75,14 @@
             <%= @example.solution %>
           </div>
         </div>
-        <div class="row">
-          <div class="col-sm-2"><strong>Преимущества:</strong></div>
-          <div class="col-sm-10">
-            <%= @example.product.advantages %>
+        <% if @example.product.advantages %>
+          <div class="row">
+            <div class="col-sm-2"><strong>Преимущества:</strong></div>
+            <div class="col-sm-10">
+              <%= @example.product.advantages %>
+            </div>
           </div>
-        </div>
+        <% end %>
       </div>
     </div>
   </div>

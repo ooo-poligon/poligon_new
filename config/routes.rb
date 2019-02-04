@@ -1,14 +1,6 @@
 # -*- encoding : utf-8 -*-
 Poligon::Application.routes.draw do
 
-  namespace :admin do
-    get 'product_groups/index'
-  end
-
-  namespace :admin do
-    get 'product_groups/show'
-  end
-
   resources :orders
   resources :line_items, except: [:index]
   resources :news_items, only: [:index, :show]
@@ -58,7 +50,7 @@ Poligon::Application.routes.draw do
 
   get 'oplata-dostavka' => 'content#delivery'
 
-  get  'feedback/booklets'
+  get  'pdf_katalogi' => 'feedback#booklets', as: "feedback_booklets"
   get  'feedback/mailing_list'
   get  'feedback/confirm_subscription'
   get  'feedback/confirm_unsubscription'
@@ -99,7 +91,7 @@ Poligon::Application.routes.draw do
   # Sample resource route within a namespace:
   namespace :admin do
     resources :panel, only: [:index]
-    resources :scopes, :booklets, :static_contents, :slider_items
+    resources :scopes, :booklets, :static_contents, :slider_items, :settings
     resources :examples
     resources :examples do
       resources :example_images, :only => [:create, :destroy] # support #create and #destroy

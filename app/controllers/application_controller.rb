@@ -10,7 +10,9 @@ class ApplicationController < ActionController::Base
     @courseEuro = ExchangeRate.last.eur_rate.to_f
     @courseUsd = ExchangeRate.last.usd_rate.to_f
     @fastDelivery = Setting.find_by(title: "fastDeliveryText")
-    @deliveryInfo = Setting.find_by(title: "deliveryInfo")
+    @deliveryInfo = Setting.find_by(title: "termsOfPayment")
+    @phone1 = Setting.find_by(title: "phone1")
+    @phone2 = Setting.find_by(title: "phone2")
   end
   
   def get_prices_eur(product)
@@ -22,6 +24,7 @@ class ApplicationController < ActionController::Base
     prices_array << product.opt_price
     prices_array << product.dealer_price
     prices_array << product.supplier_price
+    prices_array << product.dealer_price2
     prices_array
   end
 
@@ -38,6 +41,7 @@ class ApplicationController < ActionController::Base
     prices_array << product.opt_price * course_multiplier
     prices_array << product.dealer_price * course_multiplier
     prices_array << supplier_ru
+    prices_array << product.dealer_price2 * course_multiplier
     prices_array
   end
 
@@ -170,6 +174,7 @@ class ApplicationController < ActionController::Base
   private
 
   def current_cart
+    ENV["http_proxy"] = ""
     @total_quantity = 0
     if session[:cart_id]
       cart = Cart.find_by(:id => session[:cart_id])

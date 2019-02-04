@@ -11,7 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181229003018) do
+ActiveRecord::Schema.define(version: 20190201171041) do
+
+  create_table "active_admin_comments", force: :cascade do |t|
+    t.string   "namespace",     limit: 255
+    t.text     "body",          limit: 65535
+    t.integer  "resource_id",   limit: 4
+    t.string   "resource_type", limit: 255
+    t.integer  "author_id",     limit: 4
+    t.string   "author_type",   limit: 255
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+  end
+
+  add_index "active_admin_comments", ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id", using: :btree
+  add_index "active_admin_comments", ["namespace"], name: "index_active_admin_comments_on_namespace", using: :btree
+  add_index "active_admin_comments", ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id", using: :btree
 
   create_table "additions", force: :cascade do |t|
     t.datetime "created_at",                    null: false
@@ -381,6 +396,7 @@ ActiveRecord::Schema.define(version: 20181229003018) do
     t.text    "advantages",         limit: 65535
     t.integer "quantity",           limit: 4,     default: 0
     t.integer "advantage_id",       limit: 4
+    t.float   "dealer_price2",      limit: 24
   end
 
   add_index "products", ["advantage_id"], name: "index_products_on_advantage_id", using: :btree
@@ -573,10 +589,10 @@ ActiveRecord::Schema.define(version: 20181229003018) do
   add_index "sertificates", ["vendor_id"], name: "index_sertificates_on_vendor_id", using: :btree
 
   create_table "settings", force: :cascade do |t|
-    t.string  "title",      limit: 50,             null: false
-    t.string  "kind",       limit: 50,             null: false
-    t.integer "int_value",  limit: 4,  default: 0
-    t.string  "text_value", limit: 50
+    t.string  "title",      limit: 50,              null: false
+    t.string  "kind",       limit: 50,              null: false
+    t.integer "int_value",  limit: 4,   default: 0
+    t.string  "text_value", limit: 255
   end
 
   create_table "slider_items", force: :cascade do |t|

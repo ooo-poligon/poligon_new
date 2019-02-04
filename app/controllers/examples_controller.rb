@@ -1,8 +1,8 @@
 class ExamplesController < ApplicationController
 
   def index
-    @scopes   = Scope.all
-    @tags     = Tag.all
+    @scopes   = Scope.where(id: Example.all.map{|a| a.scope.id}.flatten.uniq)
+    @tags     = Tag.where(id: Example.all.map{|a| a.tags.pluck(:id)}.flatten.uniq)
     @examples = Example.all
     respond_to do |format|
       format.html

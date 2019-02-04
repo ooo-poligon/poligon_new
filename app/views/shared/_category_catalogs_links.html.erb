@@ -28,5 +28,5 @@
     <% pdf_path = "" %>
 <% end %>
 <% if pdf_path != "" %>
-  <%= link_to( "Каталог производителя", pdf_path, target: "_blank") %>
+  <%= link_to(pdf_path, target: "_blank") do |a|%><span></span>Каталог производителя<% end %>
 <% end %>

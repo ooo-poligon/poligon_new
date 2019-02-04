@@ -71,4 +71,9 @@
       <% end %>
     </table>
   <% end %>
+    <% if signed_in? && (current_user.group_id == 3 || current_user.group_id == 2) %>
+      <% if product.comment && product.comment != "" %>
+        <p class="product-comment"><%= product.comment %></p>
+      <% end %>
+    <% end %>
 <% end %>

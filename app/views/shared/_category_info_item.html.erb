@@ -6,10 +6,15 @@
            <% image_path = category.image_path
                .gsub("\\\\Server03\\бд_сайта\\poligon_images", "http://www.poligon.info/images")
                .gsub("\\", "/") %>
+          <%= link_to image_tag(image_path, alt: category.title, title: category.title), category %>
       <% else %>
-        <%image_path = 'nophoto.png' %>
+        <%= link_to category do |link| %>
+          <div style="height: 35px; width: 35px; background: white; position: relative;">
+            <div style="position: absolute; width: 9px; height: 9px; background: #919191; top:0; right: 0;"></div>
+          </div>
+        <% end %>
       <% end %>
-      <%= link_to image_tag(image_path, alt: category.title, title: category.title), category %>
+      
     </div>
     <div class="col-sm-9 category-item-text">
       <%= link_to category.title, category %>

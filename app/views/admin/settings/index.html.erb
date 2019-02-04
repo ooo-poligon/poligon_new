@@ -1,0 +1,21 @@
+<h1>Настройки</h1>
+
+<table class="table table-striped">
+  <thead class="thead-dark">
+    <tr>
+      <th>Название</th>
+      <th>Значение</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @settings.reverse.each do |setting| %>
+      <tr>
+        <th><%= setting.title %></th>
+        <th><%= setting.text_value %></th>
+        <td>
+          <%= link_to "Редактировать", edit_admin_setting_path(setting), class: "btn btn-sm btn-success" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

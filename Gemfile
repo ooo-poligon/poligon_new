@@ -16,6 +16,7 @@ gem 'progress_bar', '1.0.5'
 gem 'fancybox-rails', '0.3.1'
 gem 'therubyracer', '0.12.2', :platform => :ruby
 gem 'jquery-rails', '4.1.1'
+
 gem 'jquery-turbolinks', '2.1.0'
 gem 'nokogiri', '1.6.8'
 gem 'devise', '4.1.1'
@@ -35,6 +36,10 @@ gem 'carrierwave', '~> 1.0'
 gem 'mini_magick', '4.8.0'
 gem 'clipboard-rails'
 gem 'will_paginate_infinite'
+gem 'rubyzip', '= 1.0.0'
+gem 'axlsx', '= 2.0.1'
+gem 'axlsx_rails'
+gem 'jquery-minicolors-rails'
 
 group :assets do
   gem 'coffee-rails', '4.1.1'

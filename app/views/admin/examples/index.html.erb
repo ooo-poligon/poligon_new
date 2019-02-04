@@ -1,7 +1,6 @@
 <div>
   <h2>Примеры применения</h2>
-  <p><%= link_to 'Области применения', admin_scopes_path %></p>
-  <p><%= link_to 'Создать новый пример применения', new_admin_example_path %></p>
+  <p><%= link_to 'Создать новый пример применения', new_admin_example_path, class: "btn btn-success" %></p>
   <br><br>
   <% if @examples.nil? %>
     Нет информации для отображения.

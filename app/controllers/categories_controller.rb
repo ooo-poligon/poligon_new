@@ -38,26 +38,19 @@ class CategoriesController < ApplicationController
     end
 
     @vendors_categories_ids = [142, 5094, 74, 5414, 5535, 5818, 5933, 5583, 5512, 6441, 4847, 6321, 5650]
-
     @products = []
-    #addCBR = Setting.find_by title: 'addCBR'
-    #recentAndSubCategoriesIds.each do |categoryId|
-
-      Product.available.where(category_id: recentAndSubCategoriesIds).includes(:vendor).each do |product|
-        #vendor = Vendor.find(product.vendor_id)
-        one_product_array = []
-
-        product_price = calculate_price(product)
-
-        quantity = product.stock
-        if quantity > 0 || (quantity == 0 && recentAndSubCategoriesIds.length == 1)
-          one_product_array.push(product, product_price, quantity, product.vendor)
-          @products.push(one_product_array)
-        end
-
+    Product.available
+            .where(category_id: recentAndSubCategoriesIds)
+            .order('sorting DESC')
+            .includes(:vendor).each do |product|
+      one_product_array = []
+      product_price = calculate_price(product)
+      quantity = product.stock
+      if quantity > 0 || (quantity == 0 && recentAndSubCategoriesIds.length == 1)
+        one_product_array.push(product, product_price, quantity, product.vendor)
+        @products.push(one_product_array)
       end
-
-    #end
+    end
 
     @products = @products.paginate(:page => params[:page], :per_page => 10)
   end

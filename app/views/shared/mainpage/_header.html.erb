@@ -1,5 +1,5 @@
 <% if controller.controller_name == "search" && controller.action_name == "advanced_search" %>
-  <% container_class = "container-fluid" %>
+  <% container_class = "container" %>
 <% else %>
   <% container_class = "container" %>
 <%end%>
@@ -15,8 +15,8 @@
         <p>электротехника и автоматика <br>европейской надежности</p>
       </div>
       <div class="col-sm-4 col-md-5 col-lg-3 top-contacts">
-        <p class="top-phone"><a href="tel:+78123254220">+7 812 325 42 20</a> <span>- Санкт-Петербург</span></p>
-        <p class="top-phone"><a href="tel:+78001234578">+7 800 123 45 78</a> <span>- бесплатно по России</span></p>
+        <p class="top-phone"><a href="tel:<%= @phone1.text_value %>"><%= @phone1.text_value %>1</a> <span>- Санкт-Петербург</span></p>
+        <p class="top-phone"><a href="tel:<%= @phone2.text_value %>"><%= @phone2.text_value %></a> <span>- бесплатно по России</span></p>
         <p class="top-time">с 9:30 до 18:00 <span>по рабочим дням</span></p>
       </div>
       <div class="col-sm-4 col-md-4 top-right">
