@@ -10,7 +10,7 @@ class ExamplesController < ApplicationController
   end
 
   def show
-    @example = Example.find(params[:id])
+    @example = Example.friendly.find(params[:slug])
 
     tags = Tag.includes(:examples).where("examples.id" => @example.id)
     example_tags = []

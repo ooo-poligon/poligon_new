@@ -4,7 +4,9 @@
       <% title = static_content.title %>
       <% generate_meta_from title %>
       <h1 align="center"><%= title %></h1>
-      <p><%= static_content.content.html_safe %></p>
+      <p>
+        <%= static_content.content.html_safe %>
+      </p>
     <% end %>
   <% end %>
 </div>

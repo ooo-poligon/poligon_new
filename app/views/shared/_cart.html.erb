@@ -643,7 +643,7 @@
         </div>
       </div>
       <div class="quick-order">
-        <%= form_tag(orders_send_order_email_path, method: "post", class: "captcha-form") do %>
+        <%= form_tag(orders_send_order_email_path, method: "post", class: "captcha-form fast-order") do %>
           <h3>Быстрый заказ без оформления:</h3>
           <% items.each do |key, item| %>
             <%= hidden_field_tag "items["+key.to_s+"]", item %>

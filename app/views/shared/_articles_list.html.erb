@@ -1,5 +1,9 @@
 <% item_class = locals[:items][0] %>
-<%= render "shared/breadcrumb_search", locals: {for: "publications", class: item_class} %>
+
+<% if controller.controller_name == "news_items" && controller.action_name %>
+<% else %>
+  <%= render "shared/breadcrumb_search", locals: {for: "publications", class: item_class } %>
+<% end %>
 
 <table class="table table-striped">
   <tr>

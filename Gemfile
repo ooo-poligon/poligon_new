@@ -41,6 +41,13 @@ gem 'axlsx', '= 2.0.1'
 gem 'axlsx_rails'
 gem 'jquery-minicolors-rails'
 
+gem 'useragent'
+
+gem 'jquery-ui-rails'
+gem 'rails-jquery-autocomplete'
+gem 'friendly_id', '~> 5.2.4'
+gem 'babosa'
+
 group :assets do
   gem 'coffee-rails', '4.1.1'
   gem 'uglifier', '>= 1.0.3'

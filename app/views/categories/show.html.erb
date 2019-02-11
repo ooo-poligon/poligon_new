@@ -8,19 +8,19 @@
         <li class="back"><%= link_to "назад", category_path(@parentCategory.id) %></li>
       <% end %>
       <% @subCategories.each do |sc| %>
-        <li><%= link_to sc.title, sc %></li>
+        <li><%= link_to sc.title, sc %> (<%= sc.sorting %>)</li>
       <% end %>
       <% if @subCategories.empty? %>
         <% @preCategories.each do |sc| %>
           <% category_menu_class = if @currentCategoryId.to_i == sc.id.to_i then 'category-menu-selected' else 'category-menu-not-selected' end %>
-          <li><%= link_to sc.title, sc, class: category_menu_class %></li>
+          <li><%= link_to sc.title, sc, class: category_menu_class %> (<%= sc.sorting %>)</li>
         <% end %>
       <% end %>
     </ul>
   </div>
   <br>
   <div class="catalog-price">
-    <%= render "shared/category_catalogs" %>
+    <%= render "shared/category_catalogs_new" %>
   </div>
   <% unless @recentCategory.more_info.nil? || @recentCategory.more_info == '' %>
     <br>
@@ -186,6 +186,7 @@
 
       <br>
 
+      
       <%= render "shared/products_table" %>
 
         <div class="flickr_pagination">

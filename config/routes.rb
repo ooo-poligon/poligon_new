@@ -9,11 +9,13 @@ Poligon::Application.routes.draw do
   resources :videos,     only: [:index, :show]
   resources :reviews,    only: [:index, :show]
   resources :additions,  only: [:index, :show]
-  resources :products,   only: [        :show]
+  resources :products do
+    get :autocomplete_product_title, :on => :collection
+  end
   resources :carts
 
-  get  'examples/index'
-  get  'examples/show'
+  get  'examples', to: "examples#index"
+  get  'examples/:slug', to: "examples#show", as: "example"
   get  'carts/show'
   get  'carts/add'
   post 'categories/quantity_cash'

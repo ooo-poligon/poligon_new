@@ -60,6 +60,7 @@ class FeedbackController < ApplicationController
   end
 
   def catalogs_order
+    binding.pry
     if verify_recaptcha(params)
       unless params[:name] == '' or
              params[:last_name] == '' or
@@ -114,11 +115,16 @@ class FeedbackController < ApplicationController
   def send_request_find_analogue
     contact = Contact.new contact_params
     if contact.save
-      params["contact"]["contact_attachments"].each do |attachment|
-        contact.contact_attachments.create(file: attachment)
+      if params["contact"]["contact_attachments"]
+        params["contact"]["contact_attachments"].each do |attachment|
+          contact.contact_attachments.create(file: attachment)
+        end
+      end
+      UserMailer.request_question_or_analogue(contact).deliver_now
+      respond_to do |format|
+          format.html { redirect_to root_url, notice: {title: 'Спасибо, Ваш запрос уже получен.', message: ' В рабочее время мы постараемся ответить в течение 59 минут. Мы работаем с ПН по ПТ с 9:30 до 18:00MSK. <br>Вы так же можете позвонить нам по телефону +7 812 3254220, если вопрос срочный.'}}
       end
     end
-    UserMailer.request_question_or_analogue(contact).deliver_now
   end
 
   def send_request_or_question
@@ -145,8 +151,8 @@ class FeedbackController < ApplicationController
   end
 
   def send_project_conditions
-    if true
-    #if verify_recaptcha(params)
+
+    if verify_recaptcha(params)
       name     = params[:name]
       phone    = params[:phone]
       email    = params[:email]

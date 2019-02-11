@@ -1,6 +1,7 @@
 # -*- encoding : utf-8 -*-
 class ApplicationController < ActionController::Base
-  protect_from_forgery with: :exception
+  #protect_from_forgery with: :exception
+
   before_action :current_cart
   before_filter :configure_permitted_parameters, if: :devise_controller?
   before_action :getCourse
@@ -47,8 +48,8 @@ class ApplicationController < ActionController::Base
 
   def calculate_price(product, price = nil)
 
-    currencyCourse = @courseEuro if product.currency_id = 1
-    currencyCourse = @courseUsd if product.currency_id = 3
+    currencyCourse = @courseEuro if product.currency_id == 1
+    currencyCourse = @courseUsd if product.currency_id == 3
 
     course_multiplier = (currencyCourse + (currencyCourse / 100) * 0.0)
 

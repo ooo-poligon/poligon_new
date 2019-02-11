@@ -108,7 +108,17 @@
         <ul>
           <li>Страна бренда: <%= locals[:product_array][0].vendor.address %></li>
           <li>Отгрузка кратно: 1шт.</li>
-          <li>Официальный дистрибьютор в РФ</li>
+          <% if locals[:product_array][0].vendor.status_text != "" %>
+            <% if locals[:product_array][0].vendor.status_link != "" %>
+              <li>
+                <a href="<%= locals[:product_array][0].vendor.status_link %>"> 
+                  <%= locals[:product_array][0].vendor.status_text %>
+                </a>
+              </li>
+            <% else %>
+              <li><%= locals[:product_array][0].vendor.status_text %></li>
+            <% end %>
+          <% end %>
         </ul>
       </div>
       <div class="product-incart">

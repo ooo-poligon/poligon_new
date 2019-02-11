@@ -2,4 +2,29 @@
                                               directory: 'company',
                                               page: 'program' } %>
 
-1
+<div style="position: relative; overflow: hidden; margin-top: 20px;">
+<% @vendors.where.not(logo: nil).uniq.each do |vendor| %>
+  <% if vendor.logo != "" %>
+    <div class="portfolio searchable" data-index="">
+      <div class="wrap-border">     
+        <div style="display: flex; height: 94px; justify-content: center; align-items: center;">      
+          <%= image_tag(asset_path("/brands/"+vendor.logo)) %>
+        </div>
+      </div>
+    </div>
+    <div class="about-brand">
+      <div style="padding: 20px;">
+        <p class="grand"><b><%= vendor.title %></b></p>
+        <p class="pseudo">Продукция</p>
+        <ul class="list">
+          <li>-</li>
+          <li>-</li>
+          <li>-</li>
+          <li>-</li>
+          <li>-</li>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+<% end %>
+</div>

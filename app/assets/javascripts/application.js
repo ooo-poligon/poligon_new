@@ -31,13 +31,63 @@
 //= require feedback
 //= require jquery.minicolors
 
+//= require jquery-ui
+//= require jquery-ui/widgets/autocomplete
+//= require autocomplete-rails
+
 //= require will_paginate_infinite
 
 function submitRecaptcha() {
+  console.log("callback");
   $(".captcha-form").find(".alert").remove();
 };
 
 $(document).ready(function() {
+
+  var availableTags = [
+      {product_id: 1, label: "ActionScript"},
+      {product_id: 2, label: "Ruby"},
+      {product_id: 3, label: "Scala"},
+      {product_id: 4, label: "Scheme"}
+    ];
+
+  $( "#product_title" ).autocomplete({
+      source: function(request, response){
+        $.ajax({
+            url: "/products/autocomplete_product_title",
+            data: { term: request.term },
+            success: function (data) {
+                var transformed = $.map(data, function (el) {
+                    return {
+                        label: el.label,
+                        id: el.id
+                    };
+                });
+                response(transformed);
+            },
+            error: function () {
+                response([]);
+            }
+        });
+      },
+      select: function( event, ui ) {
+        $('#example_product_id').val(ui.item.id);
+      }
+    });
+
+  $(".portfolio").click(function(e){
+    var checkSelected = $(this).find(".wrap-border").hasClass("blue-selection");
+    if (checkSelected){
+      $(".about-brand").hide();
+      $(".wrap-border").removeClass("blue-selection");
+    } else {
+      $(".about-brand").hide();
+      $(".wrap-border").removeClass("blue-selection");
+      $(this).next().fadeIn();
+      $(this).find(".wrap-border").addClass("blue-selection");
+    }
+
+  });
 
   $( ".production-widget .container" ).mouseleave(function() {
     $(".production-widget").hide();
@@ -53,7 +103,9 @@ $(document).ready(function() {
   });
 
   $(".captcha-form").submit(function(event) {
-    var recaptcha = $("#g-recaptcha-response").val();
+    var recaptcha = $(this).find(".g-recaptcha-response").val();
+    $("#g-recaptcha-response").val(recaptcha);
+    console.log(recaptcha);
     if (recaptcha === "") {
       event.preventDefault();
       if ($(this).find(".captcha").parent().find(".alert").length == 0){

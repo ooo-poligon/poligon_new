@@ -64,13 +64,16 @@
           </div>
         <% else %>
           <div class="xzoom-container">
-            <%= link_to(image_tag('card_zoom.png', class: "zoomik", id: "zoomik", alt: ''), "#gallery", class: "zoom-ik") %>
+            <% link_to(image_tag('card_zoom.png', class: "zoomik", id: "zoomik", alt: ''), "#gallery", class: "zoom-ik") %>
             
             <div class="main-photo">
+            <% user_agent = UserAgent.parse(request.user_agent) %>
+            <% xzoom_class = user_agent.browser == "Internet Explorer" ? "" : "xzoom5" %>
+            
             <% if !@product.image_name_1.nil? and @product.image_name_1 != '' %>
-              <%= image_tag(image_path, class: "xzoom5", id: "xzoom-magnific", original: image_path, alt: '', style: "width: 271.984px;") %>
+              <%= image_tag(image_path, class: xzoom_class, id: "xzoom-magnific", original: image_path, alt: '', style: "width: 271.984px;") %>
               <% else %>
-              <%= image_tag("nophoto.png", class: "xzoom5", id: "xzoom-magnific", original: "nophoto.png", alt: '', style: "width: 271.984px;") %>
+              <%= image_tag("nophoto.png", class: xzoom_class, id: "xzoom-magnific", original: "nophoto.png", alt: '', style: "width: 271.984px;") %>
               <% end %>
             </div>
 
@@ -115,15 +118,23 @@
                 <div class="product-price">
                   Цена:
                   <% if @product.special_price.zero? && @product.base_price.zero? %>
+                    
                     <span class="price">Звоните:<br>(812)325-42-20</span>
                   <% elsif !@product.special_price.zero? && !@product.base_price.zero? %>
+                    
                     <span class="price price-red bold">
                       <%= calculate_price(@product, @product.special_price).round(2).to_s + ' руб.' %>
                       </span>
                     <span class="price line-through">
                       <%= calculate_price(@product, @product.base_price).round(2).to_s + ' руб.' %>
                     </span>
+                  <% else %>
+                    <span class="price">
+                      <%= calculate_price(@product, @product.base_price).round(2).to_s + ' руб.' %>
+                        
+                      </span>
                   <% end %>
+                  
                 </div>
                 <div class="product-list">
                   <ul>

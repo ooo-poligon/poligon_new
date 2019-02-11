@@ -19,6 +19,7 @@ class CompanyController < ApplicationController
   end
 
   def program
+    @vendors = Vendor.all
   end
 
   private

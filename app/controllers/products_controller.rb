@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 class ProductsController < ApplicationController
-
+  autocomplete :product, :title
   before_action :getCourse
 
   def show
@@ -104,7 +104,7 @@ class ProductsController < ApplicationController
     @products = []
     addCBR = Setting.find_by title: 'addCBR'
 
-    @products_list = Product.includes(:vendor).available.where.not(stock: 0).order('sorting DESC')
+    @products_list = Product.includes(:vendor).where.not(stock: 0).order('sorting DESC')
 
     if params[:vendor]
       vendor = Vendor.find_by(title: params[:vendor])
@@ -126,7 +126,7 @@ class ProductsController < ApplicationController
 
     respond_to do |format|
       format.html { @products = @products.paginate(:page => params[:page], :per_page => 10) }
-      format.xlsx { render xlsx: "POLIGON_stock_#{Date.today.strftime("%d-%m-%y")}",
+      format.xlsx { render xlsx: "POLIGON.INFO_STOCK_#{Date.today.strftime("%d-%m-%y")}",
                     template: "shared/xls",
                     locals: { workbook_name: "Товары на складе" }
                   }

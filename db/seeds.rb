@@ -1,42 +1,12 @@
-Tag.create(
-  [
-    { name: 'Реле времени' },
-    { name: 'Реле контроля' },
-    { name: 'Контакторы' },
-    { name: 'Автоматические выключатели' },
-    { name: 'Измеряющие преобразователи' },
-    { name: 'Modbus' },
-    { name: 'УПП' },
-    { name: 'Реле' },
-    { name: 'Экономия пространства' }
-  ]
-)
+StaticContent.create(directory: "company", page: "privacy_policy", 
+    content: "Политика конфиденциальности статическая страница")
+StaticContent.create(directory: "company", page: "agreement", 
+    content: "Политика конфиденциальности статическая страница")
 
-Scope.create(
-  [
-    { name: 'Насосы и двигатели' },
-    { name: 'Альтернативная энергетика' },
-    { name: 'Энергосбережение и жкх' },
-    { name: 'Производство' },
-    { name: 'Мобильность' },
-    { name: 'Прочие примеры' }
-  ]
-)
-
-Example.create(
-  [
-    {
-      scope_id: 1,
-      product_id: 274,
-      title: 'Защита насоса от сухого хода',
-      issue: 'Pumps that are used to move polluted liquids or water with lots of loose particles tend to loose efficiency after many hours of operation. That forces you to clean the impeller wheel. Cleaning the impeller is sometimes very quirky or nearly impossible as modern pumps are closed units. A cleaning procedure without external access would be very helpful.',
-      solution: 'Pumps that are used to move polluted liquids or water with lots of loose particles tend to loose efficiency after many hours of operation. That forces you to clean the impeller wheel. Cleaning the impeller is sometimes very quirky or nearly impossible as modern pumps are closed units. A cleaning procedure without external access would be very helpful.',
-      advantages: "- используем двигатель как датчик!
-                  - не требуется дополнительных приспособлений, проводов
-                  - не требует регулярного обслуживания и чистки (в отличие от погружных датчиков)
-                  - надежно закрыто в щите и защищено от изменения параметров
-                  - не может быть незаметного обрыва провода, т.к. параметры измеряются в цепи питания насоса (надежно!)
-                  - простое решение, легко подстраивается под мощность насоса при помощи трансформатора тока (достаточно одного трансформатора тока на один насос)"
-    }
-  ]
-)
+#Setting.create(title: "advantagesDefaultText", kind: "SiteText", int_value: 0, text_value: "Проконсультируем по преимуществам, ответим на Ваши вопросы. Свяжитесь с нами.")
+#Setting.create(title: "fastDeliveryText", kind: "SiteText", int_value: 0, text_value: "Из админки быстрая доставка!")
+#Setting.create(title: "termsOfPayment", kind: "SiteText", int_value: 0, text_value: "Из админки УСЛОВИЯ оплаты!")
+#Setting.create(title: "pdfDefaultText", kind: "SiteText", int_value: 0, text_value: "Дополнительную документацию предоставим по запросу!")
+#Setting.create(title: "infoDefaultText", kind: "SiteText", int_value: 0, text_value: "Проконсультируем по технике. Подберем изделие со склада.<br> По любым вопросам - обращайтесь к менеджерам +7 812 3254220 или через онлайн-консультант.")
+#Setting.create(title: "phone1", kind: "SiteText", int_value: 0, text_value: "+7 812 325 42 20")
+#Setting.create(itle: "phone2", kind: "SiteText", int_value: 0, text_value: "+7 800 123 45 78")

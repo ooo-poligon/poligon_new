@@ -1,9 +1,12 @@
+<%= render "shared/breadcrumb_search", locals: {for: "news_items", item: @news_item } %>
+
 <p>
   <% title = @news_item.title %>
   <% generate_meta_from title %>
   <h1><%= title %></h1>
 </p>
 <br/>
+
 <div class="container-fluid">
   <div class="row" >
     <div class="col-xs-3 col-md-3" >

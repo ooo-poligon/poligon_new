@@ -16,6 +16,120 @@
    display: none;
  }
 
+ #quick-cart .modal-content{
+  padding-left: 0px !important;
+ }
+
+.ui-autocomplete {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1000;
+  float: left;
+  display: none;
+  min-width: 160px;
+  _width: 160px;
+  padding: 4px 0;
+  margin: 2px 0 0 0;
+  list-style: none;
+  background-color: #ffffff;
+  border-color: #ccc;
+  border-color: rgba(0, 0, 0, 0.2);
+  border-style: solid;
+  border-width: 1px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  -webkit-background-clip: padding-box;
+  -moz-background-clip: padding;
+  background-clip: padding-box;
+  *border-right-width: 2px;
+  *border-bottom-width: 2px;
+ 
+  .ui-menu-item > a.ui-corner-all {
+    display: block;
+    padding: 3px 15px;
+    clear: both;
+    font-weight: normal;
+    line-height: 18px;
+    color: #555555;
+    white-space: nowrap;
+ 
+  
+
+  }
+}
+    .ui-widget-content .ui-state-focus {
+      color: #ffffff;
+      text-decoration: none;
+      background-color: #0088cc;
+      border-radius: 0px;
+      -webkit-border-radius: 0px;
+      -moz-border-radius: 0px;
+      background-image: none;
+    }
+
+.portfolio {
+    width: 24.5%;
+    height: 115px;
+    display: inline-block;
+    padding: 3px;
+}
+
+.wrap-border {
+    border: 1px solid #E5E5E5;
+    display: inline-block;
+    width: 100%;
+    vertical-align: middle;
+    text-align: center;
+    cursor: pointer;
+    position: relative;
+    border-radius: 3px;
+
+    img{
+      max-width: 90%;
+    }
+}
+
+.wrap-border img {
+    margin: 1em auto;
+}
+
+.about-brand {
+    display: none;
+    background-color: white;
+    width: 100%;
+    font-size: 13px;
+    border: 1px solid #3f6bd2;
+    border-radius: 3px;
+    -moz-border-radius: 13px;
+    float: left;
+    position: relative;
+}
+
+.blue-selection {
+  border: 1px solid #3f6bd2;
+}
+
+@media screen and (min-width: 1268px){
+  .about-brand {
+    width: 98.5%;
+    margin-left: 4px;
+    margin-bottom: 15px;
+  }
+}
+ .program-block{
+    padding: 5px;
+    margin-bottom: 10px;
+    border: 1px solid;
+    height: 100px;
+    margin-left: -9px;
+    margin-right: -9px;
+ }
+
  .request-booklets-modal{
   display: none;
   cursor: pointer;

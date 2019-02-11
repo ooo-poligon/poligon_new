@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190201171041) do
+ActiveRecord::Schema.define(version: 20190211045706) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -160,10 +160,12 @@ ActiveRecord::Schema.define(version: 20190201171041) do
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false
     t.string   "example_images", limit: 255
+    t.string   "slug",           limit: 255
   end
 
   add_index "examples", ["product_id"], name: "index_examples_on_product_id", using: :btree
   add_index "examples", ["scope_id"], name: "index_examples_on_scope_id", using: :btree
+  add_index "examples", ["slug"], name: "index_examples_on_slug", unique: true, using: :btree
 
   create_table "examples_product_groups", id: false, force: :cascade do |t|
     t.integer "example_id",       limit: 4
@@ -190,6 +192,18 @@ ActiveRecord::Schema.define(version: 20190201171041) do
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end
+
+  create_table "friendly_id_slugs", force: :cascade do |t|
+    t.string   "slug",           limit: 255, null: false
+    t.integer  "sluggable_id",   limit: 4,   null: false
+    t.string   "sluggable_type", limit: 50
+    t.string   "scope",          limit: 255
+    t.datetime "created_at"
+  end
+
+  add_index "friendly_id_slugs", ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true, length: {"slug"=>70, "sluggable_type"=>nil, "scope"=>70}, using: :btree
+  add_index "friendly_id_slugs", ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type", length: {"slug"=>140, "sluggable_type"=>nil}, using: :btree
+  add_index "friendly_id_slugs", ["sluggable_type", "sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_type_and_sluggable_id", using: :btree
 
   create_table "functions", force: :cascade do |t|
     t.string  "title",           limit: 200,   null: false
@@ -662,6 +676,8 @@ ActiveRecord::Schema.define(version: 20190201171041) do
     t.integer "code",        limit: 4
     t.string  "logo",        limit: 255,        default: "", null: false
     t.string  "advantages",  limit: 255,        default: ""
+    t.string  "status_text", limit: 255,        default: ""
+    t.string  "status_link", limit: 255,        default: ""
   end
 
   add_index "vendors", ["currency_id"], name: "FK_nsbv37hiaemev6th5cuqgs6aa", using: :btree

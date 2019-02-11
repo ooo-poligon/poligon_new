@@ -1,0 +1,23 @@
+<div id="category-catalogs-div">
+  <table class="category-catalogs-table">
+    <% @vendors_categories_ids %>
+    <% @topCategory = @parents_array.reverse.first.id %>
+    <% if @vendors_categories_ids.include?(@topCategory) %>
+      <% vendors = {"142": 1, "5094": 3, "74": 2, "5414": 4, "5535": 5, "5818": 6, "5933": 7, "5583": 9,
+           "5512": 10, "4847": 21, "6321": 8, "5650": 11} %>
+      <% vendor_id = vendors[:"#{@topCategory}"] %>
+      <% vendor = Vendor.find(vendor_id) if vendor_id %>
+      <% if vendor && vendor.booklets.count > 0 %>
+        <% vendor.booklets.each do |booklet| %>
+          <tr>
+            <p>
+              <% pdfPath = "http://localhost:3000#{booklet.file.url}" %>
+              <td><%= link_to( booklet.title, pdfPath, target: "_blank") %></td>
+            </p>
+          </tr>
+        <% end %>
+      <% end %>
+    <% end %>
+  </table>
+</div>
+

@@ -40,7 +40,7 @@
                     <div class="button-send">
                       <a class="download-btn" href="<%= booklet.file.url %>">Скачать</a>
                        <div style="margin-top: 10px; justify-content: center; display: flex;">
-                        <%= check_box_tag "booklet_ids[]", booklet.id, false , class: "booklet-checkbox" %>
+                        <%= check_box_tag "booklet_ids[]", booklet.id, false , class: "booklet-checkbox", id: "booklet_#{booklet.id}" %>
                         <%= label_tag "Заказать доставку" %>
                       </div>
                     </div>
@@ -75,7 +75,66 @@
         <% end %>
       <% end %>
 
-      <%= render "shared/feedback/modal_request_booklets" %>
+    <div id="request-booklets" class="modal fade" role="dialog" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+      <button class="x" id="close-booklets" type="button" data-dismiss="modal" aria-hidden="true"></button>
+
+      <div class="modal-body">
+        <div class="form-block">
+          <div class="form-content">
+            <h2>Заполните форму для доставки</h2>
+            <br>
+
+            <p style="margin-bottom: 10px; color:red;">Выбрано <span id="selected-count">0</span> каталогов</p>
+
+            <div class="form-input req">
+              <%= text_field_tag :name, "", class: "modal-input", placeholder: "Имя" %>
+            </div>
+
+            <div class="form-input req">
+              <%= text_field_tag :last_name,"", class: "modal-input", placeholder: "Фамилия" %>
+            </div>
+
+            <div class="form-input req">
+              <%= text_field_tag :company,"", class: "modal-input", placeholder: "Компания" %>
+            </div>
+
+            <div class="form-input req">
+              <%= text_area_tag :address, "", class: "modal-input address-input", placeholder: "Адрес" %>
+            </div>
+
+            <div class="form-input req">
+              <%= text_field_tag :phone,"", class: "modal-input", placeholder: "Телефон" %>
+            </div>
+
+            <div class="form-input req">
+              <%= text_field_tag :email,"", class: "modal-input", placeholder: "E-mail" %>
+            </div>
+
+            <div class="form-input">
+              <%= text_area_tag :comment,"", class: "modal-input address-input", placeholder: "Комментарий" %>
+            </div>
+
+            <div class="captcha">
+              <%= recaptcha_tags callback: 'submitRecaptcha' %>
+            </div>
+
+            <div class="button-send"><%= button_tag "Заказать доставку" %></div>
+            <div class="expl"><span>*</span> Поля обязательные для заполнения</div>
+
+            <div class="modal-agree">Нажимая кнопку «Отправить» я даю согласие на <a href="<%= company_personal_path %>" target="_blank">обработку персональных данных.</a></div>
+           
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+      <% render "shared/feedback/modal_request_booklets" %>
 
      
       

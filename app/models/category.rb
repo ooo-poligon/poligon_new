@@ -13,6 +13,7 @@ class Category < ActiveRecord::Base
   end
 
   scope :available, -> { where(published: 1) }
+  default_scope { order(sorting: :desc) }
 
   def get_products
     cat = self

@@ -792,6 +792,7 @@ span.production-country {
     color: #009ee0;
     font-size: 14px;
     line-height: 18px;
+    min-height: 50px;
     font-weight: 600;
     max-width: 195px;
     border: #009ee0 1px solid;

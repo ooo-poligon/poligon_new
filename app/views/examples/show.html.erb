@@ -4,7 +4,7 @@
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
           <li class="breadcrumb-item">
-            <%= link_to 'Решения и примеры применения', examples_index_path %>
+            <%= link_to 'Решения и примеры применения', examples_path %>
           </li>
           <li class="breadcrumb-item">
             <%= @example.title %>
@@ -41,7 +41,7 @@
           </div>
           <div class="col-sm-4">
             <ul class="apply-item-list">
-              <li><strong>Товарная группа:</strong>
+              <li><strong>Товарная группа:</strong><br>
                 <%= @product_groups_string %>
               </li>
               <% if @example.product.article.nil?  or @example.product.article == '' %>
@@ -49,13 +49,13 @@
               <% else %>
                 <% product_name = ' (' + @example.product.article + ') ' + @example.product.title %>
               <% end %>
-              <li><strong>Изделие:</strong>
+              <li><strong>Изделие:</strong><br>
                 <%= link_to product_name, product_path(@example.product.id) %>
               </li>
-              <li><strong>Тех документация:</strong>
+              <li><strong>Тех документация:</strong><br>
                 <p>Отсутствует</p>
               </li>
-              <li><strong>Теги: </strong>
+              <li><strong>Теги: </strong><br>
                 <%= @tags_string %>
               </li>
             </ul>

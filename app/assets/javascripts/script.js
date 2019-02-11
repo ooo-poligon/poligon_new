@@ -462,6 +462,18 @@ $.mobilePanel({'navbar':'.mobile-menu'});
 
 (function ($) {
     $(document).ready(function() {
+
+        var ua = window.navigator.userAgent;
+        var msie = ua.indexOf("MSIE ");
+        if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./))  // If Internet Explorer, return version number
+          {
+              
+          }
+          else  // If another browser, return 0
+          {
+              
+          }
+
         $('.xzoom5, .xzoom-gallery').xzoom({tint: '#fff', Xoffset: 15, position: 'inside'});
 
         //Integration with hammer.js
