@@ -43,6 +43,8 @@ Poligon::Application.routes.draw do
   get  'company/links'
   get  'company/program'
   get  'company/personal'
+  get  'company/agreement'
+  get  'company/privacy_policy'
 
   root 'content#home'
   get  'content/show'

@@ -8,7 +8,9 @@ set :repository, 'git@bitbucket.org:vladlaptev/poligon_staging.git'
 set :shared_paths, %w(
   config/database.yml
   config/secrets.yml
-  config/puma.rb log
+  config/puma.rb
+  log
+  public/uploads
 )
 
 task :environment do
@@ -16,10 +18,10 @@ task :environment do
   set :rails_env, "#{stage}"
 end
 
-task :staging do
+task :production do
   set :rvm_path,  '/home/deploy/.rvm/scripts/rvm'
-  set :stage,     'staging'
-  set :domain,    '207.154.243.162'
+  set :stage,     'production'
+  set :domain,    '176.53.160.235'
   set :user,      'deploy'
   set :deploy_to, '/home/deploy/poligon'
   set :branch, 'develop'
@@ -31,6 +33,9 @@ task setup: :environment do
 
   queue! %[mkdir -p "#{deploy_to}/#{shared_path}/config"]
   queue! %[chmod g+rx,u+rwx "#{deploy_to}/#{shared_path}/config"]
+
+  queue! %[mkdir -p "#{deploy_to}/#{shared_path}/public/uploads"]
+  queue! %[chmod g+rx,u+rwx "#{deploy_to}/#{shared_path}/public/uploads"]
 
   queue! %[touch "#{deploy_to}/#{shared_path}/config/database.yml"]
   queue! %[touch "#{deploy_to}/#{shared_path}/config/secrets.yml"]

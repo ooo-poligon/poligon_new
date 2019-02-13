@@ -18,6 +18,12 @@ class CompanyController < ApplicationController
   def delivery
   end
 
+  def agreement
+  end
+
+  def privacy_policy
+  end
+
   def program
     @vendors = Vendor.all
   end
