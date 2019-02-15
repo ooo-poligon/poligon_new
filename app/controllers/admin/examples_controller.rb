@@ -15,11 +15,12 @@ class Admin::ExamplesController < Admin::BaseController
 
   def new
     @example = Example.new
+    @example.example_images.build
   end
 
   def create
     @example = Example.new example_params
-
+    binding.pry
     respond_to do |format|
       if @example.save
         add_tags_to_example params.require(:example).permit(:tags)["tags"]
@@ -51,9 +52,8 @@ class Admin::ExamplesController < Admin::BaseController
 
   def update
     @example = Example.find params[:id]
-
     respond_to do |format|
-      if @example.update_attributes example_params
+      if @example.update! example_params
         add_tags_to_example params.require(:example).permit(:tags)["tags"]
         add_product_groups_to_example params.require(:example).permit(:product_groups)["product_groups"]
         format.html { redirect_to admin_examples_path }
@@ -75,7 +75,8 @@ class Admin::ExamplesController < Admin::BaseController
   private
 
   def example_params
-    params.require(:example).permit :title, :issue, :solution, :scope_id, :product_id, {example_images: []}
+    params.require(:example).permit(:title, :issue, :solution, :scope_id, :product_id,\
+    example_images_attributes: [:id, :position, :alt, :image, :example_id, :_destroy])
   end
 
   def add_tags_to_example params_tags

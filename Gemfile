@@ -47,6 +47,10 @@ gem 'jquery-ui-rails'
 gem 'rails-jquery-autocomplete'
 gem 'friendly_id', '~> 5.2.4'
 gem 'babosa'
+gem "cocoon"
+
+gem "wysiwyg-rails"
+gem "font-awesome-sass"
 
 group :assets do
   gem 'coffee-rails', '4.1.1'

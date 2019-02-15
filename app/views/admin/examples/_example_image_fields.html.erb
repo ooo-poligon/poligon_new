@@ -1,0 +1,37 @@
+<script>
+  function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    console.log($(this).closest("img"));
+                    $(input).prev("img").show();
+                    $(input).prev("img").attr('src', e.target.result);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+</script>
+
+<% img = f.object %>
+<li class="nested-fields" data-id="<%= img&.id %>" data-pos="<%= img&.position %>" style="border:1px solid #c1c1c1; border-radius:5px; padding:10px; margin-bottom:5px;">
+
+  <div class="row">
+    <div class="col-xs-12 col-md-12"><img src="<%= img&.image&.url %>" class="uploaded-image" style="max-width: 120px;" >
+        <%= f.file_field :image, accept: "image/jpeg, image/jpg, image/gif, image/png", class: "form-control", onchange: "readURL(this);" %></div>
+    <div class="col-xs-12 col-md-12">
+      <label>Alt изображения</label>
+      <%= f.text_field :alt, class: "form-control" %>
+    </div>
+    <div class="col-xs-12 col-md-12">
+      <label>Позиция изображения</label><br>
+      <span style="font-size:11px;">Меньше - лучше. 0 - первая.</span>
+      <%= f.text_field :position, class: "form-control" %>
+    </div>
+        
+    <div class="col-xs-12 col-md-12">
+        <%= link_to_remove_association "Удалить", f, class: "btn btn-primary" %>
+    </div>
+  </div>
+</li>

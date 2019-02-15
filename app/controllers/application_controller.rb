@@ -51,7 +51,7 @@ class ApplicationController < ActionController::Base
     currencyCourse = @courseEuro if product.currency_id == 1
     currencyCourse = @courseUsd if product.currency_id == 3
 
-    course_multiplier = (currencyCourse + (currencyCourse / 100) * 0.0)
+    course_multiplier = (currencyCourse + (currencyCourse / 100) * 0.0) unless product.currency_id == 2
 
     if price.nil?
       product_price = product.base_price

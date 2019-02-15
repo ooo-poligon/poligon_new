@@ -30,19 +30,30 @@
 //= require clipboard
 //= require feedback
 //= require jquery.minicolors
+//= require cocoon
+
+
 
 //= require jquery-ui
 //= require jquery-ui/widgets/autocomplete
 //= require autocomplete-rails
+//= require froala_editor.min.js
+//= require plugins/code_view.min.js
+//= require plugins/colors.min.js
+//= require plugins/font_family.min.js
+//= require plugins/font_size.min.js
+//= require plugins/image.min.js
+//= require plugins/image_manager.min.js
 
 //= require will_paginate_infinite
 
 function submitRecaptcha() {
-  console.log("callback");
-  $(".captcha-form").find(".alert").remove();
+  
 };
 
 $(document).ready(function() {
+
+  $("#static_content_content").froalaEditor();
 
   var availableTags = [
       {product_id: 1, label: "ActionScript"},
@@ -106,14 +117,7 @@ $(document).ready(function() {
     var recaptcha = $(this).find(".g-recaptcha-response").val();
     $("#g-recaptcha-response").val(recaptcha);
     console.log(recaptcha);
-    if (recaptcha === "") {
-      event.preventDefault();
-      if ($(this).find(".captcha").parent().find(".alert").length == 0){
-        $(this).find(".captcha").before('<div class="alert alert-danger" role="alert">Подтвердите, что вы не робот!</div>');
-      } else {
-        
-      }
-    }
+
   });
 
 

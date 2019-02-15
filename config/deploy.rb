@@ -11,6 +11,9 @@ set :shared_paths, %w(
   config/puma.rb
   log
   public/uploads
+  public/images
+  public/PDF
+  public/poligon_certificates
 )
 
 task :environment do
@@ -25,6 +28,19 @@ task :production do
   set :user,      'deploy'
   set :deploy_to, '/home/deploy/poligon'
   set :branch, 'develop'
+end
+
+task update_shared_paths: :environment do
+
+  queue! %[mkdir -p "#{deploy_to}/#{shared_path}/public/uploads"]
+  queue! %[chmod g+rx,u+rwx "#{deploy_to}/#{shared_path}/public/uploads"]
+  queue! %[mkdir -p "#{deploy_to}/#{shared_path}/public/images"]
+  queue! %[chmod g+rx,u+rwx "#{deploy_to}/#{shared_path}/public/images"]
+  queue! %[mkdir -p "#{deploy_to}/#{shared_path}/public/PDF"]
+  queue! %[chmod g+rx,u+rwx "#{deploy_to}/#{shared_path}/public/PDF"]
+  queue! %[mkdir -p "#{deploy_to}/#{shared_path}/public/poligon_certificates"]
+  queue! %[chmod g+rx,u+rwx "#{deploy_to}/#{shared_path}/public/poligon_certificates"]
+  
 end
 
 task setup: :environment do
@@ -64,7 +80,7 @@ task deploy: :environment do
     invoke :'bundle:install'
 #   invoke :'whenever:clear'
 #   invoke :'whenever:update'
-    invoke :'rails:db_migrate'
+    #invoke :'rails:db_migrate'
     invoke :'rails:assets_precompile'
     invoke :'deploy:cleanup'
 

@@ -19,10 +19,10 @@
       </div>
       <div class="apply-item-photos">
         <div class="row">
-          <% @example.example_images.each do |image| %>
+          <% @example.example_images.order('position ASC').each do |image| %>
             <div class="col-sm-6 col-md-3 apply-item-photo"> 
-              <%= link_to image_tag(image.url, class: "img-responsive center-block product-image-container"),
-                          image.url, class: "fancybox", data: {rel: "li2ghtcase:app"} %>
+              <%= link_to image_tag(image&.image&.url, class: "img-responsive center-block product-image-container", alt: image&.alt ),
+                          image&.image&.url, class: "fancybox", data: {rel: "li2ghtcase:app"} %>
             </div>
           <% end %>
         </div>
@@ -44,14 +44,18 @@
               <li><strong>Товарная группа:</strong><br>
                 <%= @product_groups_string %>
               </li>
-              <% if @example.product.article.nil?  or @example.product.article == '' %>
-                <% product_name = @example.product.title %>
-              <% else %>
-                <% product_name = ' (' + @example.product.article + ') ' + @example.product.title %>
+
+              <% if @example.product %>
+                <% if @example.product.article.nil? or @example.product.article == '' %>
+                  <% product_name = @example.product.title %>
+                <% else %>
+                  <% product_name = ' (' + @example.product.article + ') ' + @example.product.title %>
+                <% end %>
+                <li><strong>Изделие:</strong><br>
+                  <%= link_to product_name, product_path(@example.product.id) %>
+                </li>
               <% end %>
-              <li><strong>Изделие:</strong><br>
-                <%= link_to product_name, product_path(@example.product.id) %>
-              </li>
+
               <li><strong>Тех документация:</strong><br>
                 <p>Отсутствует</p>
               </li>
@@ -75,7 +79,7 @@
             <%= @example.solution %>
           </div>
         </div>
-        <% if @example.product.advantages %>
+        <% if @example.product && @example.product.advantages %>
           <div class="row">
             <div class="col-sm-2"><strong>Преимущества:</strong></div>
             <div class="col-sm-10">

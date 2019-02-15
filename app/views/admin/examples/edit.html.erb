@@ -1,20 +1,9 @@
 <h2>Редактировать пример применения</h2>
 <h3><%= @example.title %></h3>
 
-<%= form_for @example, url: {action: "update", id: @example.id} do |f| %>
-  <div style="display: flex;">
-    <% f.object.example_images.each_with_index do |image, index| %>
-      <div style="display: block; height: 130px; margin-right: 10px; text-align: center;">
-          <%= image_tag(image.url, style: "height: 130px;") %><br>
-          <%= link_to "Удалить", admin_example_example_image_path(f.object.id, index), :method => :delete,
-                      data: { confirm: "Вы уверены?" } %>
-      </div>
-    <% end %>
-  </div>
+<%= form_for @example, url: {action: "update", id: @example.id}, multipart: true do |f| %>
   <br>
   <br>
-  <%= label_tag(:example_images, "Изображения:") %><br>
-  <%= f.file_field :example_images, multiple: true %><br>
   <%= label_tag(:title, "Название:") %>
   <%= f.text_field :title, class: 'form-control' %><br>
   <%= label_tag(:slug, "URL") %>
@@ -32,4 +21,18 @@
   <%= f.label 'Теги (через запятую):' %>
   <%= f.text_area :tags, value: @tags_string, class: "form-control", style: "height: 87px;" %><br><br>
   <%= f.submit "Сохранить", class: 'btn btn-info' %>
+
+  <div>
+    <div class="sortable-img-list" %>
+    <ul class="sortable-images" product-id="<%= @example.id %>">
+      <%= f.fields_for :example_images do |image| %>
+        <%= render 'example_image_fields', f: image %>
+      <% end %>
+      <div class="links">
+        <%= link_to_add_association 'Добавить картинку', f, :example_images, class: "btn btn-default" %>
+      </div>
+    </ul>
+    </div>
+  </div>
+
 <% end %>

@@ -19,6 +19,8 @@ class Product < ActiveRecord::Base
   scope :available, -> { where(available: 1) }
   scope :instock,   -> { where(id: (Quantity.where("stock > 0").product_id)) }
 
+  default_scope { order('CASE WHEN sorting = 0 THEN 2 ELSE 1 END, sorting ASC') }
+
   searchable do
     text    :title, :as => :code_textp
     text    :description, :as => :code_textp

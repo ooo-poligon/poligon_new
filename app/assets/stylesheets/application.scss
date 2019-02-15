@@ -256,6 +256,15 @@
 @import "will_paginate_infinite";
 @import "modificators";
 
+@import "froala_editor.min";
+@import "froala_style.min";
+@import "font-awesome-sprockets";
+@import "font-awesome";
+@import 'plugins/code_view.min.css';
+@import 'plugins/colors.min.css';
+@import 'plugins/image_manager.min.css';
+@import 'plugins/image.min.css';
+
 .row {
   //margin-right: 0;
   //margin-left: 0;

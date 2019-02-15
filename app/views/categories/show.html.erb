@@ -8,7 +8,7 @@
         <li class="back"><%= link_to "назад", category_path(@parentCategory.id) %></li>
       <% end %>
       <% @subCategories.each do |sc| %>
-        <li><%= link_to sc.title, sc %> (<%= sc.sorting %>)</li>
+        <li><%= link_to sc.title, sc %></li>
       <% end %>
       <% if @subCategories.empty? %>
         <% @preCategories.each do |sc| %>
@@ -123,7 +123,7 @@
 
       </div>
     </div>
-
+    
     <% if !@products.empty? %>
 
       <%#

@@ -114,6 +114,7 @@ GEM
       nokogiri (~> 1.6)
     chronic (0.10.2)
     clipboard-rails (1.7.1)
+    cocoon (1.2.12)
     coderay (1.1.2)
     coffee-rails (4.1.1)
       coffee-script (>= 2.2.0)
@@ -175,6 +176,8 @@ GEM
     ffi (1.9.25-x86-mingw32)
     figaro (1.1.1)
       thor (~> 0.14)
+    font-awesome-sass (5.6.1)
+      sassc (>= 1.11)
     formatador (0.2.5)
     friendly_id (5.2.5)
       activerecord (>= 4.0.0)
@@ -384,6 +387,9 @@ GEM
       sprockets (>= 2.8, < 4.0)
       sprockets-rails (>= 2.0, < 4.0)
       tilt (>= 1.1, < 3)
+    sassc (2.0.0)
+      ffi (~> 1.9.6)
+      rake
     selenium-webdriver (2.53.4)
       childprocess (~> 0.5)
       rubyzip (~> 1.0)
@@ -439,6 +445,8 @@ GEM
     will_paginate (3.0.12)
     will_paginate_infinite (0.1.3)
       will_paginate (~> 3.0, >= 3.0.3)
+    wysiwyg-rails (2.9.3)
+      railties (>= 3.2, < 6.0)
     xpath (2.1.0)
       nokogiri (~> 1.3)
     zeroclipboard-rails (0.1.1)
@@ -464,6 +472,7 @@ DEPENDENCIES
   carrierwave (~> 1.0)
   chromedriver-helper
   clipboard-rails
+  cocoon
   coffee-rails (= 4.1.1)
   cucumber-rails (= 1.4.3)
   database_cleaner (= 1.5.3)
@@ -475,6 +484,7 @@ DEPENDENCIES
   faker!
   fancybox-rails (= 0.3.1)
   figaro (= 1.1.1)
+  font-awesome-sass
   friendly_id (~> 5.2.4)
   gibbon!
   guard (= 2.14.0)
@@ -524,6 +534,7 @@ DEPENDENCIES
   whenever (= 0.9.7)
   will_paginate (~> 3.0.5)
   will_paginate_infinite
+  wysiwyg-rails
   zeroclipboard-rails (= 0.1.1)
   zipline (= 0.0.10)
 

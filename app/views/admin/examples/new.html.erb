@@ -1,29 +1,48 @@
 <h2>Новый пример применения</h2>
 
-<%= form_for @example, url: {action: "create"}, html: {method: 'POST'} do |f| %>
-  <%= label_tag(:example_images, "Изображения:") %>
-  <%= f.file_field :example_images, multiple: true %><br>
-  <%= label_tag(:title, "Название:") %>
-  <%= f.text_field :title, class: 'form-control' %><br>
+<%= form_for @example, url: {action: "create"}, html: {method: 'POST'}, multipart: true do |f| %>
+<div class="row">
+  <div class="col-xs-12 col-md-8">
+      <%= label_tag(:title, "Название:") %>
+      <%= f.text_field :title, class: 'form-control' %><br>
 
-  <%= label_tag(:slug, "URL. Можно не задавать, сгенерируется автоматически из названия.") %>
-  <%= f.text_field :slug, class: 'form-control' %><br>
+      <%= label_tag(:slug, "URL. Можно не задавать, сгенерируется автоматически из названия.") %>
+      <%= f.text_field :slug, class: 'form-control' %><br>
 
-  <%= label_tag(:scope_id, "Область применения:") %>
-  <%= f.collection_select(:scope_id, Scope.all, :id, :name, class: 'form-control') %><span>&nbsp;&nbsp;</span><br><br>
+      <%= label_tag(:scope_id, "Область применения:") %>
+      <%= f.collection_select(:scope_id, Scope.all, :id, :name, class: 'form-control') %><span>&nbsp;&nbsp;</span><br><br>
 
 
-  <%= label_tag(:product_id, "Устройство:") %>
-  <%= text_field_tag :product_title %>
+      <%= label_tag(:product_id, "Устройство:") %>
+      <%= text_field_tag :product_title %>
 
-  <%= f.hidden_field :product_id %>
-  <%= f.label 'Товарные группы (через запятую):' %>
-  <%= f.text_area :product_groups, size: "160x12", class: 'form-control', value: "" %><br><br>
-  <%= label_tag(:issue, "Задача:") %>
-  <%= f.text_area :issue, size: "160x12", class: 'form-control' %><br><br>
-  <%= label_tag(:issue, "Решение:") %>
-  <%= f.text_area :solution, size: "160x12", class: 'form-control' %><br><br>
-  <%= f.label 'Теги (через запятую):' %>
-  <%= f.text_area :tags, value: '', class: "form-control", style: "height: 87px;"  %><br><br>
-  <%= f.submit "Сохранить", class: 'btn btn-info' %>
+      <%= f.hidden_field :product_id %>
+      <%= f.label 'Товарные группы (через запятую):' %>
+      <%= f.text_area :product_groups, size: "160x12", class: 'form-control', value: "" %><br><br>
+      <%= label_tag(:issue, "Задача:") %>
+      <%= f.text_area :issue, size: "160x12", class: 'form-control' %><br><br>
+      <%= label_tag(:issue, "Решение:") %>
+      <%= f.text_area :solution, size: "160x12", class: 'form-control' %><br><br>
+      <%= f.label 'Теги (через запятую):' %>
+      <%= f.text_area :tags, value: '', class: "form-control", style: "height: 87px;"  %><br><br>
+      <%= f.submit "Сохранить", class: 'btn btn-info' %>
+    
+  </div>
+  <div class="col-xs-12 col-md-4">
+    <label>Добавление картинок</label>
+    <div>
+      <div class="sortable-img-list" %>
+      <ul class="sortable-images" product-id="<%= @example.id %>">
+        <%= f.fields_for :example_images do |image| %>
+          <%= render 'example_image_fields', f: image %>
+        <% end %>
+        <div class="links">
+          <%= link_to_add_association 'Добавить картинку', f, :example_images, class: "btn btn-default" %>
+        </div>
+      </ul>
+      </div>
+    </div>
+  </div>
+  
+</div>
 <% end %>

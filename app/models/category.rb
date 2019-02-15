@@ -13,7 +13,7 @@ class Category < ActiveRecord::Base
   end
 
   scope :available, -> { where(published: 1) }
-  default_scope { order(sorting: :desc) }
+  default_scope { order('CASE WHEN sorting = 0 THEN 2 ELSE 1 END, sorting ASC') }
 
   def get_products
     cat = self
