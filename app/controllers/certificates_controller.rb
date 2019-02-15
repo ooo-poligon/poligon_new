@@ -20,7 +20,7 @@ class CertificatesController < ApplicationController
     certificates_to_zip = []
     Certificate.all.each do |s|
       if s.vendor_id == vendor_id
-        certificate_url  = s.pdf_path.gsub!("\\\\Server03\\бд_сайта\\poligon_certificates", "http://www.poligon.info/poligon_certificates").gsub!("\\", "/")
+        certificate_url  = s.pdf_path.gsub!("\\\\Server03\\бд_сайта\\poligon_certificates", "/poligon_certificates").gsub!("\\", "/")
         certificate_path = ('certificates/' + s.pdf_path.match(/([^\/]*)$/)[1])
         certificates_to_zip.push [certificate_url, certificate_path]
       end

@@ -19,7 +19,7 @@ class ContentController < ApplicationController
 
     vendor_folder_name = Vendor.find(Product.find(params[:product_id]).vendor_id).folder_name
     if product_pdf != nil and product_pdf != ""
-        pdf_path = "http://www.poligon.info/PDF/" + vendor_folder_name + "/" + product_pdf
+        pdf_path = "/PDF/" + vendor_folder_name + "/" + product_pdf
 
       pdf_path = URI.escape(pdf_path)
 
@@ -34,7 +34,6 @@ class ContentController < ApplicationController
       # Удаляем временно загруженный файл в новом потоке с небольшой задержкой,
       # т.к. иначе при скачивании этого файла получаем "Failed - Network error"
       # Всли бы все файлы для скачивания лежали по доступному рельсам пути,
-      # а не в /var/www/poligon/data/www/poligon.info/
       # всё это городить не пришлось бы
       Thread.new do
         sleep(3)

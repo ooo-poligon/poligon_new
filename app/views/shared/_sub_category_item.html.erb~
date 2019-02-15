@@ -4,7 +4,7 @@
     <div class="category-picture-container">
       <% unless category.image_path.nil? %>
         <% category_image_path = category.image_path.gsub(
-        '\\\\Server03\\бд_сайта\\poligon_images', 'http://www.poligon.info/images')
+        '\\\\Server03\\бд_сайта\\poligon_images', '/images')
         .gsub("\\", "/") %>
         <%= link_to (
           image_tag(

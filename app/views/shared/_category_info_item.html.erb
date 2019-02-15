@@ -4,7 +4,7 @@
     <div class="col-sm-3 category-item-photo">
       <% if !category.image_path.to_s.empty? %>
            <% image_path = category.image_path
-               .gsub("\\\\Server03\\бд_сайта\\poligon_images", "http://www.poligon.info/images")
+               .gsub("\\\\Server03\\бд_сайта\\poligon_images", "/images")
                .gsub("\\", "/") %>
           <%= link_to image_tag(image_path, alt: category.title, title: category.title), category %>
       <% else %>

@@ -42,8 +42,6 @@
 //= require plugins/colors.min.js
 //= require plugins/font_family.min.js
 //= require plugins/font_size.min.js
-//= require plugins/image.min.js
-//= require plugins/image_manager.min.js
 
 //= require will_paginate_infinite
 

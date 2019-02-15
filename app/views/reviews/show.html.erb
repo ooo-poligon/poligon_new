@@ -5,9 +5,9 @@
 <h1><%= title %></h1>
 <p>
   <%= @review.content .html_safe
-      .gsub('href="/PDF', 'href="http://www.poligon.info/PDF')
-      .gsub('src="/js', 'src="http://www.poligon.info/js')
-      .gsub('src="/images', 'src="http://www.poligon.info/images')
+      .gsub('href="/PDF', 'href="/PDF')
+      .gsub('src="/js', 'src="/js')
+      .gsub('src="/images', 'src="/images')
       .gsub('<img', '<img class="img-responsive" ')
       .html_safe %>
 </p>

@@ -2,7 +2,7 @@
 <% product_image = product.image_name_1 %>
 <% vendorFolder = Vendor.where('id = ?', product.vendor_id).first %>
 <% if !product_image.nil? and product_image != '' %>
-  <% image_path = "http://www.poligon.info/images/catalog/" + (vendorFolder.folder_name).to_s + "/devices/"+ (product.image_name_1).to_s %>
+  <% image_path = "/images/catalog/" + (vendorFolder.folder_name).to_s + "/devices/"+ (product.image_name_1).to_s %>
 <% else %>
   <% image_path = "nophoto.png" %>
 <% end %>

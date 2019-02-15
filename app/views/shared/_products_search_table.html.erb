@@ -14,7 +14,7 @@
     <% imagefile_name = product.image_name_1 %>
       <tr>
          <% unless imagefile_name.nil? %>
-           <% imagePath = "http://www.poligon.info/images/catalog/" + folder_name.to_s + "/devices/"+ imagefile_name.to_s %>
+           <% imagePath = "/images/catalog/" + folder_name.to_s + "/devices/"+ imagefile_name.to_s %>
            <td><%= link_to image_tag(imagePath, class: "img-responsive center-block product-image-container"), imagePath, class: "fancybox" %>
         <% else %>
            <td>
@@ -50,7 +50,7 @@
               <div style="float: left;">
               <% pdffile_name = product.pdf_name %>
                   <% if !pdffile_name.nil? %>
-                    <% pdf_path = "http://www.poligon.info/PDF/" + folder_name+ "/" + pdffile_name %>
+                    <% pdf_path = "/PDF/" + folder_name+ "/" + pdffile_name %>
                       <button type="button" class="btn btn-danger btn-xs" target="_blank" onclick="window.open(&quot;<%= pdf_path %>&quot;)" >
                       PDF
                       </button>

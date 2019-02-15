@@ -14,7 +14,7 @@ module ProductsHelper
     extension = ".jpg"
     product_title = product.title.gsub(' ', '_').gsub('/', '_').upcase
     product_title = transliterize product_title
-    picture_path_exist_only "http://poligon.info/images/catalog/#{ vendor_title }/#{ prop }s/#{ product_title }_#{ prop + number + extension}"
+    picture_path_exist_only "/images/catalog/#{ vendor_title }/#{ prop }s/#{ product_title }_#{ prop + number + extension}"
   end
 
   private

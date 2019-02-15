@@ -5,31 +5,31 @@
 <% vendorFolder = Vendor.where('id = ?', @product.vendor_id).first %>
 
 <% if !@product.image_name_1.nil? and @product.image_name_1 != '' %>
-  <% image_path = "http://www.poligon.info/images/catalog/" + (vendorFolder.folder_name).to_s + "/devices/"+ (@product.image_name_1).to_s %>
+  <% image_path = "/images/catalog/" + (vendorFolder.folder_name).to_s + "/devices/"+ (@product.image_name_1).to_s %>
 <% else %>
   <% image_path = "nophoto.png" %>
 <% end %>
 
 <% if !@product.image_name_2.nil? and @product.image_name_2 != '' %>
-  <% image_path2 = "http://www.poligon.info/images/catalog/" + (vendorFolder.folder_name).to_s + "/devices/"+ (@product.image_name_2).to_s %>
+  <% image_path2 = "/images/catalog/" + (vendorFolder.folder_name).to_s + "/devices/"+ (@product.image_name_2).to_s %>
 <% else %>
   <% image_path2 = "nophoto.png" %>
 <% end %>
 
 <% if !@product.image_name_3.nil? and @product.image_name_3 != '' %>
-  <% image_path3 = "http://www.poligon.info/images/catalog/" + (vendorFolder.folder_name).to_s + "/devices/"+ (@product.image_name_3).to_s %>
+  <% image_path3 = "/images/catalog/" + (vendorFolder.folder_name).to_s + "/devices/"+ (@product.image_name_3).to_s %>
 <% else %>
   <% image_path3 = "nophoto.png" %>
 <% end %>
 
 <% if !@product.image_name_4.nil? and @product.image_name_4 != '' %>
-  <% image_path4 = "http://www.poligon.info/images/catalog/" + (vendorFolder.folder_name).to_s + "/devices/"+ (@product.image_name_4).to_s %>
+  <% image_path4 = "/images/catalog/" + (vendorFolder.folder_name).to_s + "/devices/"+ (@product.image_name_4).to_s %>
 <% else %>
   <% image_path4 = "nophoto.png" %>
 <% end %>
 
 <% if !@product.image_name_5.nil? and @product.image_name_5 != '' %>
-  <% image_path5 = "http://www.poligon.info/images/catalog/" + (vendorFolder.folder_name).to_s + "/devices/"+ (@product.image_name_5).to_s %>
+  <% image_path5 = "/images/catalog/" + (vendorFolder.folder_name).to_s + "/devices/"+ (@product.image_name_5).to_s %>
 <% else %>
   <% image_path5 = "nophoto.png" %>
 <% end %>
@@ -104,7 +104,7 @@
             
             <div class="card-logo">
               <a href="<%= category_path(@product.vendor.code) %>" target="_blank"> <!-- а если nil? -->
-                <%= image_tag("http://www.poligon.info/images/design/logo/" + @product.vendor.logo, alt: '') %>
+                <%= image_tag("/images/design/logo/" + @product.vendor.logo, alt: '') %>
               </a>
             </div>
           </div>

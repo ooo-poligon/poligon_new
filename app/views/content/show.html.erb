@@ -3,8 +3,8 @@
   <% generate_meta_from c.title %>
     <h1><%= c.title %></h1>
     <div>
-      <%= c.content.gsub('href="/PDF', 'href="http://www.poligon.info/PDF')
-                   .gsub('src="/images', 'src="http://www.poligon.info/images')
+      <%= c.content.gsub('href="/PDF', 'href="/PDF')
+                   .gsub('src="/images', 'src="/images')
                    .html_safe %>
     </div>
   <% end %>

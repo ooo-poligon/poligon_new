@@ -11,6 +11,6 @@
 <% end %>
 
 <%= @product.full_description
-  .gsub('href="/PDF', 'href="http://www.poligon.info/PDF')
-  .gsub('src="/images', 'src="http://www.poligon.info/images')
+  .gsub('href="/PDF', 'href="/PDF')
+  .gsub('src="/images', 'src="/images')
   .html_safe unless @product.full_description.nil? %>

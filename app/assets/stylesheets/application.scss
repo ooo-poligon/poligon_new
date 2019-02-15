@@ -260,10 +260,8 @@
 @import "froala_style.min";
 @import "font-awesome-sprockets";
 @import "font-awesome";
-@import 'plugins/code_view.min.css';
-@import 'plugins/colors.min.css';
-@import 'plugins/image_manager.min.css';
-@import 'plugins/image.min.css';
+@import 'plugins/code_view';
+@import 'plugins/colors';
 
 .row {
   //margin-right: 0;

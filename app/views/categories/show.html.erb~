@@ -55,8 +55,8 @@
           <% else %>
             <p>
               <%= @recentCategory.description
-                .gsub('href="/PDF', 'href="http://www.poligon.info/PDF')
-                .gsub('src="/images', 'src="http://www.poligon.info/images')
+                .gsub('href="/PDF', 'href="/PDF')
+                .gsub('src="/images', 'src="/images')
                 .html_safe if !@recentCategory.description.nil? %>
             </p>
           <% end %>
@@ -69,7 +69,7 @@
                     @recentCategory.image_path.downcase.include?(".jpeg") or
                     @recentCategory.image_path.downcase.include?(".gif") or
                     @recentCategory.image_path.downcase.include?(".png") %>
-                <% image_path = @recentCategory.image_path.gsub("\\\\Server03\\бд_сайта\\poligon_images", "http://www.poligon.info/images"
+                <% image_path = @recentCategory.image_path.gsub("\\\\Server03\\бд_сайта\\poligon_images", "/images"
                   ).gsub("\\", "/") %>
 
                 <%= link_to(image_tag(

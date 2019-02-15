@@ -2,12 +2,12 @@
   <% product_pdf = locals[:products_pdfs].find_by(owner_id: locals[:product].id) %>
   <% if !product.datasheets.nil? and product.datasheets != "c:\\poligon_datasheets\\" and product.datasheets != "\\\\Server03\\бд_сайта\\poligon_datasheets\\datasheets" %>
     <% if product.datasheets[0] != 'c' %>
-      <% pdf_path = product.datasheets.gsub("\\\\Server03\\бд_сайта\\poligon_datasheets\\datasheets", "http://www.poligon.info/PDF").gsub("\\", "/") %>
+      <% pdf_path = product.datasheets.gsub("\\\\Server03\\бд_сайта\\poligon_datasheets\\datasheets", "/PDF").gsub("\\", "/") %>
     <% else %>
-      <% pdf_path = product.datasheets.gsub!("c:\\poligon_datasheets\\datasheets", "http://www.poligon.info/PDF").gsub!("\\", "/") %>
+      <% pdf_path = product.datasheets.gsub!("c:\\poligon_datasheets\\datasheets", "/PDF").gsub!("\\", "/") %>
     <% end %>
-    <%# pdf_path = product_pdf.path.gsub!("c:\\poligon_datasheets\\datasheets", "http://www.poligon.info/PDF"
-      ).gsub("\\\\Server03\\бд_сайта\\poligon_datasheets\\datasheets", "http://www.poligon.info/PDF").gsub!("\\", "/") %>
+    <%# pdf_path = product_pdf.path.gsub!("c:\\poligon_datasheets\\datasheets", "/PDF"
+      ).gsub("\\\\Server03\\бд_сайта\\poligon_datasheets\\datasheets", "/PDF").gsub!("\\", "/") %>
     <button type="button" class="btn btn-danger" target="_blank" onclick="window.open(&quot;<%= pdf_path %>&quot;)" >
       PDF
     </button>

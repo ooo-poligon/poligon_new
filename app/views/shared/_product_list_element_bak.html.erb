@@ -4,9 +4,9 @@
     <div class="catalog-col-img">
       <% unless productImage.nil? %>
         <% if productImage.path[0] != 'c' %>
-          <% imagePath = productImage.path.gsub("\\\\Server03\\бд_сайта\\poligon_images", "http://www.poligon.info/images").gsub("\\", "/") %>
+          <% imagePath = productImage.path.gsub("\\\\Server03\\бд_сайта\\poligon_images", "/images").gsub("\\", "/") %>
         <% else %>
-          <% imagePath = productImage.path.gsub("c:\\poligon_images", "http://www.poligon.info/images").gsub("\\", "/") %>
+          <% imagePath = productImage.path.gsub("c:\\poligon_images", "/images").gsub("\\", "/") %>
         <% end %>
         <%= link_to image_tag(imagePath, class: "img-responsive center-block product-image-container"), imagePath, class: "fancybox" %>
       <% else %>
@@ -26,7 +26,7 @@
     </ul>
     <div class="icons">
       <div class="icons-col right">
-        <img alt="" style="width: 150px;" src="http://poligon.info<%= locals[:product_array][3].logo %>">
+        <img alt="" style="width: 150px;" src="<%= locals[:product_array][3].logo %>">
       </div>
     </div>
   </div>
