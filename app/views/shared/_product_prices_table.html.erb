@@ -51,8 +51,9 @@
           <%= render 'shared/prices/dealer_price', product: product, article_text: article_text, information_on_the_availability: information_on_the_availability %>
         <% end %>
 
-        <%# Dealer+ Marketing + Sales %>
+        <%# Dealer + Marketing + Sales %>
         <% if [2,3].include?(current_user.group_id) %>
+          dealer2
           <%= render 'shared/prices/dealer_price2', product: product, article_text: article_text, information_on_the_availability: information_on_the_availability %>
         <% end %>
   

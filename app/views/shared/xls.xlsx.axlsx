@@ -1,16 +1,16 @@
 wb = xlsx_package.workbook
 wb.add_worksheet(name: workbook_name) do |sheet|
   
-  title = sheet.styles.add_style( :sz=>10, :alignment => { :horizontal => "left"} )
+  title = sheet.styles.add_style( :sz=>10, :alignment => { :horizontal => :left } )
   first = sheet.styles.add_style( :bg_color => "b8cce4", :fg_color => "00", :sz=>10, :b => :true)
   second = sheet.styles.add_style( :bg_color => "dbe5f1", :fg_color => "00", :sz=>10 )
 
   sheet.merge_cells "A1:E1"
 
-  sheet.add_row ["Складские остатки ПОЛИГОН / (812) 3254220 / elcomp@poligon.info / www.poligon.info"], :style=>first
+  sheet.add_row ["#{workbook_name} ПОЛИГОН / (812) 3254220 / elcomp@poligon.info / www.poligon.info"], :style=>first
   sheet.add_row ["Артикул", "Наименование", "Описание", "Производитель", "Свободное кол-во"], :style=>second
 
-  @products_list.reorder('').order('vendors.title ASC').each do |product|
+  @products_list.reorder('').joins(:vendor).order('vendors.title ASC').each do |product|
     begin
       total_stock = product.stock + product.remote_stock
       sheet.add_row [product.article, product.title, product.description, product.vendor.title, total_stock], :style=>title

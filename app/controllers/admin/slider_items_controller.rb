@@ -18,7 +18,18 @@ class Admin::SliderItemsController < Admin::BaseController
       flash[:success] = "Слайдер создан"
       redirect_to admin_slider_items_path
     else
-      flash[:success] = "Слайдер не создан"
+      flash[:success] = "Ошибка создания"
+      redirect_to admin_slider_items_path
+    end
+  end
+
+  def destroy
+    @item = SliderItem.find params[:id]
+    if @item.destroy
+      flash[:success] = "Слайдер удален"
+      redirect_to admin_slider_items_path
+    else
+      flash[:success] = "Ошибка удаления"
       redirect_to admin_slider_items_path
     end
   end
@@ -29,7 +40,7 @@ class Admin::SliderItemsController < Admin::BaseController
       flash[:success] = "Слайдер отредактирован"
       redirect_to admin_slider_items_path
     else
-      flash[:success] = "Слайдер отредактировани"
+      flash[:success] = "Ошибка отредактирования"
       redirect_to admin_slider_items_path
     end
   end

@@ -6,17 +6,17 @@
     -<%= ((1-get_prices_eur(product)[2]/get_prices_eur(product)[0])*100).round(2) %>%
   </td>
   <td width="27%" style="color: blue; text-align:right;">
-  <button class="" data-clipboard-text="<%= article_text %><%= product.title %> — Цена от 10 штук: <%= get_prices_eur(product)[2].round(2) %> евро c НДС. <%= information_on_the_availability %>">
+  <button class="clipboard-btn btn btn-xs btn-outline-primary copy-btn" data-clipboard-text="<%= article_text %><%= product.title %> — Цена от 10 штук: <%= get_prices_eur(product)[2].round(2) %> евро c НДС. <%= information_on_the_availability %>">
     &euro;<%= get_prices_eur(product)[2].round(2) %>
     </button>
   </td>
   <td width="25%" style="color: green; text-align:right; ">
-    <button class="" data-clipboard-text="<%= article_text %><%= product.title %> — Цена от 10 штук: <%= get_prices_rub(product)[2].round(2) %> рублей c НДС. <%= information_on_the_availability %>">
+    <button class="clipboard-btn btn btn-xs btn-outline-primary copy-btn" data-clipboard-text="<%= article_text %><%= product.title %> — Цена от 10 штук: <%= get_prices_rub(product)[2].round(2) %> рублей c НДС. <%= information_on_the_availability %>">
     <%= get_prices_rub(product)[2].round(2) %>р.
     </button>
   </td>
   <td width="25%" style="color: brown; text-align:right; ">
-  <button class="" data-clipboard-text="<%= article_text %><%= product.title %> — Цена от 10 штук: <%= (get_prices_rub(product)[2] / 1.20).round(2) %> рублей без НДС. <%= information_on_the_availability %>">
+  <button class="clipboard-btn btn btn-xs btn-outline-primary copy-btn" data-clipboard-text="<%= article_text %><%= product.title %> — Цена от 10 штук: <%= (get_prices_rub(product)[2] / 1.20).round(2) %> рублей без НДС. <%= information_on_the_availability %>">
     <%= (get_prices_rub(product)[2] / 1.20).round(2) %>р.
     </button>
   </td>

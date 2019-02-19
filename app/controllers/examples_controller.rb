@@ -4,6 +4,13 @@ class ExamplesController < ApplicationController
     @scopes   = Scope.where(id: Example.all.map{|a| a.scope.id}.flatten.uniq)
     @tags     = Tag.where(id: Example.all.map{|a| a.tags.pluck(:id)}.flatten.uniq)
     @examples = Example.all
+    if params[:search]
+      term = params[:search] || nil
+      scope = Example.where('issue LIKE ?', "%#{term}%")
+      scope = scope + Example.where('solution LIKE ?', "%#{term}%")
+      scope = scope + Example.where('advantages LIKE ?', "%#{term}%")
+      @examples = scope
+    end
     respond_to do |format|
       format.html
     end

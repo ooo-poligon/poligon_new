@@ -217,9 +217,9 @@ function checkParams() {
 }
 
 jQuery(document).ready(function(){
-	jQuery('.apply-tags li').click(function(){
-	jQuery(this).toggleClass("active")
-	})
+	  //jQuery('.apply-tags li').click(function(){
+	  //jQuery(this).toggleClass("active")
+	//})
 });
 
 
@@ -451,7 +451,7 @@ $.mobilePanel({'navbar':'.mobile-menu'});
 
 (function($) {
 	$(function() {
-		$('input, select').styler();
+		$('input, select').not(".chosen").styler();
 	});
 })(jQuery);
 
@@ -655,15 +655,15 @@ $(function() {
 	})
 	
 	$('.apply-menu').each(function(i) {
-		var storage = localStorage.getItem('tab'+i);
-		if (storage) $(this).find('li').eq(storage).addClass('current').siblings().removeClass('current')
+		//var storage = localStorage.getItem('tab'+i);
+		//if (storage) $(this).find('li').eq(storage).addClass('current').siblings().removeClass('current')
 	})
 
 	$('.apply-menu').on('click', 'li:not(.current)', function() {
-		$(this).addClass('current').siblings().removeClass('current')
-		var ulIndex = $('.apply-menu').index($(this).parents('.apply-menu'));
-		localStorage.removeItem('tab'+ulIndex);
-		localStorage.setItem('tab'+ulIndex, $(this).index());
+		//$(this).addClass('current').siblings().removeClass('current')
+		//var ulIndex = $('.apply-menu').index($(this).parents('.apply-menu'));
+		//localStorage.removeItem('tab'+ulIndex);
+		//localStorage.setItem('tab'+ulIndex, $(this).index());
 	})
 
 	

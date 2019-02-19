@@ -13,7 +13,7 @@
       <% if @subCategories.empty? %>
         <% @preCategories.each do |sc| %>
           <% category_menu_class = if @currentCategoryId.to_i == sc.id.to_i then 'category-menu-selected' else 'category-menu-not-selected' end %>
-          <li><%= link_to sc.title, sc, class: category_menu_class %> (<%= sc.sorting %>)</li>
+          <li><%= link_to sc.title, sc, class: category_menu_class %> </li>
         <% end %>
       <% end %>
     </ul>

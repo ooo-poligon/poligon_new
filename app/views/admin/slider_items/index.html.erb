@@ -19,6 +19,8 @@
         <th><%= item.url %></th>
         <td>
           <%= link_to "Редактировать", edit_admin_slider_item_path(item), class: "btn btn-sm btn-success" %>
+          <%= link_to "Удалить", admin_slider_item_path(item), method: :delete,
+                        data: { confirm: "Вы уверены?" }, class: "btn btn-sm btn-success" %>
         </td>
       </tr>
     <% end %>

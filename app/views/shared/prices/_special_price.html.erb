@@ -7,7 +7,7 @@
       -<%= ((1-get_prices_eur(product)[1]/get_prices_eur(product)[0])*100).round(2) %>%
     </td>
     <td width="23%" style="color: blue; text-align:right; ">
-    <button cclass="clipboard-btn btn btn-primary btn-xs btn-block" data-clipboard-text="<%= article_text %><%= product.title %> — Специальная цена: <%= get_prices_eur(product)[1].round(2) %> евро c НДС. <%= information_on_the_availability %>">
+    <button class="clipboard-btn btn btn-primary btn-xs btn-block" data-clipboard-text="<%= article_text %><%= product.title %> — Специальная цена: <%= get_prices_eur(product)[1].round(2) %> евро c НДС. <%= information_on_the_availability %>">
       &euro;<%= get_prices_eur(product)[1].round(2) %>
       </button>
     </td>

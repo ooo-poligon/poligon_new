@@ -22,11 +22,15 @@
         </div>
       </div>
       <div class="apply-search">
-        <input type="text" placeholder="Поиск">
-        <button class="search-button"></button>
+        <%= form_tag examples_path, method: "get", enforce_utf8: false do %>
+          <% result = params[:search] || nil %>
+          <%= text_field_tag :search, result, placeholder: "Поиск" %>
+          <%= button_tag "", class: "search-button", name: nil %>
+        <% end %>
       </div>
     </div>
   </div>
+
 
   <div class="apply-menu-block">
     <div class="container">

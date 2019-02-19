@@ -32,18 +32,12 @@
 //= require jquery.minicolors
 //= require cocoon
 
-
-
 //= require jquery-ui
-//= require jquery-ui/widgets/autocomplete
-//= require autocomplete-rails
-//= require froala_editor.min.js
-//= require plugins/code_view.min.js
-//= require plugins/colors.min.js
-//= require plugins/font_family.min.js
-//= require plugins/font_size.min.js
 
 //= require will_paginate_infinite
+
+//= require chosen
+
 
 function submitRecaptcha() {
   
@@ -51,7 +45,50 @@ function submitRecaptcha() {
 
 $(document).ready(function() {
 
-  $("#static_content_content").froalaEditor();
+  if ($(".ckeditor").length > 0) {
+      CKEDITOR.replaceClass = 'ckeditor';
+  } else {
+    console.log("ckeditor not find");
+  }
+
+  $(".chosen").chosen({
+    allow_single_deselect: true,
+    no_results_text: 'Нет результатов по запросу',
+    width: '100%'
+  });
+
+  var queriesInProcess = 0;
+
+  $('.chosen-search input').autocomplete({
+      minLength: 0,
+      delay: 1000,
+      source: function( request, response ) {
+          if ($(".chosen-search-input").val().length > 0){
+            queriesInProcess--;
+          }
+          if (queriesInProcess > 0){
+            
+          } else {
+            queriesInProcess++;
+            $.ajax({
+                url: "/products/autocomplete_product_title?term="+request.term,
+                dataType: "json",
+                beforeSend: function(){ $('ul.chosen-results').empty(); $("#example_product_id").empty(); }
+            }).done(function( data ) {
+                    $("#example_product_id").prepend("<option value='' selected='selected'></option>");
+                    response( $.map( data, function( item ) {
+                      console.log(item);
+                        $('#example_product_id').append('<option value="'+item.id+'">' + item.title + '</option>');
+                    }));
+
+                   $("#example_product_id").trigger("chosen:updated");
+            });
+          }
+
+      }
+  });
+
+
 
   var availableTags = [
       {product_id: 1, label: "ActionScript"},
@@ -59,30 +96,6 @@ $(document).ready(function() {
       {product_id: 3, label: "Scala"},
       {product_id: 4, label: "Scheme"}
     ];
-
-  $( "#product_title" ).autocomplete({
-      source: function(request, response){
-        $.ajax({
-            url: "/products/autocomplete_product_title",
-            data: { term: request.term },
-            success: function (data) {
-                var transformed = $.map(data, function (el) {
-                    return {
-                        label: el.label,
-                        id: el.id
-                    };
-                });
-                response(transformed);
-            },
-            error: function () {
-                response([]);
-            }
-        });
-      },
-      select: function( event, ui ) {
-        $('#example_product_id').val(ui.item.id);
-      }
-    });
 
   $(".portfolio").click(function(e){
     var checkSelected = $(this).find(".wrap-border").hasClass("blue-selection");

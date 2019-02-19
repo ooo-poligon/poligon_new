@@ -16,7 +16,6 @@ class ContentController < ApplicationController
 
   def download_pdf
     product_pdf = Product.find(params[:product_id]).pdf_name
-
     vendor_folder_name = Vendor.find(Product.find(params[:product_id]).vendor_id).folder_name
     if product_pdf != nil and product_pdf != ""
         pdf_path = "/PDF/" + vendor_folder_name + "/" + product_pdf

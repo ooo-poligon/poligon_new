@@ -92,8 +92,8 @@
           </p>
         </div>
         <div class="col-sm-4 col-md-4 footer-contacts">
-          <p><a href="tel:88123254220">8-812-325-42-20</a> - Санкт-Петербург</p>
-          <p><a href="tel:88001234567">8-800-123-45-67</a> - бесплатно по России</p>
+          <p><a href="tel:<%= @phone1.text_value.gsub(" ","") %>"><%= @phone1.text_value %></a> - Санкт-Петербург</p>
+          <p><a href="tel:<%= @phone2.text_value.gsub(" ","") %>"><%= @phone2.text_value %></a> - бесплатно по России</p>
           <p>e-mail: <a href="mailto:elcomp@poligon.info">elcomp@poligon.info</a></p>
           <p class="footer-address">Санкт-Петербург, Льва Толстого, д.7</p>
           <div class="footer-carousel">

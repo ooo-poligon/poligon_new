@@ -1,6 +1,5 @@
 # -*- encoding : utf-8 -*-
 class ProductsController < ApplicationController
-  autocomplete :product, :title
   before_action :getCourse
 
   def show
@@ -131,6 +130,13 @@ class ProductsController < ApplicationController
                     locals: { workbook_name: "Товары на складе" }
                   }
     end
+  end
+
+  def autocomplete_product_title
+    term = params[:term] || nil
+    @products = []
+    @products = Product.where('title LIKE ?', "%#{term}%").limit(50) if term
+    render json: @products
   end
 
 end

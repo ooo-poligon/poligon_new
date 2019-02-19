@@ -57,7 +57,14 @@
               <% end %>
 
               <li><strong>Тех документация:</strong><br>
-                <p>Отсутствует</p>
+                <% if @example.product && @example.product.pdf_name != nil %>
+                  <% product_pdf = @example.product.pdf_name %>
+                  <% vendor_folder_name = (Vendor.find(@example.product.vendor_id)).folder_name %>
+                  <% pdf_path = "http://176.53.160.235/PDF/" + vendor_folder_name + "/" + product_pdf %>
+                  <p><a href="<%= pdf_path %>"><%= @example.product.pdf_name %></a></p>
+                <% else %>
+                  <p>Отсутствует</p>
+                <% end %>
               </li>
               <li><strong>Теги: </strong><br>
                 <%= @tags_string %>
@@ -70,20 +77,20 @@
         <div class="row">
           <div class="col-sm-2"><strong>Задача:</strong></div>
           <div class="col-sm-10">
-            <%= @example.issue %>
+            <%= @example.issue.html_safe %>
           </div>
         </div>
         <div class="row">
           <div class="col-sm-2"><strong>Решение:</strong></div>
           <div class="col-sm-10">
-            <%= @example.solution %>
+            <%= @example.solution.html_safe %>
           </div>
         </div>
-        <% if @example.product && @example.product.advantages %>
+        <% if @example.advantages %>
           <div class="row">
             <div class="col-sm-2"><strong>Преимущества:</strong></div>
             <div class="col-sm-10">
-              <%= @example.product.advantages %>
+              <%= @example.advantages.html_safe %>
             </div>
           </div>
         <% end %>

@@ -15,7 +15,7 @@
     <div class="apl-text">
       <h4><%= example.title %></h4>
       <p>
-        <%= link_to example.solution[0..250].gsub(/\s\w+$/,'...'), example_path(example) %>
+        <%= link_to strip_tags(example.solution[0..250].gsub(/\s\w+$/,'...')), example_path(example) %>
       </p>
     </div>
   </div>

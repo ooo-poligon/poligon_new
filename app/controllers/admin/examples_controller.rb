@@ -20,7 +20,6 @@ class Admin::ExamplesController < Admin::BaseController
 
   def create
     @example = Example.new example_params
-    binding.pry
     respond_to do |format|
       if @example.save
         add_tags_to_example params.require(:example).permit(:tags)["tags"]
@@ -75,7 +74,7 @@ class Admin::ExamplesController < Admin::BaseController
   private
 
   def example_params
-    params.require(:example).permit(:title, :issue, :solution, :scope_id, :product_id,\
+    params.require(:example).permit(:title, :issue, :solution, :advantages, :scope_id, :product_id,\
     example_images_attributes: [:id, :position, :alt, :image, :example_id, :_destroy])
   end
 

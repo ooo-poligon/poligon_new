@@ -51,6 +51,7 @@ gem "cocoon"
 
 gem "wysiwyg-rails"
 gem "font-awesome-sass"
+gem 'chosen-rails'
 
 group :assets do
   gem 'coffee-rails', '4.1.1'
