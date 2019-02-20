@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190219004709) do
+ActiveRecord::Schema.define(version: 20190220094705) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -420,6 +420,19 @@ ActiveRecord::Schema.define(version: 20190219004709) do
     t.integer "quantity",           limit: 4,     default: 0
     t.integer "advantage_id",       limit: 4
     t.float   "dealer_price2",      limit: 24
+    t.integer "energoportal",       limit: 4,     default: 0
+    t.integer "elec_ru",            limit: 4,     default: 0
+    t.integer "efind",              limit: 4,     default: 0
+    t.integer "portal1",            limit: 4,     default: 0
+    t.integer "portal2",            limit: 4,     default: 0
+    t.integer "portal3",            limit: 4,     default: 0
+    t.integer "portal4",            limit: 4,     default: 0
+    t.integer "portal5",            limit: 4,     default: 0
+    t.integer "portal_price",       limit: 4,     default: 0
+    t.string  "portal_category",    limit: 255
+    t.string  "portal_description", limit: 255
+    t.integer "dealer_selection_1", limit: 4,     default: 0
+    t.integer "dealer_selection_2", limit: 4,     default: 0
   end
 
   add_index "products", ["advantage_id"], name: "index_products_on_advantage_id", using: :btree

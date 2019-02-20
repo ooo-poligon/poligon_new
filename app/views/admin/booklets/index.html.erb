@@ -29,6 +29,8 @@
         <td><%= booklet.vendor.title %></td>
         <td>
           <%= link_to "Редактировать", edit_admin_booklet_path(booklet), class: "btn btn-sm btn-success" %>
+          <%= link_to "Удалить", admin_booklet_path(booklet), method: :delete,
+                        data: { confirm: "Вы уверены?" }, class: "btn btn-sm btn-success" %>
         </td>
       </tr>
     <% end %>

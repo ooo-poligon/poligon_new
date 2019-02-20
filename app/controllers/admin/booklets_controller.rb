@@ -16,10 +16,10 @@ class Admin::BookletsController < Admin::BaseController
   def create
     @booklet = Booklet.new booklet_params
     if @booklet.save
-      flash[:success] = "Буклет создан"
+      flash[:success] = "Каталог создан"
       redirect_to admin_booklets_path
     else
-      flash[:success] = "Буклет не создан"
+      flash[:success] = "Каталог не создан"
       redirect_to admin_booklets_path
     end
   end
@@ -27,10 +27,21 @@ class Admin::BookletsController < Admin::BaseController
   def update
     @booklet = Booklet.find params[:id]
     if @booklet.update_attributes booklet_params
-      flash[:success] = "Буклет отредактирован"
+      flash[:success] = "Каталог отредактирован"
       redirect_to admin_booklets_path
     else
       flash[:success] = "Ошибка редактирования"
+      redirect_to admin_booklets_path
+    end
+  end
+
+  def destroy
+    @booklet = Booklet.find params[:id]
+    if @booklet.destroy
+      flash[:success] = "Каталог удален"
+      redirect_to admin_booklets_path
+    else
+      flash[:success] = "Ошибка удаления"
       redirect_to admin_booklets_path
     end
   end

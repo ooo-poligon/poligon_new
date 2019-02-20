@@ -21,8 +21,11 @@
     <div class="about-brand">
       <div style="padding: 20px;">
         <p class="grand"><b><%= vendor.title %></b></p>
-        <p class="pseudo" style="padding-top: 5px; padding-bottom: 5px;">Продукция</p>
-        <ul class="list">
+        <% if vendor.description %>
+          <p style="margin-top: 10px; margin-bottom: 10px;"><%= vendor.description %></p>
+        <% end %>
+        <p class="pseudo" style="padding-top: 5px; padding-bottom: 5px;"><b>Продукция</b></p>
+        <ul class="list list-program" style="columns: 2; -webkit-columns: 2; -moz-columns: 2;">
           <% subCategories.each do |sc| %>
             <li><%= link_to sc.title, sc %></li>
           <% end %>

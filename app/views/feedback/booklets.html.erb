@@ -1,9 +1,12 @@
 <%= render("shared/mainpage/modal_cart") %>
 
+<div class="category">
 <% title = "Скачать/заказать каталоги" %>
 <% generate_meta_from title %>
 
 <h1 align="center" class="normal"><%= title %></h1>
+
+</div>
 
 Быстрый переход: <% @vendors.each do |vendor| %> <a href="#<%= vendor.title %>" style="text-decoration: underline;"><%= vendor.title %></a><% end %>
 

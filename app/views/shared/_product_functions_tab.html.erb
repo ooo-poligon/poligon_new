@@ -1,24 +1,23 @@
-  <ul>
-  <% @functions.each do |f| %>
-    <li>
-      <table class="table-responsive">
-        <thead><h4 style="color: blueviolet"><%= f.title %> ( <b><%= f.symbol %></b> )</h4></thead>
-        <tbody>
-        <tr>
-          <td><%= f.description %></td>
-        </tr>
-        <tr>
-          <td>
-            <br>
-            <p>
-              <%= image_tag(
-                          f.picture_path.gsub!("\\", "/").gsub!("C:/poligon_images/", "/images/catalog/TELE/funcs"), class: "img-responsive center-block", :width => '500px') %>
-            </p>
-          </td>
-        </tr>
-        </tbody>
-      </table>
-    </li>
-    <br>
-  <% end %>
-</ul>
+<br>
+<table class="table-responsive">
+  <thead>
+    <tr>
+      <th colspan="2" style="background-color: #CCCCCC;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: left; padding: 5px;">Описание функций</th>
+    </tr>
+  </thead>
+    <tbody>
+    <% @functions.each do |f| %>
+      <tr>
+        <td>
+          <strong><%= f.title %> ( <b><%= f.symbol %></b> )</strong>
+          <p><%= f.description %></p>
+        </td>
+        <td> <img src="http://176.53.160.235/images/catalog/TELE/funcs/<%= f.picture_name %>" class= "img-responsive center-block" style="max-width: 260px;" /></td>
+      </tr>
+    <% end %>
+    </tbody>
+</table>

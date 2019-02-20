@@ -60,7 +60,6 @@ class FeedbackController < ApplicationController
   end
 
   def catalogs_order
-    binding.pry
     if verify_recaptcha(params)
       unless params[:name] == '' or
              params[:last_name] == '' or

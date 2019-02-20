@@ -9,7 +9,7 @@ class ExamplesController < ApplicationController
       scope = Example.where('issue LIKE ?', "%#{term}%")
       scope = scope + Example.where('solution LIKE ?', "%#{term}%")
       scope = scope + Example.where('advantages LIKE ?', "%#{term}%")
-      @examples = scope
+      @examples = scope.uniq
     end
     respond_to do |format|
       format.html

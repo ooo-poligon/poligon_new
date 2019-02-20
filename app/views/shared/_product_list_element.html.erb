@@ -84,7 +84,7 @@
 
             <% if locals[:product_array][2] > 0 %>
               <span><%= image_tag("green.gif") %></span>
-              <%= locals[:product_array][2].to_s + ' шт.' %>
+              В наличии: <%= locals[:product_array][2].to_s + ' шт.' %>
             <% else %>
               <span><%= image_tag("grey.gif") %></span>
               <span>Под заказ, </span><br>

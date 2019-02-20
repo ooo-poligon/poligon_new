@@ -104,7 +104,7 @@
             
             <div class="card-logo">
               <a href="<%= category_path(@product.vendor.code) %>" target="_blank"> <!-- а если nil? -->
-                <%= image_tag("/images/design/logo/" + @product.vendor.logo, alt: '') %>
+                <%= image_tag("/brands/" + @product.vendor.logo, alt: '') %>
               </a>
             </div>
           </div>
@@ -142,7 +142,7 @@
                       Наличие:
                       <% if signed_in? %>
 
-                        <% if !@product.stock.nil? && @product.stock > 0 %>
+                        <% if @product.stock && @product.stock > 0 %>
                           <%= @product.stock.to_s + ' шт.' %>
                         <% else %>
                           <i>Под заказ.</i>

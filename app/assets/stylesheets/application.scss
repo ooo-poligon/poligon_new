@@ -20,6 +20,11 @@
   padding-left: 0px !important;
  }
 
+ .list-program a{
+  text-decoration: underline;
+    color: #3f6bd2; 
+ }
+
 .ui-autocomplete {
   position: absolute;
   top: 100%;
@@ -768,3 +773,9 @@ box-shadow: 0px 1px 1px 0px rgba(87,87,87,0.08);
     margin-right: 1em; }
   .flickr_pagination .next_page {
     margin-left: 1em; }
+
+
+.category-info-text img{
+  float: none !important;
+  display: inline-flex;
+}
