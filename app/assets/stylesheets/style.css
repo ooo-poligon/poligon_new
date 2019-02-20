@@ -1427,6 +1427,7 @@ input.product-quantity {
 }
 .distr-button {
     margin-top: 15px;
+    line-height: 35px;
 }
 .doc-button a, .distr-button a {
     color: #009ee0;

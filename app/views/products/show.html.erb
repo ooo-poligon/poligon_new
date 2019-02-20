@@ -118,7 +118,6 @@
                 <div class="product-price">
                   Цена:
                   <% if @product.special_price.zero? && @product.base_price.zero? %>
-                    
                     <span class="price">Звоните:<br>(812)325-42-20</span>
                   <% elsif !@product.special_price.zero? && !@product.base_price.zero? %>
                     
@@ -131,19 +130,22 @@
                   <% else %>
                     <span class="price">
                       <%= calculate_price(@product, @product.base_price).round(2).to_s + ' руб.' %>
-                        
-                      </span>
+                    </span>
                   <% end %>
                   
                 </div>
                 <div class="product-list">
                   <ul>
-                    <li>
+                    
                       Наличие:
+
+                      <li class="product-presence" style="display: inline-block; margin-top: 0px; font-weight: 600; font-size: 14px;">
                       <% if signed_in? %>
 
                         <% if @product.stock && @product.stock > 0 %>
-                          <%= @product.stock.to_s + ' шт.' %>
+                          <span><%= image_tag("green.gif") %></span>
+                          <span class="in_stock">В наличии</span>
+                          <span><%= @product.stock.to_s + ' шт.' %></span>
                         <% else %>
                           <i>Под заказ.</i>
                           <i>Срок поставки: <%= @product.delivery_time %></i>
@@ -152,6 +154,7 @@
                       <% else %>
 
                         <% if !@product.stock.nil? || !@product.reserved.nil? || !@product.remove_stock.nil? %>
+                          <span><%= image_tag("green.gif") %></span>
                           <span class="in_stock">В наличии</span>
                         <% elsif !@product.ordered_on_stock.nil? %>
                           <span class="ordered_on_stock">Ожидается</span>
@@ -161,6 +164,7 @@
                         <% end %>
 
                       <% end %>
+                    
 
                     </li>
                     <li>Страна бренда:
@@ -211,7 +215,7 @@
             <div class="col-sm-6 card-order-info">
               <h4>Информация для заказа</h4>
               <p class="product-name">Наименование: <%= @product.title %></p>
-              <p class="product-art">Артикул: <span><%= @product.article ? @product.article : '-' %></span></p>
+              <p class="product-art">Артикул: <span><%= @product.article ? @product.article : '‒' %></span></p>
               <p class="product-manuf">Производитель:
                 <span>
                   <% unless @product&.vendor&.code.nil? %>
@@ -317,7 +321,11 @@
           <% end %>
           <div class="doc-button">
             <% if !@product.pdf_name.nil? and @product.pdf_name != "" %>
-              <%= link_to( "<span></span>Скачать документацию".html_safe, content_download_pdf_path(product_id: @product.id)) %>
+              <% product_pdf = @product.pdf_name %>
+              <% vendor_folder_name = @product.vendor.folder_name %>
+              <% pdf_path = "/PDF/" + vendor_folder_name + "/" + product_pdf %>
+              <a href="<%= pdf_path %>"><span></span>Скачать документацию</a>
+              
             <% end %>
           </div>
           <div class="doc-button">

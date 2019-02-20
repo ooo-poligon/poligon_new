@@ -7,8 +7,13 @@ class ProductsController < ApplicationController
     @product                   = Product.find(params[:id])
     @parents_array             = parents_of(@product.category_id)
     @addCBR                    = Setting.find_by title: 'addCBR'
-     
-    @retail_price = calculate_price(@product, @product.base_price)
+    
+    if @product.special_price > 0
+      @retail_price = calculate_price(@product, @product.special_price)
+    else
+      @retail_price = calculate_price(@product, @product.base_price)
+    end
+    
     
     productFunctions           = ProductFunction.where("product_id = ?", @product.id)
 

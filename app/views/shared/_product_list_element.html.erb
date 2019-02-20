@@ -68,11 +68,23 @@
           <!--<% end %>-->
         <!--</span>-->
         <span class="product-new-price">
-          <% if locals[:product_array][1] == 0 %>
+          <% @product = locals[:product_array][0] %>
+
+          <% if @product.special_price.zero? && @product.base_price.zero? %>
             <span class="price">Звоните:<br>(812)325-42-20</span>
+          <% elsif !@product.special_price.zero? && !@product.base_price.zero? %>
+            <span class="price price-red bold">
+              <%= calculate_price(@product, @product.special_price).round(2).to_s + ' руб.' %>
+              </span>
+            <span class="price line-through">
+              <%= calculate_price(@product, @product.base_price).round(2).to_s + ' руб.' %>
+            </span>
           <% else %>
-            <span class="price"><%= locals[:product_array][1].round(2).to_s + ' руб.' %></span>
+            <span class="price">
+              <%= calculate_price(@product, @product.base_price).round(2).to_s + ' руб.' %>
+            </span>
           <% end %>
+
         </span>
       </div>
       <div class="price-request">
@@ -97,6 +109,7 @@
               <span><%= image_tag("green.gif") %></span>
               <span class="in_stock">В наличии</span>
             <% else %>
+              <span><%= image_tag("grey.gif") %></span>
               <i>Под заказ.</i>
               <i>Срок поставки: <%= product.delivery_time %></i>
             <% end %>

@@ -594,7 +594,20 @@
                     </div>
                   </div>
                 </td>
-                <td class="cart-price"><%= line_item.price %> Руб.</td>
+                <td class="cart-price">
+                  <% if line_item.product.base_price > 0 && line_item.product.special_price > 0 %>
+                    
+                    <span class="price price-red bold">
+                      <%= calculate_price(line_item.product, line_item.product.special_price).round(2).to_s + ' руб.' %>
+                      </span><br>
+                    <span class="price line-through">
+                      <%= calculate_price(line_item.product, line_item.product.base_price).round(2).to_s + ' руб.' %>
+                    </span>
+                      
+                  <% else %>
+                    <%= line_item.price %> Руб.
+                  <% end %>
+                </td>
                 <td class="cart-quantity">
                   <span class="number-plus-minus">
                     <%= number_field_tag(:quantity, line_item.quantity, class: "quantity quantity-in-cart", id: line_item.id.to_s,  step: 1, min: 1, pattern: "^[0-9]+$") %> <span>шт.</span>

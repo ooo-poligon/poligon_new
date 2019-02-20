@@ -18,16 +18,16 @@
   </p>
 
   <p style="padding: 8px 0px;">
-    <%= f.check_box :print_version %><%= f.label "Печатная версия" %>
+    <%= f.check_box :print_version, {checked: @booklet.print_version} %><%= f.label "Печатная версия" %>
   </p>
 
   <p style="padding: 8px 0px;">
-    <%= f.check_box :vendor_show %><%= f.label "Показывать в КК" %>
+    <%= f.check_box :vendor_show, {checked: @booklet.vendor_show} %><%= f.label "Показывать в КК" %>
   </p>
 
   <p>
     <%= f.label "Размер" %><br>
-    <%= f.select :block_size, [["SMALL", "0"],["BIG", "1"]], class: "form-control", required: true %>
+    <%= f.select :block_size, [['big', '0'],['small', '1']], class: "form-control", required: true %>
   </p>
 
   <p>

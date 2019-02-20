@@ -14,6 +14,7 @@ class Admin::BookletsController < Admin::BaseController
   end
 
   def create
+    binding.pry
     @booklet = Booklet.new booklet_params
     if @booklet.save
       flash[:success] = "Каталог создан"

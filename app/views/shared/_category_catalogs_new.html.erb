@@ -7,11 +7,11 @@
            "5512": 10, "4847": 21, "6321": 8, "5650": 11} %>
       <% vendor_id = vendors[:"#{@topCategory}"] %>
       <% vendor = Vendor.find(vendor_id) if vendor_id %>
-      <% if vendor && vendor.booklets.count > 0 %>
-        <% vendor.booklets.each do |booklet| %>
+      <% if vendor && vendor.booklets.where(vendor_show: true).count > 0 %>
+        <% vendor.booklets.where(vendor_show: true).each do |booklet| %>
           <tr>
             <p>
-              <% pdfPath = "http://localhost:3000#{booklet.file.url}" %>
+              <% pdfPath = "#{booklet.file.url}" %>
               <td><%= link_to( booklet.title, pdfPath, target: "_blank") %></td>
             </p>
           </tr>

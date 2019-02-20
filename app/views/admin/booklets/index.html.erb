@@ -9,6 +9,7 @@
       <th>Превью</th>
       <th>Название</th>
       <th>Печатная версия</th>
+      <th>Vendor SHOW</th>
       <th>Вид</th>
       <th>Позиция</th>
       <th>Vendor</th>
@@ -22,6 +23,7 @@
         <th><%= image_tag(booklet&.image&.url, style: "width: 100px;") %></th>
         <th><%= booklet.title %></th>
         <th><%= booklet.print_version %></th>
+        <th><%= booklet.vendor_show %></th>
         <th><%= "Размер: #{booklet.block_size}
                  Цвет блока: #{booklet.block_color}
                  Цвет граница: #{booklet.border_color}" %></th>
