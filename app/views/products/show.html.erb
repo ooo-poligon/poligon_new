@@ -114,7 +114,7 @@
         <div class="card-top">
           <div class="card-duo">
             <div class="row">
-              <div class="col-sm-7 card-duo-left">
+              <div class="col-sm-8 card-duo-left">
                 <div class="product-price">
                   Цена:
                   <% if @product.special_price.zero? && @product.base_price.zero? %>
@@ -137,25 +137,24 @@
                 <div class="product-list">
                   <ul>
                     
-                      Наличие:
+                      
 
                       <li class="product-presence" style="display: inline-block; margin-top: 0px; font-weight: 600; font-size: 14px;">
                       <% if signed_in? %>
-
+                          <span style="color:black;">Наличие:</span>
                         <% if @product.stock && @product.stock > 0 %>
                           <span><%= image_tag("green.gif") %></span>
-                          <span class="in_stock">В наличии</span>
-                          <span><%= @product.stock.to_s + ' шт.' %></span>
+                          <span class="in_stock"><%= @product.stock.to_s + ' шт.' %> в наличии</span>
                         <% else %>
                           <i>Под заказ.</i>
                           <i>Срок поставки: <%= @product.delivery_time %></i>
                         <% end %>
 
                       <% else %>
-
+                          <span style="color:black;">Наличие:</span>
                         <% if !@product.stock.nil? || !@product.reserved.nil? || !@product.remove_stock.nil? %>
                           <span><%= image_tag("green.gif") %></span>
-                          <span class="in_stock">В наличии</span>
+                          <span class="in_stock">в наличии</span>
                         <% elsif !@product.ordered_on_stock.nil? %>
                           <span class="ordered_on_stock">Ожидается</span>
                         <% else %>
@@ -164,8 +163,7 @@
                         <% end %>
 
                       <% end %>
-                    
-
+                  
                     </li>
                     <li>Страна бренда:
                       <%= @product.vendor.address %>
@@ -174,7 +172,7 @@
                   </ul>
                 </div>
               </div>
-              <div class="col-md-5 card-duo-right">
+              <div class="col-md-4 card-duo-right">
                 <div class="product-incart">
                   <%= form_tag(line_items_path, method: "post",  remote: true) do %>
                     <%= hidden_field_tag(:product_id, @product.id) %>
@@ -237,7 +235,8 @@
                   <a href="<%= pdf_path %>"><span></span>Скачать документацию</a>
                 <% end %>
               </div>
-              <div class="distr-button"><a href="<%= company_program_path %>" target="_blank"><span></span>Официальный дистрибьютор <%= @product.vendor.title %></a></div>
+              <div class="distr-button"><a href="<%= company_program_path %>" target="_blank"><span></span>
+                <div style="height: 36px; display: flex; align-items: center;">Официальный дистрибьютор <%= @product.vendor.title %></div></a></div>
             </div>
           </div>
         </div>

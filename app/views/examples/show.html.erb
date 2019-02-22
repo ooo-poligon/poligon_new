@@ -42,7 +42,7 @@
           <div class="col-sm-4">
             <ul class="apply-item-list">
               <li><strong>Товарная группа:</strong><br>
-                <%= @product_groups_string %>
+                <%= @product_groups_string.html_safe %>
               </li>
 
               <% if @example.product %>
@@ -61,7 +61,7 @@
                   <% product_pdf = @example.product.pdf_name %>
                   <% vendor_folder_name = (Vendor.find(@example.product.vendor_id)).folder_name %>
                   <% pdf_path = "http://176.53.160.235/PDF/" + vendor_folder_name + "/" + product_pdf %>
-                  <p><a href="<%= pdf_path %>"><%= @example.product.pdf_name %></a></p>
+                  <p><a href="<%= pdf_path %>" target="_blank"><%= @example.product.pdf_name %></a></p>
                 <% else %>
                   <p>Отсутствует</p>
                 <% end %>

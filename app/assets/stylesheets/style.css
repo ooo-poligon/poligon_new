@@ -1771,7 +1771,8 @@ input.product-quantity {
     font-size: 16px;
     line-height: normal;
     font-weight: lighter;
-    margin-top: 30px;
+    margin-bottom: 30px;
+    margin-left: 15px;
 }
 .inside-apply {
     margin-top: 15px;
@@ -2267,7 +2268,7 @@ footer .owl-carousel .owl-next {
     z-index: 1;
 }
 .bot-cart {
-    width: 280px;
+    width: 315px;
     float: right;
 }
 .bot-cart a {
@@ -4110,6 +4111,11 @@ button.mp__button-main.mp--on {
     }
     .apply-item-list li {
         margin-bottom: 10px;
+
+        a{
+          text-decoration: underline;
+          color: #3f6bd2;
+        }
     }
     .apply-item-photo {
         text-align: center;

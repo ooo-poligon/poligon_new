@@ -26,7 +26,12 @@ class LineItemsController < ApplicationController
     product = Product.find(params[:product_id])
     
     quantity = params[:quantity].to_i
-    price = params[:price]
+
+    if product.special_price > 0
+      price = calculate_price(product, product.special_price)
+    else
+      price = calculate_price(product, product.base_price)
+    end
 
     stock = product.quantity.nil? ? 0 : product.stock.to_i
     overflow = quantity - stock

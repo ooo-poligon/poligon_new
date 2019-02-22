@@ -18,7 +18,7 @@
           <h1>Решения и примеры применения</h1>
         </div>
         <div class="apply-clear col-sm-4 col-md-2">
-          <button type="reset">Cбросить все Х</button>
+          <button type="reset" id="examples-reset">Cбросить все Х</button>
         </div>
       </div>
       <div class="apply-search">
@@ -36,7 +36,9 @@
     <div class="container">
       <ul class="apply-menu">
         <% @scopes.each do |scope| %>
-          <li><%= scope.name %></li>
+          <li data-id="<%= scope.id %>" class="<% if scope.id.to_s == params[:scope] %>active<% end %>">
+            <%= scope.name %>
+          </li>
         <% end %>
       </ul>
     </div>
@@ -50,16 +52,13 @@
           <li><%= tag.name %></li>
         <% end %>
       </ul>
-      <div class="apply-result-message">Найдено решений: <%= @examples.length %></div>
     </div>
   </div>
 
   <div class="inside-apply">
     <div class="container">
-      <div class="row">
-        <% @examples.each do |example| %>
-          <%= render 'shared/example_card', locals: {example: example} %>
-        <% end %>
+      <div class="row" id="examples-list">
+        <%= render 'shared/examples_list', locals: {examples: @examples} %>
       </div>
     </div>
   </div>

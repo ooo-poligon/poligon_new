@@ -14,7 +14,7 @@ gem 'sunspot_solr', '2.2.4'
 gem 'will_paginate', '~> 3.0.5'
 gem 'progress_bar', '1.0.5'
 gem 'fancybox-rails', '0.3.1'
-gem 'therubyracer', '0.12.2', :platform => :ruby
+gem 'therubyracer'
 gem 'jquery-rails', '4.1.1'
 
 gem 'jquery-turbolinks', '2.1.0'
@@ -55,7 +55,7 @@ gem 'chosen-rails'
 
 group :assets do
   gem 'coffee-rails', '4.1.1'
-  gem 'uglifier', '>= 1.0.3'
+  gem 'uglifier', '~> 2.7'
 end
 
 gem 'rails-erd', group: :development

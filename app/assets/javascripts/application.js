@@ -45,6 +45,56 @@ function submitRecaptcha() {
 
 $(document).ready(function() {
 
+  function requestExamples(scope_id = null){
+
+    if (scope_id == null) {
+      $.ajax({
+        url: "/examples",
+        type: "GET",
+        processData: false,
+        contentType: false,
+        dataType: 'script'
+      }); 
+    } else {
+      $.ajax({
+        url: "/examples?scope="+scope_id,
+        type: "GET",
+        processData: false,
+        contentType: false,
+        dataType: 'script'
+      }); 
+    } 
+  }
+
+  $("#examples-reset").click(function(e){
+    var new_url = document.location.protocol +"//"+ document.location.hostname + document.location.pathname;
+    window.history.replaceState(null, null, new_url);
+    $(".apply-menu li").removeClass("active");
+    requestExamples()
+  });
+
+  $(".apply-menu li").click(function(e){
+
+    var scope_id = $(this).attr('data-id');
+    var search = document.location.search;
+    $(".apply-menu li").removeClass("active");
+    $(this).addClass("active");
+
+    if(search.match("scope") && search.match('scope').length > 0) {
+      var new_url = document.location.protocol +"//"+ document.location.hostname + document.location.pathname;
+      var url = new_url+"?scope="+scope_id;
+      window.history.replaceState(null, null, url);
+    } else {
+      var url = document.location.href+"?scope="+scope_id;
+      window.history.replaceState(null, null, url);
+    }
+
+    requestExamples(scope_id);
+    
+  });
+
+
+
   if ($(".ckeditor").length > 0) {
       CKEDITOR.replaceClass = 'ckeditor';
   } else {

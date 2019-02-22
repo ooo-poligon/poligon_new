@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190220094705) do
+ActiveRecord::Schema.define(version: 20190222113555) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -687,19 +687,20 @@ ActiveRecord::Schema.define(version: 20190220094705) do
   add_index "users", ["group_id"], name: "index_users_on_group_id", using: :btree
 
   create_table "vendors", force: :cascade do |t|
-    t.string  "title",       limit: 255,                     null: false
-    t.text    "address",     limit: 4294967295
-    t.text    "description", limit: 4294967295
-    t.text    "status",      limit: 4294967295,              null: false
-    t.text    "statuslink",  limit: 4294967295,              null: false
-    t.text    "folder_name", limit: 4294967295
-    t.float   "rate",        limit: 53
-    t.integer "currency_id", limit: 4
-    t.integer "code",        limit: 4
-    t.string  "logo",        limit: 255,        default: "", null: false
-    t.string  "advantages",  limit: 255,        default: ""
-    t.string  "status_text", limit: 255,        default: ""
-    t.string  "status_link", limit: 255,        default: ""
+    t.string  "title",            limit: 255,                     null: false
+    t.text    "address",          limit: 4294967295
+    t.text    "description",      limit: 4294967295
+    t.text    "status",           limit: 4294967295,              null: false
+    t.text    "statuslink",       limit: 4294967295,              null: false
+    t.text    "folder_name",      limit: 4294967295
+    t.float   "rate",             limit: 53
+    t.integer "currency_id",      limit: 4
+    t.integer "code",             limit: 4
+    t.string  "logo",             limit: 255,        default: "", null: false
+    t.string  "advantages",       limit: 255,        default: ""
+    t.string  "status_text",      limit: 255,        default: ""
+    t.string  "status_link",      limit: 255,        default: ""
+    t.integer "delivery_program", limit: 4,          default: 0
   end
 
   add_index "vendors", ["currency_id"], name: "FK_nsbv37hiaemev6th5cuqgs6aa", using: :btree

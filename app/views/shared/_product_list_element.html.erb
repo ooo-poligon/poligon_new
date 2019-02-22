@@ -24,8 +24,12 @@
             <!--</div>-->
           <!--</li>-->
           <li>
-            <% if product_pdf != nil and product_pdf != "" %>
-              <%= link_to( "Скачать PDF", content_download_pdf_path(product_id: product.id)) %>
+
+            <% if !product.pdf_name.nil? and product.pdf_name != "" %>
+              <% product_pdf = product.pdf_name %>
+              <% vendor_folder_name = product.vendor.folder_name %>
+              <% pdf_path = "/PDF/" + vendor_folder_name + "/" + product_pdf %>
+              <a href="<%= pdf_path %>" target="_blank">Скачать PDF</a>
             <% end %>
           </li>
           <li>

@@ -25,7 +25,7 @@ class CompanyController < ApplicationController
   end
 
   def program
-    @vendors = Vendor.all
+    @vendors = Vendor.where(delivery_program: 1)
   end
 
   private

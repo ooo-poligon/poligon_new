@@ -1,12 +1,14 @@
-<%= render "shared/static_page", :locals => { content: @staticContent,
+  <%= render "shared/static_page", :locals => { content: @staticContent,
                                               directory: 'company',
                                               page: 'program' } %>
 
 <div style="position: relative; overflow: hidden; margin-top: 20px;">
 
-<% vendors = {1=>142,7=>77, 9=>5583, 3=>5094, 2=>74, 4=>5414, 5=>5535,6=>5818,10=>5512,19=>6321,21=>4847,14=>6371} %>
-<% @vendors.where(id: vendors.keys).uniq.each do |vendor| %>
-    <% subCategories = Category.available.where(parent: vendors[vendor.id]) %>
+
+<% @vendors.each do |vendor| %>
+
+
+    <% subCategories = Category.available.where(parent: vendor.code) %>
     <div class="portfolio searchable" data-index="">
       <div class="wrap-border">     
         <div style="display: flex; height: 94px; justify-content: center; align-items: center;">      
@@ -33,5 +35,8 @@
       </div>
     </div>
 
-<% end %>
+
+
+  <% end %>
+
 </div>

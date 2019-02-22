@@ -150,7 +150,6 @@ class FeedbackController < ApplicationController
   end
 
   def send_project_conditions
-
     if verify_recaptcha(params)
       name     = params[:name]
       phone    = params[:phone]

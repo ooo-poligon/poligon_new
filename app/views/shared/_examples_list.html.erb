@@ -1,0 +1,11 @@
+
+<% if defined?(examples) %>
+  <% @examples = examples %>
+<% else %>
+  <% @examples = locals[:examples] %>
+<% end %>
+
+<div class="apply-result-message">Найдено решений: <%= @examples.length %></div>
+<% @examples.each do |example| %>
+  <%= render 'shared/example_card', locals: {example: example} %>
+<% end %>
