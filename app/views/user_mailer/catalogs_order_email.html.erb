@@ -1,14 +1,13 @@
-Получен заказ на отправку каталогов по почте:<br>
+Выбрано каталогов: <%= @booklet_ids.count %><br>
+<% @booklet_ids.each_with_index do |id, index| %>
+  <% booklet = Booklet.find(id) %>
+  Каталог <%= index+1 %>: <%= "#{booklet.title} (ID: #{booklet.id})" %><br>
+<% end %>
 
 Имя: <%= @name %><br>
-Фамилия: <%= @last_name %><br>
-Email: <%= @email %><br>
+Фамилия: <%= @last_name %><br> 
 Компания: <%= @company %><br>
 Адрес: <%= @address %><br>
-Комментарий: <%= @comment %><br>
-
-Список каталогов для отправки <br>
-<% @booklet_ids.each do |id| %>
-  <% booklet = Booklet.find(id) %>
-  <%= "#{booklet.title} (ID: #{booklet.id})" %><br>
-<% end %>
+Телефон: <%= @phone %><br>
+E-mail: <%= @email %><br>
+Комментарий: <%= @comment %>

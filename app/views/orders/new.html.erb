@@ -24,6 +24,7 @@
   </form>
   <%= form_tag(orders_send_order_email_path, method: "post", class: "order-form captcha-form") do %>
     <% items.each do |key, item| %>
+      <%= hidden_field_tag :order_type, "normal_order" %>
       <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
       <%= hidden_field_tag "items["+key.to_s+"]", item %>
     <% end %>

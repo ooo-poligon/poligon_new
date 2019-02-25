@@ -28,7 +28,7 @@
         <textarea class="message-send" name="message" placeholder="Ваше сообщение"></textarea>
       </div>
       <div class="captcha">
-        <%= recaptcha_tags %>
+        <div class="g-recaptcha recaptcha-class" id="recaptcha3"></div>
       </div>
       <div class="fb-buttons">
         <button class="fb-remove" type="reset">Удалить</button>
@@ -36,7 +36,7 @@
       </div>
 
       <div class="fb-agree">
-        <p>Оперативно свяжемся и ответим на Ваш вопрос.</p>Нажимая кнопку «Отправить» я даю согласие на <a href="<%= company_personal_path %>" target="_blank">обработку персональных данных.</a>
+        <p>Оперативно свяжемся и ответим на Ваш вопрос.</p>Нажимая кнопку «Отправить» я даю согласие на <a href="/company/privacy_policy" target="_blank">обработку персональных данных.</a>
       </div>
     </form>
   </div>

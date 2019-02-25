@@ -60,6 +60,7 @@
     @email = params[:email]
     @address = params[:address]
     @requisites = params[:requisites]
+    @subject = params[:order_type]
 
     if @phone != ''
 
@@ -73,7 +74,7 @@
         line_item.update(quantity: line_values['quantity'].to_i, price: line_values['price'].to_f, order_id: order.id, cart_id: nil)
       end
       
-      UserMailer.products_order_email(@phone, order, @name, @email, @address, @requisites).deliver_now
+      UserMailer.products_order_email(@phone, order, @subject, @name, @email, @address, @requisites).deliver_now
       
       respond_to do |format|
         format.html { redirect_to root_url, notice: {title: 'Спасибо, мы получили Вашу заявку.', message: ' В ближайшее время менеджер свяжется с Вами.'}}

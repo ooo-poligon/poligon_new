@@ -5,7 +5,27 @@ class ApplicationController < ActionController::Base
   before_action :current_cart
   before_filter :configure_permitted_parameters, if: :devise_controller?
   before_action :getCourse
-  helper_method :get_prices_eur, :get_prices_rub, :hello_user, :parents_of, :set_meta, :generate_meta_from, :calculate_price
+  helper_method :verify_captcha, :get_prices_eur, :get_prices_rub, :hello_user, :parents_of, :set_meta, :generate_meta_from, :calculate_price
+
+  def verify_captcha(params)
+    require 'uri'
+    require 'net/http'
+
+    secret_key    = '6LfXGoEUAAAAAImBtgFzKEWyqGtTv16WzTEc_WuV'
+    request_body = {secret: secret_key, response: params[:'g-recaptcha-response'], remoteip: request.remote_ip }
+
+    url = URI.parse('https://www.google.com/recaptcha/api/siteverify')
+    req = Net::HTTP::Post.new(url.path)
+    req.set_form_data(request_body)
+    con = Net::HTTP.new(url.host, url.port)
+    con.use_ssl = true
+
+    res = con.start {|http| http.request(req)}
+    res_array = JSON.parse(res.body)
+    result = res_array['success']
+
+    return result
+  end
 
   def getCourse
     @courseEuro = ExchangeRate.last.eur_rate.to_f

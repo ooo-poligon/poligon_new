@@ -2209,7 +2209,6 @@ footer textarea::-webkit-input-placeholder {
     text-transform: uppercase;
     color: #3f6bd2;
     font-size: 14px;
-    padding-top: 15px;
     text-decoration: underline;
     font-weight: 600;
 }

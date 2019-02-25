@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190222113555) do
+ActiveRecord::Schema.define(version: 20190225144305) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -149,6 +149,11 @@ ActiveRecord::Schema.define(version: 20190222113555) do
 
   create_table "currencies", force: :cascade do |t|
     t.string "title", limit: 255, null: false
+  end
+
+  create_table "elec_rubricator", force: :cascade do |t|
+    t.string  "title",   limit: 255
+    t.integer "elec_id", limit: 4
   end
 
   create_table "example_images", force: :cascade do |t|

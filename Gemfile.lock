@@ -341,8 +341,6 @@ GEM
     rb-fsevent (0.10.3)
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
-    recaptcha (4.8.0)
-      json
     ref (2.0.0)
     responders (2.4.0)
       actionpack (>= 4.2.0, < 5.3)
@@ -522,7 +520,6 @@ DEPENDENCIES
   rails (= 4.2.5)
   rails-erd
   rails-jquery-autocomplete
-  recaptcha (= 4.8.0)
   rspec-rails (~> 3.4)
   rubocop
   rubyzip (= 1.0.0)

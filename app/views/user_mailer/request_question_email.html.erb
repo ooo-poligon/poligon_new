@@ -1,8 +1,11 @@
 Получен вопрос / запрос:<br>
-<%= @city %><br>
-<%= @name %><br>
-<%= @company %><br>
-<%= @email %><br>
-<%= @phone %><br>
-<%= @message %><br>
-<%= @product %><br>
+
+Страница сайта: <a href="http://poligon.info/products/<%= @product.id %>"><%= @product.title %></a><br>
+Изделие: (<%= @product.article %>)<%= @product.title %><br>
+Город:  <%= @city %><br>
+Компания: <%= @company %><br>
+Имя: <%= @name %><br>
+Телефон: <%= @phone %><br>
+E-mail: <%= @email %><br>
+Сообщение: <%= @message %><br>
+

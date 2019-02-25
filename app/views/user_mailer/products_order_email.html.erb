@@ -1,13 +1,20 @@
 Получен заказ №<%= @order.id %>:<br>
-Заказчик: <%= @name %><br>
+
+<% if @subject == "fast_order" %>
+Телефон: <%= @phone %><br>
+<% else %>
+ФИО: <%= @name %><br>
+Телефон: <%= @phone %><br>
 E-mail: <%= @email %><br>
 Адрес доставки: <%= @address %><br>
-Реквизиты: <%= @requisites %><br>
-Телефон заказчика: <%= @phone %><br>
-Состав заказа:
+Реквизиты:<%= @requisites %><br>
+<% end %>
+
+
+Состав корзины:
 <% line_items = LineItem.where(order_id: @order.id) %>
 <% line_items.each do |line_item| %>
   <p>
-    <%= line_item.product.title + ": " + (line_item.price/line_item.quantity).to_s + " x " + line_item.quantity.to_s + " = " + line_item.price.to_s %>
+    (<%= line_item.product.article %>) <%= line_item.product.title + ": " + (line_item.price/line_item.quantity).to_s + " x " + line_item.quantity.to_s + " = " + line_item.price.to_s %>
   </p>
 <% end %>

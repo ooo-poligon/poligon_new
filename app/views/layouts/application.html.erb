@@ -6,7 +6,7 @@
   <%= favicon_link_tag "favicon-32x32.png", rel: "icon", type: "image/png", sizes: "32x32" %>
   <%= favicon_link_tag "favicon-16x16.png", rel: "icon", type: "image/png", sizes: "16x16" %>
   <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
-   <script src="https://www.google.com/recaptcha/api.js?render=6LfgQpMUAAAAAMXwjDrIAvHmARfBPX7O6kYXQbhr"></script>
+  <script src='https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit' async defer></script>
 </head>
 <body>
 <%= render "shared/yandex_metrika" %>
@@ -125,7 +125,20 @@
   <%= render("shared/mainpage/modal_dialog") %>
 <% end %>
 
-<!-- JavaScript placed at the end of the document so the pages load faster -->
+<script>
+    function verifyCaptcha(){
+        console.log("verifyed!");
+    };
+
+    var onloadCallback = function() {
+        $( ".recaptcha-class" ).each(function() {
+            grecaptcha.render($( this ).attr('id'), {
+                'sitekey' : '6LfXGoEUAAAAAL65Rh4FFIu_vk2wP-l0reiOMiUL',
+                'callback' : verifyCaptcha
+            });
+        });
+    };
+</script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
 

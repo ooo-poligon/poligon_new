@@ -74,8 +74,9 @@ class FeedbackController < ApplicationController
       @address   = params[:address]
       @booklet_ids = params[:booklet_ids]
       @comment = params[:comment]
+      @phone = params[:phone]
 
-      UserMailer.catalogs_order_email(@name, @last_name, @email, @company, @address, @booklet_ids, @comment).deliver_now
+      UserMailer.catalogs_order_email(@name, @last_name, @phone, @email, @company, @address, @booklet_ids, @comment).deliver_now
       render "catalogs_order"
     else
       flash[:error] = "Не заполнены все необходимые поля!"
@@ -108,54 +109,72 @@ class FeedbackController < ApplicationController
   end
 
   def send_request_find_analogue
-    contact = Contact.new contact_params
-    if contact.save
-      if params["contact"]["contact_attachments"]
-        params["contact"]["contact_attachments"].each do |attachment|
-          contact.contact_attachments.create(file: attachment)
+    if verify_captcha(params)
+      contact = Contact.new contact_params
+      if contact.save
+        if params["contact"]["contact_attachments"]
+          params["contact"]["contact_attachments"].each do |attachment|
+            contact.contact_attachments.create(file: attachment)
+          end
+        end
+        UserMailer.request_question_or_analogue(contact).deliver_now
+        respond_to do |format|
+            format.html { redirect_to root_url, notice: {title: 'Спасибо, Ваш запрос уже получен.', message: ' В рабочее время мы постараемся ответить в течение 59 минут. Мы работаем с ПН по ПТ с 9:30 до 18:00MSK. <br>Вы так же можете позвонить нам по телефону +7 812 3254220, если вопрос срочный.'}}
         end
       end
-      UserMailer.request_question_or_analogue(contact).deliver_now
+    else
       respond_to do |format|
-          format.html { redirect_to root_url, notice: {title: 'Спасибо, Ваш запрос уже получен.', message: ' В рабочее время мы постараемся ответить в течение 59 минут. Мы работаем с ПН по ПТ с 9:30 до 18:00MSK. <br>Вы так же можете позвонить нам по телефону +7 812 3254220, если вопрос срочный.'}}
+        format.html { redirect_to root_url, notice: {title: 'Ошибка', message: 'Не заполнена капча!'}}
       end
     end
   end
 
   def send_request_or_question
-    city    = params[:city]
-    name    = params[:name]
-    company = params[:company]
-    email   = params[:email]
-    phone   = params[:phone]
-    message = params[:message]
-    product = Product.find(params[:product_id]).title
+    if verify_captcha(params)
+      city    = params[:city]
+      name    = params[:name]
+      company = params[:company]
+      email   = params[:email]
+      phone   = params[:phone]
+      message = params[:message]
+      product = Product.find(params[:product_id])
 
-    if email != ''
-      UserMailer.request_question_email(city, name, company, email, phone, message, product).deliver_now
-      respond_to do |format|
-        format.html { redirect_to root_url, notice: {title: 'Спасибо, мы получили Ваш запрос.', message: ' В ближайшее время менеджер свяжется с Вами.'}}
+      if email != ''
+        UserMailer.request_question_email(city, name, company, email, phone, message, product).deliver_now
+        respond_to do |format|
+          format.html { redirect_to root_url, notice: {title: 'Спасибо, мы получили Ваш запрос.', message: ' В ближайшее время менеджер свяжется с Вами.'}}
+        end
+      else
+        flash[:error] = "Поле e-mail не заполнено!"
       end
     else
-      flash[:error] = "Поле e-mail не заполнено!"
+      respond_to do |format|
+        format.html { redirect_to root_url, notice: {title: 'Ошибка', message: 'Не заполнена капча!'}}
+      end
     end
   end
 
   def send_project_conditions
-    name     = params[:name]
-    phone    = params[:phone]
-    email    = params[:email]
-    message  = params[:message]
-    quantity = params[:quantity]
-    product  = params[:product_id]
+    if verify_captcha(params)
+      name     = params[:name]
+      phone    = params[:phone]
+      email    = params[:email]
+      message  = params[:message]
+      quantity = params[:quantity]
+      product  = params[:product_id]
 
-    if email != ''
-      UserMailer.request_conditions_email(name, phone, email,  message, quantity, product).deliver_now
-      respond_to do |format|
-        format.html { redirect_to root_url, notice: {title: 'Спасибо, Ваш запрос уже получен.', message: ' В рабочее время мы постараемся ответить в течение 59 минут. Мы работаем с ПН по ПТ с 9:30 до 18:00MSK. <br>Вы так же можете позвонить нам по телефону +7 812 3254220, если вопрос срочный.'}}
+      if email != ''
+        UserMailer.request_conditions_email(name, phone, email,  message, quantity, product).deliver_now
+        respond_to do |format|
+          format.html { redirect_to root_url, notice: {title: 'Спасибо, Ваш запрос уже получен.', message: ' В рабочее время мы постараемся ответить в течение 59 минут. Мы работаем с ПН по ПТ с 9:30 до 18:00MSK. <br>Вы так же можете позвонить нам по телефону +7 812 3254220, если вопрос срочный.'}}
+        end
+      else
+        flash[:error] = "Поле e-mail не заполнено!"
       end
     else
-      flash[:error] = "Поле e-mail не заполнено!"
+      respond_to do |format|
+        format.html { redirect_to root_url, notice: {title: 'Ошибка', message: 'Не заполнена капча!'}}
+      end
     end
   end
 

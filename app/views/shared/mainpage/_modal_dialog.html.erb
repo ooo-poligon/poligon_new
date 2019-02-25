@@ -26,13 +26,11 @@
               <%= f.file_field :contact_attachments, multiple: true, name: "contact[contact_attachments][]", class: "inputfile inputfile-1", 'data-multiple-caption': "{count} files selected" %>
               <label for="contact_contact_attachments"><span>+ Прикрепить файл</span></label>
 
-              <div class="form-button req">
-                <div class="captcha captcha">
-                  <%= recaptcha_tags callback: 'submitRecaptcha' %>
-                </div>
+              <div class="form-button">
+                <div class="g-recaptcha recaptcha-class" id="recaptcha1"></div>
               </div>
               <div class="button-send"><%= f.button "Отправить" %></div>
-              <div class="modal-agree">Нажимая кнопку «Отправить» я даю согласие на <a href="<%= company_personal_path %>" target="_blank">обработку персональных данных.</a></div>
+              <div class="modal-agree">Нажимая кнопку «Отправить» я даю согласие на <a href="/company/privacy_policy" target="_blank">обработку персональных данных.</a></div>
               <div class="expl"><span>*</span> Поля обязательные для заполнения</div>
             <% end %>
 

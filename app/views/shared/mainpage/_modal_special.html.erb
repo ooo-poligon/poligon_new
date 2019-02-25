@@ -36,7 +36,7 @@
               </div>
               <div class="form-textarea"><textarea class="message-send" name="message" placeholder="Ваше сообщение"></textarea></div>
               <div class="captcha">
-                <%= recaptcha_tags callback: 'submitRecaptcha' %>
+                <div class="g-recaptcha recaptcha-class" id="recaptcha2"></div>
               </div>
               <div class="button-send">
                 <%= button_tag "Запросить", type: "submit" %>

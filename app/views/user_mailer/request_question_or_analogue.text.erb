@@ -1,13 +1,13 @@
 Получена заявка или подбор аналогов:
-<%= @contact&.name %>
-<%= @contact&.phone %>
-<%= @contact&.email %>
-<%= @contact&.message %>
+Имя: <%= @contact&.name %>
+Телефон: <%= @contact&.phone %>
+E-mail: <%= @contact&.email %>
+Сообщение: <%= @contact&.message %>
 
 <% unless @contact.contact_attachments.empty? %>
-Вложения файлов:
-<% @contact.contact_attachments.each do |att| %>
-<% url = att.file.url %>
-<%= "#{root_url}#{url}\n" %>
-<% end %>
+  Вложения файлов:
+  <% @contact.contact_attachments.each do |att| %>
+  <% url = att.file.url %>
+    <%= "#{root_url}#{url}\n" %>
+  <% end %>
 <% end %>

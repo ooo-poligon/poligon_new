@@ -74,6 +74,7 @@
   <h3>Введите номер телефона для быстрого оформления:</h3>
   <%= form_tag(orders_send_order_email_path, method: "post") do %>
     <% items.each do |key, item| %>
+      <%= hidden_field_tag :order_type, "fast_order" %>
       <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
       <%= hidden_field_tag "items["+key.to_s+"]", item %>
     <% end %>
@@ -86,7 +87,7 @@
       </div>
     </div>
     <div class="quick-order-hint">
-      Нажимая на кнопку "Жду звонка" Вы даете согласие на обработку <a href="<%= company_personal_path %>" target="_blank">персональных данных.</a>
+      Нажимая на кнопку "Жду звонка" Вы даете согласие на обработку <a href="/company/privacy_policy" target="_blank">персональных данных.</a>
     </div>
   <% end %>
 </div>

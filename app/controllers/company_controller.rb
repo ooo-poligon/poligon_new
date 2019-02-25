@@ -15,6 +15,9 @@ class CompanyController < ApplicationController
   def links
   end
 
+  def personal
+  end
+
   def delivery
   end
 

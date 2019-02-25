@@ -1,6 +1,8 @@
-Получена заявка:<br>
-<%= @name %><br>
-<%= @phone %><br>
-<%= @email %><br>
-<%= @message %><br>
-<%= @quantity %><br>
+ЗАПРОС ПРЕДЛОЖЕНИЯ с сайта:<br>
+<% product = Product.find(@product) %>
+Изделие:  <%= product.article %>) <%= product.title %><br>
+Кол-во: <%= @quantity %><br>
+Имя: <%= @name %><br>
+Телефон: <%= @phone %><br>
+E-mail: <%= @email %><br>
+Сообщение: <%= @message %><br>

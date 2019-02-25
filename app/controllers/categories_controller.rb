@@ -37,7 +37,7 @@ class CategoriesController < ApplicationController
       recentAndSubCategoriesIds.push sc.id
     end
 
-    @vendors_categories_ids = [142, 5094, 74, 5414, 5535, 5818, 5933, 5583, 5512, 6441, 4847, 6321, 5650]
+    @vendors_categories_ids = [142, 74, 5094, 5414, 5535, 5818, 77, 6321, 5583, 5512, 5650, 6371]
 
     @products = []
     Product.available

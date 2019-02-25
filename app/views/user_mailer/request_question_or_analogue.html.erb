@@ -1,8 +1,8 @@
 Получена заявка или подбор аналогов:<br>
-<%= @contact&.name %><br>
-<%= @contact&.phone %><br>
-<%= @contact&.email %><br>
-<%= @contact&.message %><br>
+Имя: <%= @contact&.name %><br>
+Телефон: <%= @contact&.phone %><br>
+E-mail: <%= @contact&.email %><br>
+Сообщение: <%= @contact&.message %><br>
 
 <% unless @contact.contact_attachments.empty? %>
   Вложения файлов:

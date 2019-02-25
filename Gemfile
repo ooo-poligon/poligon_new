@@ -31,7 +31,7 @@ gem 'turbolinks', '2.5.3'
 gem 'zipline', '0.0.10'
 gem 'whenever', '0.9.7', require: false
 gem 'rusprice', '~> 1.2'
-gem 'recaptcha', '4.8.0', require: "recaptcha/rails"
+#gem 'recaptcha', '4.8.0', require: "recaptcha/rails"
 gem 'carrierwave', '~> 1.0'
 gem 'mini_magick', '4.8.0'
 gem 'clipboard-rails'

@@ -21,7 +21,7 @@
           <%= link_to image_tag("logo/brands/relequick.png", alt: '"RELEQUICK"', title: "RELEQUICK - интерфейсные реле"), category_path(5818) %>
         </div>
         <div class="col-sm-3 col-md-1 partner-logo">
-          <%= link_to image_tag("logo/brands/comat_releco.png", alt: '"COMAT-RELECO"', title: "COMAT-RELECO - промышленные промежуточные реле"), category_path(5933) %>
+          <%= link_to image_tag("logo/brands/comat_releco.png", alt: '"COMAT-RELECO"', title: "COMAT-RELECO - промышленные промежуточные реле"), category_path(77) %>
         </div>
         <div class="col-sm-3 col-md-1 partner-logo">
           <%= link_to image_tag("logo/brands/emko.png", alt: '"EMKO"', title: "EMKO - температурные датчики и и контроллеры"), category_path(5583) %>
@@ -33,7 +33,7 @@
           <%= link_to image_tag("logo/brands/tehnoplast.png", alt: '"TEHNOPLAST"', title: "Электротехнические шкафы TEHNOPLAST"), category_path(6371) %>
         </div>
         <div class="col-sm-3 col-md-1 partner-logo">
-          <%= link_to image_tag("logo/brands/logo_mete_enerji.jpg", alt: '"Mete Enerji"', title: "") %>
+          <%= link_to image_tag("logo/brands/logo_mete_enerji.jpg", alt: '"Mete Enerji"', title: ""), category_path(7122) %>
         </div>
         <div class="col-sm-3 col-md-1 partner-logo">
           <%= link_to image_tag("logo/brands/polygon.png", alt: '"ПОЛИГОН"', title: "ПОЛИГОН - производитель модульных устройств автоматики и защиты из Санкт-Петербурга"), category_path(6321) %>
@@ -78,22 +78,16 @@
         <div class="col-sm-4 col-md-3 footer-info">
           Информация на сайте <%= link_to "poligon.info", root_path %> не является публичной офертой.
           При использовании материалов ссылка на сайт обязательна. 18+.
-          <p><a href="#">Политика конфиденциальности.</a></p>
-          <p><a href="#">Соглашение об использовании сайта.</a></p>
-          <div class="copyright">© 1997-2018 ООО "ПОЛИГОН".</div>
+          <div class="copyright">© 1997-2019 ООО "ПОЛИГОН".</div>
         </div>
         <div class="hidden-sm col-md-2 footer-catalog">
-          <p>Скачать каталоги PDF <br>
-            Товары на складе <br>
-            Примеры применения <br>
-            Статьи и обзоры <br>
-            Распродажа <br>
+          <p>
             <%= link_to "ПЕРЕЙТИ В КАТАЛОГ >>", categories_path %>
           </p>
         </div>
         <div class="col-sm-4 col-md-4 footer-contacts">
           <p><a href="tel:<%= @phone1.text_value.gsub(" ","") %>"><%= @phone1.text_value %></a> - Санкт-Петербург</p>
-          <p><a href="tel:<%= @phone2.text_value.gsub(" ","") %>"><%= @phone2.text_value %></a> - бесплатно по России</p>
+          <p><a href="tel:<%= @phone2.text_value.gsub(" ","") %>"><%= @phone2.text_value %></a> - факс</p>
           <p>e-mail: <a href="mailto:elcomp@poligon.info">elcomp@poligon.info</a></p>
           <p class="footer-address">Санкт-Петербург, Льва Толстого, д.7</p>
           <div class="footer-carousel">
