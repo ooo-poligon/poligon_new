@@ -100,7 +100,7 @@ class ApplicationController < ActionController::Base
   end
 
   def generate_meta_from(input)
-    set_meta  "title" => "new.poligon.info | " + input,
+    set_meta  "title" => "poligon.info | " + input,
               "og:title" => input,
               "description" => ('Страница сайта "' + input + '"'),
               "og:description" => ('Страница сайта "' + input + '"'),

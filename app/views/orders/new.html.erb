@@ -57,9 +57,6 @@
       <div class="order-hint">Оформление возможно как для компаний, так и для физических лиц.
         После получения Вашей заявки мы свяжемся и согласуем вопросы оплаты и доставки.<br><br>
       </div>
-      <div class="captcha captcha-left">
-        <%= recaptcha_tags callback: 'submitRecaptcha' %>
-      </div>
       <div class="order-button"><button id="send" disabled>Отправить заказ</button></div>
       <div class="order-hint">Нажимая на кнопку "Отправить заказ" Вы даете согласие на обработку
         <a href="<%= company_personal_path %>" target="_blank">персональных данных.</a>

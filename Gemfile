@@ -53,6 +53,8 @@ gem "wysiwyg-rails"
 gem "font-awesome-sass"
 gem 'chosen-rails'
 
+gem 'backup'
+
 group :assets do
   gem 'coffee-rails', '4.1.1'
   gem 'uglifier', '~> 2.7'

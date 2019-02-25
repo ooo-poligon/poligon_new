@@ -37,9 +37,6 @@ class CategoriesController < ApplicationController
       recentAndSubCategoriesIds.push sc.id
     end
 
-    #refactor this
-    #recentAndSubCategoriesIds = Category.where(parent: Category.where(parent: recentAndSubCategoriesIds).pluck(:id))
-
     @vendors_categories_ids = [142, 5094, 74, 5414, 5535, 5818, 5933, 5583, 5512, 6441, 4847, 6321, 5650]
 
     @products = []

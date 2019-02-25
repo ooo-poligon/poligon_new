@@ -1,6 +1,7 @@
 desc 'Get exchange rates from CBR'
 task update_exchange_rate: :environment do
-  url = URI.parse('http://cbr.ru/scripts/XML_daily.asp?date_req=06/02/2019')
+  date = Date.today.strftime("%d/%m/%Y")
+  url = URI.parse("http://cbr.ru/scripts/XML_daily.asp?date_req=#{date}")
   req = Net::HTTP::Get.new(url.to_s)
   begin
     res = Net::HTTP.start(url.host, url.port) {|http|

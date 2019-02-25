@@ -140,22 +140,26 @@
                       
 
                       <li class="product-presence" style="display: inline-block; margin-top: 0px; font-weight: 600; font-size: 14px;">
+                        <span style="color:black;">Наличие:</span>
+                        
                       <% if signed_in? %>
-                          <span style="color:black;">Наличие:</span>
-                        <% if @product.stock && @product.stock > 0 %>
+
+                        <% if @product.stock > 0 || @product.reserved > 0 || @product.remote_stock > 0 %>
                           <span><%= image_tag("green.gif") %></span>
                           <span class="in_stock"><%= @product.stock.to_s + ' шт.' %> в наличии</span>
+                        <% elsif @product.ordered_on_stock > 0 %>
+                          <span class="ordered_on_stock">Ожидается</span>
                         <% else %>
                           <i>Под заказ.</i>
                           <i>Срок поставки: <%= @product.delivery_time %></i>
                         <% end %>
 
                       <% else %>
-                          <span style="color:black;">Наличие:</span>
-                        <% if !@product.stock.nil? || !@product.reserved.nil? || !@product.remove_stock.nil? %>
+
+                        <% if @product.stock > 0 || @product.reserved > 0 || @product.remote_stock > 0 %>
                           <span><%= image_tag("green.gif") %></span>
                           <span class="in_stock">в наличии</span>
-                        <% elsif !@product.ordered_on_stock.nil? %>
+                        <% elsif @product.ordered_on_stock > 0 %>
                           <span class="ordered_on_stock">Ожидается</span>
                         <% else %>
                           <i>Под заказ.</i>
@@ -168,7 +172,7 @@
                     <li>Страна бренда:
                       <%= @product.vendor.address %>
                     </li>
-                    <li>Отгрузка кратно:  1шт.</li>
+                    <li>Отгрузка кратно: 1шт.</li>
                   </ul>
                 </div>
               </div>
@@ -232,12 +236,24 @@
                   <% product_pdf = @product.pdf_name %>
                   <% vendor_folder_name = (Vendor.find(@product.vendor_id)).folder_name %>
                   <% pdf_path = "http://176.53.160.235/PDF/" + vendor_folder_name + "/" + product_pdf %>
-                  <a href="<%= pdf_path %>"><span></span>Скачать документацию</a>
+                  <a href="<%= pdf_path %>" target="_blank"><span></span>Скачать документацию</a>
                 <% end %>
               </div>
-              <div class="distr-button"><a href="<%= company_program_path %>" target="_blank"><span></span>
-                <div style="height: 36px; display: flex; align-items: center;">Официальный дистрибьютор <%= @product.vendor.title %></div></a></div>
+
+              <% if @product.vendor.status_text != "" %>
+                <div class="distr-button">
+                  <% if @product.vendor.status_link != "" %>
+                    <a href="<%= @product.vendor.status_link %>" target="_blank"><span></span>
+                      <div style="height: 36px; display: flex; align-items: center;"><%= @product.vendor.status_text %></div>
+                    </a>
+                  <% else %>
+                     <div style="height: 36px; display: flex; align-items: center;"><span></span><%= @product.vendor.status_text %></div>
+                  <% end %>
+                </div>
+              <% end %>
+
             </div>
+
           </div>
         </div>
         <div class="card-bottom">
@@ -323,7 +339,7 @@
               <% product_pdf = @product.pdf_name %>
               <% vendor_folder_name = @product.vendor.folder_name %>
               <% pdf_path = "/PDF/" + vendor_folder_name + "/" + product_pdf %>
-              <a href="<%= pdf_path %>"><span></span>Скачать документацию</a>
+              <a href="<%= pdf_path %>" target="_blank"><span></span>Скачать документацию</a>
               
             <% end %>
           </div>

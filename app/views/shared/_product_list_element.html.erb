@@ -11,7 +11,8 @@
       </div>
       <div class="col-xs-8 product-descr">
         <h3><%= link_to locals[:product_array][0].title, locals[:product_array][0] %></h3>
-        <p class="product-art">Артикул: <span><%= locals[:product_array][0].article.nil? ? "-" : locals[:product_array][0].article %></span></p>
+        <p class="product-art">
+          Артикул: <span><%= (locals[:product_array][0].article.nil? || locals[:product_array][0].article == "") ? "-" : locals[:product_array][0].article %></span></p>
         <p class="product-manuf">Производитель: <span><a href="/categories/<%= locals[:product_array][3].code %>"><%= locals[:product_array][3].title %></a></span></p>
         <p class="product-text"><%= locals[:product_array][0].description %></p>
         <ul class="product-list">
@@ -96,11 +97,13 @@
       </div>
       <div class="product-presence">
 
-          <% if signed_in? && locals[:product_array][2] > 0 %>
+          <% if signed_in? %>
 
-            <% if locals[:product_array][2] > 0 %>
+            <% if @product.stock > 0 || @product.reserved > 0 || @product.remote_stock > 0 %>
               <span><%= image_tag("green.gif") %></span>
               В наличии: <%= locals[:product_array][2].to_s + ' шт.' %>
+            <% elsif @product.ordered_on_stock > 0 %>
+              <span class="ordered_on_stock">Ожидается</span>
             <% else %>
               <span><%= image_tag("grey.gif") %></span>
               <span>Под заказ, </span><br>
@@ -109,9 +112,11 @@
 
           <% else %>
 
-            <% if locals[:product_array][2] > 0 %>
+            <% if @product.stock > 0 || @product.reserved > 0 || @product.remote_stock > 0 %>
               <span><%= image_tag("green.gif") %></span>
               <span class="in_stock">В наличии</span>
+            <% elsif @product.ordered_on_stock > 0 %>
+              <span class="ordered_on_stock">Ожидается</span>
             <% else %>
               <span><%= image_tag("grey.gif") %></span>
               <i>Под заказ.</i>

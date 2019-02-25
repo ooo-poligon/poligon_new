@@ -44,16 +44,19 @@
     </div>
   </div>
 
-  <div class="apply-tags-block">
+<%# <div class="apply-tags-block">
     <div class="container">
       <h3>Теги</h3>
       <ul class="apply-tags">
-        <% @tags.each do |tag| %>
-          <li><%= tag.name %></li>
-        <% end %>
+         @tags.each do |tag|
+          <li> tag.name </li>
+         end 
       </ul>
     </div>
   </div>
+  %>
+
+
 
   <div class="inside-apply">
     <div class="container">

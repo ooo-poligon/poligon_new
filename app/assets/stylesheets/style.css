@@ -1826,7 +1826,9 @@ input.product-quantity {
 }
 .cart-title {
     text-align: left;
-    padding-top: 50px;
+    display: flex;
+    height: 110px;
+    align-items: center;
 }
 .cart-photo {
     text-align: right;
