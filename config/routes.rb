@@ -46,6 +46,9 @@ Poligon::Application.routes.draw do
   get  'company/agreement'
   get  'company/privacy_policy'
 
+  get  'company/project_offer'
+  get  'company/dealer_offer'
+
   root 'content#home'
   get  'content/show'
   get  'content/certificates'
@@ -96,7 +99,7 @@ Poligon::Application.routes.draw do
   namespace :admin do
     resources :panel, only: [:index]
     resources :scopes, :booklets, :static_contents, :slider_items, :settings
-    resources :examples
+    resources :examples, :news_items
     resources :examples do
       resources :example_images, :only => [:create, :destroy] # support #create and #destroy
     end

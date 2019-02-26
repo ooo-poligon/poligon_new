@@ -63,7 +63,7 @@ Rails.application.configure do
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false
-  config.action_mailer.default_url_options = { host: 'http://new.poligon.info', port: 80 }
+  config.action_mailer.default_url_options = { host: 'http://poligon.info', port: 80 }
   # Don't care if the mailer can't send.
   config.action_mailer.delivery_method = :sendmail
 

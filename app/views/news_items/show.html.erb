@@ -10,11 +10,8 @@
 <div class="container-fluid">
   <div class="row" >
     <div class="col-xs-3 col-md-3" >
-      <% image_path = @news_item.image_path
-        .gsub("\\\\Server03\\бд_сайта\\poligon_images", "/images")
-        .gsub("\\", "/")
-        .gsub('<img', '<img class="img-responsive" ') %>
-      <%= image_tag(image_path, alt: @news_item.title, title: @news_item.title, class: 'img img-responsive news-image') %>
+      <% image_path = @news_item&.image %>
+      <%= image_tag(image_path, alt: @news_item.image_alt, title: @news_item.title, class: 'img img-responsive news-image') %>
     </div>
     <div class="col-xs-9 col-md-9" >
       <%= @news_item.content.html_safe %>

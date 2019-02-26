@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190225144305) do
+ActiveRecord::Schema.define(version: 20190225174721) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -265,12 +265,15 @@ ActiveRecord::Schema.define(version: 20190225144305) do
   end
 
   create_table "news_items", force: :cascade do |t|
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
     t.string   "title",      limit: 255
     t.text     "preview",    limit: 65535
     t.text     "content",    limit: 65535
     t.string   "image_path", limit: 255
+    t.string   "image",      limit: 255
+    t.string   "image_alt",  limit: 255,   default: ""
+    t.string   "slug",       limit: 255
   end
 
   create_table "offers", force: :cascade do |t|

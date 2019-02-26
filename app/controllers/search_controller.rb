@@ -9,8 +9,6 @@ class SearchController < ApplicationController
 
   before_filter :sanitize_q
 
-
-
   def search
     @products = Sunspot.search(Product) do
       #fulltext search

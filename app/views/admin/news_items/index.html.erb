@@ -1,0 +1,28 @@
+<h1>Новости</h1>
+
+<%= link_to "+ Добавить", new_admin_news_item_path, class: "btn btn-success" %>
+
+<table class="table table-striped">
+  <thead class="thead-dark">
+    <tr>
+      <th>ID</th>
+      <th>Превью</th>
+      <th>Название</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @news_items.each do |news| %>
+      <tr>
+        <th><%= news.id %></th>
+        <th></th>
+        <th><%= news.title %></th>
+        <td><%= news.preview %></td>
+        <td>
+          <%= link_to "Редактировать", edit_admin_news_item_path(news), class: "btn btn-sm btn-success" %>
+          <%= link_to "Удалить", admin_news_item_path(news), method: :delete,
+                        data: { confirm: "Вы уверены?" }, class: "btn btn-sm btn-success" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -1,0 +1,25 @@
+<%= form_for @news_item, url: admin_news_items_path(@news_item), :html => {:multipart => true} do |f| %>
+<div class="row">
+  <div class="col-xs-12 col-md-12">
+      <%= label_tag(:title, "Заголовок") %>
+      <%= f.text_field :title, class: 'form-control' %><br>
+
+      <%= label_tag(:slug, "URL. Можно не задавать, сгенерируется автоматически из заголовка.") %>
+      <%= f.text_field :slug, class: 'form-control' %><br>
+
+      <%= label_tag(:preview, "Preview") %>
+      <%= f.text_field :preview, class: 'form-control' %><br>
+
+      <%= label_tag(:content, "Контент") %>
+      <%= f.text_area :content, class: 'form-control ckeditor' %><br>
+
+      <%= f.label 'Картинка' %><br>
+      <%= f.file_field :image, accept: "image/jpeg, image/jpg, image/gif, image/png", class: "form-control" %><br>
+
+      <%= f.label 'Картинка ALT' %>
+      <%= f.text_field :image_alt, accept: "image/jpeg, image/jpg, image/gif, image/png", class: "form-control" %><br>
+
+      <%= f.submit "Сохранить", class: 'btn btn-info' %>
+  </div>
+</div>
+<% end %>

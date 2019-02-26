@@ -108,7 +108,7 @@ class ProductsController < ApplicationController
     @products = []
     addCBR = Setting.find_by title: 'addCBR'
 
-    @products_list = Product.includes(:vendor).where.not(stock: 0).order('sorting DESC')
+    @products_list = Product.available.includes(:vendor).where.not(stock: 0).order('sorting DESC')
 
     if params[:vendor]
       vendor = Vendor.find_by(title: params[:vendor])

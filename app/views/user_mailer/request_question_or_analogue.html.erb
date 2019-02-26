@@ -8,8 +8,8 @@ E-mail: <%= @contact&.email %><br>
   Вложения файлов:
   <% @contact.contact_attachments.each do |att| %>
     <% url = att.file.url %>
-    <a href="<%= "#{root_url}#{url}" %>">
-      <%= "#{root_url}#{url}" %>
+    <a href="http://poligon.info<%= "#{url}" %>">
+      <%= "http://poligon.info#{root_url}#{url}" %>
     </a>
     <br>
   <% end %>
