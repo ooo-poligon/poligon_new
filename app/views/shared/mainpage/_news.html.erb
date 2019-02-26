@@ -9,12 +9,12 @@
       <div class="col-sm-4">
         <div class="row news-item">
           <% image_path = newsItem&.image %>
-          <div class="col-xs-6 news-photo"><%= link_to image_tag(image_path), news_item_path(newsItem.id) %></div>
+          <div class="col-xs-6 news-photo"><%= link_to image_tag(image_path), news_item_path(newsItem) %></div>
           <div class="col-xs-6 news-info">
-            <div class="news-date"><%= newsItem.created_at %></div>
-            <div class="news-title"><%= newsItem.title %></div>
-            <div class="news-text"><%= newsItem.preview %></div>
-            <div class="news-link"><a href="#">читать далее</a></div>
+            <div class="news-date"><%= newsItem.created_at.strftime("%Y-%m-%d") %></div>
+            <div class="news-title"><%= link_to newsItem.title, news_item_path(newsItem) %></div>
+            <div class="news-text"><%= newsItem.preview.html_safe %></div>
+            <div class="news-link"><%= link_to "читать далее", news_item_path(newsItem) %></div>
           </div>
         </div>
       </div>

@@ -27,6 +27,12 @@ class CompanyController < ApplicationController
   def privacy_policy
   end
 
+  def project_offer
+  end
+
+  def dealer_offer
+  end
+
   def program
     @vendors = Vendor.where(delivery_program: 1)
   end

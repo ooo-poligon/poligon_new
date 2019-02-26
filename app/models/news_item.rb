@@ -12,6 +12,15 @@ class NewsItem < ActiveRecord::Base
     ]
   end
 
+  def remake_slug
+    self.update_attribute(:slug, nil)
+    self.save!
+  end
+
+  def normalize_friendly_id(input)
+    input.to_s.to_slug.normalize(transliterations: :russian).to_s
+  end
+
   searchable do
     text :title, :as => :code_textp
     text :content, :as => :code_textp
