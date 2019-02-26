@@ -13,7 +13,7 @@ class NewsItemsController < ApplicationController
   # GET /news_items/1
   # GET /news_items/1.json
   def show
-    @news_item = NewsItem.find(params[:id])
+    @news_item = NewsItem.friendly.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb

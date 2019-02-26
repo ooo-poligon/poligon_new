@@ -9,7 +9,7 @@ class Admin::NewsItemsController < Admin::BaseController
   end
 
   def edit
-    @news_item = NewsItem.find params[:id]
+    @news_item = NewsItem.friendly.find params[:id]
   end
 
   def create
@@ -24,7 +24,7 @@ class Admin::NewsItemsController < Admin::BaseController
   end
 
   def destroy
-    @news_item = NewsItem.find params[:id]
+    @news_item = NewsItem.friendly.find params[:id]
     if @news_item.destroy
       flash[:success] = "Новость удалена"
       redirect_to admin_news_items_path
@@ -35,7 +35,7 @@ class Admin::NewsItemsController < Admin::BaseController
   end
 
   def update
-    @news_item = NewsItem.find params[:id]
+    @news_item = NewsItem.friendly.find params[:id]
     if @news_item.update_attributes news_item_params
       flash[:success] = "Новость отредактирован"
       redirect_to admin_news_items_path

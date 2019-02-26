@@ -14,7 +14,7 @@
     <% @news_items.each do |news| %>
       <tr>
         <th><%= news.id %></th>
-        <th></th>
+        <th><%= image_tag(news&.image&.url, style: "width: 100px;") %></th>
         <th><%= news.title %></th>
         <td><%= news.preview %></td>
         <td>

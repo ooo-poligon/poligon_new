@@ -20,7 +20,7 @@
     <% @booklets.each do |booklet| %>
       <tr>
         <th><%= booklet.id %></th>
-        <th><%= image_tag(booklet&.image&.url, style: "width: 100px;") %></th>
+        <th><%= image_tag(booklet&.image, style: "width: 100px;") %></th>
         <th><%= booklet.title %></th>
         <th><%= booklet.print_version %></th>
         <th><%= booklet.vendor_show %></th>

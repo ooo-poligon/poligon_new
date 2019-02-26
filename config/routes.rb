@@ -3,7 +3,7 @@ Poligon::Application.routes.draw do
 
   resources :orders
   resources :line_items, except: [:index]
-  resources :news_items, only: [:index, :show]
+  resources :news_items, only: [:index, :show], path: 'news'
   resources :categories, only: [:index, :show]
   resources :articles,   only: [:index, :show]
   resources :videos,     only: [:index, :show]
