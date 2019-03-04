@@ -8,7 +8,8 @@ class CategoriesController < ApplicationController
   before_action :getCourse
 
   def show
-    @currentCategoryId = params[:id]
+    @curCatSlug = params[:id]
+    @currentCategoryId = Category.friendly.find(@curCatSlug).id
     @addCBR = Setting.find_by title: 'addCBR'
     @allUpLevelCategories = []
     @allUpLevelCategoriesIds = []

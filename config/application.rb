@@ -30,6 +30,12 @@ module Poligon
     config.assets.enabled = true
     config.assets.precompile += %w(*.js admin.css admin.js)
     config.exceptions_app = self.routes
+
+
+    config.middleware.insert_before(Rack::Runtime, Rack::Rewrite) do
+      r301 '/catalog/index.php?SECTION_ID=4988&ELEMENT_ID=388', '/products/388'
+    end
+
   end
 end
 

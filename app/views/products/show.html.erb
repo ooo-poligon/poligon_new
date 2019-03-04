@@ -221,7 +221,8 @@
               <p class="product-manuf">Производитель:
                 <span>
                   <% unless @product&.vendor&.code.nil? %>
-                    <a href="<%= category_path(@product&.vendor&.code) %>">
+                      <% category = Category.find_by(id: @product&.vendor&.code) %>
+                    <a href="<%= category_path(category.slug) %>">
                       <%= @product.vendor&.title %>
                     </a>
                   <% else %>

@@ -17,9 +17,11 @@
 
 
   <%= f.label 'Продукт' %>
-  <% product = nil %>
+  <% collection = "" %>
   <% products = Product.find(@example.product_id) if @example.product_id %>
-  <%= f.select :product_id, options_from_collection_for_select([products], 'id', 'title', products.id), { include_blank: true }, class: "form-control chosen chosen-ajax" %><br><br>
+  <% collection = options_from_collection_for_select([products], 'id', 'title', products.id) if @example.product_id %>
+
+  <%= f.select :product_id, collection, { include_blank: true }, class: "form-control chosen chosen-ajax" %><br><br>
 
   <%= label_tag(:issue, "Задача:") %>
   <%= f.text_area :issue, size: "160x12", class: 'form-control ckeditor' %><br><br>

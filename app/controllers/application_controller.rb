@@ -7,6 +7,16 @@ class ApplicationController < ActionController::Base
   before_action :getCourse
   helper_method :verify_captcha, :get_prices_eur, :get_prices_rub, :hello_user, :parents_of, :set_meta, :generate_meta_from, :calculate_price
 
+  def not_found
+    raise ActionController::RoutingError.new('Not Found')
+  rescue
+    render_404
+  end
+
+  def render_404
+    render file: "#{Rails.root}/public/404", status: :not_found
+  end
+
   def verify_captcha(params)
     require 'uri'
     require 'net/http'

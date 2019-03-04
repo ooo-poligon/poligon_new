@@ -17,7 +17,11 @@
   </tr>
   <% locals[:items].each do |item| %>
     <tr>
-      <td><%= image_tag(item.image, alt: item.title, title: item.title, class: 'img img-responsive news-image') if item.image %></td>
+      <% if item.is_a? NewsItem %>
+        <td><%= image_tag(item.image, alt: item.title, title: item.title, class: 'img img-responsive news-image') if item.image %></td>
+      <% else %>
+       <td><%= image_tag(item.image_path, alt: item.title, title: item.title, class: 'img img-responsive news-image') if item.image_path %></td>
+      <% end %>
       <% if item.is_a? NewsItem %>
         <td>
           <table>

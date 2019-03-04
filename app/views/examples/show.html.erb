@@ -52,7 +52,7 @@
                   <% product_name = ' (' + @example.product.article + ') ' + @example.product.title %>
                 <% end %>
                 <li><strong>Изделие:</strong><br>
-                  <%= link_to product_name, product_path(@example.product.id) %>
+                  <%= link_to product_name, category_product_path(id:@example.product, category_id: @example.product.category) %>
                 </li>
               <% end %>
 

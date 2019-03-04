@@ -10,10 +10,16 @@
         <!--<div class="product-adv"><a href="card.html#tab-advant" class="to-advant" target="_blank">Преимущества</a></div>-->
       </div>
       <div class="col-xs-8 product-descr">
-        <h3><%= link_to locals[:product_array][0].title, locals[:product_array][0] %></h3>
+        <h3>
+          <% category_slug = Category.find_by(id: locals[:product_array][0].category_id).slug %>
+          <%= link_to locals[:product_array][0].title, category_product_path(id: locals[:product_array][0], category_id: category_slug) %>
+            
+          </h3>
         <p class="product-art">
           Артикул: <span><%= (locals[:product_array][0].article.nil? || locals[:product_array][0].article == "") ? "-" : locals[:product_array][0].article %></span></p>
-        <p class="product-manuf">Производитель: <span><a href="/categories/<%= locals[:product_array][3].code %>"><%= locals[:product_array][3].title %></a></span></p>
+
+          <% manuf_slug = Category.find_by(locals[:product_array][3].code) %>
+        <p class="product-manuf">Производитель: <span><a href="/catalog/<%= manuf_slug.slug %>"><%= locals[:product_array][3].title %></a></span></p>
         <p class="product-text"><%= locals[:product_array][0].description %></p>
         <ul class="product-list">
           <!--<li><a>Параметры</a>-->

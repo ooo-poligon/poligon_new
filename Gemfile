@@ -54,6 +54,10 @@ gem "font-awesome-sass"
 gem 'chosen-rails'
 
 gem 'backup'
+gem 'rack-rewrite'
+
+gem 'exception_notification', '4.1.4'
+gem 'httparty'
 
 group :assets do
   gem 'coffee-rails', '4.1.1'
@@ -94,8 +98,4 @@ end
 
 group :development do
   gem 'mina', '0.3.8'
-end
-
-group :production do
-  gem 'exception_notification', '4.1.4'
 end

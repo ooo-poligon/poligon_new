@@ -35,7 +35,7 @@ class ExamplesController < ApplicationController
     example_product_groups = []
     product_groups.each do |product_group|
       @cat = Category.find(product_group.name)
-      example_product_groups.push("<a href='/categories/"+product_group.name+"'>"+@cat.title+"</a> ,")
+      example_product_groups.push("<a href='/catalog/"+@cat.slug+"'>"+@cat.title+"</a> ,")
     end
     @product_groups_string = example_product_groups.join("").chomp(",")
   end

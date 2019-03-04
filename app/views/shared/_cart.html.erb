@@ -590,7 +590,7 @@
                       <%= render "shared/product_image", locals: {product: line_item.product} %>
                     </div>
                     <div class="col-md-7 cart-title">
-                      <%= link_to(line_item.product.title, product_path(line_item.product.id)) %>
+                      <%= link_to(line_item.product.title, category_product_path(line_item.product.id, line_item.product.category.slug)) %>
                     </div>
                   </div>
                 </td>

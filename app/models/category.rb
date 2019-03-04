@@ -2,6 +2,8 @@ class Category < ActiveRecord::Base
   has_many :subcategories, class_name: 'Category', foreign_key: 'parent'
   belongs_to :parent_category, class_name: 'Category'
 
+
+
   has_many :products
 
   validates :title, uniqueness: true
@@ -21,6 +23,25 @@ class Category < ActiveRecord::Base
     categories_ids << cat.id
     products = Product.where(category_id: categories_ids)
     products
+  end
+
+  extend FriendlyId
+  friendly_id :slug_candidates, use: :slugged
+
+  def slug_candidates
+    [
+      :title,
+      [:title, :id],
+    ]
+  end
+
+  def remake_slug
+    self.update_attribute(:slug, nil)
+    self.save!
+  end
+
+  def normalize_friendly_id(input)
+    input.to_s.to_slug.normalize(transliterations: :russian).to_s
   end
 
 end

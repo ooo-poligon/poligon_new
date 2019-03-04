@@ -3,8 +3,10 @@ class ProductsController < ApplicationController
   before_action :getCourse
 
   def show
-
-    @product                   = Product.find(params[:id])
+    @product                   = Product.friendly.find(params[:id])
+    if @product.available == 0 && current_user.nil?
+      return not_found
+    end
     @parents_array             = parents_of(@product.category_id)
     @addCBR                    = Setting.find_by title: 'addCBR'
     

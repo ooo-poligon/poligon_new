@@ -6,4 +6,6 @@
 <% else %>
   <% image_path = "nophoto.png" %>
 <% end %>
-<%= link_to image_tag(image_path, class: "img-responsive center-block product-image-container"), product_path(product.id) %>
+
+
+<%= link_to image_tag(image_path, class: "img-responsive center-block product-image-container"), category_product_path(product.id, category_id: product.category.slug) %>

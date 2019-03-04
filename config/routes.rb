@@ -4,14 +4,19 @@ Poligon::Application.routes.draw do
   resources :orders
   resources :line_items, except: [:index]
   resources :news_items, only: [:index, :show], path: 'news'
-  resources :categories, only: [:index, :show]
   resources :articles,   only: [:index, :show]
   resources :videos,     only: [:index, :show]
   resources :reviews,    only: [:index, :show]
   resources :additions,  only: [:index, :show]
+
+  resources :categories, only: [:index, :show], path: 'catalog' do
+    get '/:id', to: 'products#show', as: 'product'
+  end
+
   resources :products do
     get :autocomplete_product_title, :on => :collection
   end
+
   resources :carts
 
   get  'examples', to: "examples#index"
