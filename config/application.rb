@@ -31,9 +31,13 @@ module Poligon
     config.assets.precompile += %w(*.js admin.css admin.js)
     config.exceptions_app = self.routes
 
-
+    file = File.join(Rails.root, 'config','redirect_list.csv')
+  
     config.middleware.insert_before(Rack::Runtime, Rack::Rewrite) do
-      r301 '/catalog/index.php?SECTION_ID=4988&ELEMENT_ID=388', '/products/388'
+      File.open(file).each do |line|
+        url = line.remove("\n").split(",")
+        r301 "#{url[0]}", "#{url[1]}"
+      end
     end
 
   end
