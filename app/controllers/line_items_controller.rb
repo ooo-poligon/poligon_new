@@ -37,6 +37,8 @@ class LineItemsController < ApplicationController
     overflow = quantity - stock
     @line_item = @cart.add_product(product.id, quantity, price, overflow)
 
+
+    binding.pry
     respond_to do |format|
       if @line_item.save
         format.html { redirect_to @line_item.cart }
