@@ -150,8 +150,7 @@
                         <% elsif @product.ordered_on_stock > 0 %>
                           <span class="ordered_on_stock">Ожидается</span>
                         <% else %>
-                          <i>Под заказ.</i>
-                          <i>Срок поставки: <%= @product.delivery_time %></i>
+                          <i><%= @product.delivery_time %></i>
                         <% end %>
 
                       <% else %>
@@ -162,8 +161,7 @@
                         <% elsif @product.ordered_on_stock > 0 %>
                           <span class="ordered_on_stock">Ожидается</span>
                         <% else %>
-                          <i>Под заказ.</i>
-                          <i>Срок поставки: <%= @product.delivery_time %></i>
+                          <i><%= @product.delivery_time %></i>
                         <% end %>
 
                       <% end %>
@@ -236,7 +234,7 @@
                 <% if @product.pdf_name != nil and @product.pdf_name != "" %>
                   <% product_pdf = @product.pdf_name %>
                   <% vendor_folder_name = (Vendor.find(@product.vendor_id)).folder_name %>
-                  <% pdf_path = "http://176.53.160.235/PDF/" + vendor_folder_name + "/" + product_pdf %>
+                  <% pdf_path = "https://poligon.info/PDF/" + vendor_folder_name + "/" + product_pdf %>
                   <a href="<%= pdf_path %>" target="_blank"><span></span>Скачать документацию</a>
                 <% end %>
               </div>

@@ -26,6 +26,7 @@ class Product < ActiveRecord::Base
     text    :description, :as => :code_textp
     text    :article, :as => :code_textp
     integer :id
+    integer :available
   end
 
   extend FriendlyId

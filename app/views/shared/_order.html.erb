@@ -38,7 +38,7 @@
                   <span>Частично в наличии</span>
                 <% elsif line_item.overflow == line_item.quantity %>
                   <span><%= image_tag("grey.gif") %></span>
-                  <span>Под заказ</span>
+                  <span><%= line_item.product.delivery_time %></span>
                 <% else %>
                   <span><%= image_tag("green.gif") %></span>
                   <span>На складе</span>

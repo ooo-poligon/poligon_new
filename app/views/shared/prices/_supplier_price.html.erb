@@ -5,7 +5,9 @@
   <td style="text-align:left">
   </td>
   <td style="text-align:right; color: lightblue;">
+    <% unless product.currency_id == 2 %>
       &euro;<%= get_prices_eur(product)[5].round(2) %>
+    <% end %>
   </td>
   <td style="color: lightgreen; text-align:right; ">
     <%= get_prices_rub(product)[5].round(2) %>р.

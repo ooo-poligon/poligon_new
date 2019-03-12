@@ -42,7 +42,7 @@ Rails.application.configure do
   # config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect' # for NGINX
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
-  config.force_ssl = true
+  # config.force_ssl = true
 
   # Use the lowest log level to ensure availability of diagnostic information
   # when problems arise.
@@ -97,6 +97,17 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   Rails.application.config.middleware.use ExceptionNotification::Rack,
+   ignore_if: ->(env, exception) {
+    code_place = ""
+    exception.annoted_source_code.strip.split("\n").each do |a|
+      code_place += a.squish+"%0A"
+    end
+    text = "ERROR:"+"%0A"+exception.to_s+"%0A"+"CODE:"+"%0A"+code_place.to_s
+    url = "https://api.telegram.org/bot611132365:AAFyb83Lbx9J_wvbHAICiNoY7cWiZZXxkFA/sendMessage?chat_id=-1001431593061&text=#{text}"
+    full_url = URI::encode(url)
+    HTTParty.get(full_url)
+    false
+  },
   :email => {
     #:deliver_with => :deliver, # Rails >= 4.2.1 do not need this option since it defaults to :deliver_now
     :email_prefix => "[ERROR] ",

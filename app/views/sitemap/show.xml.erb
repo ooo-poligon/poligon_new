@@ -10,6 +10,7 @@
     <changefreq>daily</changefreq>
   </url>
 
+
   <% @news_items.each do |news_item| %>
     <url>
       <loc><%= news_item_url(news_item) %></loc>
@@ -54,7 +55,7 @@
 
   <% @products.each do |product| %>
     <url>
-      <loc><%= product_url(product) %></loc>
+      <loc><%= category_product_url(category_id: product.category, id: product) %></loc>
       <changefreq>daily</changefreq>
     </url>
   <% end %>

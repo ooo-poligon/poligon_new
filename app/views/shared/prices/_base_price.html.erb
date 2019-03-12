@@ -1,14 +1,20 @@
 <tr class="success">
   <td style="text-align:left">
-    Базовая:
+    Базовая <% if current_user.group_id == 2 %>
+              <sup style="color: red; font-size: 7pt"><%= (get_prices_eur(product)[0]/get_prices_eur(product)[5]).round(2) %></sup>
+            <% end %>:
   </td>
   <td style="text-align:left">
   </td>
+
   <td style="color: blue; text-align:right;">
-  <button class="clipboard-btn btn btn-xs btn-outline-primary copy-btn" data-clipboard-text="<%= article_text %><%= product.title %> — Базовая цена: <%= get_prices_eur(product)[0].round(2) %> евро c НДС. <%= information_on_the_availability %>">
+    <% unless product.currency_id == 2 %>
+    <button class="clipboard-btn btn btn-xs btn-outline-primary copy-btn" data-clipboard-text="<%= article_text %><%= product.title %> — Базовая цена: <%= get_prices_eur(product)[0].round(2) %> евро c НДС. <%= information_on_the_availability %>">
     &euro;<%= get_prices_eur(product)[0].round(2) %>
     </button>
+    <% end %>
   </td>
+
   <td style="color: green; text-align:right; ">
   <button class="clipboard-btn btn btn-xs btn-outline-primary copy-btn" data-clipboard-text="<%= article_text %><%= product.title %> — Базовая цена: <%= get_prices_rub(product)[0].round(2) %> рублей c НДС. <%= information_on_the_availability %>">
     <%= get_prices_rub(product)[0].round(2) %>р.

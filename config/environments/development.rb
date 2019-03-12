@@ -56,16 +56,5 @@ Rails.application.configure do
 
   require 'uri'
 
-  Rails.application.config.middleware.use ExceptionNotification::Rack,
-   ignore_if: ->(env, exception) {
-    code_place = ""
-    exception.annoted_source_code.strip.split("\n").each do |a|
-      code_place += a.squish+"%0A"
-    end
-    text = "ERROR:"+"%0A"+exception.to_s+"%0A"+"CODE:"+"%0A"+code_place.to_s
-    url = "https://api.telegram.org/bot611132365:AAFyb83Lbx9J_wvbHAICiNoY7cWiZZXxkFA/sendMessage?chat_id=-1001431593061&text=#{text}"
-    full_url = URI::encode(url)
-    HTTParty.get(full_url)
-    false
-  }
+
 end

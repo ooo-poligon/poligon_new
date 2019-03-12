@@ -14,7 +14,7 @@ class SitemapController < ApplicationController
     @articles        = Article.all
     @news_items      = NewsItem.all
     @categories      = Category.available.where.not(id: 1..4)
-    @products        = Product.available
+    @products        = Product.available.includes(:category)
     @reviews         = Review.all
     @static_contents = StaticContent.all
     @videos          = Video.all

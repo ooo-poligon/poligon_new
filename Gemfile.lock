@@ -407,6 +407,8 @@ GEM
     shellany (0.0.1)
     shoulda-matchers (3.1.1)
       activesupport (>= 4.0.0)
+    sitemap_generator (6.0.2)
+      builder (~> 3.0)
     spring (1.7.1)
     spring-commands-cucumber (1.0.1)
       spring (>= 0.9.1)
@@ -534,6 +536,7 @@ DEPENDENCIES
   sass-rails (>= 3.2)
   selenium-webdriver (= 2.53.4)
   shoulda-matchers (= 3.1.1)
+  sitemap_generator
   spring (= 1.7.1)
   spring-commands-cucumber (= 1.0.1)
   spring-commands-rspec (= 1.0.4)

@@ -15,8 +15,7 @@
             <% if !product.stock.nil? && product.stock > 0 %>
               <%= product.stock.to_s + ' шт.' %>
             <% else %>
-              <i>Под заказ.</i>
-              <i>Срок поставки: <%= product.delivery_time %></i>
+              <i><%= product.delivery_time %></i>
             <% end %>
 
           <% else %>
@@ -26,8 +25,7 @@
             <% elsif product.ordered_on_stock > 0 %>
               <span class="ordered_on_stock">Ожидается</span>
             <% else %>
-              <i>Под заказ.</i>
-              <i>Срок поставки: <%= product.delivery_time %></i>
+              <i><%= product.delivery_time %></i>
             <% end %>
 
           <% end %>

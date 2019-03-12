@@ -59,6 +59,8 @@ gem 'rack-rewrite'
 gem 'exception_notification', '4.1.4'
 gem 'httparty'
 
+gem 'sitemap_generator'
+
 group :assets do
   gem 'coffee-rails', '4.1.1'
   gem 'uglifier', '~> 2.7'

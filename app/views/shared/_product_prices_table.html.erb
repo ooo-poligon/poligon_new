@@ -22,11 +22,11 @@
 
 
 
-  <% if product.currency_id == 1 %>
+  <% if product.currency_id == 1 || product.currency_id == 2 %>
       
       <table class="table table-condensed table-responsive prices-table">
       <tbody>
-
+ 
         <%# Dealer+ Marketing + Sales %>
         <% if [1,2,3].include?(current_user.group_id) %>
           <%= render 'shared/prices/special_price', product: product, article_text: article_text, information_on_the_availability: information_on_the_availability %>

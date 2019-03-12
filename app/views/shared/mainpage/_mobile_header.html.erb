@@ -2,8 +2,8 @@
   <div class="mobile-contacts">
     <div class="container">
       <div class="row">
-        <div class="col-xs-4 mobile-phone"><a href="tel:+78123254220">+7 812 325 42 20</a></div>
-        <div class="col-xs-4 mobile-phone"><a href="tel:+78001234578">+7 800 123 45 78</a></div>
+        <div class="col-xs-4 mobile-phone"><a href="tel:<%= @phone1.text_value.gsub(" ","") %>"><%= @phone1.text_value %></a></div>
+        <div class="col-xs-4 mobile-phone"><a href="tel:<%= @phone2.text_value.gsub(" ","") %>"><%= @phone2.text_value %></a></div>
         <div class="col-xs-4 mobile-mail"><a href="mailto:elcomp@poligon.info">elcomp@poligon.info</a></div>
       </div>
     </div>

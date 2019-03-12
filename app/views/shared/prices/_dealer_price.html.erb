@@ -6,9 +6,11 @@
       -<%= ((1-get_prices_eur(product)[4]/get_prices_eur(product)[0])*100).round(2) %>%
     </td>
     <td style="color: blue; text-align:right;">
+      <% unless product.currency_id == 2 %>
     <button class="clipboard-btn btn btn-xs btn-outline-primary copy-btn"  data-clipboard-text="<%= article_text %><%= product.title %> — Дилерская цена: <%= get_prices_eur(product)[4].round(2) %> евро c НДС. <%= information_on_the_availability %>">
       &euro;<%= get_prices_eur(product)[4].round(2) %>
       </button>
+    <% end %>
     </td>
     <td style="color: green; text-align:right; ">
     <button class="clipboard-btn btn btn-xs btn-outline-primary copy-btn"  data-clipboard-text="<%= article_text %><%= product.title %> — Дилерская цена: <%= get_prices_rub(product)[4].round(2) %> рублей c НДС. <%= information_on_the_availability %>">

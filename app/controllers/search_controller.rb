@@ -16,6 +16,8 @@ class SearchController < ApplicationController
         phrase_fields :title => 2.0
         phrase_slop   1
       end
+
+      with(:available).equal_to(1)
       #scoping
       if params.has_key?(:title)
         with :title, params[:q]

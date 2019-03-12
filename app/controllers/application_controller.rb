@@ -47,9 +47,11 @@ class ApplicationController < ActionController::Base
   end
   
   def get_prices_eur(product)
+
+
     prices_array = []
     retail = product.base_price
-    prices_array << retail
+    prices_array << retail 
     prices_array << product.special_price
     prices_array << product.price_10
     prices_array << product.opt_price
@@ -62,7 +64,11 @@ class ApplicationController < ActionController::Base
   def get_prices_rub(product)
     prices_array = []
     
-    course_multiplier = (@courseEuro + (@courseEuro / 100) * 0.0)
+    if product.currency_id == 2
+      course_multiplier = 1
+    else
+      course_multiplier = (@courseEuro + (@courseEuro / 100) * 0.0)
+    end
 
     retail_ru = product.base_price * course_multiplier
     supplier_ru = product.supplier_price * course_multiplier

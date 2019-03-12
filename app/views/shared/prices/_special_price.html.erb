@@ -4,12 +4,16 @@
       Специальная:
     </td>
     <td width="10%" style="text-align:left">
+      <% unless product.currency_id == 2 %>
       -<%= ((1-get_prices_eur(product)[1]/get_prices_eur(product)[0])*100).round(2) %>%
+      <% end %>
     </td>
     <td width="23%" style="color: blue; text-align:right; ">
-    <button class="clipboard-btn btn btn-primary btn-xs btn-block" data-clipboard-text="<%= article_text %><%= product.title %> — Специальная цена: <%= get_prices_eur(product)[1].round(2) %> евро c НДС. <%= information_on_the_availability %>">
+      <% unless product.currency_id == 2 %>
+        <button class="clipboard-btn btn btn-primary btn-xs btn-block" data-clipboard-text="<%= article_text %><%= product.title %> — Специальная цена: <%= get_prices_eur(product)[1].round(2) %> евро c НДС. <%= information_on_the_availability %>">
       &euro;<%= get_prices_eur(product)[1].round(2) %>
-      </button>
+        </button>
+      <% end %>
     </td>
     <td width="23%" style="color: green; text-align:right; ">
     <button class="clipboard-btn btn btn-xs btn-success btn-block" data-clipboard-text="<%= article_text %><%= product.title %> — Специальная цена: <%= get_prices_rub(product)[1].round(2) %> рублей c НДС. <%= information_on_the_availability %>">
