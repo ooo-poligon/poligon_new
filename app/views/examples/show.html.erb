@@ -60,7 +60,7 @@
                 <% if @example.product && @example.product.pdf_name != nil %>
                   <% product_pdf = @example.product.pdf_name %>
                   <% vendor_folder_name = (Vendor.find(@example.product.vendor_id)).folder_name %>
-                  <% pdf_path = "http://176.53.160.235/PDF/" + vendor_folder_name + "/" + product_pdf %>
+                  <% pdf_path = "https://poligon.info/PDF/" + vendor_folder_name + "/" + product_pdf %>
                   <p><a href="<%= pdf_path %>" target="_blank"><%= @example.product.pdf_name %></a></p>
                 <% else %>
                   <p>Отсутствует</p>

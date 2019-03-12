@@ -60,26 +60,34 @@ class FeedbackController < ApplicationController
   end
 
   def catalogs_order
-    unless params[:name] == '' or
-           params[:last_name] == '' or
-           params[:email] == '' or
-           params[:company] == '' or
-           params[:address] == '' or
-           params[:booklet_ids].size == 0
+    @booklets = Booklet.all
+    @vendors = Vendor.where(id: @booklets.pluck(:vendor_id).uniq)
 
-      @name      = params[:name]
-      @last_name = params[:last_name]
-      @email     = params[:email]
-      @company   = params[:company]
-      @address   = params[:address]
-      @booklet_ids = params[:booklet_ids]
-      @comment = params[:comment]
-      @phone = params[:phone]
+    if verify_captcha(params)
+      unless params[:name] == '' or
+             params[:last_name] == '' or
+             params[:email] == '' or
+             params[:company] == '' or
+             params[:address] == '' or
+             params[:booklet_ids].size == 0
 
-      UserMailer.catalogs_order_email(@name, @last_name, @phone, @email, @company, @address, @booklet_ids, @comment).deliver_now
-      render "catalogs_order"
+        @name      = params[:name]
+        @last_name = params[:last_name]
+        @email     = params[:email]
+        @company   = params[:company]
+        @address   = params[:address]
+        @booklet_ids = params[:booklet_ids]
+        @comment = params[:comment]
+        @phone = params[:phone]
+
+        UserMailer.catalogs_order_email(@name, @last_name, @phone, @email, @company, @address, @booklet_ids, @comment).deliver_now
+        render "catalogs_order"
+      else
+        flash[:error] = "Не заполнены все необходимые поля!"
+        render "booklets"
+      end
     else
-      flash[:error] = "Не заполнены все необходимые поля!"
+      flash[:error] = "Ошибка капчи!"
       render "booklets"
     end
   end
