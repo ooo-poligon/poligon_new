@@ -63,13 +63,15 @@ class FeedbackController < ApplicationController
     @booklets = Booklet.all
     @vendors = Vendor.where(id: @booklets.pluck(:vendor_id).uniq)
 
-    if verify_captcha(params)
+    #if verify_captcha(params)
       unless params[:name] == '' or
              params[:last_name] == '' or
              params[:email] == '' or
              params[:company] == '' or
              params[:address] == '' or
              params[:booklet_ids].size == 0
+
+        binding.pry
 
         @name      = params[:name]
         @last_name = params[:last_name]
@@ -80,16 +82,17 @@ class FeedbackController < ApplicationController
         @comment = params[:comment]
         @phone = params[:phone]
 
+
         UserMailer.catalogs_order_email(@name, @last_name, @phone, @email, @company, @address, @booklet_ids, @comment).deliver_now
         render "catalogs_order"
       else
         flash[:error] = "Не заполнены все необходимые поля!"
         render "booklets"
       end
-    else
-      flash[:error] = "Ошибка капчи!"
-      render "booklets"
-    end
+    #else
+    #  flash[:error] = "Ошибка капчи!"
+    #  render "booklets"
+    #end
   end
 
   def farnell

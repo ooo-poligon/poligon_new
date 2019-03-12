@@ -44,6 +44,7 @@ class CategoriesController < ApplicationController
     Product.available
             .where(category_id: recentAndSubCategoriesIds)
             .order('sorting DESC')
+            .order('stock DESC')
             .includes(:vendor).each do |product|
       one_product_array = []
       product_price = calculate_price(product)
