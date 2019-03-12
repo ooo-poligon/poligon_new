@@ -12,7 +12,7 @@
     <% locals[:products].results.sort_by! {|obj| obj.title}.each do |product| %>
     <% folder_name = Vendor.find_by(id: product.vendor_id).folder_name %>
     <% imagefile_name = product.image_name_1 %>
-      <tr>
+      <tr <% if product.available == 0 %>class="not-available"<% end %>>
          <% unless imagefile_name.nil? %>
            <% imagePath = "/images/catalog/" + folder_name.to_s + "/devices/"+ imagefile_name.to_s %>
            <td><%= link_to image_tag(imagePath, class: "img-responsive center-block product-image-container"), imagePath, class: "fancybox" %>
