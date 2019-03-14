@@ -2,7 +2,9 @@ class ArticlesController < ApplicationController
   # GET /articles
   # GET /articles.json
   def index
-    @articles = Article.all
+    @articles = Article.all.order('created_at DESC')
+    scope = Article.publication_types[params[:scope]] if params[:scope]
+    @articles = Article.where(publication_type: scope).order('created_at DESC') if params[:scope]
 
     respond_to do |format|
       format.html # index.html.erb
@@ -13,7 +15,7 @@ class ArticlesController < ApplicationController
   # GET /articles/1
   # GET /articles/1.json
   def show
-    @article = Article.find(params[:id])
+    @article = Article.friendly.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb

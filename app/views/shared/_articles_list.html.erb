@@ -5,6 +5,29 @@
   <%= render "shared/breadcrumb_search", locals: {for: "publications", class: item_class } %>
 <% end %>
 
+<div class="apply-tags-block" style="margin-top: 0px; margin-bottom: 20px;">
+    <div class="container">
+      <ul class="apply-tags">
+          <li>
+            <a href="/articles">Все публикации</a>
+          </li>
+          <li>
+            <a href="/articles?scope=article">Статьи</a>
+          </li>
+          <li>
+            <a href="/articles?scope=video">Видео</a>
+          </li>
+          <li>
+            <a href="/articles?scope=review">Обзоры</a>
+          </li>
+          <li>
+            <a href="/articles?scope=addition">Дополнения</a>
+          </li>
+      </ul>
+    </div>
+  </div>
+
+
 <table class="table table-striped">
   <tr>
     <th style="width: 10%;">Иллюстрация</th>
@@ -20,7 +43,7 @@
       <% if item.is_a? NewsItem %>
         <td><%= image_tag(item.image, alt: item.title, title: item.title, class: 'img img-responsive news-image') if item.image %></td>
       <% else %>
-       <td><%= image_tag(item.image_path, alt: item.title, title: item.title, class: 'img img-responsive news-image') if item.image_path %></td>
+       <td><%= image_tag(item.image, alt: item.title, title: item.title, class: 'img img-responsive news-image') if item.image %></td>
       <% end %>
       <% if item.is_a? NewsItem %>
         <td>

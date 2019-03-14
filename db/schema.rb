@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190225174721) do
+ActiveRecord::Schema.define(version: 20190311154832) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -60,11 +60,17 @@ ActiveRecord::Schema.define(version: 20190225174721) do
   end
 
   create_table "articles", force: :cascade do |t|
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
-    t.string   "title",      limit: 255
-    t.text     "content",    limit: 65535
-    t.string   "image_path", limit: 255
+    t.datetime "created_at",                                  null: false
+    t.datetime "updated_at",                                  null: false
+    t.string   "title",            limit: 255
+    t.text     "content",          limit: 65535
+    t.string   "image_path",       limit: 255
+    t.string   "image",            limit: 255
+    t.string   "image_alt",        limit: 255,   default: ""
+    t.string   "slug",             limit: 255
+    t.integer  "position",         limit: 4
+    t.integer  "main_page",        limit: 4
+    t.integer  "publication_type", limit: 4
   end
 
   create_table "booklets", force: :cascade do |t|

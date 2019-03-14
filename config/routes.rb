@@ -103,7 +103,7 @@ Poligon::Application.routes.draw do
   # Sample resource route within a namespace:
   namespace :admin do
     resources :panel, only: [:index]
-    resources :scopes, :booklets, :static_contents, :slider_items, :settings
+    resources :scopes, :booklets, :static_contents, :slider_items, :settings, :articles
     resources :examples, :news_items
     resources :examples do
       resources :example_images, :only => [:create, :destroy] # support #create and #destroy

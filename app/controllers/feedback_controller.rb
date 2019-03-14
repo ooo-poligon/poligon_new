@@ -63,7 +63,7 @@ class FeedbackController < ApplicationController
     @booklets = Booklet.all
     @vendors = Vendor.where(id: @booklets.pluck(:vendor_id).uniq)
 
-    #if verify_captcha(params)
+    if verify_captcha(params)
       unless params[:name] == '' or
              params[:last_name] == '' or
              params[:email] == '' or
@@ -89,10 +89,10 @@ class FeedbackController < ApplicationController
         flash[:error] = "Не заполнены все необходимые поля!"
         render "booklets"
       end
-    #else
-    #  flash[:error] = "Ошибка капчи!"
-    #  render "booklets"
-    #end
+    else
+      flash[:error] = "Ошибка капчи!"
+      render "booklets"
+    end
   end
 
   def farnell

@@ -1,0 +1,66 @@
+<h1>Статьи</h1>
+
+<%= link_to "+ Добавить", new_admin_article_path, class: "btn btn-success" %>
+
+
+<div id="scopes" style="padding-top: 10px;">
+  <ul class="nav nav-tabs">
+    <li <% unless params[:scope] %>class="active"<% end %>>
+      <a href="/admin/articles">
+        Все
+        <span class="text-muted"> (<%= Article.count %>)</span>
+      </a>
+    </li>
+    <li <% if params[:scope] == "article" %>class="active" <% end %>>
+      <a href="/admin/articles?scope=article">
+        Статьи
+        <span class="text-muted"> (<%= Article.where(publication_type: 0).count %>)</span>
+      </a>        
+    </li>
+    <li <% if params[:scope] == "video" %>class="active" <% end %>>
+      <a href="/admin/articles?scope=video">
+        Видео
+        <span class="text-muted"> (<%= Article.where(publication_type: 1).count %>)</span>
+      </a>        
+    </li>
+    <li <% if params[:scope] == "review" %>class="active" <% end %>>
+      <a href="/admin/articles?scope=review">
+        Обзоры
+        <span class="text-muted"> (<%= Article.where(publication_type: 2).count %>)</span>
+      </a>        
+    </li>
+    <li <% if params[:scope] == "addition" %>class="active" <% end %>>
+      <a href="/admin/articles?scope=addition">
+        Дополнения
+        <span class="text-muted"> (<%= Article.where(publication_type: 3).count %>)</span>
+      </a>        
+    </li>
+  </ul>
+</div>
+
+<table class="table table-striped">
+  <thead class="thead-dark">
+    <tr>
+      <th>ID</th>
+      <th>Фото</th>
+      <th>Тип</th>
+      <th>Название</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @articles.each do |article| %>
+      <tr>
+        <th><%= article.id %></th>
+        <th>Фото</th>
+        <th>Статья</th>
+        <th><%= article.title %></th>
+        <td>
+          <%= link_to "Редактировать", edit_admin_article_path(article), class: "btn btn-sm btn-success" %>
+          <%= link_to "Удалить", admin_article_path(article), method: :delete,
+                        data: { confirm: "Вы уверены?" }, class: "btn btn-sm btn-success" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
