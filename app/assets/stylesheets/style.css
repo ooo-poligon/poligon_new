@@ -1505,7 +1505,7 @@ input.product-quantity {
        justify-content: start;*/
     display: table;
     width: 100%;
-    margin-bottom: 30px;
+    margin-bottom: 15px;
 }
 .card-description .card-tabs li {
     display: table-cell;

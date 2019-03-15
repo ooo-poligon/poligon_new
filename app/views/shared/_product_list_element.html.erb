@@ -18,7 +18,7 @@
         <p class="product-art">
           Артикул: <span><%= (locals[:product_array][0].article.nil? || locals[:product_array][0].article == "") ? "-" : locals[:product_array][0].article %></span></p>
 
-          <% manuf_slug = Category.find_by(locals[:product_array][3].code) %>
+          <% manuf_slug = Category.find_by(id: locals[:product_array][3].code) %>
         <p class="product-manuf">Производитель: <span><a href="/catalog/<%= manuf_slug.slug %>"><%= locals[:product_array][3].title %></a></span></p>
         <p class="product-text"><%= locals[:product_array][0].description %></p>
         <ul class="product-list">
@@ -107,7 +107,7 @@
 
             <% if @product.stock > 0 || @product.reserved > 0 || @product.remote_stock > 0 %>
               <span><%= image_tag("green.gif") %></span>
-              В наличии: <%= locals[:product_array][2].to_s + ' шт.' %>
+              В наличии: <%= (@product.stock+@product.remote_stock).to_s + ' шт.' %>
             <% elsif @product.ordered_on_stock > 0 %>
               <span class="ordered_on_stock">Ожидается</span>
             <% else %>

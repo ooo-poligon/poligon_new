@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190311154832) do
+ActiveRecord::Schema.define(version: 20190325070638) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -75,7 +75,7 @@ ActiveRecord::Schema.define(version: 20190311154832) do
 
   create_table "booklets", force: :cascade do |t|
     t.string   "title",         limit: 255
-    t.text     "description",   limit: 65535
+    t.text     "description",   limit: 16777215
     t.string   "image",         limit: 255
     t.string   "file",          limit: 255
     t.boolean  "print_version"
@@ -85,8 +85,8 @@ ActiveRecord::Schema.define(version: 20190311154832) do
     t.string   "border_color",  limit: 255
     t.integer  "position",      limit: 4
     t.integer  "vendor_id",     limit: 4
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
   end
 
   create_table "carts", force: :cascade do |t|
@@ -177,10 +177,10 @@ ActiveRecord::Schema.define(version: 20190311154832) do
     t.string   "title",      limit: 255
     t.text     "issue",      limit: 65535
     t.text     "solution",   limit: 65535
-    t.datetime "created_at",                            null: false
-    t.datetime "updated_at",                            null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
     t.string   "slug",       limit: 255
-    t.string   "advantages", limit: 255,   default: ""
+    t.string   "advantages", limit: 20000
   end
 
   add_index "examples", ["product_id"], name: "index_examples_on_product_id", using: :btree
@@ -250,14 +250,6 @@ ActiveRecord::Schema.define(version: 20190311154832) do
     t.string "field",     limit: 255, null: false
     t.string "tableName", limit: 255, null: false
   end
-
-  create_table "kinds_types", force: :cascade do |t|
-    t.integer "product_kind_id",  limit: 4, default: 0, null: false
-    t.integer "property_type_id", limit: 4, default: 0, null: false
-  end
-
-  add_index "kinds_types", ["product_kind_id"], name: "FK__product_kinds", using: :btree
-  add_index "kinds_types", ["property_type_id"], name: "FK__property_types", using: :btree
 
   create_table "line_items", force: :cascade do |t|
     t.integer  "product_id", limit: 4
@@ -351,14 +343,6 @@ ActiveRecord::Schema.define(version: 20190311154832) do
     t.integer "property_id",     limit: 4, null: false
   end
 
-  create_table "product_kinds_property_types", force: :cascade do |t|
-    t.integer "product_kind_id",  limit: 4, default: 0, null: false
-    t.integer "property_type_id", limit: 4, default: 0, null: false
-  end
-
-  add_index "product_kinds_property_types", ["product_kind_id"], name: "FK__product_kinds", using: :btree
-  add_index "product_kinds_property_types", ["property_type_id"], name: "FK__property_types", using: :btree
-
   create_table "products", force: :cascade do |t|
     t.integer "number_card_1c",     limit: 4
     t.string  "title",              limit: 255,   default: "",  null: false
@@ -422,11 +406,11 @@ ActiveRecord::Schema.define(version: 20190311154832) do
     t.integer "analog_3",           limit: 4,     default: 0
     t.integer "analog_4",           limit: 4,     default: 0
     t.integer "analog_5",           limit: 4,     default: 0
-    t.integer "acсessories_1",      limit: 4,     default: 0
-    t.integer "acсessories_2",      limit: 4,     default: 0
-    t.integer "acсessories_3",      limit: 4,     default: 0
-    t.integer "acсessories_4",      limit: 4,     default: 0
-    t.integer "acсessories_5",      limit: 4,     default: 0
+    t.integer "accessories_1",      limit: 4,     default: 0
+    t.integer "accessories_2",      limit: 4,     default: 0
+    t.integer "accessories_3",      limit: 4,     default: 0
+    t.integer "accessories_4",      limit: 4,     default: 0
+    t.integer "accessories_5",      limit: 4,     default: 0
     t.text    "comment",            limit: 65535
     t.string  "price_date",         limit: 50
     t.string  "slug",               limit: 255
@@ -447,6 +431,12 @@ ActiveRecord::Schema.define(version: 20190311154832) do
     t.string  "portal_description", limit: 255
     t.integer "dealer_selection_1", limit: 4,     default: 0
     t.integer "dealer_selection_2", limit: 4,     default: 0
+    t.integer "kt_type",            limit: 4,     default: 0
+    t.string  "analog_1_comment",   limit: 255,   default: ""
+    t.string  "analog_2_comment",   limit: 255,   default: ""
+    t.string  "analog_3_comment",   limit: 255,   default: ""
+    t.string  "analog_4_comment",   limit: 255,   default: ""
+    t.string  "analog_5_comment",   limit: 255,   default: ""
   end
 
   add_index "products", ["advantage_id"], name: "index_products_on_advantage_id", using: :btree
@@ -579,12 +569,6 @@ ActiveRecord::Schema.define(version: 20190311154832) do
 
   add_index "properties_copy", ["product_kind_id"], name: "index_properties_on_product_kind_id", using: :btree
 
-  create_table "property_kinds", force: :cascade do |t|
-    t.string   "title",      limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-  end
-
   create_table "property_types", force: :cascade do |t|
     t.string   "title",      limit: 255
     t.datetime "created_at",             null: false
@@ -704,8 +688,8 @@ ActiveRecord::Schema.define(version: 20190311154832) do
     t.string  "title",            limit: 255,                     null: false
     t.text    "address",          limit: 4294967295
     t.text    "description",      limit: 4294967295
-    t.text    "status",           limit: 4294967295,              null: false
-    t.text    "statuslink",       limit: 4294967295,              null: false
+    t.text    "status",           limit: 4294967295
+    t.text    "statuslink",       limit: 4294967295
     t.text    "folder_name",      limit: 4294967295
     t.float   "rate",             limit: 53
     t.integer "currency_id",      limit: 4
@@ -728,4 +712,30 @@ ActiveRecord::Schema.define(version: 20190311154832) do
     t.string   "image_path", limit: 255
   end
 
+  add_foreign_key "certificates", "vendors", name: "FK_sertificates_vendors"
+  add_foreign_key "posts", "post_types"
+  add_foreign_key "posts", "tickets"
+  add_foreign_key "posts", "users"
+  add_foreign_key "products", "categories", name: "FK_products_categories"
+  add_foreign_key "products", "currencies", name: "FK_products_currencies"
+  add_foreign_key "products", "product_kinds", name: "FK_ga42cu8ch92tuig4t8oo06hn8", on_delete: :nullify
+  add_foreign_key "products", "vendors", column: "vendor", primary_key: "title", name: "FK_h9ix3xgma67xlseqy1hap6rfa"
+  add_foreign_key "products", "vendors", name: "FK_products_vendors"
+  add_foreign_key "products_copy", "categories", name: "products_copy_ibfk_3"
+  add_foreign_key "products_copy", "currencies", name: "products_copy_ibfk_4"
+  add_foreign_key "products_copy", "product_kinds", name: "products_copy_ibfk_1", on_delete: :nullify
+  add_foreign_key "products_copy", "vendors", column: "vendor", primary_key: "title", name: "products_copy_ibfk_2"
+  add_foreign_key "products_copy", "vendors", name: "products_copy_ibfk_5"
+  add_foreign_key "products_functions", "functions", name: "FK_products_functions_functions", on_update: :cascade, on_delete: :cascade
+  add_foreign_key "products_functions", "products", name: "FK_products_functions_products", on_update: :cascade, on_delete: :cascade
+  add_foreign_key "properties", "product_kinds", on_delete: :nullify
+  add_foreign_key "properties_copy", "product_kinds", name: "properties_copy_ibfk_1", on_delete: :nullify
+  add_foreign_key "property_values", "products", name: "FK_property_values_products"
+  add_foreign_key "property_values", "properties", name: "FK_property_values_properties", on_delete: :nullify
+  add_foreign_key "property_values_copy", "products", name: "property_values_copy_ibfk_1"
+  add_foreign_key "property_values_copy", "properties", name: "property_values_copy_ibfk_2", on_delete: :nullify
+  add_foreign_key "tickets", "users"
+  add_foreign_key "users", "companies"
+  add_foreign_key "users", "groups"
+  add_foreign_key "vendors", "currencies", name: "FK_nsbv37hiaemev6th5cuqgs6aa"
 end

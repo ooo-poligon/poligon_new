@@ -546,6 +546,7 @@
             method: "post",
             data: {"quantity": $(this).val(), "line_item_id": $(this).attr("id")}
         }).done(function(response) {
+            console.log(response);
             if (response.overflow > 0 && response.stock !== 0) {
                 $("td#cart-status-" + response.line_item_id).html('<span><%= image_tag("yellow.gif") %></span> <span>Частично в наличии</span>');
             } else if (response.stock === 0) { 

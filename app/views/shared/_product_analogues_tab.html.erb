@@ -1,0 +1,37 @@
+<div class="analogs-container">
+  <% [@product.analog_1, @product.analog_2, @product.analog_3, @product.analog_4, @product.analog_5].each do |product_analog| %>
+    <% analog = Product.find_by(id: product_analog) %>
+    <% unless product_analog == 0 %>
+
+        <% productKind = ProductKind.find(analog.product_kind_id) %>
+        <div class="analog-item">
+          <div class="product-photo">
+            <div class="product-photo-img">
+              <%= render "shared/product_analog_image", locals: {product: analog} %>
+            </div>
+          </div>
+          <p style="font-weight: 600; line-height: 20px; color: #1d1d1d;"><%= analog.title %></p>
+          <p><%= productKind.title %></p>
+          <p style="font-weight: 600;">
+            <% if analog.stock > 0 || analog.reserved > 0 || analog.remote_stock > 0 %>
+              <span class="in_stock">В наличии</span>
+            <% elsif analog.ordered_on_stock > 0 %>
+              <span class="ordered_on_stock">Ожидается</span>
+            <% else %>
+              <i><%= analog.delivery_time %></i>
+            <% end %>
+          </p>
+          <div class="product-analog-cart">
+          <%= form_tag(line_items_path, method: "post", class: "analog-form", remote: true) do %>
+            <%= hidden_field_tag(:product_id, product_analog) %>
+            <%= hidden_field_tag(:minimum, 1) %>
+            <button type="submit" data-toggle="modal" data-target="#quick-cart">В корзину</button>
+            <%= number_field_tag(:quantity, 1, class: "quantity",  step: 1, min: 1, pattern: "^[0-9]+$") %>
+          <% end %>
+        </div>
+        </div>
+
+      
+    <% end %>
+  <% end %>
+</div>

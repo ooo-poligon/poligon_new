@@ -795,3 +795,51 @@ box-shadow: 0px 1px 1px 0px rgba(87,87,87,0.08);
     background: #d8d8d8 !important;
   }
 }
+
+.analogs-container {
+  width: 100%;
+  display: flex;
+  flex-flow: row wrap;
+  position: relative;
+}
+
+.analog-item {
+  margin: 4px;
+  flex: 0 1 calc(20% - 8px);
+}
+
+.product-analog-container {
+  max-width: 150px;
+  max-height: 150px;
+}
+
+.product-analog-cart {
+  .jq-number {
+    padding: 0;
+  }
+
+  .jq-number__field {
+    width: 60px;
+  }
+
+  button {
+    padding: 7px 18px;
+    font-weight: 600;
+    margin-left: 1px;
+  }
+
+}
+
+.analog-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+}
+
+@media screen and (max-width: 575px){
+  .product-analog-cart button {
+    padding: 6px 12px;
+  }   
+}

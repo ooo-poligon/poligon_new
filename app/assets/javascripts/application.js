@@ -120,6 +120,7 @@ $(document).ready(function() {
 
   if ($(".ckeditor").length > 0) {
       CKEDITOR.replaceClass = 'ckeditor';
+      CKEDITOR.config.allowedContent = true;
   } else {
     console.log("ckeditor not find");
   }

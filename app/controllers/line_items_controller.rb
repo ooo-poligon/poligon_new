@@ -79,7 +79,7 @@ class LineItemsController < ApplicationController
     line_items.each do |item|
       total += item.quantity * item.price
     end
-    stock = line_item.product.quantity.nil? ? 0 : line_item.product.stock.to_i
+    stock = line_item.product.quantity.nil? ? 0 : line_item.product.stock.to_i+line_item.product.remote_stock.to_i
     overflow = quantity.to_i - stock
     line_item.update(overflow: overflow)
     respond_to do |format|

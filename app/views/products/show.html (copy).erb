@@ -8,6 +8,7 @@
   <% title = @productKind.title + " " + @product.title %>
   <h4><b><%= @productKind.title %></b> <span style="color: red;" ><%= @product.title %></span></h4>
 <% end %>
+
 <% generate_meta_from title %>
 <p><%= @product.description %></p>
 <p style="color: red; font-weight: bolder;">

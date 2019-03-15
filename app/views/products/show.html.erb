@@ -48,6 +48,21 @@
     <% title = @productKind.title + " " + @product.title %>
     <h4><b><%= @productKind.title %></b> <span style="color: red;" ><%= @product.title %></span></h4>
   <% end %>
+
+  <% if Rails.env == "development" %>
+    <div class="alert alert-success" role="alert" style="background-color: #dff0d8;color: #3c763d;">
+        Development информация<br>
+        <% if @product.kt_type == 1 %>
+          Продукт с аналогами. Stock: <%= @product.stock %> Remote_stock <%= @product.remote_stock %><br>
+          <% if @product.stock == 0 && @product.remote_stock == 0 %>
+            Продукта нет в наличии. Выводим аналоги.
+          <% end %>
+        <% else %>
+          Обычный продукт. Stock: <%= @product.stock %> Remote_stock <%= @product.remote_stock %>
+        <% end %>
+    </div>
+  <% end %>
+
   <% generate_meta_from title %>
   <div class="card">
     <div class="row product-card-content">
@@ -281,6 +296,11 @@
           <li><p>Общая информация</p></li>
         <% end %>
         <li><p><span class="card-pdf">pdf</span>и сертификаты</p></li>
+        <% if @product.kt_type == 1 && @product.stock == 0 && @product.remote_stock == 0 &&
+           (@product.analog_1 != 0 || @product.analog_2 != 0 || @product.analog_3 != 0 ||
+              @product.analog_4 != 0 || @product.analog_5 != 0) %>
+          <li><p>Аналоги</p></li>
+        <% end %>
         <li id="tab-advant"><p>Преимущества</p></li>
         <li><a href="#fb-form">Задать вопрос о товаре</a></li>
       </ul>
@@ -346,6 +366,13 @@
             <%= render "shared/category_catalogs_links", locals: {vendor_id: @product.vendor.code}  %>
           </div>
         </div>
+      <% if @product.kt_type == 1 && @product.stock == 0 && @product.remote_stock == 0 &&
+           (@product.analog_1 != 0 || @product.analog_2 != 0 || @product.analog_3 != 0 ||
+              @product.analog_4 != 0 || @product.analog_5 != 0) %>
+        <div class="card-box" id="analogues" style="display: none;">
+          <%= render "shared/product_analogues_tab", locals: { product: @product } %>
+        </div>
+      <% end %>
       <div class="card-box" id="advant" style="display: none;">
         <% if @product.advantages.blank? && @product.advantage.blank? && @product.vendor.advantages.blank? %>
           <% @advantagesDefaultText = Setting.find_by(title: "advantagesDefaultText") %>
