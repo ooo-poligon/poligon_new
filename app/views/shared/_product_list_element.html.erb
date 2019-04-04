@@ -11,6 +11,7 @@
       </div>
       <div class="col-xs-8 product-descr">
         <h3>
+
           <% category_slug = Category.find_by(id: locals[:product_array][0].category_id).slug %>
           <%= link_to locals[:product_array][0].title, category_product_path(id: locals[:product_array][0], category_id: category_slug) %>
             
@@ -18,8 +19,17 @@
         <p class="product-art">
           Артикул: <span><%= (locals[:product_array][0].article.nil? || locals[:product_array][0].article == "") ? "-" : locals[:product_array][0].article %></span></p>
 
-          <% manuf_slug = Category.find_by(id: locals[:product_array][3].code) %>
-        <p class="product-manuf">Производитель: <span><a href="/catalog/<%= manuf_slug.slug %>"><%= locals[:product_array][3].title %></a></span></p>
+          <% if locals[:product_array][3].code.nil? %>
+            <p class="product-manuf">Производитель: <span>
+              <%= locals[:product_array][0].vendor.title %></span>
+            </p>
+          <% else %>
+            <% manuf_slug = Category.find_by(id: locals[:product_array][3].code) %>
+            <p class="product-manuf">Производитель: <span>
+              <a href="/catalog/<%= manuf_slug.slug %>"><%= locals[:product_array][3].title %></a></span>
+            </p>
+          <% end %>
+
         <p class="product-text"><%= locals[:product_array][0].description %></p>
         <ul class="product-list">
           <!--<li><a>Параметры</a>-->

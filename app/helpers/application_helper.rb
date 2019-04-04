@@ -50,7 +50,6 @@ module ApplicationHelper
       :"og:title"        => opts[:title],
       :"og:description"  => opts[:description],
       :"keywords"        => opts[:keywords],
-      :"author"          => "Igor Klekotnev",
       :"og:image"        => opts[:"og:image"],
       :"csrf-param"      => request_forgery_protection_token,
       :"csrf-token"      => form_authenticity_token

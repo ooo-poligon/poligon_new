@@ -161,7 +161,7 @@
 
                         <% if @product.stock > 0 || @product.reserved > 0 || @product.remote_stock > 0 %>
                           <span><%= image_tag("green.gif") %></span>
-                          <span class="in_stock"><%= @product.stock.to_s + ' шт.' %> в наличии</span>
+                          <span class="in_stock"><%= (@product.stock+@product.remote_stock).to_s + ' шт.' %> в наличии</span>
                         <% elsif @product.ordered_on_stock > 0 %>
                           <span class="ordered_on_stock">Ожидается</span>
                         <% else %>

@@ -1,0 +1,13 @@
+<% if controller.controller_name == "products" && controller.action_name == "show" %>
+  <% link = "#{request.protocol}#{request.host}/catalog/#{@product.category.slug}/#{@product.slug}" %>
+  <% if @product.slug && @product.category.slug %>
+<link rel="canonical" href="<%= link %>" />
+  <% end %>
+<% end %>
+
+<% if controller.controller_name == "categories" && controller.action_name == "show" %>
+  <% if @category.slug %>
+    <% link = "#{request.protocol}#{request.host}/catalog/#{@category.slug}" %>
+<link rel="canonical" href="<%= link %>" />
+  <% end %>
+<% end %>

@@ -3,6 +3,9 @@ class CartsController < ApplicationController
 
   def show
     @cart = Cart.find(params[:id])
+    if session[:cart_id].to_s != params[:id]
+      raise ActionController::RoutingError.new('Not Found')
+    end
   rescue ActiveRecord::RecordNotFound
     logger.error "Попытка доступа к несуществующей корзине #{params[:id]}"
     redirect_to root_url, notice: 'Несуществующая корзина'

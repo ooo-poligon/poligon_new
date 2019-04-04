@@ -9,7 +9,8 @@ class CategoriesController < ApplicationController
 
   def show
     @curCatSlug = params[:id]
-    @currentCategoryId = Category.friendly.find(@curCatSlug).id
+    @category = Category.friendly.find(@curCatSlug)
+    @currentCategoryId = @category.id
     @addCBR = Setting.find_by title: 'addCBR'
     @allUpLevelCategories = []
     @allUpLevelCategoriesIds = []
