@@ -7,14 +7,17 @@ module ProductsHelper
 
   def prop_image_path_for(product, prop, picture_number)
     number ||= picture_number.to_s
-    vendor_title = Vendor.find(product.vendor_id).title.upcase
+    vendor_title = Vendor.find(product.vendor_id).title.upcase.upcase.gsub(" ","").gsub("+","")
     #vendor_title = "ПОЛИГОН"
     vendor_title = "POLIGONSPB" if vendor_title == "ПОЛИГОН"
     vendor_title = "no_vendor"  if vendor_title == "не указан"
     extension = ".jpg"
     product_title = product.title.gsub(' ', '_').gsub('/', '_').upcase
     product_title = transliterize product_title
-    picture_path_exist_only "/images/catalog/#{ vendor_title }/#{ prop }s/#{ product_title }_#{ prop + number + extension}"
+
+    picture_path = "/images/catalog/#{ vendor_title }/#{ prop }s/#{ product_title }_#{ prop + number + extension}"
+    picture_path_exist_only picture_path
+
   end
 
   private

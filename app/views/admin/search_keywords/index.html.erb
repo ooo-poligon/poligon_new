@@ -1,0 +1,24 @@
+<h3 style="padding-bottom: 10px;">Добавление ключей</h3>
+
+<%= form_for @key, url: admin_search_keywords_path(@key), :html => {:multipart => true} do |f| %>
+  <%= f.text_area :title, class: "form-control", style: "height: 100px;", required: true, placeholder: "ключ *** ключ ***" %>
+  <p style="margin-top:10px;"><%= f.submit "Добавить", class: "btn btn-success" %></p>
+<% end %>
+
+<table class="table table-striped" cellspacing="0" width="100%" id="myTable">
+  <thead>
+  <tr>
+    <th>Ключ</th>
+  </tr>
+  </thead>
+  <tbody>
+
+  <% @keys.each do |key| %>
+    <tr>
+      <td><%= key.title %></td>
+      <td><%= link_to 'Удалить', { action: :destroy, id: key.id }, method: :delete, class: "action-btn" %></td>
+    </tr>
+  <% end %>
+
+  </tbody>
+</table>

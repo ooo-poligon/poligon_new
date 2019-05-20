@@ -8,3 +8,15 @@
     <%= link_to 'Примеры применения', admin_examples_path %>
   </li>
 </ul>
+
+<br>
+<h2>Другие задачи</h2>
+
+<ul>
+  <li>
+    <%= link_to 'Переиндексировать базу поиска', admin_tasks_reindex_solr_path, method: :post, remote: true %>
+  </li>
+  <li>
+    <%= link_to 'Обновить курс валют', admin_tasks_update_course_path, method: :post, remote: true %>
+  </li>
+</ul>

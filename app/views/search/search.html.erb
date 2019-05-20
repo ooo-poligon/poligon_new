@@ -1,19 +1,24 @@
-<% title = 'Результат поиска по запросу "' + params[:q] + '"' %>
-<% generate_meta_from title %>
-<h2 style="color: red;"><i>Результат поиска по запросу <b>"<%= params[:q] %>"</b></i>:</h2>
+<% title = params[:q] %>
+<% description = "Найдено больше #{@products.results.count} товаров по запросу #{params[:q]}" if !@products.results.empty? %>
+<% generate_meta_from title, description %>
+
+<h1 style="color: red; text-transform: none;"><i><b><%= params[:q].mb_chars.capitalize.to_s %></b></i></h1>
 
 <% if !@products.results.empty? %>
   <h4>Товары:</h4>
     <table class="table">
       <% @products.results.each do |product| %>
         <tr>
-          <td><b><%= link_to product.title, product %></b> <% if !product.article.blank? %> (<%= product.article %>) <% end %> | <%= product.description %></td>
+          <td>
+            <b><%= link_to product.title, category_product_path(id: product, category_id: product.category) %></b> <% if !product.article.blank? %> (<%= product.article %>) <% end %> | <%= product.description %></td>
           <td class="stock-td">
 
           <% if signed_in? %>
 
-            <% if !product.stock.nil? && product.stock > 0 %>
-              <%= product.stock.to_s + ' шт.' %>
+            <% if product&.stock > 0 || product.remote_stock > 0 %>
+              <span class="in_stock"><%= product.stock.to_s + ' шт.' %></span>
+            <% elsif product.ordered_on_stock > 0 %>
+              <span class="ordered_on_stock">Ожидается</span>
             <% else %>
               <i><%= product.delivery_time %></i>
             <% end %>

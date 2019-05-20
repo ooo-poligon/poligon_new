@@ -18,5 +18,6 @@ class SitemapController < ApplicationController
     @reviews         = Review.all
     @static_contents = StaticContent.all
     @videos          = Video.all
+    @keys = SearchKeyword.all
   end
 end

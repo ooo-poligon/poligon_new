@@ -34,9 +34,12 @@
 <div class="col-sm-8 col-md-9 content" >
   <%= render "shared/breadcrumb_search", locals: {for: "categories"} %>
   <div class="category">
-    <% title = @recentCategory.title %>
+
+    <% title = "ПОЛИГОН | #{@recentCategory.title} купить" %>
+    <% title = @recentCategory.custom_title if @recentCategory.custom_title %>
     <% generate_meta_from title %>
-    <h1><%= title %></h1>
+
+    <h1><%= @recentCategory.title %></h1>
     <div class="category-info">
       <% count = top_count = sub_count = 0 %>
       <% topCategories = [] %>

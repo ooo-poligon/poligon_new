@@ -60,4 +60,11 @@
     </url>
   <% end %>
 
+  <% @keys.each do |key| %>
+    <url>
+      <loc><%= search_url(q: key.title) %></loc>
+      <changefreq>daily</changefreq>
+    </url>
+  <% end %>
+
 </urlset>

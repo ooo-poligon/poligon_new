@@ -5,9 +5,9 @@ Poligon::Application.routes.draw do
   resources :line_items, except: [:index]
   resources :news_items, only: [:index, :show], path: 'news'
   resources :articles,   only: [:index, :show]
-  resources :videos,     only: [:index, :show]
-  resources :reviews,    only: [:index, :show]
-  resources :additions,  only: [:index, :show]
+  #resources :videos,     only: [:index, :show]
+  #resources :reviews,    only: [:index, :show]
+  #resources :additions,  only: [:index, :show]
 
   resources :categories, only: [:index, :show], path: 'catalog' do
     get '/:id', to: 'products#show', as: 'product'
@@ -18,6 +18,8 @@ Poligon::Application.routes.draw do
   end
 
   resources :carts
+
+  get 'test_page', to: "test#show"
 
   get  'examples', to: "examples#index"
   get  'examples/:slug', to: "examples#show", as: "example"
@@ -85,18 +87,18 @@ Poligon::Application.routes.draw do
 
   devise_for :users
 
-  get 'categories/142'  => 'categories/tele',         :as => 'categories/tele'
-  get 'categories/77' => 'categories/comat_releco', :as => 'categories/comat_releco'
-  get 'categories/5583' => 'categories/emko',         :as => 'categories/emko'
-  get 'categories/5094' => 'categories/benedict',     :as => 'categories/benedict'
-  get 'categories/74'   => 'categories/citel',        :as => 'categories/citel'
-  get 'categories/5414' => 'categories/graesslin',    :as => 'categories/graesslin'
-  get 'categories/5535' => 'categories/sonder',       :as => 'categories/sonder'
-  get 'categories/5818' => 'categories/relequick',    :as => 'categories/relequick'
-  get 'categories/5512' => 'categories/cbi',          :as => 'categories/cbi'
-  get 'categories/6321' => 'categories/poligonspb',   :as => 'categories/poligonspb'
-  get 'categories/4847' => 'categories/huber_suhner', :as => 'categories/huber_suhner'
-  get 'categories/6371' => 'categories/tehnoplast',   :as => 'categories/tehnoplast'
+  get 'catalog/promyshlennaya-avtomatizaciya-tele'  => 'categories/tele',         :as => 'categories/tele'
+  get 'catalog/produkciya-comatreleco' => 'categories/comat_releco', :as => 'categories/comat_releco'
+  get 'catalog/ustrojstva-izmereniya-i-upravleniya-emko' => 'categories/emko',         :as => 'categories/emko'
+  get 'catalog/kontaktory-puskateli-zasshita-benedict' => 'categories/benedict',     :as => 'categories/benedict'
+  get 'catalog/ustrojstva-grozozasshity-i-uzip-citel'   => 'categories/citel',        :as => 'categories/citel'
+  get 'catalog/vremya-teplo-svet-graesslin' => 'categories/graesslin',    :as => 'categories/graesslin'
+  get 'catalog/termostaty-sonder' => 'categories/sonder',       :as => 'categories/sonder'
+  get 'catalog/relequick' => 'categories/relequick',    :as => 'categories/relequick'
+  get 'catalog/avtomaticheskie-vyklyuchateli-cbi' => 'categories/cbi',          :as => 'categories/cbi'
+  get 'catalog/npf-poligon' => 'categories/poligonspb',   :as => 'categories/poligonspb'
+  get 'catalog/prochee-oborudovanie-v-nalichii' => 'categories/huber_suhner', :as => 'categories/huber_suhner'
+  get 'catalog/tehnoplast' => 'categories/tehnoplast',   :as => 'categories/tehnoplast'
 
   get 'stock', to: "products#stock"
 
@@ -104,10 +106,14 @@ Poligon::Application.routes.draw do
   namespace :admin do
     resources :panel, only: [:index]
     resources :scopes, :booklets, :static_contents, :slider_items, :settings, :articles
-    resources :examples, :news_items
+    resources :examples, :news_items, :search_keywords
     resources :examples do
       resources :example_images, :only => [:create, :destroy] # support #create and #destroy
     end
+
+    post 'tasks/reindex_solr', to: "tasks#reindex_solr"
+    post 'tasks/update_course', to: "tasks#update_course"
+
     resources :tags,  only: [:index, :show]
     resources :products, only: [:index, :edit, :update]
   end

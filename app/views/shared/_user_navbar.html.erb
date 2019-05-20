@@ -95,7 +95,7 @@
                       <td>Курс &euro; ЦБ РФ:</td>
                       <td>&nbsp</td>
                       <td style="font-weight: bold; color: red;">
-                        <%= @courseEuro.round(2) %>р.
+                        <%= @courseEuro.round(2) %>р. <span style="color: black; font-weight: normal;">(<%= ExchangeRate.last.created_at.in_time_zone("Moscow").strftime("%m/%d %H:%M") %>)</span>
                       </td>
                     </tr>
                   </table>

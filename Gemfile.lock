@@ -520,6 +520,7 @@ DEPENDENCIES
   mini_magick (= 4.8.0)
   mysql2 (= 0.4.4)
   nokogiri (= 1.6.8)
+  open4
   progress_bar (= 1.0.5)
   protected_attributes (= 1.1.4)
   pry-rails

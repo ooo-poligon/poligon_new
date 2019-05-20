@@ -71,8 +71,6 @@ class FeedbackController < ApplicationController
              params[:address] == '' or
              params[:booklet_ids].size == 0
 
-        binding.pry
-
         @name      = params[:name]
         @last_name = params[:last_name]
         @email     = params[:email]

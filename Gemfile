@@ -60,6 +60,7 @@ gem 'exception_notification', '4.1.4'
 gem 'httparty'
 
 gem 'sitemap_generator'
+gem 'open4'
 
 group :assets do
   gem 'coffee-rails', '4.1.1'

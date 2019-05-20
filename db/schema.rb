@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190325070638) do
+ActiveRecord::Schema.define(version: 20190417011253) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -105,6 +105,7 @@ ActiveRecord::Schema.define(version: 20190325070638) do
     t.text    "more_info",             limit: 65535
     t.text    "summary",               limit: 65535
     t.string  "slug",                  limit: 255
+    t.string  "custom_title",          limit: 255
   end
 
   add_index "categories", ["slug"], name: "index_categories_on_slug", unique: true, using: :btree
@@ -437,6 +438,7 @@ ActiveRecord::Schema.define(version: 20190325070638) do
     t.string  "analog_3_comment",   limit: 255,   default: ""
     t.string  "analog_4_comment",   limit: 255,   default: ""
     t.string  "analog_5_comment",   limit: 255,   default: ""
+    t.string  "custom_title",       limit: 255
   end
 
   add_index "products", ["advantage_id"], name: "index_products_on_advantage_id", using: :btree
@@ -550,11 +552,14 @@ ActiveRecord::Schema.define(version: 20190325070638) do
   add_index "products_functions", ["product_id"], name: "FK_products_functions_products", using: :btree
 
   create_table "properties", force: :cascade do |t|
-    t.integer "order_number",    limit: 4,   default: 0, null: false
+    t.integer "sorting",         limit: 4,   default: 0, null: false
     t.string  "title",           limit: 255
     t.string  "optional",        limit: 255
     t.string  "symbol",          limit: 255
     t.integer "product_kind_id", limit: 4
+    t.integer "parent_id",       limit: 4
+    t.integer "composite",       limit: 4
+    t.integer "multiple",        limit: 4
   end
 
   add_index "properties", ["product_kind_id"], name: "index_properties_on_product_kind_id", using: :btree
@@ -576,9 +581,10 @@ ActiveRecord::Schema.define(version: 20190325070638) do
   end
 
   create_table "property_values", force: :cascade do |t|
-    t.string  "value",       limit: 255
-    t.integer "property_id", limit: 4
-    t.integer "product_id",  limit: 4
+    t.string  "value",           limit: 1000
+    t.integer "property_id",     limit: 4
+    t.integer "product_id",      limit: 4
+    t.integer "composite_to_id", limit: 4
   end
 
   add_index "property_values", ["product_id"], name: "Индекс 4", using: :btree
@@ -603,6 +609,12 @@ ActiveRecord::Schema.define(version: 20190325070638) do
 
   create_table "scopes", force: :cascade do |t|
     t.string   "name",       limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  create_table "search_keywords", force: :cascade do |t|
+    t.string   "title",      limit: 255
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end

@@ -4,6 +4,19 @@ class ProductsController < ApplicationController
 
   def show
     @product                   = Product.friendly.find(params[:id])
+
+    @content = nil
+    
+    if @product.product_kind_id == 11
+      if params[:page] #product.title
+        request = params[:page]
+      else
+        request = "N33F E ST022 G2"
+      end
+      @content = `php /home/vladlaptev/projects/poligon_new/public/name_vision.php '#{request}'` if Rails.env == "development"
+      @content = `php /home/deploy/poligon/current/public/name_vision.php'#{request}'` if Rails.env == "staging"
+    end
+
     if @product.available == 0 && current_user.nil?
       return not_found
     end
@@ -39,7 +52,7 @@ class ProductsController < ApplicationController
                                                 product_id:  @product.id
                                               )
       unless value_for_product.nil?
-        @propHash[property] = [value_for_product.value, property.order_number]
+        @propHash[property] = [value_for_product.value, property.sorting]
       end
     end
 

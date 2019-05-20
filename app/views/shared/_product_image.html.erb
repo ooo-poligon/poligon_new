@@ -8,4 +8,6 @@
 <% end %>
 
 
-<%= link_to image_tag(image_path, class: "img-responsive center-block product-image-container"), category_product_path(product.id, category_id: product.category.slug) %>
+<% image_alt = "#{product.product_kind.title} #{product.title} #{vendorFolder.title}" %>
+
+<%= link_to image_tag(image_path, class: "img-responsive center-block product-image-container", alt: image_alt), category_product_path(product.id, category_id: product.category.slug) %>

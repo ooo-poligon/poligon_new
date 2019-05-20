@@ -135,12 +135,18 @@ class ApplicationController < ActionController::Base
     _meta_tags_hash.deep_merge!(normalize_meta_hash(options))
   end
 
-  def generate_meta_from(input)
-    set_meta  "title" => "poligon.info | " + input,
-              "og:title" => input,
-              "description" => ('Страница сайта "' + input + '"'),
-              "og:description" => ('Страница сайта "' + input + '"'),
-              "keywords" => get_keywords_from(input)
+  def generate_meta_from(title = nil, description = nil)
+    description = 'Страница сайта ' + title + '' if description.nil?
+    title = "poligon.info" if title.nil?
+
+    if !(controller_name == "products" && action_name == "show") && controller_name != "categories" && !(controller_name == "content" && action_name == "home")
+      title = "ПОЛИГОН | #{title}"
+    end
+    set_meta  "title" => title,
+              "og:title" => title,
+              "description" => (description),
+              "og:description" => ('Страница сайта ' + title + ''),
+              "keywords" => get_keywords_from(title)
   end
 
   protected

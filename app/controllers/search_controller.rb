@@ -1,7 +1,8 @@
+require 'will_paginate/array' 
 class SearchController < ApplicationController
   # для получения контента через http
   require 'open-uri'
-
+  require 'will_paginate/array' 
   # подключаем Nokogiri
   require 'nokogiri'
 
@@ -10,12 +11,10 @@ class SearchController < ApplicationController
   before_filter :sanitize_q
 
   def search
+
     @products = Sunspot.search(Product) do
       #fulltext search
-      fulltext ("\"" + params[:q] + "\"") do
-        phrase_fields :title => 2.0
-        phrase_slop   1
-      end
+      keywords params[:q]
 
       with(:available).equal_to(1)
       #scoping
@@ -30,6 +29,7 @@ class SearchController < ApplicationController
       end
       paginate :page => params[:products_page], :per_page => 10
     end
+
     @products.execute!
 
     @articles = Sunspot.search(Article) do

@@ -30,13 +30,13 @@
       </nav>
     </div>
   <% elsif (locals[:for] == 'publications') %>
+
     <%
       publication_types = [
-        {class: "Addition", title: "Дополнения", path: additions_path},
-        {class: "Article", title: "Статьи", path: articles_path},
-        {class: "Review", title: "Обзоры", path: reviews_path},
-        {class: "Video", title: "Видео", path: videos_path},
-        {class: "NewsItem", title: "Новости", path: news_items_path}
+        {type: "addition", title: "Дополнения", path: articles_path(scope: "addition")},
+        {type: "article", title: "Статьи", path: articles_path(scope: "article")},
+        {type: "review", title: "Обзоры", path: articles_path(scope: "review")},
+        {type: "video", title: "Видео", path: articles_path(scope: "video")}
       ]
     %>
       <% if controller.controller_name == "news_items" && controller.action_name %>
@@ -45,13 +45,17 @@
         <div class="row breadcrumbs">
           <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-              <li class="breadcrumb-item"><%= link_to 'Публикации', publications_index_path %></li>
+              <li class="breadcrumb-item">
+              <%= link_to 'Публикации', articles_path %></li>
+
               <% publication_types.each do |item| %>
                 <% a = locals[:item].class.name %>
-                <% if !locals[:item].nil? and locals[:item].class.name == item[:class] %>
+   
+                <% if locals[:class].class.name == "Article" && params[:scope] && item[:type].include?(params[:scope]) %>
                   <li class="breadcrumb-item"><%= link_to item[:title], item[:path] %></li>
                 <% end %>
               <% end %>
+              
             </ol>
           </nav>
         </div>

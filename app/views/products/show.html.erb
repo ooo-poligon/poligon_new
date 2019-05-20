@@ -46,6 +46,7 @@
     </h1>
   <% else %>
     <% title = @productKind.title + " " + @product.title %>
+
     <h4><b><%= @productKind.title %></b> <span style="color: red;" ><%= @product.title %></span></h4>
   <% end %>
 
@@ -63,7 +64,14 @@
     </div>
   <% end %>
 
-  <% generate_meta_from title %>
+
+  <% meta_title = "#{@product.product_kind.title} #{@product.title} #{vendorFolder.title} купить" if @product.article.nil? || @product.article == "" %>
+  
+  <% meta_title = "#{@product.product_kind.title} #{@product.title} (#{@product.article}) #{vendorFolder.title} купить" if !@product.article.blank? %>
+  
+  <% meta_title = @product.custom_title if @product.custom_title %>
+
+  <% generate_meta_from meta_title %>
   <div class="card">
     <div class="row product-card-content">
       <div class="col-md-4 card-gallery">
@@ -86,10 +94,11 @@
             <% xzoom_class = user_agent.browser == "Internet Explorer" ? "" : "xzoom5" %>
             
             <% if !@product.image_name_1.nil? and @product.image_name_1 != '' %>
-              <%= image_tag(image_path, class: xzoom_class, id: "xzoom-magnific", original: image_path, alt: '', style: "width: 271.984px;") %>
-              <% else %>
+              <% image_alt = "#{@productKind.title} #{@product.title} #{vendorFolder.title}" %>
+              <%= image_tag(image_path, class: xzoom_class, id: "xzoom-magnific", original: image_path, alt: image_alt, style: "width: 271.984px;") %>
+            <% else %>
               <%= image_tag("nophoto.png", class: xzoom_class, id: "xzoom-magnific", original: "nophoto.png", alt: '', style: "width: 271.984px;") %>
-              <% end %>
+            <% end %>
             </div>
 
              <div id="gallery" class="xzoom-thumbs">
@@ -118,7 +127,7 @@
 
             
             <div class="card-logo">
-              <a href="<%= category_path(@product.vendor.code) %>" target="_blank"> <!-- а если nil? -->
+              <a href="<%= category_path(@product.vendor.code) %>" target="_blank">
                 <%= image_tag("/brands/" + @product.vendor.logo, alt: '') %>
               </a>
             </div>
@@ -293,13 +302,19 @@
            (!(prop_image_path_for(@product, 'plug', 3 )).nil?) or
            (!(prop_image_path_for(@product, 'dim', nil)).nil?)
         %>
-          <li><p>Общая информация</p></li>
-        <% end %>
-        <li><p><span class="card-pdf">pdf</span>и сертификаты</p></li>
-        <% if @product.kt_type == 1 && @product.stock == 0 && @product.remote_stock == 0 &&
+        <% if @product.kt_type == 1 &&
            (@product.analog_1 != 0 || @product.analog_2 != 0 || @product.analog_3 != 0 ||
               @product.analog_4 != 0 || @product.analog_5 != 0) %>
-          <li><p>Аналоги</p></li>
+          <li><p>Общая информация</p></li>
+        <% else %>
+          <li class="current"><p>Общая информация</p></li>
+        <% end %>
+        <% end %>
+        <li><p><span class="card-pdf">pdf</span>и сертификаты</p></li>
+        <% if @product.kt_type == 1 &&
+           (@product.analog_1 != 0 || @product.analog_2 != 0 || @product.analog_3 != 0 ||
+              @product.analog_4 != 0 || @product.analog_5 != 0) %>
+          <li class="current"><p>Аналоги</p></li>
         <% end %>
         <li id="tab-advant"><p>Преимущества</p></li>
         <li><a href="#fb-form">Задать вопрос о товаре</a></li>
@@ -366,7 +381,7 @@
             <%= render "shared/category_catalogs_links", locals: {vendor_id: @product.vendor.code}  %>
           </div>
         </div>
-      <% if @product.kt_type == 1 && @product.stock == 0 && @product.remote_stock == 0 &&
+      <% if @product.kt_type == 1 &&
            (@product.analog_1 != 0 || @product.analog_2 != 0 || @product.analog_3 != 0 ||
               @product.analog_4 != 0 || @product.analog_5 != 0) %>
         <div class="card-box" id="analogues" style="display: none;">
